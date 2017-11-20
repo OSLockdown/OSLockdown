@@ -229,7 +229,7 @@ BUILDING OS LOCKDOWN
   To build OS Lockdown first ensure that you are in the top level of the
   OS Lockdown tarball.
   
-  **_IMPORTANT_**
+  *** IMPORTANT ***
       * You will need to be root in order to build the packages.
       * The top level directory of the OS Lockdown tree must be called 'oslockdown'.
   

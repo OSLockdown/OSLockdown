@@ -148,8 +148,10 @@ echo "Downloading components to `pwd`"
 
 if [ "`uname -s`" = "SunOS" ] ; then
   TAR_CMD='/usr/sfw/bin/gtar'
+  WGET_CMD='/usr/sfw/bin/wget'
 else
   TAR_CMD='tar'
+  WGET_CMD='wget'
 fi
 
 

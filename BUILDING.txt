@@ -66,8 +66,8 @@ PREREQUISITES
     Solaris build note:
     	- Swig must be built from source.  Information is provided later in
 	  this document on downloading and building swig
-        - The default path must include /usr/sfw/bin and /usr/ccs/bin before
-	  the system provide defaults, and 'gmake' should be used instead
+        - The default path must have /usr/sfw/bin and /usr/ccs/bin appened
+	  to the system provide defaults, and 'gmake' should be used instead
 	  of 'make' (gmake is located in /usr/sfw/bin).
 	- A Java 1.6 or 1.7 JDK must be installed on the system.
         - SUNWeu8os and SUNWeuluf are required to install OS Lockdown, but not 

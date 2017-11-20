@@ -252,15 +252,17 @@ BUILDING OS LOCKDOWN
   This error can be ignored, and can be a known problem when Grails is building
   a war file.
   
-  When the build is done you should have multiple files in the build/dist 
-  directory.  These should be the Linux RPMs or Solaris PKGs, and several log 
-  files from the build.  Depending on the distribution  4 or 5 final PKG or
-  RPM files.  
-  Importantly, there should also be a 'BUILT_FOR' file that contains the target
-  platform style for this build.  For instance, this file will say 
-  'redhat-5-i386' when built on *any* Red Hat or CentOS release 5 i386 system.
-  This information is important to build a combined  installer, or for using 
-  'autoupdates'. 
+  You will likely see other errors about missing pkg/rpm/log files during the
+  build.  These are normal.  
+
+  When the build is done you should see a line indicating the build is complete,
+  displaying the directory with the built packages, a line indicating the
+  'target' these packages are for (for example, redhat-6-x86_64), and partial
+  list of files in the above mentioned directory of build products.  There 
+  should be a 'BUILD_FOR' file, then between 4 and 5 PKG or RPM files depending
+  on the OS distribution and version.  There will also be some log files in
+  the directory holding the discrete build logs.  The build directory (and the 
+  files therein) will be required to create a installation tarball.
   
 SUSE/openSUSE SPECIFIC NOTE
 ---------------------------

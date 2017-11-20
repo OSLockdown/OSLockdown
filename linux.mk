@@ -97,7 +97,6 @@ export CORE             := $(SRCDIR)/core
 export CONSOLE          := $(SRCDIR)/console
 export SECMODULES       := $(SRCDIR)/security_modules
 export DISPATCHER       := $(SRCDIR)/dispatcher
-export BETACERTS        := $(SRCDIR)/betacerts
 export GPG_KEYRING      := $(TOPDIR)/gpg-keys
 export SELINUXDIR       := $(SRCDIR)/selinux
 
@@ -114,7 +113,6 @@ all:
 	fi
 	$(MAKE) -C $(SECMODULES)
 	$(MAKE) -C $(DISPATCHER)
-	$(MAKE) -C $(BETACERTS)
 	$(MAKE) -C $(SELINUXDIR)
 
 help:

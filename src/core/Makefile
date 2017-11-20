@@ -472,7 +472,7 @@ build-linux: FORCE
 	@echo
 
 	# Copy Packages into distro folder
-        -mkdir -p ${DISTRO}/
+	-mkdir -p ${DISTRO}/
 	-mv ${BUILD_BASE}/RPMS/noarch/oslockdown*.rpm ${DISTRO}/
 
 

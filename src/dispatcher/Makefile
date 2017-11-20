@@ -523,7 +523,7 @@ build-solaris: all install
 	mv swig_dir/AutoupdateComms.pyo ${DISTRO}/
 	mv swig_dir/_AutoupdateComms.so ${DISTRO}/
 	
-	cat /sodev/null > build/solaris/preinstall
+	cat /dev/null > build/solaris/preinstall
 
 
 

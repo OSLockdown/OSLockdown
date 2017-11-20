@@ -284,7 +284,7 @@
             <fileset dir="." includes="bytecompile.py"/>
         </delete>
         <echo message="Removing previously built packages..."/>
-        <delete>
+        <delete failonerror="false">
             <fileset dir="build/dist" includes="*.rpm"/>
             <fileset dir="build/dist" includes="*.pkg"/>
             <fileset dir="dist" includes="*"/>

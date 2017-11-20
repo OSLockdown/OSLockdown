@@ -234,7 +234,10 @@ BUILDING OS LOCKDOWN
       * The top level directory of the OS Lockdown tree must be called 'oslockdown'.
   
       
-  This is not the recommended method to build packages and should be fixed.  
+  We know this is not the "recommended method" to build packages, but it is legacy
+  from the time this was a commercial package and being built on a dedicated set of 
+  hardware.  It needs to be fixed.  
+  
   You must have the above prerequisites installed. For both Linux and Solaris 
   builds, the entire build will occur within the oslockdown directory tree.  
   Under Linux this happens because the 'rpmbuild' command is explicitly called 

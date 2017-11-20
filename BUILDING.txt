@@ -60,8 +60,8 @@ PREREQUISITES
   from the internet and install them manually.
   
     Linux: gcc gcc-c++ openssl openssl-devel xmlto python python-devel
-  	   rpm-build rpmdevtools swig
-    Solaris: SUNWgcc SUNWbash SUNWgmake SUNWopenssl-include SUNGWbinutils
+  	   rpm-build rpmdevtools swig xslt-python
+    Solaris: SUNWgcc SUNWbash SUNWgmake SUNWopenssl-include SUNGWbinutils SUNWlxsl-python
 
     Solaris build note:
     	- Swig must be built from source.  Information is provided later in
@@ -231,6 +231,7 @@ BUILDING OS LOCKDOWN
   
   *****  IMPORTANT
       You will need to be root in order to build the packages.
+      The top level directory of the OS Lockdown tree should be called 'oslockdown'.
   *****  IMPORTANT
       
   This is not the recommended method to build packages and should be fixed.  

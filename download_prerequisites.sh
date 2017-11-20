@@ -70,7 +70,7 @@ downloadArchive()
 
   echo "----> Downloading ${url}..."
     
-  /usr/sfw/bin/wget  ${WGET_FLAGS} -O ${destFile} ${url} 1>/dev/null 2>&1
+  ${WGET_CMD} ${WGET_FLAGS} -O ${destFile} ${url} 1>/dev/null 2>&1
   if [ $? -ne 0 ] ; then
       echo "----> Unable to download $url"
       echo " "

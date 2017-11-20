@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="SetPassAgingOnAccts">
+  <title xml:id="Passwords">Set Password Aging on Active Accounts</title>
+  <para>
+  Sets all active accounts (except system accounts) to force password
+  changes every <replaceable>MAX</replaceable> days, and then prevents
+  password changes for <replaceable>MIN</replaceable> days thereafter.
+  Users begin receiving warnings <replaceable>WARN</replaceable> days
+  before their password expires. Once the password expires, the account
+  is locked after <replaceable>INACT</replaceable> days. The option
+  value provided to this module must be four integers in a comma
+  separated list: <replaceable>MIN,MAX,WARN,INACT</replaceable>
+  <indexterm><primary>password</primary></indexterm>
+ </para>
+  <para>
+  Sets password aging on non-system accounts that are not already locked
+  and have aging parameters that do not match the specified values.
+ </para>
+  <simplesect xml:id="SetPassAgingOnAccts-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Minimum number of days between password changes.</para>
+      </listitem>
+      <listitem>
+        <para>Maximum number of days between password changes.</para>
+      </listitem>
+      <listitem>
+        <para>Number of days before password expires the system will notify the user.</para>
+      </listitem>
+      <listitem>
+        <para>Number of days to lock an account after its password has expired.</para>
+      </listitem>
+      <listitem>
+        <para>System accounts are exempt?<emphasis><para>Note - if system accounts are not exempt then they will be treated like user passwords and can expire, resulting in locked accounts.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Specific accounts to exempt.<emphasis><para>This is a list of specific accounts (system or user accounts) that are exempt from the aging requirements.  May require justification to any security accreditors.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="SetPassAgingOnAccts-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-11 - Account Monitoring and Control</para>
+      </listitem>
+      <listitem>
+        <para>CC-8 - Controlled Use of Administrative Privileges</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>CIA DCID 6/3 (May 2000)</title>
+      <listitem>
+        <para>4.B.1.b(3)(e) - Identification and Authentication - Aging of static authenticators</para>
+      </listitem>
+      <listitem>
+        <para>4.B.3.a(9)(e) - Identification and Authentication - Aging of static authenticators</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>3.1 - Password Settings</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN000540 - Users must not be able to change passwords more than once every 24 hours.</para>
+      </listitem>
+      <listitem>
+        <para>GEN000700 - User passwords must be changed at least every 60 days.</para>
+      </listitem>
+      <listitem>
+        <para>GEN006600 - Accounts must be locked upon 35 days of inactivity.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000051 - Users must not be able to change passwords more than once every 24 hours.</para>
+      </listitem>
+      <listitem>
+        <para>RHEL-06-000053 - User passwords must be changed at least every 60 days.</para>
+      </listitem>
+      <listitem>
+        <para>RHEL-06-000054 - Users must be warned 7 days in advance of password expiration.</para>
+      </listitem>
+      <listitem>
+        <para>RHEL-06-000334 - Accounts must be locked upon 35 days of inactivity.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN000540 - Password Change 24 Hours</para>
+      </listitem>
+      <listitem>
+        <para>GEN000700 - Password Change Every 60 Days</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD JAFAN 6/3 (Oct 2004)</title>
+      <listitem>
+        <para>4.B.1.b(3)(e) - Identification and Authentication - Aging of static authenticators</para>
+      </listitem>
+      <listitem>
+        <para>4.B.3.a(9)(e) - Identification and Authentication - Aging of static authenticators</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>IA-5 - Authenticator Management</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>2.3.1.7 - Set Password Expiration Parameters</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

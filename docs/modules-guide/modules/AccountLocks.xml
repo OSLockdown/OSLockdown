@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="AccountLocks" version="5.0">
+ <title xml:id="SessionMgmt">Lock Account after Three Failed Login Attempts</title>
+ <para>
+  Accounts are often compromised through the use of brute force account
+  name and password guessing attempts. These attempts can be partially
+  prevented by implementing account locking on your system. When an
+  attacker attempts to force open an account, the account becomes locked
+  after three failed login attempts.
+  <indexterm>
+   <primary>password</primary>
+  </indexterm>
+ </para>
+ <para>
+  Enabling account locking for user accounts introduces the potential
+  for a denial of service on user accounts. A locked account stays
+  locked until the administrator resets the account.
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="1.0*" align="left"/>
+   <colspec colname="c2" colwidth="1.0*"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Configuration Files</entry>
+     <entry>Setting</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10</entry>
+     <entry><filename>/etc/pam.d/system-auth</filename></entry>
+     <entry morerows="5">Ensure <parameter>auth</parameter> and <parameter>account</parameter>
+      lines use the
+      <systemitem class="library">pam_tally(8)</systemitem>
+      or
+      <systemitem class="library">pam_tally2(8)</systemitem>
+      library as appropriate (varies by system) to enforce a limit of 3
+      failed logins before locking the account.
+      <indexterm>
+       <primary>pam_tally</primary>
+      </indexterm></entry>
+     <indexterm>
+      <primary>pam.d</primary>
+     </indexterm>
+     <indexterm>
+      <primary>system-auth</primary>
+     </indexterm>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+     <entry><filename>/etc/pam.d/system-auth</filename></entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+     <entry><filename>/etc/pam.d/system-auth</filename></entry>
+    </row>
+    <row>
+     <entry>Fedora 11, 12, and 13</entry>
+     <entry><para>
+       <filename>/etc/pam.d/system-auth</filename>
+      </para>
+
+      <para>
+       <filename>/etc/pam.d/password-auth</filename>
+      </para></entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+     <entry><para>
+       <filename>/etc/pam.d/system-auth</filename>
+      </para>
+
+      <para>
+       <filename>/etc/pam.d/password-auth</filename>
+      </para></entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+     <entry><filename>/etc/pam.d/login</filename></entry>
+    </row>
+    <row>
+     <entry morerows="1">Solaris 10</entry>
+     <entry><filename>/etc/default/login</filename>
+      <indexterm>
+       <primary>/etc/default/login</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Files and Directories</primary>
+
+       <secondary>/etc/default/login</secondary>
+      </indexterm></entry>
+     <entry><envar>RETRIES=3</envar></entry>
+    </row>
+    <row>
+     <entry><filename>/etc/security/policy.conf</filename>
+      <indexterm>
+       <primary>/etc/security/policy.conf</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Files and Directories</primary>
+
+       <secondary>/etc/security/policy.conf</secondary>
+      </indexterm></entry>
+     <entry><envar>LOCK_AFTER_RETRIES=YES</envar>
+      <indexterm>
+       <primary>LOCK_AFTER_RETRIES</primary>
+      </indexterm></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <bridgehead renderas="sect2">Manually Resetting Accounts After Excessive Failed Login
+                Attempts</bridgehead>
+ <para>
+  Linux administrators can reset locked accounts by issuing the
+  <command>pam_tally</command> or <command>pam_tally2</command> command
+  as illustrated below:
+ </para>
+<screen>linux# <command>pam_tally --user <replaceable>username</replaceable> --reset=0</command></screen>
+ <para>
+  Solaris administrators can unlock accounts by issuing the following
+  command:
+ </para>
+<screen>solaris# <command>passwd -u <replaceable>username</replaceable></command></screen>
+ <para>
+  By default, the root account is exempt from lockout. Account lockout
+  can be disabled for other accounts with the following Solaris command:
+ </para>
+<screen>solaris# <command>usermod -K lock_after_retries=no <replaceable>username</replaceable></command></screen>
+ <simplesect xml:id="AccountLocks-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-11 - Account Monitoring and Control
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>CIA DCID 6/3 (May 2000)</title>
+   <listitem>
+    <para>
+     4.B.2.a(16)(c) - Session Control - Limit retry on logon as
+     technically feasible (PL2)
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     4.B.3.a(20)(c)
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DHS Linux Configuration Guidance (2010.8)</title>
+   <listitem>
+    <para>
+     3.1 - Password Settings
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN000460 - The system must disable accounts after three
+     consecutive unsuccessful login attempts.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN000460 - Three Failed Login Attempts
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD JAFAN 6/3 (Oct 2004)</title>
+   <listitem>
+    <para>
+     4.B.2.a(17)(c)
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     4.B.3.a(20)(c)
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD NISPOM (Feb 2006)</title>
+   <listitem>
+    <para>
+     8.609a2 - Successive Logon Attempts
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-7 - Unsuccessful Login Attempts
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     2.3.3.2 - Set Lockouts for Failed Password Attempts
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     8.5.13 - Limit repeated access attempts by locking out the user ID
+     after not more than six attempts.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

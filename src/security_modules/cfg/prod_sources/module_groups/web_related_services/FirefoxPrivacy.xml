@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="105" name="Firefox - Privacy">
+        <library>FirefoxPrivacy</library>
+        <description>Mozilla Firefox browser settings for privacy.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/a:mozilla:firefox"/>
+          <cpe-item name="cpe:/o:centos:centos:4"/>
+          <cpe-item name="cpe:/o:centos:centos:5"/>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:novell:opensuse:10"/>
+          <cpe-item name="cpe:/o:novell:opensuse:11"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:10"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:11"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:redhat:fedora:10"/>
+          <cpe-item name="cpe:/o:redhat:fedora:11"/>
+          <cpe-item name="cpe:/o:redhat:fedora:12"/>
+          <cpe-item name="cpe:/o:redhat:fedora:13"/>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Web Related Services</member>
+        </views>
+      </security_module>

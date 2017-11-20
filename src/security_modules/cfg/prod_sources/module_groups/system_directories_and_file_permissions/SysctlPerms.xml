@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Sysctl.conf Permissions">
+        <library>SysctlPerms</library>
+        <description>Secures configuration file permissions so that non-privileged users cannot modify sysctl.conf(5). Parameters for the kernel are stored in this file. This file should be owned by the root user, belong to the root group, and be readable and writable only by the root user.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>5</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4"/>
+          <cpe-item name="cpe:/o:centos:centos:5"/>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:novell:opensuse:10"/>
+          <cpe-item name="cpe:/o:novell:opensuse:11"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:10"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:11"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:redhat:fedora:10"/>
+          <cpe-item name="cpe:/o:redhat:fedora:11"/>
+          <cpe-item name="cpe:/o:redhat:fedora:12"/>
+          <cpe-item name="cpe:/o:redhat:fedora:13"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Directories and File Permissions</member>
+        </views>
+      </security_module>

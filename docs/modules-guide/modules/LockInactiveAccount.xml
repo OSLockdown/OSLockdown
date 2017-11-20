@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="LockInactiveAccount" version="5.0">
+  <title xml:id="Passwords">Lock Expired Account after Inactivity</title>
+  <para>
+  All new accounts should automatically lock themselves after the
+  password expires. A user account that has not been logged into
+  recently may be an indication of a user who no longer needs access to
+  the system, or a user who has not been removed completely when access
+  is no longer required. Having these accounts locked when the password
+  expires can prevent an attacker with knowledge of these accounts from
+  compromising the system.
+  <indexterm><primary>password</primary></indexterm>
+ </para>
+  <note>
+    <title>Note</title>
+    <para>
+   This module does not change the settings for current user accounts.
+   The parameter this module sets applies to newly created local user
+   accounts.
+  </para>
+  </note>
+  <note>
+   This module is not required for Solaris.  When a password expires under
+   Solaris the account is immediately locked.
+ </note>
+  <informaltable frame="all" cellspacing="2" cellpadding="2">
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.5*" align="left"/>
+      <colspec colname="c2" colwidth="0.5*"/>
+      <colspec colname="c3" colwidth="0.5*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Settings</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="4">
+            <filename>/etc/default/useradd</filename>
+            <indexterm>
+              <primary>/etc/default/useradd</primary>
+            </indexterm>
+          </entry>
+          <entry morerows="4">
+            <envar>INACTIVITY</envar>
+            <indexterm>
+              <primary>INACTIVITY</primary>
+            </indexterm>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <simplesect xml:id="LockInactiveAccount-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Number of days after password expires the account becomes locked.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="LockInactiveAccount-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN006600 - Accounts must be locked upon 35 days of inactivity.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000334 - Accounts must be locked upon 35 days of inactivity.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

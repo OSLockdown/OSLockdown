@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="DisableUSB">
+  <title xml:id="HardwareServices">Disable USB and PCMCIA Devices</title>
+  <para>
+  Disables USB and PCMCIA ports on the system. USB and PCMCIA ports are
+  used to attach PCMCIA cards, USB drives, and memory devices.
+  <indexterm><primary>USB</primary></indexterm>
+ </para>
+  <informaltable cellpadding="2" cellspacing="2" frame="all" pgwide="1">
+    <tgroup cols="3">
+      <colspec align="left" colname="c1" colwidth="1.0*"/>
+      <colspec colname="c2" colwidth="1.0*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Setting</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+          <entry>If “pcmcia-cs” package is installed.
+      <indexterm><primary>pcmcia-cs</primary></indexterm></entry>
+          <entry>Disable “pcmcia” service.</entry>
+        </row>
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="2">
+            <filename>/boot/grub/grub.conf</filename>
+            <indexterm>
+              <primary>/boot</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/boot</secondary>
+            </indexterm>
+          </entry>
+          <entry morerows="2">
+            <para>
+       Set either <parameter>nousb</parameter> or
+       <parameter>nousbstorage</parameter> option for the default
+       kernel. This is performed using the <command>grubby(8)</command>
+       utility.
+      </para>
+            <indexterm>
+              <primary>nousb</primary>
+            </indexterm>
+            <indexterm>
+              <primary>nousbstorage</primary>
+            </indexterm>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5.2+ (zSeries)
+      <indexterm><primary>zSeries</primary></indexterm></entry>
+          <entry nameend="c3" namest="c2">GRUB not used on IBM zSeries platforms. Instead the zSeries Initial
+      Program Loader (z/IPL) is used. Currently, there is no known
+      method of passing the <parameter>nousb</parameter> or
+      <parameter>nousbstorage</parameter> option to the default kernel
+      with z/IPL.
+      <indexterm><primary>GRUB</primary></indexterm>
+
+      <indexterm><primary>nousb</primary></indexterm>
+
+      <indexterm><primary>nousbstorage</primary></indexterm>
+
+      <indexterm><primary>z/IPL</primary></indexterm></entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+          <entry>
+            <filename>/etc/system</filename>
+            <indexterm>
+              <primary>/etc/system</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/system</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>scsa2usb</primary>
+            </indexterm>
+          </entry>
+          <entry>
+            <literallayout class="monospaced">exclude: scsa2usb
+exclude: pcmcia</literallayout>
+          </entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+          <entry>
+            <filename>/etc/modprobe.conf</filename>
+            <indexterm>
+              <primary>/etc/modprobe.conf</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/modprobe.conf</secondary>
+            </indexterm>
+          </entry>
+          <entry>
+            <filename>remove usb-storage /sbin/modprobe -r usb-storage</filename>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <para>
+  This module will prevent the USBA (Solaris USB architecture) compliant
+  nexus driver from loading in the global zone. Additionally, the PCMCIA
+  nexus driver is also prevented from being loaded.
+ </para>
+  <simplesect xml:id="DisableUSB-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Disable USB device support.<emphasis><para>Should all USB devices be disabled or only USB storage in the grub.conf file.  Note that on more recent Linux versions option 2 may have no effect, as the USB subsystem may be built into the kernel instead of being loaded on command.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="DisableUSB-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-13 - Limitation and Control of Network Ports, Protocols, and Services</para>
+      </listitem>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>8.7 - Disable PCMCIA and USB</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN008460 - The system must have USB disabled unless needed.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+      <listitem>
+        <para>CIP-005-3-R2.2 - Enable only ports and services needed for operations</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+      <listitem>
+        <para>CIP-007-3-R2.2 - Disable ports and services not needed for operations</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>AC-20 - Personally Owned Information Systems</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>2.2.2.2.1 - Disable Modprobe Loading of USB Storage Driver</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-4187-1 - The USB device support module should be loaded or not as appropriate</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

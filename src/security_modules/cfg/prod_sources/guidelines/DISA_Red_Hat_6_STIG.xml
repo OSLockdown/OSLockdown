@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<compliancy source="DISA" name="Red Hat 6 STIG" version="V1R14" enabled="True">
+  <title>U.S. DISA Security Technical Implementation Guides</title>
+  <style>ModulesPerLineItem</style>
+  <abstract>
+      The Security Technical Implementation Guides (STIGs) are the configuration standards for
+      U.S. Department of Defense (DoD) Information Assurance (IA) and IA-enabled devices/systems. The
+      guides are maintained and published by the Defense Information Systems Agency’s (DISA) Field
+      Security Office (FSO).
+  </abstract>
+  <line-items>
+    <line-item name="RHEL-06-000001" description="The system must use a separate file system for /tmp.">
+      <module libraryName="CheckFS_tmp"/>
+    </line-item>
+    <line-item name="RHEL-06-000002" description="The system must use a separate file system for /var.">
+      <module libraryName="CheckFS_var"/>
+    </line-item>
+    <line-item name="RHEL-06-000003" description="The system must use a separate file system for /var/log.">
+      <module libraryName="CheckFS_varlog"/>
+    </line-item>
+    <line-item name="RHEL-06-000004" description="The system must use a separate file system for the system audit data path.">
+      <module libraryName="CheckFS_varlogaudit"/>
+    </line-item>
+    <line-item name="RHEL-06-000005" description="The audit system must alert designated staff members when the audit storage volume approaches capacity.">
+      <module libraryName="ConfigureAuditdConf"/>
+    </line-item>
+    <line-item name="RHEL-06-000007" description="The system must use a separate file system for user home directories.">
+      <module libraryName="CheckFS_home"/>
+    </line-item>
+    <line-item name="RHEL-06-000008" description="Vendor-provided cryptographic certificates must be installed to verify the integrity of system software.">
+      <module libraryName="VerifySoftwareCryptoCerts"/>
+    </line-item>
+    <line-item name="RHEL-06-000009" description="The Red Hat Network Service (rhnsd) service must not be running, unless using RHN or an RHN Satellite.">
+      <module libraryName="DisableRhnsd"/>
+    </line-item>
+    <line-item name="RHEL-06-000011" description="System security patches and updates must be installed and up-to-date."/>
+    <line-item name="RHEL-06-000013" description="The system package management tool must cryptographically verify the authenticity of system software packages during installation.">
+      <module libraryName="EnsureYumReposUseGPGCheck"/>
+    </line-item>
+    <line-item name="RHEL-06-000015" description="The system package management tool must cryptographically verify the authenticity of all software packages during installation.">
+      <module libraryName="EnsureYumReposUseGPGCheck"/>
+    </line-item>
+    <line-item name="RHEL-06-000016" description="A file integrity tool must be installed."/>
+    <line-item name="RHEL-06-000017" description="The system must use a Linux Security Module at boot time.">
+      <module libraryName="SELinuxMustNotBeDisabled"/>
+    </line-item>
+    <line-item name="RHEL-06-000019" description="There must be no .rhosts or hosts.equiv files on the system.">
+      <module libraryName="RemoveRshAuthFiles"/>
+    </line-item>
+    <line-item name="RHEL-06-000020" description="The system must use a Linux Security Module configured to enforce limits on system services.">
+      <module libraryName="SELinuxIsPropEnabled"/>
+    </line-item>
+    <line-item name="RHEL-06-000023" description="The system must use a Linux Security Module configured to limit the privileges of system services.">
+      <module libraryName="SELinuxIsPropEnabled"/>
+    </line-item>
+    <line-item name="RHEL-06-000025" description="All device files must be monitored by the system Linux Security Module.">
+      <module libraryName="SELinuxFindUnlabeledFiles"/>
+    </line-item>
+    <line-item name="RHEL-06-000027" description="The system must prevent the root account from logging in from virtual consoles.">
+      <module libraryName="RootConsole"/>
+    </line-item>
+    <line-item name="RHEL-06-000028" description="The system must prevent the root account from logging in from serial consoles.">
+      <module libraryName="RootConsole"/>
+    </line-item>
+    <line-item name="RHEL-06-000029" description="Default operating system accounts, other than root, must be locked.">
+      <module libraryName="BlockSystemAccounts"/>
+    </line-item>
+    <line-item name="RHEL-06-000030" description="The system must not have accounts configured with blank or null passwords.">
+      <module libraryName="NoEmptyPasswords"/>
+    </line-item>
+    <line-item name="RHEL-06-000031" description="The /etc/passwd file must not contain password hashes.">
+      <module libraryName="NoHashesInPasswdGroup"/>
+    </line-item>
+    <line-item name="RHEL-06-000032" description="The root account must be the only account having a UID of 0.">
+      <module libraryName="LockDuplicateUidZeros"/>
+    </line-item>
+    <line-item name="RHEL-06-000033" description="The /etc/shadow file must be owned by root.">
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000034" description="The /etc/shadow file must be group-owned by root.">
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000035" description="The /etc/shadow file must have mode 0000.">
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000036" description="The /etc/gshadow file must be owned by root.">
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000037" description="The /etc/gshadow file must be group-owned by root.">
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000038" description="The /etc/gshadow file must have mode 0000.">
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000039" description="The /etc/passwd file must be owned by root.">
+      <module libraryName="PasswdPerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000040" description="The /etc/passwd file must be group-owned by root.">
+      <module libraryName="PasswdPerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000041" description="The /etc/passwd file must have mode 0644 or less permissive.">
+      <module libraryName="PasswdPerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000042" description="The /etc/group file must be owned by root.">
+      <module libraryName="PasswdPerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000043" description="The /etc/group file must be group-owned by root.">
+      <module libraryName="PasswdPerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000044" description="The /etc/group file must have mode 0644 or less permissive.">
+      <module libraryName="PasswdPerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000045" description="Library files must have mode 0755 or less permissive.">
+      <module libraryName="SysLibFilePerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000046" description="Library files must be owned by a system account.">
+      <module libraryName="SysLibFilePerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000047" description="All system command files must have mode 755 or less permissive.">
+      <module libraryName="SysCmdFilePerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000048" description="All system command files must be owned by root.">
+      <module libraryName="SysCmdFilePerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000050" description="The system must require passwords to contain a minimum of 15 characters.">
+      <module libraryName="PasswordPolicyMinlen"/>
+    </line-item>
+    <line-item name="RHEL-06-000051" description="Users must not be able to change passwords more than once every 24 hours.">
+      <module libraryName="PasswordChangeDelay"/>
+      <module libraryName="SetPassAgingOnAccts"/>
+    </line-item>
+    <line-item name="RHEL-06-000053" description="User passwords must be changed at least every 60 days.">
+      <module libraryName="PasswordMaxDays"/>
+      <module libraryName="SetPassAgingOnAccts"/>
+    </line-item>
+    <line-item name="RHEL-06-000054" description="Users must be warned 7 days in advance of password expiration.">
+      <module libraryName="PasswordWarnAge"/>
+      <module libraryName="SetPassAgingOnAccts"/>
+    </line-item>
+    <line-item name="RHEL-06-000056" description="The system must require passwords to contain at least one numeric character.">
+      <module libraryName="PasswordPolicyNumbers"/>
+    </line-item>
+    <line-item name="RHEL-06-000057" description="The system must require passwords to contain at least one uppercase alphabetic character.">
+      <module libraryName="PasswordPolicyUppercase"/>
+    </line-item>
+    <line-item name="RHEL-06-000058" description="The system must require passwords to contain at least one special character.">
+      <module libraryName="PasswordPolicySpecial"/>
+    </line-item>
+    <line-item name="RHEL-06-000059" description="The system must require passwords to contain at least one lowercase alphabetic character.">
+      <module libraryName="PasswordPolicyLowercase"/>
+    </line-item>
+    <line-item name="RHEL-06-000060" description="The system must require at least eight characters be changed between the old and new passwords during a password change.">
+      <module libraryName="PasswordPolicyDiffChars"/>
+    </line-item>
+    <line-item name="RHEL-06-000061" description="The system must disable accounts after three consecutive unsuccessful logon attempts."/>
+    <line-item name="RHEL-06-000062" description="The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes (system-auth)."/>
+    <line-item name="RHEL-06-000063" description="The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes (login.defs)."/>
+    <line-item name="RHEL-06-000064" description="The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes (libuser.conf)."/>
+    <line-item name="RHEL-06-000065" description="The system boot loader configuration file(s) must be owned by root.">
+      <module libraryName="BootLoaderConfigFilePerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000066" description="The system boot loader configuration file(s) must be group-owned by root.">
+      <module libraryName="BootLoaderConfigFilePerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000067" description="The system boot loader configuration file(s) must have mode 0600 or less permissive.">
+      <module libraryName="BootLoaderConfigFilePerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000068" description="The system boot loader must require authentication.">
+      <module libraryName="RequireGrubPassword"/>
+    </line-item>
+    <line-item name="RHEL-06-000069" description="The system must require authentication upon booting into single-user and maintenance modes.">
+      <module libraryName="SingleUserMode"/>
+    </line-item>
+    <line-item name="RHEL-06-000070" description="The system must not permit interactive boot.">
+      <module libraryName="DisableInteractiveBoot"/>
+    </line-item>
+    <line-item name="RHEL-06-000071" description="The system must allow locking of the console screen in text mode.">
+      <module libraryName="ScreenPackageInstalled"/>
+    </line-item>
+    <line-item name="RHEL-06-000073" description="The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, console login prompts.">
+      <module libraryName="CreateLoginBanner"/>
+    </line-item>
+    <line-item name="RHEL-06-000078" description="The system must implement virtual address space randomization.">
+      <module libraryName="EnableKernelExecShield"/>
+    </line-item>
+    <line-item name="RHEL-06-000079" description="The system must limit the ability of processes to have simultaneous write and execute access to memory.">
+      <module libraryName="EnableKernelExecShield"/>
+    </line-item>
+    <line-item name="RHEL-06-000080" description="The system must not send ICMPv4 redirects by default.">
+      <module libraryName="SendRedirects"/>
+    </line-item>
+    <line-item name="RHEL-06-000081" description="The system must not send ICMPv4 redirects from any interface.">
+      <module libraryName="SendRedirects"/>
+    </line-item>
+    <line-item name="RHEL-06-000082" description="IP forwarding for IPv4 must not be enabled, unless the system is a router.">
+      <module libraryName="IPForward"/>
+    </line-item>
+    <line-item name="RHEL-06-000083" description="The system must not accept IPv4 source-routed packets on any interface.">
+      <module libraryName="SourceRoute"/>
+    </line-item>
+    <line-item name="RHEL-06-000084" description="The system must not accept ICMPv4 redirect packets on any interface.">
+      <module libraryName="AcceptRedirects"/>
+    </line-item>
+    <line-item name="RHEL-06-000086" description="The system must not accept ICMPv4 secure redirect packets on any interface.">
+      <module libraryName="SecureRedirects"/>
+    </line-item>
+    <line-item name="RHEL-06-000088" description="The system must log Martian packets.">
+      <module libraryName="LogMartianPackets"/>
+    </line-item>
+    <line-item name="RHEL-06-000089" description="The system must not accept IPv4 source-routed packets by default.">
+      <module libraryName="SourceRoute"/>
+    </line-item>
+    <line-item name="RHEL-06-000090" description="The system must not accept ICMPv4 secure redirect packets by default.">
+      <module libraryName="SecureRedirects"/>
+    </line-item>
+    <line-item name="RHEL-06-000091" description="The system must ignore ICMPv4 redirect messages by default.">
+      <module libraryName="AcceptRedirects"/>
+    </line-item>
+    <line-item name="RHEL-06-000092" description="The system must not respond to ICMPv4 sent to a broadcast address.">
+      <module libraryName="ICMPEchoIgnoreBroadcasts"/>
+    </line-item>
+    <line-item name="RHEL-06-000093" description="The system must ignore ICMPv4 bogus error responses.">
+      <module libraryName="IgnoreBogusICMP"/>
+    </line-item>
+    <line-item name="RHEL-06-000095" description="The system must be configured to use TCP syncookies when experiencing a TCP SYN flood.">
+      <module libraryName="TCPSyncookies"/>
+    </line-item>
+    <line-item name="RHEL-06-000096" description="The system must use a reverse-path filter for IPv4 network traffic when possible on all interfaces.">
+      <module libraryName="RPFilter"/>
+    </line-item>
+    <line-item name="RHEL-06-000097" description="The system must use a reverse-path filter for IPv4 network traffic when possible by default.">
+      <module libraryName="RPFilter"/>
+    </line-item>
+    <line-item name="RHEL-06-000098" description="The IPv6 protocol handler must not be bound to the network stack unless needed.">
+      <module libraryName="DisableIPv6KernelModule"/>
+    </line-item>=    
+    <line-item name="RHEL-06-000099" description="The system must ignore ICMPv6 redirects by default.">
+      <module libraryName="AcceptRedirects"/>
+    </line-item>
+    <line-item name="RHEL-06-000103" description="The system must employ a local IPv6 firewall.">
+      <module libraryName="EnableIp6tables"/>
+    </line-item>
+    <line-item name="RHEL-06-000106" description="The operating system must connect to external networks or information systems only through managed IPv6 interfaces consisting of boundary protection devices arranged in accordance with an organizational security architecture."/>
+    <line-item name="RHEL-06-000107" description="The operating system must prevent public IPv6 access into an organizations internal networks, except as appropriately mediated by managed interfaces employing boundary protection devices."/>
+    <line-item name="RHEL-06-000113" description="The system must employ a local IPv4 firewall.">
+      <module libraryName="EnableIptables"/>
+    </line-item>
+    <line-item name="RHEL-06-000116" description="The operating system must connect to external networks or information systems only through managed IPv4 interfaces consisting of boundary protection devices arranged in accordance with an organizational security architecture."/>
+    <line-item name="RHEL-06-000117" description="The operating system must prevent public IPv4 access into an organizations internal networks, except as appropriately mediated by managed interfaces employing boundary protection devices."/>
+    <line-item name="RHEL-06-000120" description="The systems local IPv4 firewall must implement a deny-all, allow-by-exception policy for inbound packets."/>
+    <line-item name="RHEL-06-000124" description="The Datagram Congestion Control Protocol (DCCP) must be disabled unless required.">
+      <module libraryName="DisableKernelSprt_DCCP"/>
+    </line-item>
+    <line-item name="RHEL-06-000125" description="The Stream Control Transmission Protocol (SCTP) must be disabled unless required.">
+      <module libraryName="DisableKernelSprt_SCTP"/>
+    </line-item>
+    <line-item name="RHEL-06-000126" description="The Reliable Datagram Sockets (RDS) protocol must be disabled unless required.">
+      <module libraryName="DisableKernelSprt_RDS"/>
+    </line-item>
+    <line-item name="RHEL-06-000127" description="The Transparent Inter-Process Communication (TIPC) protocol must be disabled unless required.">
+      <module libraryName="DisableKernelSprt_TIPC"/>
+    </line-item>
+    <line-item name="RHEL-06-000133" description="All rsyslog-generated log files must be owned by root.">
+      <module libraryName="SysLogFilePerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000134" description="All rsyslog-generated log files must be group-owned by root.">
+      <module libraryName="SysLogFilePerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000135" description="All rsyslog-generated log files must have mode 0600 or less permissive.">
+      <module libraryName="SysLogFilePerms"/>
+    </line-item>
+    <line-item name="RHEL-06-000136" description="The operating system must back up audit records on an organization defined frequency onto a different system or media than the system being audited."/>
+    <line-item name="RHEL-06-000137" description="The operating system must support the requirement to centrally manage the content of audit records generated by organization defined information system components."/>
+    <line-item name="RHEL-06-000138" description="System logs must be rotated daily."/>
+    <line-item name="RHEL-06-000145" description="The operating system must produce audit records containing sufficient information to establish the identity of any user/subject associated with the event.">
+      <module libraryName="AuditEnable"/>
+    </line-item>
+    <line-item name="RHEL-06-000148" description="The operating system must employ automated mechanisms to facilitate the monitoring and control of remote access methods.">
+      <module libraryName="AuditEnable"/>
+    </line-item>
+    <line-item name="RHEL-06-000154" description="The operating system must produce audit records containing sufficient information to establish what type of events occurred.">
+      <module libraryName="AuditEnable"/>
+    </line-item>
+    <line-item name="RHEL-06-000159" description="The system must retain enough rotated audit logs to cover the required log retention period.">
+      <module libraryName="ConfigureAuditdConf"/>
+    </line-item>
+    <line-item name="RHEL-06-000160" description="The system must set a maximum audit log file size.">
+      <module libraryName="ConfigureAuditdConf"/>
+    </line-item>
+    <line-item name="RHEL-06-000161" description="The system must rotate audit log files that reach the maximum file size.">
+      <module libraryName="ConfigureAuditdConf"/>
+    </line-item>
+    <line-item name="RHEL-06-000165" description="The audit system must be configured to audit all attempts to alter system time through adjtimex.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000167" description="The audit system must be configured to audit all attempts to alter system time through settimeofday.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000169" description="The audit system must be configured to audit all attempts to alter system time through stime.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000171" description="The audit system must be configured to audit all attempts to alter system time through clock_settime.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000173" description="The audit system must be configured to audit all attempts to alter system time through /etc/localtime.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000174" description="The operating system must automatically audit account creation.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000175" description="The operating system must automatically audit account modification.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000176" description="The operating system must automatically audit account disabling actions.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000177" description="The operating system must automatically audit account termination.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000182" description="The audit system must be configured to audit modifications to the systems network configuration.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000183" description="The audit system must be configured to audit modifications to the systems Mandatory Access Control (MAC) configuration (SELinux).">      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000184" description="The audit system must be configured to audit all discretionary access control permission modifications using chmod.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000185" description="The audit system must be configured to audit all discretionary access control permission modifications using chown.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000186" description="The audit system must be configured to audit all discretionary access control permission modifications using fchmod.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000187" description="The audit system must be configured to audit all discretionary access control permission modifications using fchmodat.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000188" description="The audit system must be configured to audit all discretionary access control permission modifications using fchown.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000189" description="The audit system must be configured to audit all discretionary access control permission modifications using fchownat.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000190" description="The audit system must be configured to audit all discretionary access control permission modifications using fremovexattr.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000191" description="The audit system must be configured to audit all discretionary access control permission modifications using fsetxattr.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000192" description="The audit system must be configured to audit all discretionary access control permission modifications using lchown.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000193" description="The audit system must be configured to audit all discretionary access control permission modifications using lremovexattr.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000194" description="The audit system must be configured to audit all discretionary access control permission modifications using lsetxattr.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000195" description="The audit system must be configured to audit all discretionary access control permission modifications using removexattr.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000196" description="The audit system must be configured to audit all discretionary access control permission modifications using setxattr.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000197" description="The audit system must be configured to audit failed attempts to access files and programs.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000198" description="The audit system must be configured to audit all use of setuid and setgid programs.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000199" description="The audit system must be configured to audit successful file system mounts.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000200" description="The audit system must be configured to audit user deletions of files and programs.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000201" description="The audit system must be configured to audit changes to the /etc/sudoers file.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000202" description="The audit system must be configured to audit the loading and unloading of dynamic kernel modules.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="RHEL-06-000203" description="The xinetd service must be disabled if no network services utilizing it are enabled.">
+      <module libraryName="DisableInetd"/>
+    </line-item>
+    <line-item name="RHEL-06-000204" description="The xinetd service must be uninstalled if no network services utilizing it are enabled."/>
+    <line-item name="RHEL-06-000206" description="The telnet-server package must not be installed."/>
+    <line-item name="RHEL-06-000211" description="The telnet daemon must not be running.">
+      <module libraryName="DisableTelnet"/>
+    </line-item>
+    <line-item name="RHEL-06-000213" description="The rsh-server package must not be installed."/>
+    <line-item name="RHEL-06-000214" description="The rshd service must not be running.">
+      <module libraryName="DisableRsh"/>
+    </line-item>
+    <line-item name="RHEL-06-000216" description="The rexecd service must not be running.">
+      <module libraryName="DisableRexec"/>
+    </line-item>
+    <line-item name="RHEL-06-000218" description="The rlogind service must not be running.">
+      <module libraryName="DisableRlogin"/>
+    </line-item>
+    <line-item name="RHEL-06-000220" description="The ypserv package must not be installed."/>
+    <line-item name="RHEL-06-000221" description="The ypbind service must not be running.">
+      <module libraryName="DisableNIS_client"/>
+    </line-item>
+    <line-item name="RHEL-06-000222" description="The tftp-server package must not be installed unless required."/>
+    <line-item name="RHEL-06-000223" description="The TFTP service must not be running.">
+      <module libraryName="DisableTFTP"/>
+    </line-item>
+    <line-item name="RHEL-06-000224" description="The cron service must be running.">
+      <module libraryName="EnableCrond"/>
+    </line-item>
+    <line-item name="RHEL-06-000227" description="The SSH daemon must be configured to use only the SSHv2 protocol.">
+      <module libraryName="SshdProtocol"/>
+    </line-item>
+    <line-item name="RHEL-06-000230" description="The SSH daemon must set a timeout interval on idle sessions.">
+      <module libraryName="SshdSetIdleTimeout"/>
+    </line-item>
+    <line-item name="RHEL-06-000231" description="The SSH daemon must set a timeout count on idle sessions.">
+      <module libraryName="SshdSetIdleTimeout"/>
+    </line-item>
+    <line-item name="RHEL-06-000234" description="The SSH daemon must ignore .rhosts files.">
+      <module libraryName="SshdEnableIgnoreRhosts"/>
+    </line-item>
+    <line-item name="RHEL-06-000236" description="The SSH daemon must not allow host-based authentication.">
+      <module libraryName="SshdDisableHostbasedAuth"/>
+    </line-item>
+    <line-item name="RHEL-06-000237" description="The system must not permit root logins using remote access programs such as ssh.">
+      <module libraryName="SshdDisableRootLogin"/>
+    </line-item>
+    <line-item name="RHEL-06-000239" description="The SSH daemon must not allow authentication using an empty password.">
+      <module libraryName="SshdDisableEmptyPasswords"/>
+    </line-item>
+    <line-item name="RHEL-06-000240" description="The SSH daemon must be configured with the Department of Defense (DoD) login banner.">
+      <module libraryName="SshdEnableBanner"/>
+    </line-item>
+    <line-item name="RHEL-06-000241" description="The SSH daemon must not permit user environment settings.">
+      <module libraryName="SshdPermitUserEnvironment"/>
+    </line-item>    
+    <line-item name="RHEL-06-000243" description="The SSH daemon must be configured to use only FIPS 140-2 approved ciphers.">
+      <module libraryName="SshdRestrictCiphers"/>
+    </line-item>
+    <line-item name="RHEL-06-000246" description="The avahi service must be disabled.">
+      <module libraryName="DisableAvahi"/>
+    </line-item>
+    <line-item name="RHEL-06-000247" description="The system clock must be synchronized continuously, or at least daily."/>
+    <line-item name="RHEL-06-000248" description="The system clock must be synchronized to an authoritative DoD time source."/>
+    <line-item name="RHEL-06-000249" description="Mail relaying must be restricted."/>
+    <line-item name="RHEL-06-000252" description="If the system is using LDAP for authentication or account information, the system must use a TLS connection using FIPS 140-2 approved cryptographic algorithms."/>
+    <line-item name="RHEL-06-000253" description="The LDAP client must use a TLS connection using trust certificates signed by the site CA."/>
+    <line-item name="RHEL-06-000256" description="The openldap-servers package must not be installed unless required."/>
+    <line-item name="RHEL-06-000257" description="The graphical desktop environment must set the idle timeout to no more than 15 minutes.">
+      <module libraryName="SetGnomeSS"/>
+    </line-item>
+    <line-item name="RHEL-06-000258" description="The graphical desktop environment must automatically lock after 15 minutes of inactivity and the system must require user reauthentication to unlock the environment.">
+      <module libraryName="SetGnomeSS"/>
+    </line-item>
+    <line-item name="RHEL-06-000259" description="The graphical desktop environment must have automatic lock enabled.">
+      <module libraryName="SetGnomeSS"/>
+    </line-item>
+    <line-item name="RHEL-06-000260" description="The system must display a publicly-viewable pattern during a graphical desktop environment session lock.">
+      <module libraryName="SetGnomeSS"/>
+    </line-item>
+    <line-item name="RHEL-06-000261" description="The Automatic Bug Reporting Tool (abrtd) service must not be running.">
+      <module libraryName="DisableAbrtd"/>
+    </line-item>
+    <line-item name="RHEL-06-000262" description="The atd service must be disabled.">
+      <module libraryName="DisableAtd"/>
+    </line-item>
+    <line-item name="RHEL-06-000265" description="The ntpdate service must not be running.">
+      <module libraryName="DisableNtpdate"/>
+    </line-item>
+    <line-item name="RHEL-06-000266" description="The oddjobd service must not be running.">
+      <module libraryName="DisableOddjobd"/>
+    </line-item>
+    <line-item name="RHEL-06-000267" description="The qpidd service must not be running.">
+      <module libraryName="DisableQpidd"/>
+    </line-item>
+    <line-item name="RHEL-06-000268" description="The rdisc service must not be running.">
+      <module libraryName="DisableRdisc"/>
+    </line-item>
+    <line-item name="RHEL-06-000269" description="Remote file systems must be mounted with the nodev option."/>
+    <line-item name="RHEL-06-000270" description="Remote file systems must be mounted with the nosuid option."/>
+    <line-item name="RHEL-06-000271" description="The noexec option must be added to removable media partitions."/>
+    <line-item name="RHEL-06-000272" description="The system must use SMB client signing for connecting to samba servers using smbclient.">
+      <module libraryName="SMB_Conf"/>
+    </line-item>
+    <line-item name="RHEL-06-000273" description="The system must use SMB client signing for connecting to samba servers using mount.cifs."/>
+    <line-item name="RHEL-06-000274" description="The system must prohibit the reuse of passwords within five iterations.">
+      <module libraryName="PasswordReuse"/>
+    </line-item>
+    <line-item name="RHEL-06-000275" description="The operating system must employ cryptographic mechanisms to protect information in storage."/>
+    <line-item name="RHEL-06-000276" description="The operating system must protect the confidentiality and integrity of data at rest."/>
+    <line-item name="RHEL-06-000277" description="The operating system must employ cryptographic mechanisms to prevent unauthorized disclosure of data at rest unless otherwise protected by alternative physical measures."/>
+    <line-item name="RHEL-06-000278" description="The system package management tool must verify permissions on all files and directories associated with the audit package.">
+      <module libraryName="ConsultRPMDatabase"/>
+    </line-item>
+    <line-item name="RHEL-06-000279" description="The system package management tool must verify ownership on all files and directories associated with the audit package.">
+      <module libraryName="ConsultRPMDatabase"/>
+    </line-item>
+    <line-item name="RHEL-06-000280" description="The system package management tool must verify group-ownership on all files and directories associated with the audit package.">
+      <module libraryName="ConsultRPMDatabase"/>
+    </line-item>
+    <line-item name="RHEL-06-000281" description="The system package management tool must verify contents of all files associated with the audit package.">
+      <module libraryName="ConsultRPMDatabase"/>
+    </line-item>
+    <line-item name="RHEL-06-000282" description="There must be no world-writable files on the system.">
+      <module libraryName="SecureWorldWritableFiles"/>
+    </line-item>
+    <line-item name="RHEL-06-000284" description="The system must use and update a DoD-approved virus scan program."/>
+    <line-item name="RHEL-06-000285" description="The system must have a host-based intrusion detection tool installed."/>
+    <line-item name="RHEL-06-000286" description="The x86 Ctrl-Alt-Delete key sequence must be disabled.">
+      <module libraryName="CtrlAltDel"/>
+    </line-item>
+    <line-item name="RHEL-06-000287" description="The postfix service must be enabled for mail delivery.">
+      <module libraryName="EnablePostfix"/>
+    </line-item>
+    <line-item name="RHEL-06-000288" description="The sendmail package must be removed."/>
+    <line-item name="RHEL-06-000289" description="The netconsole service must be disabled unless required.">
+      <module libraryName="DisableNetconsole"/>
+    </line-item>
+    <line-item name="RHEL-06-000290" description="X Windows must not be enabled unless required.">
+      <module libraryName="DisableGuiLogin"/>
+    </line-item>
+    <line-item name="RHEL-06-000291" description="The xorg-x11-server-common (X Windows) package must not be installed, unless required."/>
+    <line-item name="RHEL-06-000292" description="The DHCP client must be disabled if not needed."/>
+    <line-item name="RHEL-06-000294" description="All GIDs referenced in /etc/passwd must be defined in /etc/group">
+      <module libraryName="PwGrpCheck"/>
+    </line-item>
+    <line-item name="RHEL-06-000296" description="All accounts on the system must have unique user or account names">
+      <module libraryName="PwGrpCheck"/>
+    </line-item>
+    <line-item name="RHEL-06-000297" description="Temporary accounts must be provisioned with an expiration date."/>
+    <line-item name="RHEL-06-000298" description="Emergency accounts must be provisioned with an expiration date."/>
+    <line-item name="RHEL-06-000299" description="The system must require passwords to contain no more than three consecutive repeating characters.">
+      <module libraryName="PasswordPolicyConsecutive"/>
+    </line-item>
+    <line-item name="RHEL-06-000302" description="A file integrity tool must be used at least weekly to check for unauthorized file changes, particularly the addition of unauthorized system libraries or binaries, or for unauthorized modification to authorized system libraries or binaries."/>
+    <line-item name="RHEL-06-000303" description="The operating system must employ automated mechanisms, per organization defined frequency, to detect the addition of unauthorized components/devices into the operating system."/>
+    <line-item name="RHEL-06-000304" description="The operating system must employ automated mechanisms to detect the presence of unauthorized software on organizational information systems and notify designated organizational officials in accordance with the organization defined frequency."/>
+    <line-item name="RHEL-06-000305" description="The operating system must provide a near real-time alert when any of the organization defined list of compromise or potential compromise indicators occurs."/>
+    <line-item name="RHEL-06-000306" description="The operating system must detect unauthorized changes to software and information."/>
+    <line-item name="RHEL-06-000307" description="The operating system must ensure unauthorized, security-relevant configuration changes detected are tracked."/>
+    <line-item name="RHEL-06-000308" description="Process core dumps must be disabled unless needed.">
+      <module libraryName="DisableCoreDumps"/>
+    </line-item>
+    <line-item name="RHEL-06-000309" description="The NFS server must not have the insecure file locking option enabled.">
+      <module libraryName="NFSSecure"/>
+    </line-item>
+    <line-item name="RHEL-06-000311" description="The audit system must provide a warning when allocated audit record storage volume reaches a documented percentage of maximum audit record storage capacity.">
+      <module libraryName="ConfigureAuditdConf"/>
+    </line-item>
+    <line-item name="RHEL-06-000313" description="The audit system must identify staff members to receive notifications of audit log storage volume capacity issues.">
+      <module libraryName="ConfigureAuditdConf"/>
+    </line-item>
+    <line-item name="RHEL-06-000315" description="The Bluetooth kernel module must be disabled.">
+      <module libraryName="DisableBluetoothKernelModules"/>
+    </line-item>
+    <line-item name="RHEL-06-000319" description="The system must limit users to 10 simultaneous system logins, or a site-defined number, in accordance with operational requirements.">
+      <module libraryName="MaxLoginsByUser"/>
+    </line-item>
+    <line-item name="RHEL-06-000320" description="The systems local firewall must implement a deny-all, allow-by-exception policy for forwarded packets."/>
+    <line-item name="RHEL-06-000321" description="The system must provide VPN connectivity for communications over untrusted networks."/>
+    <line-item name="RHEL-06-000324" description="A login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts."/>
+    <line-item name="RHEL-06-000326" description="The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts."/>
+    <line-item name="RHEL-06-000331" description="The Bluetooth service must be disabled.">
+      <module libraryName="DisableBluetooth"/>
+    </line-item>
+    <line-item name="RHEL-06-000334" description="Accounts must be locked upon 35 days of inactivity.">
+      <module libraryName="LockInactiveAccount"/>
+      <module libraryName="SetPassAgingOnAccts"/>
+    </line-item>
+    <line-item name="RHEL-06-000335" description="The operating system must manage information system identifiers for users and devices by disabling the user identifier after an organization defined time period of inactivity."/>
+    <line-item name="RHEL-06-000336" description="The sticky bit must be set on all public directories.">
+      <module libraryName="SecureWorldWritableDirectories"/>
+    </line-item>
+    <line-item name="RHEL-06-000337" description="All public directories must be owned by a system account."/>
+    <line-item name="RHEL-06-000338" description="The TFTP daemon must operate in secure mode which provides access only to a single directory on the host file system.">
+      <module libraryName="TftpSecureMode"/>
+    </line-item>
+    <line-item name="RHEL-06-000339" description="The FTP daemon must be configured for logging or verbose mode."/>
+    <line-item name="RHEL-06-000340" description="The snmpd service must use only SNMP protocol version 3 or newer."/>
+    <line-item name="RHEL-06-000341" description="The snmpd service must not use a default password."/>
+    <line-item name="RHEL-06-000342" description="The system default umask for the bash shell must be 077.">
+      <module libraryName="DefaultUmask"/>
+    </line-item>
+    <line-item name="RHEL-06-000343" description="The system default umask for the csh shell must be 077.">
+      <module libraryName="DefaultUmask"/>
+    </line-item>
+    <line-item name="RHEL-06-000344" description="The system default umask in /etc/profile must be 077.">
+      <module libraryName="DefaultUmask"/>
+    </line-item>
+    <line-item name="RHEL-06-000345" description="The system default umask in /etc/login.defs must be 077.">
+      <module libraryName="DefaultUmask"/>
+    </line-item>
+    <line-item name="RHEL-06-000346" description="The system default umask for daemons must be 027 or 022."/>
+    <line-item name="RHEL-06-000347" description="There must be no .netrc files on the system.">
+      <module libraryName="SecureNetrcFiles"/>
+    </line-item>
+    <line-item name="RHEL-06-000348" description="The FTPS/FTP service on the system must be configured with the Department of Defense (DoD) login banner.">
+      <module libraryName="CreateLoginFTPBanner"/>
+    </line-item>
+    <line-item name="RHEL-06-000349" description="The system must be configured to require the use of a CAC, PIV compliant hardware token, or Alternate Logon Token (ALT) for authentication."/>
+    <line-item name="RHEL-06-000356" description="The system must require administrator action to unlock an account locked by excessive failed login attempts."/>
+    <line-item name="RHEL-06-000357" description="The system must disable accounts after excessive login failures within a 15-minute interval."/>
+    <line-item name="RHEL-06-000383" description="Audit log files must have mode 0640 or less permissive."/>
+    <line-item name="RHEL-06-000384" description="Audit log files must be owned by root."/>
+    <line-item name="RHEL-06-000385" description="Audit log directories must have mode 0755 or less permissive."/>
+    <line-item name="RHEL-06-000503" description="The operating system must enforce requirements for the connection of mobile devices to operating systems.">
+      <module libraryName="DisableKernelUSBStorage"/>
+    </line-item>
+    <line-item name="RHEL-06-000504" description="The operating system must conduct backups of user-level information contained in the operating system per organization defined frequency to conduct backups consistent with recovery time and recovery point objectives."/>
+    <line-item name="RHEL-06-000505" description="The operating system must conduct backups of system-level information contained in the information system per organization defined frequency to conduct backups that are consistent with recovery time and recovery point objectives."/>
+    <line-item name="RHEL-06-000507" description="The operating system, upon successful logon, must display to the user the date and time of the last logon or access via ssh.">
+      <module libraryName="SshdPrintLastLog"/>
+    </line-item>
+    <line-item name="RHEL-06-000508" description="The system must allow locking of graphical desktop sessions."/>
+    <line-item name="RHEL-06-000509" description="The system must forward audit records to the syslog service."/>
+    <line-item name="RHEL-06-000510" description="The audit system must take appropriate action when the audit storage volume is full.">
+      <module libraryName="ConfigureAuditdConf"/>
+    </line-item>
+    <line-item name="RHEL-06-000511" description="The audit system must take appropriate action when there are disk errors on the audit storage volume.">
+      <module libraryName="ConfigureAuditdConf"/>
+    </line-item>
+    <line-item name="RHEL-06-000514" description="The RPM package management tool must cryptographically verify the authenticity of all software packages during installation."/>
+    <line-item name="RHEL-06-000515" description="The NFS server must not have the all_squash option enabled."/>
+    <line-item name="RHEL-06-000516" description="The system package management tool must verify ownership on all files and directories associated with packages.">
+      <module libraryName="ConsultRPMDatabase"/>
+    </line-item>
+    <line-item name="RHEL-06-000517" description="The system package management tool must verify group-ownership on all files and directories associated with packages.">
+      <module libraryName="ConsultRPMDatabase"/>
+    </line-item>
+    <line-item name="RHEL-06-000518" description="The system package management tool must verify permissions on all files and directories associated with packages.">
+      <module libraryName="ConsultRPMDatabase"/>
+    </line-item>
+    <line-item name="RHEL-06-000519" description="The system package management tool must verify contents of all files associated with packages.">
+      <module libraryName="ConsultRPMDatabase"/>
+    </line-item>
+    <line-item name="RHEL-06-000521" description="The mail system must forward all mail for root to one or more system administrators."/>
+    <line-item name="RHEL-06-000522" description="Audit log files must be group-owned by root."/>
+    <line-item name="RHEL-06-000523" description="The systems local IPv6 firewall must implement a deny-all, allow-by-exception policy for inbound packets."/>
+    <line-item name="RHEL-06-000524" description="The system must provide automated support for account management functions."/>
+    <line-item name="RHEL-06-000525" description="Auditing must be enabled at boot by setting a kernel parameter.">
+      <module libraryName="EnableAuditingForAllProcesses"/>
+    </line-item>
+    <line-item name="RHEL-06-000526" description="Automated file system mounting tools must not be enabled unless needed.">
+      <module libraryName="DisableAutofs"/>
+    </line-item>
+  <line-item name="RHEL-06-000527" description="The login user list must be disabled."/>
+  <line-item name="RHEL-06-000528" description="The noexec option must be added to the /tmp partition."/>
+  <line-item name="RHEL-06-000529" description="The sudo command must require authentication."/>
+  <line-item name="RHEL-06-000163" description="The audit system must switch the system to single-user mode when available audit storage volume becomes dangerously low.">
+      <module libraryName="ConfigureAuditdConf"/>
+    </line-item>
+  <line-item name="RHEL-06-000372" description="The operating system, upon successful logon/access, must display to the user the number of unsuccessful logon/access attempts since the last successful logon/access."/>
+  <line-item name="RHEL-06-000018" description="A file integrity baseline must be created."/></line-items>
+</compliancy>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: DisableRhnsd.xml 21205 2013-03-28 20:12:03Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="EnableCrond" version="5.0">
+ <title xml:id="SysMgmtServices">Enable Crond</title>
+ <para>
+  The cron daemon (crond) is responsible for executing scheduled
+  commands, and is used by many system routines to perform routine
+  maintenance. It is recommended that this service always be on.
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="0.8*" align="left"/>
+   <colspec colname="c2" colwidth="0.5*"/>
+   <colspec colname="c3" colwidth="0.8*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Package</entry>
+     <entry>Service Names</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry>cronie</entry>
+     <entry morerows="4">crond</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+     <entry morerows="1">vixie-cron</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+     <entry>cronie</entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+     <entry>cron</entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+     <entry>SUNWcsr
+      <indexterm>
+       <primary>SUNWcsr</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Solaris packages</primary>
+       <secondary>SUNWcsr</secondary>
+      </indexterm></entry>
+     <entry>svc:/system/cron:default
+      <indexterm>
+       <primary>Solaris services</primary>
+       <secondary>svc:/system/cron:default</secondary>
+      </indexterm></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="EnableCrond-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>DISA Red Hat 6 STIG (V1R14)</title>
+   <listitem>
+    <para>
+     RHEL-06-000224 - The cron service must be running.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

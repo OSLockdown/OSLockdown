@@ -1,0 +1,127 @@
+<!-- ************************************************************************ -->
+<!-- Copyright (c) 2007-2013 Forcepoint LLC.                                       -->
+<!-- This file is released under the GPLv3 license.                                -->
+<!-- See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license, -->
+<!-- or visit https://www.gnu.org/licenses/gpl.html instead.                       -->
+<!-- ************************************************************************ -->
+<!--
+     Common Ant Macros, Properties, and stuff for all projects
+     Use the <import> task to get this stuff. For example:
+
+     <import file="../build-common.xml"/>
+ -->
+<project name="imported" basedir="." default="...">
+  <dirname property="imported.basedir" file="${ant.file.imported}"/>
+  <property file="${imported.basedir}/default.properties"/>
+ 
+  <!-- Get all Shell Environment varialbes -->
+  <property environment="env" />
+
+  <!-- 
+          Identify OS and Set Props 
+            - These get set when immediately after this file is "imported"
+	    - Used primarily in security-modules to figure out which set of
+	      python files to compile, so we need to know what behavior to build for
+	      In this case the 'is' realy means 'like', so we'll include treat
+	      CentOS 'like' RHEL, and opensuse 'like' SUSE.  The SB_BUILDTFOR_PLATFORM
+	      tells us what OS kind, and the SB_BUILDFOR_RELEASE give major release #.
+	      Note unfortunately that we distinguish betweeh suse/opensuse at build time,
+	      but for Modules there is no difference....
+   -->
+    <condition property="isSolaris">
+        <equals arg1="${os.name}" arg2="SunOS"/>
+    </condition>
+    <condition property="isLinux">
+        <equals arg1="${os.name}" arg2="Linux"/>
+    </condition>
+
+    <condition property="isFedora">
+        <equals arg1="${env.SB_BUILTFOR_PLATFORM}" arg2="fedora"/>
+    </condition>
+
+    <condition property="isSuse">
+      <or>
+        <equals arg1="${env.SB_BUILTFOR_PLATFORM}" arg2="suse"/>
+        <equals arg1="${env.SB_BUILTFOR_PLATFORM}" arg2="opensuse"/>
+      </or>
+    </condition>
+
+    <condition property="isFedora">
+        <equals arg1="${env.SB_BUILTFOR_PLATFORM}" arg2="fedora"/>
+    </condition>
+
+    <condition property="isRedHat">
+        <equals arg1="${env.SB_BUILTFOR_PLATFORM}" arg2="redhat"/>
+    </condition>
+
+    <condition property="isUbuntu">
+        <equals arg1="${env.SB_BUILTFOR_PLATFORM}" arg2="ubuntu"/>
+    </condition>
+
+    <condition property="isRedHat6">
+       <and>
+          <equals arg1="${env.SB_BUILTFOR_PLATFORM}" arg2="redhat"/>
+          <equals arg1="${env.SB_BUILTFOR_RELEASE}" arg2="6"/>
+       </and>
+    </condition>
+
+
+   <property name="product.pkg.evr" value="${product.version}-${env.SB_RELEASE}"/>
+
+    <!-- Locate some commands on an OS basis -->
+    <condition property="cmd.make" value="/usr/sfw/bin/gmake">
+        <equals arg1="${os.name}" arg2="SunOS"/>
+    </condition>
+    <condition property="cmd.make" value="/usr/bin/make" >
+        <equals arg1="${os.name}" arg2="Linux"/>
+    </condition>
+
+    
+
+<!-- ===================================================================== -->
+  <!-- 
+       Get current SVN Release unless it was set externally as a property    
+   -->
+  <target name="current-svn-revision" unless="svn.revision">
+      <loadfile property="svn.revision" srcFile=".svn/entries" failonerror="false">
+          <filterchain>
+            <headfilter skip="3" lines="1"/>
+          </filterchain>
+      </loadfile>
+      <echo message="Assigned SVN Revision: r${svn.revision}" />
+  </target>
+
+  <target name="create-bytecompile-script">
+            <exec executable="sh">
+                <arg line='-c "echo import sys,compileall,re &gt; bytecompile.py"'/>
+            </exec>
+            <exec executable="sh">
+                <arg line='-c "echo ret = compileall.compile_dir\(sys.argv[1], rx=re.compile\(\&#039;/[.]svn\&#039;\), force=1\) &gt;&gt; bytecompile.py"'/>
+            </exec>
+            <exec executable="sh">
+                <arg line='-c "echo sys.exit\(ret ^ 1\) &gt;&gt; bytecompile.py"'/>
+            </exec>
+  </target>
+
+<!-- ===================================================================== -->
+<!--                            MACRO Definitions                          -->
+<!-- ===================================================================== -->
+    <!--
+           Compile Python Source to create Bytecode (.pyo)
+           To use, you must copy the bytecompile.py script into the same
+           working directory.
+     -->
+    <macrodef name="pycompile">
+        <attribute name="dir" default="."/>
+        <sequential>
+            <antcall target="create-bytecompile-script"/>
+            <exec executable="/usr/bin/python" dir=".">
+                <arg value="-OO"/>
+                <arg value="bytecompile.py"/>
+                <arg value="@{dir}"/>
+            </exec>
+            <delete file="bytecompile.py" />
+        </sequential>
+    </macrodef>
+
+</project>

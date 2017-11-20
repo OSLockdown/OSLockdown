@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: app-module-behavior-disable-services.xml 23964 2017-03-21 21:04:23Z acochrane $ -->
+<section version="5.0" xml:id="app-module-behavior-disable-services" xmlns="http://docbook.org/ns/docbook">
+ <title>Disabling Services</title>
+ <para> Several modules included with OS Lockdown simply disable a service in order to reduce the system’s attack
+  surface. Each module performs its actions much the same way with the exception of the service and package associated
+  with the service. </para>
+ <figure pgwide="1" xml:id="figure-scan-disable-service">
+  <title>Disabling Services - Scanning Process</title>
+  <mediaobject>
+   <imageobject>
+    <imagedata fileref="Figures/disable-service-flow.png" width="550"/>
+   </imageobject>
+  </mediaobject>
+ </figure>
+ <note>
+  <title>Solaris 10: DISA UNIX STIGS - SRR Scripts may report a failure</title>
+  <para> OS Lockdown uses the <command>svcadm(1M)</command> command to disable services to include the
+    <command>inetd(1M)</command> daemon. Many legacy services such as <command>telnetd(1M)</command> and
+    <command>in.ftpd(1M)</command> are dependent on <command>inetd(1M)</command>. Even though OS Lockdown disables these
+   legacy services, a system reboot may leave some of these services in an <emphasis>uninitialized</emphasis> state
+   because they are dependent on the <command>inetd(1M)</command> daemon; which has been disabled. </para>
+  <para> The System Readiness Review (SRR) scripts only checks to see if the service is in an
+    <emphasis>offline</emphasis> or <emphasis>disabled</emphasis> state. If you manually enable
+    <command>inetd(1M)</command> with <command>svcadm enable inetd</command> and then disable it with <command>svcadm
+    disable inetd</command>, the uninitialized services should switch to <emphasis>disabled</emphasis>. This is a false
+   positive and the OS Lockdown team will be working with DISA to resolve. </para>
+  <para> Tip: You can use the <command>inetadm(1M)</command> command to list all services dependent on the
+    <command>inetd(1M)</command> daemon. </para>
+ </note>
+</section>

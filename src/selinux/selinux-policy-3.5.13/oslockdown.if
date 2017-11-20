@@ -1,0 +1,1223 @@
+
+## <summary>policy for oslockdown</summary>
+##############################################################################
+# Copyright (c) 2011-2014 Forcepoint LLC.
+# This file is released under the GPLv3 license.  
+# See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+# or visit https://www.gnu.org/licenses/gpl.html instead.
+##############################################################################
+
+########################################
+## <summary>
+##	Execute a domain transition to run oslockdown.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`oslockdown_domtrans',`
+	gen_require(`
+		type oslockdown_t;
+                type oslockdown_exec_t;
+	')
+
+	domtrans_pattern($1,oslockdown_exec_t,oslockdown_t)
+')
+
+########################################
+## <summary>
+##	Execute a domain transition to run oslockdown_cfg
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`oslockdown_cfg_domtrans',`
+       gen_require(`
+	      	type oslockdown_cfg_t;
+		type oslockdown_cfg_exec_t;
+       ')
+
+       domtrans_pattern($1,oslockdown_cfg_exec_t,oslockdown_cfg_t)
+')
+########################################
+## <summary>
+##	Execute a domain transition to run oslockdown_dispatcher
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`oslockdown_dispatcher_domtrans',`
+       gen_require(`
+	      	type oslockdown_dispatcher_t;
+		type oslockdown_dispatcher_exec_t;
+       ')
+
+       domtrans_pattern($1,oslockdown_dispatcher_exec_t,oslockdown_dispatcher_t)
+')
+
+########################################
+## <summary>
+##	Execute a domain transition to run oslockdown_console
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`oslockdown_console_domtrans',`
+       gen_require(`
+	      	type oslockdown_console_t;
+		type oslockdown_console_exec_t;
+       ')
+
+       domtrans_pattern($1,oslockdown_console_exec_t,oslockdown_console_t)
+')
+
+########################################
+## <summary>
+##	Allow domain to perform configuration actions
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`oslockdown_allow_cfg',`
+       gen_require(`
+		type oslockdown_cfg_exec_t;
+		type oslockdown_lkey_t;
+		type oslockdown_rw_t;
+		type oslockdown_var_lib_t;
+		type oslockdown_dispatcher_cfg_t;
+		type oslockdown_dispatcher_exec_t;
+		type oslockdown_log_t;
+		type ntpd_initrc_exec_t;
+		type user_home_t;
+		class udp_socket { connect getattr read write create ioctl};
+		class file { open unlink write getattr execute execute_no_trans relabelfrom setattr read create};
+		class dir { write add_name remove_name };
+		class capability { sys_admin net_admin sys_rawio net_raw sys_module fsetid};
+       ')
+
+       allow $1 oslockdown_console_exec_t:file setattr;
+       allow $1 oslockdown_console_log_t:file setattr;
+       allow $1 oslockdown_dispatcher_cfg_t:file {ioctl relabelto open read getattr unlink };
+       allow $1 oslockdown_lkey_t:file relabelto;
+       allow $1 oslockdown_rw_t:file relabelfrom;
+       allow $1 oslockdown_var_lib_t:file relabelfrom;
+       allow $1 etc_t:dir { write add_name remove_name};
+       allow $1 etc_t:lnk_file {create unlink};
+       allow $1 oslockdown_cfg_exec_t: file execute_no_trans;
+       allow $1 oslockdown_dispatcher_exec_t: file {getattr execute } ;
+       allow $1 user_home_t:file { execute relabelfrom setattr read relabelto create write unlink};
+       allow $1 user_home_t:dir {write add_name remove_name rmdir setattr};
+       allow $1 self:udp_socket { connect getattr read write create ioctl } ;
+       allow $1 oslockdown_cfg_exec_t : dir search;
+       allow $1 ntpd_initrc_exec_t : file {execute execute_no_trans };
+       allow $1 oslockdown_rw_t:dir { remove_name write add_name };
+       allow $1 oslockdown_rw_t:file { execute  unlink write create setattr append };
+	   allow $1 self:capability { sys_admin net_admin sys_rawio net_raw sys_module fsetid};
+
+       oslockdown_access_logs($1, oslockdown_log_t)
+       selinux_compute_access_vector($1)
+       selinux_validate_context($1)
+       oslockdown_manage_lib_files($1)
+       manage_dirs_pattern($1,oslockdown_lkey_t,oslockdown_lkey_t)
+       manage_files_pattern($1,oslockdown_lkey_t,oslockdown_lkey_t)
+       oslockdown_run_sestatus($1)
+       oslockdown_generate_certs($1)
+       init_read_state($1)
+       init_read_script_files($1)
+       init_read_all_script_files($1)
+       init_read_script_state($1)
+       domain_read_all_domains_state($1)
+       consoletype_exec($1)
+       init_exec_script_files($1)
+       init_read_utmp($1)
+       sysnet_read_config($1)
+       selinux_load_policy($1)
+       kernel_load_module($1)
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to read, 
+##	oslockdown tmp files
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_dontaudit_read_tmp_files',`
+	gen_require(`
+		type oslockdown_tmp_t;
+	')
+
+	dontaudit $1 oslockdown_tmp_t:file read_file_perms;
+')
+
+########################################
+## <summary>
+##	Allow domain to read, oslockdown tmp files
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_read_tmp_files',`
+	gen_require(`
+		type oslockdown_tmp_t;
+	')
+
+	allow $1 oslockdown_tmp_t:file read_file_perms;
+')
+
+########################################
+## <summary>
+##	Allow domain to manage oslockdown tmp files
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_manage_tmp',`
+	gen_require(`
+		type oslockdown_tmp_t;
+	')
+
+         manage_dirs_pattern($1,oslockdown_tmp_t,oslockdown_tmp_t)
+         manage_files_pattern($1,oslockdown_tmp_t,oslockdown_tmp_t)
+         manage_lnk_files_pattern($1,oslockdown_tmp_t,oslockdown_tmp_t)
+')
+
+########################################
+## <summary>
+##	Search oslockdown rw directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_search_rw_dir',`
+	gen_require(`
+		type oslockdown_rw_t;
+	')
+
+	allow $1 oslockdown_rw_t:dir search_dir_perms;
+	files_search_rw($1)
+')
+
+########################################
+## <summary>
+##	Read oslockdown rw files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_read_rw_files',`
+	gen_require(`
+		type oslockdown_rw_t;
+	')
+
+	allow $1 oslockdown_rw_t:file r_file_perms;
+	allow $1 oslockdown_rw_t:dir list_dir_perms;
+	files_search_rw($1)
+')
+
+########################################
+## <summary>
+##	Create, read, write, and delete
+##	oslockdown rw files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_manage_rw_files',`
+	gen_require(`
+		type oslockdown_rw_t;
+	')
+
+	allow $1 oslockdown_rw_t:file manage_file_perms;
+	allow $1 oslockdown_rw_t:dir rw_dir_perms;
+')
+
+########################################
+## <summary>
+##	Manage oslockdown rw files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_manage_rw',`
+	gen_require(`
+		type oslockdown_rw_t;
+	')
+
+         manage_dirs_pattern($1,oslockdown_rw_t,oslockdown_rw_t)
+         manage_files_pattern($1,oslockdown_rw_t,oslockdown_rw_t)
+         manage_lnk_files_pattern($1,oslockdown_rw_t,oslockdown_rw_t)
+')
+
+
+########################################
+## <summary>
+##	Search oslockdown lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_search_lib',`
+	gen_require(`
+		type oslockdown_var_lib_t;
+	')
+
+	allow $1 oslockdown_var_lib_t:dir search_dir_perms;
+	files_search_var_lib($1)
+')
+
+########################################
+## <summary>
+##	Read oslockdown lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_read_lib_files',`
+	gen_require(`
+		type oslockdown_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+        read_files_pattern($1, oslockdown_var_lib_t, oslockdown_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Create, read, write, and delete
+##	oslockdown lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_manage_lib_files',`
+	gen_require(`
+		type oslockdown_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+        manage_files_pattern($1, oslockdown_var_lib_t,  oslockdown_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage oslockdown var_lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_manage_var_lib',`
+	gen_require(`
+		type oslockdown_var_lib_t;
+	')
+
+         manage_dirs_pattern($1,oslockdown_var_lib_t,oslockdown_var_lib_t)
+         manage_files_pattern($1,oslockdown_var_lib_t,oslockdown_var_lib_t)
+         manage_lnk_files_pattern($1,oslockdown_var_lib_t,oslockdown_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Setup to allow access to devpts_types and tty_device_t types
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to allow devpts and terminal types allowed access
+##	</summary>
+## </param>
+## <param name="basename">
+##	<summary>
+##	Basename to use to build domain, role, and terminal types allowed access
+##	</summary>
+## </param>
+#
+interface(`oslockdown_access_devices',`
+	gen_require(`
+		type $1_t;
+		type devpts_t;
+		type $2_devpts_t;
+		type tty_device_t;
+		type $2_tty_device_t;
+		type console_device_t;
+	')
+
+	allow $1_t {devpts_t $2_devpts_t tty_device_t $2_tty_device_t console_device_t} :chr_file rw_term_perms;
+')
+
+########################################
+## <summary>
+##	Setup to allow role transition from 'domain' to system_r with executing a domain exec file 
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain basename to to do transition when executed
+##	</summary>
+## </param>
+## <param name="basename">
+##	<summary>
+##	Domain basename to use to build domain, role types allowed access to transition
+##	</summary>
+## </param>
+#
+interface(`oslockdown_allow_role_transition',`
+	gen_require(`
+	       type $1_t;
+	       type $1_exec_t;
+	       type $2_t;
+	       role $2_r;
+	')
+        role $2_r types $1_t;
+        role_transition $2_r $1_exec_t system_r ;
+
+')
+
+########################################
+## <summary>
+##	Execute oslockdown in the oslockdown domain, and
+##	allow the specified role the oslockdown domain.
+## </summary>
+## <param name="basename">
+##	<summary>
+##	Basename to use to build domain, role, and terminal types allowed access
+##	</summary>
+## </param>
+#
+interface(`oslockdown_run',`
+	gen_require(`
+		type oslockdown_t;
+		type oslockdown_exec_t;
+		type $1_t;
+	')
+
+	oslockdown_domtrans($1_t)
+        optional_policy(`
+        	oslockdown_allow_role_transition(oslockdown, $1)
+	');
+	optional_policy(`
+        	oslockdown_access_devices(oslockdown, $1)
+	');
+')
+
+
+########################################
+## <summary>
+##	Execute oslockdown_cfg in the oslockdown domain, and
+##	allow the specified role the oslockdown domain.
+## </summary>
+## <param name="basename">
+##	<summary>
+##	Basename to use to build domain, role, and terminal types allowed access
+##	</summary>
+## </param>
+#
+interface(`oslockdown_cfg_run',`
+       gen_require(`
+	       type oslockdown_cfg_t;
+	       type oslockdown_cfg_exec_t;
+	       type $1_t;
+       ')
+       domain_obj_id_change_exemption(oslockdown_cfg_t)
+       oslockdown_cfg_domtrans($1_t)
+       optional_policy(`
+        	oslockdown_allow_role_transition(oslockdown_cfg, $1)
+	');
+       
+       optional_policy(`
+        	oslockdown_access_devices(oslockdown_cfg, $1)
+	');
+')
+
+########################################
+## <summary>
+##	Execute oslockdown_console in the oslockdown_console domain, and
+##	allow the specified role the oslockdown_console domain.
+## </summary>
+## <param name="basename">
+##	<summary>
+##	Basename to use to build domain, role, and terminal types allowed access
+##	</summary>
+## </param>
+#
+interface(`oslockdown_console_run',`
+	gen_require(`
+		type oslockdown_console_t;
+		type oslockdown_console_exec_t;
+		type oslockdown_console_var_run_t;
+		type oslockdown_cfg_exec_t;
+		type oslockdown_var_lib_t;
+		type oslockdown_log_t;
+		type oslockdown_lkey_t;
+		type user_home_t;
+		class process signal;
+		class file { read getattr ioctl };
+		type $1_t;
+	')
+	allow $1_t oslockdown_lkey_t:file {getattr open read};
+ 	allow $1_t oslockdown_cfg_exec_t:dir search;
+	allow $1_t oslockdown_cfg_exec_t:file { getattr execute };
+	allow $1_t oslockdown_var_lib_t:dir { write add_name };
+	allow $1_t oslockdown_var_lib_t:file { open write create getattr };
+	allow $1_t user_home_t:dir { write add_name };
+	allow $1_t user_home_t:file { read write execute create execute_no_trans };
+
+	allow $1_t oslockdown_console_t:process signal;
+	allow $1_t oslockdown_console_var_run_t:file { open read getattr ioctl };
+	allow $1_t oslockdown_log_t: file { getattr read };
+	oslockdown_console_domtrans($1_t)
+        optional_policy(`
+        	oslockdown_allow_role_transition(oslockdown_console, $1)
+	');
+	optional_policy(`
+        	oslockdown_access_devices(oslockdown_console, $1)
+	');
+')
+
+########################################
+## <summary>
+##	Execute oslockdown_dispatcher in the oslockdown_dispatcher domain, and
+##	allow the specified role the oslockdown_dispatcher domain.
+## </summary>
+## <param name="basename">
+##	<summary>
+##	Basename to use to build domain, role, and terminal types allowed access
+##	</summary>
+## </param>
+#
+interface(`oslockdown_dispatcher_run',`
+	gen_require(`
+		type oslockdown_dispatcher_t;
+		type oslockdown_dispatcher_exec_t;
+		type oslockdown_dispatcher_var_run_t;
+		type oslockdown_var_lib_t;
+		class process signal;
+		class file { read getattr ioctl };
+		type $1_t;
+	')
+
+	allow $1_t oslockdown_dispatcher_t:process signal;
+	allow $1_t oslockdown_dispatcher_var_run_t:file { open read getattr ioctl };
+	oslockdown_dispatcher_domtrans($1_t)
+        allow $1_t oslockdown_var_lib_t:file { append open create read getattr write };
+	allow $1_t oslockdown_var_lib_t:dir { write create add_name };
+        optional_policy(`
+        	oslockdown_allow_role_transition(oslockdown_dispatcher, $1)
+	');
+	optional_policy(`
+        	oslockdown_access_devices(oslockdown_dispatcher, $1)
+	');
+')
+
+
+
+
+########################################
+## <summary>
+##	All of the rules required to administrate 
+##	an oslockdown environment
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	The role to be allowed to manage the oslockdown domain.
+##	</summary>
+## </param>
+## <param name="terminal">
+##	<summary>
+##	The type of the user terminal.
+##	</summary>
+## </param>
+## <rolecap/>
+#
+interface(`oslockdown_admin',`
+	gen_require(`
+		type oslockdown_t;
+	')
+
+	allow $1 oslockdown_t:process { ptrace signal_perms getattr };
+	read_files_pattern($1, oslockdown_t, oslockdown_t)
+	        
+	oslockdown_manage_tmp($1)
+	oslockdown_manage_rw($1)
+	oslockdown_manage_var_lib($1)
+
+')
+
+########################################
+## <summary>
+##	Allow domain to run 'sestatus'
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_run_sestatus',`
+	gen_require(`
+		type $1;
+	')
+	selinux_getattr_fs($1)
+	selinux_search_fs($1)
+	seutil_search_default_contexts($1)
+	seutil_read_config($1)
+	allow $1 security_t:file { open read};
+
+')
+
+########################################
+## <summary>
+##	Allow domain to run basic shell commands
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_run_shell',`
+	gen_require(`
+		type $1;
+		class capability { dac_override dac_read_search };
+	')
+	allow $1 self:capability { dac_override dac_read_search };
+	corecmd_exec_bin($1)
+	kernel_read_system_state($1)
+')
+
+## <summary>
+##	Allow domain to read the SSL Certs
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_read_certs',`
+	gen_require(`
+		type $1;
+		type oslockdown_cert_t;
+	')
+	read_files_pattern($1, oslockdown_cert_t, oslockdown_cert_t)
+	list_dirs_pattern($1, oslockdown_cert_t, oslockdown_cert_t)
+')
+
+## <summary>
+##	Allow domain to generate the SSL Certs
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_generate_certs',`
+	gen_require(`
+		type $1;
+		type rpm_t;
+		type oslockdown_cert_t;
+		type oslockdown_cfg_exec_t;
+		type oslockdown_var_lib_t;
+		type admin_home_t;
+		type java_exec_t;
+		class process { execstack execmem };
+		class capability { fowner chown };
+		class file { open write getattr setattr read execute execute_no_trans };
+		class dir { create getattr setattr relabelfrom relabelto };
+	')
+	allow oslockdown_cfg_t oslockdown_cfg_exec_t:dir getattr;
+	allow oslockdown_cfg_t admin_home_t:file { create write setattr };
+	allow oslockdown_cfg_t admin_home_t:dir { write add_name create read open };
+	allow oslockdown_cfg_t java_exec_t:file { open read getattr execute execute_no_trans };
+	allow oslockdown_cfg_t oslockdown_var_lib_t:dir { create setattr };
+	allow oslockdown_cfg_t self:capability { fowner chown };
+	allow oslockdown_cfg_t self:process { execstack execmem };
+	allow oslockdown_cfg_t oslockdown_cert_t:dir { relabelto relabelfrom };
+	allow oslockdown_cfg_t oslockdown_cert_t:file { relabelto relabelfrom };
+	allow oslockdown_cfg_t oslockdown_var_lib_t:dir relabelfrom;
+	allow oslockdown_cfg_t rpm_t:process { siginh noatsecure rlimitinh };
+	manage_files_pattern($1, oslockdown_cert_t, oslockdown_cert_t)
+	manage_dirs_pattern($1, oslockdown_cert_t, oslockdown_cert_t)
+	nscd_read_pid(oslockdown_cfg_t)
+	dev_list_sysfs(oslockdown_cfg_t)
+	dev_read_rand(oslockdown_cfg_t)
+	dev_read_urand(oslockdown_cfg_t)
+	files_manage_generic_tmp_dirs(oslockdown_cfg_t)
+	files_manage_generic_tmp_files(oslockdown_cfg_t)
+	hostname_exec(oslockdown_cfg_t)
+	miscfiles_read_certs(oslockdown_cfg_t)
+	seutil_exec_setfiles(oslockdown_cfg_t)
+	seutil_read_file_contexts(oslockdown_cfg_t)
+')
+
+## <summary>
+##	Allow domain to read oslockdown_rw_t
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_read_rw',`
+	gen_require(`
+		type $1;
+		type oslockdown_rw_t;
+	')
+	read_files_pattern($1, oslockdown_rw_t, oslockdown_rw_t)
+	list_dirs_pattern($1, oslockdown_rw_t, oslockdown_rw_t)
+')
+
+########################################
+## <summary>
+##	Don't audit signull to/from setroubleshootd
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_ignore_signull',`
+	gen_require(`
+		type $1;
+		type setroubleshootd_t;
+		class process signull;
+	')
+	dontaudit $1 setroubleshootd_t:process signull;
+	dontaudit setroubleshootd_t $1:process signull;
+')
+
+########################################
+## <summary>
+##	Allow domain to access basic system things to run
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_basic_auths',`
+	gen_require(`
+		type $1;
+		type oslockdown_lkey_t;
+		type oslockdown_rw_t;
+		type oslockdown_cert_t;
+		class file { read execute getattr }; 
+		class dir { open read};
+		class process { setsched getsched signal signull ptrace};
+		class capability { sys_nice sys_ptrace};
+		class netlink_route_socket { write getattr read bind create nlmsg_read };
+		class tcp_socket { create connect };
+	')
+	allow $1 var_run_t:file { write create unlink getattr };
+	allow $1 self:fifo_file rw_file_perms;
+	allow $1 oslockdown_lkey_t : file { getattr open read };
+	oslockdown_read_py_files($1)
+        domain_obj_id_change_exemption($1)
+	oslockdown_read_rw($1)
+	oslockdown_read_certs($1)
+	oslockdown_search_lib($1)
+	allow $1 oslockdown_var_lib_t: dir {open read};
+	
+	corecmd_exec_shell($1)
+	kernel_read_network_state($1)
+	kernel_read_network_state_symlinks($1)
+	kernel_search_network_sysctl($1)
+	sysnet_exec_ifconfig($1)
+	files_read_etc_files($1)
+	files_read_etc_runtime_files($1)
+	libs_use_ld_so($1)
+	libs_use_shared_libs($1)
+	miscfiles_read_localization($1)
+	term_search_ptys($1)
+	files_read_usr_files($1)
+	files_read_usr_symlinks($1)
+	fs_getattr_xattr_fs($1)
+	sysadm_search_home_content_dirs($1)
+	sysadm_read_home_content_files($1)
+	oslockdown_python_rpm_api($1)
+	allow $1 self:process { setsched getsched signal signull ptrace};
+	allow $1 self:capability {sys_nice sys_ptrace};
+	corenet_tcp_sendrecv_all_if($1)
+	corenet_tcp_sendrecv_all_nodes($1)
+	corenet_tcp_sendrecv_all_ports($1)
+	corenet_tcp_bind_all_nodes($1)
+	corenet_tcp_bind_all_ports($1)
+	corenet_all_recvfrom_unlabeled($1)
+	kernel_read_kernel_sysctls($1)
+	allow $1 self:netlink_route_socket {write getattr read bind create nlmsg_read };
+	allow $1 self:tcp_socket {create connect };
+	corenet_tcp_connect_all_ports($1)
+')
+
+interface(`oslockdown_write_state',`
+	gen_require(`
+		type $1;
+		type oslockdown_state_t;
+	')
+	allow $1 oslockdown_state_t : file { manage_file_perms };
+	allow $1 oslockdown_state_t : file { open read getattr };
+')
+
+## <summary>
+##	Allow domain to generate the SSL Certs
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+
+########################################
+## <summary>
+##	Allow domain to use oslockdown_tmp_t files
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_use_tmp_files',`
+	gen_require(`
+		type $1;
+		type oslockdown_tmp_t;
+	')
+	allow $1 oslockdown_tmp_t:file manage_file_perms;
+	allow $1 oslockdown_tmp_t:dir manage_dir_perms;
+	files_tmp_filetrans($1, oslockdown_tmp_t, { file dir })
+
+')
+
+########################################
+## <summary>
+##	Allow domain to use oslockdown_py_t files
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_read_py_files',`
+	gen_require(`
+		type $1;
+		type oslockdown_py_t;
+	')
+	allow $1 oslockdown_py_t:file read_file_perms ;
+	allow $1 oslockdown_py_t:dir list_dir_perms;
+
+')
+########################################
+## <summary>
+##	Create log type and set access for a domain
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain .
+##	</summary>
+## </param>
+## <param name="logfiletype">
+##	<summary>
+##	logfiletype .
+##	</summary>
+## </param>
+#
+interface(`oslockdown_set_logs',`
+	logging_log_file($2);
+	logging_log_filetrans($1, $2, file);
+	manage_dirs_pattern($1, $2, $2);
+	manage_files_pattern($1, $2, $2)
+')
+
+########################################
+## <summary>
+##	Allow domain to read/write oslockdown_log_t files
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <param name="logtype">
+##	<summary>
+##	Logtype to allow access for.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_access_logs',`
+	gen_require(`
+		type $1;
+		type $2;
+		type var_log_t;
+	')
+
+	manage_dirs_pattern($1, $2,  $2)
+	manage_files_pattern($1, $2,  $2)
+	manage_dirs_pattern($1, var_log_t,  var_log_t)
+	manage_files_pattern($1, var_log_t,  var_log_t)
+')
+
+########################################
+## <summary>
+##	Allow domain to read/write oslockdown_state_t files
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_access_statefile',`
+	gen_require(`
+		type $1;
+		type oslockdown_state_t;
+	')
+
+	manage_files_pattern($1, oslockdown_state_t,  oslockdown_state_t)
+	manage_dirs_pattern(oslockdown_t, oslockdown_var_lib_t,  oslockdown_var_lib_t)
+
+')
+
+########################################
+## <summary>
+##	Allow domain to use Python rpm api
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_python_rpm_api',`
+	gen_require(`
+		type $1;
+		type rpm_var_lib_t;
+		type rpm_t;
+		class process {siginh noatsecure rlimitinh };
+		class dir { write getattr search};
+		class file { read write getattr lock};
+	')
+	rpm_domtrans($1)
+	allow oslockdown_t rpm_t:process { siginh noatsecure rlimitinh };
+	allow oslockdown_t rpm_var_lib_t:dir { write getattr search };
+	allow oslockdown_t rpm_var_lib_t:file { open read write getattr lock };
+')
+
+########################################
+## <summary>
+##	Allow domain to execute basic module code
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_module_common',`
+	gen_require(`
+		type $1;
+		type var_run_t;
+		type oslockdown_var_lib_t;
+		type oslockdown_licso_t;
+		class capability { fowner chown fsetid };
+		class dir { write add_name setattr };
+		class file { setattr read create write getattr unlink };
+	')
+	allow $1 oslockdown_licso_t:file {exec_file_perms} ;
+	allow $1 oslockdown_var_lib_t:dir { write add_name setattr };
+	allow $1 oslockdown_var_lib_t:file { open read write getattr create setattr };
+	allow $1 self:capability { fowner chown fsetid };
+
+')
+########################################
+## <summary>
+##	Allow domain to execute dispatcher code
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_dispatcher_common',`
+	gen_require(`
+        type var_run_t;
+		type devlog_t;
+		type oslockdown_var_lib_t;
+		type oslockdown_dispatcher_cfg_t;
+		type syslogd_t;
+		class capability { dac_override sys_admin net_admin sys_rawio net_raw sys_module };
+		class dir { remove_name write create add_name };
+		class tcp_socket { bind setopt listen read write accept shutdown };
+		class file { write read unlink getattr create };
+		class sock_file write;
+		class unix_dgram_socket { write create connect sendto };
+		class udp_socket { connect getattr read write create ioctl };
+	')
+
+    allow $1 devlog_t:sock_file write;
+    allow $1 oslockdown_dispatcher_cfg_t:file { open read};
+    allow $1 self:capability {dac_override sys_admin net_admin sys_rawio net_raw sys_module };
+    allow $1 self:tcp_socket { bind setopt listen read write accept shutdown};
+	allow $1 self:udp_socket {connect getattr read write create ioctl };
+    allow $1 self:unix_dgram_socket { write create connect };
+    allow $1 syslogd_t:unix_dgram_socket sendto;
+    allow $1 oslockdown_var_lib_t:file { append open create read getattr write unlink};
+	allow $1 oslockdown_var_lib_t:dir { remove_name write create add_name };        
+    allow $1 oslockdown_log_t:file { open read};
+    corenet_tcp_bind_generic_port($1)
+    allow $1 var_run_t:file { write unlink };
+	dev_read_urand($1)
+    miscfiles_read_certs($1)
+	kernel_read_system_state($1)
+	sysnet_read_config($1)
+    kernel_load_module($1)
+')
+
+########################################
+## <summary>
+##	Allow domain to execute Console code
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_console_common',`
+	gen_require(`
+		type $1;
+		type oslockdown_cfg_exec_t;
+		type oslockdown_var_lib_t;
+		type user_home_t;
+		type oslockdown_rw_t;
+		type oslockdown_log_t;
+		type devlog_t;
+		type syslogd_t;
+		type java_exec_t;
+		class process { execstack execmem };
+		class file { setattr read getattr execute execute_no_trans rename unlink};
+		class dir { remove_name create search getattr };
+		class capability { setuid audit_write setgid };
+		class key write;
+		class netlink_audit_socket { nlmsg_relay write create read };
+		class sock_file write;
+		class tcp_socket { getattr setopt shutdown bind getopt accept listen ioctl};
+		class unix_dgram_socket { write create connect sendto };
+		class dir setattr;
+	')
+
+	allow $1 oslockdown_log_t: file { getattr read };
+	allow $1 java_exec_t:file { open read getattr execute execute_no_trans };
+	allow $1 self:process { execstack execmem };
+	allow $1 devlog_t:sock_file write;
+	allow $1 oslockdown_rw_t:file execute;
+	allow $1 self:capability { setuid setgid audit_write };
+	allow $1 self:key write;
+	allow $1 self:netlink_audit_socket { nlmsg_relay write create read };
+	allow $1 self:unix_dgram_socket { write create connect };
+	allow $1 self:tcp_socket { getattr setopt shutdown getopt bind accept listen read write ioctl};
+	allow $1 self:udp_socket {connect getattr read write create ioctl };
+	allow $1 syslogd_t:unix_dgram_socket sendto;
+	allow $1 oslockdown_cfg_exec_t:dir search;
+	allow $1 oslockdown_cfg_exec_t:file { getattr execute };
+	allow $1 oslockdown_var_lib_t:dir { create write add_name remove_name };
+	allow $1 oslockdown_var_lib_t:file { open write create getattr unlink read rename };
+	allow $1 user_home_t:dir { remove_name write add_name create rmdir};
+	allow $1 user_home_t:file { unlink read write execute create execute_no_trans setattr getattr};
+	
+	dev_read_rand(oslockdown_console_t)
+	dev_read_urand(oslockdown_console_t)
+	miscfiles_read_certs(oslockdown_console_t)
+	sysnet_read_config(oslockdown_console_t)
+
+	dev_list_sysfs($1)
+	files_manage_generic_tmp_dirs($1)
+	files_manage_generic_tmp_files($1)
+	oslockdown_basic_auths($1)
+	oslockdown_run_shell($1)
+	fs_list_auto_mountpoints($1)
+	
+')
+
+########################################
+## <summary>
+##	Allow domain to execute monolithic module policy
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_monolithic',`
+
+	gen_require(`
+		type $1;
+		type nscd_t;
+		type sysctl_net_unix_t;
+		type semanage_t;
+		type dmidecode_exec_t;
+		type iso9660_t;
+        type initrc_exec_t;
+        type inetd_t;
+        type prelink_t;
+		attribute file_type;
+		class capability { sys_admin net_admin sys_rawio net_raw };
+		class file { execute execute_no_trans };
+		class dir search;
+		class fifo_file {write read getattr ioctl };
+		class rawip_socket { getopt create };
+		class netlink_kobject_uevent_socket { bind create };
+		class passwd { passwd rootok};
+		class process setfscreate;
+		class process { signal };
+	')
+	allow $1 self:process setfscreate;
+	allow $1 dmidecode_exec_t:file { execute execute_no_trans };
+	allow $1 self:capability { sys_admin net_admin sys_rawio net_raw };
+	allow $1 self:rawip_socket { getopt create };
+	allow $1 self:netlink_kobject_uevent_socket { bind create };
+
+	allow nscd_t $1:fifo_file { write read };
+	allow $1 sysctl_net_unix_t:dir search;
+	allow semanage_t $1:fifo_file { write getattr ioctl };
+  	allow $1 self:passwd { passwd rootok};
+	allow $1 initrc_exec_t:file {execute execute_no_trans};
+	allow $1 inetd_t:process {signal};
+    allow oslockdown_t prelink_t:process signal;
+
+    selinux_compute_access_vector($1)
+    selinux_validate_context($1)
+	fs_getattr_iso9660_files($1)
+	fs_read_iso9660_files($1)
+
+	read_files_pattern($1, file_type , file_type  )
+
+	files_read_all_symlinks($1)	
+	files_manage_all_files($1)
+	files_relabel_all_files($1)
+
+	dev_getattr_all_blk_files($1)
+	dev_getattr_all_chr_files($1)
+	dev_getattr_generic_chr_files($1)
+	dev_getattr_mtrr_dev($1)
+	dev_read_raw_memory($1)
+	dev_rw_generic_usb_dev($1)
+	dev_rw_lvm_control($1)
+	dev_setattr_sound_dev($1)
+	domain_read_all_domains_state($1)
+	fs_getattr_all_dirs($1)
+	fs_getattr_all_files($1)
+	fs_getattr_all_fs($1) 
+	fs_getattr_xattr_fs($1)
+	gpm_getattr_gpmctl($1)
+	hal_read_state($1)
+	init_read_script_state($1)
+	init_read_state($1)
+	iptables_exec($1)
+	kernel_getattr_core_if($1)
+	kernel_getattr_message_if($1)
+	kernel_read_device_sysctls($1)
+	kernel_read_hotplug_sysctls($1)
+	kernel_read_irq_sysctls($1)
+	kernel_read_modprobe_sysctls($1)
+	kernel_read_software_raid_state($1)
+	kernel_read_unix_sysctls($1)
+	kernel_read_vm_sysctls($1)
+	kernel_rw_kernel_sysctl($1)
+	kernel_rw_net_sysctls($1)
+	kernel_search_vm_sysctl($1)
+	nscd_exec($1)
+	selinux_load_policy($1)
+	seutil_exec_setfiles($1)
+	storage_manage_fixed_disk($1)
+	storage_raw_read_removable_device($1)
+	usermanage_domtrans_passwd($1)
+	usermanage_domtrans_useradd($1)
+	usermanage_domtrans_groupadd($1)
+    consoletype_exec($1)
+    prelink_domtrans($1)
+    oslockdown_allow_getattr_unlabeled($1)
+')
+
+
+## <summary>
+## Allow domain to read any unlabled_t files/dirs/symlinks/pipes/sockets/chdevs/blkdev/debugfs/procfs
+## </summary>
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`oslockdown_allow_getattr_unlabeled',`
+	gen_require(`
+		type $1;
+		type unlabeled_t;
+	')
+	kernel_list_unlabeled($1)
+    allow $1 unlabeled_t: dir { search read getattr };
+    allow $1 unlabeled_t: file {  getattr };
+    allow $1 unlabeled_t: lnk_file {  getattr };
+    allow $1 unlabeled_t: fifo_file {  getattr };
+    allow $1 unlabeled_t: sock_file {  getattr };
+    allow $1 unlabeled_t: blk_file {  getattr };
+    allow $1 unlabeled_t: chr_file {  getattr };
+')
+

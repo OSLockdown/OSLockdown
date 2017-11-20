@@ -1,0 +1,1518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="app-crossx-NSA_Guide_to_the_Secure_Configuration_of_RHEL5_Rev_4_2_Aug_2011">
+  <title>NSA Guide to the Secure Configuration of RHEL5 Rev. 4.2 / Aug 2011</title>
+  <para>
+    <abstract> <para>
+  The National Security Agency/Central Security Service (NSA/CSS) is
+  home to America's codemakers and codebreakers. The Central Security
+  Service was established in 1972 to promote a full partnership between
+  NSA and the cryptologic elements of the armed forces.
+ </para>
+ <para>
+  NSA/CSS is unique among the U.S. defense agencies because of its
+  government-wide responsibilities. NSA/CSS provides products and
+  services to the Department of Defense, the Intelligence Community,
+  government agencies, industry partners, and select allies and
+  coalition partners.
+ </para>
+ <para> NSA's Information Assurance Mission focuses on protecting National Security Information and
+  Information Systems, in accordance with National Security Directive 42. As such, their lines of
+  business include: IA Guidance, Security Engineering, and Integrated Computer Network Operations.
+  OS Lockdown supports many of the items identified in their <emphasis>Guide to the Secure
+   Configuration of Red Hat Enterprise Linux 5</emphasis> <footnote><para>http://www.nsa.gov/ia/guidance/security_configuration_guides/current_guides.shtml</para></footnote>. </para></abstract>
+  </para>
+  <para>
+    <literallayout>  187   Total number of line items in guideline
+  124   Items at least partially addressed by OS Lockdown
+   63   Items not addressed by OS Lockdown</literallayout>
+  </para>
+  <table xml:id="app-crossx-NSA_Guide_to_the_Secure_Configuration_of_RHEL5_Rev_4_2_Aug_2011-2.1.1.1.1-3.20.1" frame="all" tocentry="1" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>NSA Guide to the Secure Configuration of RHEL5 Rev. 4.2 / Aug 2011</title>
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.2*" align="center"/>
+      <colspec colname="c2" colwidth="0.5*" align="left"/>
+      <colspec colname="c3" colwidth="0.5*" align="left"/>
+      <thead>
+        <row>
+          <entry>Item</entry>
+          <entry>Title</entry>
+          <entry>OS Lockdown Modules</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>2.1.1.1.1</entry>
+          <entry>Create Separate Partition or Logical Volume for /tmp</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CheckFS_tmp" xrefstyle="select: title page">Check for separate /tmp file system</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.1.1.1.2</entry>
+          <entry>Create Separate Partition or Logical Volume for /var</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CheckFS_var" xrefstyle="select: title page">Check for separate /var file system</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.1.1.1.3</entry>
+          <entry>Create Separate Partition or Logical Volume for /var/log</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CheckFS_varlog" xrefstyle="select: title page">Check for separate /var/log file system</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.1.1.1.4</entry>
+          <entry>Create Separate Partition or Logical Volume for /var/log/audit</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CheckFS_varlogaudit" xrefstyle="select: title page">Check for separate /var/log/audit file system</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.1.1.1.5</entry>
+          <entry>Create Separate Partition or Logical Volume for /home</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CheckFS_home" xrefstyle="select: title page">Check for separate /home file system</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.1.2.2</entry>
+          <entry>Disable the rhnsd Daemon</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableRhnsd" xrefstyle="select: title page">Disable Rhnsd</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.1.1</entry>
+          <entry>Add nodev Option to Non-Root Local Partitions</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FstabNodev" xrefstyle="select: title page">Use NODEV Option for Non-root Partitions</xref>
+              </member>
+              <member>
+                <xref linkend="FstabRemovableMedia" xrefstyle="select: title page">Use NOSUID and NODEV for Removable Media</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.1.4</entry>
+          <entry>Bind-mount /var/tmp/to /tmp</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="Bind_VarTmp_To_Tmp" xrefstyle="select: title page">Bind Mount /var/tmp to /tmp</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.2.2.1</entry>
+          <entry>Disable Modprobe Loading of USB Storage Driver</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableUSB" xrefstyle="select: title page">Disable USB and PCMCIA Devices</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.2.3</entry>
+          <entry>Disable the Automounter if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNFS_client" xrefstyle="select: title page">Disable NFS Client</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.2.4</entry>
+          <entry>Disable GNOME Automounting if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableGnomeAutomounting" xrefstyle="select: title page">Disable GNOME Automounting</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.2.5</entry>
+          <entry>Disable Mounting of Uncommon Filesystem Types</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_fstypes" xrefstyle="select: title page">Disable Mounting of Uncommon Filesystem Types</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.3.1</entry>
+          <entry>Verify Permissions on passwd, shadow, group and gshadow Files</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.3.2</entry>
+          <entry>Verify that All World-Writable Directories Have Sticky Bits Set</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureWorldWritableDirectories" xrefstyle="select: title page">Secure World Writable Directories</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.3.3</entry>
+          <entry>Find Unauthorized World-Writable Files</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureWorldWritableDevices" xrefstyle="select: title page">Secure World Writable Devices</xref>
+              </member>
+              <member>
+                <xref linkend="SecureWorldWritableFiles" xrefstyle="select: title page">Secure World Writable Files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.3.4</entry>
+          <entry>Find Unauthorized SUID/SGID System Executables</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureSetXIDFiles" xrefstyle="select: title page">Secure SUID/SGID Executables</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.3.5</entry>
+          <entry>Find and Repair Unowned Files</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureUnownedFiles" xrefstyle="select: title page">Secure Unowned Files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.4.1</entry>
+          <entry>Set Daemon umask</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DaemonUmask" xrefstyle="select: title page">Daemon Umask</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.4.2</entry>
+          <entry>Disable Core Dumps</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableCoreDumps" xrefstyle="select: title page">Disable Core Dumps</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.4.2.1</entry>
+          <entry>Ensure SUID Core Dumps are Disabled</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSuidCoreDumps" xrefstyle="select: title page">Disable SUID Core Dumps</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.4.3</entry>
+          <entry>Enable ExecShield</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="EnableKernelExecShield" xrefstyle="select: title page">Enable ExecShield Kernel Module</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.4.4</entry>
+          <entry>Enable Execute Disable (XD) or No Execute (NX) Support on 32-bit x86 Systems</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CheckXdNxSupport" xrefstyle="select: title page">Check Kernel for XD/NX Support</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.4.5.1</entry>
+          <entry>Disable Prelink</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisablePrelinking" xrefstyle="select: title page">Disable Prelinking</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.4.5.2</entry>
+          <entry>Undo Existing Prelinking</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisablePrelinking" xrefstyle="select: title page">Disable Prelinking</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.1.1</entry>
+          <entry>Restrict Root Logins to System Console</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RootConsole" xrefstyle="select: title page">Root Console Only Logins</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.1.2</entry>
+          <entry>Limit su Access to the Root Account</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="LimitAccessFromSu" xrefstyle="select: title page">Limit Access To Root From Su</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.1.4</entry>
+          <entry>Block Shell and Login Access for Non-Root System Accounts</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="BlockSystemAccounts" xrefstyle="select: title page">Block System Accounts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.1.5</entry>
+          <entry>Verify that No Accounts Have Empty Password Fields</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NoEmptyPasswords" xrefstyle="select: title page">No Empty Passwords</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.1.6</entry>
+          <entry>Verify that No Non-Root Accounts Have UID 0</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="LockDuplicateUidZeros" xrefstyle="select: title page">Lock Non-Root Accounts with UID 0</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.1.7</entry>
+          <entry>Set Password Expiration Parameters</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordMaxDays" xrefstyle="select: title page">Maximum Time Between Password Changes</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordChangeDelay" xrefstyle="select: title page">Minimum Delay Between Password Changes</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordWarnAge" xrefstyle="select: title page">Password Expiration Warning</xref>
+              </member>
+              <member>
+                <xref linkend="SetPassAgingOnAccts" xrefstyle="select: title page">Set Password Aging on Active Accounts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.1.8</entry>
+          <entry>Remove Legacy ’+’ Entries from Password Files</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NoPlusPasswdEntries" xrefstyle="select: title page">No Plus Entries in Password Files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.3.1.1</entry>
+          <entry>Set Password Quality Requirements, if using pam cracklib</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordPolicyConsecutive" xrefstyle="select: title page">Password Policy Consecutive Characters</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyDiffChars" xrefstyle="select: title page">Password Policy Different Characters</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyMinlen" xrefstyle="select: title page">Password Policy Length Minimum</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyLowercase" xrefstyle="select: title page">Password Policy Lowercase Minimum</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyNumbers" xrefstyle="select: title page">Password Policy Numeric Minimum</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicySpecial" xrefstyle="select: title page">Password Policy Special Characters</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyUppercase" xrefstyle="select: title page">Password Policy Uppercase Minimum</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.3.2</entry>
+          <entry>Set Lockouts for Failed Password Attempts</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AccountLocks" xrefstyle="select: title page">Lock account after three failed login attempts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.3.6</entry>
+          <entry>Limit Password Reuse</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordReuse" xrefstyle="select: title page">Limit Password Reuse</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.4.1</entry>
+          <entry>Ensure that No Dangerous Directories Exist in Root’s Path</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RootPath" xrefstyle="select: title page">Root Path</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.4.2</entry>
+          <entry>Ensure that User Home Directories are not Group-Writable or World-Readable</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RootPath" xrefstyle="select: title page">Root Path</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.4.3</entry>
+          <entry>Ensure that User Dot-Files are not World-writable</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="UserDotFilePerms" xrefstyle="select: title page">User Dot File Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.5.2</entry>
+          <entry>Set Boot Loader Password</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="BootLoaderConfigFilePerms" xrefstyle="select: title page">Boot Loader Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="RequireGrubPassword" xrefstyle="select: title page">Require GRUB Password</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.5.3</entry>
+          <entry>Require Authentication for Single-User Mode</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SingleUserMode" xrefstyle="select: title page">Single User Mode Password</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.5.4</entry>
+          <entry>Disable Interactive Boot</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableInteractiveBoot" xrefstyle="select: title page">Disable Interactive Boot</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.5.5</entry>
+          <entry>Implement Inactivity Time-out for Login Shells</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ShellSessionTimeouts" xrefstyle="select: title page">Set shell timeout period</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.5.6.1</entry>
+          <entry>Configure GUI Screen Locking</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SetGnomeSS" xrefstyle="select: title page">Set Mandatory Screen Saver</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3.7.1</entry>
+          <entry>Modify the System Login Banner</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CreateLoginBanner" xrefstyle="select: title page">Create Login Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreatePreLoginGUIBanner" xrefstyle="select: title page">Create Pre-Login GUI Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreatePreSessionGUIBanner" xrefstyle="select: title page">Create Pre-Session GUI Banner</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.4.2</entry>
+          <entry>Enable SELinux</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SELinuxIsPropEnabled" xrefstyle="select: title page">Ensure SELinux is Properly Enabled</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.4.2.1</entry>
+          <entry>Ensure SELinux is Properly Enabled</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SELinuxIsPropEnabled" xrefstyle="select: title page">Ensure SELinux is Properly Enabled</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.4.3.1</entry>
+          <entry>Disable and Remove SETroubleshoot if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSETroubleshoot" xrefstyle="select: title page">Disable SETroubleshoot</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.4.3.2</entry>
+          <entry>Disable MCS Translation Service (mcstrans) if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableMcstrans" xrefstyle="select: title page">Disable MCS Translation Service</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.4.3.3</entry>
+          <entry>Disable Restorecon Service</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableRestorecond" xrefstyle="select: title page">Disable Restorecon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.5.3.1.1</entry>
+          <entry>Disable Automatic Loading of IPv6 Kernel Module</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableIPv6KernelModule" xrefstyle="select: title page">Disable IPv6 Kernel Module</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.5.4.1</entry>
+          <entry>How TCP Wrapper Protects Services</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="TcpWrappers" xrefstyle="select: title page">Enable TCP Wrappers</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.5.4.4</entry>
+          <entry>Monitor Syslog for Relevant Connections and Failures</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SyslogAuthpriv" xrefstyle="select: title page">Secure Authpriv Logging</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.5.5.1</entry>
+          <entry>Inspect and Activate Default Rules</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="EnableIp6tables" xrefstyle="select: title page">Enable Ip6tables</xref>
+              </member>
+              <member>
+                <xref linkend="EnableIptables" xrefstyle="select: title page">Enable Iptables</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.5.7.1</entry>
+          <entry>Disable Support for DCCP</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_DCCP" xrefstyle="select: title page">Disable Support for DCCP</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.5.7.2</entry>
+          <entry>Disable Support for SCTP</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_SCTP" xrefstyle="select: title page">Disable Support for SCTP</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.5.7.3</entry>
+          <entry>Disable Support for RDS</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_RDS" xrefstyle="select: title page">Disable Support for RDS</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.5.7.4</entry>
+          <entry>Disable Support for TIPC</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_TIPC" xrefstyle="select: title page">Disable Support for TIPC</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.6.1.1.2</entry>
+          <entry>Confirm Existence and Permissions of System Log Files</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.6.2.1</entry>
+          <entry>Enable the auditd Service</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditEnable" xrefstyle="select: title page">Enable the Audit Subsystem</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.6.2.3</entry>
+          <entry>Enable Auditing for Processes Which Start Prior to the Audit Daemon</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="EnableAuditingForAllProcesses" xrefstyle="select: title page">Enable Auditing For All Processes</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.6.2.4</entry>
+          <entry>Configure auditd Rules for Comprehensive Auditing</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.1.3</entry>
+          <entry>Guidance for Unfamiliar Services</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableFTP_gssftp" xrefstyle="select: title page">Disable FTP (gssftp)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableFinger" xrefstyle="select: title page">Disable Finger</xref>
+              </member>
+              <member>
+                <xref linkend="DisableFspd" xrefstyle="select: title page">Disable Fspd</xref>
+              </member>
+              <member>
+                <xref linkend="DisableGated" xrefstyle="select: title page">Disable Gated</xref>
+              </member>
+              <member>
+                <xref linkend="DisableInetd" xrefstyle="select: title page">Disable Inetd</xref>
+              </member>
+              <member>
+                <xref linkend="DisableInnd" xrefstyle="select: title page">Disable Innd</xref>
+              </member>
+              <member>
+                <xref linkend="DisableMail_cyrus" xrefstyle="select: title page">Disable Mail (Cyrus mail server)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRexec" xrefstyle="select: title page">Disable Remote Exec (rexec)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRlogin" xrefstyle="select: title page">Disable Remote Login (rlogin)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRsh" xrefstyle="select: title page">Disable Remote Shell (rsh)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRouted" xrefstyle="select: title page">Disable Routed</xref>
+              </member>
+              <member>
+                <xref linkend="DisableTelnet" xrefstyle="select: title page">Disable Telnet</xref>
+              </member>
+              <member>
+                <xref linkend="DisableWebServer_tux" xrefstyle="select: title page">Disable Tux</xref>
+              </member>
+              <member>
+                <xref linkend="DisableUucp" xrefstyle="select: title page">Disable UUCP</xref>
+              </member>
+              <member>
+                <xref linkend="DisableWebmin" xrefstyle="select: title page">Disable Webmin</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRpc_Ugidd" xrefstyle="select: title page">Disable rpc.ugidd</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.2.3.2</entry>
+          <entry>Remove .rhosts Support from PAM Configuration Files</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableRhostsSupport" xrefstyle="select: title page">Disable Rhosts Support</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.2.4</entry>
+          <entry>NIS (Disable)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNIS_client" xrefstyle="select: title page">Disable NIS Client</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.2.5</entry>
+          <entry>TFTP Server</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableTFTP" xrefstyle="select: title page">Disable TFTP</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.1</entry>
+          <entry>Installation Helper Service (firstboot)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableFirstbootSvc" xrefstyle="select: title page">Disable Firstboot Service</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.2</entry>
+          <entry>Console Mouse Service (gpm)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableGpm" xrefstyle="select: title page">Disable Console Mouse Support</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.3</entry>
+          <entry>Interrupt Distribution on Multiprocessor Systems (irqbalance)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableIrqbalance" xrefstyle="select: title page">Disable IRQ Balance Service</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.4</entry>
+          <entry>ISDN Support (isdn)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableISDN" xrefstyle="select: title page">Disable ISDN</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.5</entry>
+          <entry>Kdump Kernel Crash Analyzer (kdump)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKdump" xrefstyle="select: title page">Disable Kernel Crash Analyzer</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.6</entry>
+          <entry>Kudzu Hardware Probing Utility (kudzu)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKudzu" xrefstyle="select: title page">Disable Kudzu</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.7</entry>
+          <entry>Software RAID Monitor (mdmonitor)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableMdmonitor" xrefstyle="select: title page">Disable Software RAID Monitor</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.8</entry>
+          <entry>IA32 Microcode Utility (microcode ctl)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableIA32MicrocodeUtility" xrefstyle="select: title page">Disable IA32 Microcode Utility</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.9.3</entry>
+          <entry>Disable Zeroconf Networking</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableZeroconfNet" xrefstyle="select: title page">Disable Zeroconf Networking</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.10</entry>
+          <entry>Smart Card Support (pcscd)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSmartcard" xrefstyle="select: title page">Disable Smart Card Support</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.11</entry>
+          <entry>SMART Disk Monitoring Support (smartd)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSMARTD" xrefstyle="select: title page">Disable SMART Disk Monitoring Support</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.12</entry>
+          <entry>Boot Caching (readahead early/readahead later)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableBootCaching" xrefstyle="select: title page">Disable Boot Caching</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.13.2</entry>
+          <entry>HAL Daemon (haldaemon)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableHalDaemon" xrefstyle="select: title page">Disable HAL Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.14.1</entry>
+          <entry>Bluetooth Host Controller Interface Daemon (bluetooth)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableBluetooth" xrefstyle="select: title page">Disable Bluetooth</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.14.2</entry>
+          <entry>Bluetooth Input Devices (hidd)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableBluetoothInputDevs" xrefstyle="select: title page">Disable Bluetooth Input Devices Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.14.3</entry>
+          <entry>Disable Bluetooth Kernel Modules</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableBluetoothKernelModules" xrefstyle="select: title page">Disable Bluetooth Kernel Modules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.15.1</entry>
+          <entry>Advanced Power Management Subsystem (apmd)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableApmd" xrefstyle="select: title page">Disable Power Management</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.15.2</entry>
+          <entry>Advanced Configuration and Power Interface (acpid)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableAcpid" xrefstyle="select: title page">Disable ACPI Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.15.3</entry>
+          <entry>CPU Throttling (cpuspeed)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableCpuThrottling" xrefstyle="select: title page">Disable CPU Throttling</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.16.1</entry>
+          <entry>Disable the irda Service if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableIrda" xrefstyle="select: title page">Disable IRDA Service</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.3.17.1</entry>
+          <entry>Disable the Raw Devices Daemon if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableRawDevicesDaemon" xrefstyle="select: title page">Disable Raw Devices Service</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.4.2</entry>
+          <entry>Restrict Permissions on Files Used by cron</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtCronAccessFilePerms" xrefstyle="select: title page">At/Cron Access File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="CrontabPerms" xrefstyle="select: title page">Crontab Perms</xref>
+              </member>
+              <member>
+                <xref linkend="CrontabScriptPerms" xrefstyle="select: title page">Crontab Script Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.4.3</entry>
+          <entry>Disable at if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableAtd" xrefstyle="select: title page">Disable atd Service</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.5.2.1</entry>
+          <entry>Ensure Only Protocol 2 Connections Allowed</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdProtocol" xrefstyle="select: title page">SSHD Protocol</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.5.2.3</entry>
+          <entry>Set Idle Timeout Interval for User Logins</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdSetIdleTimeout" xrefstyle="select: title page">SSHD Set Idle Timeout Interval for User Logins</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.5.2.4</entry>
+          <entry>Disable .rhosts Files</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdDisableRhostsAuth" xrefstyle="select: title page">SSHD Disable Rhosts Authentication</xref>
+              </member>
+              <member>
+                <xref linkend="SshdEnableIgnoreRhosts" xrefstyle="select: title page">SSHD Enable Ignore Rhosts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.5.2.5</entry>
+          <entry>Disable Host-Based Authentication</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdDisableHostbasedAuth" xrefstyle="select: title page">SSHD Disable Host-based Authentication</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.5.2.6</entry>
+          <entry>Disable root Login via SSH</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdDisableRootLogin" xrefstyle="select: title page">SSHD Disable Root Login</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.5.2.7</entry>
+          <entry>Disable Empty Passwords</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdDisableEmptyPasswords" xrefstyle="select: title page">SSHD Disable Empty Passwords</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.5.2.8</entry>
+          <entry>Enable a Warning Banner</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdEnableBanner" xrefstyle="select: title page">SSHD Enable Banner</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.6.1.1</entry>
+          <entry>Disable X Windows at System Boot</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableGuiLogin" xrefstyle="select: title page">Disable Graphical Login</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.6.1.3.1</entry>
+          <entry>Disable X Font Server</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableXFS" xrefstyle="select: title page">Disable XFS</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.6.1.3.2</entry>
+          <entry>Disable X Window System Listening</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RemoteXClients" xrefstyle="select: title page">Restrict Remote X Clients</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.7.1</entry>
+          <entry>Disable Avahi Server if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableAvahi" xrefstyle="select: title page">Disable Avahi Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.8.1</entry>
+          <entry>Disable the CUPS Service if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisablePrinter" xrefstyle="select: title page">Disable Printer Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.8.3.1.1</entry>
+          <entry>Disable Printer Browsing Entirely if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableCupsPrinterBrowsing" xrefstyle="select: title page">Disable CUPS Printer Browsing</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.8.4.1</entry>
+          <entry>Disable HPLIP Service if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableHPServices" xrefstyle="select: title page">Disable HP Printing and Imaging</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.9.3</entry>
+          <entry>Disable DHCP Server if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableDhcpd" xrefstyle="select: title page">Disable Dhcpd</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.11.2.1</entry>
+          <entry>Disable the Listening Sendmail Daemon</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSendmail" xrefstyle="select: title page">Disable Sendmail</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.11.3.2</entry>
+          <entry>Configure SMTP Greeting Banner</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SendmailOpts" xrefstyle="select: title page">Configure Sendmail Options</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.11.5.2</entry>
+          <entry>Configure SMTP Greeting Banner</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SendmailOpts" xrefstyle="select: title page">Configure Sendmail Options</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.13.1.1</entry>
+          <entry>Disable Services Used Only by NFS</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNFS_client" xrefstyle="select: title page">Disable NFS Client</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.13.1.2</entry>
+          <entry>Disable netfs if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNetFS" xrefstyle="select: title page">Disable NetFS</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.13.1.3</entry>
+          <entry>Disable RPC Portmapper if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisablePortmap" xrefstyle="select: title page">Disable Portmap Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.13.3.1</entry>
+          <entry>Disable NFS Server Daemons</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNFS_client" xrefstyle="select: title page">Disable NFS Client</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.13.4.1.3</entry>
+          <entry>Restrict NFS Clients to Privileged Ports</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NFSSecure" xrefstyle="select: title page">Secure Option for NFS Server</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.14.1</entry>
+          <entry>Disable DNS Server if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableDNS" xrefstyle="select: title page">Disable DNS</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.15.1</entry>
+          <entry>Disable vsftpd if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableFTP_vsftpd" xrefstyle="select: title page">Disable FTP (vsftpd)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.15.3.2</entry>
+          <entry>Create Warning Banners for All FTP Users</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CreateLoginFTPBanner" xrefstyle="select: title page">Create Login FTP Banner</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.16.1</entry>
+          <entry>Disable Apache if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableWebServer_apache" xrefstyle="select: title page">Disable Apache</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.16.4.4.1</entry>
+          <entry>Configure PHP Securely</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PHPDisableHttpUpload" xrefstyle="select: title page">PHP - Disallow HTTP File Uploads</xref>
+              </member>
+              <member>
+                <xref linkend="PHPRemoteExec" xrefstyle="select: title page">PHP - General Security</xref>
+              </member>
+              <member>
+                <xref linkend="PHPlogging" xrefstyle="select: title page">PHP - Set Error Logging</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.17.1</entry>
+          <entry>Disable Dovecot if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableMail_dovecot" xrefstyle="select: title page">Disable Mail (Dovecot mail server)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.18.1</entry>
+          <entry>Disable Samba if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSMB" xrefstyle="select: title page">Disable SMB</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.18.2.2.1</entry>
+          <entry>Use user Security for Servers Not in a Domain Context</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SMB_Conf" xrefstyle="select: title page">SMB Configuration</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.18.2.3</entry>
+          <entry>Disable Guest Access and Local Login Support</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SMB_Conf" xrefstyle="select: title page">SMB Configuration</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.18.2.5</entry>
+          <entry>Set the Allowed Authentication Negotiation Levels</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SMB_Conf" xrefstyle="select: title page">SMB Configuration</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.18.2.9</entry>
+          <entry>Require Server SMB Packet Signing</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SMB_Conf" xrefstyle="select: title page">SMB Configuration</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.18.2.10</entry>
+          <entry>Require Client SMB Packet Signing</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SMB_Conf" xrefstyle="select: title page">SMB Configuration</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.19.1</entry>
+          <entry>Disable Squid if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSquid" xrefstyle="select: title page">Disable Squid</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>3.20.1</entry>
+          <entry>Disable SNMP Server if Possible</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSNMP" xrefstyle="select: title page">Disable SNMP</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+</section>

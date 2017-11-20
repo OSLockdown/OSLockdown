@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="MySQLHist" version="5.0">
+  <title xml:id="Database">MySQL - Disable Command History</title>
+  <para>
+  Disables the <application>MySQL</application> command history by
+  setting the <envar>MYSQL_HISTFILE</envar> environment variable to ""
+  for all login sessions.
+  <indexterm><primary>MYSQL_HISTFILE</primary></indexterm>
+
+  <indexterm><primary>MySQL</primary></indexterm>
+
+  <indexterm><primary>SQL</primary></indexterm>
+ </para>
+  <para>
+  By default, all commands run in the <application>MySQL</application>
+  console application are saved to a history file. Disabling the
+  <application>MySQL</application> command history reduces the
+  probability of exposing sensitive information, such as passwords.
+  <indexterm><primary>console</primary></indexterm>
+
+  <indexterm><primary>password</primary></indexterm>
+ </para>
+  <para>
+  Applying this module may adversely affect an administrator’s
+  productivity because the familiar up/down arrow feature for recalling
+  command history is not available.
+ </para>
+  <tip>
+    <title>TIP: Enabling command history for certain accounts</title>
+    <para>
+   On a case-by-case basis, you could authorize certain database
+   administrators to set the <envar>MYSQL_HISTFILE</envar> back to the
+   default <filename>$HOME/.mysql_history</filename> file.
+  </para>
+    <para>
+   However, it is recommended that you erase the file when the session
+   is complete. One way to do this is to add <filename>cat /dev/null
+   &gt; $HOME/.mysql_history</filename> to their
+   <filename>$HOME/.bash_logout</filename> script.
+  </para>
+  </tip>
+  <simplesect xml:id="MySQLHist-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

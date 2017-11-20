@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableRhostsSupport" version="5.0">
+ <title xml:id="RemoteAccessServices">Disable Rhosts Support</title>
+ <para>
+  Disables support for <filename>.rhosts</filename> files. Some login
+  services (such as rlogin or rsh) can optionally use
+  <filename>.rhosts</filename> files for authentication.
+ </para>
+ <indexterm>
+  <primary>.rhosts</primary>
+ </indexterm>
+ <indexterm>
+  <primary>rhosts</primary>
+ </indexterm>
+ <indexterm>
+  <primary>rlogin</primary>
+ </indexterm>
+ <indexterm>
+  <primary>rsh</primary>
+ </indexterm>
+ <para>
+  It is recommended to apply this module because
+  <filename>.rhosts</filename> authentication is weak.
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="1.0*" align="left"/>
+   <colspec colname="c2" colwidth="1.0*"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Configuration Files</entry>
+     <entry>Setting</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="4"><filename>/etc/pam.d/*</filename>
+      <indexterm>
+       <primary>pam.d</primary>
+      </indexterm></entry>
+     <entry morerows="4">Remove lines with <parameter>pam_rhosts</parameter>
+      <indexterm>
+       <primary>pam_rhosts</primary>
+      </indexterm></entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+     <entry><filename>/etc/pam.conf</filename></entry>
+     <entry>Remove lines with <parameter>pam_rhosts_auth</parameter>
+      <indexterm>
+       <primary>pam_rhosts_auth</primary>
+      </indexterm></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="DisableRhostsSupport-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-13 - Limitation and Control of Network Ports, Protocols, and
+     Services
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN002100 - The .rhosts file must not be supported in PAM.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN002100 - The .rhosts Supported in PAM
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+   <listitem>
+    <para>
+     CIP-005-3-R2.2 - Enable only ports and services needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+   <listitem>
+    <para>
+     CIP-007-3-R2.2 - Disable ports and services not needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     3.2.3.2 - Remove .rhosts Support from PAM Configuration Files
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.3 - Configure system security parameters to prevent misuse
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

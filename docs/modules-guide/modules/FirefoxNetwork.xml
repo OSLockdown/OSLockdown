@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: FirefoxNetwork.xml 21828 2013-09-24 17:48:53Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="FirefoxNetwork" version="5.0">
+ <title xml:id="DesktopApps">Firefox - Network</title>
+ <para>
+  Configure Firefox to limit exposure of sensitive data in URLs, prevent
+  the sending of Microsoft® LAN Manager (LM) hash responses when
+  authenticating to resources, and disable the network shell protocol.
+  <indexterm>
+   <primary>Firefox</primary>
+  </indexterm>
+ </para>
+ <para>
+  The following parameters are set in each user’s
+  <filename>$HOME/.mozilla/firefox/*/prefs.js</filename>:
+ </para>
+<programlisting>user_pref ("network.http.sendSecureXSiteReferrer", 'false');
+user_pref ("network.protocol-handler.external.shell", 'false');
+user_pref ("network.ntlm.send-lm-response", 'false');</programlisting>
+ <simplesect xml:id="FirefoxNetwork-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>DISA Mozilla Firefox STIG (v4 R2)</title>
+   <listitem>
+    <para>
+     DTBF105 - Shell Protocol
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.3 - Configure system security parameters to prevent misuse
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

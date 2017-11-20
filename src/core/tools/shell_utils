@@ -1,0 +1,213 @@
+#!/bin/sh  
+# Copyright (c) 2007-2014 Forcepoint LLC.
+# This file is released under the GPLv3 license.  
+# See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+# or visit https://www.gnu.org/licenses/gpl.html instead.
+#
+# OS Lockdown Setup utilities
+#
+
+
+##############################################################################
+show_banner()
+{
+    echo " "
+    #               1         2         3         4         5         6         7
+    #     01234567890123456789012345678901234567890123456789012345678901234567890
+    echo "**************************************************************************"
+    echo "*                S E C U R I T Y  B L A N K E T  S E T U P               *"
+    echo "*                                                                        *"
+    echo "*                 Copyright (c) 2008-2016 Forcepoint LLC                 *" 
+    echo "*                 Released under the terms of the GLPv3                  *"
+    echo "*                                                                        *"
+    echo "**************************************************************************"
+}
+
+##############################################################################
+# Function - Get a Yes/No answer from a user
+# $1 = prompt
+# $2 = result variable
+
+ask_yes_or_no()
+{
+    myans=""
+    myprompt="${1}"
+    if [ -z "${myprompt}" ] ; then
+        myprompt = "Please answer (yes/no): "
+    fi
+    echo ""
+  
+    if [ "`uname -s`" = "SunOS" ]; then
+        # Solaris
+        myans=`ckyorn -Q -p "${myprompt} "`
+        case $myans in                                              
+            "YES"|"YEs"|"Yes"|"yes"|"Y"|"y") myans="YES" ;;      
+            "NO"|"No"|"no"|"N"|"n") myans="NO" ;;             
+        esac
+    else 
+        # Linux
+        while [ "$myans" != "YES" -a "$myans" != "NO" ]; do         
+            read -e -p "${myprompt} [y/n]: " myans         
+                case $myans in                                              
+                    "YES"|"YEs"|"Yes"|"yes"|"Y"|"y") myans="YES" ;;      
+                    "NO"|"No"|"no"|"N"|"n") myans="NO" ;;             
+                esac
+            if [ "${myans}" != "YES" -a "${myans}" != "NO" ] ; then
+                echo "Please specify either yes or no." 
+            fi
+        done                                                              
+    fi
+    echo 
+    if [ ! -z "${2}" ] ; then   
+        eval "${2}=\"$myans\""
+    fi
+}
+
+
+
+##############################################################################
+# Function - Get any string from user
+# $1 = prompt
+# $2 = result variable
+# $3 = default value if return hit
+
+ask_for_string()
+{
+    myans=""
+    if [ $# -ge 3 -a ! -z "${3}" ] ; then
+        myprompt="${1} [${3}]: "
+    else
+        myprompt="${1}: " 
+    fi
+
+    if [ "${SOLARIS}" = "yes" ] ; then
+        printf "${myprompt}"
+        read myans
+    else
+        read -e -p "${myprompt}" myans
+    fi
+    if [ -z "${myans}" -a $# -ge 3 -a ! -z "${3}" ] ; then
+        eval "${2}=\"${3}\""
+    else
+        eval "${2}=\"${myans}\""
+    fi
+}
+
+##############################################################################
+# Function - Get a passphrase from the user
+# By default, the passphrase must be at least 6 characters, with no whitespace
+# If the returned string is *empty*, verify that the user wants an empty 
+# passphrase
+
+# $1 = prompt
+# $2 = result variable
+# $3 = default value if return hit
+
+ask_for_passphrase()
+{
+  passphrase=""
+  keepGoing=1
+  while [ ${keepGoing} -eq 1 ] ; do
+    echo ""
+    echo "Passphrase must be at least 6 characters, and must not contain "
+    echo "whitespace, wildcards, or semicolons."
+    echo " "
+    ask_for_string "${1}" passphrase
+    # strip any 'whitespace'
+    
+    if [ ! -z "${passphrase}" ] ; then
+      passphrase_nospace=`echo "${passphrase}" | ${TR} -d [:space:] | ${TR} -d '?*;'`  
+      if [ "${passphrase_nospace}" != "${passphrase}" ] ; then
+        echo "Passphrase may not have embedded whitespaces, shell wildcards, or semicolons"
+        continue
+      fi
+    fi  
+    
+    length=`printf "${passphrase}" | wc -c` 
+    if [ ${length} -lt 5 ] ; then
+      echo "-- Passphrase length must be at least 6 characters, with no whitespace"
+    else
+      keepGoing=0
+    fi    
+  done
+  eval "${2}=\"${passphrase}\""
+}
+##############################################################################
+# Function - Get a valid TCP port number from user
+# $1 = port type (console/standalone/dispatcher)
+# $2 = default port number
+# $3 = result variable
+
+ask_for_number()
+{
+  strtext=""
+  if [ ! -z "$2" ] ; then
+    promptString="${1} [${2}]: "
+  else
+    promptString="${1}: "
+  fi
+  while [ -z "${strtext}" ] ; do
+    if [ "${SOLARIS}" = "yes" ] ; then
+      printf "${promptString}"
+      read rawtext
+    else
+      read -e -p "${promptString}" rawtext
+    fi
+    if [ -z "${rawtext}" -a ! -z "${2}" ] ; then
+      rawtext="${2}"
+    fi
+    strtext=`echo "${rawtext}" | awk '{print $1}' | ${TR} -dc '0123456789'`
+    if [ "${strtext}" != "${rawtext}" ] ; then
+      echo "Unable to parse '${rawtext}' as a number, please try again."
+      strtext=""
+    fi
+  done
+  eval "${3}=\"$strtext\""
+}
+
+##############################################################################
+# Function - Determine if we are able to connect to a TCP port
+# $1 = Host (127.0.0.1 for most)
+# $2 = TCP Port to check
+# $3 = returns True or False (or None if it is unable to determine)
+
+isAbleToConnect() {
+    host=${1}
+    tcpPort=${2}
+
+    if [ -z "${host}" -o -z "${tcpPort}" -o ! -x "${PYTHON}" ]; then
+        eval "${3}=\"\""
+    else
+        pythonImports="import sys; sys.path.append('/usr/share/oslockdown/sb_utils/net'); import tcp;"
+        results=`${PYTHON} -OO -c "${pythonImports} print tcp.isAbleToConnect(host='${host}', tcpPort=${tcpPort})"`
+        if [ ! -z "${results}" ]; then
+            eval "${3}=\"${results}\""
+        else
+            eval "${3}=\"\""
+        fi
+    fi
+}
+
+##############################################################################
+# Function - Determine if a package is installed
+# $1 = name of package to check
+isPkgInstalled() {
+   pkgName=${1}
+   RETVAL=0
+   if [ -z "$pkgName" ]; then
+      return 0
+   fi
+   if [ "${SOLARIS}" = "yes" ]; then
+       /usr/bin/pkginfo -q $pkgName 2>/dev/null
+       if [ $? -eq 0 ]; then
+          RETVAL=1
+       fi
+   else
+       /bin/rpm -q $pkgName 1>/dev/null 2>&1
+       if [ $? -eq 0 ]; then
+          RETVAL=1
+       fi
+   fi
+   return $RETVAL
+}
+

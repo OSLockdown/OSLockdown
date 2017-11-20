@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SshDisableGSSAPIAuth" version="5.0">
+  <title xml:id="RemoteAccessServices">SSH Disable GSSAPI Authentication</title>
+  <para>
+  Configures the secure shell client to not accept GSSAPI
+  authentication.
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2">
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="1.0*" align="left"/>
+      <colspec colname="c2" colwidth="1.0*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Setting</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="5">
+            <filename>/etc/ssh/ssh_config</filename>
+            <indexterm>
+              <primary>/etc/ssh/ssh_config</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/ssh/ssh_config</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>ssh</primary>
+            </indexterm>
+            <indexterm>
+              <primary>ssh</primary>
+            </indexterm>
+            <indexterm>
+              <primary>ssh_config</primary>
+            </indexterm>
+          </entry>
+          <entry morerows="5">
+            <parameter>GSSAPIAuthentication no</parameter>
+            <indexterm>
+              <primary>GSSAPIAuthentication</primary>
+            </indexterm>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <simplesect xml:id="SshDisableGSSAPIAuth-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>4.5.4 - Use Secure Shell RSA Authentication</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN005525 - The SSH client must not permit GSSAPI authentication unless needed.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>AC-3 - Access Enforcement</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+      <listitem>
+        <para>2.2.3 - Configure system security parameters to prevent misuse</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Printer Daemon">
+        <library>DisablePrinter</library>
+        <description>Disables the Common UNIX Printing System (CUPS). When enabled, this service may allow unauthorized remote systems to send print jobs to a system that is not properly configured.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4">
+            <services>
+              <service seq="1" name="cups"/>
+            </services>
+            <packages>
+              <package name="cups"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:5">
+            <services>
+              <service seq="1" name="cups"/>
+            </services>
+            <packages>
+              <package name="cups"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:11">
+            <services>
+              <service seq="1" name="cups-lpd"/>
+            </services>
+            <packages>
+              <package name="cups"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:11">
+            <services>
+              <service seq="1" name="cups-lpd"/>
+            </services>
+            <packages>
+              <package name="cups"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4">
+            <services>
+              <service seq="1" name="cups"/>
+            </services>
+            <packages>
+              <package name="cups"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5">
+            <services>
+              <service seq="1" name="cups"/>
+            </services>
+            <packages>
+              <package name="cups"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:10">
+            <services>
+              <service seq="1" name="cups"/>
+            </services>
+            <packages>
+              <package name="cups"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:11">
+            <services>
+              <service seq="1" name="cups"/>
+            </services>
+            <packages>
+              <package name="cups"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:12">
+            <services>
+              <service seq="1" name="cups"/>
+            </services>
+            <packages>
+              <package name="cups"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:13">
+            <services>
+              <service seq="1" name="cups"/>
+            </services>
+            <packages>
+              <package name="cups"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:sun:sunos:5.10">
+            <services>
+              <service seq="1" name="svc:/application/print/server:default"/>
+              <service seq="2" name="svc:/application/print/cleanup:default"/>
+              <service seq="3" name="svc:/application/print/ppd-cache-update:default"/>
+              <service seq="4" name="svc:/application/cde-printinfo:default"/>
+              <service seq="5" name="svc:/application/print/rfc1179:default"/>
+              <service seq="6" name="svc:/application/print/ipp-listener:default"/>
+            </services>
+            <packages>
+              <package name="SUNWpsr"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4">
+            <services>
+              <service seq="1" name="cups"/>
+            </services>
+            <packages>
+              <package name="cups"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5">
+            <services>
+              <service seq="1" name="cups"/>
+            </services>
+            <packages>
+              <package name="cups"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:10">
+            <services>
+              <service seq="1" name="cups-lpd"/>
+            </services>
+            <packages>
+              <package name="cups"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:10">
+            <services>
+              <service seq="1" name="cups-lpd"/>
+            </services>
+            <packages>
+              <package name="cups"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6">
+            <services>
+              <service seq="1" name="cups"/>
+            </services>
+            <packages>
+              <package name="cups"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:6">
+            <services>
+              <service seq="1" name="cups"/>
+            </services>
+            <packages>
+              <package name="cups"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <services>
+              <service seq="1" name="cups"/>
+            </services>
+            <packages>
+              <package name="cups"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

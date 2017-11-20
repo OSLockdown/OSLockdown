@@ -1,0 +1,142 @@
+'\" t
+.\"     Title: oslockdown
+.\"    Author: 
+.\"      Date: 12/15/2010
+.\"    Manual: System Management Commands
+.\"    Source: OS Lockdown
+.\"  Language: English
+.\"
+.TH "OSLOCKDOWN" "8" "03/25/2011" "OS Lockdown" "System Management Commands"
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+oslockdown \- analyze, baseline, and configure an operating system.
+.SH "SYNOPSIS"
+.HP \w'\fBoslockdown\fR\ 'u
+\fBoslockdown\fR  [\fIOPTION\fR]... \fIACTION\fR
+.SH "DESCRIPTION"
+.PP
+The OS Lockdown\(rg command line interface (\fCoslockdown\fR) can assess and configure a system according to a security profile\&.
+.SS "Actions"
+.PP
+Only, one \fIACTION\fR per invocation:
+.PP
+.TP
+\fB\-a\fR \fIsecurity-profile\fR
+Apply changes using modules in \fIsecurity-profile\fR
+.TP
+\fB\-s\fR \fIsecurity-profile\fR
+Scan system against modules in \fIsecurity-profile\fR
+.TP
+\fB\-u\fR \fIsecurity-profile\fR
+Undo the changes made by the last apply of modules listed in \fIsecurity-profile\fR
+.TP
+\fB\-b\fR \fIbaseline-profile\fR
+Perform a system baseline
+.TP
+\fB\-x\fR \fIreport\fR
+Create a text version of an assessment, apply, undo, or baseline \fIreport\fR. The text report will be written to the same directory as the original report but with a \fB\&.txt\fR suffix.
+.TP
+\fB\-D\fR
+Dump OS Lockdown configuration
+.TP
+\fB\-L\fR
+List all available security modules
+.TP
+\fB\-M\fR \fImodulename\fR
+Write a profile to standard output with only \fImodulename\fR. This is useful for troubleshooting and quick configurations via the command line.
+.TP
+\fB\-V\fR
+Display OS Lockdown version
+.SH "OPTIONS"
+.PP
+.TP
+\fB\-f\fR
+Force execution regardless of permissions on the profile
+.TP
+\fB\-l\fR \fIloglevel\fR
+Logging level from 1 to 6. Level 4 is the default and level 6 is the most verbose.
+.TP
+\fB\-v\fR
+Verbose
+.SH "EXAMPLES"
+.SS Scanning
+.TP 
+To assess a system against the Center for Internet Security (CIS) Benchmark, execute the following command:
+.sp
+\fBoslockdown \-v \-s /var/lib/oslockdown/profiles/CISBenchmarks.xml\fR
+.PP
+The CIS profile contains all of the benchmarks for all operating systems supported by OS Lockdown. For example, the \fICISBenchmarks.xml\fR profile handles SUSE\(rg Linux, Fedora\(rg, Red Hat\(rg, and others.
+.SS Applying
+.TP
+Configure the system by applying modules identified in the Center for Internet Security (CIS) profile:
+.sp
+\fBoslockdown \-v \-a /var/lib/oslockdown/profiles/CISBenchmarks.xml\fR
+.SS Baselining
+.TP 
+Capture system's current configuration by creating a baseline report:
+.sp
+\fBoslockdown \-v \-b /var/lib/oslockdown/baseline-profiles/Default.xml\fR
+.SH "FILES"
+.SS "Reports"
+.TP
+\fC/var/lib/oslockdown/reports/standalone/*/*.xml\fR
+.SS Configuration Files
+.TP
+\fC/var/lib/oslockdown/profiles/*.xml\fR
+Standard location for security profiles.
+.TP
+\fC/var/lib/oslockdown/baseline-profiles/*.xml\fR
+Standard location for baseline profiles.
+.TP
+\fC/var/lib/oslockdown/files/exclude-dirs\fR
+Directories to exclude during a scan, apply, or baseline.
+.TP
+\fC/var/lib/oslockdown/files/inclusion-fstypes\fR
+List of file system types to include during a scan, apply, or baseline. If a mounted file system's type is not listed in this file, then its mount point will be added to the list of directories to exclude. 
+.TP
+\fC/var/lib/oslockdown/files/s*uid_whitelist\fR
+List of authorized SUID and SGID files.
+.TP
+\fC/etc/logrotate.d/oslockdown\fR
+Parameters to rotate the application log using \fIlogrotate(8)\fR. The default parameters keep the application log under 10MB which reduces network bandwidth required by the OS Lockdown console to retrieve the log as well as improves the search process.
+.SS "Log Files"
+.TP
+\fC/var/lib/oslockdown/logs/oslockdown.log\fR
+Contains all actions performed by the core engine and modules.
+.SS "XML Schema Definitions"
+.TP
+\fC/usr/share/oslockdown/cfg/schema/*.xsd\fR
+Schema definitions for reports, profiles, and general application components. It is strongly recommended these files not be changed because the application uses them during validation (i.e., profiles). The schemas are useful when creating new reports using Extensible Stylesheet Language Transformations (XSLT).
+.SH "NOTES"
+.SS Profiles
+.PP 
+A profile is comprised of OS Lockdown modules and it is recommended the profile be built using the OS Lockdown graphical console.
+.SS Reports
+.TP 
+Dates and Times
+Timestamps on report files should never be used as the basis in determining the report's creation time because it could have been renamed or modified by a system administrator. Instead, examine the XML report for the \fBcreated\fR attribute such as \fIAssessmentReport/report[created]\fR. Refer to the report schema to determine exact location of this attribute.
+.TP 
+Available Formats
+OS Lockdown always creates reports in XML format which are then transformed to other formats using XSLT. It is recommended that reports are viewed using the OS Lockdown console. The command line interface does provide the \fB-x\fR option to convert reports to text if the libxslt-python package is installed. However, reports can be converted to other formats with the \fIxsltproc(1)\fR utility. OS Lockdown ships with several XSL files to perform transformations to include \fB\&.csv\fR. These XSL files are installed in \fC/usr/share/oslockdown/cfg/stylesheets/*/*.xsl\fR.
+.SS Storage Area Networks and Shared File Systems
+Systems attached to shared storage should consider excluding the large, mounted file systems using the \fIexclude-dirs\fR configuration file.
+.SH "REPORTING BUGS"
+.PP
+Report bugs to sb_support@forcepoint\&.com
+.SH "COPYRIGHT"
+.PP
+Copyright \(co 2007\-2016 Forcepoint LLC\&. All rights reserved\&.
+.SH "SEE ALSO"
+.PP
+\fIlogrotate(8)\fR, \fIxsltproc(1)\fR
+.PP
+OS Lockdown\(rg Modules Guide and OS Lockdown\(rg Administration Guide\&.

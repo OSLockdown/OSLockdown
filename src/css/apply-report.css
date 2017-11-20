@@ -1,0 +1,219 @@
+/*
+* Copyright (c) 2007-2014 Forcepoint LLC.
+* This file is released under the GPLv3 license.  
+* See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+* or visit https://www.gnu.org/licenses/gpl.html instead.
+ 
+ * Corporate Pallete:
+ *                      Blue:  #7399c6
+ *                 Dark Blue:  #315581
+ *        Bright medium Blue:  #467fc5
+ *               Medium Gold:  #c8c5a1
+ *                 Dark Gold:  #a19670
+ *                Light Gray:  #eef1f8
+ *            Dark Gray/Blue:  #899eb7
+ *                       Red:  #980230
+ *
+ * $Id: apply-report.css 23935 2017-03-09 21:00:23Z rsanders $
+ */
+@import url("reports-base.css");
+@import url("module-results.css");
+
+
+/*****************************************************************************
+    Sections of the Report
+ ****************************************************************************/
+table.sectionTable {
+    width: 100%;
+    background-color: #eef1f8;
+    padding: 0px;
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin-top: 1.0em;
+    border-left: solid 1px black;
+    border-right: solid 1px black;
+    font-size: 12px;
+}
+
+table.sectionTable th {
+    /*font-size: 14px; */
+    font-style: normal;
+    font-weight: bold;
+    background-color: #a19670;
+    color: white;
+    text-align: left;
+    border-top: solid 1px #000000;
+    border-bottom: solid 1px #000000;
+    padding: 4px;
+}
+
+table.sectionTable td {
+    background-color: white;
+    /* font-size: 11px; */
+    padding: 2px;
+    padding-top: 5px;
+    border-bottom: solid 1px black;
+    overflow-x: visible;
+}
+
+table.sectionTable td.sectionSubHeader {
+    background-color: #c8c5a1;
+    color: black;
+    border-right: solid 1px black;
+}
+
+table.sectionTable td.subSectionTitle {
+    background-color: #eef1f8;
+    width: 20%;
+    font-weight: bold;
+    vertical-align: text-top;
+    font-size: 105%;
+    border-right: solid 1px black;
+}
+
+table.sectionTable td div.subSectionInfoBox {
+    font-size: 80%;
+    font-weight: normal;
+    font-style: italic;
+    padding-left: 10px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+table.sectionTable td div.profileDescription {
+    width: 100%;
+    font-weight: normal;
+    padding-bottom: 10px;
+    white-space: pre-wrap;
+}
+
+div.subSectionInfoBox div.navigTop {
+    text-align: right; 
+    font-style: normal;
+}
+
+/** For output of a command, fixed width **/
+table.sectionTable td pre {
+    font-family: courier;
+    font-size: 90%;
+    padding: 2px;
+}
+
+table.sectionTable td div.cmdOutput {
+    overflow-x: auto; 
+    width: 700px
+}
+
+table.sectionTable td ul {
+    list-style-type: circle;
+    text-indent: 4px;
+    padding-left: 2em;
+    margin-bottom: 0;
+}
+
+table.sectionTable td ul li {
+    /* font-size: 11px; */
+    text-indent: 4px;
+    line-height: 1.5em;
+}
+
+
+/** Module Information **/
+table.sectionTable td.moduleName {
+    background-color: white;
+    color: black;
+    padding: 4px;
+    /*font-size: 14px; */
+    border-bottom: solid 1px gray;
+}
+
+table.sectionTable td.moduleHighlight {
+    background-color: #eef1f8;
+    padding: 4px;
+    color: black;
+    /* font-size: 14px;*/
+}
+
+/******************************************************
+  *  Module Description, compliancy, and messages 
+  *****************************************************/
+div.moduleDescription {
+    margin-left: 1em;
+    margin-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    font-weight: normal;
+    font-style: italic;
+}
+
+div.moduleDescription ul.compliancyList {
+        list-style-type: square;
+        font-size: 90%;
+}
+
+div.moduleDescription ul.moduleMessages {
+        list-style-type: circle;
+        font-size: 80%;
+        background-color: #eef1f8; 
+}
+
+div.moduleDescription h4.compliancyList,h4.moduleMessages {
+    font-size: 100%;
+    font-weight: bold;
+    line-height: 1.2em;
+}
+
+div.moduleDescription p.statusMessage {
+    font-size: 95%;
+    color: black;
+    font-style: italic;
+}
+
+/** Statistics **/
+table th.statsHeader {
+    text-align: center;
+    color: black;
+    background-color: #eef1f8;
+}
+
+table.sectionTable td.statsCell {
+    text-align: center;
+}
+
+/*****************************************************************************
+    Navigational Table Header Cell (used to quick jump)
+ ****************************************************************************/
+table.sectionTable th.navigTop {
+    text-align: right;
+}
+
+table.sectionTable th.navigTop a:link, a:visited, a:active {
+    text-decoration: none;
+}
+
+table.sectionTable th.navigTop a:hover {
+    text-decoration: none;
+    color: yellow;
+}
+
+/*****************************************************************************
+    Footer  (Bottom of the report)
+ ****************************************************************************/
+table.footerTable {
+    margin-top: 1em;
+    width: 100%;
+    background-color: white;
+    padding: 0px;
+    font-size: 10px;
+}
+
+
+/****************************************************************************/
+.infoName {
+   font-weight: bold;
+}
+
+.infoItem {
+   font-weight: normal;
+}

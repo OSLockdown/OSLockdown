@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable CDE Calendar Manager Server">
+        <library>DisableCDEcalmgr</library>
+        <description>Disables network access to the Solaris CDE Calendar Manager.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:sun:sunos:5.10">
+            <services>
+              <service seq="1" name="svc:/network/rpc/cde-calendar-manager" stop-now="true"/>
+            </services>
+            <packages>
+              <package name="SUNWdtdmn"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SecureWorldWritableDirectories" version="5.0">
+ <title xml:id="fileDACs">Secure World Writable Directories</title>
+ <para>
+  Secures world writable directories by setting the “sticky” bit on
+  a directory that restricts file removal to the file owner. Without the
+  “sticky” bit, any user can remove any file in this directory. This
+  setting is common practice for most shared directories such as
+  <filename>/tmp</filename> and <filename>/var/tmp</filename> .
+ </para>
+ <para>
+  Enabling the “sticky” bit on world writable directories is
+  recommended. If this breaks a third-party application, you can undo
+  the operation.
+ </para>
+ <simplesect xml:id="SecureWorldWritableDirectories-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DHS Linux Configuration Guidance (2010.8)</title>
+   <listitem>
+    <para>
+     8.4 - Verify World Writable Files Are Limited
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN002480 - Public directories must be the only world-writable
+     directories and world-writable files must be located only in public
+     directories.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN002500 - The sticky bit must be set on all public directories.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 6 STIG (V1R14)</title>
+   <listitem>
+    <para>
+     RHEL-06-000336 - The sticky bit must be set on all public
+     directories.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN002480 - World Writable Files and Directories
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN002500 - Sticky Bit on Public Directories
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD NISPOM (Feb 2006)</title>
+   <listitem>
+    <para>
+     8.606b1 - Access 2 Requirements
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-3 - Access Enforcement
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     AU-9 - Protection of Audit Information
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     2.2.3.2 - Verify that All World-Writable Directories Have Sticky
+     Bits Set
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NVD CCE</title>
+   <listitem>
+    <para>
+     CCE-3399-3 - The sticky bit should be set or not set as appropriate
+     for all world-writable directories.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

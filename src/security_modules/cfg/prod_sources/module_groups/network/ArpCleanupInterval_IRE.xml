@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="ARP IRE_CACHE Cleanup Interval">
+        <library>ArpCleanupInterval_IRE</library>
+        <description>Set the interval, in milliseconds, in which IP Resolved Entries cache (IRE_CACHE) is scanned and entries are deleted that are more than one scan old. This interval is used for solicited arp entries, not unsolicited which are set with the "ARP Cleanup Interval" module.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>5</severity_level>
+        <configurationOptions>
+          <option name="arpCleanupIntervalIRE" type="sixteenBitInteger">
+            <description>The interval which the IRE_CACHE is scanned.</description>
+            <default>60000</default>
+            <units>milliseconds</units>
+          </option>
+        </configurationOptions>
+        <platforms>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Network</member>
+        </views>
+      </security_module>

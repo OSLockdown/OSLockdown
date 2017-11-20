@@ -1,0 +1,50 @@
+digraph sm {
+    labelloc = "t"     // top
+    fontname = "Arial"
+    fontsize = "8pt"  
+    //label = "Activity Diagram - Security Module"
+    rankdir="LR"
+
+    node [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 8
+        shape = "box"
+        style = "rounded"
+    ]
+
+    "Not Applicable" [ color = blue,   fontcolor = blue ]
+    "Fail"           [ color = red,    fontcolor = red ]
+    "Pass"           [ color = green,  fontcolor = black ]
+    //"No restarter/state\nproperty" [ shape = none, fontcolor=orange ]
+
+    edge [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 8
+        arrowhead = "ovee"
+    ]
+
+    
+    "Solaris?" -> "Zone Applicable?" [label="yes"]
+    "Solaris?" -> "Package Installed?\nRPM API" [label="no"]
+
+    "Zone Applicable?" -> "Package Installed\npkgchk(1M)" [label="yes"]
+    "Zone Applicable?" -> "Not Applicable" [label="no"]
+
+    "Package Installed?\nRPM API" -> "Not Applicable" [label="no"]
+    "Package Installed?\nRPM API" -> "Service Enabled?\nchkconfig(8)" [label="yes"]
+
+    "Package Installed\npkgchk(1M)" -> "Service Enabled?\nsvcprop(1)" [label="yes"]
+    "Package Installed\npkgchk(1M)" -> "Not Applicable" [label="no"]
+
+    "Service Enabled?\nchkconfig(8)" -> "Fail" [label="yes", fontcolor = red, color = red]
+    "Service Enabled?\nchkconfig(8)" -> "Pass" [label="no", fontcolor = green, color = green]
+
+    "Service Enabled?\nsvcprop(1)" -> "Fail" [label="yes", fontcolor = red, color = red]
+    "Service Enabled?\nsvcprop(1)" -> "Pass" [label="no", fontcolor = green, color = green]
+
+    //"Service Enabled?\nsvcprop(1)" -> "Service Enabled?\nsvcs(1)" [label="No restarter/state property", fontcolor = orange]
+    //"Service Enabled?\nsvcs(1)" -> "Fail" [label="yes", fontcolor=red, color=red]
+    //"Service Enabled?\nsvcs(1)" -> "Pass" [label="no", fontcolor=green, color=green]
+    
+
+}

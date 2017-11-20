@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="MaxLoginsByUser" version="5.0">
+  <title xml:id="Accounts">Maximum Number of Logins per User</title>
+  <para>
+  Limits the maximum number of concurrent logins by a specific user.
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2" pgwide="1">
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="1.0*" align="left"/>
+      <colspec colname="c2" colwidth="1.0*"/>
+      <colspec colname="c3" colwidth="1.5*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Settings</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="3">
+            <filename>/etc/security/limits.conf</filename>
+          </entry>
+          <entry morerows="3">
+            <simplelist type="horiz" columns="1">
+              <member>
+                <parameter>* soft core 0</parameter>
+              </member>
+              <member>
+                <parameter>* hard core 0</parameter>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+          <entry namestr="c1" nameend="c2">Not currently supported.</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+          <entry namestr="c1" nameend="c2">Not currently supported.</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <simplesect xml:id="MaxLoginsByUser-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>
+     GEN000450 - The system must limit users to 10 simultaneous system
+     logins, or a site-defined number, in accordance with operational
+     requirements.
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>
+     RHEL-06-000319 - The system must limit users to 10 simultaneous
+     system logins, or a site-defined number, in accordance with
+     operational requirements.
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="MaxLoginsByUser-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Maximum number of concurrent logins per user.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,356 @@
+
+/*
+* Copyright (c) 2009-2014 Forcepoint LLC.
+* This file is released under the GPLv3 license.  
+* See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+* or visit https://www.gnu.org/licenses/gpl.html instead.
+*
+* Style Sheet for OS Lockdown
+*
+* This style sheet is used by the Main layout SiteMesh template.
+*
+*/
+
+/*************************************************
+*               MAIN PAGE
+*************************************************/
+* {
+margin: 0;
+padding: 0;
+}
+
+html, body {
+/*
+  OVERALL_BACKGROUND
+
+*/
+  background: #6d6e70;
+   /* Border between app and top of window */
+  color: #000;
+}
+
+/*
+* The div just inside the body may have id #doc, #doc1, etc., based
+* on the YUI grid layouts.  Because this id name can change, set the
+* style to the child div under body.
+*/
+#container {
+/* 2px white border around entire application */
+border:1px solid #000;
+color: #000;
+margin-top: .35em;
+padding-bottom: 1.2em;
+
+   /* CENTER_BACKGROUND */
+   background:  #d0d0d0;  /*light*/
+   font-size: 90%;
+
+}
+
+/* Since most of the links will appear as buttons, remove the underline below links */
+a {
+text-decoration: none;
+color: #315581;
+}
+
+a:visited {
+color: #315581;
+}
+
+a:hover {
+color: #980230;
+}
+
+p {
+padding: 0.3em 0.3em 0.4em 0.3em;
+}
+
+#bd {
+padding-bottom: 0.15em;
+}
+
+/*************************************************
+*               BANNER - LOGOS
+*************************************************/
+
+/* This div contains the logo images */
+#head_logos {
+overflow:hidden;
+/* 
+  background-color: rgb(255,255,255);
+*/
+  background-color: #58585b
+}
+
+/* The TCS logo is floated left */
+#TCS {
+float: left;
+margin-left: 1.1em;
+margin-top: 0.6em;
+}
+
+/* The OSLockdown logo is floated right */
+#AppID {
+float: right;
+margin-right: 1.1em;
+margin-top: 1.1em;
+}
+
+/* LoggedIn string  is floated right */
+.logged {
+padding: 0.4em;
+#padding: 0.25em;
+background: white;
+margin: 0;
+text-align: left;
+}
+
+.loggedrt {
+padding: 0.4em 0.3em 0.2em 0;
+background: white;
+#height: 16px;
+margin: 0;
+text-align: right;
+}
+
+.logged_ {
+padding: 0.5em 1em 0.5em 0.5em;
+background: #c3d2e7;
+text-align: right;
+}
+
+
+/*************************************************
+*               HEADER - NAV BUTTONS
+*************************************************/
+#jsddm #home .home, #jsddm #profiles .profiles, #jsddm #clients .clients, #jsddm #groups .groups, #jsddm #notifications .notifications, #jsddm #reports .reports,  #jsddm #scheduler .scheduler, #jsddm #administration .administration, #jsddm #help .help, #jsddm #test .test,   {
+background-color: #c8c5a1;
+color: #000;
+}
+
+/* The top menu div contains the navigation buttons listed horizontally */
+/*
+#topmenu {	
+border-bottom: 2px solid white;
+border-top: 2px solid white;
+background-color: black;
+----  this is to align the Help button to the right, the list is floated left -----
+text-align: right;
+
+}
+*/
+
+/* Make the top menu horizontal by floating left. */
+/*
+#topmenu li {
+float: left;	
+}
+*/
+
+/* Apply to both <a> in list and <a> for Help */
+/*
+#topmenu a {
+color: white;
+font-weight: 700;	
+--------- top, right, bottom, left -----------
+padding: .5em 1em .5em 1em; 
+line-height: 2.3em;	
+}
+*/
+
+/* Make the color change on hover */
+/*#topmenu a:hover {
+background-color: #EDEDED;
+color: black;
+}
+*/
+/*************************************************
+*               SHARED ON PAGES
+*
+* These styles are for tags that are per-page (not
+* in a template), but should be consistent across
+* all pages.
+*************************************************/
+
+/*
+ * Form Fields
+ */
+
+.input {
+background:  #eef1f8;
+border: 0.05em #315581 solid;	
+}
+
+/** Disabled (read-only) fields **/
+input[disabled], input[disabled="disabled"] {
+background:  #cdcdcd;
+color: black;
+border: 0.05em #666 solid;	
+}
+
+.input[disabled],.input[disabled="disabled"] {
+background:  #cdcdcd;
+color: black;
+border: 0.05em #666 solid;	
+}
+
+/* For any checkboxes (including disabled checkboxes that had border and background set by above 3 classes) */
+/* don't have border and make the background be transparent. This removes the border and background on checkboxes in IE */
+/* which was especially annoying when these checkboxes appear in table cells. */
+input[checkbox], input[type="checkbox"] {
+    background:transparent;
+    border: none;
+    vertical-align: middle;
+}
+
+.input[checkbox], .input[type="checkbox"] {
+    background:transparent;
+    border: none;
+    vertical-align: middle;
+}
+
+textarea[disabled], textarea[disabled="disabled"] {
+background:  #cdcdcd;
+color: black;
+border: 0.05em #666 solid;	
+}
+
+select[disabled], select[disabled="disabled"] {
+background:  #cdcdcd;
+color: black;
+border: 0.05em #666 solid;	
+}
+
+
+/*
+* Each page title uses an <h1> tag for screen readers.
+*/
+h1 {
+font-weight: 700;
+margin-left: 0.3em;
+}
+
+/*
+* The paginateButtons class is used for the pagination
+* buttons at the bottom of the list screens, which show
+* "next", "previous" and page number links.
+*/
+.paginateButtons a, .paginateButtons span {
+margin: 0.25em;
+padding: 0.25em;
+}
+
+/*
+* This style applies to the "Select All" and "Unselect All"
+* links to select/unselect all checkboxes in a list.
+*/
+#selectAll, #unselectall {
+cursor: pointer;
+line-height: 1.5em;
+width: 2.2em;
+max-width: 2.2em;
+text-align: left;
+}
+
+fieldset {
+border: .1em solid #899eb7;
+padding: 0.4em;
+margin:  0.3em;
+}
+
+fieldset > legend {
+color: #000;
+font-weight: bold;
+padding: 0.1em 1em;
+background: #c3d2e7;
+border: 0.1em solid #899eb7;
+}
+
+fieldset textField, fieldset select {
+#float: left;
+#margin-left: 0.417em;
+}
+
+fieldset a.btn, fieldset a.btn:hover {
+#float: left;
+#margin:  0 0 2em 1em;
+margin: 0 0.5em 2em 0.55em;
+}
+
+#fieldset_error {
+border-color: #000;
+color: #e01;
+margin:  0 1em 1em 1em;
+font-weight: bold;
+}
+
+#fieldset_error > legend {
+color: #000;
+margin: 0.2em 0 0.5em 0;
+background: #e01;
+border-color: #000;
+}
+
+/*************************************************
+*                  NOTIFICATION
+*************************************************/
+
+.newNotification {
+background-color: #c8c5a1;
+}
+
+/*************************************************
+*               	FOOTER
+*************************************************/
+
+/*
+* The bottom footer has a white top and bottom border.  A bottom margin pushes
+* the white border of the doc div down, resulting in a double white line at the
+* bottom of the page.
+*/
+
+#ft div {
+/*border-bottom: 2px solid black; */
+text-align: center;
+/*
+background: url(../images/pp_header_gold.jpg) repeat-x #c8c5a1;
+*/
+padding: 0.2em 0;
+z-index: 2;
+margin-top: 0.3em;
+}
+
+#ft {
+/*
+background: url(../images/pp_footer_gold.jpg) repeat-x #c8c5a1;
+*/
+background-color:#808284;
+padding: 0.2em 0;
+text-align: center;
+z-index: 2;
+line-height: 1.4em;
+#line-height: 1.1em;
+font-size: 90%;
+color: #ffffff;
+margin-top: 0.2em;
+border-top: 1px solid #000;
+border-bottom: 1px solid #000;
+}
+
+#ft p {
+z-index: 100;
+text-align: center;
+padding: 0;
+}
+
+/*
+* The fonts in the footer are dark blue, including the visited link.  Hovering over the
+* link changes it to SB red just to highlight it is a link.
+*/ 
+#ft a, #ft a:visited {
+color: #000;
+}
+
+#ft a:hover {
+color: #980230;
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Restrict the CDE Subprocess Control Service">
+        <library>RestrictDtspcd</library>
+        <description>Add the CDE Subprocess Control Service (dtspcd) daemon's port (tcp/6112) to the privileged port list. This prevents users from opening up the service.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

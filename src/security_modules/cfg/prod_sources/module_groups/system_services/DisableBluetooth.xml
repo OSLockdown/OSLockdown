@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Bluetooth">
+        <library>DisableBluetooth</library>
+        <description>Disables Bluetooth services. The Bluetooth services may allow unauthorized communications with the server if not properly configured.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4">
+            <services>
+              <service seq="1" name="bluetooth"/>
+            </services>
+            <packages>
+              <package name="bluez-utils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:5">
+            <services>
+              <service seq="1" name="bluetooth"/>
+            </services>
+            <packages>
+              <package name="bluez-utils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:10">
+            <services>
+              <service seq="1" name="bluetooth"/>
+            </services>
+            <packages>
+              <package name="bluez-utils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:10">
+            <services>
+              <service seq="1" name="bluetooth"/>
+            </services>
+            <packages>
+              <package name="bluez-utils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:11.3">
+            <services>
+              <service seq="1" name="bluez-coldplug"/>
+            </services>
+            <packages>
+              <package name="bluez"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:11">
+            <services>
+              <service seq="1" name="bluetooth"/>
+            </services>
+            <packages>
+              <package name="bluez"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:11">
+            <services>
+              <service seq="1" name="bluez-coldplug"/>
+            </services>
+            <packages>
+              <package name="bluez"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:11:sp3">
+            <services>
+              <service seq="1" name="bluetooth"/>
+            </services>
+            <packages>
+              <package name="bluez-coldplug"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4">
+            <services>
+              <service seq="1" name="bluetooth"/>
+            </services>
+            <packages>
+              <package name="bluez-utils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5">
+            <services>
+              <service seq="1" name="bluetooth"/>
+            </services>
+            <packages>
+              <package name="bluez-utils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:10">
+            <services>
+              <service seq="1" name="bluetooth"/>
+            </services>
+            <packages>
+              <package name="bluez"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:11">
+            <services>
+              <service seq="1" name="bluetooth"/>
+            </services>
+            <packages>
+              <package name="bluez"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:12">
+            <services>
+              <service seq="1" name="bluetooth"/>
+            </services>
+            <packages>
+              <package name="bluez"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:13">
+            <services>
+              <service seq="1" name="bluetooth"/>
+            </services>
+            <packages>
+              <package name="bluez"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4">
+            <services>
+              <service seq="1" name="bluetooth"/>
+            </services>
+            <packages>
+              <package name="bluez-utils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5">
+            <services>
+              <service seq="1" name="bluetooth"/>
+            </services>
+            <packages>
+              <package name="bluez-utils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6">
+            <services>
+              <service seq="1" name="bluetooth"/>
+            </services>
+            <packages>
+              <package name="bluez"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:6">
+            <services>
+              <service seq="1" name="bluetooth"/>
+            </services>
+            <packages>
+              <package name="bluez"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <services>
+              <service seq="1" name="bluetooth"/>
+            </services>
+            <packages>
+              <package name="bluez"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Hardware</member>
+          <member>Wireless</member>
+        </views>
+      </security_module>

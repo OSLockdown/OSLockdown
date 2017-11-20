@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableSerialLoginPrompt" version="5.0">
+ <title xml:id="RemoteAccessServices">Disable Login Prompts on Serial Ports</title>
+ <para>
+  Disables the login prompt on the system serial devices to make it more
+  difficult for unauthorized users to attach modems, terminals, and
+  other remote access devices to these ports.
+  <indexterm>
+   <primary>modems</primary>
+  </indexterm>
+ </para>
+ <para>
+  On Solaris systems, this action may safely be performed even if
+  console access to the system is provided via the serial ports, because
+  the login prompt on the console device is provided through a different
+  mechanism.
+  <indexterm>
+   <primary>console</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>serial ports</primary>
+  </indexterm>
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="1.0*" align="left"/>
+   <colspec colname="c2" colwidth="1.0*"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Scan Method</entry>
+     <entry>Apply Method</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="4">Do all <filename>/dev/ttyS[0-4]</filename> serial device files have a
+      corresponding <filename>/etc/nologin.ttyS[0-4]</filename> ? If
+      not, the scan fails.
+      <indexterm>
+       <primary>/dev</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Files and Directories</primary>
+       <secondary>/dev</secondary>
+      </indexterm></entry>
+     <entry morerows="4">Create empty <filename>/etc/nologin.ttyS[0-4]</filename> files.</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+     <entry>Execute <command>/usr/sbin/padm -L -p zsmon</command> to see if any
+      service tags do not have the disable flag (x) set.
+      <indexterm>
+       <primary>zsmon</primary>
+      </indexterm></entry>
+     <entry>Use the <command>/usr/sbin/pmadm -d -p zsmon tty?</command> command to
+      disable.</entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <warning>
+  <title>WARNING: Linux Systems</title>
+  <para>
+   It is <emphasis>strongly</emphasis> recommended that you maintain a
+   network login to the system before applying this module for the
+   <emphasis>first</emphasis> time. If you must use a serial terminal
+   for console access, then do not use this module.
+  </para>
+ </warning>
+ <simplesect xml:id="DisableSerialLoginPrompt-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-13 - Limitation and Control of Network Ports, Protocols, and
+     Services
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+   <listitem>
+    <para>
+     CIP-005-3-R2.2 - Enable only ports and services needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+   <listitem>
+    <para>
+     CIP-007-3-R2.2 - Disable ports and services not needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.2 - Disable all unnecessary and insecure services
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

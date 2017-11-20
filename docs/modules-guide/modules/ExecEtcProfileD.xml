@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="ExecEtcProfileD" version="5.0">
+  <title xml:id="General">Exec Shell Startups in /etc/profile.d</title>
+  <para>
+  Most Linux distributions have a directory named
+  <filename>/etc/profile.d</filename> that holds various environment
+  “setup” files, which ensure at a system level that applications
+  are setup correctly. Most shells fall into one of two syntax flavors
+  (Bourne shell or cshell); therefore you will find files with the *.sh
+  and *.csh suffixes. When a shell starts up (if it is a “login”
+  shell), the appropriate flavor files in
+  <filename>/etc/profile.d</filename> are executed.
+ </para>
+  <para>
+  Solaris does not do this by default, so this module will append the
+  requisite set of lines (if not there already) to the
+  <filename>/etc/profile</filename> and
+  <filename>/etc/csh.login</filename> files to execute all files in
+  <filename>/etc/profile.d</filename>, and will create
+  <filename>/etc/profile.d</filename> directory if it does not already
+  exist. This module is required by any other module that might
+  <emphasis role="italic">create</emphasis> a file in the
+  <filename>/etc/profile.d</filename> directory.
+ </para>
+  <para>
+  All supported Linux platforms already have this directory, as well as
+  the required lines in <filename>/etc/profile</filename> and
+  <filename>/etc/csh.login</filename>; therefore this module will return
+  “OS Not Applicable” when run on a Linux platform.
+ </para>
+  <simplesect xml:id="ExecEtcProfileD-compliancy">
+    <title>Compliancy</title>
+    <para>N/A</para>
+  </simplesect>
+</section>

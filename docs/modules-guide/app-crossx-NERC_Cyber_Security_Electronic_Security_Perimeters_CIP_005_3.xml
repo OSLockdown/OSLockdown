@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="app-crossx-NERC_Cyber_Security_Electronic_Security_Perimeters_CIP_005_3">
+  <title>NERC Cyber Security - Electronic Security Perimeters CIP-005-3</title>
+  <para>
+    <abstract> <para>
+  The U.S. Federal Energy Regulatory Commission (FERC) has mandated
+  Critical Infrastructure Protection (CIP) standards for the energy
+  industries. The FERC regulates and oversees energy industries in the
+  economic, environmental, and safety interests of the American public.
+  The FERC is an independent agency that regulates the interstate
+  transmission of natural gas, oil, and electricity. FERC also regulates
+  natural gas and hydropower projects.
+ </para>
+ <para>
+  In response to the commission's mandates, the North American
+  Electric Reliability Corporation (NERC) maintains the series of
+  Critical Infrastructure Protection (CIP) standards. The CIPs consist
+  of nine documents and OS Lockdown can assist in satisfying some
+  of them.
+ </para>
+ <itemizedlist>
+  <listitem>
+   <para>
+    CIP-001-3 Sabotage Reporting
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CIP-002-3 Critical cyberasset identification
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CIP-003-3 Security management controls
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CIP-004-3 Personnel and training
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CIP-005-3 Electronic security perimeters
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CIP-006-3 Physical security of critical cyberassets
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CIP-007-3 Systems security management
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CIP-008-3 Incident reporting and response planning
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CIP-009-3 Recovery plans for critical cyberassets
+   </para>
+  </listitem>
+ </itemizedlist>
+ <para>
+  Specifically, OS Lockdown can assist with CIP-005 and CIP-007.
+  The OS Lockdown baselining technology can also assist in
+  satisfying the CIP-003-3-R6 requirement: "Change Control and
+  Configuration Management". This requirement states:
+ </para>
+ <blockquote>
+  <para>
+   The Responsible Entity shall establish and document a process of
+   change control and configuration management for adding, modifying,
+   replacing, or removing Critical Cyber Asset hardware or software, and
+   implement support configuration management activities to identify,
+   control and document all entity or vendor-related changes to hardware
+   and software components of Critical Cyber Assets pursuant to the
+   change control process.
+  </para>
+ </blockquote>
+ <para>
+  Once a system has been configured, a periodic system snapshot of the
+  system using OS Lockdown can assist in quickly identifying and
+  documenting changes. Use OS Lockdown's baseline comparison
+  feature to identify a system's network, hardware, routing, and
+  firewall configuration as well as changes in its software inventory.
+ </para>
+</abstract>
+  </para>
+  <para>
+    <literallayout>    3   Total number of line items in guideline
+    3   Items at least partially addressed by OS Lockdown
+    0   Items not addressed by OS Lockdown</literallayout>
+  </para>
+  <table xml:id="app-crossx-NERC_Cyber_Security_Electronic_Security_Perimeters_CIP_005_3-description" frame="all" tocentry="1" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>Guideline name/description for NERC Cyber Security - Electronic Security Perimeters CIP-005-3</title>
+    <tgroup cols="2">
+      <colspec colname="c1" colwidth="0.2*" align="center"/>
+      <colspec colname="c2" colwidth="0.5*" align="left"/>
+      <thead>
+        <row>
+          <entry>Line Item</entry>
+          <entry>Description Item</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row xml:id="CIP-005-3-R2.2-desc">
+          <entry>CIP-005-3-R2.2</entry>
+          <entry>Enable only ports and services needed for operations</entry>
+        </row>
+        <row xml:id="CIP-005-3-R2.6-desc">
+          <entry>CIP-005-3-R2.6</entry>
+          <entry>Appropriate Use Banner</entry>
+        </row>
+        <row xml:id="CIP-005-3-R4.4-desc">
+          <entry>CIP-005-3-R4.4</entry>
+          <entry>Review of controls for default accounts, passwords, and network management community strings</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+  <table xml:id="app-crossx-NERC_Cyber_Security_Electronic_Security_Perimeters_CIP_005_3-items" frame="all" tocentry="1" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>Module to line item breakdown for NERC Cyber Security - Electronic Security Perimeters CIP-005-3</title>
+    <tgroup cols="4">
+      <colspec colname="c1" colwidth="1.0*" align="right"/>
+      <colspec colname="c-CIP-005-3-R2.2" colwidth="0.2*" align="center"/>
+      <colspec colname="c-CIP-005-3-R2.6" colwidth="0.2*" align="center"/>
+      <colspec colname="c-CIP-005-3-R4.4" colwidth="0.2*" align="center"/>
+      <thead valign="middle">
+        <row>
+          <entry>OS Lockdown Module</entry>
+          <entry align="center"><?dbfo orientation="90" ?><?dbfo rotated-width="0.5in" ?>R2.2</entry>
+          <entry align="center"><?dbfo orientation="90" ?><?dbfo rotated-width="0.5in" ?>R2.6</entry>
+          <entry align="center"><?dbfo orientation="90" ?><?dbfo rotated-width="0.5in" ?>R4.4</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>
+            <xref linkend="BlockSystemAccounts" xrefstyle="select: title page">Block System Accounts</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R4.4-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="CreateLoginBanner" xrefstyle="select: title page">Create Login Banner</xref>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.6-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="CreateLoginFTPBanner" xrefstyle="select: title page">Create Login FTP Banner</xref>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.6-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="CreatePreLoginGUIBanner" xrefstyle="select: title page">Create Pre-Login GUI Banner</xref>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.6-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="CreatePreSessionGUIBanner" xrefstyle="select: title page">Create Pre-Session GUI Banner</xref>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.6-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableWebServer_apache" xrefstyle="select: title page">Disable Apache</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableAvahi" xrefstyle="select: title page">Disable Avahi Daemon</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableBluetooth" xrefstyle="select: title page">Disable Bluetooth</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableBluetoothKernelModules" xrefstyle="select: title page">Disable Bluetooth Kernel Modules</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableBootCaching" xrefstyle="select: title page">Disable Boot Caching</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableCDEcalmgr" xrefstyle="select: title page">Disable CDE Calendar Manager Server</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableCDEttdbserver" xrefstyle="select: title page">Disable CDE ToolTalk Database Server</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableCpuThrottling" xrefstyle="select: title page">Disable CPU Throttling</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableGpm" xrefstyle="select: title page">Disable Console Mouse Support</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableDNS" xrefstyle="select: title page">Disable DNS</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableDhcpd" xrefstyle="select: title page">Disable Dhcpd</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableFTP_gssftp" xrefstyle="select: title page">Disable FTP (gssftp)</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableFTP_vsftpd" xrefstyle="select: title page">Disable FTP (vsftpd)</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableFileShare" xrefstyle="select: title page">Disable File Sharing Networks</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableFinger" xrefstyle="select: title page">Disable Finger</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableFirstbootSvc" xrefstyle="select: title page">Disable Firstboot Service</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableFspd" xrefstyle="select: title page">Disable Fspd</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableGssd" xrefstyle="select: title page">Disable GSS Daemon</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableGated" xrefstyle="select: title page">Disable Gated</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableGuiLogin" xrefstyle="select: title page">Disable Graphical Login</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableHalDaemon" xrefstyle="select: title page">Disable HAL Daemon</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableHPServices" xrefstyle="select: title page">Disable HP Printing and Imaging</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableIA32MicrocodeUtility" xrefstyle="select: title page">Disable IA32 Microcode Utility</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableIrqbalance" xrefstyle="select: title page">Disable IRQ Balance Service</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableISDN" xrefstyle="select: title page">Disable ISDN</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableInetd" xrefstyle="select: title page">Disable Inetd</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableInnd" xrefstyle="select: title page">Disable Innd</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableWebconsole" xrefstyle="select: title page">Disable Java Web Console</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableKerbTGTwarn" xrefstyle="select: title page">Disable Kerberos TGT Expiration Warning</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableKudzu" xrefstyle="select: title page">Disable Kudzu</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableLdapCacheMgr" xrefstyle="select: title page">Disable LDAP Client Cache Manager</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSerialLoginPrompt" xrefstyle="select: title page">Disable Login Prompts on Serial Ports</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableMail_cyrus" xrefstyle="select: title page">Disable Mail (Cyrus mail server)</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableMail_dovecot" xrefstyle="select: title page">Disable Mail (Dovecot mail server)</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSQL_mysql" xrefstyle="select: title page">Disable MySQL</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableNFS_client" xrefstyle="select: title page">Disable NFS Client</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableNFS_server" xrefstyle="select: title page">Disable NFS Server</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableNIS_client" xrefstyle="select: title page">Disable NIS Client</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableNIS_server" xrefstyle="select: title page">Disable NIS Server</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisablePortmap" xrefstyle="select: title page">Disable Portmap Daemon</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSQL_postgresql" xrefstyle="select: title page">Disable Postgresql</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableApmd" xrefstyle="select: title page">Disable Power Management</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisablePrinterConfig" xrefstyle="select: title page">Disable Printer Configuration Daemon</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisablePrinter" xrefstyle="select: title page">Disable Printer Daemon</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRpcKeyserv" xrefstyle="select: title page">Disable RPC Keyserv</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRexec" xrefstyle="select: title page">Disable Remote Exec (rexec)</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRlogin" xrefstyle="select: title page">Disable Remote Login (rlogin)</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRsh" xrefstyle="select: title page">Disable Remote Shell (rsh)</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRemoteSyslog" xrefstyle="select: title page">Disable Remote Syslog</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRhnsd" xrefstyle="select: title page">Disable Rhnsd</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRhostsSupport" xrefstyle="select: title page">Disable Rhosts Support</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRouted" xrefstyle="select: title page">Disable Routed</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSMARTD" xrefstyle="select: title page">Disable SMART Disk Monitoring Support</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSMB" xrefstyle="select: title page">Disable SMB</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSNMP" xrefstyle="select: title page">Disable SNMP</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="ChangeSNMPStrings" xrefstyle="select: title page">Disable SNMP if default public string exists</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R4.4-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSendmail" xrefstyle="select: title page">Disable Sendmail</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSmartcard" xrefstyle="select: title page">Disable Smart Card Support</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSVM" xrefstyle="select: title page">Disable Solaris Volume Manager</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSVMgui" xrefstyle="select: title page">Disable Solaris Volume Manager GUI</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSquid" xrefstyle="select: title page">Disable Squid</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableTFTP" xrefstyle="select: title page">Disable TFTP</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableTelnet" xrefstyle="select: title page">Disable Telnet</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableWebServer_tux" xrefstyle="select: title page">Disable Tux</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableUSB" xrefstyle="select: title page">Disable USB and PCMCIA Devices</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableUucp" xrefstyle="select: title page">Disable UUCP</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableWbem" xrefstyle="select: title page">Disable WBEM</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableWebmin" xrefstyle="select: title page">Disable Webmin</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableXFS" xrefstyle="select: title page">Disable XFS</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableAtd" xrefstyle="select: title page">Disable atd Service</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRpc_Ugidd" xrefstyle="select: title page">Disable rpc.ugidd</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="TelnetBanner" xrefstyle="select: title page">Remove Telnet Service Banner</xref>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.6-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="RestrictDtspcd" xrefstyle="select: title page">Restrict the CDE Subprocess Control Service</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.2-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshdEnableBanner" xrefstyle="select: title page">SSHD Enable Banner</xref>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CIP-005-3-R2.6-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+</section>

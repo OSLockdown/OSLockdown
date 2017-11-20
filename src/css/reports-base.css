@@ -1,0 +1,82 @@
+/*
+* Copyright (c) 2007-2014 Forcepoint LLC.
+* This file is released under the GPLv3 license.  
+* See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+* or visit https://www.gnu.org/licenses/gpl.html instead.
+ *
+ * 
+ * Corporate Pallete:
+ *                      Blue:  #7399c6
+ *                 Dark Blue:  #315581
+ *        Bright medium Blue:  #467fc5
+ *               Medium Gold:  #c8c5a1
+ *                 Dark Gold:  #a19670
+ *                Light Gray:  #eef1f8
+ *            Dark Gray/Blue:  #899eb7
+ *                       Red:  #980230
+ *
+ */
+
+/**
+ * NOTE: For specific browser CSS support:
+ *    IE - http://msdn.microsoft.com/en-us/library/cc351024%28v=vs.85%29.aspx
+ *    Firefox - https://developer.mozilla.org/en/Mozilla_CSS_support_chart
+ */
+body {
+    background-color: white;
+    color: black;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+/*****************************************************************************
+    Hyperlinks (a - anchors)
+ ****************************************************************************/
+a         { text-decoration: none }
+a:link    { color: #467fc5; }
+a:visited { color: #315581 }
+a:hover   { color: #899eb7; text-decoration: underline }
+a:active  { color: #FF0000; } 
+
+
+/**
+ * This is for the icons for 'sortable' tables
+ * icons are the not sorted, sort up, and sort down.
+ */
+span.sortarrow img {
+    border: none;
+    vertical-align: text-bottom;
+}
+
+/*****************************************************************************
+    Header  (Top of the report where the logo resides)
+ ****************************************************************************/
+table.hdrTable {
+    width: 100%;
+    padding: 0px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+table.hdrTable th {
+    background-color: #315581;
+    padding: 4px;
+}
+table.hdrTable td {
+    margin: 0;
+    background-color: #eef1f8;
+    padding: 4px;
+}
+
+/*****************************************************************************
+    Footer  (Bottom of the report)
+ ****************************************************************************/
+table.footerTable {
+    margin-top: 1em;
+    width: 100%;
+    background-color: white;
+    padding: 0px;
+    font-size: 10px;
+}
+table.footerTable td {
+    border: 0px;
+ }

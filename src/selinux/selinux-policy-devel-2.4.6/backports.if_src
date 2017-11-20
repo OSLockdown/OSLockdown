@@ -1,0 +1,195 @@
+##############################################################################
+# Copyright (c) 2011-2014 Forcepoint LLC.
+# This file is released under the GPLv3 license.  
+# See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+# or visit https://www.gnu.org/licenses/gpl.html instead.
+##############################################################################
+#
+#
+#             The following are based on the F10 Selinux Policy (3.5.13) to let this policy build/on RH5
+#
+#
+#
+#
+#
+
+
+
+########################################
+## <summary>
+##	Create a new domain with entry point.
+## </summary>
+## <param name="domain">
+## <summary>
+##	New domain name.
+## </summary>
+## </param>
+## <param name="entrypoint">
+## <summary>
+##	Entrypoint typ.
+## </summary>
+## </param>
+#
+interface(`application_domain',`
+	domain_type($1);
+	allow $1 $2:file { read entrypoint ioctl };
+')
+
+########################################
+## <summary>
+##	Let SB manage a directory type.
+## </summary>
+## <param name="domain">
+## <summary>
+##	New domain name.
+## </summary>
+## <param name="dirtype">
+## <summary>
+##	Directory type.
+## </summary>
+## </param>
+## <param name="dirtype">
+## <summary>
+##	Directory type.
+## </summary>
+## </param>
+#
+interface(`manage_dirs_pattern',`
+
+	allow $1 $2:dir search_dir_perms;
+	allow $1 $3:dir manage_dir_perms;
+')
+
+########################################
+## <summary>
+##	Let SB manage a file type.
+## </summary>
+## <param name="domain">
+## <summary>
+##	New domain name.
+## </summary>
+## </param>
+## <param name="filetype">
+## <summary>
+##	File type.
+## </summary>
+## </param>
+## <param name="dirtype">
+## <summary>
+##	Directory type.
+## </summary>
+## </param>
+#
+interface(`manage_files_pattern',`
+
+	allow $1 $2:dir rw_dir_perms;
+	allow $1 $3:file manage_file_perms;
+')
+
+########################################
+## <summary>
+##	Let SB manage a lnk type.
+## </summary>
+## <param name="domain">
+## <summary>
+##	New domain name.
+## </summary>
+## </param>
+## <param name="filetype">
+## <summary>
+##	File type.
+## </summary>
+## </param>
+## <param name="dirtype">
+## <summary>
+##	Directory type.
+## </summary>
+## </param>
+#
+interface(`manage_lnk_files_pattern',`
+
+	allow $1 $2:dir rw_dir_perms;
+	allow $1 $3:dir manage_file_perms;
+')
+
+########################################
+## <summary>
+##	Domain trans pattern.
+## </summary>
+## <param name="src_domain">
+## <summary>
+##	Source domain.
+## </summary>
+## </param>
+## <param name="filetype">
+## <summary>
+##	Exec type.
+## </summary>
+## </param>
+## <param name="tgt_domain">
+## <summary>
+##	Target domaintype.
+## </summary>
+## </param>
+#
+interface(`domtrans_pattern',`
+	files_type($2)
+	allow $3 $1:fd use;
+	allow $3 $1:fifo_file { rw_file_perms };
+	allow $3 $1:process sigchld;
+	domain_trans($1,$2,$3)
+	domain_auto_trans($1,$2,$3)
+
+')	
+########################################
+## <summary>
+##	Read files pattern.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Source domain.
+## </summary>
+## </param>
+## <param name="dirtype">
+## <summary>
+##	Directory type.
+## </summary>
+## </param>
+## <param name="filetype">
+## <summary>
+##	File type.
+## </summary>
+## </param>
+#
+interface(`read_files_pattern',`
+
+	allow $1 $2:dir search_dir_perms;
+	allow $1 $3:file read_file_perms;
+
+')
+########################################
+## <summary>
+##	List files pattern.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Source domain.
+## </summary>
+## </param>
+## <param name="dirtype">
+## <summary>
+##	Directory type.
+## </summary>
+## </param>
+## <param name="dirtype">
+## <summary>
+##	Directory type.
+## </summary>
+## </param>
+#
+interface(`list_dirs_pattern',`
+
+	allow $1 $2:dir search_dir_perms;
+	allow $1 $3:dir list_dir_perms;
+
+')

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<compliancy source="DISA" name="Mozilla Firefox STIG" version="v4 R2" enabled="True">
+  <title>DISA STIG for Mozilla</title>
+  <style>ModulesPerLineItem</style>
+  <abstract>
+    <para>OS Lockdown can address the following items. It should be noted that many of these
+items are taken from various STIGs however, there is not an industry standard profile delivered
+with OS Lockdown. This is because these items do not cover a guideline in its entirety; therefore,
+a dedicated OS Lockdown profile is not warranted.</para>
+  </abstract>
+  <line-items>
+    <line-item name="DTBF003" description="Installed version of Firefox unsupported">
+      <module libraryName="DisableFirefox"/>
+    </line-item>
+    <line-item name="DTBF010" description="Disable SSLv2">
+      <module libraryName="FirefoxEncryption"/>
+    </line-item>
+    <line-item name="DTBF030" description="Enable TLS v1.0">
+      <module libraryName="FirefoxEncryption"/>
+    </line-item>
+    <line-item name="DTBF050" description="Verification">
+      <module libraryName="FirefoxEncryption"/>
+    </line-item>
+    <line-item name="DTBF105" description="Shell Protocol">
+      <module libraryName="FirefoxNetwork"/>
+    </line-item>
+    <line-item name="DTBF130" description="Switching from secure to insecure">
+      <module libraryName="FirefoxPrivacy"/>
+    </line-item>
+    <line-item name="DTBF140" description="Autofill forms">
+      <module libraryName="FirefoxPrivacy"/>
+    </line-item>
+    <line-item name="DTBF160" description="Password Store">
+      <module libraryName="FirefoxPrivacy"/>
+    </line-item>
+    <line-item name="DTBF170" description="Cookies">
+      <module libraryName="FirefoxPrivacy"/>
+    </line-item>
+    <line-item name="DTBF180" description="Pop-up windows">
+      <module libraryName="FirefoxDynamicContent"/>
+    </line-item>
+    <line-item name="DTBF181" description="Javascript move or resize windows">
+      <module libraryName="FirefoxJavascript"/>
+    </line-item>
+    <line-item name="DTBF182" description="Javascript raise or lower windows">
+      <module libraryName="FirefoxJavascript"/>
+    </line-item>
+    <line-item name="DTBF183" description="Javascript Context Menus">
+      <module libraryName="FirefoxJavascript"/>
+    </line-item>
+    <line-item name="DTBF184" description="Javascript hiding or changing status bar">
+      <module libraryName="FirefoxJavascript"/>
+    </line-item>
+  </line-items>
+</compliancy>

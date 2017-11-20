@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: OptionTypes.xsd 23917 2017-03-07 15:44:30Z rsanders $ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:annotation>
+    <xs:documentation>
+       Copyright (c) 2007-2014 Forcepoint LLC.
+       This file is released under the GPLv3 license.  
+       See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+       or visit https://www.gnu.org/licenses/gpl.html instead.      
+
+       OS Lockdown - Option Types
+    </xs:documentation>
+    <xs:appinfo>
+        This XML is used for Module parameter/option types
+    </xs:appinfo>
+</xs:annotation>
+
+    <xs:element name="optionTypes">
+        <xs:complexType>                
+            <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                <xs:element ref="optionType" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="optionType">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="number"/>
+                <xs:element ref="string"/>
+            </xs:choice>
+            <xs:element name="helpText" minOccurs="0" maxOccurs="1"/>
+            <xs:attribute name="name" use="required" />
+            <xs:attribute name="defaultValue" use="optional" />            
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="number">
+        <xs:complexType>
+            <xs:choice minOccurs="0">
+                <xs:element ref="range"/>
+                <xs:element ref="enumList"/>
+            </xs:choice>
+            <xs:attribute name="precision" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="integer"/>
+                        <xs:enumeration value="long"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="string">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="1">
+                <xs:element name="regexp" type="valueOrRefElement"/>
+                <xs:element ref="enumList"/>
+            </xs:choice>
+            <xs:attribute name="multiLine" type="xs:boolean" use="optional" default="false"/>
+            <xs:attribute name="password" type="xs:boolean" use="optional" default="false"/>
+            <xs:attribute name="minLength" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="maxLength" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="range">
+        <xs:complexType>            
+            <xs:sequence>
+                <xs:element name="min" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attributeGroup ref="valueOrRefAttrGroup"/>
+                        <xs:attribute name="inclusive" type="xs:boolean" default="true"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="max" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attributeGroup ref="valueOrRefAttrGroup"/>
+                        <xs:attribute name="inclusive" type="xs:boolean" use="required"/>
+                    </xs:complexType>
+                </xs:element>                
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>       
+    
+    <xs:element name="enumList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="enum" minOccurs="1" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attributeGroup ref="valueOrRefAttrGroup"/>
+                            </xs:extension>
+                        </xs:simpleContent>                        
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="multiSelect" type="xs:boolean" default="false"/>
+        </xs:complexType>        
+    </xs:element>    
+    
+    <xs:complexType name="valueOrRefElement">         
+        <xs:attributeGroup ref="valueOrRefAttrGroup"/>        
+    </xs:complexType>    
+    
+    <xs:attributeGroup name="valueOrRefAttrGroup">
+        <xs:attribute name="value" use="optional"/>
+        <xs:attribute name="moduleRef" use="optional"/>
+        <xs:attribute name="optionRef" use="optional"/>
+    </xs:attributeGroup>
+    
+</xs:schema>

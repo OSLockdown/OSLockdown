@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SecureNetrcFiles" version="5.0">
+  <title xml:id="General">Secure Netrc Files</title>
+  <para>
+  Restricts <filename>.netrc</filename> file permissions to owner read
+  and write access, which prevents others from gaining access to this
+  information. The <filename>.netrc</filename> files are used for remote
+  login without interaction. This is achieved through storing an
+  unencrypted password in the file. If used, these files should be
+  protected from all other users.
+  <indexterm><primary>.netrc</primary></indexterm>
+
+  <indexterm><primary>password</primary></indexterm>
+ </para>
+  <para>
+  The use of <filename>.netrc</filename> files is strongly discouraged.
+  If this breaks a third-party application, undo the operation and
+  encourage the third-party vendor to provide a better solution.
+ </para>
+  <simplesect xml:id="SecureNetrcFiles-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN002000 - There must be no .netrc files on the system.</para>
+      </listitem>
+      <listitem>
+        <para>GEN002060 - All .rhosts, .shosts, .netrc, or hosts.equiv files must be accessible by only root or the owner.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000347 - There must be no .netrc files on the system.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN002000 - The .netrc File Exists</para>
+      </listitem>
+      <listitem>
+        <para>GEN002060 - Access Control Files Accessibility</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>AC-3 - Access Enforcement</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+      <listitem>
+        <para>2.2.3 - Configure system security parameters to prevent misuse</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Daemon Umask">
+        <library>DaemonUmask</library>
+        <description>Configures system services to create files that only the user can modify and group members can read. Setting the system's default umask to 027 restricts newly created file and directory access to their respective owners and groups. This setting reduces the likelihood of other services or users overwriting or reading data owned by another process.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4"/>
+          <cpe-item name="cpe:/o:centos:centos:5"/>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:novell:opensuse:10"/>
+          <cpe-item name="cpe:/o:novell:opensuse:11"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:10"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:11"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:redhat:fedora:10"/>
+          <cpe-item name="cpe:/o:redhat:fedora:11"/>
+          <cpe-item name="cpe:/o:redhat:fedora:12"/>
+          <cpe-item name="cpe:/o:redhat:fedora:13"/>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

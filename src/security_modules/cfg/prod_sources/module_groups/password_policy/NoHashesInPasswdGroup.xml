@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="No Hashes Allowed in Passwd/Group Files">
+        <library>NoHashesInPasswdGroup</library>
+        <description>Detects hashed passwords in the passwd/group.  Note that this is a scan only module - the system administrator will need to make any changes.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>5</severity_level>
+        <configurationOptions>
+          <option name="fileList" type="fileList">
+            <description>List of files/directories</description>
+            <default>/etc/passwd /etc/group /etc/gshadow</default>
+          </option>
+        </configurationOptions>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4"/>
+          <cpe-item name="cpe:/o:centos:centos:5"/>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:novell:opensuse:10"/>
+          <cpe-item name="cpe:/o:novell:opensuse:11"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:10"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:11"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:redhat:fedora:10"/>
+          <cpe-item name="cpe:/o:redhat:fedora:11"/>
+          <cpe-item name="cpe:/o:redhat:fedora:12"/>
+          <cpe-item name="cpe:/o:redhat:fedora:13"/>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Password Policy</member>
+        </views>
+      </security_module>

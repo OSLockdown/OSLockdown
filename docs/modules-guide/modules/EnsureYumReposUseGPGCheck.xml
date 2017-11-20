@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: DisableRhnsd.xml 21205 2013-03-28 20:12:03Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="EnsureYumReposUseGPGCheck" version="5.0">
+ <title xml:id="SysMgmtServices">Ensure YUM Repositories use gpgcheck</title>
+ <para>
+  The <filename>yum</filename> package manager used by most Red Hat
+  derived Linux distributions has the ability to require that all
+  packages in a repository must have a valid GPG signature before they
+  can be installed. This provides an additional measure of security by
+  not allowing packages to be installed unless it is signed with the
+  approved key.
+ </para>
+ <simplesect xml:id="EnsureYumReposUseGPGCheck-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>DISA Red Hat 6 STIG (V1R14)</title>
+   <listitem>
+    <para>
+     RHEL-06-000013 - The system package management tool must
+     cryptographically verify the authenticity of system software
+     packages during installation.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     RHEL-06-000015 - The system package management tool must
+     cryptographically verify the authenticity of all software packages
+     during installation.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

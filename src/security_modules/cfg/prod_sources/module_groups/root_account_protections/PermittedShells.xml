@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Allowed shells in /etc/shells">
+        <library>PermittedShells</library>
+        <description>Sets the approved list of system shells.  Users are only allowed to change their login shell to a shell on this list, which prevents an unauthorized program from being used as a login shell.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>10</severity_level>
+        <configurationOptions>
+          <option name="allowedUnames" type="userListCanBeEmpty">
+            <description>Allowed User Names</description>
+            <default>root</default>
+          </option>
+          <option name="allowedGnames" type="groupListCanBeEmpty">
+            <description>Allowed Group Names</description>
+            <default>root</default>
+          </option>
+          <option name="dacs" type="fileDACs">
+            <description>Maximum allowed permissions</description>
+            <default>644</default>
+          </option>
+          <option name="allowedShells" type="basicMultilineString">
+            <description>Explicitly allowed shells for user accounts.  The order is not important.  The default list is empty as they vary from OS to OS, so please refer to the <filename>shells</filename> man page or your vendor OS documentation to obtain the correct default list.</description>
+            <default></default>
+          </option>
+        </configurationOptions>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4"/>
+          <cpe-item name="cpe:/o:centos:centos:5"/>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:novell:opensuse:10"/>
+          <cpe-item name="cpe:/o:novell:opensuse:11"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:10"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:11"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:redhat:fedora:10"/>
+          <cpe-item name="cpe:/o:redhat:fedora:11"/>
+          <cpe-item name="cpe:/o:redhat:fedora:12"/>
+          <cpe-item name="cpe:/o:redhat:fedora:13"/>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Root Account Protections</member>
+        </views>
+      </security_module>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="110" name="Ignore Bogus ICMP4 Error Responses">
+        <library>IgnoreBogusICMP</library>
+        <description>Configures the system to ignore ICMP4 error responses This can reduce the size of log files.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>5</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Network</member>
+        </views>
+      </security_module>

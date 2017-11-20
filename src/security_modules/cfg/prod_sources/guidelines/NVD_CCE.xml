@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<compliancy source="NVD" name="CCE" enabled="True">
+  <title>Common Configuration Enumeration (CCE)</title>
+  <style>ModulesPerLineItem</style>
+  <abstract> <para>
+  The Common Configuration Enumeration (CCE) list provides unique identifiers to security-related system configuration 
+  issues in order to improve workflow by facilitating fast and accurate correlation 
+  of configuration data across multiple information sources and tools.
+ </para>
+</abstract>
+  <line-items>
+    <line-item name="CCE-14011-1" description="/var/log should be configured on an appropriate filesystem partition.">
+      <module libraryName="CheckFS_varlog"/>
+    </line-item>
+    <line-item name="CCE-14023-6" description="The screen lock (password protection) function of the gnome desktop screensaver should be enabled or disabled as appropriate as a mandatory setting for all users.">
+      <module libraryName="SetGnomeSS"/>
+    </line-item>
+    <line-item name="CCE-14027-7" description="Disable or enable support for RDS as appropriate.">
+      <module libraryName="DisableKernelSprt_RDS"/>
+    </line-item>
+    <line-item name="CCE-14054-1" description="Zeroconf networking should be enabled or disabled as appropriate.">
+      <module libraryName="DisableZeroconfNet"/>
+    </line-item>
+    <line-item name="CCE-14061-6" description="The SSH 'keep alive' message count should be set to an appropriate value.">
+      <module libraryName="SshdSetIdleTimeout"/>
+    </line-item>
+    <line-item name="CCE-14071-5" description="NIS file inclusions should be set appropriately in the /etc/shadow file">
+      <module libraryName="NoPlusPasswdEntries"/>
+    </line-item>
+    <line-item name="CCE-14088-9" description="The 'wheel' group should exist or not as appropriate">
+      <module libraryName="LimitAccessFromSu"/>
+    </line-item>
+    <line-item name="CCE-14089-7" description="Support for cramfs filesystems should be enabeld or disabled as appropriate.">
+      <module libraryName="DisableKernelSprt_fstypes"/>
+    </line-item>
+    <line-item name="CCE-14093-9" description="Support for hfsplus filesystems should be enabeld or disabled as appropriate.">
+      <module libraryName="DisableKernelSprt_fstypes"/>
+    </line-item>
+    <line-item name="CCE-14113-5" description="The minimum number of digits required for new passwords should be set as appropriate.">
+      <module libraryName="PasswordPolicyNumbers"/>
+    </line-item>
+    <line-item name="CCE-14118-4" description="Support for squashfs filesystems should be enabeld or disabled as appropriate.">
+      <module libraryName="DisableKernelSprt_fstypes"/>
+    </line-item>
+    <line-item name="CCE-14122-6" description="The minimum number of special characters required for new passwords should be set as appropriate.">
+      <module libraryName="PasswordPolicySpecial"/>
+    </line-item>
+    <line-item name="CCE-14132-5" description="Disable or enable support for SCTP as appropriate.">
+      <module libraryName="DisableKernelSprt_SCTP"/>
+    </line-item>
+    <line-item name="CCE-14161-4" description="/tmp should be configured on an appropriate filesystem partition.">
+      <module libraryName="CheckFS_tmp"/>
+    </line-item>
+    <line-item name="CCE-14171-3" description="/var/log/audit should be configured on an appropriate filesystem partition.">
+      <module libraryName="CheckFS_varlogaudit"/>
+    </line-item>
+    <line-item name="CCE-14268-7" description="Disable or enable support for DCCP as appropriate.">
+      <module libraryName="DisableKernelSprt_DCCP"/>
+    </line-item>
+    <line-item name="CCE-14340-4" description="Files with the setuid attribute enabled should be reviewed as appropriate to determine whether that condition is correct.">
+      <module libraryName="SecureSetXIDFiles"/>
+    </line-item>
+    <line-item name="CCE-14457-6" description="Support for freevxfs filesystems should be enabeld or disabled as appropriate.">
+      <module libraryName="DisableKernelSprt_fstypes"/>
+    </line-item>
+    <line-item name="CCE-14466-7" description="The at daemon should be enabled or disabled as appropriate.">
+      <module libraryName="DisableAtd"/>
+    </line-item>
+    <line-item name="CCE-14559-9" description="/home should be configured on an appropriate filesystem partition.">
+      <module libraryName="CheckFS_home"/>
+    </line-item>
+    <line-item name="CCE-14604-3" description="The gnome desktop screensaver should be enabled or disabled as appropriate as a mandatory setting for all users.">
+      <module libraryName="SetGnomeSS"/>
+    </line-item>
+    <line-item name="CCE-14675-3" description="NIS file inclusions should be set appropriately in the /etc/group file">
+      <module libraryName="NoPlusPasswdEntries"/>
+    </line-item>
+    <line-item name="CCE-14712-4" description="The minimum number of lower case characters required for new passwords should be set as appropriate.">
+      <module libraryName="PasswordPolicyLowercase"/>
+      <module libraryName="PasswordPolicyUppercase"/>
+    </line-item>
+    <line-item name="CCE-14735-5" description="The screen blanking function of the gnome desktop screensaver should be enabled or disabled as appropriate as a mandatory setting for all users.">
+      <module libraryName="SetGnomeSS"/>
+    </line-item>
+    <line-item name="CCE-14777-7" description="/var should be configured on an appropriate filesystem partition.">
+      <module libraryName="CheckFS_var"/>
+    </line-item>
+    <line-item name="CCE-14794-2" description="All world-writable directories should be owned by an appropriate user.">
+      <module libraryName="SecureWorldWritableDevices"/>
+      <module libraryName="SecureWorldWritableFiles"/>
+    </line-item>
+    <line-item name="CCE-14825-4" description="The isdn4k-utils package should installed or uninstalled as appropriate.">
+      <module libraryName="DisableISDN"/>
+    </line-item>
+    <line-item name="CCE-14853-6" description="Support for jffs2 filesystems should be enabeld or disabled as appropriate.">
+      <module libraryName="DisableKernelSprt_fstypes"/>
+    </line-item>
+    <line-item name="CCE-14871-8" description="Support for udf filesystems should be enabeld or disabled as appropriate.">
+      <module libraryName="DisableKernelSprt_fstypes"/>
+    </line-item>
+    <line-item name="CCE-14911-2" description="Disable or enable support for TIPC as appropriate.">
+      <module libraryName="DisableKernelSprt_TIPC"/>
+    </line-item>
+    <line-item name="CCE-14939-3" description="The &quot;password reuse&quot; policy should meet minimum requirements.">
+      <module libraryName="PasswordReuse"/>
+    </line-item>
+    <line-item name="CCE-14970-8" description="Files with the setgid attribute enabled should be reviewed as appropriate to determine whether that condition is correct.">
+      <module libraryName="SecureSetXIDFiles"/>
+    </line-item>
+    <line-item name="CCE-15047-4" description="Access to the root account via su should be restricted to the wheel group or not as appropriate.">
+      <module libraryName="LimitAccessFromSu"/>
+    </line-item>
+    <line-item name="CCE-15087-0" description="Support for hfs filesystems should be enabeld or disabled as appropriate.">
+      <module libraryName="DisableKernelSprt_fstypes"/>
+    </line-item>
+    <line-item name="CCE-18156-0" description="The rawdevices service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableRawDevicesDaemon"/>
+    </line-item>
+    <line-item name="CCE-18244-4" description="The irda service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableIrda"/>
+    </line-item>
+    <line-item name="CCE-3276-3" description="The /etc/group file should be owned by the appropriate user.">
+      <module libraryName="PasswdPerms"/>
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="CCE-3315-9" description="The allowed period of inactivity gnome desktop lockout should be configured correctly.">
+      <module libraryName="SetGnomeSS"/>
+    </line-item>
+    <line-item name="CCE-3399-3" description="The sticky bit should be set or not set as appropriate for all world-writable directories.">
+      <module libraryName="SecureWorldWritableDirectories"/>
+    </line-item>
+    <line-item name="CCE-3412-4" description="The firstboot service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableFirstbootSvc"/>
+    </line-item>
+    <line-item name="CCE-3416-5" description="The rhnsd service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableRhnsd"/>
+    </line-item>
+    <line-item name="CCE-3425-6" description="The kdump service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableKdump"/>
+    </line-item>
+    <line-item name="CCE-3455-3" description="The smartd service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableSMARTD"/>
+    </line-item>
+    <line-item name="CCE-3485-0" description="Logins through the specified virtual console device should be enabled or disabled as appropriate">
+      <module libraryName="RootConsole"/>
+    </line-item>
+    <line-item name="CCE-3495-9" description="The /etc/passwd file should be owned by the appropriate group.">
+      <module libraryName="PasswdPerms"/>
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="CCE-3522-0" description="The nodev option should be enabled or disabled as appropriate for all removable media.">
+      <module libraryName="FstabRemovableMedia"/>
+    </line-item>
+    <line-item name="CCE-3535-2" description="The rpcgssd service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableGssd"/>
+    </line-item>
+    <line-item name="CCE-3562-6" description="Automatic loading of the IPv6 kernel module should be enabled or disabled as appropriate.">
+      <module libraryName="DisableIPv6KernelModule"/>
+    </line-item>
+    <line-item name="CCE-3566-7" description="File permissions for /etc/passwd should be set correctly.">
+      <module libraryName="PasswdPerms"/>
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="CCE-3573-3" description="All files should be owned by a group as appropriate">
+      <module libraryName="SecureUnownedFiles"/>
+    </line-item>
+    <line-item name="CCE-3578-2" description="The named service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableDNS"/>
+    </line-item>
+    <line-item name="CCE-3622-8" description="The NIS update daemon should be enabled or disabled as appropriate">
+      <module libraryName="DisableNIS_server"/>
+    </line-item>
+    <line-item name="CCE-3624-4" description="The SELinux policy should be set appropriately.">
+      <module libraryName="SELinuxIsPropEnabled"/>
+    </line-item>
+    <line-item name="CCE-3650-9" description="The metaed service should be enabled or disabled as appropriate">
+      <module libraryName="DisableSVMgui"/>
+    </line-item>
+    <line-item name="CCE-3660-8" description="Remote connections from accounts with empty passwords should be enabled or disabled as appropriate">
+      <module libraryName="SshdDisableEmptyPasswords"/>
+    </line-item>
+    <line-item name="CCE-3662-4" description="The WBEM services should be enabled or disabled as appropriate.">
+      <module libraryName="DisableWbem"/>
+    </line-item>
+    <line-item name="CCE-3668-1" description="The mcstrans service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableMcstrans"/>
+    </line-item>
+    <line-item name="CCE-3689-7" description="The idle time-out value for the default /bin/tcsh shell should meet the minimum requirements.">
+      <module libraryName="ShellSessionTimeouts"/>
+    </line-item>
+    <line-item name="CCE-3701-0" description="All syslog log files should be owned by the appropriate group.">
+      <module libraryName="SysLogFilePerms"/>
+    </line-item>
+    <line-item name="CCE-3705-1" description="The ypbind service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableNIS_client"/>
+    </line-item>
+    <line-item name="CCE-3707-7" description="The idle time-out value for the default /bin/bash shell should meet the minimum requirements.">
+      <module libraryName="ShellSessionTimeouts"/>
+    </line-item>
+    <line-item name="CCE-3755-6" description="CUPS service should be enabled or disabled as appropriate">
+      <module libraryName="DisablePrinter"/>
+    </line-item>
+    <line-item name="CCE-3818-2" description="The grub boot loader should have password protection enabled or disabled as appropriate">
+      <module libraryName="RequireGrubPassword"/>
+    </line-item>
+    <line-item name="CCE-3847-1" description="The dovecot service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableMail_dovecot"/>
+    </line-item>
+    <line-item name="CCE-3854-7" description="The mdmonitor service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableMdmonitor"/>
+    </line-item>
+    <line-item name="CCE-3857-0" description="NFS server functionality should be enabled or disabled as appropriate.">
+      <module libraryName="NFSInsecureLocks"/>
+    </line-item>
+    <line-item name="CCE-3883-6" description="The /etc/group file should be owned by the appropriate group.">
+      <module libraryName="PasswdPerms"/>
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="CCE-3910-7" description="The vlock package should be installed or not as appropriate">
+      <module libraryName="SetGnomeSS"/>
+    </line-item>
+    <line-item name="CCE-3918-0" description="The /etc/shadow file should be owned by the appropriate user.">
+      <module libraryName="PasswdPerms"/>
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="CCE-3919-8" description="The vsftpd service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableFTP_vsftpd"/>
+    </line-item>
+    <line-item name="CCE-3923-0" description="File permissions for /etc/grub.conf should be set correctly.">
+      <module libraryName="SysConfigFilePerms"/>
+    </line-item>
+    <line-item name="CCE-3950-3" description="The local rpc port mapping service should be enabled or disabled as appropriate">
+      <module libraryName="DisablePortmap"/>
+    </line-item>
+    <line-item name="CCE-3958-6" description="The /etc/passwd file should be owned by the appropriate user.">
+      <module libraryName="PasswdPerms"/>
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="CCE-3967-7" description="File permissions for /etc/group should be set correctly.">
+      <module libraryName="PasswdPerms"/>
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="CCE-3977-6" description="SELinux should be enabled or disabled as appropriate">
+      <module libraryName="SELinuxIsPropEnabled"/>
+    </line-item>
+    <line-item name="CCE-3987-5" description="Login access to non-root system accounts should be enabled or disabled as appropriate">
+      <module libraryName="BlockSystemAccounts"/>
+    </line-item>
+    <line-item name="CCE-3988-3" description="The /etc/shadow file should be owned by the appropriate group.">
+      <module libraryName="PasswdPerms"/>
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="CCE-3999-0" description="The SELinux state should be set appropriately.">
+      <module libraryName="SELinuxIsPropEnabled"/>
+    </line-item>
+    <line-item name="CCE-4009-7" description="Anonymous root logins are enabled or disabled as appropriate">
+      <module libraryName="LockDuplicateUidZeros"/>
+    </line-item>
+    <line-item name="CCE-4042-8" description="The nosuid option should be enabled or disabled as appropriate for all removable media.">
+      <module libraryName="FstabRemovableMedia"/>
+      <module libraryName="NosuidOnUserFilesystems"/>
+    </line-item>
+    <line-item name="CCE-4051-9" description="The cpuspeed service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableCpuThrottling"/>
+    </line-item>
+    <line-item name="CCE-4060-0" description="The system login banner text should be set correctly.">
+      <module libraryName="CreateLoginBanner"/>
+    </line-item>
+    <line-item name="CCE-4072-5" description="The autofs service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableNFS_client"/>
+    </line-item>
+    <line-item name="CCE-4074-1" description="X Windows System Listening for remote connections should be enabled or disabled as appropriate">
+      <module libraryName="RemoteXClients"/>
+    </line-item>
+    <line-item name="CCE-4075-8" description="Kernel level auditing for administrative actions should be enabled or disabled as appropriate">
+      <module libraryName="AuditRules"/>
+      <module libraryName="AuditRulesSolaris"/>
+      <module libraryName="EnableSysstat"/>
+    </line-item>
+    <line-item name="CCE-4092-3" description="The &quot;maximum password age&quot; policy should meet minimum requirements.">
+      <module libraryName="PasswordMaxDays"/>
+    </line-item>
+    <line-item name="CCE-4097-2" description="The password warn age should be set appropriately">
+      <module libraryName="PasswordWarnAge"/>
+    </line-item>
+    <line-item name="CCE-4100-4" description="The pcscd service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableSmartcard"/>
+    </line-item>
+    <line-item name="CCE-4112-9" description="The cups service should be enabled or disabled as appropriate.">
+      <module libraryName="DisablePrinter"/>
+    </line-item>
+    <line-item name="CCE-4114-5" description="NIS file inclusions should be set appropriately in the /etc/passwd file">
+      <module libraryName="NoPlusPasswdEntries"/>
+    </line-item>
+    <line-item name="CCE-4123-6" description="The irqbalance service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableIrqbalance"/>
+    </line-item>
+    <line-item name="CCE-4129-3" description="The restorecond service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableRestorecond"/>
+    </line-item>
+    <line-item name="CCE-4130-1" description="File permissions for /etc/shadow should be set correctly.">
+      <module libraryName="PasswdPerms"/>
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="CCE-4144-2" description="The /etc/grub.conf file should be owned by the appropriate user.">
+      <module libraryName="SysConfigFilePerms"/>
+    </line-item>
+    <line-item name="CCE-4146-7" description="ExecShield randomized placement of virtual memory regions should be enabled or disabled as appropriate">
+      <module libraryName="EnableKernelExecShield"/>
+    </line-item>
+    <line-item name="CCE-4154-1" description="The password minimum length should be set appropriately">
+      <module libraryName="PasswordPolicyConsecutive"/>
+      <module libraryName="PasswordPolicyDiffChars"/>
+      <module libraryName="PasswordPolicyMinlen"/>
+    </line-item>
+    <line-item name="CCE-4168-1" description="ExecShield should be enabled or disabled as appropriate">
+      <module libraryName="EnableKernelExecShield"/>
+    </line-item>
+    <line-item name="CCE-4172-3" description="Kernel support for the XD/NX processor feature should be enabled or disabled as appropriate">
+      <module libraryName="CheckXdNxSupport"/>
+    </line-item>
+    <line-item name="CCE-4180-6" description="The &quot;minimum password age&quot; policy should meet minimum requirements.">
+      <module libraryName="PasswordChangeDelay"/>
+    </line-item>
+    <line-item name="CCE-4187-1" description="The USB device support module should be loaded or not as appropriate">
+      <module libraryName="DisableUSB"/>
+    </line-item>
+    <line-item name="CCE-4197-0" description="The /etc/grub.conf file should be owned by the appropriate group.">
+      <module libraryName="SysConfigFilePerms"/>
+    </line-item>
+    <line-item name="CCE-4211-9" description="The kudzu service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableKudzu"/>
+    </line-item>
+    <line-item name="CCE-4220-0" description="The daemon umask should be set as appropriate">
+      <module libraryName="DaemonUmask"/>
+    </line-item>
+    <line-item name="CCE-4223-4" description="All files should be owned by a user as appropriate">
+      <module libraryName="SecureUnownedFiles"/>
+    </line-item>
+    <line-item name="CCE-4225-9" description="Core dumps for all users should be enabled or disabled as appropriate">
+      <module libraryName="DisableCoreDumps"/>
+    </line-item>
+    <line-item name="CCE-4229-1" description="The gpm service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableGpm"/>
+    </line-item>
+    <line-item name="CCE-4231-7" description="The GNOME automounter (gnome-volume-manager) should be enabled or disabled as appropriate">
+      <module libraryName="DisableGnomeAutomounting"/>
+    </line-item>
+    <line-item name="CCE-4233-3" description="File permissions for all syslog log files should be set correctly.">
+      <module libraryName="SysLogFilePerms"/>
+    </line-item>
+    <line-item name="CCE-4240-8" description="The smserver service should be enabled or disabled as appropriate">
+      <module libraryName="UserMountableMedia"/>
+    </line-item>
+    <line-item name="CCE-4241-6" description="The requirement for a password to boot into single-user mode should be configured correctly.">
+      <module libraryName="SingleUserMode"/>
+    </line-item>
+    <line-item name="CCE-4245-7" description="The ability for users to perform interactive startups should be enabled or disabled as appropriate.">
+      <module libraryName="DisableInteractiveBoot"/>
+    </line-item>
+    <line-item name="CCE-4247-3" description="Core dumps for setuid programs should be enabled or disabled as appropriate">
+      <module libraryName="DisableSuidCoreDumps"/>
+    </line-item>
+    <line-item name="CCE-4249-9" description="The nodev option should be enabled or disabled as appropriate for all non-root partitions.">
+      <module libraryName="FstabNodev"/>
+    </line-item>
+    <line-item name="CCE-4254-9" description="The setroubleshoot service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableSETroubleshoot"/>
+    </line-item>
+    <line-item name="CCE-4266-3" description="The metainit service (Solaris 10 &lt;= 11/06) should be enabled or disabled as appropriate">
+      <module libraryName="DisableSVM"/>
+    </line-item>
+    <line-item name="CCE-4273-9" description="The tftp service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableTFTP"/>
+    </line-item>
+    <line-item name="CCE-4279-6" description="The ldap cache manager should be enabled or disabled as appropriate">
+      <module libraryName="DisableLdapCacheMgr"/>
+    </line-item>
+    <line-item name="CCE-4289-5" description="The apmd service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableApmd"/>
+    </line-item>
+    <line-item name="CCE-4292-9" description="The auditd service should be enabled or disabled as appropriate.">
+      <module libraryName="AuditEnable"/>
+    </line-item>
+    <line-item name="CCE-4298-6" description="The acpid service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableAcpid"/>
+    </line-item>
+    <line-item name="CCE-4299-4" description="The NIS xfr daemon should be enabled or disabled as appropriate">
+      <module libraryName="DisableNIS_server"/>
+    </line-item>
+    <line-item name="CCE-4302-6" description="The readahead_later service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableBootCaching"/>
+    </line-item>
+    <line-item name="CCE-4305-9" description="The volume manager GUI mdcomm service should be enabled or disabled as appropriate">
+      <module libraryName="DisableSVMgui"/>
+    </line-item>
+    <line-item name="CCE-4306-7" description="The apache web servicer should be enabled or disabled as appropriate">
+      <module libraryName="DisableWebServer_apache"/>
+    </line-item>
+    <line-item name="CCE-4325-7" description="SSH version 1 protocol support should be enabled or disabled as appropriate.">
+      <module libraryName="SshdProtocol"/>
+    </line-item>
+    <line-item name="CCE-4327-3" description="The calendar manager should be enabled or disabled as appropriate.">
+      <module libraryName="DisableCDEcalmgr"/>
+    </line-item>
+    <line-item name="CCE-4336-4" description="The dhcpd service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableDhcpd"/>
+    </line-item>
+    <line-item name="CCE-4338-0" description="The httpd service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableWebServer_apache"/>
+    </line-item>
+    <line-item name="CCE-4354-7" description="The volfs service should be enabled or disabled as appropriate">
+      <module libraryName="UserMountableMedia"/>
+    </line-item>
+    <line-item name="CCE-4355-4" description="The bluetooth service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableBluetooth"/>
+    </line-item>
+    <line-item name="CCE-4356-2" description="The microcode_ctl service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableIA32MicrocodeUtility"/>
+    </line-item>
+    <line-item name="CCE-4359-6" description="NFS client functionality should be enabled or disabled as appropriate.">
+      <module libraryName="DisableNFS_client"/>
+    </line-item>
+    <line-item name="CCE-4362-0" description="The NIS passwd daemon should be enabled or disabled as appropriate">
+      <module libraryName="DisableNIS_server"/>
+    </line-item>
+    <line-item name="CCE-4364-6" description="The haldaemon service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableHalDaemon"/>
+    </line-item>
+    <line-item name="CCE-4365-3" description="The avahi-daemon service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableAvahi"/>
+    </line-item>
+    <line-item name="CCE-4366-1" description="All syslog log files should be owned by the appropriate user.">
+      <module libraryName="SysLogFilePerms"/>
+    </line-item>
+    <line-item name="CCE-4370-3" description="SSH host-based authentication should be enabled or disabled as appropriate">
+      <module libraryName="SshdDisableHostbasedAuth"/>
+    </line-item>
+    <line-item name="CCE-4375-2" description="The sendmail services should be enabled or disabled as appropriate.">
+      <module libraryName="DisableSendmail"/>
+    </line-item>
+    <line-item name="CCE-4377-8" description="The hidd service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableBluetoothInputDevs"/>
+    </line-item>
+    <line-item name="CCE-4387-7" description="Root login via SSH should be enabled or disabled as appropriate">
+      <module libraryName="SshdDisableRootLogin"/>
+      <module libraryName="SshdPrintLastLog"/>
+      <module libraryName="SshdRestrictCiphers"/>
+      <module libraryName="SshdRestrictHMAC"/>
+      <module libraryName="SshdRestrictUsersGroups"/>
+      <module libraryName="SshRestrictCiphers"/>
+      <module libraryName="SshRestrictHMAC"/>
+    </line-item>
+    <line-item name="CCE-4393-5" description="The web console should be enabled or disabled as appropriate.">
+      <module libraryName="DisableWebconsole"/>
+    </line-item>
+    <line-item name="CCE-4396-8" description="The nfslock service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableNFS_client"/>
+    </line-item>
+    <line-item name="CCE-4407-3" description="CUPS should be allowed or denied the ability to listen for Incoming printer information as appropriate">
+      <module libraryName="DisableCupsPrinterBrowsing"/>
+    </line-item>
+    <line-item name="CCE-4411-5" description="The mdmonitor service (Solaris 10 &lt;= 11/06) should be enabled or disabled as appropriate">
+      <module libraryName="DisableSVM"/>
+    </line-item>
+    <line-item name="CCE-4420-6" description="Remote print browsing should be enabled or disabled as appropriate">
+      <module libraryName="DisableCupsPrinterBrowsing"/>
+    </line-item>
+    <line-item name="CCE-4421-4" description="The readahead_early service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableBootCaching"/>
+    </line-item>
+    <line-item name="CCE-4425-5" description="The hplip service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableHPServices"/>
+    </line-item>
+    <line-item name="CCE-4431-3" description="SSH warning banner should be enabled or disabled as appropriate">
+      <module libraryName="SshdEnableBanner"/>
+    </line-item>
+    <line-item name="CCE-4448-7" description="The xfs service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableXFS"/>
+    </line-item>
+    <line-item name="CCE-4462-8" description="X Windows should be enabled or disabled at system boot as appropriate">
+      <module libraryName="DisableGuiLogin"/>
+    </line-item>
+    <line-item name="CCE-4465-1" description="Restriction of NFS clients to privileged ports should be enabled or disabled as appropriate">
+      <module libraryName="NFSSecure"/>
+    </line-item>
+    <line-item name="CCE-4473-5" description="The nfs service should be enabled or disabled as appropriate">
+      <module libraryName="DisableNFS_server"/>
+    </line-item>
+    <line-item name="CCE-4475-0" description="Emulation of the rsh command through the ssh server should be enabled or disabled as appropriate">
+      <module libraryName="SshdEnableIgnoreRhosts"/>
+    </line-item>
+    <line-item name="CCE-4477-6" description="The meta service should be enabled or disabled as appropriate">
+      <module libraryName="DisableSVMgui"/>
+    </line-item>
+    <line-item name="CCE-4486-7" description="The NIS server daemon should be enabled or disabled as appropriate">
+      <module libraryName="DisableNIS_server"/>
+    </line-item>
+    <line-item name="CCE-4499-0" description="The mpxio-upgrade service should be enabled or disabled as appropriate">
+      <module libraryName="DisableSVM"/>
+    </line-item>
+    <line-item name="CCE-4508-8" description="The tooltalk service should be enabled or disabled as appropriate">
+      <module libraryName="DisableCDEttdbserver"/>
+    </line-item>
+    <line-item name="CCE-4517-9" description="The Samba smbd service should be enabled or disabled as approriate">
+      <module libraryName="DisableSMB"/>
+    </line-item>
+    <line-item name="CCE-4533-6" description="The netfs service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableNetFS"/>
+    </line-item>
+    <line-item name="CCE-4550-0" description="The portmap service should be enabled or disabled as appropriate.">
+      <module libraryName="DisablePortmap"/>
+    </line-item>
+    <line-item name="CCE-4551-8" description="The smb service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableSMB"/>
+    </line-item>
+    <line-item name="CCE-4556-7" description="The squid service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableSquid"/>
+    </line-item>
+    <line-item name="CCE-4557-5" description="The Kerberos TGT Expiration warning should be enabled or disabled as appropriate">
+      <module libraryName="DisableKerbTGTwarn"/>
+    </line-item>
+    <line-item name="CCE-4571-6" description="The metamh service should be enabled or disabled as appropriate">
+      <module libraryName="DisableSVMgui"/>
+    </line-item>
+    <line-item name="CCE-4584-9" description="The DHCP server functionality should be enabled or disabled as appropriate.">
+      <module libraryName="DisableDhcpd"/>
+    </line-item>
+    <line-item name="CCE-4588-0" description="The Generic Security Service daemons should be enabled or disabled as appropriate">
+      <module libraryName="DisableGssd"/>
+    </line-item>
+    <line-item name="CCE-4592-2" description="The NIS client daemons should be enabled or disabled as appropriate">
+      <module libraryName="DisableNIS_client"/>
+    </line-item>
+    <line-item name="CCE-4596-3" description="The keyserv service should be enabled or disabled as appropriate.">
+      <module libraryName="DisableRpcKeyserv"/>
+    </line-item>
+    <line-item name="CCE-4600-3" description="Kernel level auditing for file attribute modification should be enabled or disabled as appropriate">
+      <module libraryName="AuditRules"/>
+      <module libraryName="AuditRulesSolaris"/>
+    </line-item>
+    <line-item name="CCE-4610-2" description="Kernel level auditing for root login/logout should be enabled or disabled as appropriate">
+      <module libraryName="AuditRules"/>
+      <module libraryName="AuditRulesSolaris"/>
+    </line-item>
+    <line-item name="CCE-4675-5" description="Kernel level auditing should be enabled or disabled as appropriate">
+      <module libraryName="AuditEnable"/>
+    </line-item>
+    <line-item name="CCE-4679-7" description="Kernel level auditing for login/logout should be enabled or disabled as appropriate">
+      <module libraryName="AuditRules"/>
+      <module libraryName="AuditRulesSolaris"/>
+    </line-item>
+  </line-items>
+</compliancy>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SELinuxFindUnlabeledFiles" version="5.0">
+  <title xml:id="SELinux">SELinux Find unlabeled_t files</title>
+  <para>
+  Locate files on a system that have the 'unlabled_t' SELinux security
+  context. If a system either does not support SELinux, or it is
+  <emphasis role="italic">disabled</emphasis>, then this module will
+  always pass. You have the option of scanning for any file with the
+  unlabeled_t context, or only reporting device files contained within
+  the <filename>/dev/</filename> filesystem.
+  <indexterm><primary>selinux</primary></indexterm>
+ </para>
+  <para>
+  If a file on a SELinux enabled system does not have a context
+  (unlabeled_t) then SELinux does not have enough information on the
+  file to properly restrict access to the resource.
+ </para>
+  <para>
+    <important>
+      <para>
+    Note that this module is a scan-only module, and is unable to
+    remediate any findings. The Administrator is responsible for
+    correctly setting the SELinux context on all findings.
+   </para>
+    </important>
+  </para>
+  <simplesect xml:id="SELinuxFindUnlabeledFiles-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>
+     RHEL-06-000025 - All device files must be monitored by the system
+     Linux Security Module.
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="SELinuxFindUnlabeledFiles-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Files to check?<emphasis><para>Should only files in /dev or all files be checked?</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

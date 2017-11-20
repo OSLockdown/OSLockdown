@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Kernel Crash Analyzer">
+        <library>DisableKdump</library>
+        <description>Disables the kernel crash dump analyzer (kdump), which uses the kexec to boot a secondary kernel following a system crash.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:5">
+            <services>
+              <service seq="1" name="kdump"/>
+            </services>
+            <packages>
+              <package name="kexec-tools"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5">
+            <services>
+              <service seq="1" name="kdump"/>
+            </services>
+            <packages>
+              <package name="kexec-tools"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5">
+            <services>
+              <service seq="1" name="kdump"/>
+            </services>
+            <packages>
+              <package name="kexec-tools"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:6">
+            <services>
+              <service seq="1" name="kdump"/>
+            </services>
+            <packages>
+              <package name="kexec-tools"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6">
+            <services>
+              <service seq="1" name="kdump"/>
+            </services>
+            <packages>
+              <package name="kexec-tools"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <services>
+              <service seq="1" name="kdump"/>
+            </services>
+            <packages>
+              <package name="kexec-tools"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Kernel</member>
+        </views>
+      </security_module>

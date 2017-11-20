@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % CommonEntities SYSTEM "../COMMON_ENTITIES.ent">
+%CommonEntities;
+]>
+<appendix version="5.0" xml:id="app-install-notes" xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!--<?xml-stylesheet type="text/css" href="docbook.css"?>-->
+  <title>Installation Notes</title>
+  <indexterm><primary>Installation</primary><secondary>Notes on</secondary></indexterm>
+  <para> Before proceeding, it is <emphasis>strongly</emphasis> recommended to read <xref linkend="deploy-planning"
+      xrefstyle="select: label quotedtitle"/> and <xref linkend="install-config" xrefstyle="select: label quotedtitle"
+    />. </para>
+  <para>As part of the upgrade process, the first time the OS Lockdown Console process starts, all <emphasis
+      role="italic">custom</emphasis> profiles are examined and updated according to the following rules (in the order
+    in which they appear): <itemizedlist>
+      <listitem>
+        <para>Any modules with options that are not &ldquo;named&rdquo; have the options split into &ldquo;named&rdquo;
+          options.</para>
+      </listitem>
+      <listitem>
+        <para>The upgrade process ensures that all named options have a value. If a value is <emphasis role="italic"
+            >missing</emphasis> from the module, then the default value for that option is used.</para>
+      </listitem>
+    </itemizedlist>
+  </para>
+  <para> At no point will the upgrade process add a new module to any custom profile. As mentioned earlier, for users
+    running the Standalone edition from the command line, these changes are made as the profile is processed. To make
+    the changes permanent, either configure and start the OS Lockdown Console on each Standalone computer, or copy your
+    legacy profiles to a box with the OS Lockdown Console, import them, and then copy the updated copies back to each
+    Standalone instance. </para>
+  <para> As part of the process of adding new modules, the profiles provided with OS Lockdown have been updated where
+    appropriate. It is <emphasis role="italic">highly</emphasis> advisable to use the OS Lockdown Console to perform a
+    profile comparison between any custom profiles and the appropriate system-provided profile (if your custom profiles
+    are modified copies of the system-provided profiles). The profile comparison flags cases where there are different
+    modules present in the profiles and where the option values differ between your profile and the system profile. Note
+    that modules that had option values added are not flagged. </para>
+  <section xml:id="install-pre">
+    <title>Pre-Installation Notes</title>
+    <itemizedlist>
+      <listitem>
+        <para>Enterprise Updates - previous versions of OS Lockdown recommended that an Enterprise installation should
+          export the OS Lockdown Console database before upgrading, agree (&ldquo;Yes&rdquo;) when the installer asks if
+          the update should start with clean directories, and then re-import the database. This is no longer required,
+          as the OS Lockdown Console can automatically update the database during the first re-start after the
+          update.</para>
+      </listitem>
+      <listitem>
+        <para>For all installations, existing OS Lockdown Console database files, Baseline profiles, and Security
+          profiles are always backed up during an update.</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+  <section xml:id="install-post">
+    <title>Post-Installation Notes</title>
+    <para>Once the product is installed, you should perform a scan using a profile of your choice. Then analyze the
+      results, referencing the <emphasis>OS Lockdown Modules Guide</emphasis>, and make a backup of your system. Take
+      the following precautionary steps prior to performing your first apply: </para>
+    <itemizedlist>
+      <listitem>
+        <para> System Administrators should change their passwords. </para>
+        <para> This is important because many profiles include a module (&ldquo;Set Password Aging on Active
+          Accounts&rdquo;) that sets password aging which could result in those accounts being locked. This only applies
+          to local <filename>/etc/passwd</filename> accounts. Note that the module now includes options to limit which
+          accounts are subject to the password aging restriction. If this module is applied where account passwords have
+          been changed with the permitted time period, users (including system users such as root) might not be able to
+          log in. </para>
+        <para/>
+      </listitem>
+      <listitem>
+        <para>Ensure that at least one user (not counting root) is in the wheel group (Linux only). </para>
+        <para> The “Limit Access to Root From Su” module limits the use of the <filename>su(1)</filename> command to
+          only users within the wheel group. This module now includes an option to enforce this behavior even if there
+          are no regular users who are also members of the wheel group. </para>
+        <para/>
+      </listitem>
+      <listitem>
+        <para>Console is not always a console (Linux only). </para>
+        <para>The &ldquo;Root Console Only Logins&rdquo; module prevents direct root login unless you are on a device
+          listed in the <filename>/etc/securetty</filename> file. See the <emphasis role="bold">securetty</emphasis> man
+          page for additional information. This module now includes an option to specify the list of devices that are
+          considered secure and suitable for direct root login. </para>
+      </listitem>
+    </itemizedlist>
+  </section>
+</appendix>

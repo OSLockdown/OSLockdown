@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="RemoveFTPaccount" version="5.0">
+  <title xml:id="FileTransferServices">Remove ftp Account</title>
+  <para>
+  Removes the ftp account from <filename>/etc/passwd</filename> .
+  <indexterm><primary>/etc/passwd</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/etc/passwd</secondary></indexterm>
+
+  <indexterm><primary>passwd</primary></indexterm>
+ </para>
+  <simplesect xml:id="RemoveFTPaccount-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>3.1 - Password Settings</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN000290-4 - The system must not have the unnecessary "ftp" account.</para>
+      </listitem>
+      <listitem>
+        <para>GEN004820 - Anonymous FTP must not be active on the system unless authorized.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN004820 - Anonymous FTP</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+      <listitem>
+        <para>CIP-007-3-R5.2.1 - Remove, disable, or rename factory default accounts</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>AC-2 - Account Management</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2.4 - Remove all unnecessary functionality</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

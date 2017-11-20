@@ -1,0 +1,14 @@
+8.303a|Unique Identification
+8.303b|Authentication at Login
+8.303c|Applicability of Logon Authentication
+8.303d|Access to Authentication Data
+8.303i|Protection of Individual Passwords
+8.602a1|Automated Audit Trail Creation
+8.602a2|Audit Trail Protection
+8.602d1|Audit 4 Requirements
+8.606b1|Access 2 Requirements
+8.607e|Identification and Authentication 5 Requirements
+8.609a1|User Notification
+8.609a2|Successive Logon Attempts
+8.609b2|User Inactivity
+8.613a1|Access to Protection Functions

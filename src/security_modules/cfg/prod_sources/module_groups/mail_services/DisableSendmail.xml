@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Sendmail">
+        <library>DisableSendmail</library>
+        <description>Sendmail is a popular target of computer attackers. If this system is not intended to process incoming mail it is recommended that you disable the Sendmail daemon to avoid potential security vulnerabilities.  Note that the following options are applicable to Linux only, and ignored for Solaris</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <configurationOptions>
+          <option name="requiredLines" type="basicMultilineStringCanBeEmpty">
+            <description>Required lines for /etc/sysconfig/sendmail</description>
+            <helpText>List of required lines to put in /etc/sysconfig/sendmail if not already there (<emphasis>Linux</emphasis> only)</helpText>
+            <default>DAEMON=no
+QUEUE=1h</default>
+          </option>
+        </configurationOptions>
+        <platforms>
+          <cpe-item name="cpe:/a:sendmail:sendmail"/>
+          <cpe-item name="cpe:/o:centos:centos:4"/>
+          <cpe-item name="cpe:/o:centos:centos:5"/>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:novell:opensuse:10"/>
+          <cpe-item name="cpe:/o:novell:opensuse:11"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:10"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:11"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:redhat:fedora:10"/>
+          <cpe-item name="cpe:/o:redhat:fedora:11"/>
+          <cpe-item name="cpe:/o:redhat:fedora:12"/>
+          <cpe-item name="cpe:/o:redhat:fedora:13"/>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Mail Services</member>
+        </views>
+      </security_module>

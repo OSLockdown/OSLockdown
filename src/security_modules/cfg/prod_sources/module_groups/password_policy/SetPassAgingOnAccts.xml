@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Set Password Aging on Active Accounts">
+        <library>SetPassAgingOnAccts</library>
+        <description>Sets all active accounts (except system accounts) to force password changes every MAX days, and then prevents password changes for MIN days thereafter. Users begin receiving warnings WARN days before their password expires. Once the password expires, the account is locked after INACT days.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <configurationOptions>
+          <option name="passwordAgingMindays" type="daysInYear">
+            <description>Minimum number of days between password changes.</description>
+            <default>7</default>
+            <units>days</units>
+          </option>
+          <option name="passwordAgingMaxdays" type="daysInYear">
+            <description>Maximum number of days between password changes.</description>
+            <default>90</default>
+            <units>days</units>
+          </option>
+          <option name="passwordAgingExpireWarning" type="daysInYear">
+            <description>Number of days before password expires the system will notify the user.</description>
+            <default>28</default>
+            <units>days</units>
+          </option>
+          <option name="passwordAgingInvalidate" type="daysInYear">
+            <description>Number of days to lock an account after its password has expired.</description>
+            <default>7</default>
+            <units>days</units>
+          </option>
+          <option name="exemptSystemAccounts" type="yesOrNo">
+            <description>System accounts are exempt?</description>
+            <helpText>Note - if system accounts are not exempt then they will be treated like user passwords and can expire, resulting in locked accounts.</helpText>
+            <default>1</default>
+          </option>
+          <option name="exemptSpecificAccounts" type="basicStringCanBeEmpty">
+            <description>Specific accounts to exempt.</description>
+            <helpText>This is a list of specific accounts (system or user accounts) that are exempt from the aging requirements.  May require justification to any security accreditors.</helpText>
+            <default/>
+          </option>
+        </configurationOptions>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4"/>
+          <cpe-item name="cpe:/o:centos:centos:5"/>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:novell:opensuse:10"/>
+          <cpe-item name="cpe:/o:novell:opensuse:11"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:11"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:redhat:fedora:10"/>
+          <cpe-item name="cpe:/o:redhat:fedora:11"/>
+          <cpe-item name="cpe:/o:redhat:fedora:12"/>
+          <cpe-item name="cpe:/o:redhat:fedora:13"/>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Password Policy</member>
+          <member>Account Management</member>
+        </views>
+      </security_module>

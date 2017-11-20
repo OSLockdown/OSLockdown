@@ -1,0 +1,1506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="app-crossx-PCI_DSS_2_0">
+  <title>PCI DSS v2.0</title>
+  <para>
+    <abstract> <para>
+  Payment Card Industry (PCI) Security Standards Council includes
+  members from Visa, MasterCard, American Express, Discover, and JCB.
+  This council administers the Data Security Standard (DSS).
+ </para>
+ <para>
+  The PCI DSS consists of twelve major requirements that are organized
+  into six logically related groups, which are "control objectives".
+ </para>
+ <itemizedlist>
+  <title>Build and Maintain a Secure Network</title>
+  <listitem>
+   <para>
+    Requirement 1: Install and maintain a firewall configuration to
+    protect cardholder data
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Requirement 2: Do not use vendor-supplied defaults for system
+    passwords and other security parameters
+   </para>
+   <blockquote>
+    <para>
+     PCI DSS requirement 2.2 states, "Develop configuration standards
+     for all system components. Assure that these standards address all
+     known security vulnerabilities and are consistent with
+     industry-accepted system hardening standards." The test procedure
+     (2.2.a) for this requirement states "Examine the organization's
+     system configuration standards for all types of system components
+     and verify the system configuration standards are consistent with
+     industry accepted hardening standards."
+    </para>
+   </blockquote>
+  </listitem>
+ </itemizedlist>
+ <itemizedlist>
+  <title>Protect Cardholder Data</title>
+  <listitem>
+   <para>
+    Requirement 3: Protect stored cardholder data
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Requirement 4: Encrypt transmission of cardholder data across open,
+    public networks
+   </para>
+  </listitem>
+ </itemizedlist>
+ <itemizedlist>
+  <title>Maintain a Vulnerability Management Program</title>
+  <listitem>
+   <para>
+    Requirement 5: Use and regularly update anti-virus software
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Requirement 6: Develop and maintain secure systems and applications
+   </para>
+  </listitem>
+ </itemizedlist>
+ <itemizedlist>
+  <title>Implement Strong Access Control Measures</title>
+  <listitem>
+   <para>
+    Requirement 7: Restrict access to cardholder data by business
+    need-to-know
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Requirement 8: Assign a unique ID to each person with computer
+    access
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Requirement 9: Restrict physical access to cardholder data
+   </para>
+  </listitem>
+ </itemizedlist>
+ <itemizedlist>
+  <title>Regularly Monitor and Test Networks</title>
+  <listitem>
+   <para>
+    Requirement 10: Track and monitor all access to network resources
+    and cardholder data
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Requirement 11: Regularly test security systems and processes
+   </para>
+   <blockquote>
+    <para>
+     PCI DSS requirement 11.5 states "Deploy file-integrity
+     monitoring software to alert personnel to unauthorized modification
+     of critical system files, configuration files, or content files;
+     and configure the software to perform critical file comparisons at
+     least weekly." You can easily schedule weekly baselines to be
+     performed from the OS Lockdown console.
+    </para>
+   </blockquote>
+  </listitem>
+ </itemizedlist>
+ <itemizedlist>
+  <title>Maintain an Information Security Policy</title>
+  <listitem>
+   <para>
+    Requirement 12: Maintain a policy that addresses information
+    security
+   </para>
+  </listitem>
+ </itemizedlist>
+</abstract>
+  </para>
+  <para>
+    <literallayout>   34   Total number of line items in guideline
+   28   Items at least partially addressed by OS Lockdown
+    6   Items not addressed by OS Lockdown</literallayout>
+  </para>
+  <table xml:id="app-crossx-PCI_DSS_2_0-2.1-10.5.2" frame="all" tocentry="1" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>PCI DSS v2.0</title>
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.2*" align="center"/>
+      <colspec colname="c2" colwidth="0.5*" align="left"/>
+      <colspec colname="c3" colwidth="0.5*" align="left"/>
+      <thead>
+        <row>
+          <entry>Item</entry>
+          <entry>Title</entry>
+          <entry>OS Lockdown Modules</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>2.1</entry>
+          <entry>Do not use vendor-supplied defaults for system passwords and other security parameters</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="BlockSystemAccounts" xrefstyle="select: title page">Block System Accounts</xref>
+              </member>
+              <member>
+                <xref linkend="ChangeSNMPStrings" xrefstyle="select: title page">Disable SNMP if default public string exists</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2</entry>
+          <entry>Configuration standards for system components consistent with industry-accepted system hardening standards</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ArpCleanupInterval" xrefstyle="select: title page">ARP Cleanup Interval</xref>
+              </member>
+              <member>
+                <xref linkend="ArpCleanupInterval_IRE" xrefstyle="select: title page">ARP IRE_CACHE Cleanup Interval</xref>
+              </member>
+              <member>
+                <xref linkend="TCPMaxSynBacklog" xrefstyle="select: title page">Adjust Maximum Pending Connections</xref>
+              </member>
+              <member>
+                <xref linkend="AtDirPerms" xrefstyle="select: title page">At Directory Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="AtCronAccessFilePerms" xrefstyle="select: title page">At/Cron Access File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="BlockSystemAccounts" xrefstyle="select: title page">Block System Accounts</xref>
+              </member>
+              <member>
+                <xref linkend="BootLoaderConfigFilePerms" xrefstyle="select: title page">Boot Loader Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="ConfigureLddPerms" xrefstyle="select: title page">Configure Permissions on /usr/bin/ldd</xref>
+              </member>
+              <member>
+                <xref linkend="SendmailOpts" xrefstyle="select: title page">Configure Sendmail Options</xref>
+              </member>
+              <member>
+                <xref linkend="ConfigureXinetdLogging" xrefstyle="select: title page">Configure Xinetd Logging</xref>
+              </member>
+              <member>
+                <xref linkend="CreateLoginBanner" xrefstyle="select: title page">Create Login Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreateLoginFTPBanner" xrefstyle="select: title page">Create Login FTP Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreatePreLoginGUIBanner" xrefstyle="select: title page">Create Pre-Login GUI Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreatePreSessionGUIBanner" xrefstyle="select: title page">Create Pre-Session GUI Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreateFTPUsers" xrefstyle="select: title page">Create ftpusers File</xref>
+              </member>
+              <member>
+                <xref linkend="SyslogCronLogging" xrefstyle="select: title page">Cron Logging</xref>
+              </member>
+              <member>
+                <xref linkend="CrontabDirPerms" xrefstyle="select: title page">Crontab Dir Perms</xref>
+              </member>
+              <member>
+                <xref linkend="CrontabPerms" xrefstyle="select: title page">Crontab Perms</xref>
+              </member>
+              <member>
+                <xref linkend="CrontabScriptPerms" xrefstyle="select: title page">Crontab Script Perms</xref>
+              </member>
+              <member>
+                <xref linkend="DaemonUmask" xrefstyle="select: title page">Daemon Umask</xref>
+              </member>
+              <member>
+                <xref linkend="DefaultUmask" xrefstyle="select: title page">Default umask</xref>
+              </member>
+              <member>
+                <xref linkend="AcceptRedirects" xrefstyle="select: title page">Disable Accepting ICMP Redirects</xref>
+              </member>
+              <member>
+                <xref linkend="SecureRedirects" xrefstyle="select: title page">Disable Accepting Secure Redirects</xref>
+              </member>
+              <member>
+                <xref linkend="DisableWebServer_apache" xrefstyle="select: title page">Disable Apache</xref>
+              </member>
+              <member>
+                <xref linkend="DisableAvahi" xrefstyle="select: title page">Disable Avahi Daemon</xref>
+              </member>
+              <member>
+                <xref linkend="DisableBluetooth" xrefstyle="select: title page">Disable Bluetooth</xref>
+              </member>
+              <member>
+                <xref linkend="DisableIpForwardingDirBdcsts" xrefstyle="select: title page">Disable Broadcast Packet Forwarding</xref>
+              </member>
+              <member>
+                <xref linkend="DisableCDEcalmgr" xrefstyle="select: title page">Disable CDE Calendar Manager Server</xref>
+              </member>
+              <member>
+                <xref linkend="DisableCDEttdbserver" xrefstyle="select: title page">Disable CDE ToolTalk Database Server</xref>
+              </member>
+              <member>
+                <xref linkend="DisableGpm" xrefstyle="select: title page">Disable Console Mouse Support</xref>
+              </member>
+              <member>
+                <xref linkend="DisableCoreDumps" xrefstyle="select: title page">Disable Core Dumps</xref>
+              </member>
+              <member>
+                <xref linkend="CtrlAltDel" xrefstyle="select: title page">Disable Ctrl-Alt-Del</xref>
+              </member>
+              <member>
+                <xref linkend="DisableDNS" xrefstyle="select: title page">Disable DNS</xref>
+              </member>
+              <member>
+                <xref linkend="DisableDhcpd" xrefstyle="select: title page">Disable Dhcpd</xref>
+              </member>
+              <member>
+                <xref linkend="DisableFTP_gssftp" xrefstyle="select: title page">Disable FTP (gssftp)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableFTP_vsftpd" xrefstyle="select: title page">Disable FTP (vsftpd)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableFinger" xrefstyle="select: title page">Disable Finger</xref>
+              </member>
+              <member>
+                <xref linkend="DisableGssd" xrefstyle="select: title page">Disable GSS Daemon</xref>
+              </member>
+              <member>
+                <xref linkend="DisableGated" xrefstyle="select: title page">Disable Gated</xref>
+              </member>
+              <member>
+                <xref linkend="DisableGuiLogin" xrefstyle="select: title page">Disable Graphical Login</xref>
+              </member>
+              <member>
+                <xref linkend="DisableHPServices" xrefstyle="select: title page">Disable HP Printing and Imaging</xref>
+              </member>
+              <member>
+                <xref linkend="IPForward" xrefstyle="select: title page">Disable IP Forwarding</xref>
+              </member>
+              <member>
+                <xref linkend="DisableISDN" xrefstyle="select: title page">Disable ISDN</xref>
+              </member>
+              <member>
+                <xref linkend="DisableInetd" xrefstyle="select: title page">Disable Inetd</xref>
+              </member>
+              <member>
+                <xref linkend="DisableInnd" xrefstyle="select: title page">Disable Innd</xref>
+              </member>
+              <member>
+                <xref linkend="DisableWebconsole" xrefstyle="select: title page">Disable Java Web Console</xref>
+              </member>
+              <member>
+                <xref linkend="DisableKerbTGTwarn" xrefstyle="select: title page">Disable Kerberos TGT Expiration Warning</xref>
+              </member>
+              <member>
+                <xref linkend="DisableKudzu" xrefstyle="select: title page">Disable Kudzu</xref>
+              </member>
+              <member>
+                <xref linkend="DisableLdapCacheMgr" xrefstyle="select: title page">Disable LDAP Client Cache Manager</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSerialLoginPrompt" xrefstyle="select: title page">Disable Login Prompts on Serial Ports</xref>
+              </member>
+              <member>
+                <xref linkend="DisableMail_cyrus" xrefstyle="select: title page">Disable Mail (Cyrus mail server)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableMail_dovecot" xrefstyle="select: title page">Disable Mail (Dovecot mail server)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSQL_mysql" xrefstyle="select: title page">Disable MySQL</xref>
+              </member>
+              <member>
+                <xref linkend="DisableNFS_client" xrefstyle="select: title page">Disable NFS Client</xref>
+              </member>
+              <member>
+                <xref linkend="DisableNFS_server" xrefstyle="select: title page">Disable NFS Server</xref>
+              </member>
+              <member>
+                <xref linkend="DisableNIS_client" xrefstyle="select: title page">Disable NIS Client</xref>
+              </member>
+              <member>
+                <xref linkend="DisableNIS_server" xrefstyle="select: title page">Disable NIS Server</xref>
+              </member>
+              <member>
+                <xref linkend="DisableNetFS" xrefstyle="select: title page">Disable NetFS</xref>
+              </member>
+              <member>
+                <xref linkend="DisablePortmap" xrefstyle="select: title page">Disable Portmap Daemon</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSQL_postgresql" xrefstyle="select: title page">Disable Postgresql</xref>
+              </member>
+              <member>
+                <xref linkend="DisableApmd" xrefstyle="select: title page">Disable Power Management</xref>
+              </member>
+              <member>
+                <xref linkend="DisablePrinterConfig" xrefstyle="select: title page">Disable Printer Configuration Daemon</xref>
+              </member>
+              <member>
+                <xref linkend="DisablePrinter" xrefstyle="select: title page">Disable Printer Daemon</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRpcKeyserv" xrefstyle="select: title page">Disable RPC Keyserv</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRexec" xrefstyle="select: title page">Disable Remote Exec (rexec)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRlogin" xrefstyle="select: title page">Disable Remote Login (rlogin)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRsh" xrefstyle="select: title page">Disable Remote Shell (rsh)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRemoteSyslog" xrefstyle="select: title page">Disable Remote Syslog</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRhostsSupport" xrefstyle="select: title page">Disable Rhosts Support</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRouted" xrefstyle="select: title page">Disable Routed</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSMB" xrefstyle="select: title page">Disable SMB</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSNMP" xrefstyle="select: title page">Disable SNMP</xref>
+              </member>
+              <member>
+                <xref linkend="ChangeSNMPStrings" xrefstyle="select: title page">Disable SNMP if default public string exists</xref>
+              </member>
+              <member>
+                <xref linkend="SendRedirects" xrefstyle="select: title page">Disable Sending ICMP Redirects</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSendmail" xrefstyle="select: title page">Disable Sendmail</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSVM" xrefstyle="select: title page">Disable Solaris Volume Manager</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSVMgui" xrefstyle="select: title page">Disable Solaris Volume Manager GUI</xref>
+              </member>
+              <member>
+                <xref linkend="SourceRoute" xrefstyle="select: title page">Disable Source Routing</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSquid" xrefstyle="select: title page">Disable Squid</xref>
+              </member>
+              <member>
+                <xref linkend="DisableTFTP" xrefstyle="select: title page">Disable TFTP</xref>
+              </member>
+              <member>
+                <xref linkend="DisableTelnet" xrefstyle="select: title page">Disable Telnet</xref>
+              </member>
+              <member>
+                <xref linkend="DisableWebServer_tux" xrefstyle="select: title page">Disable Tux</xref>
+              </member>
+              <member>
+                <xref linkend="DisableUSB" xrefstyle="select: title page">Disable USB and PCMCIA Devices</xref>
+              </member>
+              <member>
+                <xref linkend="DisableUucp" xrefstyle="select: title page">Disable UUCP</xref>
+              </member>
+              <member>
+                <xref linkend="DisableWbem" xrefstyle="select: title page">Disable WBEM</xref>
+              </member>
+              <member>
+                <xref linkend="DisableWebmin" xrefstyle="select: title page">Disable Webmin</xref>
+              </member>
+              <member>
+                <xref linkend="DisableXFS" xrefstyle="select: title page">Disable XFS</xref>
+              </member>
+              <member>
+                <xref linkend="RPFilter" xrefstyle="select: title page">Enable Reverse Path Source Validation</xref>
+              </member>
+              <member>
+                <xref linkend="EnableStackProtection" xrefstyle="select: title page">Enable Stack Protection</xref>
+              </member>
+              <member>
+                <xref linkend="TCPSyncookies" xrefstyle="select: title page">Enable TCP Syncookies</xref>
+              </member>
+              <member>
+                <xref linkend="AuditEnable" xrefstyle="select: title page">Enable the Audit Subsystem</xref>
+              </member>
+              <member>
+                <xref linkend="EnableAdditionalFTPLogging_vsftpd" xrefstyle="select: title page">Enable vsftpd Additional Logging</xref>
+              </member>
+              <member>
+                <xref linkend="FTPConfigFilePerms" xrefstyle="select: title page">FTP Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="FirefoxAddons" xrefstyle="select: title page">Firefox - Add-ons</xref>
+              </member>
+              <member>
+                <xref linkend="FirefoxDynamicContent" xrefstyle="select: title page">Firefox - Dynamic Content</xref>
+              </member>
+              <member>
+                <xref linkend="FirefoxEncryption" xrefstyle="select: title page">Firefox - Encryption</xref>
+              </member>
+              <member>
+                <xref linkend="FirefoxJava" xrefstyle="select: title page">Firefox - Java</xref>
+              </member>
+              <member>
+                <xref linkend="FirefoxJavascript" xrefstyle="select: title page">Firefox - JavaScript</xref>
+              </member>
+              <member>
+                <xref linkend="FirefoxNetwork" xrefstyle="select: title page">Firefox - Network</xref>
+              </member>
+              <member>
+                <xref linkend="FirefoxPrivacy" xrefstyle="select: title page">Firefox - Privacy</xref>
+              </member>
+              <member>
+                <xref linkend="FirefoxUpdating" xrefstyle="select: title page">Firefox - Updating</xref>
+              </member>
+              <member>
+                <xref linkend="GlobalInitializationFilePerms" xrefstyle="select: title page">Global Initialization File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="HomeDirPerms" xrefstyle="select: title page">Home Directory Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="HostsFilePerms" xrefstyle="select: title page">Hosts File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="ICMPEchoIgnoreBroadcasts" xrefstyle="select: title page">Ignore ICMP ECHO and TIMESTAMP Requests</xref>
+              </member>
+              <member>
+                <xref linkend="InetdXinetdConfigFilePerms" xrefstyle="select: title page">Inetd/Xinetd Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="KernelDumpDirPerms" xrefstyle="select: title page">Kernel Core Dump Directory Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="LDAPConfigFilePerms" xrefstyle="select: title page">LDAP Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="LimitAccessFromSu" xrefstyle="select: title page">Limit Access To Root From Su</xref>
+              </member>
+              <member>
+                <xref linkend="PwGrpCheck" xrefstyle="select: title page">Lock Invalid Accounts</xref>
+              </member>
+              <member>
+                <xref linkend="LockDuplicateUidZeros" xrefstyle="select: title page">Lock Non-Root Accounts with UID 0</xref>
+              </member>
+              <member>
+                <xref linkend="AccountLocks" xrefstyle="select: title page">Lock account after three failed login attempts</xref>
+              </member>
+              <member>
+                <xref linkend="LogMartianPackets" xrefstyle="select: title page">Log Martian Packets</xref>
+              </member>
+              <member>
+                <xref linkend="MailAgentAliasesFilePerms" xrefstyle="select: title page">Mail Agent Aliases Files Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="MIBFilePerms" xrefstyle="select: title page">Management Information Base (MIB) File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordMaxDays" xrefstyle="select: title page">Maximum Time Between Password Changes</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordChangeDelay" xrefstyle="select: title page">Minimum Delay Between Password Changes</xref>
+              </member>
+              <member>
+                <xref linkend="MySQLHist" xrefstyle="select: title page">MySQL - Disable command history</xref>
+              </member>
+              <member>
+                <xref linkend="ExportsConfigFilePerms" xrefstyle="select: title page">NFS Export Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="NisYpConfigPerms" xrefstyle="select: title page">NIS/NIS+/YP Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="NsswitchConfFilePerms" xrefstyle="select: title page">Name Service Switch Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="NoEmptyPasswords" xrefstyle="select: title page">No Empty Passwords</xref>
+              </member>
+              <member>
+                <xref linkend="NoPlusPasswdEntries" xrefstyle="select: title page">No Plus Entries in Password Files</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordWarnAge" xrefstyle="select: title page">Password Expiration Warning</xref>
+              </member>
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyConsecutive" xrefstyle="select: title page">Password Policy Consecutive Characters</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyDiffChars" xrefstyle="select: title page">Password Policy Different Characters</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyMinlen" xrefstyle="select: title page">Password Policy Length Minimum</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyLowercase" xrefstyle="select: title page">Password Policy Lowercase Minimum</xref>
+              </member>
+              <member>
+                <xref linkend="PrinterConfigFilePerms" xrefstyle="select: title page">Printer Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="RemoveGamesAccount" xrefstyle="select: title page">Remove Games User Account</xref>
+              </member>
+              <member>
+                <xref linkend="GopherAccount" xrefstyle="select: title page">Remove Gopher User Account</xref>
+              </member>
+              <member>
+                <xref linkend="NFSInsecureLocks" xrefstyle="select: title page">Remove Insecure_Locks option for NFS Server</xref>
+              </member>
+              <member>
+                <xref linkend="RemoveNewsAccount" xrefstyle="select: title page">Remove News User Account</xref>
+              </member>
+              <member>
+                <xref linkend="TelnetBanner" xrefstyle="select: title page">Remove Telnet Service Banner</xref>
+              </member>
+              <member>
+                <xref linkend="RequireGrubPassword" xrefstyle="select: title page">Require GRUB Password</xref>
+              </member>
+              <member>
+                <xref linkend="ResolvConfFilePerms" xrefstyle="select: title page">Resolver Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="RestrictAtCron" xrefstyle="select: title page">Restrict At and Cron</xref>
+              </member>
+              <member>
+                <xref linkend="RemoteXClients" xrefstyle="select: title page">Restrict Remote X Clients</xref>
+              </member>
+              <member>
+                <xref linkend="RestrictCompilerTools" xrefstyle="select: title page">Restrict Use of Compiler Tools</xref>
+              </member>
+              <member>
+                <xref linkend="ManPagePerms" xrefstyle="select: title page">Restrict Write-Access on Man Pages</xref>
+              </member>
+              <member>
+                <xref linkend="RestrictDtspcd" xrefstyle="select: title page">Restrict the CDE Subprocess Control Service</xref>
+              </member>
+              <member>
+                <xref linkend="RootConsole" xrefstyle="select: title page">Root Console Only Logins</xref>
+              </member>
+              <member>
+                <xref linkend="RootPath" xrefstyle="select: title page">Root Path</xref>
+              </member>
+              <member>
+                <xref linkend="SNMPConfigFilePerms" xrefstyle="select: title page">SNMP Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SshDisableGSSAPIAuth" xrefstyle="select: title page">SSH Disable GSSAPI Authentication</xref>
+              </member>
+              <member>
+                <xref linkend="SshParameters" xrefstyle="select: title page">SSH Parameters</xref>
+              </member>
+              <member>
+                <xref linkend="SshRestrictCiphers" xrefstyle="select: title page">SSH Restrict Ciphers</xref>
+              </member>
+              <member>
+                <xref linkend="SshRestrictHMAC" xrefstyle="select: title page">SSH Restrict HMAC</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableEmptyPasswords" xrefstyle="select: title page">SSHD Disable Empty Passwords</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableGSSAPIAuth" xrefstyle="select: title page">SSHD Disable GSSAPI Authentication</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableHostbasedAuth" xrefstyle="select: title page">SSHD Disable Host-based Authentication</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableKerberosAuth" xrefstyle="select: title page">SSHD Disable Kerberos Authentication</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableRhostsAuth" xrefstyle="select: title page">SSHD Disable Rhosts Authentication</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableRhostsRSAAuth" xrefstyle="select: title page">SSHD Disable Rhosts RSA Authentication</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableRootLogin" xrefstyle="select: title page">SSHD Disable Root Login</xref>
+              </member>
+              <member>
+                <xref linkend="SshdEnableBanner" xrefstyle="select: title page">SSHD Enable Banner</xref>
+              </member>
+              <member>
+                <xref linkend="SshdEnableIgnoreRhosts" xrefstyle="select: title page">SSHD Enable Ignore Rhosts</xref>
+              </member>
+              <member>
+                <xref linkend="SshdEnableX11Forwarding" xrefstyle="select: title page">SSHD Enable X11 Forwarding</xref>
+              </member>
+              <member>
+                <xref linkend="SshdMaxAuthTries" xrefstyle="select: title page">SSHD Maximum Authentication Attempts</xref>
+              </member>
+              <member>
+                <xref linkend="SshdPrintLastLog" xrefstyle="select: title page">SSHD Print Last Login by User</xref>
+              </member>
+              <member>
+                <xref linkend="SshdProtocol" xrefstyle="select: title page">SSHD Protocol</xref>
+              </member>
+              <member>
+                <xref linkend="SshdRestrictCiphers" xrefstyle="select: title page">SSHD Restrict Ciphers</xref>
+              </member>
+              <member>
+                <xref linkend="SshdRestrictHMAC" xrefstyle="select: title page">SSHD Restrict HMAC</xref>
+              </member>
+              <member>
+                <xref linkend="SshdRestrictUsersGroups" xrefstyle="select: title page">SSHD Restrict Users and Groups</xref>
+              </member>
+              <member>
+                <xref linkend="SshdSetCompression" xrefstyle="select: title page">SSHD Set Compression</xref>
+              </member>
+              <member>
+                <xref linkend="SshdStrictModeChecking" xrefstyle="select: title page">SSHD Strict Mode Checking</xref>
+              </member>
+              <member>
+                <xref linkend="SshdUsePrivilegeSeparation" xrefstyle="select: title page">SSHD Use Privilege Separation</xref>
+              </member>
+              <member>
+                <xref linkend="SambaConfigFilePerms" xrefstyle="select: title page">Samba Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SambaPasswordFilePerms" xrefstyle="select: title page">Samba Password File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SyslogAuthpriv" xrefstyle="select: title page">Secure Authpriv Logging</xref>
+              </member>
+              <member>
+                <xref linkend="SecureNetrcFiles" xrefstyle="select: title page">Secure Netrc Files</xref>
+              </member>
+              <member>
+                <xref linkend="NFSSecure" xrefstyle="select: title page">Secure Option for NFS Server</xref>
+              </member>
+              <member>
+                <xref linkend="SecureSetXIDFiles" xrefstyle="select: title page">Secure SUID/SGID Executables</xref>
+              </member>
+              <member>
+                <xref linkend="SecureUnownedFiles" xrefstyle="select: title page">Secure Unowned Files</xref>
+              </member>
+              <member>
+                <xref linkend="SecureWorldWritableDevices" xrefstyle="select: title page">Secure World Writable Devices</xref>
+              </member>
+              <member>
+                <xref linkend="SecureWorldWritableDirectories" xrefstyle="select: title page">Secure World Writable Directories</xref>
+              </member>
+              <member>
+                <xref linkend="SecureWorldWritableFiles" xrefstyle="select: title page">Secure World Writable Files</xref>
+              </member>
+              <member>
+                <xref linkend="ServicesFilePerms" xrefstyle="select: title page">Services File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SetStrictMultihoming" xrefstyle="select: title page">Set IP Strict Multihoming</xref>
+              </member>
+              <member>
+                <xref linkend="SetPassAgingOnAccts" xrefstyle="select: title page">Set Password Aging on Active Accounts</xref>
+              </member>
+              <member>
+                <xref linkend="TftpSecureMode" xrefstyle="select: title page">Set TFTP Startup Directory</xref>
+              </member>
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+              <member>
+                <xref linkend="SingleUserMode" xrefstyle="select: title page">Single User Mode Password</xref>
+              </member>
+              <member>
+                <xref linkend="SkeletonFilePerms" xrefstyle="select: title page">Skeleton File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="EnableSysstat" xrefstyle="select: title page">System Accounting</xref>
+              </member>
+              <member>
+                <xref linkend="SysCmdFilePerms" xrefstyle="select: title page">System Command File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SysConfigFilePerms" xrefstyle="select: title page">System Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SysLibFilePerms" xrefstyle="select: title page">System Library File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SysLoggingConfigFilePerms" xrefstyle="select: title page">System Logging Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SysRcScriptPerms" xrefstyle="select: title page">System Run Control Script Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="FstabNodev" xrefstyle="select: title page">Use NODEV Option for Non-root Partitions</xref>
+              </member>
+              <member>
+                <xref linkend="FstabRemovableMedia" xrefstyle="select: title page">Use NOSUID and NODEV for Removable Media</xref>
+              </member>
+              <member>
+                <xref linkend="NosuidOnUserFilesystems" xrefstyle="select: title page">Use NOSUID on User Filesystems</xref>
+              </member>
+              <member>
+                <xref linkend="UserDotFilePerms" xrefstyle="select: title page">User Dot File Perms</xref>
+              </member>
+              <member>
+                <xref linkend="UserMountableMedia" xrefstyle="select: title page">User Mountable Media</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.2</entry>
+          <entry>Disable all unnecessary and insecure services</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ConfigureXinetdLogging" xrefstyle="select: title page">Configure Xinetd Logging</xref>
+              </member>
+              <member>
+                <xref linkend="DisableWebServer_apache" xrefstyle="select: title page">Disable Apache</xref>
+              </member>
+              <member>
+                <xref linkend="DisableAvahi" xrefstyle="select: title page">Disable Avahi Daemon</xref>
+              </member>
+              <member>
+                <xref linkend="DisableBluetooth" xrefstyle="select: title page">Disable Bluetooth</xref>
+              </member>
+              <member>
+                <xref linkend="DisableCDEcalmgr" xrefstyle="select: title page">Disable CDE Calendar Manager Server</xref>
+              </member>
+              <member>
+                <xref linkend="DisableCDEttdbserver" xrefstyle="select: title page">Disable CDE ToolTalk Database Server</xref>
+              </member>
+              <member>
+                <xref linkend="DisableGpm" xrefstyle="select: title page">Disable Console Mouse Support</xref>
+              </member>
+              <member>
+                <xref linkend="DisableDNS" xrefstyle="select: title page">Disable DNS</xref>
+              </member>
+              <member>
+                <xref linkend="DisableDhcpd" xrefstyle="select: title page">Disable Dhcpd</xref>
+              </member>
+              <member>
+                <xref linkend="DisableFTP_gssftp" xrefstyle="select: title page">Disable FTP (gssftp)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableFTP_vsftpd" xrefstyle="select: title page">Disable FTP (vsftpd)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableFileShare" xrefstyle="select: title page">Disable File Sharing Networks</xref>
+              </member>
+              <member>
+                <xref linkend="DisableFinger" xrefstyle="select: title page">Disable Finger</xref>
+              </member>
+              <member>
+                <xref linkend="DisableFspd" xrefstyle="select: title page">Disable Fspd</xref>
+              </member>
+              <member>
+                <xref linkend="DisableGssd" xrefstyle="select: title page">Disable GSS Daemon</xref>
+              </member>
+              <member>
+                <xref linkend="DisableGated" xrefstyle="select: title page">Disable Gated</xref>
+              </member>
+              <member>
+                <xref linkend="DisableGuiLogin" xrefstyle="select: title page">Disable Graphical Login</xref>
+              </member>
+              <member>
+                <xref linkend="DisableHPServices" xrefstyle="select: title page">Disable HP Printing and Imaging</xref>
+              </member>
+              <member>
+                <xref linkend="DisableISDN" xrefstyle="select: title page">Disable ISDN</xref>
+              </member>
+              <member>
+                <xref linkend="DisableInetd" xrefstyle="select: title page">Disable Inetd</xref>
+              </member>
+              <member>
+                <xref linkend="DisableInnd" xrefstyle="select: title page">Disable Innd</xref>
+              </member>
+              <member>
+                <xref linkend="DisableYahooIM" xrefstyle="select: title page">Disable Instant Messenger Client (Yahoo!)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableGaimClient" xrefstyle="select: title page">Disable Instant Messenger Client (gaim)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableWebconsole" xrefstyle="select: title page">Disable Java Web Console</xref>
+              </member>
+              <member>
+                <xref linkend="DisableKerbTGTwarn" xrefstyle="select: title page">Disable Kerberos TGT Expiration Warning</xref>
+              </member>
+              <member>
+                <xref linkend="DisableKudzu" xrefstyle="select: title page">Disable Kudzu</xref>
+              </member>
+              <member>
+                <xref linkend="DisableLdapCacheMgr" xrefstyle="select: title page">Disable LDAP Client Cache Manager</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSerialLoginPrompt" xrefstyle="select: title page">Disable Login Prompts on Serial Ports</xref>
+              </member>
+              <member>
+                <xref linkend="DisableMail_cyrus" xrefstyle="select: title page">Disable Mail (Cyrus mail server)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableMail_dovecot" xrefstyle="select: title page">Disable Mail (Dovecot mail server)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSQL_mysql" xrefstyle="select: title page">Disable MySQL</xref>
+              </member>
+              <member>
+                <xref linkend="DisableNFS_client" xrefstyle="select: title page">Disable NFS Client</xref>
+              </member>
+              <member>
+                <xref linkend="DisableNFS_server" xrefstyle="select: title page">Disable NFS Server</xref>
+              </member>
+              <member>
+                <xref linkend="DisableNIS_client" xrefstyle="select: title page">Disable NIS Client</xref>
+              </member>
+              <member>
+                <xref linkend="DisableNIS_server" xrefstyle="select: title page">Disable NIS Server</xref>
+              </member>
+              <member>
+                <xref linkend="DisableNetFS" xrefstyle="select: title page">Disable NetFS</xref>
+              </member>
+              <member>
+                <xref linkend="DisablePortmap" xrefstyle="select: title page">Disable Portmap Daemon</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSQL_postgresql" xrefstyle="select: title page">Disable Postgresql</xref>
+              </member>
+              <member>
+                <xref linkend="DisableApmd" xrefstyle="select: title page">Disable Power Management</xref>
+              </member>
+              <member>
+                <xref linkend="DisablePrinterConfig" xrefstyle="select: title page">Disable Printer Configuration Daemon</xref>
+              </member>
+              <member>
+                <xref linkend="DisablePrinter" xrefstyle="select: title page">Disable Printer Daemon</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRpcKeyserv" xrefstyle="select: title page">Disable RPC Keyserv</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRexec" xrefstyle="select: title page">Disable Remote Exec (rexec)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRlogin" xrefstyle="select: title page">Disable Remote Login (rlogin)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRsh" xrefstyle="select: title page">Disable Remote Shell (rsh)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRemoteSyslog" xrefstyle="select: title page">Disable Remote Syslog</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRouted" xrefstyle="select: title page">Disable Routed</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSMB" xrefstyle="select: title page">Disable SMB</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSNMP" xrefstyle="select: title page">Disable SNMP</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSendmail" xrefstyle="select: title page">Disable Sendmail</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSVM" xrefstyle="select: title page">Disable Solaris Volume Manager</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSVMgui" xrefstyle="select: title page">Disable Solaris Volume Manager GUI</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSquid" xrefstyle="select: title page">Disable Squid</xref>
+              </member>
+              <member>
+                <xref linkend="DisableTFTP" xrefstyle="select: title page">Disable TFTP</xref>
+              </member>
+              <member>
+                <xref linkend="DisableTelnet" xrefstyle="select: title page">Disable Telnet</xref>
+              </member>
+              <member>
+                <xref linkend="DisableWebServer_tux" xrefstyle="select: title page">Disable Tux</xref>
+              </member>
+              <member>
+                <xref linkend="DisableUucp" xrefstyle="select: title page">Disable UUCP</xref>
+              </member>
+              <member>
+                <xref linkend="DisableWbem" xrefstyle="select: title page">Disable WBEM</xref>
+              </member>
+              <member>
+                <xref linkend="DisableWebmin" xrefstyle="select: title page">Disable Webmin</xref>
+              </member>
+              <member>
+                <xref linkend="DisableXFS" xrefstyle="select: title page">Disable XFS</xref>
+              </member>
+              <member>
+                <xref linkend="SshdProtocol" xrefstyle="select: title page">SSHD Protocol</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.3</entry>
+          <entry>Configure system security parameters to prevent misuse</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtDirPerms" xrefstyle="select: title page">At Directory Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SendmailOpts" xrefstyle="select: title page">Configure Sendmail Options</xref>
+              </member>
+              <member>
+                <xref linkend="CreateFTPUsers" xrefstyle="select: title page">Create ftpusers File</xref>
+              </member>
+              <member>
+                <xref linkend="DaemonUmask" xrefstyle="select: title page">Daemon Umask</xref>
+              </member>
+              <member>
+                <xref linkend="DefaultUmask" xrefstyle="select: title page">Default umask</xref>
+              </member>
+              <member>
+                <xref linkend="NFSanon" xrefstyle="select: title page">Deny NFS Client Access Without UID or GID</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRhostsSupport" xrefstyle="select: title page">Disable Rhosts Support</xref>
+              </member>
+              <member>
+                <xref linkend="DisableSendmailHelp" xrefstyle="select: title page">Disable Sendmail Help</xref>
+              </member>
+              <member>
+                <xref linkend="FTPConfigFilePerms" xrefstyle="select: title page">FTP Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="FirefoxDynamicContent" xrefstyle="select: title page">Firefox - Dynamic Content</xref>
+              </member>
+              <member>
+                <xref linkend="FirefoxEncryption" xrefstyle="select: title page">Firefox - Encryption</xref>
+              </member>
+              <member>
+                <xref linkend="FirefoxJava" xrefstyle="select: title page">Firefox - Java</xref>
+              </member>
+              <member>
+                <xref linkend="FirefoxJavascript" xrefstyle="select: title page">Firefox - JavaScript</xref>
+              </member>
+              <member>
+                <xref linkend="FirefoxNetwork" xrefstyle="select: title page">Firefox - Network</xref>
+              </member>
+              <member>
+                <xref linkend="FirefoxPrivacy" xrefstyle="select: title page">Firefox - Privacy</xref>
+              </member>
+              <member>
+                <xref linkend="HomeDirContentPerms" xrefstyle="select: title page">Home Directory Contents</xref>
+              </member>
+              <member>
+                <xref linkend="HomeDirOwnGrp" xrefstyle="select: title page">Home Directory Ownership</xref>
+              </member>
+              <member>
+                <xref linkend="HomeDirPerms" xrefstyle="select: title page">Home Directory Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="HostsFilePerms" xrefstyle="select: title page">Hosts File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="KernelDumpDirPerms" xrefstyle="select: title page">Kernel Core Dump Directory Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SetMesgN" xrefstyle="select: title page">Limit Term Write-access to Owner</xref>
+              </member>
+              <member>
+                <xref linkend="MIBFilePerms" xrefstyle="select: title page">Management Information Base (MIB) File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="ExportsConfigFilePerms" xrefstyle="select: title page">NFS Export Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="NisYpConfigPerms" xrefstyle="select: title page">NIS/NIS+/YP Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="NsswitchConfFilePerms" xrefstyle="select: title page">Name Service Switch Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="NoEmptyPasswords" xrefstyle="select: title page">No Empty Passwords</xref>
+              </member>
+              <member>
+                <xref linkend="PrinterConfigFilePerms" xrefstyle="select: title page">Printer Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="NFSInsecureLocks" xrefstyle="select: title page">Remove Insecure_Locks option for NFS Server</xref>
+              </member>
+              <member>
+                <xref linkend="RemoveSMBguest" xrefstyle="select: title page">Remove SMB Guest Authentication</xref>
+              </member>
+              <member>
+                <xref linkend="ResolvConfFilePerms" xrefstyle="select: title page">Resolver Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="RootConsole" xrefstyle="select: title page">Root Console Only Logins</xref>
+              </member>
+              <member>
+                <xref linkend="RootHomePerms" xrefstyle="select: title page">Root Home Directory Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SshDisableGSSAPIAuth" xrefstyle="select: title page">SSH Disable GSSAPI Authentication</xref>
+              </member>
+              <member>
+                <xref linkend="SshParameters" xrefstyle="select: title page">SSH Parameters</xref>
+              </member>
+              <member>
+                <xref linkend="SshRestrictCiphers" xrefstyle="select: title page">SSH Restrict Ciphers</xref>
+              </member>
+              <member>
+                <xref linkend="SshRestrictHMAC" xrefstyle="select: title page">SSH Restrict HMAC</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableEmptyPasswords" xrefstyle="select: title page">SSHD Disable Empty Passwords</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableGSSAPIAuth" xrefstyle="select: title page">SSHD Disable GSSAPI Authentication</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableHostbasedAuth" xrefstyle="select: title page">SSHD Disable Host-based Authentication</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableKerberosAuth" xrefstyle="select: title page">SSHD Disable Kerberos Authentication</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableRhostsAuth" xrefstyle="select: title page">SSHD Disable Rhosts Authentication</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableRhostsRSAAuth" xrefstyle="select: title page">SSHD Disable Rhosts RSA Authentication</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableRootLogin" xrefstyle="select: title page">SSHD Disable Root Login</xref>
+              </member>
+              <member>
+                <xref linkend="SshdEnableIgnoreRhosts" xrefstyle="select: title page">SSHD Enable Ignore Rhosts</xref>
+              </member>
+              <member>
+                <xref linkend="SshdPrintLastLog" xrefstyle="select: title page">SSHD Print Last Login by User</xref>
+              </member>
+              <member>
+                <xref linkend="SshdProtocol" xrefstyle="select: title page">SSHD Protocol</xref>
+              </member>
+              <member>
+                <xref linkend="SshdRestrictCiphers" xrefstyle="select: title page">SSHD Restrict Ciphers</xref>
+              </member>
+              <member>
+                <xref linkend="SshdRestrictHMAC" xrefstyle="select: title page">SSHD Restrict HMAC</xref>
+              </member>
+              <member>
+                <xref linkend="SshdRestrictUsersGroups" xrefstyle="select: title page">SSHD Restrict Users and Groups</xref>
+              </member>
+              <member>
+                <xref linkend="SshdSetCompression" xrefstyle="select: title page">SSHD Set Compression</xref>
+              </member>
+              <member>
+                <xref linkend="SshdStrictModeChecking" xrefstyle="select: title page">SSHD Strict Mode Checking</xref>
+              </member>
+              <member>
+                <xref linkend="SshdUsePrivilegeSeparation" xrefstyle="select: title page">SSHD Use Privilege Separation</xref>
+              </member>
+              <member>
+                <xref linkend="SecureNetrcFiles" xrefstyle="select: title page">Secure Netrc Files</xref>
+              </member>
+              <member>
+                <xref linkend="NFSSecure" xrefstyle="select: title page">Secure Option for NFS Server</xref>
+              </member>
+              <member>
+                <xref linkend="ServicesFilePerms" xrefstyle="select: title page">Services File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="GssftpUmask" xrefstyle="select: title page">Set FTP Umask (gssftp)</xref>
+              </member>
+              <member>
+                <xref linkend="TftpSecureMode" xrefstyle="select: title page">Set TFTP Startup Directory</xref>
+              </member>
+              <member>
+                <xref linkend="SingleUserMode" xrefstyle="select: title page">Single User Mode Password</xref>
+              </member>
+              <member>
+                <xref linkend="SyncEtcShells" xrefstyle="select: title page">Sync Shells File</xref>
+              </member>
+              <member>
+                <xref linkend="SysConfigFilePerms" xrefstyle="select: title page">System Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SysLoggingConfigFilePerms" xrefstyle="select: title page">System Logging Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="UserDotFilePerms" xrefstyle="select: title page">User Dot File Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.2.4</entry>
+          <entry>Remove all unnecessary functionality</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RemoveGamesAccount" xrefstyle="select: title page">Remove Games User Account</xref>
+              </member>
+              <member>
+                <xref linkend="GopherAccount" xrefstyle="select: title page">Remove Gopher User Account</xref>
+              </member>
+              <member>
+                <xref linkend="HaltAccount" xrefstyle="select: title page">Remove Halt User Account</xref>
+              </member>
+              <member>
+                <xref linkend="RemoveNewsAccount" xrefstyle="select: title page">Remove News User Account</xref>
+              </member>
+              <member>
+                <xref linkend="ShutdownAccount" xrefstyle="select: title page">Remove Shutdown User Account</xref>
+              </member>
+              <member>
+                <xref linkend="SyncAccount" xrefstyle="select: title page">Remove Sync User Account</xref>
+              </member>
+              <member>
+                <xref linkend="RemoveFTPaccount" xrefstyle="select: title page">Remove ftp Account</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>2.3</entry>
+          <entry>Encrypt all non-console administrative access</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableRexec" xrefstyle="select: title page">Disable Remote Exec (rexec)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRlogin" xrefstyle="select: title page">Disable Remote Login (rlogin)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRsh" xrefstyle="select: title page">Disable Remote Shell (rsh)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableTelnet" xrefstyle="select: title page">Disable Telnet</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.1</entry>
+          <entry>Users must have a unique ID</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PwGrpCheck" xrefstyle="select: title page">Lock Invalid Accounts</xref>
+              </member>
+              <member>
+                <xref linkend="LockDuplicateUidZeros" xrefstyle="select: title page">Lock Non-Root Accounts with UID 0</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.2</entry>
+          <entry>Password Authentication</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NoEmptyPasswords" xrefstyle="select: title page">No Empty Passwords</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableEmptyPasswords" xrefstyle="select: title page">SSHD Disable Empty Passwords</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.4</entry>
+          <entry>Render all passwords unreadable during transmission and storage on all system components.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableRexec" xrefstyle="select: title page">Disable Remote Exec (rexec)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRlogin" xrefstyle="select: title page">Disable Remote Login (rlogin)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableRsh" xrefstyle="select: title page">Disable Remote Shell (rsh)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableTelnet" xrefstyle="select: title page">Disable Telnet</xref>
+              </member>
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.5.9</entry>
+          <entry>Change user passwords at least every 90 days.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordMaxDays" xrefstyle="select: title page">Maximum Time Between Password Changes</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.5.10</entry>
+          <entry>Require a minimum password length of at least seven characters.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordPolicyConsecutive" xrefstyle="select: title page">Password Policy Consecutive Characters</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyDiffChars" xrefstyle="select: title page">Password Policy Different Characters</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyMinlen" xrefstyle="select: title page">Password Policy Length Minimum</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.5.11</entry>
+          <entry>Use passwords containing both numeric and alphabetic characters.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordPolicyNumbers" xrefstyle="select: title page">Password Policy Numeric Minimum</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.5.12</entry>
+          <entry>Do not allow an individual to submit a new password that is the same as any of the last four passwords he or she has used.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordReuse" xrefstyle="select: title page">Limit Password Reuse</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.5.13</entry>
+          <entry>Limit repeated access attempts by locking out the user ID after not more than six attempts.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AccountLocks" xrefstyle="select: title page">Lock account after three failed login attempts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.5.15</entry>
+          <entry>If a session has been idle for more than 15 minutes, require the user to re-enter the password to re-activate the terminal.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdSetIdleTimeout" xrefstyle="select: title page">SSHD Set Idle Timeout Interval for User Logins</xref>
+              </member>
+              <member>
+                <xref linkend="SetCdeScreenSaver" xrefstyle="select: title page">Set CDE Screen Saver</xref>
+              </member>
+              <member>
+                <xref linkend="SetGnomeSS" xrefstyle="select: title page">Set Mandatory Screen Saver</xref>
+              </member>
+              <member>
+                <xref linkend="SetXScreenSaverDefaults" xrefstyle="select: title page">Set X Screen Saver Application Defaults</xref>
+              </member>
+              <member>
+                <xref linkend="ShellSessionTimeouts" xrefstyle="select: title page">Set shell timeout period</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>10.1</entry>
+          <entry>Link all access to system components to each individual user</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>10.2</entry>
+          <entry>Implement automated audit trails for all system components</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditEnable" xrefstyle="select: title page">Enable the Audit Subsystem</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>10.2.2</entry>
+          <entry>Audit Events: All actions taken by any individual with root or administrative privileges</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>10.2.3</entry>
+          <entry>Audit Events: Access to all audit trails</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>10.2.7</entry>
+          <entry>Audit Events: Creation and deletion of system-level objects.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>10.3.1</entry>
+          <entry>Audit Events: User identification</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>10.3.2</entry>
+          <entry>Audit Events: Type of event</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>10.3.3</entry>
+          <entry>Audit Events: Date and time</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>10.3.4</entry>
+          <entry>Audit Events: Success or failure indication</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>10.3.5</entry>
+          <entry>Audit Events: Origination of event</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>10.3.6</entry>
+          <entry>Audit Events: Identity or name of affected data, system component</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>10.5.1</entry>
+          <entry>Limit viewing of audit trails</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>10.5.2</entry>
+          <entry>Protect audit trail files from unauthorized modifications</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+</section>

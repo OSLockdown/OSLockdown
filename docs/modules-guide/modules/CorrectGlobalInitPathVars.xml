@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="CorrectGlobalInitPathVars" version="5.0">
+ <title xml:id="General">Correct Global Init Script PATH Variables</title>
+ <para>
+  Removes single periods or double colons from <envar>PATH</envar>
+  environment variables set in global initialization files such as
+  <filename>/etc/profile</filename>.
+ </para>
+ <indexterm>
+  <primary>.profile</primary>
+ </indexterm>
+ <indexterm>
+  <primary>/etc/profile</primary>
+ </indexterm>
+ <indexterm>
+  <primary>Files and Directories</primary>
+
+  <secondary>/etc/profile</secondary>
+ </indexterm>
+ <indexterm>
+  <primary>PATH</primary>
+ </indexterm>
+ <para>
+  By default, global initialization scripts are not configured with ::
+  or :.: . However, if this module finds a <envar>PATH</envar> variable
+  set to something like this:
+ </para>
+<programlisting>PATH=/bin::/usr/bin:.:/sbin</programlisting>
+ <para>
+  then it will remove the :: and :.: from the environment variable.
+ </para>
+ <simplesect xml:id="CorrectGlobalInitPathVars-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN001840 - All global initialization files' executable search
+     paths must contain only absolute paths.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN001840 - Global Initialization Files PATH Variable
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableRsh" version="5.0">
+ <title xml:id="RemoteAccessServices">Disable Remote Shell (rsh)</title>
+ <para>
+  Disables rsh, which is one of the <emphasis>r-commands</emphasis>
+  (rexec, rlogin, rsh) that use unencrypted protocols and are subject to
+  network sniffing and hijacking. Additionally, they have a number of
+  well known weaknesses in their authentication scheme.
+  <indexterm>
+   <primary>rexec</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>rlogin</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>rsh</primary>
+  </indexterm>
+ </para>
+ <para>
+  It is recommended to always disable rsh. SSH was designed to be a
+  drop-in replacement for these protocols.
+  <indexterm>
+   <primary>rsh</primary>
+  </indexterm>
+ </para>
+ <simplesect xml:id="DisableRsh-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-13 - Limitation and Control of Network Ports, Protocols, and
+     Services
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN003820 - The rsh daemon must not be running.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 6 STIG (V1R14)</title>
+   <listitem>
+    <para>
+     RHEL-06-000214 - The rshd service must not be running.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN003820 - Remote Login or Shell Is Enabled
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+   <listitem>
+    <para>
+     CIP-005-3-R2.2 - Enable only ports and services needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+   <listitem>
+    <para>
+     CIP-007-3-R2.2 - Disable ports and services not needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     3.1.3 - Guidance for Unfamiliar Services
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.2 - Disable all unnecessary and insecure services
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.3 - Encrypt all non-console administrative access
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     8.4 - Render all passwords unreadable during transmission and
+     storage on all system components.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

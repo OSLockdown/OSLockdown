@@ -1,0 +1,5 @@
+if [ "`uname -m`" = "i86pc" ]; then
+    echo "Package is for sparc architecture ONLY"
+    exit 1
+fi
+exit 0

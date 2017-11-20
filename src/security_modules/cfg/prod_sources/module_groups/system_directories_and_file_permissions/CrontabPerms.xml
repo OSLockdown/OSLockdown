@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Crontab Perms">
+        <library>CrontabPerms</library>
+        <description>Restricts the permissions on the crontab spool/configuration files.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <configurationOptions ignoreLegacyOptions="true">
+          <option name="userSpoolDirs" type="fileList">
+            <description>Location of crontab spool directories and configuration file</description>
+            <default>/var/spool/cron/ /etc/cron.d/ /etc/crontab</default>
+          </option>
+          <option name="allowedUnames" type="userListCanBeEmpty">
+            <description>Allowed User Names</description>
+            <default>root</default>
+          </option>
+          <option name="allowedGnames" type="groupListCanBeEmpty">
+            <description>Allowed Group Names</description>
+            <default>root cron </default>
+          </option>
+          <option name="userCanOwn" type="EnabledOrDisabled">
+            <description>Allow users ownership (w/primary group) of personal crontab file?</description>
+            <default>1</default>
+          </option>
+          <option name="dacs" type="fileDACs">
+            <description>Maximum allowed permissions</description>
+            <default>600</default>
+          </option>
+        </configurationOptions>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4"/>
+          <cpe-item name="cpe:/o:centos:centos:5"/>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:novell:opensuse:10"/>
+          <cpe-item name="cpe:/o:novell:opensuse:11"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:10"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:11"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:redhat:fedora:10"/>
+          <cpe-item name="cpe:/o:redhat:fedora:11"/>
+          <cpe-item name="cpe:/o:redhat:fedora:12"/>
+          <cpe-item name="cpe:/o:redhat:fedora:13"/>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Directories and File Permissions</member>
+        </views>
+      </security_module>

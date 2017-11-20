@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<compliancy source="NERC" name="Cyber Security - Electronic Security Perimeters" version="CIP-005-3" enabled="True">
+  <title>U.S. FERC/NERC: CIP Standards - CIP 005</title>
+  <style>LineItemPerModule</style>
+  <lineitemprefix>CIP-005-3-</lineitemprefix>
+  <abstract> <para>
+  The U.S. Federal Energy Regulatory Commission (FERC) has mandated
+  Critical Infrastructure Protection (CIP) standards for the energy
+  industries. The FERC regulates and oversees energy industries in the
+  economic, environmental, and safety interests of the American public.
+  The FERC is an independent agency that regulates the interstate
+  transmission of natural gas, oil, and electricity. FERC also regulates
+  natural gas and hydropower projects.
+ </para>
+ <para>
+  In response to the commission&apos;s mandates, the North American
+  Electric Reliability Corporation (NERC) maintains the series of
+  Critical Infrastructure Protection (CIP) standards. The CIPs consist
+  of nine documents and OS Lockdown can assist in satisfying some
+  of them.
+ </para>
+ <itemizedlist>
+  <listitem>
+   <para>
+    CIP-001-3 Sabotage Reporting
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CIP-002-3 Critical cyberasset identification
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CIP-003-3 Security management controls
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CIP-004-3 Personnel and training
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CIP-005-3 Electronic security perimeters
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CIP-006-3 Physical security of critical cyberassets
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CIP-007-3 Systems security management
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CIP-008-3 Incident reporting and response planning
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CIP-009-3 Recovery plans for critical cyberassets
+   </para>
+  </listitem>
+ </itemizedlist>
+ <para>
+  Specifically, OS Lockdown can assist with CIP-005 and CIP-007.
+  The OS Lockdown baselining technology can also assist in
+  satisfying the CIP-003-3-R6 requirement: &quot;Change Control and
+  Configuration Management&quot;. This requirement states:
+ </para>
+ <blockquote>
+  <para>
+   The Responsible Entity shall establish and document a process of
+   change control and configuration management for adding, modifying,
+   replacing, or removing Critical Cyber Asset hardware or software, and
+   implement support configuration management activities to identify,
+   control and document all entity or vendor-related changes to hardware
+   and software components of Critical Cyber Assets pursuant to the
+   change control process.
+  </para>
+ </blockquote>
+ <para>
+  Once a system has been configured, a periodic system snapshot of the
+  system using OS Lockdown can assist in quickly identifying and
+  documenting changes. Use OS Lockdown&apos;s baseline comparison
+  feature to identify a system&apos;s network, hardware, routing, and
+  firewall configuration as well as changes in its software inventory.
+ </para>
+</abstract>
+  <line-items>
+<!--
+    <line-item name="CIP-005-3-R2.2" description="Enable only ports and services needed for operations"/>
+    <line-item name="CIP-005-3-R2.6" description="Appropriate Use Banner"/>
+    <line-item name="CIP-005-3-R4.4" description="Review of controls for default accounts, passwords, and network management community strings"/>
+-->
+    <line-item name="CIP-005-3-R2.2" description="Enable only ports and services needed for operations">
+      <module libraryName="DisableApmd"/>
+      <module libraryName="DisableAtd"/>
+      <module libraryName="DisableAvahi"/>
+      <module libraryName="DisableBluetooth"/>
+      <module libraryName="DisableBluetoothKernelModules"/>
+      <module libraryName="DisableBootCaching"/>
+      <module libraryName="DisableCDEcalmgr"/>
+      <module libraryName="DisableCDEttdbserver"/>
+      <module libraryName="DisableCpuThrottling"/>
+      <module libraryName="DisableDhcpd"/>
+      <module libraryName="DisableDNS"/>
+      <module libraryName="DisableFileShare"/>
+      <module libraryName="DisableFinger"/>
+      <module libraryName="DisableFirstbootSvc"/>
+      <module libraryName="DisableFspd"/>
+      <module libraryName="DisableFTP_gssftp"/>
+      <module libraryName="DisableFTP_vsftpd"/>
+      <module libraryName="DisableGated"/>
+      <module libraryName="DisableGpm"/>
+      <module libraryName="DisableGssd"/>
+      <module libraryName="DisableGuiLogin"/>
+      <module libraryName="DisableHalDaemon"/>
+      <module libraryName="DisableHPServices"/>
+      <module libraryName="DisableIA32MicrocodeUtility"/>
+      <module libraryName="DisableInetd"/>
+      <module libraryName="DisableInnd"/>
+      <module libraryName="DisableIrqbalance"/>
+      <module libraryName="DisableISDN"/>
+      <module libraryName="DisableKerbTGTwarn"/>
+      <module libraryName="DisableKudzu"/>
+      <module libraryName="DisableLdapCacheMgr"/>
+      <module libraryName="DisableMail_cyrus"/>
+      <module libraryName="DisableMail_dovecot"/>
+      <module libraryName="DisableNFS_client"/>
+      <module libraryName="DisableNFS_server"/>
+      <module libraryName="DisableNIS_client"/>
+      <module libraryName="DisableNIS_server"/>
+      <module libraryName="DisablePortmap"/>
+      <module libraryName="DisablePrinter"/>
+      <module libraryName="DisablePrinterConfig"/>
+      <module libraryName="DisableRemoteSyslog"/>
+      <module libraryName="DisableRexec"/>
+      <module libraryName="DisableRhnsd"/>
+      <module libraryName="DisableRhostsSupport"/>
+      <module libraryName="DisableRlogin"/>
+      <module libraryName="DisableRouted"/>
+      <module libraryName="DisableRpcKeyserv"/>
+      <module libraryName="DisableRpc_Ugidd"/>
+      <module libraryName="DisableRsh"/>
+      <module libraryName="DisableSendmail"/>
+      <module libraryName="DisableSerialLoginPrompt"/>
+      <module libraryName="DisableSmartcard"/>
+      <module libraryName="DisableSMARTD"/>
+      <module libraryName="DisableSMB"/>
+      <module libraryName="DisableSNMP"/>
+      <module libraryName="DisableSQL_mysql"/>
+      <module libraryName="DisableSQL_postgresql"/>
+      <module libraryName="DisableSquid"/>
+      <module libraryName="DisableSVM"/>
+      <module libraryName="DisableSVMgui"/>
+      <module libraryName="DisableTelnet"/>
+      <module libraryName="DisableTFTP"/>
+      <module libraryName="DisableUSB"/>
+      <module libraryName="DisableUucp"/>
+      <module libraryName="DisableWbem"/>
+      <module libraryName="DisableWebconsole"/>
+      <module libraryName="DisableWebmin"/>
+      <module libraryName="DisableWebServer_apache"/>
+      <module libraryName="DisableWebServer_tux"/>
+      <module libraryName="DisableXFS"/>
+      <module libraryName="RestrictDtspcd"/>
+    </line-item>
+    <line-item name="CIP-005-3-R2.6" description="Appropriate Use Banner">
+      <module libraryName="CreateLoginBanner"/>
+      <module libraryName="CreateLoginFTPBanner"/>
+      <module libraryName="CreatePreLoginGUIBanner"/>
+      <module libraryName="CreatePreSessionGUIBanner"/>
+      <module libraryName="SshdEnableBanner"/>
+      <module libraryName="TelnetBanner"/>
+    </line-item>
+    <line-item name="CIP-005-3-R4.4" description="Review of controls for default accounts, passwords, and network management community strings">
+      <module libraryName="BlockSystemAccounts"/>
+      <module libraryName="ChangeSNMPStrings"/>
+    </line-item>
+  </line-items>
+</compliancy>

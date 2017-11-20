@@ -1,0 +1,1123 @@
+/*
+ * Copyright 2009-2016 Forcepoint LLC, and licensed under the GPLv3 License.
+ *
+ * See 'GPLv3_LICENSE.txt' at the root of the source tree for the full GPLv3 license, or
+ * visit https://www.gnu.org/licenses/gpl.html instead.
+ */
+
+/*************************************************
+*               MAIN PAGE
+*************************************************/ 
+
+#per_page_header {
+/*
+    background: url(../images/pp_header_gold.jpg) repeat-x;
+    SUBMENU_BACKGROUND
+*/
+    background: #A0A0A0;
+    color:#ffffff;
+    font-weight: 700;
+    margin: 0;
+    font-size: 105%;
+    overflow:auto;
+    width:100%;
+    line-height:25px;
+}
+
+.headerLeft {
+    float:left;
+}
+
+.headerRight {
+    float:right;	
+}
+#per_page_container {
+    /* background-color: #EDEDED; */
+    width: 100%; /* This is to set IE's "useLayout" parameter and cause the div to expand to contain the float */
+    padding: 0;
+    margin: 0;
+}
+
+#main_content {
+    overflow: auto;
+    overflow-x: hidden;
+    min-height: 560px;
+    /*max-height: 610px;*/
+    /*height: 610px;*/
+    /*#min-height: 565px;*/
+    #max-height: 560px;
+    margin: 0;
+}
+
+#main_content  input a {
+    padding: .1em 1em;
+}
+
+#header_notify {
+    float: left;
+    font-size: 92%;
+    background: url(../images/SB_notify.png) left no-repeat;
+    padding: 0.1em 0.1em 0.1em 3em;
+    text-align: left;
+    margin: 0;
+}
+
+#header_notify a, #header_notify a:visited {
+    color: #980230;
+}
+
+#header_register {
+    float: left;
+    font-size: 92%;
+    background: url(../images/clientRegistration.gif) left no-repeat;
+    padding: 0.1em 0.1em 0.1em 2em;
+    text-align: left;
+    margin: 0;
+}
+
+#header_register a, #header_register a:visited {
+    color: #980230;
+}
+
+.subpage {
+    margin: 0.1em 0.03em 0.3em 0.03em;
+    padding: 0.5em 0;
+}
+
+.subpageNoMultiAction {
+    padding: 0 0;
+}
+
+
+/*************************************************
+*               MESSAGE
+* These styles apply to the messages written at
+* the top of the page, such as confirmation messages
+*************************************************/ 
+
+.errors {
+    color: #fff;
+    font-weight: bold;
+    line-height: 1.5em;
+    background-color: #980230;
+    padding-left: 0.5em;
+    /*margin-bottom: 1em;*/
+}
+
+.flashMessage, .flashWarning, .flashError, .ajaxFlashMessage, .ajaxFlashWarning, .ajaxFlashError {
+    color: black;
+    font-weight: bold;
+    line-height: 1.5em;
+    padding-left: 0.5em;
+    border-bottom: 1px solid #000;
+    /*margin-bottom: 0.5em;*/
+}
+
+.flashMessage, .ajaxFlashMessage{
+    background-color: #75b175;
+    max-height: 60px;
+    min-height: 20px;
+    overflow: auto;
+}
+
+.flashWarning, .ajaxFlashWarning {
+    background-color: #fdfdc7;
+}
+
+.flashError, .ajaxFlashError {
+    background-color: #980230;
+    color: #fff;
+}
+
+/*
+* Have the .errors class reuse the styles of the .message class,
+* but change the background color.
+*/
+.errors {
+    background-color: #980230;
+}
+
+#notfound {
+
+/*
+    background: url(../images/nfbubble.png) no-repeat;
+    height: 140px;
+    width: 322px;
+    margin: 4em 0;
+    text-align: right;
+*/
+}
+
+
+#notfound  p {
+    text-align: center;
+    padding: 4em 1.5em;
+    font-weight: bold;
+}
+
+
+/*************************************************
+*   PROPERTIES
+*************************************************/
+
+
+.tdName, .clientName, .profileName, .propName {		
+    text-align: right;
+}
+
+.clientValue, .propValue {	
+    text-align: left;
+    min-width: 70%;
+}
+
+.profileName {		
+    width: 8.5em;
+} 
+
+/*************************************************
+*               TABLE
+*************************************************/ 
+table {
+    /* background-color: white; */
+    width: 100%; /* fill up the space of the surrounding container */
+    text-align: left;
+}
+
+
+th {
+    background: #7499c6;
+    font-weight: 700;
+    padding: 0.16em 0.4em;
+    margin: 0;
+    /* text-align: center; */
+}
+
+th a {
+    color: black;
+}
+
+th a:hover {
+    color: #315581;
+}
+
+/* styles for showing the sorted image indicator on sortable columns; grails adds th.asc and th.asc classes */
+th a:link, th a:visited, th a:hover {
+    display:block;
+    font-size:10px;
+    text-decoration:none;
+}
+th.asc a, th.desc a {
+    background-position: left;
+    background-repeat: no-repeat;
+    padding-left: 8px;
+}
+th.asc a {
+    background-image: url(../images/skin/sorted_asc.gif);
+}
+th.desc a {
+    background-image: url(../images/skin/sorted_desc.gif);
+}
+
+
+th.selectAll, td.selectAll {
+    width: 2.2em;
+    max-width: 2.2em;
+}
+
+td {
+    padding: 0.1em 0.4em;
+    text-align: left;
+}
+
+#table_border {
+    border: 1px solid #000;
+    margin: 0.4em 1em 0 1em;
+    padding: 0;
+    background:#ffffff;
+}
+
+.tableBorder {
+    border: 1px solid #000;
+    margin: 0.4em 1em 0 1em;
+    padding: 0;
+}
+
+tr.row_even {
+    background-color:  #eef1f8;
+}
+
+tr.zebra {
+}
+
+tr.row_odd {
+    background-color: #c3d2e7;
+}
+
+label {
+    font-weight: 700;
+    font-style: normal;
+}
+
+/*
+* This styling is applied to the table controls, such as the search box
+* and the select/unselect all.
+*/
+#table_control {
+    /* make the div expand to include the search box */
+
+    background: white ; 
+    margin: 0;
+    font-weight: bold;
+    /*height: 26px;*/
+}
+
+/*************************************************
+*               INFO-SECTION
+*
+* The class "info" is used for 2-column tabular
+* data meant to show things like configuration
+* information.
+*************************************************/ 
+
+.info {
+    border: 1px solid #000;
+    margin: 0.4em 1em 0 1em; /* used to separate multiple .info div's vertically */
+    background-color: #eef1f8;
+    /* padding-bottom: 0.2em; added for rounding info */
+}
+
+.info table {
+    padding: 0.5em;
+}
+
+.info table.enterprise {
+    #width: 97.9%;
+    padding: 0.5em 0;
+    background: none;
+}
+
+.info table.notifications {
+    #width: 97.7%;
+}
+
+.info table.licenseprops {
+    #width: 97.93%;
+}
+
+.info table.security {
+    #width: 98.7%;
+    background: #eef1f8;
+}
+
+.info table.clientName, .name {		
+    width: 6.5em;
+}
+
+.info table.profileName {		
+    width: 8.5em;
+}
+
+.info table.propName, table.logged .propName {		
+    width: 6em;
+    #width: 6em;
+}
+
+.info_header {
+
+    background: white ; 
+    padding: 0.3em 0 0.3em 0.4em;
+    margin: 0;
+    font-weight: 700;
+    text-align: left;
+}
+
+.info_body, .info_body_contact_bulk, .snippet, .stack, .message, #stack {
+    padding: 0.5em;
+    color: #000;
+    background: #eef1f8;
+}
+
+.info_body_contact_bulk {
+    padding: 0.5em 0.5em 0.3em 0.5em;
+}
+
+.info_header h2 {
+    font-weight: 700;
+}
+
+.info table th {
+    padding: 0.18em 0.6em;
+}
+
+.info table td {
+    padding: 0.1em 0.6em;
+}
+
+.info tr td:first-child {
+    text-align: right; /* The name column is right-justified, while the value column is left-justified */
+    width: 35%;
+}
+
+.info table col:first-child {
+    width: 25%;
+}
+
+.info_body ul, .info_body_contact_bulk ul {
+    margin: 0.2em 0 0.1em 0.1em;
+}
+
+.info_body ul li, .info_body_contact_bulk ul li {
+    margin: 0.3em 0 0.6em 1.3em;
+    line-height: 1.2em;
+    list-style: square;
+}
+
+.info > .btn {
+    #margin-bottom: 0.2em;
+    #padding: 0.1em 0.5em;
+}
+
+/*************************************************
+*              SEARCH
+*************************************************/ 
+
+#searchForm {
+    text-align: right;
+    padding: 0.05em;
+}
+
+#search {
+    background:  #eef1f8;
+    color: black;
+    border: 1px #315581 solid;
+    margin: 0.4em;
+}
+
+#searchSubmit {
+    background: url(../images/btnbg.jpg) #c3d2e7;
+    color: black;
+    border: 1px #7399c6 solid;
+    margin-left: 0.4em;
+    #margin-bottom: 0.4em;
+    #margin-right: 0.2em;
+}
+
+/*************************************************
+*               BUTTONS
+*************************************************/ 
+/**
+* class to be applied to buttons and links so that they are uniformly represented
+* on the pages
+*/
+
+/*  usually holds non-actionbar buttons  */
+.actionInner {
+    padding: 0.1em;
+    margin: -1.8em 0.005em 0 0;
+    text-align: right;
+    #float: right;
+    #margin: -1.9em -0.2em 0 0;
+    #padding: 0.1em;
+}
+
+.actionHolder {	
+    margin: 0.05em 0.8em 0.2em 0.8em;
+    text-align: right;
+    padding: 0;
+    right: 0;
+}
+
+.actionLeft {    
+    text-align:left;
+    padding-left:1em;
+    padding-top:0.3em;
+}
+
+.pageHeaderButtons {
+    text-align:right;
+    font-weight:normal;
+    vertical-align:middle;
+}
+
+.btn:visited {
+    color:#000;
+}
+
+.btn:hover {
+    background: url(../images/btnbg.jpg) #c3d2e7;
+    border: 1px #7399c6 solid;
+    color:#000;
+}
+
+.btn {
+    background: url(../images/btnbg_over.jpg) #c8c5a1;
+    color: #000;
+    font-weight: normal;
+    border: 1px #a19670 solid;
+    height: 1.6em;
+    padding: .07em .7em .002em .72em;
+    cursor: pointer;
+    margin: 0 0.25em 0.31em 0.25em;
+    font-size: 90%;
+}
+
+td.btn, td.btn:hover {
+    margin-top: 0.3em;
+    margin-bottom: 0.01em;
+}
+
+.btn_blue:hover {
+    background: url(../images/btnbg_over.jpg) #c8c5a1;
+    border: 1px #a19670 solid;
+    color:#000;
+}
+
+.btn_blue {
+    background: url(../images/btnbg.jpg) #c3d2e7;
+    border: 1px #7399c6 solid;
+    color:#000;
+}
+
+.btninput:hover {
+    background: url(../images/btnbg.jpg) #c3d2e7;
+    border: 1px #7399c6 solid;
+    color:#000;
+}
+
+.btninput {
+    background: url(../images/btnbg_over.jpg) #c8c5a1;
+    color: black;
+    border: 1px #a19670 solid;
+    height: 1.6em;
+    padding: 0 0.7em 0.06em 0.7em;
+    cursor: pointer;
+    #padding: 0;
+    font-size: 90%;
+    #line-height: 14px;
+    margin: 0.06em 0.26em 0.003em 0.1em;
+    #margin: 0.15em 0.2em 0 0;
+}
+
+.btninput_blue:hover {
+    background: url(../images/btnbg_over.jpg) #c8c5a1;
+    border: 1px #a19670 solid;	
+}
+
+.btninput_blue {
+    background: url(../images/btnbg.jpg) #c3d2e7;
+    border: 1px #7399c6 solid;	
+}
+
+.closefilter {
+    font-size: 110%;
+    font-weight: bold;
+}
+
+.controlLeft {	
+    margin: 0 1em;
+    text-align: left;
+    padding: 0;
+}
+
+.removeall {
+    float: right;
+    margin-top: -.25em;
+    padding: 0.18em 0;
+    #margin-top: -1.65em;
+    #padding: 0.18em 0;
+}
+
+#upload input file  {
+    background: url(../images/btnbg.jpg) #c3d2e7;
+    color: black;
+    border: 1px #7399c6 solid;
+    height: 17px;
+}
+
+
+/*************************************************
+*               OTHER PAGE PROPERTIES
+*************************************************/ 
+
+#currentProfileDisplay {
+    padding: 0;
+    margin: 0;
+}
+
+#getStatus, #update, #new {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+#login {
+    border:  2px solid #000;
+    margin:15% 32% 0 32%;
+    padding: 3em 1em 3em 0;
+}
+
+#newclient {
+    margin-right: 12em;
+    margin-left: 0;
+}
+
+#profileEditor {
+    margin: 0.2em 0 0.3em 0;
+    padding: 0;
+}
+
+#profileWizard {
+    margin-top: 0.6em;
+    padding: 0.6em 0 0 0;
+    float: right;
+}
+
+#reportTypeChoice, #clientOrGroupChoice, #selectionChoice, #reportChoice, #report_1_td, #report_2_td,  #client_1_td,  #client_2_td {
+    margin:  0 0 .5em 0;
+    width: 25%;
+    text-align: left;
+}
+
+#reportTypeChoice fieldset  legend, #clientOrGroupChoice fieldset  legend, #selectionChoice fieldset legend, #reportChoice fieldset  legend, #report_1_td fieldset  legend, #report_2_td fieldset  legend,  #client_1_td fieldset  legend,  #client_2_td fieldset  legend  {  
+    margin: 1em 0;
+}
+
+#stack, .stack {
+    overflow: auto;
+    max-height: 26em;
+    min-height: 15em;
+    line-height: 20px;
+}
+
+.addremove {
+    text-align: center;
+    vertical-align: middle;
+    float: left;
+}
+
+.abline {
+    width: 49%;
+    text-align: left;
+}
+
+.all {
+    width: 100%;
+}
+
+.bline {
+    width: 24%;
+    text-align: left;
+}
+
+.bline fieldset  legend, .abline fieldset  legend {
+    margin: 1em 0;
+    #margin: 1em 0;
+}
+/*
+.browsebtn {
+margin: 2px 0 -4px 4px; 
+width: 68px; 
+height:17px; 
+cursor: pointer;
+}
+*/
+.clearbtn {
+    text-align: right;
+    padding: 0.3em;
+}
+
+.clearboth {
+    clear: both;
+}
+
+.clientlists {
+    width: 40%;
+    text-align: left;
+    padding: 0.8em;
+    #padding: 0.5em;
+    float: left;
+    background: #c3d2e7;
+}
+
+.clientsave {
+    height: 2em;
+    #height: 1em;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+.exprtimprt {
+    width: 47%;
+    float: left;
+}
+
+.grouplist {
+    text-align: left;
+    height: 19em;
+    border: 1px solid #000;
+    width: 40%;
+    vertical-align: top;
+    text-align: left;
+    padding: 0;
+    background: #c3d2e7;
+}
+
+.half {
+    width: 50%;
+}
+
+.sixty {
+    width: 60%;
+}
+
+.threequarters {
+    width: 75%;
+}
+
+.centerDiv {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.helptext {
+    background: #dce2ee;
+    text-align: left;
+    padding: 0.03em 0.5em 0.03em .2em;
+}
+
+.infort {
+    padding: 0 0.6em 0 2em ;
+    float: right;
+    text-align: right;
+    font-weight: 500;
+}
+
+.logcontent {
+    max-height: 415px;
+    min-height: 50px;
+    line-height: 15px;
+    overflow: auto;
+    padding: .5em;
+    background-color: #eef1f8;
+}
+
+.manageclient {
+    text-align: left;
+    height: 18.63em;
+    #height: 19em;
+    border: 1px solid #000;
+    width: 60%;
+    vertical-align: top;
+    text-align: left;
+    padding: 0;
+}
+
+/*
+ * Module classes (specificing when editing profiles 
+ *
+*/
+.module {
+    padding: 0.2em;
+    background: #cecdbc;
+    text-align: right;
+    vertical-align: top;
+}
+
+.moduleSettingDescription {
+    margin-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+    padding-left: 0.5em;
+    padding-left: 1.5em;
+    text-align: right;
+    vertical-align: top;
+    border-top: 1px dotted gray;
+    text-align: left;
+}
+
+.moduleSettingValue {
+    text-align: left;
+    font-style: italic;
+    vertical-align: top;
+    margin-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+    border-top: 1px dotted gray;
+}
+
+.moduleFilterList {
+    padding: 0.1em 0;
+}
+
+.moduleDescription {
+    margin-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+    padding-left: 1.5em;
+    text-align: left;
+    font-style: italic;
+}
+
+p.moduleDescription   {
+    text-align: left;
+    padding: 0.03em 0.5em 0.03em 0;
+
+}
+
+.baselineProfile {
+
+}
+
+.baselineSection {
+
+}
+
+.baselineModule {
+    /*border-bottom: 1px solid black;    */
+    text-align: left;
+}
+
+.enabledDisabledDropDown {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    width:8em;
+}
+
+.baselineModuleInfo {
+    background-color: #C3D2E7;
+}
+
+
+/*----- this can be used for any scrolling space, just assign an inline (max-)height with this class ------*/
+.overflow {
+    padding: 0.5em;
+    overflow: auto;
+    height: auto;
+    background: #c3d2e7;
+}
+
+.required {
+    margin: -1.1em 2em 0.5em 3em;
+    #margin: -1.5em 2em 0.6em 3em;
+    font-weight: 500;
+}
+
+.third {
+    width: 30%;
+}
+
+.threeqtr {
+    width: 75%;
+}
+
+.twothrds {
+    width: 59%;
+}
+
+.profileNameColumn {
+    width:35%;
+}
+
+.profileIndustryStandardColumn {
+    width:14%;
+    text-align: center;
+}
+
+.groupNumberOfClientsColumn {
+    width:14%;
+    text-align: center;
+}
+
+/*************************************************
+*               MARGIN & PADDING CLASSES
+*************************************************/
+
+.center {
+    text-align: center;
+}
+
+.verticalMiddle {
+    vertical-align: middle;
+}
+
+.paddedSelect {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.pad1TopBtm {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.pad1Top {
+    padding-top: 1em;
+}
+
+.pad1Btm {
+    padding-bottom: 1em;
+}
+
+.margin3topbtm {
+    margin: 0.3em 0;
+}
+
+.margin5topbtm {
+    margin: 0.5em 0;
+}
+
+.margin1mrt {
+    margin-right: 1em;
+}
+
+.margin1mleft {
+    margin-left: 1em;
+}
+
+.margin2mrt {
+    margin-right: 2em;
+}
+
+.margin2mleft {
+    margin-left: 2em;
+}
+
+.margin3mrt {
+    margin-right: 3em;
+}
+
+.margin3mleft {
+    margin-left: 3em;
+}
+
+.margin2left {
+    margin-left: 0.2em;
+}
+
+.margin2rt {
+    margin-right: 0.2em;
+}
+
+.margin1mbtm {
+    margin-bottom: 1em;
+}
+
+.margin1mtop {
+    margin-top: 1em;
+}
+
+.margin5btm {
+    margin-bottom: 0.5em;
+}
+
+.margin5top {
+    margin-top: 0.5em;
+}
+
+.margin4left {
+    margin-left: .4em;
+}
+
+.margin4rt {
+    margin-right: 0.4em;
+}
+
+.margin5rt {
+    margin-right: 0.5em;
+}
+
+.margin5left {
+    margin-left: 0.5em;
+}
+
+.pad3botm {
+    padding-bottom: 0.3em
+}
+
+.pad3top {
+    padding-top: 0.3em
+}
+
+.pad5all {
+    padding: 0.5em;
+}
+
+.pad5botm {
+    padding-bottom: 0.5em
+}
+
+.pad5top {
+    padding-top: 0.5em
+}
+
+.pad6all {
+    padding: 0.6em;
+}
+
+.width4em {
+    width: 4em;
+}
+
+.width7em {
+    width: 7em;
+}
+
+
+.width8em {
+    width: 8em;
+}
+
+.width12mrt {
+    width: 12em;
+    text-align: right;
+}
+
+.width12mlft {
+    width: 12em;
+    text-align: left;
+}
+
+.buttonsDiv {
+    padding-bottom:1em;
+    text-align:center;
+}
+
+/*************************************************
+*              STATUS CLASSES
+*************************************************/
+
+.blockLabel {
+    width:9em;
+    text-align:center;
+    border:1px solid black;
+}
+
+.blue {
+    background-color: #467fc5;
+}
+
+.green {
+    background-color: #46c591;
+}
+
+.orange {
+    background-color: #ff852b;
+}
+
+.red {
+    background-color: #ff2b2b;
+}
+
+.sbRed {
+    color: #980230;
+}
+
+.yellow {
+    background-color: #ded270;
+}
+
+.enabledLabel {
+    background-color: #C8C5A1;
+}
+
+.disabledLabel {
+    background-color: #899EB7;
+}
+
+
+/*************************************************
+*              FILE UPLOAD
+*************************************************/ 
+
+.showinput {
+    z-index: 5;
+    background:  #c3d2e7;
+    color: black;
+    border: 1px #7399c6 solid;
+    text-align: right;
+    height: 17px;
+    margin: 0 0.25em;
+    font-size: 90%;
+    #line-height: 15px;
+}
+
+#upload {
+    font-weight: bold;
+    display: block;
+    #margin-top: 0.2em;
+}
+
+div.fileinputs {
+    position: relative;
+    padding: 0.16em;
+    #padding: 0.1em 0 0.3em 0;
+}
+
+div.fakefile {
+    position: absolute;
+    background: transparent;
+    top: 0.4em;
+    #	top: 0.08em;
+    right: 115px;
+    #right: 90px;
+    z-index: 1;
+}
+
+div.fakefile img {
+    margin-bottom: -4px;
+    margin-left: 3px;
+    #margin-bottom: -4px;
+    #margin-left: 5px;
+    z-index: 3;
+}
+
+input.file {
+    position: relative;
+    text-align: right;
+    -moz-opacity: 0;
+    filter: alpha(opacity: 0);
+    opacity: 0;
+    z-index: 5;
+    background: #eef1f8;
+    border: 0.03em solid #7499c6;
+    right: 0px;
+    #right: 9px;
+    #top: 2px;
+    top: 2px;
+}
+
+div.fake_file {
+    position: absolute;
+    background: transparent;
+    display: block;
+    top: 0px;
+    left:  0px;
+    #top: 1px;
+    #left: 0px;
+    z-index: 1;
+
+    div.fake_file img {
+    margin-bottom: 3px;
+    margin-left: 0px;
+    #margin-bottom: 3px;
+    #margin-left: 0px;
+    z-index: 1;
+}
+
+input.file1 {
+    position: relative;
+    text-align: left;
+    -moz-opacity: 10;
+    filter: alpha(opacity: 10);
+    opacity: 10;
+    z-index: 5;
+    background: #eef1f8;
+    border: 0.03em solid #7499c6;
+    left: 5px;
+    #left: 0px;
+    #top: 2px;
+    margin-bottom: 0;
+    #margin-bottom: 2px;
+    margin-right: 1em;
+    padding-right: 1em;
+}

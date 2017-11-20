@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="800" name="Remove Telnet Service Banner">
+        <library>TelnetBanner</library>
+        <description>Removes the telnet service banner. On Solaris systems, the standard warning banner is displayed and then the telnet service banner is displayed, which often contains the operating system version.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Banners</member>
+        </views>
+      </security_module>

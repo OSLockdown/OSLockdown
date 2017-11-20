@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: DisableZeroconfNet.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableZeroconfNet" version="5.0">
+  <title xml:id="NetworkConfig">Disable Zeroconf Networking</title>
+  <para>
+  Disables the 'zeroconfig' networking capability, to prevent devices
+  from self-configuring themselves to work within the 169.254.0.0
+  subnet.
+  <indexterm><primary>zeroconfig</primary></indexterm>
+ </para>
+  <para>
+  Some systems will automatically self-configure to have an address
+  within this subnet if a DHCP request fails.
+  <indexterm><primary>DHCP</primary></indexterm>
+ </para>
+  <para>
+  This module examines the <filename>/etc/sysconfig/network</filename>
+  file to ensure the following line is present:
+  <indexterm><primary>/etc/sysconfig/network</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/etc/sysconfig/network</secondary></indexterm>
+ </para>
+  <programlisting>NOZEROCONF=yes</programlisting>
+  <simplesect xml:id="DisableZeroconfNet-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>3.3.9.3 - Disable Zeroconf Networking</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-14054-1 - Zeroconf networking should be enabled or disabled as appropriate.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

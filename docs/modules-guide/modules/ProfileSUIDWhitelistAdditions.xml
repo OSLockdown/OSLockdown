@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="ProfileSUIDWhitelistAdditions">
+  <title xml:id="ProfileSpecificAdditions">(PROFILE CUSTOMIZATION) - additions to suid_whitelist</title>
+  <para>
+  This module allows the profile to contain specific executables that
+  should be added to
+  <filename>/var/lib/oslockdown/files/suid_whitelist</filename> file
+  processing when this profile is run. The additions are transient, and
+  will not persist past the execution of the profile.
+ </para>
+  <simplesect xml:id="ProfileSUIDWhitelistAdditions-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Additional SUID executables (one per line)<emphasis><para>This allows for Profile specific executables that are allowed to have the SUID bit set.  There should be one executable per line.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="ProfileSUIDWhitelistAdditions-compliancy">
+    <title>Compliancy</title>
+    <para>N/A</para>
+  </simplesect>
+</section>

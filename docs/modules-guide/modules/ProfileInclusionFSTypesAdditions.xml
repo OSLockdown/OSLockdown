@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="ProfileInclusionFSTypesAdditions">
+  <title xml:id="ProfileSpecificAdditions">(PROFILE CUSTOMIZATION) - additions to inclusion-fstypes</title>
+  <para>
+  This module allows the profile to contain specific file system types
+  (fstypes) that should be added to
+  <filename>/var/lib/oslockdown/files/inclusion-fstypes</filename>
+  processing when this profile is run. The additions are transient, and
+  will not persist past the execution of the profile.
+ </para>
+  <simplesect xml:id="ProfileInclusionFSTypesAdditions-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Additional filesystem types to search<emphasis><para>This allows for Profile specific filesystem types that OS Lockdown will include for processing.  There should be one file system type per line.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="ProfileInclusionFSTypesAdditions-compliancy">
+    <title>Compliancy</title>
+    <para>N/A</para>
+  </simplesect>
+</section>

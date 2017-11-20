@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Postgresql">
+        <library>DisableSQL_postgresql</library>
+        <description>Disables the PostgreSQL database server.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/a:postgresql:postgresql"/>
+          <cpe-item name="cpe:/o:centos:centos:4">
+            <services>
+              <service seq="1" name="postgresql"/>
+            </services>
+            <packages>
+              <package name="postgresql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:5">
+            <services>
+              <service seq="1" name="postgresql"/>
+            </services>
+            <packages>
+              <package name="postgresql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:11">
+            <services>
+              <service seq="1" name="postgresql"/>
+            </services>
+            <packages>
+              <package name="postgresql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:11">
+            <services>
+              <service seq="1" name="postgresql"/>
+            </services>
+            <packages>
+              <package name="postgresql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4">
+            <services>
+              <service seq="1" name="postgresql"/>
+            </services>
+            <packages>
+              <package name="postgresql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5">
+            <services>
+              <service seq="1" name="postgresql"/>
+            </services>
+            <packages>
+              <package name="postgresql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:10">
+            <services>
+              <service seq="1" name="postgresql"/>
+            </services>
+            <packages>
+              <package name="postgresql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:11">
+            <services>
+              <service seq="1" name="postgresql"/>
+            </services>
+            <packages>
+              <package name="postgresql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:12">
+            <services>
+              <service seq="1" name="postgresql"/>
+            </services>
+            <packages>
+              <package name="postgresql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:sun:sunos:5.10">
+<!-- No specific package check for Solaris, 
+                             just disable these services: -->
+            <services>
+              <service seq="1" name="svc:/application/database/postgresql:version_81"/>
+              <service seq="2" name="svc:/application/database/postgresql:version_82"/>
+              <service seq="3" name="svc:/application/database/postgresql"/>
+            </services>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4">
+            <services>
+              <service seq="1" name="postgresql"/>
+            </services>
+            <packages>
+              <package name="postgresql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5">
+            <services>
+              <service seq="1" name="postgresql"/>
+            </services>
+            <packages>
+              <package name="postgresql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:13">
+            <services>
+              <service seq="1" name="postgresql"/>
+            </services>
+            <packages>
+              <package name="postgresql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:10">
+            <services>
+              <service seq="1" name="postgresql"/>
+            </services>
+            <packages>
+              <package name="postgresql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:10">
+            <services>
+              <service seq="1" name="postgresql"/>
+            </services>
+            <packages>
+              <package name="postgresql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6">
+            <services>
+              <service seq="1" name="postgresql"/>
+            </services>
+            <packages>
+              <package name="postgresql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:6">
+            <services>
+              <service seq="1" name="postgresql"/>
+            </services>
+            <packages>
+              <package name="postgresql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <services>
+              <service seq="1" name="postgresql"/>
+            </services>
+            <packages>
+              <package name="postgresql-server"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+          <member>Database Services</member>
+        </views>
+      </security_module>

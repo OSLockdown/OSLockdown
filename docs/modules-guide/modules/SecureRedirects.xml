@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SecureRedirects" version="5.0">
+  <title xml:id="NetworkConfig">Disable Accepting Secure Redirects</title>
+  <para>
+  Configures the system to block secure ICMP redirects.
+  <indexterm><primary>ICMP</primary></indexterm>
+ </para>
+  <para>
+  A secure redirect message is sent by a gateway that appears in the
+  host’s default gateway list. This message notifies the system that
+  there is a shorter route to a particular destination.
+ </para>
+  <para>
+  Spoofing a router’s IP address is fairly simple; therefore, an
+  attacker could use ICMP redirects in a potential denial-of-service
+  attack if your system is configured to accept such redirects.
+  <indexterm><primary>denial-of-service</primary></indexterm>
+ </para>
+  <table xml:id="table-secureredirects-settings" frame="all" tocentry="0" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>IP Settings to Block Secure Redirects</title>
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.5*" align="left"/>
+      <colspec colname="c2" colwidth="0.5*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Setting</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="4">
+            <filename>/etc/sysctl.conf</filename>
+            <indexterm>
+              <primary>/etc/sysctl.conf</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/sysctl.conf</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>sysctl.conf</primary>
+            </indexterm>
+          </entry>
+          <entry morerows="4">
+            <literallayout class="monospaced">
+net.ipv4.conf.all.secure_redirects = 0
+net.ipv4.conf.default.secure_redirects = 0</literallayout>
+            <indexterm>
+              <primary>secure_redirects</primary>
+            </indexterm>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+          <entry namest="c2" nameend="c3">
+            <emphasis>Operating System Not Applicable</emphasis>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+  <simplesect xml:id="SecureRedirects-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-13 - Limitation and Control of Network Ports, Protocols, and Services</para>
+      </listitem>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>6.1 - Kernel TCP Stack Tuning</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000086 - The system must not accept ICMPv4 secure redirect packets on any interface.</para>
+      </listitem>
+      <listitem>
+        <para>RHEL-06-000090 - The system must not accept ICMPv4 secure redirect packets by default.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>SC-5 - Denial of Service Protection</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

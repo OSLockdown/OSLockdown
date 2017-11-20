@@ -1,0 +1,1936 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % CommonEntities SYSTEM "../COMMON_ENTITIES.ent">
+%CommonEntities;
+]>
+<chapter version="5.0" xml:id="install-config" xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+   xmlns:xlink="http://www.w3.org/1999/xlink">
+   <!--<?xml-stylesheet type="text/css" href="docbook.css"?>-->
+   <title>OS Lockdown Installation and Configuration</title>
+   <indexterm>
+      <primary>OS Lockdown</primary>
+      <secondary>Installing</secondary>
+   </indexterm>
+   <indexterm>
+      <primary>OS Lockdown</primary>
+      <secondary>Configuration</secondary>
+   </indexterm>
+   <indexterm>
+      <primary>Application</primary>
+      <secondary>Installing</secondary>
+   </indexterm>
+   <para>This chapter provides instructions on how to download, install and configure the OS Lockdown application for
+      both editions (Enterprise and Standalone - including command line only). Instructions on how to install OS
+      Lockdown on a single client are also provided. </para>
+   <important>
+      <para>Before you begin, ensure that you have read the information in <xref linkend="deploy-planning"
+            xrefstyle="select: label quotedtitle"/>.</para>
+   </important>
+   <note>
+      <itemizedlist>
+         <listitem>
+            <para>The OS Lockdown installation and configuration process is the same for all operating systems.</para>
+         </listitem>
+         <listitem>
+            <para>Execute all commands with root permissions.</para>
+         </listitem>
+      </itemizedlist>
+      <itemizedlist>
+         <listitem>
+            <para>Screen Text</para>
+            <screen>The information in the shaded boxes represents <emphasis role="italic">sample</emphasis> screen text. 
+Slight variances may exist in actual input/output.</screen>
+         </listitem>
+      </itemizedlist>
+   </note>
+   <section xml:id="run-install-script">
+      <title>Required: Running the OS Lockdown Installation Script</title>
+      <important>
+         <para>It is <emphasis role="italic">required</emphasis> to run the following procedure on all machines (i.e.,
+            the OS Lockdown Console and clients) prior to installing OS Lockdown. </para>
+      </important>
+      <procedure>
+         <para>To download and run the OS Lockdown installation (<filename>SB_Install</filename>) script:</para>
+         <indexterm>
+            <primary>Installation</primary>
+            <secondary>Script</secondary>
+            <tertiary>Running</tertiary>
+         </indexterm>
+         <indexterm>
+            <primary>SB_Install</primary>
+            <secondary>Downloading</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>SB_Install</primary>
+            <secondary>Running</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Installation</primary>
+            <secondary>Script</secondary>
+            <tertiary>Downloading</tertiary>
+         </indexterm>
+         <step>
+            <para>If you have not built the OS Lockdown installer package, download the source from 
+               <link
+                  xlink:href="https://www.github.com/OSLockdown/OSLockdown"/> and follow
+               the <filename>BUILDING.txt</filename> instructions in that download before proceeding to <xref
+                  linkend="step-extract-archive"/>. </para>
+         </step>
+         <step xml:id="step-extract-archive">
+            <para>Extract the archive. </para>
+            <para>All of the files required to install OS Lockdown are contained in a directory in the archive. The
+               actual name of this directory is controlled by the user who constructed the archive. Historically this
+               name has been the name of the product, the version number, and the actual SVN commit number the version
+               (x.y.z) was built from in a format similar to <filename>PRODUCT-X-Y-Z-COMMIT</filename>.</para>
+            <para>In the examples below, this results in <filename>oslockdown-&SB_prodvers;-22055</filename>.</para>
+            <screen>[root@localhost]# <userinput>/bin/tar xvf oslockdown-Full.tar</userinput>
+oslockdown-&SB_prodvers;-22055/docs/
+oslockdown-&SB_prodvers;-22055/docs/OS_Lockdown_Administration_Guide.pdf
+oslockdown-&SB_prodvers;-22055/docs/OS_Lockdown_Modules_Guide.pdf
+oslockdown-&SB_prodvers;-22055/toolupdates/
+oslockdown-&SB_prodvers;-22055/SB_Remove
+oslockdown-&SB_prodvers;-22055/sb-convert-db2xml.sh
+oslockdown-&SB_prodvers;-22055/UPGRADING
+oslockdown-&SB_prodvers;-22055/RPMS/
+oslockdown-&SB_prodvers;-22055/RPMS/redhat/
+oslockdown-&SB_prodvers;-22055/RPMS/redhat/5/
+oslockdown-&SB_prodvers;-22055/RPMS/redhat/5/noarch/
+oslockdown-&SB_prodvers;-22055/RPMS/redhat/5/noarch/oslockdown-modules-&SB_prodvers;
+-22055.el5.noarch.rpm
+oslockdown-&SB_prodvers;-22055/RPMS/redhat/5/noarch/oslockdown-&SB_prodvers;-22055.
+el5.noarch.rpm
+oslockdown-&SB_prodvers;-22055/RPMS/redhat/5/i386/
+oslockdown-&SB_prodvers;-22055/RPMS/redhat/5/i386/oslockdown-dispatcher-&SB_prodvers;
+-22055.el5.i386.rpm
+oslockdown-&SB_prodvers;-22055/RPMS/noarch/
+oslockdown-&SB_prodvers;-22055/RPMS/noarch/oslockdown-console-&SB_prodvers;-22055.
+noarch.rpm
+oslockdown-&SB_prodvers;-22055/SB_Install
+[root@localhost]#</screen>
+         </step>
+         <step>
+            <para>Change directories.</para>
+            <screen>[root@localhost]# <userinput>cd oslockdown-&SB_prodvers;-22055/</userinput>
+[root@localhost oslockdown-&SB_prodvers;-22055/]#</screen>
+         </step>
+         <step>
+            <para>Run the <filename>SB_Install</filename> script. </para>
+            <screen>[root@localhost oslockdown-&SB_prodvers;-22055/]# <userinput>./SB_Install</userinput></screen>
+         </step>
+         <step>
+            <para>Continue by installing your OS Lockdown edition:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>To install the <emphasis role="bold">Enterprise</emphasis> edition, proceed to <xref
+                        linkend="ent-console-install" xrefstyle="select: label quotedtitle"/>.</para>
+               </listitem>
+               <listitem>
+                  <para>To install the <emphasis role="bold">Standalone</emphasis> edition, proceed to <xref
+                        linkend="client-install" xrefstyle="select: label quotedtitle"/>.</para>
+               </listitem>
+               <listitem>
+                  <para>To install the <emphasis role="bold">Standalone</emphasis> edition, <emphasis role="bold"
+                        >command line only</emphasis>, proceed to <xref linkend="command-line-install"
+                        xrefstyle="select: label quotedtitle"/>.</para>
+               </listitem>
+            </itemizedlist>
+            <para>OR</para>
+            <para>To install OS Lockdown on a client machine only, proceed to <xref linkend="client-only-install"
+                  xrefstyle="select: label quotedtitle"/>.</para>
+         </step>
+      </procedure>
+   </section>
+   <section xml:id="ent-console-install">
+      <title>Installing the OS Lockdown Enterprise Edition</title>
+      <important>
+         <para>All Novell SUSE and openSUSE clients <emphasis role="italic">require</emphasis> Oracle’s official Java
+            Runtime Environment (JRE) with the following exceptions: openSUSE 11 SP1 and SP2 (which use the openJDK from
+            the installation ISO image).</para>
+      </important>
+      <procedure>
+         <para>To install the OS Lockdown Enterprise edition (including one local client):</para>
+         <indexterm>
+            <primary>OS Lockdown</primary>
+            <secondary>Enterprise Edition</secondary>
+            <tertiary>Installing</tertiary>
+         </indexterm>
+         <indexterm>
+            <primary>Enterprise Edition</primary>
+            <secondary>Installing</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>SELinux</primary>
+         </indexterm>
+         <step>
+            <para>After you have followed the instructions in <xref linkend="run-install-script"
+                  xrefstyle="select: label quotedtitle"/>, SELinux policy type detection begins. Follow the prompts
+               according to your system configuration. </para>
+            <para>The installer determines the following:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>If SELinux is enabled.</para>
+               </listitem>
+               <listitem>
+                  <para>If OS Lockdown supports the operating system with SELinux.</para>
+               </listitem>
+               <listitem>
+                  <para>If an OS Lockdown SELinux policy module exists.</para>
+               </listitem>
+            </itemizedlist>
+            <note>
+               <para>Refer to <xref linkend="intro-selinux" xrefstyle="select: label quotedtitle"/> for more information
+                  on SELinux and OS Lockdown.</para>
+            </note>
+         </step>
+         <step>
+            <para>At the <filename>Install the graphical Console package? [y,n]</filename> prompt, type
+                  <userinput>y</userinput> for yes.</para>
+            <screen>Install the graphical Console? 
+               
+The graphical Console is not required for Enterprise Edition Clients. 
+However, it is required for the system you've designated as the Enterprise 
+Console and is STRONGLY recommended for all Standalone installations.
+               
+For advanced command line users, you can run Standalone without a 
+graphical Console, however, you are required to select the Standalone
+installation type.
+               
+Install the graphical console package? [y/n]: <userinput>y</userinput></screen>
+         </step>
+         <step>
+            <para>Select the directory in which the Java Runtime Environment (JRE) was installed. </para>
+            <para>The script attempts to determine an appropriate Java v1.6 or v1.7 JRE by looking in common locations.
+               This location, or the location previously used if you are updating a previous version of OS Lockdown, is
+               displayed here. The asterisk (*) indicates the detected directory. If no appropriate Java JRE is found,
+               you must manually enter the <filename>JAVA_HOME</filename> directory.</para>
+            <note>
+               <para>Given a choice between a symbolic link and an absolute path, the symbolic link is preferred. For
+                  example, if <filename>/usr/lib/jvm/jre-1.6.0</filename> is a symbolic link to
+                     <filename>/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64</filename> and both are shown, select the
+                     <filename>/usr/lib/jvm/jre-1.6.0</filename> option.</para>
+            </note>
+            <indexterm>
+               <primary>Java Runtime Environment (JRE)</primary>
+            </indexterm>
+            <indexterm>
+               <primary>JAVA_HOME</primary>
+            </indexterm>
+            <screen>Creating /usr/share/oslockdown/console/.profile to remember which Java is 
+being used.
+
+The following is a list of possible JAVA_HOME directories. If JAVA_HOME was
+set previously in '.profile' for the 'sbwebapp' user, that will be the default 
+value. Please remember there may be multiple possible settings for JAVA_HOME 
+that may actually point to the same place, due to the use of symbolic links.
+
+  0  Enter JAVA_HOME manually
+* 1  filename [OpenJDK/1.6] /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre
+  2 (java-1.6.0-openjdk) [OpenJDK/1.6] /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.
+   x86_64/jre
+
+Please select the directory to use for JAVA_HOME: <userinput>1</userinput>
+         
+Selecting '/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre' for JAVA_HOME</screen>
+         </step>
+         <step>
+            <para>Install the OS Lockdown SELinux policy module. At the <filename>Install the OS Lockdown SELinux Policy
+                  Module? [y/n]</filename> prompt, type <userinput>y</userinput> for yes. </para>
+            <screen>:: Checking for core installation RPMs for 64 bit Red Hat, release 6...
+
+OS Lockdown SELinux Policy Module is available.
+Current SELinux Policy file is: targeted
+
+OS Lockdown provides support for SELinux when running in enforcing/permissive 
+mode for the 'targeted' policy. Currently, other policy files are not supported 
+(such as 'strict' or 'mls').
+
+Install the OS Lockdown SELinux Policy Module? [y/n]: <userinput>y</userinput></screen>
+            <para/>
+         </step>
+         <step>
+            <para>Installation begins. </para>
+            <itemizedlist>
+               <listitem>
+                  <para>If previous versions of the product exist on your system, at the <filename>Remove and replace
+                        packages? [y/n]</filename> prompt, type <userinput>y</userinput> for yes. </para>
+                  <para>The system removes previous version(s) of the product, and exports the database consisting of
+                     reports, logs, and profiles. The database can be imported into the new OS Lockdown Console using
+                     the Manage Database page (<xref linkend="enterprise-mig-page" xrefstyle="select: label"/>).</para>
+               </listitem>
+               <listitem>
+                  <para>If previous versions of the product do <emphasis role="italic">not</emphasis> exist on your
+                     system, proceed to <xref linkend="optional-copy-1" xrefstyle="select: label quotedtitle"/>.</para>
+               </listitem>
+            </itemizedlist>
+            <screen>                     .:: LINUX INSTALLATION ::. 
+**************************************************************************
+:: Stopping current Security Blanket/OS Lockdown services...
+:: Checking for Security Blanket v3.x Enterprise Console database...
+
+:: Preserving potential changes made in /var/lib/security-blanket/files...
+
+:: Performing any requested backups of profiles and database directories...
+
+:: Checking for previous versions of Security Blanket/OS Lockdown...
+
+   * Found the following installed Security Blanket packages:
+     - security-blanket-4.0.4-r1127.el5
+     - security-blanket-modules-4.0.4-r1127.el5
+     - security-blanket-console-4.0.4-r1127
+     - security-blanket-dispatcher-4.0.4-r1127.el5
+
+Remove and replace packages? [y/n]: <userinput>y</userinput>
+
+:: Removing previous Security Blanket packages...
+   * Don't worry... all existing reports, logs, and profiles will be saved.
+
+:: Checking for dependent software packages...
+
+:: Preserving/renaming legacy Security Blanket files to work with OS Lockdown...
+OS Lockdown file /var/log/oslockdown-dispatcher.log detected, will not overwrite
+
+:: Installing OS Lockdown packages...
+                  
+   + oslockdown-&SB_prodvers;-22055.el6
+   + oslockdown-dispatcher-&SB_prodvers;-22055.el6
+   + oslockdown-console-&SB_prodvers;-22055
+   + oslockdown-modules-&SB_prodvers;-22055.el6
+   + oslockdown-selinux-&SB_prodvers;-22055.e16
+
+:: Ensuring permissions for any existing local reports are correct...
+
+:: Ensuring permissions for any existing certificates are correct...
+
+:: Ensuring permissions for any existing log files are correct...
+
+:: Ensuring SELinux contexts for existing files are correct...</screen>
+         </step>
+         <step xml:id="optional-copy-1">
+            <para>Optional. Copy the OS Lockdown documentation into the &ldquo;docs&rdquo; directory.</para>
+            <para>At the <filename>Would you like to copy them? [y/n]</filename> prompt, type <userinput>y</userinput>
+               to copy the OS Lockdown documentation into the <filename>/usr/share/oslockdown/docs</filename>
+               directory.</para>
+            <para>Otherwise, type <userinput>n</userinput> if you do not want to copy the documentation. </para>
+            <screen>:: You have the option of copying the files from the 'docs' directory into the 
+   /usr/share/oslockdown/docs directory. These files are the PDF versions of the
+   Admin Guide and the Modules Guide.
+
+Would you like to copy them? [y/n]: <userinput>y</userinput>
+   * Installing 'docs' directory in /usr/share/oslockdown
+   
+Folding any custom changes to /var/lib/oslockdown/files/* now...</screen>
+         </step>
+         <step>
+            <para>The script checks for security credentials on your system. </para>
+            <para>Security credentials are used to encrypt communications from web browsers to the OS Lockdown Console,
+               and to encrypt and authenticate console-to-client communications.</para>
+            <indexterm>
+               <primary>RSA-2048</primary>
+            </indexterm>
+            <indexterm>
+               <primary>Security</primary>
+               <secondary>Certificate Key Size</secondary>
+            </indexterm>
+            <indexterm>
+               <primary>Security</primary>
+               <secondary>Credentials</secondary>
+            </indexterm>
+            <indexterm>
+               <primary>Enterprise Edition</primary>
+               <secondary>Configuring Certificates</secondary>
+            </indexterm>
+            <indexterm>
+               <primary>OS Lockdown</primary>
+               <secondary>Enterprise Edition</secondary>
+               <tertiary>Configuring Certificates</tertiary>
+            </indexterm>
+            <note>
+               <para>The default certificate key size is RSA-2048 bit key length. </para>
+            </note>
+            <itemizedlist>
+               <listitem>
+                  <para>If no security credentials are found, at the <filename>Create security credentials now?
+                        [y/n]</filename> prompt, type <userinput>y</userinput> for yes. </para>
+               </listitem>
+               <listitem>
+                  <para>If security credentials are found, proceed to <xref linkend="at-the-would"
+                        xrefstyle="select: label quotedtitle"/>.</para>
+               </listitem>
+            </itemizedlist>
+            <screen>:: Looking for existing certificates and keystores...
+                     
+No pre-existing security credentials found on the system.
+            
+Create security credentials now? [y/n]: <userinput>y</userinput></screen>
+         </step>
+         <step>
+            <para>At the <filename>Directory does not exist, create it? [y/n]</filename> prompt, type
+                  <userinput>y</userinput> for yes.</para>
+            <para>The system creates the <filename>/var/lib/oslockdown/files/certs</filename> directory.</para>
+            <screen>                 .:: CREATE SECURITY CREDENTIALS ::.  
+******************************************************************************
+                     
+:: Looking for Certificates directory: /var/lib/oslockdown/files/certs
+
+Directory does not exist, create it? [y/n]: <userinput>y</userinput>
+
+:: Created certificates directory: /var/lib/oslockdown/files/certs...
+:: Setting SELinux context(s) for /var/lib/oslockdown/files/certs...
+:: Logging to /var/lib/oslockdown/files/certs/.working/ssl_logs.txt...</screen>
+         </step>
+         <step>
+            <para>At the <filename>Use [ your path to the JRE binaries ] as JAVA_HOME? [y/n]</filename> prompt, type
+                  <userinput>y</userinput> to confirm the directory in which the Java Runtime Environment (JRE) was
+               installed. Otherwise, type <userinput>n</userinput> to change the directory.</para>
+            <indexterm>
+               <primary>Java Runtime Environment (JRE)</primary>
+            </indexterm>
+            <indexterm>
+               <primary>JAVA_HOME</primary>
+            </indexterm>
+            <screen>Security credentials are used to:
+ * Encrypt communications from web browsers to console
+ * Encrypt and authenticate console-to-client communications
+                  
+Use [/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre] as JAVA_HOME? [y/n]: <userinput>y</userinput></screen>
+         </step>
+         <step>
+            <para>To generate SSL certificates using a self-signed Certificate Authority (CA), select Option 1 by typing
+                  <userinput>1</userinput> at the <filename>Your Choice</filename> prompt. </para>
+            <indexterm>
+               <primary>SSL Certificates</primary>
+               <secondary>Generating</secondary>
+            </indexterm>
+            <indexterm>
+               <primary>Enterprise Edition</primary>
+               <secondary>Generating SSL Certificates</secondary>
+            </indexterm>
+            <indexterm>
+               <primary>Lock and Release Edition</primary>
+               <secondary>Generating SSL Certificates</secondary>
+            </indexterm>
+            <note>
+               <para>To generate Certificate Signing Requests (CSRs) to send to a third party outside of OS
+                  Lockdown:</para>
+               <orderedlist numeration="arabic">
+                  <listitem>
+                     <para>Generate the CSRs (select Option 2 and follow the prompts).</para>
+                  </listitem>
+                  <listitem>
+                     <para>Export the CSRs to the CA. This step is entirely dependent on your CA configuration.</para>
+                  </listitem>
+                  <listitem>
+                     <para>Import the signed CSRs to OS Lockdown (select Option 3 and follow the prompts). </para>
+                  </listitem>
+               </orderedlist>
+            </note>
+            <screen>Options:
+1) Generate SSL Certificates using self-signed Certificate Authority (CA)
+2) Generate Certificate Signing Requests (CSRs) for another CA to sign
+3) Import CA public key and signed CSRs
+4) Exit
+                  
+Your Choice: <userinput>1</userinput></screen>
+         </step>
+         <step><para>If SHA-256 is detected on the client machine, the following text appears. Type <userinput>y</userinput> to use
+               SHA-256. </para>
+            <note><para>This query may not appear if using an older operating system such as Red Hat Enterprise Linux 4 or Solaris
+                  10.</para></note>
+         <screen>The version of openssl provided with this system appears to support the SHA-256
+hash algorithm in addition to SHA-1. The use of SHA-1 for digests is no longer 
+recommended, but may be required in environments where OS Lockdown is running on 
+older versions of the operating system (such as Red Hat Enterprise Linux 4 or 
+Solaris 10), or the browser does not provide SHA-256 support.
+
+Use SHA-256 instead of SHA-1? [y/n]: y</screen>
+         </step>
+         <step>
+            <para>Determine whether the Fully Qualified Domain Name (FQDN) should be used to hostnames (e.g.,
+               myhost.example.com).</para>
+            <screen>Use Fully Qualified Domain Name (FQDN) for hostnames [y/n]: <userinput>n</userinput>
+        
+:: Generate extensions file for self-signed CA signing
+:: Generate extensions file for Console certificate signing
+:: Generate extensions file for Dispatcher certificate signing
+                  
+:: Generate self-signed certificates</screen>
+         </step>
+         <step>
+            <para>Set the number of days for which the certificate is valid.</para>
+            <screen>:: Certificate Lifetimes
+                  
+   Certificate lifetime (between 1 and 7601 days)     :<userinput>&lt;number of days&gt;</userinput></screen>
+           
+         </step>
+         <step>
+            <para>Set the ROOT CA passphrase using at least six characters, and no whitespace, wildcards, or
+               semicolons.</para>
+            <indexterm>
+               <primary>Security</primary>
+               <secondary>Passphrases</secondary>
+            </indexterm>
+            <indexterm>
+               <primary>Enterprise Edition</primary>
+               <secondary>Setting Passphrases</secondary>
+            </indexterm>
+            <note>
+               <para>It is <emphasis role="italic">strongly</emphasis> recommended to securely store the passphrase in
+                  case it is needed for future use.</para>
+            </note>
+            <screen>:: Generate self-signed certificate authority
+                  
+Passphrase must be at least 6 characters, and must not contain
+whitespace, wildcards, or semicolons.
+
+   ROOT CA passphrase (for signing)       : <userinput>&lt;RootPassphrase&gt;</userinput></screen>
+         </step>
+         <step>
+            <para>Provide the following base certificate information.</para>
+            <note>
+               <para>It is <emphasis role="italic">strongly</emphasis> recommended to provide accurate values, as this
+                  information appears on the security certificate.</para>
+            </note>
+            <screen>:: Certificate Base Information:
+            
+Enter Country (2 letters)                   : <userinput>&lt;country></userinput>
+Enter State or Province                     : <userinput>&lt;state></userinput>
+Enter Locality (city)                       : <userinput>&lt;city></userinput>
+Enter Organization/company                  : <userinput>&lt;company></userinput>
+Enter Unit name/section                     : <userinput>&lt;unit></userinput>
+Enter contact email (optional)              : <userinput>&lt;email></userinput>
+            
+:: Saving answers for later use...
+:: Generate Root CA REQ
+:: Generate signed ROOT CA
+:: Creating root.pem file for signing other certs</screen>
+         </step>
+         <step>
+            <para>Set the Webserver passphrase using at least six characters, and no whitespace, wildcards, or
+               semicolons.</para>
+            <note>
+               <para>It is <emphasis role="italic">strongly</emphasis> recommended to securely store the passphrase in
+                  case it is needed for future use.</para>
+            </note>
+            <screen>:: Generate webserver certificate (for Tomcat)
+      
+Passphrase must be at least 6 characters, and must not contain
+whitespace, wildcards, or semicolons.
+
+   WebServer passphrase       : <userinput>&lt;WebServerPassphrase&gt;</userinput>
+   
+:: Generate Webserver certificate for [localhost.localdomain]
+
+:: Sign webserver certificate (for Tomcat)
+
+:: Sign GUI CERT
+:: Create PKCS12 file (removing if already exists)
+:: Create new JAVA truststore file for GUI from self-signed certificate
+   (removing if already exists)
+:: Determine current alias (friendlyName) used when pkcd12 file was created
+:: Import PKCS12 keystore into JAVA keystore (remove keystore if exists), setting 
+   the alias to 'tomcat'</screen>
+         </step>
+         <step>
+            <para>Set the Dispatcher passphrase using at least six characters, and no whitespace, wildcards, or
+               semicolons.</para>
+            <note>
+               <para>It is <emphasis role="italic">strongly</emphasis> recommended to securely store the passphrase in
+                  case it is needed for future use.</para>
+            </note>
+            <screen>:: Generate Dispatcher certificate (for Client Agent daemon)
+                  
+Passphrase must be at least 6 characters, and must not contain
+whitespace, wildcards, or semicolons.
+
+   Dispatcher passphrase   : <userinput>&lt;DispatcherPassphrase&gt;</userinput>
+
+:: Generate Dispatcher certificate (For Client Agent daemons)
+
+:: Sign DISPATCHER CERT
+:: Package Dispatcher certs for SB_Dispatcher
+:: Storing passphrase for WebServer JAVA Truststore as tomcat_truststore...
+:: Storing passphrase for WebServer JAVA Keystore as tomcat_keystore...
+:: Storing passphrase for Dispatcher private key as dispatcher_keystore...
+:: Ensuring Dispatcher keystore file is readable by the Console...
+:: Restricting permissions on certificate files...
+            
+:: Security credentials created.</screen>
+         </step>
+         <step xml:id="at-the-would">
+            <para>At the <filename>Would you like to configure and start OS Lockdown now? [y/n]</filename> prompt, type
+                  <userinput>y</userinput> for yes.</para>
+            <screen>Would you like to configure and start OS Lockdown now? [y/n]: <userinput>y</userinput>
+
+CHECKING YOUR LINUX ENVIRONMENT
+- Running on CentOS 6.5 (x86_64)
+- en_US.utf8 language support available
+- Security-Enhanced Linux (SELinux) 
+  : SELinux status:   enabled
+  : Current mode:     enforcing
+  
+- 'python' package (RPM) is installed
+- Python version 2.6.6 found
+- OS Lockdown packages:
+  : oslockdown is installed
+  : oslockdown-modules is installed
+  : oslockdown-dispatcher is installed
+  : oslockdown-console is installed
+  : oslockdown-console-ibmjava is NOT installed
+  : oslockdown-selinux is installed
+            
+  NOTE: If you are troubleshooting this installation, consider using OS Lockdown's 
+  built-in diagnostics module for a detailed analysis of this environment.
+            
+  # /usr/sbin/oslockdown -D</screen>
+         </step>
+         <step>
+            <para>Installation configuration begins enabling you to indicate which OS Lockdown version will be
+               installed.</para>
+            <itemizedlist>
+               <listitem>
+                  <para>At the <filename>Select an installation version? [y/n]</filename> prompt, type
+                        <userinput>y</userinput> for yes.</para>
+               </listitem>
+               <listitem>
+                  <para>At the <filename>Select an Enterprise installation? [y/n]</filename> prompt, type
+                        <userinput>y</userinput> for yes.</para>
+               </listitem>
+            </itemizedlist>
+            <screen>                  .:: INSTALLATION CONFIGURATION ::. 
+**************************************************************************
+
+Select an installation version? [y/n]: <userinput>y</userinput>
+
+Please select between an Enterprise or Standalone configuration for the Console. 
+You can change the installation type later to move from Standalone to 
+Enterprise by these commands as root:
+
+     # /usr/share/oslockdown/tools/SB_Setup -l 
+     # service osl-console restart
+
+It is not recommended to move from Enterprise to Standalone without completely 
+deleting the database first.
+ 
+Select an Enterprise installation? [y/n]: <userinput>y</userinput>
+
+Configuring for an Enterprise Console
+Setting SELinux context(s) for /var/lib/oslockdown/files/ConsoleType.txt...</screen>
+         </step>
+         <step xml:id="auto-updates">
+            <para>Optional. Determine whether the OS Lockdown Console should provide auto-updates to its clients.</para>
+            <para>At the <filename>Should the Console provide AutoUpdates? [y,n]</filename> prompt, type
+                  <userinput>y</userinput> for yes.</para>
+            <para>Otherwise, type <userinput>n</userinput> for no.</para>
+            <indexterm>
+               <primary>Auto-Update</primary>
+            </indexterm>
+            <indexterm>
+               <primary>Enterprise Edition</primary>
+               <secondary>Auto-Update</secondary>
+            </indexterm>
+            <indexterm>
+               <primary>OS Lockdown</primary>
+               <secondary>Enterprise Edition</secondary>
+               <tertiary>Auto-Update</tertiary>
+            </indexterm>
+            <screen>The Console has the ability to provide updates to all attached Clients.
+Clients running OS Lockdown Console can be requested to update themselves 
+from the Console. 
+
+   Should the Console provide AutoUpdates? [y,n]: <userinput>y</userinput>
+                     
+:: Creating directory to hold required files for AutoUpdate...
+
+:: Replicating directory hierarchy for AutoUpdate...
+
+:: Copying all required files for AutoUpdate...
+
+:: AutoUpdate files copied.
+                  
+CHECKING YOUR LINUX ENVIRONMENT
+...
+                  
+  NOTE: If you are troubleshooting this installation, consider using OS 
+  Lockdown's built-in diagnostics module for a detailed analysis of this
+  environment.
+            
+  # /usr/sbin/oslockdown -D</screen>
+         </step>
+         <step>
+            <para>OS Lockdown Console configuration begins.</para>
+            <indexterm>
+               <primary>OS Lockdown Console</primary>
+               <secondary>Enterprise Edition</secondary>
+               <tertiary>Configuring</tertiary>
+            </indexterm>
+            <indexterm>
+               <primary>Enterprise Edition</primary>
+               <secondary>Configuring Console</secondary>
+            </indexterm>
+            <indexterm>
+               <primary>OS Lockdown</primary>
+               <secondary>Enterprise Edition</secondary>
+               <tertiary>Configuring Console</tertiary>
+            </indexterm>
+            <para>At the <filename>Configure a Console on this system? [y/n]</filename> prompt, type
+                  <userinput>y</userinput> for yes.</para>
+            <screen>                    .:: CONSOLE CONFIGURATION ::. 
+**************************************************************************
+            
+Configure a Console on this system? [y/n]: <userinput>y</userinput></screen>
+         </step>
+         <step>
+            <para>At the <filename>Should the Tomcat-based Console be restricted to use "high-strength" ciphers?
+                  [y/n]</filename> prompt, type <userinput>y</userinput> to restrict the set of cyphers to only use
+               high-strength, otherwise, type <userinput>n</userinput>.</para>
+            <screen>Should the Tomcat-based Console be restricted to use "high-strength" ciphers? 
+[y/n] <userinput>y</userinput>
+
+You can edit '/usr/share/oslockdown/console/conf/server.xml' to change
+the list of acceptable ciphers.  Note that the connector is using the JSSE 
+configuration, so you must use cipher names compatible with Java.  NOT those
+compatible with the OpenSSL implementation (APR connector).</screen>
+         </step>
+         <step xml:id="at-the-by-what">
+            <para>At the <filename>By what network name do the Clients know the Console?</filename> prompt, type the
+               network address.</para>
+            <para>If the default network address is automatically populated, press <keycap>&lt;Enter&gt;</keycap> to
+               accept the default. </para>
+            <screen>By what network name do the Clients know the Console?
+            
+   When communicating with Clients, the Console expects them to
+   respond to "localhost.localdomain".
+            
+   If Clients are unable to reach this address, specify a different 
+   one. Otherwise, press [ENTER] to accept this as the default.
+            
+   Use this address [localhost.localdomain]: <userinput>&lt;Enter&gt;</userinput></screen>
+         </step>
+         <step>
+            <para>At the <filename>How will web browsers connect to this Console?</filename> prompt, type the
+               port.</para>
+            <para>If the default port is automatically populated, press <keycap>&lt;Enter&gt;</keycap> to accept the
+               default. </para>
+            <screen>How will web browsers connect to this Console?
+            
+   By default, the Console will listen on port "8443".
+            
+   Console port [8443]: <userinput>&lt;Enter&gt;</userinput></screen>
+         </step>
+         <step>
+            <para>At the <filename>What TCP port do you want to use for Tomcat Management?</filename> prompt, type the
+               Tomcat server’s management port.</para>
+            <para>If the default port is automatically populated, press <keycap>&lt;Enter&gt;</keycap> to accept the
+               default. </para>
+            <screen>What TCP port do you want to use for Tomcat Management?
+            
+   By default, the Tomcat Server listens on TCP port 8444 for 
+   shutdown and management commands. This port MUST be different than any 
+   other Tomcat servers that may be running on this system.
+            
+   Tomcat Server's Management port [8444]: <userinput>&lt;Enter&gt;</userinput></screen>
+         </step>
+         <step>
+            <para>At the <filename>Use [ your path to the JRE binaries ] as JAVA_HOME? [y/n]</filename> prompt, type
+                  <userinput>y</userinput> to confirm the directory in which the Java Runtime Environment (JRE) was
+               installed. Otherwise, type <userinput>n</userinput> to change the directory.</para>
+            <indexterm>
+               <primary>Java Runtime Environment (JRE)</primary>
+            </indexterm>
+            <indexterm>
+               <primary>JAVA_HOME</primary>
+            </indexterm>
+            <screen>Setting SELinux context(s) for /usr/share/oslockdown/console/conf/catalina.
+properties...
+      
+   Use /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre as JAVA_HOME? [y/n]: <userinput>y</userinput>
+   
+         - Updated /usr/share/oslockdown/console/.profile
+         - JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre
+         
+Setting SELinux context(s) for /usr/share/oslockdown/console/.profile...</screen>
+         </step>
+         <step>
+            <para>At the <filename>Start the &lsquo;osl-console&rsquo; service now? [y/n]</filename> prompt, type
+                  <userinput>y</userinput> for yes.</para>
+            <screen>Start the OS Lockdown Console now?
+
+    Start the 'osl-console' service now? [y/n]: <userinput>y</userinput>            
+
+Starting OS Lockdown Console:
+Using CATALINA_BASE:   /usr/share/oslockdown/console
+Using CATALINA_HOME:   /usr/share/oslockdown/console
+Using CATALINA_TMPDIR: /var/lib/oslockdown/console/temp
+Using JRE_HOME:        /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre
+Using CLASSPATH:       /usr/share/oslockdown/console/bin/bootstrap.jar
+Using CATALINA_PID:    /var/lib/oslockdown/console/temp/osl-console.pid
+            
+       You can manage this service yourself with:
+            # /sbin/service osl-console stop
+            # /sbin/service osl-console start
+            # /sbin/service osl-console status
+            
+       Console logs are in /var/lib/oslockdown/logs
+               
+The *first* time the Console is started after an initial install
+or an upgrade of the OS Lockdown software can take several
+minutes.  This is due to the sanity checks on either creating the
+initial Console database or while performing any required updates
+to an existing Console database.
+
+Attempts to register a Client at this time will appear to 'hang'
+until the Console has finished the sanity checks.
+
+You can monitor the status of the Console startup by issuing the 
+following command in another window:
+    tail -f /var/lib/oslockdown/logs/osl-console.log
+
+The Console will be completely up when the following line appears:
+    INFO  sb.bootstrap  - URL https://...
+                  
+Installation will proceed after a 10 second pause, but this does not
+indicate that the Console is actually up. Please run the 'tail -f' 
+command as indicated above to monitor the Console startup, and do not
+proceed with further steps until you have seen the indicated line.</screen>
+         </step>
+         <step xml:id="registration">
+            <para>OS Lockdown Console registration with the client begins. This process sends a registration request to
+               the OS Lockdown Console where you can view, accept or deny the request via the Auto-Registration Requests
+               page.</para>
+            <para>At the <filename>Would you like to register this Client with a Console? [y/n]</filename> prompt, type
+                  <userinput>y</userinput> for yes.</para>
+            <screen>Would you like to register this Client with a Console? [y/n]: <userinput>y</userinput></screen>
+         </step>
+         <step>
+            <para>At the <filename>What Enterprise Console would you like to register this client with?</filename>
+               prompt, provide the console and client information.</para>
+            <indexterm>
+               <primary>OS Lockdown</primary>
+               <secondary>Enterprise Edition</secondary>
+               <tertiary>Registering with Console</tertiary>
+            </indexterm>
+            <indexterm>
+               <primary>Enterprise Edition</primary>
+               <secondary>Registering with Console</secondary>
+            </indexterm>
+            <para>Press <keycap>&lt;Enter&gt;</keycap> to accept the default. </para>
+            <screen>              .:: REGISTER LOCAL CLIENT WITH CONSOLE ::. 
+**************************************************************************
+What Enterprise Console would you like to register this Client with?
+   Console's host address [localhost]: <userinput>&lt;type console's host address&gt;</userinput>
+   Console's TCP port [8443]: <userinput>&lt;Enter&gt;</userinput>
+   Client's descriptive name [localhost.localdomain]: <userinput>&lt;Enter&gt;</userinput>
+   Client's host address     [localhost.localdomain]: <userinput>&lt;Enter&gt;</userinput>
+   Client's TCP port         [6443]: <userinput>&lt;Enter&gt;</userinput>
+   Client's location         : <userinput>&lt;location&gt;</userinput>
+   Client's contact          : <userinput>&lt;contact&gt;</userinput>
+      
+:: Attempting to register with https://localhost:8443/OSLockdown/services/
+   clientregistration
+:: Response for Console -> Registration Pending
+:: Shutting down
+
+CHECKING YOUR LINUX ENVIRONMENT
+...
+      NOTE: If you are troubleshooting this installation, consider 
+      using OS Lockdown's built-in diagnostics module 
+      for a detailed analysis of this environment.
+      
+      # /usr/sbin/oslockdown -D</screen>
+         </step>
+         <step>
+            <para>Dispatcher configuration begins.</para>
+            <indexterm>
+               <primary>Enterprise Edition</primary>
+               <secondary>Configuring Dispatcher</secondary>
+            </indexterm>
+            <indexterm>
+               <primary>OS Lockdown</primary>
+               <secondary>Enterprise Edition</secondary>
+               <tertiary>Configuring Dispatcher</tertiary>
+            </indexterm>
+            <orderedlist numeration="loweralpha">
+               <listitem>
+                  <para>At the <filename>Configure the Dispatcher on this machine? [y/n]</filename> prompt, type
+                        <userinput>y</userinput> for yes. </para>
+               </listitem>
+               <listitem>
+                  <para>Provide the following dispatcher information:</para>
+               </listitem>
+            </orderedlist>
+            <screen>                 .:: DISPATCHER CONFIGURATION ::.
+**************************************************************************
+Configure the Dispatcher on this machine?  [y/n]: <userinput>y</userinput>
+            
+How will the Console connect to this Dispatcher?
+            
+   The Dispatcher normally listens on port 6443 for 
+   connections from the Console.
+
+   Dispatcher port [6443]: <userinput>&lt;Enter&gt;</userinput>
+   Dispatcher accept_timeout [1]: <userinput>&lt;Enter&gt;</userinput>
+   Dispatcher recv_timeout [2]: <userinput>&lt;Enter&gt;</userinput>
+   Dispatcher send_timeout [2]: <userinput>&lt;Enter&gt;</userinput>
+
+Setting SELinux context(s) for /usr/share/oslockdown/cfg/sb_dispatcher.
+properties...
+Start the OS Lockdown Dispatcher now?
+
+   Start the 'osl-dispatcher' service now? [y/n]: <userinput>y</userinput>
+            
+Starting /sbin/OSL_Dispatcher: 
+   
+   You can manage this service yourself with:
+       # /sbin/service osl-dispatcher stop
+       # /sbin/service osl-dispatcher start
+       # /sbin/service osl-dispatcher status
+            
+   Dispatcher log is /var/log/oslockdown-dispatcher.log
+                  
+[root@localhost.localdomain oslockdown-&SB_prodvers;-22055]# <userinput>exit</userinput></screen>
+         </step>
+         <step>
+            <para>The application is now installed and configured.</para>
+            <para>Proceed to <xref linkend="system-basics-launching-app" xrefstyle="select: label quotedtitle"/> to log
+               into the OS Lockdown application.</para>
+            <para>OR</para>
+            <para>To install OS Lockdown on additional clients in your enterprise, proceed to <xref
+                  linkend="client-only-install" xrefstyle="select: label quotedtitle"/>.</para>
+         </step>
+      </procedure>
+   </section>
+   <section xml:id="client-install">
+      <title>Installing the OS Lockdown Standalone Edition</title>
+      <procedure>
+         <para>To install the OS Lockdown Standalone edition (including the OS Lockdown Console):</para>
+         <indexterm>
+            <primary>OS Lockdown</primary>
+            <secondary>Standalone Edition</secondary>
+            <tertiary>Installing</tertiary>
+         </indexterm>
+         <indexterm>
+            <primary>Standalone Edition</primary>
+            <secondary>Installing</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>SELinux</primary>
+         </indexterm>
+         <step>
+            <para>After you have followed the instructions in <xref linkend="run-install-script"
+                  xrefstyle="select: label quotedtitle"/>, SELinux policy type detection begins. Follow the prompts
+               according to your system configuration. </para>
+            <para>The installer determines the following:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>If SELinux is enabled.</para>
+               </listitem>
+               <listitem>
+                  <para>If OS Lockdown supports the operating system with SELinux.</para>
+               </listitem>
+               <listitem>
+                  <para>If an OS Lockdown SELinux policy module exists.</para>
+               </listitem>
+            </itemizedlist>
+            <note>
+               <para>Refer to <xref linkend="intro-selinux" xrefstyle="select: label quotedtitle"/> for more information
+                  on SELinux and OS Lockdown.</para>
+            </note>
+         </step>
+         <step>
+            <para>At the <filename>Install the graphical Console package? [y/n]</filename> prompt, type
+                  <userinput>y</userinput> for yes.</para>
+            <note>
+               <para>Although not required, the graphical Console package is <emphasis role="italic">strongly</emphasis>
+                  recommended for OS Lockdown Standalone installations.</para>
+            </note>
+            <screen>Install the graphical Console? 
+                        
+The graphical Console is not required for Enterprise Edition Clients. 
+However, it is required for the system you've designated as the Enterprise 
+Console and is STRONGLY recommended for all Standalone installations.
+                        
+For advanced command line users, you can run Standalone without a 
+graphical Console, however, you are required to select the Standalone
+installation type.
+                        
+Install the graphical Console package? [y/n]: <userinput>y</userinput></screen>
+         </step>
+         <step>
+            <para>Select the directory in which the Java Runtime Environment (JRE) was installed. </para>
+            <para>The script attempts to determine an appropriate Java v1.6 or v1.7 JRE by looking in common locations.
+               This location, or the location previously used if you are updating a previous version of OS Lockdown, is
+               displayed here. The asterisk (*) indicates the detected directory. If no appropriate Java JRE is found,
+               you must manually enter the <filename>JAVA_HOME</filename> directory.</para>
+            <note>
+               <para>Given a choice between a symbolic link and an absolute path, the symbolic link is preferred. For
+                  example, if <filename>/usr/lib/jvm/jre-1.6.0</filename> is a symbolic link to
+                     <filename>/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64</filename> and both are shown, select the
+                     <filename>/usr/lib/jvm/jre-1.6.0</filename> option.</para>
+            </note>
+            <indexterm>
+               <primary>Java Runtime Environment (JRE)</primary>
+            </indexterm>
+            <indexterm>
+               <primary>JAVA_HOME</primary>
+            </indexterm>
+            <screen>Creating /usr/share/oslockdown/console/.profile to remember which Java is 
+being used.
+
+The following is a list of possible JAVA_HOME directories. If JAVA_HOME was 
+set previously in '.profile' for the 'sbwebapp' user, that will be the default 
+value. Please remember there may be multiple possible settings for JAVA_HOME 
+that may actually point to the same place, due to the use of symbolic links.
+
+0  Enter JAVA_HOME manually
+1 (java-1.6.0-openjdk) [openJDK/1.6] /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.
+   x86_64/jre
+
+Please select the directory to use for JAVA_HOME: <userinput>1</userinput>
+         
+Selecting '/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre' for JAVA_HOME</screen>
+         </step>
+         <step>
+            <para>Install the OS Lockdown SELinux policy module. At the <filename>Install the OS Lockdown SELinux Policy
+                  Module? [y/n]</filename> prompt, type <userinput>y</userinput> for yes.</para>
+            <screen>:: Checking for core installation RPMs for 64 bit CentOS, release 6...
+
+OS Lockdown SELinux Policy Module is available.
+Current SELinux Policy file is: targeted
+
+OS Lockdown provides support for SELinux when running in enforcing/permissive 
+mode for the 'targeted' policy. Currently, other policy files are not supported 
+(such as 'strict' or 'mls').
+
+   Install the OS Lockdown SELinux Policy Module? [y/n]: <userinput>y</userinput></screen>
+         </step>
+         <step>
+            <para>Installation begins. </para>
+            <itemizedlist>
+               <listitem>
+                  <para>If previous versions of the product exist on your system, at the <filename>Remove and replace
+                        packages? [y/n]</filename> prompt, type <userinput>y</userinput> for yes. </para>
+                  <para>The system removes previous version(s) of the product, and exports the database consisting of
+                     reports, logs, and profiles.</para>
+               </listitem>
+               <listitem>
+                  <para>If previous versions of the product do <emphasis role="italic">not</emphasis> exist on your
+                     system, proceed to <xref linkend="optional-copy-2" xrefstyle="select: label quotedtitle"/>.</para>
+               </listitem>
+            </itemizedlist>
+            <screen>                    .:: LINUX INSTALLATION ::. 
+**************************************************************************
+:: Stopping current Security Blanket/OS Lockdown services...
+:: Checking for Security Blanket v3.x Enterprise Console database...
+
+:: Preserving potential changes made in /var/lib/security-blanket/files...
+
+:: Performing any requested backups of profiles and database directories...
+
+:: Checking for previous versions of Security Blanket/OS Lockdown...
+
+   * Found the following installed Security Blanket packages:
+     - security-blanket-4.0.4-r1127.el5
+     - security-blanket-modules-4.0.4-r1127.el5
+     - security-blanket-console-4.0.4-r1127
+     - security-blanket-dispatcher-4.0.4-r1127.el5
+
+Remove and replace packages? [y/n]: <userinput>y</userinput>
+
+:: Removing previous Security Blanket packages...
+   * Don't worry... all existing reports, logs, and profiles will be saved.
+
+:: Checking for dependent software packages...
+
+:: Preserving/renaming legacy Security Blanket files to work with OS Lockdown...
+OS Lockdown file /var/log/oslockdown-dispatcher.log detected, will not overwrite
+
+:: Installing OS Lockdown packages...
+                  
+   + oslockdown-&SB_prodvers;-22055.el6
+   + oslockdown-dispatcher-&SB_prodvers;-22055.el6
+   + oslockdown-console-&SB_prodvers;-22055
+   + oslockdown-modules-&SB_prodvers;-22055.el6
+   + oslockdown-selinux-&SB_prodvers;-22055.el6
+
+:: Ensuring permissions for any existing local reports are correct...
+
+:: Ensuring permissions for any existing certificates are correct...
+
+:: Ensuring permissions for any existing log files are correct...
+
+:: Ensuring SELinux contexts for existing files are correct...</screen>
+         </step>
+         <step xml:id="optional-copy-2">
+            <para>Optional. Copy the OS Lockdown documentation into the &ldquo;docs&rdquo; directory.</para>
+            <para>At the <filename>Would you like to copy them? [y/n]</filename> prompt, type <userinput>y</userinput>
+               to copy the OS Lockdown documentation into the <filename>/usr/share/oslockdown/docs</filename>
+               directory.</para>
+            <para>Otherwise, type <userinput>n</userinput> if you do not want to copy the documentation. </para>
+            <screen>You have the option of copying the files from the 'docs' directory
+   into the /usr/share/oslockdown/docs directory. These files are
+   the PDF versions of the Admin Guide and the Modules Guide.
+
+Would you like to copy them? [y/n]: <userinput>y</userinput>
+   * Installing 'docs' directory in /usr/share/oslockdown...
+   
+Folding any custom changes to /var/lib/oslockdown/files/* now...</screen>
+         </step>
+         <step>
+            <para>The script checks for security credentials on your system. </para>
+            <para>Security credentials are used to encrypt communications from web browsers to the OS Lockdown Console,
+               and to encrypt and authenticate console-to-client communications.</para>
+            <indexterm>
+               <primary>RSA-2048</primary>
+            </indexterm>
+            <indexterm>
+               <primary>Security</primary>
+               <secondary>Certificate Key Size</secondary>
+            </indexterm>
+            <indexterm>
+               <primary>Security</primary>
+               <secondary>Credentials</secondary>
+            </indexterm>
+            <indexterm>
+               <primary>Standalone Edition</primary>
+               <secondary>Configuring Certificates</secondary>
+            </indexterm>
+            <indexterm>
+               <primary>OS Lockdown</primary>
+               <secondary>Standalone Edition</secondary>
+               <tertiary>Configuring Certificates</tertiary>
+            </indexterm>
+            <note>
+               <para>The default certificate key size is RSA-2048 bit key length. </para>
+            </note>
+            <itemizedlist>
+               <listitem>
+                  <para>If no security credentials are found, at the <filename>Create security credentials now?
+                        [y/n]</filename> prompt, type <userinput>y</userinput> for yes. </para>
+               </listitem>
+               <listitem>
+                  <para>If security credentials are found, proceed to <xref linkend="at-the-would-you"
+                        xrefstyle="select: label quotedtitle"/>.</para>
+               </listitem>
+            </itemizedlist>
+            <screen>:: Looking for existing certificates and keystores...
+
+No pre-existing security credentials found on the system.
+            
+Create security credentials now? [y/n]: <userinput>y</userinput></screen>
+         </step>
+         <step>
+            <para>At the <filename>Directory does not exist, create it? [y/n]</filename> prompt, type
+                  <userinput>y</userinput> for yes.</para>
+            <para>The system creates the <filename>/var/lib/oslockdown/files/certs</filename> directory.</para>
+            <screen>                 .:: CREATE SECURITY CREDENTIALS ::.  
+******************************************************************************
+                     
+:: Looking for Certificates directory: /var/lib/oslockdown/files/certs
+            
+Directory does not exist, create it? [y/n]: <userinput>y</userinput>
+            
+:: Created Certificates directory: /var/lib/oslockdown/files/certs
+:: Setting SELinux context(s) for /var/lib/oslockdown/files/certs...
+:: Logging to /var/lib/oslockdown/files/certs/.working/ssl_logs.txt...</screen>
+         </step>
+         <step>
+            <para>At the <filename>Use [ your path to the JRE binaries ] as JAVA_HOME? [y/n]</filename> prompt, type
+                  <userinput>y</userinput> to confirm the directory in which the Java Runtime Environment (JRE) was
+               installed. Otherwise, type <userinput>n</userinput> to change the directory.</para>
+            <indexterm>
+               <primary>Java Runtime Environment (JRE)</primary>
+            </indexterm>
+            <indexterm>
+               <primary>JAVA_HOME</primary>
+            </indexterm>
+            <screen>Security credentials are used to:
+ * Encrypt communications from web browsers to console
+ * Encrypt and authenticate console-to-client communications
+                     
+Use /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre as JAVA_HOME? [y/n]: <userinput>y</userinput></screen>
+         </step>
+         <step>
+            <para>To generate SSL certificates using a self-signed Certificate Authority (CA), select Option 1 by typing
+                  <userinput>1</userinput> at the <filename>Your Choice</filename> prompt. </para>
+            <indexterm>
+               <primary>SSL Certificates</primary>
+               <secondary>Generating</secondary>
+            </indexterm>
+            <indexterm>
+               <primary>Standalone Edition</primary>
+               <secondary>Generating SSL Certificates</secondary>
+            </indexterm>
+            <note>
+               <para>To generate Certificate Signing Requests (CSRs) to send to a third party outside of OS
+                  Lockdown:</para>
+               <orderedlist numeration="arabic">
+                  <listitem>
+                     <para>Generate the CSRs (select Option 2 and follow the prompts).</para>
+                  </listitem>
+                  <listitem>
+                     <para>Export the CSRs to the CA. This step is entirely dependent on your CA configuration.</para>
+                  </listitem>
+                  <listitem>
+                     <para>Import the signed CSRs to OS Lockdown (select Option 3 and follow the prompts). </para>
+                  </listitem>
+               </orderedlist>
+            </note>
+            <screen>Options:
+1) Generate SSL Certificates using self-signed Certificate Authority (CA)
+2) Generate Certificate Signing Requests (CSRs) for another CA to sign
+3) Import CA public key and signed CSRs
+4) Exit
+                  
+Your Choice: <userinput>1</userinput></screen>
+         </step>
+         <step><para>If SHA-256 is detected on the client machine, the following text appears. Type <userinput>y</userinput> to use
+            SHA-256. </para>
+            <note><para>This query may not appear if using an older operating system such as Red Hat Enterprise Linux 4 or Solaris
+                  10.</para></note>
+            <screen>The version of openssl provided with this system appears to support the SHA-256
+hash algorithm in addition to SHA-1. The use of SHA-1 for digests is no longer 
+recommended, but may be required in environments where OS Lockdown is running on 
+older versions of the operating system (such as Red Hat Enterprise Linux 4 or 
+Solaris 10), or the browser does not provide SHA-256 support.
+
+Use SHA-256 instead of SHA-1? [y/n]: y</screen>
+         </step>
+         <step>
+            <para>Determine whether the Fully Qualified Domain Name (FQDN) should be used to hostnames (e.g.,
+               myhost.example.com).</para>
+            <screen>Use Fully Qualified Domain Name (FQDN) for hostnames [y/n]: <userinput>n</userinput>
+        
+:: Generate extensions file for self-signed CA signing
+:: Generate extensions file for Console certificate signing
+:: Generate extensions file for Dispatcher certificate signing
+                  
+:: Generate self-signed certificates</screen>
+         </step>
+         <step>
+            <para>Set the number of days for which the certificate is valid.</para>
+            <screen>:: Certificate Lifetimes
+                  
+   Certificate lifetime (between 1 and 7601 days)     :<userinput>&lt;number of days&gt;</userinput></screen>
+         </step>
+         <step>
+            <para>Set the ROOT CA passphrase using at least six characters, and no whitespace, wildcards, or
+               semicolons.</para>
+            <indexterm>
+               <primary>Security</primary>
+               <secondary>Passphrases</secondary>
+            </indexterm>
+            <indexterm>
+               <primary>Standalone Edition</primary>
+               <secondary>Setting Passphrases</secondary>
+            </indexterm>
+            <note>
+               <para>It is <emphasis role="italic">strongly</emphasis> recommended to securely store the passphrase in
+                  case it is needed for future use.</para>
+            </note>
+            <screen>:: Generate self-signed certificate authority
+                  
+Passphrase must be at least 6 characters, and must not contain
+whitespace, wildcards, or semicolons.
+
+   ROOT CA passphrase (for signing)       : <userinput>&lt;RootPassphrase&gt;</userinput></screen>
+         </step>
+         <step>
+            <para>Provide the following base certificate information.</para>
+            <note>
+               <para>It is <emphasis role="italic">strongly</emphasis> recommended to provide accurate values, as this
+                  information appears on the security certificate.</para>
+            </note>
+            <screen>:: Certificate Base Information:
+            
+   Enter Country (2 letters)                 : <userinput>&lt;country></userinput>
+   Enter State or Province                   : <userinput>&lt;state></userinput>
+   Enter Locality (city)                     : <userinput>&lt;city></userinput>
+   Enter Organization/company                : <userinput>&lt;company></userinput>
+   Enter Unit name/section                   : <userinput>&lt;unit></userinput>
+   Enter contact email (optional)            : <userinput>&lt;email></userinput>
+            
+:: Saving answers for later use...
+:: Generate Root CA REQ
+:: Generate signed ROOT CA
+:: Creating root.pem file for signing other certs</screen>
+         </step>
+         <step>
+            <para>Set the Webserver passphrase using at least six characters, and no whitespace, wildcards, or
+               semicolons.</para>
+            <note>
+               <para>It is <emphasis role="italic">strongly</emphasis> recommended to securely store the passphrase in
+                  case it is needed for future use.</para>
+            </note>
+            <screen>:: Generate Webserver certificate (for Tomcat)
+                  
+Passphrase must be at least 6 characters, and must not contain
+whitespace, wildcards, or semicolons.
+
+   WebServer passphrase       : <userinput>&lt;WebServerPassphrase&gt;</userinput>
+   
+:: Generate Webserver certificate for [localhost.localdomain]
+
+:: Sign webserver certificate (for Tomcat)
+
+:: Sign GUI CERT
+:: Create PKCS12 file (removing if already exists)
+:: Create new JAVA truststore file for GUI from self-signed certificate
+   (removing if already exists)
+:: Determine current alias (friendlyName) used when pkcs12 file was created
+:: Import PKCS12 keystore into JAVA keystore (remove keystore if exists), setting 
+   the alias to 'tomcat'</screen>
+         </step>
+         <step>
+            <para>Set the Dispatcher passphrase using at least six characters, and no whitespace, wildcards, or
+               semicolons.</para>
+            <note>
+               <para>It is <emphasis role="italic">strongly</emphasis> recommended to securely store the passphrase in
+                  case it is needed for future use.</para>
+            </note>
+            <screen>:: Generate Dispatcher certificate (for Client Agent daemon)
+                  
+Passphrase must be at least 6 characters, and must not contain
+whitespace, wildcards, or semicolons.
+
+   Dispatcher passphrase   : <userinput>&lt;DispatcherPassphrase&gt;</userinput>
+:: Generate Dispatcher certificate
+
+:: Sign Dispatcher certificate (for Client Agent daemons)
+
+:: Sign DISPATCHER CERT
+:: Package Dispatcher certs for SB_Dispatcher
+:: Storing passphrase for WebServer JAVA Truststore as tomcat_truststore...
+:: Storing passphrase for WebServer JAVA Keystore as tomcat_keystore...
+:: Storing passphrase for Dispatcher private key as dispatcher_keystore...
+:: Ensuring Dispatcher keystore file is readable by the Console...
+:: Restricting permissions on certificate files...
+            
+:: Security credentials created.</screen>
+         </step>
+         <step xml:id="at-the-would-you">
+            <para>At the <filename>Would you like to configure and start OS Lockdown now? [y/n]</filename> prompt, type
+                  <userinput>y</userinput> for yes.</para>
+            <screen>Would you like to configure and start OS Lockdown now? [y/n]: <userinput>y</userinput>
+
+CHECKING YOUR LINUX ENVIRONMENT
+- Running on CentOS 6.5 (x86_64)
+- en_US.utf8 language support available
+- Security-Enhanced Linux (SELinux)
+  : SELinux status:   enabled
+  : Current mode:     enforcing
+  
+- 'python' package (RPM) is installed
+- Python version 2.6.6 found
+- OS Lockdown packages:
+  : oslockdown is installed
+  : oslockdown-modules is installed
+  : oslockdown-dispatcher is installed
+  : oslockdown-console is installed
+  : oslockdown-console-ibmjava is NOT installed
+  : oslockdown-selinux is installed
+            
+  NOTE: If you are troubleshooting this installation, consider using OS 
+  Lockdown's built-in diagnostics module for a detailed analysis of this
+  environment.
+            
+  # /usr/sbin/oslockdown -D</screen>
+         </step>
+         <step>
+            <para>Installation configuration begins enabling you to indicate which OS Lockdown version will be
+               installed.</para>
+            <itemizedlist>
+               <listitem>
+                  <para>At the <filename>Select an installation version? [y/n]</filename> prompt, type
+                        <userinput>y</userinput> for yes.</para>
+               </listitem>
+               <listitem>
+                  <para>At the <filename>Select an Enterprise installation? [y/n]</filename> prompt, type
+                        <userinput>y</userinput> for yes.</para>
+               </listitem>
+            </itemizedlist>
+            <screen>                  .:: INSTALLATION CONFIGURATION ::. 
+**************************************************************************
+
+Select an installation version? [y/n]: <userinput>y</userinput>
+
+Please select between an Enterprise or Standalone configuration for the 
+Console. You can change the installation type later to move from Standalone
+to Enterprise by these commands as root:
+
+     # /usr/share/oslockdown/tools/SB_Setup -l 
+     # service osl-console restart
+
+It is not recommended to move from Enterprise to Standalone without 
+completely deleting the database first.
+ 
+Select an Enterprise installation? [y/n]: <userinput>n</userinput>
+
+Configuring for a Standalone Console
+Setting SELinux context(s) for /var/lib/oslockdown/files/ConsoleType.txt...</screen>
+         </step>
+         <step>
+            <para>OS Lockdown Console configuration begins.</para>
+            <para>At the <filename>Configure a Console on this system? [y/n]</filename> prompt, type
+                  <userinput>y</userinput> for yes.</para>
+            <indexterm>
+               <primary>Standalone Edition</primary>
+               <secondary>Configuring Console</secondary>
+            </indexterm>
+            <indexterm>
+               <primary>OS Lockdown</primary>
+               <secondary>Standalone Edition</secondary>
+               <tertiary>Configuring Console</tertiary>
+            </indexterm>
+            <screen>                    .:: CONSOLE CONFIGURATION ::. 
+**************************************************************************
+            
+Configure a Console on this system? [y/n]: <userinput>y</userinput></screen>
+         </step>
+         <step>
+            <para>At the <filename>Should the Tomcat-based Console be restricted to use "high-strength" ciphers?
+                  [y/n]</filename> prompt, type <userinput>y</userinput> to restrict the set of cyphers to only use
+               high-strength, otherwise, type <userinput>n</userinput>.</para>
+            <screen>Should the Tomcat-based Console be restricted to use "high-strength" ciphers? 
+[y/n] <userinput>y</userinput>
+
+You can edit '/usr/share/oslockdown/console/conf/server.xml' to change
+the list of acceptable ciphers.  Note that the connector is using the JSSE 
+configuration, so you must use cipher names compatible with Java.  NOT those
+compatible with the OpenSSL implementation (APR connector).
+
+Configuring Console for Standalone installation.</screen>
+         </step>
+         <step>
+            <para>At the <filename>How will web browsers connect to this Console?</filename> prompt, type the
+               port.</para>
+            <para>If the default port is automatically populated, press <keycap>&lt;Enter&gt;</keycap> to accept the
+               default. </para>
+            <screen>How will web browsers connect to this Console?
+            
+   By default, the Console will listen on port "8443".
+            
+   Console port [8443]: <userinput>&lt;Enter&gt;</userinput></screen>
+         </step>
+         <step>
+            <para>At the <filename>What TCP port do you want to use for Tomcat Management?</filename> prompt, type the
+               Tomcat server’s management port.</para>
+            <para>If the default port is automatically populated, press <keycap>&lt;Enter&gt;</keycap> to accept the
+               default. </para>
+            <screen>What TCP port do you want to use for Tomcat Management?
+            
+   By default, the Tomcat Server listens on TCP port 8444 for 
+   shutdown and management commands. This port MUST be different than any 
+   other Tomcat servers that may be running on this system.
+            
+   Tomcat Server's Management port [8444]: <userinput>&lt;Enter&gt;</userinput></screen>
+         </step>
+         <step>
+            <para>At the <filename>Use [ your path to the JRE binaries ] as JAVA_HOME? [y/n]</filename> prompt, type
+                  <userinput>y</userinput> to confirm the directory in which the Java Runtime Environment (JRE) was
+               installed. Otherwise, type <userinput>n</userinput> to change the directory.</para>
+            <indexterm>
+               <primary>Java Runtime Environment (JRE)</primary>
+            </indexterm>
+            <indexterm>
+               <primary>JAVA_HOME</primary>
+            </indexterm>
+            <screen>Setting SELinux context(s) for /usr/share/oslockdown/console/conf/catalina.
+properties...
+                     
+   Use /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre as JAVA_HOME? [y/n]: <userinput>y</userinput></screen>
+         </step>
+         <step>
+            <para>At the <filename>Start the 'osl-console' service now? [y/n]</filename> prompt, type
+                  <userinput>y</userinput> for yes.</para>
+            <screen>Start the OS Lockdown Console now?
+                     
+Start the 'osl-console' service now? [y/n]: <userinput>y</userinput>                
+
+Starting OS Lockdown Console:
+Using CATALINA_BASE:   /usr/share/oslockdown/console
+Using CATALINA_HOME:   /usr/share/oslockdown/console
+Using CATALINA_TMPDIR: /var/lib/oslockdown/console/temp
+Using JRE_HOME:        /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre
+Using CLASSPATH:       /usr/share/oslockdown/console/bin/bootstrap.jar
+Using CATALINA_PID:    /var/lib/oslockdown/console/temp/osl-console.pid
+            
+       You can manage this service yourself with:
+            # /sbin/service osl-console stop
+            # /sbin/service osl-console start
+            # /sbin/service osl-console status
+            
+       Console logs are in /var/lib/oslockdown/logs
+               
+The *first* time the Console is started after an initial install
+or an upgrade of the OS Lockdown software can take several
+minutes. This is due to the sanity checks on either creating the
+initial Console database or while performing any required updates
+to an existing Console database.
+
+You can monitor the status of the Console startup by issuing the 
+following command in another window:
+    tail -f /var/lib/oslockdown/logs/osl-console.log
+
+The Console will be completely up when the following line appears:
+    INFO  sb.bootstrap  - URL https://...
+                  
+Installation will proceed after a 10 second pause, but this does not
+indicate that the Console is actually up. Please run the 'tail -f' 
+command as indicated above to monitor the Console startup, and do not
+proceed with further steps until you have seen the indicated line.
+                  
+CHECKING YOUR LINUX ENVIRONMENT
+....</screen>
+         </step>
+         <step>
+            <para>Dispatcher configuration begins.</para>
+            <indexterm>
+               <primary>Standalone Edition</primary>
+               <secondary>Configuring Dispatcher</secondary>
+            </indexterm>
+            <indexterm>
+               <primary>OS Lockdown</primary>
+               <secondary>Standalone Edition</secondary>
+               <tertiary>Configuring Dispatcher</tertiary>
+            </indexterm>
+            <orderedlist numeration="loweralpha">
+               <listitem>
+                  <para>At the <filename>Configure the Dispatcher on this machine? [y/n]</filename> prompt, type
+                        <userinput>y</userinput> for yes. </para>
+               </listitem>
+               <listitem>
+                  <para>Provide the following dispatcher information:</para>
+                 
+               </listitem>
+            </orderedlist>
+            <screen>                 .:: DISPATCHER CONFIGURATION ::.
+**************************************************************************
+Configure the Dispatcher on this machine?  [y/n]: <userinput>y</userinput>
+            
+How will the Console connect to this Dispatcher?
+            
+The Dispatcher normally listens on port 6443 for 
+connections from the Console.
+            
+   Dispatcher port [6443]: <userinput>&lt;Enter&gt;</userinput>
+   Dispatcher accept_timeout [1]: <userinput>&lt;Enter&gt;</userinput>
+   Dispatcher recv_timeout [2]: <userinput>&lt;Enter&gt;</userinput>
+   Dispatcher send_timeout [2]: <userinput>&lt;Enter&gt;</userinput>
+               
+Setting SELinux context(s) for /usr/share/oslockdown/cfg/sb_dispatcher.
+properties...
+
+Start the OS Lockdown Dispatcher now?
+
+   Start the 'osl-dispatcher' service now? [y/n]: <userinput>y</userinput>
+            
+Starting /sbin/SB_Dispatcher:
+
+   You can manage this service yourself with:
+       # /sbin/service osl-dispatcher stop
+       # /sbin/service osl-dispatcher start
+       # /sbin/service osl-dispatcher status
+            
+Dispatcher log is /var/log/oslockdown-dispatcher.log
+                  
+[root@localhost.localdomain oslockdown-&SB_prodvers;-22055]# exit</screen>
+         </step>
+         <step>
+            <para>The application is now installed and configured.</para>
+            <para>Proceed to <xref linkend="system-basics-launching-app" xrefstyle="select: label quotedtitle"/> to log
+               into the OS Lockdown application.</para>
+            <para>OR</para>
+            <para>To install OS Lockdown on additional clients, proceed to <xref linkend="client-only-install"
+                  xrefstyle="select: label quotedtitle"/>.</para>
+         </step>
+      </procedure>
+   </section>
+   <section xml:id="command-line-install">
+      <title>Installing the OS Lockdown Standalone Edition (Command Line Only)</title>
+      <procedure>
+         <para>To install the OS Lockdown Standalone edition, <emphasis role="italics">command line
+            only</emphasis>:</para>
+         <indexterm>
+            <primary>OS Lockdown</primary>
+            <secondary>Command Line</secondary>
+            <tertiary>Installing</tertiary>
+         </indexterm>
+         <indexterm>
+            <primary>SELinux</primary>
+         </indexterm>
+         <step>
+            <para>After you have followed the instructions in <xref linkend="run-install-script"
+                  xrefstyle="select: label quotedtitle"/>, SELinux policy type detection begins. Follow the prompts
+               according to your system configuration. </para>
+            <para>The installer determines the following:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>If SELinux is enabled.</para>
+               </listitem>
+               <listitem>
+                  <para>If OS Lockdown supports the operating system with SELinux.</para>
+               </listitem>
+               <listitem>
+                  <para>If an OS Lockdown SELinux policy module exists.</para>
+               </listitem>
+            </itemizedlist>
+            <note>
+               <para>Refer to <xref linkend="intro-selinux" xrefstyle="select: label quotedtitle"/> for more information
+                  on SELinux and OS Lockdown.</para>
+            </note>
+         </step>
+         <step>
+            <para>At the <filename>Install the graphical Console package? [y/n]</filename> prompt, type
+                  <userinput>n</userinput> for no.</para>
+            <screen>Install the graphical Console?
+                        
+The graphical Console is not required for Enterprise Edition clients. 
+However, it is required for the system you've designated as the Enterprise 
+Console and is STRONGLY recommended for all Standalone installations.
+                        
+For advanced command line users, you can run Standalone without a 
+graphical Console, however, you are required to select the Standalone
+installation type.
+                        
+Install the graphical Console package? [y/n]: <userinput>n</userinput></screen>
+         </step>
+         <step>
+            <para>Install the OS Lockdown SELinux policy module. At the <filename>Install the OS Lockdown SELinux Policy
+                  Module? [y/n]</filename> prompt, type <userinput>y</userinput> for yes.</para>
+            <screen>:: Checking for core installation RPMs for 64 bit Red Hat, release 6...
+
+OS Lockdown SELinux Policy Module is available.
+Current SELinux Policy file is: targeted
+
+OS Lockdown provides support for SELinux when running in enforcing/permissive 
+mode for the 'targeted' policy. Currently, other policy files are not supported 
+(such as 'strict' or 'mls').
+
+   Install the OS Lockdown SELinux Policy Module? [y/n]: <userinput>y</userinput></screen>
+         </step>
+         <step>
+            <para>Installation begins. </para>
+            <itemizedlist>
+               <listitem>
+                  <para>If previous versions of the product exist on your system, at the <filename>Remove and replace
+                        packages? [y/n]</filename> prompt, type <userinput>y</userinput> for yes. </para>
+                  <para>The system removes previous version(s) of the product, and exports the database consisting of
+                     reports, logs, and profiles.</para>
+               </listitem>
+               <listitem>
+                  <para>If previous versions of the product do <emphasis role="italic">not</emphasis> exist on your
+                     system, proceed to <xref linkend="at-the-would-you-like" xrefstyle="select: label quotedtitle"
+                     />.</para>
+               </listitem>
+            </itemizedlist>
+            <screen>                     .:: LINUX INSTALLATION ::. 
+**************************************************************************
+:: Stopping current Security Blanket/OS Lockdown services...
+:: Checking for Security Blanket v3.x Enterprise Console database...
+
+:: Preserving potential changes made in /var/lib/security-blanket/files...
+   
+:: Performing any requested backups of profiles and database directories...
+
+:: Checking for previous versions of Security Blanket/OS Lockdown...
+
+   * Found the following installed Security Blanket packages:
+     - security-blanket-4.0.4-r1127.el5
+     - security-blanket-modules-4.0.4-r1127.el5
+     - security-blanket-console-4.0.4-r1127
+     - security-blanket-dispatcher-4.0.4-r1127.el5
+
+Remove and replace packages? [y/n]: <userinput>y</userinput>
+
+:: Removing previous Security Blanket packages...
+   * Don't worry... all existing reports, logs, and profiles will be saved.
+
+:: Checking for dependent software packages...
+
+:: Preserving/renaming legacy Security Blanket files to work with OS Lockdown...
+
+:: Installing OS Lockdown packages...
+                  
+   + oslockdown-&SB_prodvers;-22055.el5
+   + oslockdown-dispatcher-&SB_prodvers;-22055.el5
+   + oslockdown-modules-&SB_prodvers;-22055.el5
+   + oslockdown-selinux-&SB_prodvers;-24022.el6
+                  
+:: Ensuring permissions for any existing local reports are correct...
+ 
+:: Ensuring permissions for any existing certificates are correct...
+ 
+:: Ensuring permissions for any existing log files are correct...
+ 
+:: Ensuring SELinux contexts for existing files are correct...</screen>
+         </step>
+         <step>
+            <para>Optional. Copy the OS Lockdown documentation into the &ldquo;docs&rdquo; directory.</para>
+            <para>At the <filename>Would you like to copy them? [y/n]</filename> prompt, type <userinput>y</userinput>
+               to copy the OS Lockdown documentation into the <filename>/usr/share/oslockdown/docs</filename>
+               directory.</para>
+            <para>Otherwise, type <userinput>n</userinput> if you do not want to copy the documentation. </para>
+            <screen>You have the option of copying the files from the 'docs' directory
+   into the /usr/share/oslockdown/docs directory. These files are
+   the PDF versions of the Admin Guide and the Modules Guide.
+
+Would you like to copy them? [y/n]: <userinput>y</userinput>
+   * Installing 'docs' directory in /usr/share/oslockdown...
+   
+Folding any custom changes to /var/lib/oslockdown/files/* now...</screen>
+         </step>
+         <step xml:id="at-the-would-you-like">
+            <para>At the <filename>Would you like to register this client with a console? [y/n]</filename> prompt, type
+                  <userinput>n</userinput> for no.</para>
+            <screen>Would you like to register this client with a console? [y/n]: <userinput>n</userinput>
+
+:: Client is not registered with any Console.
+:: You can issue scan/apply/undo/baseline commands and basic reporting 
+   from the command line.  Please refer to the Administration Guide for 
+   more details.
+
+[root@localhost.localdomain oslockdown]# exit</screen>
+         </step>
+         <step>
+            <para>The application is now installed and configured.</para>
+            <para>Refer to the <emphasis role="bold">oslockdown(8)</emphasis> man page for a list of command line
+               options and examples.</para>
+         </step>
+      </procedure>
+   </section>
+   <section xml:id="client-only-install">
+      <title>Installing OS Lockdown on an Enterprise Client</title>
+      <procedure>
+         <para>To install OS Lockdown on an Enterprise client:</para>
+         <indexterm>
+            <primary>SELinux</primary>
+         </indexterm>
+         <step>
+            <para>After you have followed the instructions in <xref linkend="run-install-script"
+                  xrefstyle="select: label quotedtitle"/>, SELinux policy type detection begins. Follow the prompts
+               according to your system configuration. </para>
+            <para>The installer determines the following:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>If SELinux is enabled.</para>
+               </listitem>
+               <listitem>
+                  <para>If OS Lockdown supports the operating system with SELinux.</para>
+               </listitem>
+               <listitem>
+                  <para>If an OS Lockdown SELinux policy module exists.</para>
+               </listitem>
+            </itemizedlist>
+            <note>
+               <para>Refer to <xref linkend="intro-selinux" xrefstyle="select: label quotedtitle"/> for more information
+                  on SELinux and OS Lockdown.</para>
+            </note>
+         </step>
+         <step>
+            <para>At the <filename>Install the graphical console package? [y,n]</filename> prompt, type
+                  <userinput>n</userinput> for no.</para>
+            <screen>Install the graphical Console? 
+               
+The graphical Console is not required for Enterprise Edition Clients. 
+However, it is required for the system you've designated as the Enterprise 
+Console and is STRONGLY recommended for all Standalone installations.
+               
+For advanced command line users, you can run Standalone without a 
+graphical Console, however, you are required to select the Standalone
+installation type.
+               
+Install the graphical Console package? [y/n]: <userinput>n</userinput></screen>
+         </step>
+         <step>
+            <para>Install the OS Lockdown SELinux policy module. At the <filename>Install the OS Lockdown SELinux Policy
+                  Module? [y/n]</filename> prompt, type <userinput>y</userinput> for yes.</para>
+            <screen>:: Checking for core installation RPMs for 64 bit Red Hat, release 5...
+
+OS Lockdown SELinux Policy Module is available.
+Current SELinux Policy file is: targeted
+
+OS Lockdown provides support for SELinux when running in enforcing/permissive 
+mode for the 'targeted' policy. Currently, other policy files are not supported 
+(such as 'strict' or 'mls').
+
+   Install the OS Lockdown SELinux Policy Module? [y/n]: <userinput>y</userinput></screen>
+         </step>
+         <step>
+            <para>Installation begins. </para>
+            <itemizedlist>
+               <listitem>
+                  <para>If previous versions of the product exist on your system, at the <filename>Remove and replace
+                        packages? [y/n]</filename> prompt, type <userinput>y</userinput> for yes. </para>
+                  <para>The system removes previous version(s) of the product, and exports the database consisting of
+                     reports, logs, and profiles. The database can be imported into the new OS Lockdown Console using
+                     the Manage Database page (<xref linkend="enterprise-mig-page" xrefstyle="select: label"/>).</para>
+               </listitem>
+               <listitem>
+                  <para>If previous versions of the product do <emphasis role="italic">not</emphasis> exist on your
+                     system, proceed to <xref linkend="optional-copy-3" xrefstyle="select: label quotedtitle"/>.</para>
+               </listitem>
+            </itemizedlist>
+            <screen>                    .:: LINUX INSTALLATION ::. 
+**************************************************************************
+:: Stopping current Security Blanket/OS Lockdown services...
+:: Checking for Security Blanket v3.x Enterprise Console database...
+
+:: Preserving potential changes made in /var/lib/security-blanket/files...
+
+:: Performing any requested backups of profiles and database directories...
+
+:: Checking for previous versions of Security Blanket/OS Lockdown...
+
+   * Found the following installed Security Blanket packages:
+     - security-blanket-4.0.4-r1127.el5
+     - security-blanket-modules-4.0.4-r1127.el5
+     - security-blanket-console-4.0.4-r1127
+     - security-blanket-dispatcher-4.0.4-r1127.el5
+
+Remove and replace packages? [y/n]: <userinput>y</userinput>
+
+:: Removing previous Security Blanket packages...
+   * Don't worry... all existing reports, logs, and profiles will be saved.
+
+:: Checking for dependent software packages...
+
+:: Preserving/renaming legacy Security Blanket files to work with OS Lockdown...
+OS Lockdown file /var/log/oslockdown-dispatcher.log detected, will not overwrite.
+
+:: Installing OS Lockdown packages...
+                  
+   + oslockdown-&SB_prodvers;-22055.el5
+   + oslockdown-dispatcher-&SB_prodvers;-22055.el5
+   + oslockdown-modules-&SB_prodvers;-22055.el5
+   + oslockdown-selinux-&SB_prodvers;-22055.el5
+
+:: Ensuring permissions for any existing local reports are correct...
+ 
+:: Ensuring permissions for any existing certificates are correct...
+ 
+:: Ensuring permissions for any existing log files are correct...
+ 
+:: Ensuring SELinux contexts for existing files are correct...</screen>
+         </step>
+         <step xml:id="optional-copy-3">
+            <para>Optional. Copy the OS Lockdown documentation into the &ldquo;docs&rdquo; directory.</para>
+            <para>At the <filename>Would you like to copy them? [y/n]</filename> prompt, type <userinput>y</userinput>
+               to copy the OS Lockdown documentation into the <filename>/usr/share/oslockdown/docs</filename>
+               directory.</para>
+            <para>Otherwise, type <userinput>n</userinput> if you do not want to copy the documentation. </para>
+            <screen>You have the option of copying the files from the 'docs' directory
+   into the /usr/share/oslockdown/docs directory. These files are
+   the PDF versions of the Admin Guide and the Modules Guide.
+
+Would you like to copy them? [y/n]: <userinput>y</userinput>
+   * Installing 'docs' directory in /usr/share/oslockdown
+   
+Folding any custom changes to /var/lib/oslockdown/files/* now...</screen>
+         </step>
+         <step>
+            <para>OS Lockdown Console registration with the client begins. This process sends a registration request to
+               the OS Lockdown Console where you can view, accept or deny the request via the Auto-Registration Requests
+               page.</para>
+            <para>At the <filename>Would you like to register this Client with a Console? [y/n]</filename> prompt, type
+                  <userinput>y</userinput> for yes.</para>
+            <screen>Would you like to register this Client with a Console? [y/n]: <userinput>y</userinput></screen>
+         </step>
+         <step>
+            <para>At the <filename>What Enterprise Console would you like to register this client with?</filename>
+               prompt, provide the console and client information.</para>
+            <para>Press <keycap>&lt;Enter&gt;</keycap> to accept the defaults. </para>
+            <screen>               .:: REGISTER CLIENT WITH CONSOLE ::. 
+**************************************************************************
+What Enterprise Console would you like to register this client with?
+   Console's host address [localhost]: <userinput>&lt;type console's host address&gt;</userinput>
+   Console's TCP port [8443]: <userinput>&lt;Enter&gt;</userinput>
+   Client's descriptive name [localhost.localdomain]: <userinput>&lt;Enter&gt;</userinput>
+   Client's host address     [localhost.localdomain]: <userinput>&lt;Enter&gt;</userinput>
+   Client's TCP port         [6443]: <userinput>&lt;Enter&gt;</userinput>          
+   Client's location         : <userinput>&lt;location</userinput>
+   Client's contact          : <userinput>&lt;contact&gt;</userinput>
+      
+:: Attempting to register with https://localhost:8443/OSLockdown/services/
+   clientregistration
+:: Response for Console -> Registration Pending
+:: Writing SSL data to /var/lib/oslockdown/files/certs/cacert.pem
+:: Writing SSL data to /var/lib/oslockdown/files/certs/Disp.pem
+:: Locking passphrase...
+:: Writing SSL data to /var/lib/oslockdown/files/certs/
+   .sb_dispatcher_keystore.dat
+:: Shutting down
+
+CHECKING YOUR LINUX ENVIRONMENT
+- Running on Red Hat 5.2 (x86_64)
+- en_US.utf8 language support available
+- Security-Enhanced Linux (SELinux) 
+  : SELinux status:  enabled
+  : Current mode:    permissive
+  
+- 'python' package (RPM) is installed
+- Python version 2.4.3 found
+- OS Lockdown packages:
+  : oslockdown is installed
+  : oslockdown-modules is installed
+  : oslockdown-dispatcher is installed
+  : oslockdown-console is NOT installed
+  : oslockdown-console-ibmjava is NOT installed
+  : oslockdown-selinux is installed
+  
+  NOTE: If you are troubleshooting this installation, consider 
+  using OS Lockdown's built-in diagnostics module 
+  for a detailed analysis of this environment.
+            
+  # /usr/sbin/oslockdown -D</screen>
+         </step>
+         <step>
+            <para>Dispatcher configuration begins.</para>
+            <orderedlist numeration="loweralpha">
+               <listitem>
+                  <para>At the <filename>Configure the Dispatcher on this machine? [y/n]</filename> prompt, type
+                        <userinput>y</userinput> for yes. </para>
+               </listitem>
+               <listitem>
+                  <para>Provide the following dispatcher information.</para>
+               </listitem>
+            </orderedlist>
+            <screen>                 .:: DISPATCHER CONFIGURATION ::.
+**************************************************************************
+Configure the Dispatcher on this machine?  [y/n]: <userinput>y</userinput>
+            
+How will the Console connect to this dispatcher?
+            
+   The Dispatcher normally listens on port 6443 for 
+   connections from the console.
+            
+   Dispatcher port [6443]: <userinput>&lt;Enter&gt;</userinput>
+   Dispatcher accept_timeout [1]: <userinput>&lt;Enter&gt;</userinput>
+   Dispatcher recv_timeout [2]: <userinput>&lt;Enter&gt;</userinput>
+   Dispatcher send_timeout [2]: <userinput>&lt;Enter&gt;</userinput>
+                     
+Setting SELinux context(s) for /usr/share/oslockdown/cfg/sb_dispatcher.properties...
+Start the OS Lockdown Dispatcher now?
+
+   Start the 'osl-dispatcher' service now? [y/n]: <userinput>y</userinput>
+            
+Starting /sbin/SB_Dispatcher:
+
+   You can manage this service yourself with:
+       # /sbin/service osl-dispatcher stop
+       # /sbin/service osl-dispatcher start
+       # /sbin/service osl-dispatcher status
+            
+   Dispatcher log is /var/log/oslockdown-dispatcher.log
+                  
+[root@localhost.localdomain oslockdown-&SB_prodvers;-22055]# exit</screen>
+         </step>
+         <step>
+            <para>The application is now installed and configured on the client.</para>
+            <para>Repeat Steps 1 - 8 to install OS Lockdown on additional clients (in addition to the procedure in <xref
+                  linkend="run-install-script" xrefstyle="select: label quotedtitle"/>).</para>
+            <para>Proceed to <xref linkend="system-basics-launching-app" xrefstyle="select: label quotedtitle"/> to log
+               into the OS Lockdown application.</para>
+         </step>
+      </procedure>
+   </section>
+</chapter>

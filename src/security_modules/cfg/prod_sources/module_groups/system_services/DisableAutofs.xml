@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Autofs Daemon">
+        <library>DisableAutofs</library>
+        <description>Disables the Autofs daemon that is used to automatically mount local media and/or remote network shares</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:5">
+            <services>
+              <service seq="1" name="autofs" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="autofs"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5">
+            <services>
+              <service seq="1" name="autofs" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="autofs"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <services>
+              <service seq="1" name="autofs" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="autofs"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:5">
+            <services>
+              <service seq="1" name="autofs" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="autofs"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6">
+            <services>
+              <service seq="1" name="autofs" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="autofs"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <services>
+              <service seq="1" name="autofs" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="autofs"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

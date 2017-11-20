@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="Prohibit_DHCP_Dynamic_Updates" version="5.0">
+ <title xml:id="NetworkConfig">Prohibit DHCP Client Dynamic DNS Updates</title>
+ <para>
+  Verify that the <filename>/etc/dhclient*.conf</filename> files have
+  the
+  <filename><emphasis role="italic">do-forward-updates</emphasis></filename>
+  option set to 'false'.
+ </para>
+ <simplesect xml:id="Prohibit_DHCP_Dynamic_Updates-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN007850 - The DHCP client must not send dynamic DNS updates.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

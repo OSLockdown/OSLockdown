@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: app-passwd-policy-enforcing.xml 23964 2017-03-21 21:04:23Z acochrane $ -->
+<section version="5.0" xml:id="app-passwd-policy-enforcing" xmlns="http://docbook.org/ns/docbook">
+ <title>Enforcing the Policy</title>
+ <para> Implementing a <link linkend="app-passwd-policy-aging">password aging</link> and <link
+   linkend="app-passwd-policy-composition">password length and composition</link> policy applies to accounts when a new
+  password is set. When introducing a new policy or changing an existing one, current active accounts must adhere to the
+  new policy. Since these accounts set the password prior to implementing the policy, they have inherited the previous
+  policy. OS Lockdown offers a module to <link linkend="SetPassAgingOnAccts">Set Password Aging on Active
+   Accounts</link>. </para>
+ <para> Consider disallowing the secure shell service from accepting empty passwords in conjunction with the <link
+   linkend="NoEmptyPasswords">No Empty Passwords</link> module. OS Lockdown’s <link linkend="SshdDisableEmptyPasswords"
+   >SSHD Disable Empty Passwords</link> will ensure this policy is enforced. </para>
+ <para> Furthermore, consider disabling services which allow passwords to be transmitted over unencrypted network
+  connections. Failure to do so could result in disclosure of passwords. Consider using the following OS Lockdown
+  modules: </para>
+ <itemizedlist>
+  <listitem>
+   <para>
+    <link linkend="DisableFTP_vsftpd">Disable FTP (vsftpd)</link>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <link linkend="DisableFTP_gssftp">Disable FTP (gssftp)</link>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <link linkend="DisableTelnet">Disable Telnet</link>
+   </para>
+  </listitem>
+ </itemizedlist>
+ <para> Finally, appropriate discretionary access controls should be applied to configuration files to prevent
+  unauthorized changes to the password policy. Consider using the following OS Lockdown modules to secure configuration
+  files: </para>
+ <itemizedlist>
+  <listitem>
+   <para>
+    <link linkend="PasswdPerms">Password Perms</link>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <link linkend="SysConfigFilePerms">System Configuration File Permissions</link>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <link linkend="SecureSetXIDFiles">Secure SUID/SGID Executables</link>
+   </para>
+  </listitem>
+ </itemizedlist>
+</section>

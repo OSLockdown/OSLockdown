@@ -1,0 +1,525 @@
+/*****************************************************************************************
+ * Copyright (c) 2007-2008 Forcepoint LLC.
+ * This file is released under the GPLv3 license.  
+ * See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+ * or visit https://www.gnu.org/licenses/gpl.html instead.
+ *
+ * Style Sheet for Generating CounterStorm DocBooks into XHTML
+ *
+ * See the following sites for help:
+ *    http://www.w3.org/TR/REC-CSS2/
+ *    http://www.sagehill.net/docbookxsl/index.html
+ *
+ * $Id: docbook.css 23887 2017-01-30 16:56:44Z rsanders $
+ *
+ *****************************************************************************************/
+
+
+body {
+       /*background-color: #315581;  */
+       background-color: white;
+       font-family: arial, helvetica, sans, sans-serif;
+       font-size: 10pt;
+       padding: 5px;
+       min-width: 800px;
+}
+
+/** Stupid Internet Explorer work-arounds **/
+DIV{-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;} 
+
+h1,h2,h3,h4,h5,h6,#getting_started_steps {
+  font-family: Arial,Helvetica, serif;
+  font-weight: bold;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+
+h2.title {
+  font-size: 120%;
+}
+
+div.section {
+  background-color: white;
+  padding: 1em;
+  border: 4px solid #fff;
+  overflow: auto;
+}
+
+img { border: none; }
+
+/*******************************************************************************************
+ * Hyperlinks
+ *******************************************************************************************/
+a,
+a.link,
+a.active {
+ text-decoration: none;
+ color: #369;                                                                                                                        
+ }                                                                                                                                   
+a:hover { color: #000000; }  
+
+
+/*******************************************************************************************
+ * Navigational Header (Accross the top of each page)
+ *******************************************************************************************/
+div.navheader {
+  border:4px solid #315581;
+  background: #467fc5;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+
+}
+
+div.navheader a {
+ background-color: #cadff5;
+ border:1px solid #467fc5;
+ padding-left: 5px;
+ padding-right: 5px;
+ padding-bottom: 3px;
+ padding-top: 3px;
+ font-size: 11px;
+ height: 15px;
+ text-align: center;
+}
+div.navheader a:hover { background-color: #ccc; }
+
+div.navheader th {
+    color: white;
+    font-size: 1em;
+}
+
+div.navheader td  { 
+   vertical-align: top;
+   border: none; 
+}
+
+
+/*******************************************************************************************
+ * Navigational Footer (Accross the Bottom of each page)
+ *******************************************************************************************/
+div.navfooter {
+  /*border:2px solid #fff;*/
+  border:4px solid #315581;
+  background: #467fc5;
+  padding-bottom: 1em; 
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+  padding-top: 1em;
+}
+
+div.navfooter a {
+ background-color: #cadff5;
+ border:1px solid #467fc5;
+ padding-left: 5px;
+ padding-right: 5px;
+ padding-bottom: 3px;
+ padding-top: 3px;
+ font-size: 11px;
+ height: 15px;
+ text-align: center;
+}
+div.navfooter a:hover { background-color: #ccc; }
+
+div.navfooter td {
+    padding: 1px;
+    color: white;
+    border: none;
+    font-size: 85%;
+}
+
+/*******************************************************************************************
+ * Legal Notice
+ *******************************************************************************************/
+div.legalnotice { 
+    border:2px solid #fff;
+    padding: 1em;
+    background-color: #ffffff;
+    overflow: auto; }
+
+div.legalnotice div.itemizedlist {
+    padding-left: 0px;
+}
+
+div.legalnotice div.itemizedlist ul {
+    list-style-type: square;
+}
+
+
+/*******************************************************************************************
+ * Revision History 
+ *******************************************************************************************/
+div.revhistory { 
+    border:2px solid #fff;
+    padding: 1em;
+    background-color: #ffffff;
+    overflow: auto; }
+
+div.revhistory table { border: none; padding: 1px; }
+div.revhistory th    { padding: 2px; border: none; }
+div.revhistory td    { padding: 2px; 
+                       border-right: none; border-left: none; 
+                       border-top: solid thin lightgrey; }
+
+/** Handle <revremark> - Short revision remark **/
+div.revhistory td[colspan="2"] { padding-left: 2em; padding-bottom: 2em;
+                                 border: none; font-style: italic }
+
+
+/*******************************************************************************************
+ * Table of Contents (with different looking links, too)
+ *******************************************************************************************/
+div.toc   { padding: 5px; }
+div.toc a { text-decoration: none; border-bottom: none; }
+
+div.toc dt span.chapter {line-height: 2em; }
+div.toc dt span.appendix {line-height: 2em; }
+
+
+/*******************************************************************************************
+ * Main body of book                                                                       *
+ *******************************************************************************************/
+div.book {
+    border:2px solid #fff;
+    padding: 1em;
+    background-color: #ffffff;
+    overflow: auto;
+}
+
+
+/******************************************************************************************* 
+ * Preface
+ *******************************************************************************************/ 
+div.preface {
+    border:2px solid #fff;
+    padding: .5em;
+    background-color: #ffffff;
+    min-height: 500px;
+    overflow: auto;
+}                 
+
+/*******************************************************************************************
+ * Chapter
+ *******************************************************************************************/
+div.chapter {
+    border:1px solid #fff;
+    padding: .5em;
+    background-color: #ffffff;
+    overflow: auto;
+}
+
+/*******************************************************************************************
+ * Article
+ *******************************************************************************************/
+div.article {
+    border:1px solid #fff;
+    padding: .5em;
+    background-color: #ffffff;
+    overflow: auto;
+}
+
+/*******************************************************************************************
+ * Section
+ *******************************************************************************************/
+body > div.section {
+    min-height: 500px;
+}
+
+/*******************************************************************************************
+ * Appendix
+ *******************************************************************************************/
+div.appendix { 
+    border:1px solid #fff;
+    padding: .5em;
+    background-color: #ffffff;
+    overflow: auto;
+}
+
+body > div.appendix {
+    min-height: 500px;
+}
+
+/*******************************************************************************************
+ * Index
+ *******************************************************************************************/
+div.index { 
+    border:1px solid #fff;
+    padding: .5em;
+    background-color: #ffffff;
+    overflow: auto;
+}
+/** Wrapped lines are spaced in a bit **/
+div.indexdiv dt {
+    padding-bottom: 0.5em;
+    line-height: 1.5;
+    padding-left: 30px;
+    text-indent: -30px;
+}
+div.indexdiv dt a {
+    font-style: italic;
+}
+
+
+/*******************************************************************************************
+ * Glossary
+ *******************************************************************************************/
+div.glossary { 
+    border:1px solid #fff;
+    padding: .5em;
+    background-color: #ffffff;
+    overflow: auto;
+}                 
+
+div.glossdiv h3.title {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding: 2px;
+  padding-left: 0.5em;
+  background-color:  #cadff5;
+}
+
+/*******************************************************************************************
+ * Reference Divs
+ *******************************************************************************************/
+div.reference { 
+    border:1px solid #fff;
+    padding: .5em;
+    background-color: #ffffff;
+    overflow: auto;
+}                 
+
+div.refentry { 
+    border:1px solid #fff;
+    padding: .5em;
+    background-color: #eeeeee;
+    overflow: auto;
+}                 
+
+
+/*******************************************************************************************
+ * Bibliography 
+ *******************************************************************************************/
+div.bibliography { 
+    border:1px solid #fff;
+    padding: .5em;
+    background-color: #ffffff;
+    overflow: auto;
+}                 
+
+/*******************************************************************************************
+ * DocBook Tables (DIV)
+ *******************************************************************************************/
+div.informaltable { padding-top: 0.5em; padding-bottom: 0.5em; }
+
+div.informaltable table { border: 1px solid #c3d2e7; padding: 0px; min-width: 50%; font-size: 10pt }
+div.informaltable th    { border: 1px solid #c3d2e7; padding: 4px; color: black; background-color: #c3d2e7;}
+div.informaltable td    { border: 1px solid #c3d2e7; padding: 4px; }
+div.informaltable tr > td:first-child { white-space: nowrap } 
+
+
+ /** (Formal) Tables **/
+div.table { padding-top: 0.5em; padding-bottom: 0.5em; }
+div.table table { border: 1px solid #c3d2e7; padding: 0px; min-width: 50%; font-size: 10pt }
+div.table th    { border: 1px solid #c3d2e7; color: black; background-color: #c3d2e7; padding: 4px; }
+div.table td    { border: 1px solid #c3d2e7; padding: 4px; }
+
+td > pre.literallayout { white-space: pre }
+
+
+/*******************************************************************************************
+ * Simplelists use a Table in HTML
+ *******************************************************************************************/
+table.simplelist { border: none; }
+td table.simplelist { border: none; }
+table.simplelist tr { border: none; }
+table.simplelist td { border: none; padding:2px;}
+table.simplelist th { border: none; }
+
+/*******************************************************************************************
+ * Program Listings and Screen listings (<screen> </screen>)
+ *******************************************************************************************/
+.screen {
+        font-family: monospace;
+        font-size: 1em;
+        display: block;
+        padding: 5px;
+        background-color: #eee;
+        color: #000;   
+        overflow: auto;
+        border: 1px dotted #bbb;
+        border-radius: 6px;
+        -moz-border-radius: 6px;
+}
+
+.programlisting {
+        font-family: monospace;
+        font-size: 1em;
+        display: block;
+        padding: 5px;
+        border: 1px dotted #bbb;
+        background-color: #ddd;
+        color: #000;   
+        overflow: auto;
+        border-radius: 6px;
+        -moz-border-radius: 6px;
+}
+
+
+/*******************************************************************************************
+ * Caution, Warning, Notes, and Important elements
+ *******************************************************************************************/
+div.caution,div.warning,div.important,div.note,div.tip > h3.title { font-weight: bold }
+div.caution,div.warning,div.important,div.note,div.tip 
+ { 
+   font-weight: normal;
+   position: relative;
+   left: -0.5in;
+   margin-top: 2em;
+   margin-bottom: 2em;
+   width: 700px;
+   padding: .5em; 
+   background-color: #c3d2e7;
+   border: 2px solid #467fc5;
+ }
+
+
+div.sidebar {
+ margin-top: 1.5em;
+ margin-bottom: 1em;
+ width: 700px;
+ padding-top: 0;
+ padding-right: 0.5em;
+ padding-left: 0.5em;
+ padding-bottom: 0em;
+ border: 4px solid #a19670;
+ background-color: #c8c5a1;
+ color: black;
+}
+
+
+/*******************************************************************************************
+ * Inline and Block quote
+ *******************************************************************************************/
+blockquote.blockquote {
+    background-image: url(yelp-watermark-blockquote-201C.png);
+    background-repeat: no-repeat;
+}
+
+span.quote {
+    font-style: italic;
+}
+
+
+/*******************************************************************************************
+ * General Markup used for instructions: such as <guibutton>
+ *******************************************************************************************/
+span.guimenu     { font-weight: bold; }
+span.guimenuitem { font-weight: bold; }
+span.interface   { font-style: italic; font-weight: bold} 
+
+span.guibutton {
+        color: #000000;
+        padding: 1px;
+        padding-left: 2px;
+        padding-right: 2px;
+        background-color: #eeeeee;
+        border: 1px solid #bbb;
+        border-radius: 3.5px;
+        -moz-border-radius: 3.5px;
+}
+
+span.property { font-family: Courier; font-weight: bold; font-size: 10pt }
+span.application { color: black; }
+
+
+/*******************************************************************************************
+ * Special markup for releae notes (like bugs numbers)
+ *******************************************************************************************/
+/* span.bug_open:before   { content: url(...) "Bug " }
+    span.bug_closed:before { content: url(...) "Bug " } */
+
+span.bug_open   { color: red }
+span.bug_closed { color: red; text-decoration: line-through; }
+
+/* span.rfe_open:before   { content: url(...) "RFE " }
+   span.rfe_closed:before  { content: url(...) "RFE " } */
+
+span.rfe_open   { color: green }
+span.rfe_closed { color: green; text-decoration: line-through; }
+
+
+
+/*******************************************************************************************
+ * Call out lists
+ *******************************************************************************************/
+div.calloutlist  a     { border: none; }
+div.calloutlist  table { border: none; }
+div.calloutlist  td    { border: none; }
+
+
+/*******************************************************************************************
+ * Procedural boxes
+ *******************************************************************************************/
+div.procedure {
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+
+}
+
+/*******************************************************************************************
+ * Frequently Asked Question sets
+ *******************************************************************************************/
+tr.qandadiv td h3.title {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding: 2px;
+  padding-left: 0.5em;
+  background-color:  #cadff5;
+}
+
+tr.question td {
+    border-top: 1px solid #bbb;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+tr.question td p {
+    margin-top: 0px;
+    padding-left: 5px; 
+    font-weight: bold;
+}
+
+tr.answer td p {
+    margin-top: 0px;
+    padding-left: 5px; 
+}
+
+/*******************************************************************************************
+ * Itemized Listings
+ *******************************************************************************************/
+div.itemizedlist { padding-left: 0.5em; }
+div.itemizedlist ul { list-style-type: square; }
+
+div.itemizedlist li p { 
+    margin-top: 1px; 
+    margin-bottom: 2px; 
+}
+
+div.itemizedlist p.title { 
+    margin-bottom: 2px; 
+}
+
+
+/*******************************************************************************************
+ * DRAFT MODE ONLY:
+ *     Special Markup for Draft Mode (xsl:param draft.mode != 'no' )
+ *******************************************************************************************/
+span.remark {
+    background-color: yellow;
+    color: black;
+}
+
+span.remark:before { content: url('Figures/remark.png') "DRAFT: "; }
+
+p.draft { background-color: yellow; color: green; }

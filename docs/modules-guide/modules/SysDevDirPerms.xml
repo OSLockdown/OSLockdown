@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SysDevDirPerms" version="5.0">
+ <title xml:id="fileDACs">System Device Directory Ownership</title>
+ <para>
+  Controls access to key system device directories. System device
+  directories under <filename>/dev</filename> should be owned by root
+  and group root. This module ensures that these subdirectories have
+  root set as the owner and group.
+  <indexterm>
+   <primary>/dev</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Files and Directories</primary>
+   <secondary>/dev</secondary>
+  </indexterm>
+ </para>
+ <para>
+  It is recommended to apply this module. In most cases, the permissions
+  set by this module are operating system defaults; therefore, applying
+  this module should not impact normal operations.
+ </para>
+ <simplesect xml:id="SysDevDirPerms-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN002280 - Device files and directories must only be writable by
+     users with a system account or as configured by the vendor.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN002280 - Device Files Directories Permissions
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD NISPOM (Feb 2006)</title>
+   <listitem>
+    <para>
+     8.606b1 - Access 2 Requirements
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-3 - Access Enforcement
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

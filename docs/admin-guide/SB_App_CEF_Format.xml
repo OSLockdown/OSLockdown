@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % CommonEntities SYSTEM "../COMMON_ENTITIES.ent">
+%CommonEntities;
+]>
+<appendix version="5.0" xml:id="app-cef-format" xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!--<?xml-stylesheet type="text/css" href="docbook.css"?>-->
+  <title>CEF Format Used for Upstream Notifications</title>
+  <indexterm>
+    <primary>CEF Format</primary>
+  </indexterm>
+  <indexterm>
+    <primary>Notifications</primary><secondary>Upstream</secondary><tertiary>CEF Format Used</tertiary>
+  </indexterm>
+  <indexterm>
+    <primary>Upstream Notifications</primary>
+    <secondary>CEF Format Used</secondary>
+  </indexterm>
+  <para>Refer to the <emphasis>Implementing
+      ArcSight CEF</emphasis> document, revision 20, for a full explanation of the header fields.</para>
+  <para>The fixed fields of the CEF header contain the following information. Other fields will depend on the actual
+    notification message being reported and version of OS Lockdown. 
+    <informaltable frame="all">
+      <tgroup cols="2">
+      	<colspec colwidth="0.15*"/>
+      	<colspec align="left" colwidth="0.50*"/>
+      	<thead>
+      	  <row>
+      	    <entry>Header Field</entry>
+      	    <entry>Value</entry>
+      	  </row>
+      	</thead>
+      	<tbody>
+      	  <row>
+      	    <entry>Version</entry>
+	    <entry>CEF:0</entry>
+      	  </row>
+      	  <row>
+      	    <entry>Device Vendor</entry>
+	    <entry>OS Lockdown</entry>
+      	  </row>
+      	  <row>
+      	    <entry>Device Product</entry>
+	    <entry>OS Lockdown Console</entry>
+      	  </row>
+      	</tbody>
+      </tgroup>
+    </informaltable>    
+  </para>
+  <para>Regardless of the notification type, all notifications have the following three fields in the extension:</para>
+  <itemizedlist>
+    <listitem>
+      <para>cs1Label = ConsoleHost</para>
+    </listitem>
+    <listitem>
+      <para>cs1 = The hostname or IP address of the Console generating the notification</para>
+    </listitem>
+    <listitem>
+      <para>rt = Time the Console is generating the notification (ms after 1Jan1970)</para>
+    </listitem>
+  </itemizedlist>
+  <para/>
+  <informaltable frame="all">
+    <tgroup cols="2">
+      <colspec colwidth="0.15*"/>
+      <colspec align="left" colwidth="0.50*"/>
+      <thead>
+        <row>
+          <entry>Extension</entry>
+          <entry>Description</entry>
+        </row>
+      </thead>
+      <tbody>
+        <row>
+          <entry>duser</entry>
+          <entry>User account being created/deleted/changed.</entry>
+        </row>
+        <row>
+          <entry>dpriv</entry>
+          <entry>Role for the above account.</entry>
+        </row>
+        <row>
+          <entry>suser</entry>
+          <entry>Account logging in/out, or creating/deleting/modifying another account.</entry>
+        </row>
+        <row>
+          <entry>spriv</entry>
+          <entry>Role for the above account.</entry>
+        </row>
+        <row>
+          <entry>Reason</entry>
+          <entry>Human readable reason why a notification is being generated.</entry>
+        </row>
+        <row>
+          <entry>msg</entry>
+          <entry>Extra details on a particular notification.</entry>
+        </row>
+        <row>
+          <entry>cd2Label</entry>
+          <entry>Client.</entry>
+        </row>
+        <row>
+          <entry>cs2</entry>
+          <entry>Client name that a particular notification is for.</entry>
+        </row>
+        <row>
+          <entry>cs3Label</entry>
+          <entry>Group.</entry>
+        </row>
+        <row>
+          <entry>cs3</entry>
+          <entry>Group name that a particular notification is for (related to Scheduled Tasks).</entry>
+        </row>
+        <row>
+          <entry>cs4Label</entry>
+          <entry>Task.</entry>
+        </row>
+        <row>
+          <entry>cs4</entry>
+          <entry>Task &ldquo;id&rdquo; that a particular notification is for.</entry>
+        </row>
+        <row>
+          <entry>cs5Label</entry>
+          <entry>Result.</entry>
+        </row>
+        <row>
+          <entry>cs5</entry>
+          <entry>Result requiring this upstream notification.</entry>
+        </row>
+        <row>
+          <entry>startTime</entry>
+          <entry>Time a particular action began on a client.</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <para>The following are sample messages that were sent to the local syslog mechanism:</para>
+  <screen>Feb  8 15:42:15 localhost CEF:0|OS Lockdown|OS Lockdown Console|4.1.3|0|
+App Status|4|rt=1454964135474 cs1Label=ConsoleHost cs1=sbconsole 
+reason=Console startup
+
+Feb  8 15:43:00 localhost CEF:0|OS Lockdown|OS Lockdown Console|4.1.3|1|
+App Status|4|rt=1454964180171 cs1Label=ConsoleHost cs1=sbconsole reason=License 
+check msg=License valid: Enterprise
+
+Feb  8 15:43:05 localhost CEF:0|OS Lockdown|OS Lockdown Console|4.1.3|4|
+App Status|4|rt=1454964185686 cs1Label=ConsoleHost cs1=sbconsole dhost=shim_1 
+msg=Ok reason=Check client 
+
+Feb  8 15:50:47 localhost CEF:0|OS Lockdown|OS Lockdown Console|4.1.4|2|
+User Authentication|4|rt=1454964647108 cs1Label=ConsoleHost cs1=sbconsole 
+suser=admin reason=Console logout 
+
+Feb  8 15:51:09 localhost CEF:0|OS Lockdown|OS Lockdown Console|4.1.4|2|
+User Authentication|4|rt=1454964669973 cs1Label=ConsoleHost cs1=sbconsole 
+suser=admin spriv=Administrator reason=Console login 
+
+Feb  8 16:16:00 localhost CEF:0|OS Lockdown|OS Lockdown Console|4.1.4|3|
+Scheduled Task Status|6|rt=1454966160013 cs1Label=ConsoleHost cs1=sbconsole 
+cs3Label=Group cs3=tGroup cs4Label=TaskId cs4=1 reason=Client task status 
+cs2Label=Client cs2=box4 msg=Scheduled Task did not complete on Client</screen>
+</appendix>

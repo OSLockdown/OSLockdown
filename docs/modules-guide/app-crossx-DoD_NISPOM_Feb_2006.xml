@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="app-crossx-DoD_NISPOM_Feb_2006">
+  <title>DoD NISPOM Feb 2006</title>
+  <para>
+    <abstract> <para> The U.S. <emphasis role="italic">National Industrial Security Program Operating
+   Manual</emphasis> (NISPOM) provides baseline standards for the protection of classified
+  information released or disclosed to industry in connection with classified contracts under the
+  NISP. The operating manual is provided under the authority of DoD Directive 5220.22, "National
+  Industrial Security Program (NISP)", September 27, 2004. </para>
+ <para>
+  The manual consists of eleven primary chapters, however additional
+  information on the current interpretation of NISPOM requirements can
+  be found in Industrial Security Letters issued by the Defense Security
+  Service (DSS). The following chapters comprise the manual:
+ </para>
+ <itemizedlist>
+  <listitem>
+   <para>
+    CHAPTER 1 - General Provisions And Requirements
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 2 - Security Clearances
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 3 - Security Training and Briefings
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 4 - Classification and Marking
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 5 - Safeguarding Classified Information
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 6 - Visits and Meetings
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 7 - Subcontracting
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 8 - Information System Security
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 9 - Special Requirements
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 10 - International Security Requirements
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 11 - Miscellaneous Information
+   </para>
+  </listitem>
+ </itemizedlist>
+ <para> The majority of the NISPOM is policy and procedure oriented; however, OS Lockdown can
+  assist with satisfying some of the requirements in "Chapter 8 - Information System Security". </para>
+</abstract>
+  </para>
+  <para>
+    <literallayout>   14   Total number of line items in guideline
+   13   Items at least partially addressed by OS Lockdown
+    1   Items not addressed by OS Lockdown</literallayout>
+  </para>
+  <table xml:id="app-crossx-DoD_NISPOM_Feb_2006-8.303a-8.613a1" frame="all" tocentry="1" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>DoD NISPOM Feb 2006</title>
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.2*" align="center"/>
+      <colspec colname="c2" colwidth="0.5*" align="left"/>
+      <colspec colname="c3" colwidth="0.5*" align="left"/>
+      <thead>
+        <row>
+          <entry>Item</entry>
+          <entry>Title</entry>
+          <entry>OS Lockdown Modules</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>8.303a</entry>
+          <entry>Unique Identification</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+              <member>
+                <xref linkend="AuditEnable" xrefstyle="select: title page">Enable the Audit Subsystem</xref>
+              </member>
+              <member>
+                <xref linkend="PwGrpCheck" xrefstyle="select: title page">Lock Invalid Accounts</xref>
+              </member>
+              <member>
+                <xref linkend="LockDuplicateUidZeros" xrefstyle="select: title page">Lock Non-Root Accounts with UID 0</xref>
+              </member>
+              <member>
+                <xref linkend="SshRestrictCiphers" xrefstyle="select: title page">SSH Restrict Ciphers</xref>
+              </member>
+              <member>
+                <xref linkend="SshRestrictHMAC" xrefstyle="select: title page">SSH Restrict HMAC</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableRootLogin" xrefstyle="select: title page">SSHD Disable Root Login</xref>
+              </member>
+              <member>
+                <xref linkend="SshdPrintLastLog" xrefstyle="select: title page">SSHD Print Last Login by User</xref>
+              </member>
+              <member>
+                <xref linkend="SshdRestrictCiphers" xrefstyle="select: title page">SSHD Restrict Ciphers</xref>
+              </member>
+              <member>
+                <xref linkend="SshdRestrictHMAC" xrefstyle="select: title page">SSHD Restrict HMAC</xref>
+              </member>
+              <member>
+                <xref linkend="SshdRestrictUsersGroups" xrefstyle="select: title page">SSHD Restrict Users and Groups</xref>
+              </member>
+              <member>
+                <xref linkend="SyslogAuthpriv" xrefstyle="select: title page">Secure Authpriv Logging</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.303b</entry>
+          <entry>Authentication at Login</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NoEmptyPasswords" xrefstyle="select: title page">No Empty Passwords</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableEmptyPasswords" xrefstyle="select: title page">SSHD Disable Empty Passwords</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.303d</entry>
+          <entry>Access to Authentication Data</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.303i</entry>
+          <entry>Protection of Individual Passwords</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordInvalidate" xrefstyle="select: title page">Expired Password Invalidation</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordMaxDays" xrefstyle="select: title page">Maximum Time Between Password Changes</xref>
+              </member>
+              <member>
+                <xref linkend="NoEmptyPasswords" xrefstyle="select: title page">No Empty Passwords</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyConsecutive" xrefstyle="select: title page">Password Policy Consecutive Characters</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyDiffChars" xrefstyle="select: title page">Password Policy Different Characters</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyMinlen" xrefstyle="select: title page">Password Policy Length Minimum</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyLowercase" xrefstyle="select: title page">Password Policy Lowercase Minimum</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyNumbers" xrefstyle="select: title page">Password Policy Numeric Minimum</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicySpecial" xrefstyle="select: title page">Password Policy Special Characters</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyUppercase" xrefstyle="select: title page">Password Policy Uppercase Minimum</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.602a1</entry>
+          <entry>Automated Audit Trail Creation</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+              <member>
+                <xref linkend="SyslogCronLogging" xrefstyle="select: title page">Cron Logging</xref>
+              </member>
+              <member>
+                <xref linkend="AuditEnable" xrefstyle="select: title page">Enable the Audit Subsystem</xref>
+              </member>
+              <member>
+                <xref linkend="EnableAdditionalFTPLogging_vsftpd" xrefstyle="select: title page">Enable vsftpd Additional Logging</xref>
+              </member>
+              <member>
+                <xref linkend="SyslogMaillog" xrefstyle="select: title page">Log Critical Sendmail Messages</xref>
+              </member>
+              <member>
+                <xref linkend="SyslogAuthpriv" xrefstyle="select: title page">Secure Authpriv Logging</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.602a2</entry>
+          <entry>Audit Trail Protection</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.602d1</entry>
+          <entry>Audit 4 Requirements</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.606b1</entry>
+          <entry>Access 2 Requirements</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtDirPerms" xrefstyle="select: title page">At Directory Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="AtCronAccessFilePerms" xrefstyle="select: title page">At/Cron Access File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="BootLoaderConfigFilePerms" xrefstyle="select: title page">Boot Loader Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="ConfigureLddPerms" xrefstyle="select: title page">Configure Permissions on /usr/bin/ldd</xref>
+              </member>
+              <member>
+                <xref linkend="CorrectUnevenPerms" xrefstyle="select: title page">Correct Uneven File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="CrontabDirPerms" xrefstyle="select: title page">Crontab Dir Perms</xref>
+              </member>
+              <member>
+                <xref linkend="CrontabPerms" xrefstyle="select: title page">Crontab Perms</xref>
+              </member>
+              <member>
+                <xref linkend="CrontabScriptPerms" xrefstyle="select: title page">Crontab Script Perms</xref>
+              </member>
+              <member>
+                <xref linkend="FTPConfigFilePerms" xrefstyle="select: title page">FTP Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="GlobalInitializationFilePerms" xrefstyle="select: title page">Global Initialization File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="HomeDirContentPerms" xrefstyle="select: title page">Home Directory Contents</xref>
+              </member>
+              <member>
+                <xref linkend="HomeDirPerms" xrefstyle="select: title page">Home Directory Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="HostsFilePerms" xrefstyle="select: title page">Hosts File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="NntpFilePerms" xrefstyle="select: title page">InterNetNews Config File Perms</xref>
+              </member>
+              <member>
+                <xref linkend="KernelDumpDirPerms" xrefstyle="select: title page">Kernel Core Dump Directory Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="LDAPConfigFilePerms" xrefstyle="select: title page">LDAP Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="MailAgentAliasesFilePerms" xrefstyle="select: title page">Mail Agent Aliases Files Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="MIBFilePerms" xrefstyle="select: title page">Management Information Base (MIB) File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="ExportsConfigFilePerms" xrefstyle="select: title page">NFS Export Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="NisYpConfigPerms" xrefstyle="select: title page">NIS/NIS+/YP Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="NsswitchConfFilePerms" xrefstyle="select: title page">Name Service Switch Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+              <member>
+                <xref linkend="PrinterConfigFilePerms" xrefstyle="select: title page">Printer Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="ResolvConfFilePerms" xrefstyle="select: title page">Resolver Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="RestrictCompilerTools" xrefstyle="select: title page">Restrict Use of Compiler Tools</xref>
+              </member>
+              <member>
+                <xref linkend="ManPagePerms" xrefstyle="select: title page">Restrict Write-Access on Man Pages</xref>
+              </member>
+              <member>
+                <xref linkend="RootHomePerms" xrefstyle="select: title page">Root Home Directory Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SNMPConfigFilePerms" xrefstyle="select: title page">SNMP Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="AudioDevFilePerms" xrefstyle="select: title page">Secure Audio Devices</xref>
+              </member>
+              <member>
+                <xref linkend="SecureSetXIDFiles" xrefstyle="select: title page">Secure SUID/SGID Executables</xref>
+              </member>
+              <member>
+                <xref linkend="ShellBinPerms" xrefstyle="select: title page">Secure Shell Binaries</xref>
+              </member>
+              <member>
+                <xref linkend="SecureUnownedFiles" xrefstyle="select: title page">Secure Unowned Files</xref>
+              </member>
+              <member>
+                <xref linkend="SecureWorldWritableDevices" xrefstyle="select: title page">Secure World Writable Devices</xref>
+              </member>
+              <member>
+                <xref linkend="SecureWorldWritableDirectories" xrefstyle="select: title page">Secure World Writable Directories</xref>
+              </member>
+              <member>
+                <xref linkend="SecureWorldWritableFiles" xrefstyle="select: title page">Secure World Writable Files</xref>
+              </member>
+              <member>
+                <xref linkend="ServicesFilePerms" xrefstyle="select: title page">Services File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+              <member>
+                <xref linkend="SkeletonFilePerms" xrefstyle="select: title page">Skeleton File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SysctlPerms" xrefstyle="select: title page">Sysctl.conf Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SysCmdFilePerms" xrefstyle="select: title page">System Command File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SysConfigFilePerms" xrefstyle="select: title page">System Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SysDevDirPerms" xrefstyle="select: title page">System Device Directory Ownership</xref>
+              </member>
+              <member>
+                <xref linkend="SysLibFilePerms" xrefstyle="select: title page">System Library File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SysLoggingConfigFilePerms" xrefstyle="select: title page">System Logging Configuration File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="SysRcScriptPerms" xrefstyle="select: title page">System Run Control Script Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="UserDotFilePerms" xrefstyle="select: title page">User Dot File Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.607e</entry>
+          <entry>Identification and Authentication 5 Requirements</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NoEmptyPasswords" xrefstyle="select: title page">No Empty Passwords</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableEmptyPasswords" xrefstyle="select: title page">SSHD Disable Empty Passwords</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.609a1</entry>
+          <entry>User Notification</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CreateLoginBanner" xrefstyle="select: title page">Create Login Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreateLoginFTPBanner" xrefstyle="select: title page">Create Login FTP Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreatePreLoginGUIBanner" xrefstyle="select: title page">Create Pre-Login GUI Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreatePreSessionGUIBanner" xrefstyle="select: title page">Create Pre-Session GUI Banner</xref>
+              </member>
+              <member>
+                <xref linkend="SshdEnableBanner" xrefstyle="select: title page">SSHD Enable Banner</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.609a2</entry>
+          <entry>Successive Logon Attempts</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AccountLocks" xrefstyle="select: title page">Lock account after three failed login attempts</xref>
+              </member>
+              <member>
+                <xref linkend="LoginDelay" xrefstyle="select: title page">Set delay after failed login</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.609b2</entry>
+          <entry>User Inactivity</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdSetIdleTimeout" xrefstyle="select: title page">SSHD Set Idle Timeout Interval for User Logins</xref>
+              </member>
+              <member>
+                <xref linkend="SetCdeScreenSaver" xrefstyle="select: title page">Set CDE Screen Saver</xref>
+              </member>
+              <member>
+                <xref linkend="SetGnomeSS" xrefstyle="select: title page">Set Mandatory Screen Saver</xref>
+              </member>
+              <member>
+                <xref linkend="SetXScreenSaverDefaults" xrefstyle="select: title page">Set X Screen Saver Application Defaults</xref>
+              </member>
+              <member>
+                <xref linkend="ShellSessionTimeouts" xrefstyle="select: title page">Set shell timeout period</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>8.613a1</entry>
+          <entry>Access to Protection Functions</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisablePAMConsole" xrefstyle="select: title page">Disable PAM Console Library</xref>
+              </member>
+              <member>
+                <xref linkend="RequireGrubPassword" xrefstyle="select: title page">Require GRUB Password</xref>
+              </member>
+              <member>
+                <xref linkend="SingleUserMode" xrefstyle="select: title page">Single User Mode Password</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+</section>

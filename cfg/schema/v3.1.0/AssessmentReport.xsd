@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:annotation>
+    <xs:documentation>
+       Copyright (c) 2007-2014 Forcepoint LLC.  				    
+       This file is released under the GPLv3 license.				    
+       See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+       or visit https://www.gnu.org/licenses/gpl.html instead.      
+      
+       OS Lockdown - Asessment Report Schema
+    </xs:documentation>
+    <xs:appinfo>
+        This XML created by the Python module: AssessmentGen.pyo
+    </xs:appinfo>
+</xs:annotation>
+
+
+<!-- ********************************************************************** -->
+<!--                    Common Attributes used by elements                  -->
+<!-- ********************************************************************** -->
+<xs:attribute name="name" type="xs:string"/>
+
+<xs:element name="compliancy">
+     <xs:complexType mixed="true">
+       <xs:attribute name="name" type="xs:string" use="required" />
+     </xs:complexType>
+</xs:element>
+
+<xs:element name="description">
+  <xs:complexType mixed="true">
+    <xs:simpleContent>
+        <xs:extension base="xs:string"/>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:element>
+
+
+<!-- ********************************************************************** -->
+<!--                             Elements                                   -->
+<!-- ********************************************************************** -->
+
+<!-- Root Element of Document -->
+  <xs:element name="AssessmentReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="stats" />
+        <xs:element ref="results" />
+      </xs:sequence>
+
+      <xs:attribute name="hostname"  
+                    type="xs:string" 
+                     use="required" />
+
+      <xs:attribute name="profile"   
+                    type="xs:string" 
+                    use="required" />
+
+      <xs:attribute name="generator" 
+                    type="xs:string" 
+                    use="optional" 
+                    default="OS Lockdown"/>
+
+      <xs:attribute name="mac"
+                    type="xs:string"
+                    use="required" />
+
+      <xs:attribute name="kernel"
+                    type="xs:string" 
+                     use="required" />
+
+      <xs:attribute name="created"
+                    type="xs:string" 
+                     use="required" />
+    </xs:complexType>
+  </xs:element>
+
+
+  <xs:element name="stats">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="total_count" type="xs:integer"/>
+        <xs:element name="fail_count"  type="xs:integer"/>
+        <xs:element name="na_count"    type="xs:integer"/>
+        <xs:element name="notscanned_count" type="xs:integer"/>
+        <xs:element name="pass_count"  type="xs:integer"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="results">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="section" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="section">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="module" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute ref="name" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="module">
+    <xs:complexType mixed="true"> 
+      <xs:sequence>
+        <xs:element ref="description" minOccurs="0"/>
+        <xs:sequence>
+           <xs:element ref="compliancy" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence> 
+      </xs:sequence>
+
+      <xs:attribute name="severity" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="High" />
+            <xs:enumeration value="Medium" />
+            <xs:enumeration value="Severe" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+
+      <xs:attribute ref="name" use="required" />
+      <xs:attribute name="results" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

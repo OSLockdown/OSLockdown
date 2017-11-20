@@ -1,0 +1,1565 @@
+#!/bin/sh 
+# 
+# Copyright (c) 2007-2017 by Forcepoint LLC
+# This file is released under the GPLv3 license.  
+# See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+# or visit https://www.gnu.org/licenses/gpl.html instead.
+#  
+# Install OS Lockdown
+#
+
+PATH=/bin:/usr/bin:/usr/sbin:/sbin:/usr/local/bin
+export PATH
+
+# Note, for Solaris we need to add the path for the default location of the SFW openssl binary
+if [ "`uname -s`" = "SunOS" ]; then
+  PATH="${PATH}:/usr/sfw/bin"
+  export PATH
+fi
+
+# chdir to the mount point of the install CD
+MNTPT=`/usr/bin/dirname "$0"`
+OLDDIR=$PWD
+cd "${MNTPT}"
+
+licenseText=""
+licensePDF=""
+
+sbLine="**************************************************************************"
+export sbLine
+
+trap sighandler 1 2 3 6
+
+sighandler()
+{
+    echo " "
+    echo " "
+    echo "                       ***** Installation Aborted *****"
+    echo " "
+    cd ${OLDDIR}
+    exit 1
+}
+
+# detect OS Lockdown or Security Blanket install by looking for executable, 
+# OS Lockdown preempts Securirity Blanket
+if [ -x /usr/share/oslockdown/tools/sb-keylocker ] ; then
+  certdir="/var/lib/oslockdown/files/certs"
+  ProductDirectoryName='oslockdown'
+  keylocker_old="/usr/share/oslockdown/tools/sb-keylocker"
+  keylocker_new="/usr/share/oslockdown/tools/sb-keylocker"
+else
+  certdir="/var/lib/security-blanket/files/certs"
+  ProductDirectoryName='security-blanket'
+  keylocker_old="/usr/share/security-blanket/tools/sb-keylocker"
+  keylocker_new="/usr/share/oslockdown/tools/sb-keylocker"
+fi
+
+tomcat_keystore_file="${certdir}/.sb_tomcat_keystore.dat"
+tomcat_truststore_file="${certdir}/.sb_tomcat_truststore.dat"
+dispatcher_keystore_file="${certdir}/.sb_dispatcher_keystore.dat"""
+tomcat_keystore_passphrase=""
+tomcat_truststore_passphrase=""
+dispatcher_keystore_passphrase=""
+
+##############################################################################
+##############################################################################
+
+# The mechanism for encrypting the SSL passphrases can change between releases,
+# so the following routines try to preserve any existing passphrases
+# The only errors that are reported are if there is a decrypt problem.
+# We check for the existance of the passphrase files and 
+
+preserve_passphrases ()
+{
+  
+  if [ -x ${keylocker_old} ] ; then
+    echo "Attempting to recover any existing SSL passphrase(s)"
+    if [ -f ${tomcat_keystore_file}  ] ; then
+       echo "Retrieving tomcat_keystore passphrase"
+       tomcat_keystore_passphrase=`${keylocker_old} -q -d -t tomcat_keystore`
+       if [ $? -ne 0 ] ; then
+         echo "Unable to decrypt existing tomcat keystore passphrase - leaving unchanged"
+         tomcat_keystore_passphrase=""
+       fi
+    fi
+
+    if [ -f ${tomcat_truststore_file}  ] ; then
+       echo "Retrieving tomcat_truststore passphrase"
+       tomcat_truststore_passphrase=`${keylocker_old} -q -d -t tomcat_truststore`
+       if [ $? -ne 0 ] ; then
+         echo "Unable to decrypt existing tomcat truststore passphrase - leaving unchanged"
+         tomcat_truststore_passphrase=""
+       fi
+    fi
+  
+    if [  -f ${dispatcher_keystore_file} ] ; then
+       echo "Retrieving dispatcher_keystore passphrase"
+       dispatcher_keystore_passphrase=`${keylocker_old} -q -d -t dispatcher_keystore`
+       if [ $? -ne 0 ] ; then
+         echo "Unable to decrypt existing dispatcher keystore passphrase - leaving unchanged"
+         dispatcher_keystore_passphrase=""
+       fi
+    fi
+  fi
+}
+
+restore_passphrases ()
+{
+  
+  if [ -x ${keylocker_new} ] ; then
+     if [ ! -z "${tomcat_keystore_passphrase}" ] ; then
+       echo "Restoring tomcat_keystore passphrase"
+       ${keylocker_new} -e -t tomcat_keystore -p "${tomcat_keystore_passphrase}"
+       if [ $? -ne 0 ] ; then
+     	 echo "Unable to restore  tomcat keystore passphrase"
+       fi
+     fi
+     
+     if [ ! -z "${tomcat_truststore_passphrase}" ] ; then
+       echo "Restoring tomcat_struststore passphrase"
+       ${keylocker_new} -e -t tomcat_truststore -p "${tomcat_truststore_passphrase}"
+       if [ $? -ne 0 ] ; then
+     	 echo "Unable to restore  tomcat truststore passphrase"
+       fi
+     fi
+     
+     if [ ! -z "${dispatcher_keystore_passphrase}" ] ; then
+       echo "Restoring dispatcher_keystore passphrase"
+       ${keylocker_new} -e -t dispatcher_keystore -p "${dispatcher_keystore_passphrase}"
+       if [ $? -ne 0 ] ; then
+     	 echo "Unable to restore  dispatcher keystore passphrase"
+       fi
+     fi
+  fi
+}
+
+
+##############################################################################
+##############################################################################
+# Function - Get a Yes/No answer from a user
+# $1 = prompt
+# $2 = result variable
+
+ask_yes_or_no()
+{
+    myans=""
+    myprompt="${1}"
+    if [ -z "${myprompt}" ] ; then
+        myprompt = "Please answer (yes/no): "
+    fi
+    echo ""
+  
+    if [ "`uname -s`" = "SunOS" ]; then
+        # Solaris
+        myans=`ckyorn -Q -p "${myprompt} "`
+        case $myans in                                              
+            "YES"|"YEs"|"Yes"|"yes"|"Y"|"y") myans="YES" ;;      
+            "NO"|"No"|"no"|"N"|"n") myans="NO" ;;             
+        esac
+    else 
+        # Linux
+        while [ "$myans" != "YES" -a "$myans" != "NO" ]; do         
+            read -e -p "${myprompt} [y/n]: " myans         
+                case $myans in                                              
+                    "YES"|"YEs"|"Yes"|"yes"|"Y"|"y") myans="YES" ;;      
+                    "NO"|"No"|"no"|"N"|"n") myans="NO" ;;             
+                esac
+            if [ "${myans}" != "YES" -a "${myans}" != "NO" ] ; then
+                echo "Please specify either yes or no." 
+            fi
+        done                                                              
+    fi
+    echo 
+    if [ ! -z "${2}" ] ; then   
+        eval "${2}=\"$myans\""
+    fi
+}
+
+##############################################################################
+# $1 = port type (console/standalone/dispatcher)
+# $2 = default port number
+# $3 = result variable
+ask_for_port()
+{
+  strtext=""
+  echo "Enter return to accept default value."
+  if [ "`uname -s`" = "SunOS" ] ; then
+    echo "${1} port:[${2}]"
+    read strtext
+  else
+    read -e -p "${1} port:[${2}]" strtext
+  fi
+  if [ -z "${strtext}" ] ; then
+    strtext="${2}"
+  fi
+  eval "${3}=\"$strtext\""
+}
+
+
+show_copyright()
+{
+  echo ""
+}
+
+
+pre_install_solaris()
+{
+
+  # verify that we're Solaris 10
+  if [ `uname -r` != "5.10" ] ; then
+    echo "ERROR: OS Lockdown requires Solaris 10 "
+    cd ${OLDDIR}
+    exit 1
+  fi
+
+  DISTTYPE="sol10"
+  if [ "`/usr/bin/uname -m`" = "i86pc" ]; then
+      MYARCH="i86pc"
+  else
+      MYARCH="sparc"
+  fi
+  
+
+  PKG_ARCH_DIR="${MNTPT}/Packages/solaris-10-${MYARCH}"
+  PKG_GUI_DIR="${MNTPT}/Packages"
+
+  PKG_ARCH_PKGS=`ls ${PKG_ARCH_DIR}/*.pkg `
+  PKG_GUI=`ls ${PKG_GUI_DIR}/*.pkg | grep console`
+
+  if [ "${install_gui}" = "YES" ] ; then
+    if [ "${JavaVersion}" != "1.6" -a "${JavaVersion}" != "1.7" ] ; then
+      echo "Java version is not 1.6 or 1.7"
+      echo "Detected Java is ${JavaFlavor} ${JavaVersion} - JAVA_HOME=$JavaHome"
+      cd ${OLDDIR}
+      exit 1
+    fi
+  fi
+  
+}
+
+install_solaris()
+{
+  # verify that the /usr filesystem is mounted with write permissions.
+  # If the filesystem isn't, we can't proceed.  Possible causes are that
+  # the admin needs to change the write permissions, *or* someone is trying
+  # to install OS Lockdown on a sparse root zone.
+  
+  if [ "${install_gui}" != "YES" ] ; then
+    PKG_GUI=""
+  fi
+  PKGS_TO_INSTALL="${PKG_ARCH_PKGS} ${PKG_GUI}"
+
+  if [ `mount | grep '/usr read only' | wc -l` != 0 ] ; then
+    echo "ERROR: Unable to write to /usr"
+    if [ "`zonename`" != "global" ]; then
+      echo "     : Is this a sparse root zone?  OS Lockdown can not"
+      echo "     : install on or run within a sparse root zone."
+    fi
+    cd ${OLDDIR}
+    exit 1
+  fi
+  # Make sure python is installed
+  if [ ! -x /bin/python ]; then
+      echo "ERROR: Can not find /bin/python"
+  fi
+
+  # Check that the Python 2.4 runtime is installed.  Patch 143506-02+(SPARC) and 143507-02+(i86pc)
+  # have Python 2.6 as the default runtime, but also install the Python 2.4 runtime.  They do 
+  # however remove the Python 2.4 *devel* libraries
+
+  # Check explicitly for Python 2.4 - we *require* 2.4 for the compiled bytecode.  The 'default' python command is
+  # a symlink from /usr/bin/python to the actual python executable, which is /usr/bin/python2.4 for Solaris 10U3-U9
+  # and /usr/bin/python2.6 for U10+ (or U9 with the above patch(es) installed).  So we're going to cut to the chase
+  # and look for /usr/bin/python2.4 directly during install.
+  
+  if [ -x /usr/bin/python2.4 ] ; then
+      python_version=`/usr/bin/python2.4 -c 'import sys; print sys.version[:3]'`
+      if [ "$python_version" != "2.4" ] ; then
+          echo "ERROR: OS Lockdown *requires* Python 2.4"
+          cd ${OLDDIR}
+          exit 1
+      fi
+  else
+      echo "Unable to find executable command /usr/bin/python2.4 - Please check that"
+      echo "you have a version of SUNWPython installed that provides python 2.4"
+      cd ${OLDDIR}
+      exit 1
+  fi
+
+  # ask if interaction desired for software install/removal
+  ask_yes_or_no "Non-interactive removal/installation (i.e., just do it)? " yes_or_no
+  if [ "${yes_or_no}" = "YES" ] ; then
+    pkgCmdFlags=""
+    tempFile=`mktemp /tmp/.SB_pkgAnswerFile_XXXXXXXX`
+    
+    if [ ! -z "${tempFile}" ] ; then
+    
+      echo "mail=" > $tempFile
+      echo "instance=unique" >> $tempFile
+      echo "partial=nocheck" >> $tempFile
+      echo "runlevel=ask" >> $tempFile
+      echo "idepend=quit" >> $tempFile
+      echo "rdepend=quit" >> $tempFile
+      echo "space=ask" >> $tempFile
+      echo "setuid=quit" >> $tempFile
+      echo "conflict=nocheck" >> $tempFile
+      echo "action=nocheck" >> $tempFile
+      echo "authentication=quit" >> $tempFile
+      echo "basedir=default" >> $tempFile
+      pkgCmdFlags=" -n -a ${tempFile}" 
+    else
+      echo "Unable to create answer file, removal is interactive."
+    fi
+  fi
+  
+  # we may add additional flags here at some point, but for now skip asking about zones.  We've explicitly
+  # set the packages to install in the current zone only
+  pkg_flags=" "
+
+  # look for V4 code already running, and stop it if it is.
+  if [ -x /etc/rc3.d/S99sb-dispatcher ] ; then
+    /etc/rc3.d/S99sb-dispatcher stop 
+  fi
+  if [ -x /etc/rc3.d/S99osl-dispatcher ] ; then
+    /etc/rc3.d/S99osl-dispatcher stop 
+  fi
+  if [ -x /etc/rc3.d/S99sb-console ] ; then
+    /etc/rc3.d/S99sb-console stop
+  fi
+  if [ -x /etc/rc3.d/S99osl-console ] ; then
+    /etc/rc3.d/S99osl-console stop
+  fi
+
+   # do archiving
+   effect_db_and_profile_archiving 
+
+  # Check to see if OS Lockdown is already installed.  Go in a somewhat reversed order of install
+  pkgs_to_remove=""
+  
+  SB_pkgs="TCSsbconsole TCSsbcerts TCSsbdispatcher TCSsblicense TCSsbmodules TCSsecblanket TCSsbmodulesmini"
+  OSL_pkgs="TCSoslockdown-console  TCSoslockdown-dispatcher  TCSoslockdown-modules TCSoslockdown"
+  for pkg in ${SB_pkgs} ${OSL_pkgs}; do
+    pkginfo -q ${pkg}
+    if [ $? -eq 0 ] ; then
+      pkgs_to_remove=`echo "${pkgs_to_remove} ${pkg}"`
+    fi
+  done
+  if [ -z "${pkgs_to_remove}" ] ; then 
+    echo "No OS Lockdown packages already installed, proceeding to install new packages."
+  else
+    echo "Found the following Security Blanket/OS Lockdown packages already installed:"
+    echo "${pkgs_to_remove}"
+    echo ""
+    echo ""
+    ask_yes_or_no "Remove existing packages?" yes_or_no
+    if [ "${yes_or_no}" = "YES" ] ; then
+      pkgrm ${pkgCmdFlags} ${pkgs_to_remove}
+      pkginfo -q ${pkgs_to_remove}
+      if [ $? -eq 0 ] ; then 
+        echo ""
+        echo "Some Security Blanket/OS Lockdown packages are still installed."
+        echo "Aborting installation of new packages."
+        cd ${OLDDIR}
+        exit 1
+      fi
+    fi
+  fi
+
+
+  # Go back and handle *all* directory/file name fixes, so that any existing Security Blanket related files are properly
+  # located/named for OS Lockdown to use them
+  upgrade_SB_paths_to_OSL_paths
+
+  echo ""
+  echo ""
+  echo ""
+  echo "Installing OS Lockdown core, agent, and documentation ..."
+#  echo "Installing  ${PKGS_TO_INSTALL}"
+#  pkgadd ${pkg_flags} -d packages/${PKGNAME}-${MAJORV}*${DISTTYPE}*${MYARCH}.pkg
+
+  for pkg in ${PKGS_TO_INSTALL}; do
+    pkgadd ${pkgCmdFlags} ${pkg_flags} -d ${pkg} all
+  done
+  if [ ! -z "${tempFile}" ] ; then
+    rm ${tempFile}
+  fi
+
+
+}
+
+# Try to id the linux release by looking for the '/etc/<sys>-release' file.
+
+identify_linux_release()
+{
+
+  mydistver=`python -c 'import platform; print platform.dist()[1].split(".")[0]'`
+
+  if [ -f /etc/SuSE-release ] ; then
+
+    cat /etc/SuSE-release | grep -qi opensuse
+    if [ $? -eq 0 ] ; then
+        OSBASE=opensuse
+        OSNAME=OPENSUSE
+        
+        OSVER="${mydistver}"
+        # Special check for OpenSUSE 11.3, which we need to treat as a separate major release due to library issues....
+        mydistminor=`python -c 'print open("/etc/SuSE-release").readlines()[1].strip().split(".")[-1]'`
+        if [ ${mydistver} -eq 11 -a ${mydistminor} -ge 3 ] ;  then
+            OSVER="${mydistver}_${mydistminor}"
+        fi
+    else
+        OSBASE=suse
+        OSNAME=SuSE
+        OSVER="${mydistver}"
+    fi
+
+  elif [ -f /etc/fedora-release ] ; then
+    OSBASE=fedora
+    OSNAME=Fedora
+    OSVER="${mydistver}"
+  elif [ -f /etc/centos-release ] ; then
+    OSBASE=redhat
+    OSNAME="CentOS"
+    OSVER="${mydistver}"
+  elif [ -f /etc/oracle-release ] ; then
+    OSBASE=redhat
+    OSNAME="Oracle"
+    OSVER="${mydistver}"
+  elif [ -f /etc/enterprise-release ] ; then
+    OSBASE=redhat
+    OSNAME="Oracle"
+    OSVER="${mydistver}"
+  elif [ -f /etc/redhat-release ] ; then
+    OSBASE=redhat
+
+    # Ok, XenServer uses this file, but we need to look inside to determine
+    # details.  For now, both XenServer 5 and 6 map to a CentOS 5 distro, so
+    # we need to use *this* for determining which set of RPM packages to use
+    
+    grep -q 'XenServer' /etc/redhat-release
+    if [ $? -eq 0 ] ; then
+      # Ok, XenServer detected...
+      echo "Detected XenServer installation, which is based on CentOS 5"
+      echo "Package selected based on this information"
+      mydistver=5
+    fi
+    OSNAME="Red Hat"
+    OSVER="${mydistver}"
+  else
+    echo "Unable to identify base operating system, aborting installation."
+    cd ${OLDDIR}
+    exit 1
+  fi
+
+  OSBIT=`uname -i`
+  if [ "${OSBIT}" = "x86_64" ] ; then
+    BIT_FLAVOR="64 bit"
+  fi
+  if [ "${OSBIT}" = "s390x" ] ; then
+    OSBASE="${OSBASE}_z"
+    BIT_FLAVOR="s390X"
+  fi
+  
+  RPM_DISTRO_ARCH_DIR="${MNTPT}/Packages/${OSBASE}-${OSVER}-${OSBIT}"
+  RPM_NOARCH_DIR="${MNTPT}/Packages"
+  
+  # look for the distro and arch specific directory (licensing, dispatcher) to see if this arch is supported
+  echo ":: Checking for core installation RPMs for ${BIT_FLAVOR} ${OSNAME}, release ${OSVER}..." 
+  if [ ! -d ${RPM_DIR} ] ; then
+    echo "$sbLine"
+    echo "   ERROR: No installation directory found."
+    echo "          It appears that this operating system "
+    echo "          is not supported at this time."
+    echo "$sbLine"
+    cd ${OLDDIR}
+    exit 1
+  fi
+}
+
+
+remove_selinux_portmanage_setup()
+{
+  SEMANAGE=/usr/sbin/semanage
+  if [ -x ${SEMANAGE} ] ; then
+    for sePortType in securityblanket_console_port_t securityblanket_console_mgt_port_t securityblanket_agent_port_t oslockdown_console_port_t oslockdown_console_mgt_port_t oslockdown_agent_port_t
+    do
+      oldPortNum=`${SEMANAGE} port -l | egrep "^${sePortType}\W" | awk '{print $3}'`
+      if [ ! -z "${oldPortNum}" ] ; then
+        echo "Removing ${oldPortNum} as the port for type ${sePortType}..."
+        ${SEMANAGE} port -d -t ${sePortType} -p tcp ${oldPortNum}
+      fi
+    done
+  fi
+}
+
+verify_all_required_rpms_present()
+{
+  echo ":: Checking for dependent software packages..."
+#FIXME - explicitly ignoring any dependency on mod_ssl, until we can rebuild the console package
+#FIXME - explicitly ignoring dmidecode and usbutils on s390 only
+  if [ "${OSBIT}" = "s390x" ] ; then
+    MISSING_RPMS=`rpm --test -U ${RPM_LIST}  2>&1 | grep -v 'mod_ssl' |grep -v dmidecode | grep -v usbutils |  grep 'is needed' | awk '{printf("%s\n", $1)}'| sort -u`
+  else
+    MISSING_RPMS=`rpm --test -U ${RPM_LIST}  2>&1 | grep -v 'mod_ssl' |  grep 'is needed' | awk '{printf("%s\n", $1)}'| sort -u`
+  fi
+  if [ ! -z "${MISSING_RPMS}" ] ; then
+    echo ":: The following packages are missing, and must be installed before proceeding:"
+    echo "   ${MISSING_RPMS}"
+    echo " "
+    cd ${OLDDIR}
+    exit 1
+  fi
+}
+
+
+rename_SBdirectory_to_OSLdirectory()
+{  
+  if [ -d "${2}" -a -f "${1}" ] ; then
+    echo "OS Lockdown directory $2 detected, will not overwrite"
+  elif [ -d "${1}" ] ; then
+    echo "Renaming legacy Security Blanket directory for OS Lockdown..."
+    echo "  ${1} -> ${2}"
+    mv "${1}" "${2}"
+  fi  
+}
+
+rename_SBfile_to_OSLfile()
+{
+  oldDir=$1
+  newDir=$2
+  
+  if [ -f "${2}" -a -f "${1}" ] ; then
+    echo "OS Lockdown file $2 detected, will not overwrite"
+  elif [ -f "${1}" ] ; then
+    echo "Renaming legacy Security Blanket directory for OS Lockdown..."
+    echo "  ${1} -> ${2}"
+    mv "${1}" "${2}"
+  fi   
+}
+
+# Locate any 'branded' paths/filenames from the commercial 'Security Blanket' product
+# and rename them so that the open source 'OS Lockdown' successor can use them.
+upgrade_SB_paths_to_OSL_paths()
+{
+  # Almost all of the 'commercial' files we care about are under /var/lib/security-blanket or /usr/share/security-blanket
+  # These paths need to be /var/lib/oslockdown or /usr/share/oslockdown respectively, but *DO NOT* change them 
+  # if we already see the OS Lockdown paths...
+  echo ""
+  echo ":: Preserving/renaming legacy Security Blanket files to work with OS Lockdown..."
+  
+  rename_SBdirectory_to_OSLdirectory /usr/share/security-blanket /usr/share/oslockdown
+  rename_SBdirectory_to_OSLdirectory /var/lib/security-blanket   /var/lib/oslockdown
+
+  rename_SBfile_to_OSLfile /var/lib/oslockdown/security-blanket-state.xml /var/lib/oslockdown/oslockdown-state.xml
+  rename_SBfile_to_OSLfile /var/lib/oslockdown/logs/security-blanket.log /var/lib/oslockdown/logs/oslockdown.log
+  rename_SBfile_to_OSLfile /var/lib/oslockdown/logs/security-blanket-audit.log /var/lib/oslockdown/logs/oslockdown-audit.log
+  rename_SBfile_to_OSLfile /var/log/security-blanket-dispatcher.log /var/log/oslockdown-dispatcher.log
+  rename_SBfile_to_OSLfile /usr/share/oslockdown/cfg/sb_dispatcher.properties /var/lib/oslockdown/cfg/osl-dispatcher.properties
+  
+  rename_SBfile_to_OSLfile /etc/logrotate.d/security-blanket /etc/logrotate.d/oslockdown
+  rename_SBfile_to_OSLfile /etc/securityblanket_gui_banner /etc/oslockdown_gui_banner
+  rename_SBfile_to_OSLfile /etc/modprobe.d/SecuityBlanket_remediations.conf /etc/modprobe.d/oslockdown_remediations.conf
+
+  # force home directory for sbwebapp user to use the new directory
+  # explicitly *NOT* using the '-m' argument here since the renames above
+  # handle this part....
+  
+  usermod -d /usr/share/oslockdown/console  sbwebapp 1>/dev/null 2>&1
+
+  echo ""
+}
+
+pre_install_linux()
+{
+  export mydistver=""
+  export OSBASE=""
+  export OSVER=""
+  export OSBIT=""
+  export BIT_FLAVOR="32 bit"
+  export RPM_DIR=""
+  export RPMS_LIST=""
+  export RPM_DISTRO_ARCH_DIR=""
+  export RPM_NOARCH_DIR=""
+
+
+  # Make sure python is installed
+  if [ ! -x /usr/bin/python ]; then
+      echo "ERROR: Can not find /usr/bin/python"
+  fi
+
+
+  # Determine out linux platform and identify where the RPMS reside...
+  # if we have no RPMS in that directory, bail with a warning
+
+  identify_linux_release
+
+#  echo "RPM_DISTRO_ARCH_DIR=   ${RPM_DISTRO_ARCH_DIR}"
+#  echo "install_gui =  ${install_gui}"
+  #
+  # Determine packages to include.  We'll start with our base set of required packages and add things 
+  # based on user input. A bit complicated now since all RPMs are in one directory, and the 'core' doesn't
+  # have a defining 'name' like the other modules do.  We want the SELinux package to be *last*, the order
+  # between the other packages will be sorted out by RPM.
+
+  
+  RPM_DISTRO_ARCH_RPMS=`ls ${RPM_DISTRO_ARCH_DIR}/*.rpm | grep -v selinux`
+  RPM_DISTRO_SELINUX_RPM=`ls ${RPM_DISTRO_ARCH_DIR}/*.rpm | grep selinux`
+
+  if [ "${install_gui}" = "YES" ] ; then
+    if [ "${JavaVersion}" != "1.6" -a "${JavaVersion}" != "1.7" ] ; then
+      echo "OS Lockdown requires the Java 1.6 or Java 1.7 JRE to be"
+      echo "installed."
+      echo "Detected the ${JavaFlavor} ${JavaVersion} Java JRE at ${JavaHome}." 
+      cd ${OLDDIR}
+      exit 1
+    fi
+    
+    if [ "${OSBIT}" = "s390x" -a "${JavaFlavor}" != "IBM" ] ; then
+        echo "OS Lockdown on the IBM zSeries platforms requires the use of "
+        echo "the IBM Java 1.6 or 1.7 JRE.  Please make sure this version is installed " 
+        echo "and re-run the installation script."
+        echo "Detected the ${JavaFlavor} ${JavaVersion} Java JRE at ${JavaHome}." 
+        cd ${OLDDIR}
+        exit 1
+    fi
+
+    if [ "${JavaFlavor}" = "IBM" ] ; then
+        RPM_GUI=`ls ${RPM_NOARCH_DIR}/*.rpm | grep console-ibmjava`
+    else
+        RPM_GUI=`ls ${RPM_NOARCH_DIR}/*.rpm | grep console | grep -v ibmjava`
+    fi  
+  fi
+
+
+  # If we have an SELinux module, ask to install it so we have policy
+  # We're *NOT* checking to see if SELinux is enabled, or in permissive.  
+
+  SELinux_supported=0
+  if [ ${OSBASE} = 'fedora' -o ${OSBASE} = 'redhat' -o ${OSBASE} = 'redhat_z' ] ; then
+    if [ -f /usr/sbin/getenforce -a -x /usr/sbin/getenforce ] ; then
+      if [ `/usr/sbin/getenforce` != 'Disabled' ] ; then        
+        SELinux_supported=1
+      fi
+    fi
+  fi
+  
+      
+  if [ ${SELinux_supported} -a ! -z "${RPM_DISTRO_SELINUX_RPM}" ] ; then
+    SELpolicy=`grep '^SELINUXTYPE=' /etc/selinux/config | awk -F'=' '{print $2}' | tr -d '[:space:]'`
+    echo " "
+    echo "OS Lockdown SELinux Policy Module is available."
+    echo "Current SELinux Policy file is : ${SELpolicy}"
+    
+    echo " "
+    echo "    OS Lockdown provides support for SELinux when running"
+    echo "    in enforcing/permissive mode for the 'targeted' policy.  Currently, other"
+    echo "    policy files are not supported (such as 'strict' or 'mls')."
+    echo ""
+    ask_yes_or_no "    Install the OS Lockdown SELinux Policy Module?" install_selinux
+
+    if [ "$SELpolicy" != "targeted" ] ; then
+      echo " "
+      echo " "                                                                                                   
+      echo "    OS Lockdown has only been tested with 'targeted' SELinux Policy."                           
+      echo "    While you can still install the OS Lockdown SELinux Policy Module, "                        
+      echo "    OS Lockdown may not function correctly."                                                    
+      echo " "                                                                                                   
+      echo "    If you choose not to install the OS Lockdown SELinux Policy Module, "                       
+      echo "    all OS Lockdown related processes will be operating as 'unconfined' "                       
+      echo "    processes.  OS Lockdown will still be running 'restorecon' on all "                         
+      echo "    modifed files to preserve correct SELinux Security Contexts."                                    
+      echo " "                                                                                                   
+      ask_yes_or_no "  Continue to install the OS Lockdown SELinux Policy module?" install_selinux          
+    fi      
+    if [ "${install_selinux}" != "YES" ]; then
+      RPM_DISTRO_SELINUX_RPM=""
+    fi
+  elif [ ${SELinux_supported} -eq 1 ] ; then
+    echo " "
+    echo "No OS Lockdown SELinux Policy Module is available for this platform."
+    echo " "
+    echo "    All OS Lockdown related processes will be operating as 'unconfined' "
+    echo "    processes.  OS Lockdown will run 'restorecon' on all modified files"
+    echo "    to preserve correct SELinux Security Contexts.  The installer will continue"
+    echo "    in a few seconds..."
+    echo " "
+    sleep 10
+  fi
+
+
+}
+
+install_linux()
+{
+  if [ "${install_gui}" = "NO" ] ; then
+    RPM_GUI=""
+  fi
+
+# Try to lump the files in to an order that makes sense...
+# and to assist rpm in dependency tracking
+  RPM_LIST="${RPM_DISTRO_NOARCH_RPMS} ${RPM_DISTRO_ARCH_RPMS} ${RPM_GUI}  ${RPM_DISTRO_SELINUX_RPM} "
+  echo " "
+
+  # Check and remove old versions
+  echo " "
+  echo " "
+  echo "                     .:: LINUX INSTALLATION ::. "
+  echo "$sbLine"
+ 
+  # Look for any of the known Security Blanket or OS Lockdown packages...
+  V3_ONLY_RPMS="security-blanket-ec security-blanket-gui security-blanket-agent security-blanket-license-mini security-blanket-doc"
+  V3_OR_V4_RPMS="security-blanket security-blanket-modules security-blanket-modules-mini security-blanket-modules-mini security-blanket-license"
+  V4_ONLY_RPMS="security-blanket-console security-blanket-console-ibmjava security-blanket-dispatcher security-blanket-betacerts security-blanket-shim security-blanket-selinux"
+  OSL_RPMS="oslockdown oslockdown-console oslockdown-modules oslockdown-dispatcher os-lockdown-console oslockdown-console-ibmjava oslockdown-selinux"
+  RPMS_TO_REMOVE=`rpm -q ${V3_ONLY_RPMS} ${V3_OR_V4_RPMS} ${V4_ONLY_RPMS} ${OSL_RPMS} | grep -v 'is not installed'`
+
+  echo ":: Stopping current Security Blanket/OS Lockdown services..."
+# look for possible running daemons from earlier versions and ask them to stop
+  if [ -x /etc/init.d/sb-agentd ] ; then
+    /sbin/service sb-agentd stop 1>/dev/null 2>&1
+  fi 
+  if [ -x /etc/init.d/sb-dispatcher ] ; then
+    /sbin/service sb-dispatcher stop  1>/dev/null 2>&1
+  fi
+  if [ -x /etc/init.d/sb-console ] ; then
+    /sbin/service sb-console stop 1>/dev/null 2>&1
+  fi
+  if [ -x /etc/init.d/osl-dispatcher ] ; then
+    /sbin/service osl-dispatcher stop  1>/dev/null 2>&1
+  fi
+  if [ -x /etc/init.d/osl-console ] ; then
+    /sbin/service osl-console stop 1>/dev/null 2>&1
+  fi
+
+
+
+  echo ":: Checking for Security Blanket v3.x Enterprise Console database..."
+  if [ -f /var/lib/security-blanket-ec/console/prodata.sqlite ]  ; then
+    echo " "
+    echo " "
+    echo "   Found a V3.X database file:"
+    echo "    Converting database into an XML file that may be imported into"
+    echo "    the OS Lockdown Enterprise Console.  This import is NOT"
+    echo "    done automatically, please refer to the Administration Guide for"
+    echo "    details on how to import a database."
+    echo "$sbLine"
+    echo " "
+    datestr=`date +"%Y%m%d_%H%M%S.xml"`
+    SBEC_V3_DATABASE="/var/lib/security-blanket-ec/console/SBEC_v3_db_${datestr}"
+    ${MNTPT}/sb-convert-db2xml.sh /var/lib/security-blanket-ec/console/prodata.sqlite ${SBEC_V3_DATABASE}
+  else
+    SBEC_V3_DATABASE=""
+  fi
+
+  # look for a SBEC 3.x Apache module.  We'll need to rename this to disable the module and grab the default port
+  # for use with SB_Setup
+  
+  if [ -f /etc/httpd/conf.d/security-blanket.conf ] ; then
+    echo "Detected SBEC V3 Apache configuration file.  This file will need to be removed to prevent"
+    echo "Apache from trying to control the port used by OS Lockdown."
+    echo "Renaming /etc/httpd/conf.d/security-blanket.conf so it won't be loaded on Apache startup."
+    mv /etc/httpd/conf.d/security-blanket.conf /etc/httpd/conf.d/security-blanket.conf_SBEC_V3
+    echo " "
+    /sbin/service httpd status 2>&1 1>/dev/null
+    if [ $? -eq 0 ] ; then  
+      echo "The Apache webserver needs to be restarted to allow the SBEC V4 Console to start."
+      echo "This is because the SBEC V3 Console was running behind an Apache proxy.  The V4 "
+      echo "Console no longer requires Apache.  If you do not restart Apache, then the V4 Console"
+      echo "may not be available until Apache has been restarted."
+      echo ""   
+      ask_yes_or_no "Restart Apache ?" yes_or_no
+      if [ "${yes_or_no}" = "YES" ] ; then
+        echo " "
+        echo ":: Restarting Apache webserver..."
+        /sbin/service httpd restart
+      else
+        echo ""
+        echo ":: Apache webserver left running."
+      fi
+    fi
+  fi
+
+  # do archiving
+  effect_db_and_profile_archiving     
+
+  echo ":: Checking for previous versions of Security Blanket/OS Lockdown..."
+  if [ ! -z "${RPMS_TO_REMOVE}" ] ; then
+    echo " "
+    echo "  * Found the following installed Security Blanket/OS Lockdown packages:"
+    echo "${RPMS_TO_REMOVE}" |awk '{printf "    - %s\n", $0}'
+    echo " "
+    ask_yes_or_no "    Remove and replace packages?" yes_or_no
+    echo " " 
+    echo ":: Removing previous Security Blanket/OS Lockdown packages..."
+    echo "   * Don't worry... all existing reports, logs, and profiles will be saved."
+    if [ "${yes_or_no}" = "YES" ] ; then
+      remove_selinux_portmanage_setup
+      rpm -e ${RPMS_TO_REMOVE}
+    else
+      echo " "
+      echo "Packages NOT removed. Please remove manually and then re-run the installation."
+      echo " "
+      cd ${OLDDIR}
+      cd ${OLDDIR}
+      exit 0
+    fi
+    
+    # Finally, remove any autoupdate files....
+    rm -rf /var/lib/oslockdown/files/ClientUpdates
+    
+  fi
+
+  # Verify that all packages are present
+  verify_all_required_rpms_present
+
+
+  # Go back and handle *all* directory/file name fixes, so that any existing Security Blanket related files are properly
+  # located/named for OS Lockdown to use them
+  upgrade_SB_paths_to_OSL_paths
+
+  echo ":: Installing OS Lockdown packages..."
+  echo " "
+
+#  echo ${RPM_DISTRO_ARCH_RPMS}
+#  echo ${RPM_GUI}
+#  echo ${RPM_DISTRO_SELINUX_RPM}
+
+
+  for rpm in ${RPM_DISTRO_ARCH_RPMS} ${RPM_GUI} ${RPM_DISTRO_SELINUX_RPM}
+  do
+    rpm -Uv ${rpm} | awk '{if ($0 !~ /^Preparing/) printf "   + %s\n", $0}'
+  done
+  
+  # start looking for SBEC V3 configs to move
+  if [ ! -z "${SBEC_V3_DATABASE}" ] ; then
+    echo " "
+    echo "Copying SBEC V3 database import file to the new V4 Console directory."
+    echo "File = /var/lib/oslockdown/console/dbexport/`basename ${SBEC_V3_DATABASE}`"
+    echo "This may be imported to the V4 Console if desired. "
+    if [ ! -f /var/ilb/oslockdown/console/dbexport ] ; then
+      mkdir -p /var/lib/oslockdown/console/dbexport
+    fi
+    cp ${SBEC_V3_DATABASE} /var/lib/oslockdown/console/dbexport/
+  fi
+  
+  return
+}
+
+check_for_root_linux()
+{
+  if [ `id -u` != "0" ]; then
+      echo "ERROR: you must run this script as the 'root' user."
+      cd ${OLDDIR}
+      exit 1
+  fi
+}
+
+check_for_root_solaris()
+{
+  if [ `/usr/xpg4/bin/id -u` != "0" ]; then
+      echo "ERROR: you must run this script as the 'root' user."
+      cd ${OLDDIR}
+      exit 1
+  fi
+}
+
+
+# ${ProductDirectoryName} = Prod dir name - 'security-blanket' or 'oslockdown'
+check_to_archive_existing_db_and_profiles()
+{
+  # check to see if we even have any profiles or database, and mark them for backup
+  if [ -d /var/lib/${ProductDirectoryName}/profiles -o -d /var/lib/${ProductDirectoryName}/baseline-profiles ] ; then
+    echo ":: Security/Baseline Profile directories will be backed up"
+    archive_profiles="YES"
+  fi
+  
+  if [ -d /var/lib/${ProductDirectoryName}/console/db ] ; then 
+    echo ":: Console database directory will be backed up"
+    archive_db="YES"
+  fi  
+
+  # If we have an enterprise DB, *allow* for pristine databases
+  if [ -f /var/lib/${ProductDirectoryName}/console/db/instance.properties ] ; then 
+  
+    echo ":: Prompt for backing up of existing profile and database directories..."
+    echo ""
+    if [ -f /var/lib/${ProductDirectoryName}/console/db/instance.properties ] ; then
+      if [ -d /var/lib/${ProductDirectoryName}/console/dbexport ] ; then
+        latestfile=`ls /var/lib/${ProductDirectoryName}/console/dbexport | grep xml | tail -1`
+        if [ ! -z "${latestfile}" ] ; then
+          which python 2>/dev/null 1>/dev/null
+          if [ $? -eq 0 ] ; then
+            epoch=`basename "${latestfile}" .xml | cut -c 6-`
+            datestr=`python -c "import datetime; print datetime.datetime.fromtimestamp(${epoch}).ctime()"`
+            echo ":: Last database export done at ${datestr}"
+          else
+            echo ":: No python executable in current path, unable to proceed."
+            cd ${OLDDIR}
+            exit 1
+          fi
+        else
+          echo ":: No database exports detected."
+        fi
+      else
+        echo ":: No database exports detected."
+      fi
+    else
+      echo ":: No database detected."
+      inquire_for_export="NO"
+    fi  
+
+    if [ "${inquire_for_export}" = "YES" ] ; then
+      echo ""
+      echo "Do you wish to abort this installation/upgrade and use"
+      echo "the graphical Console to do a database export? "
+      echo " "
+      echo "    Previous versions (4.0.9 and before) recommended that"
+      echo "    administrators export the current Enterprise Database and"
+      echo "    start with clean directories, then re-import the old database"
+      echo "    as part of the upgrade process.  RTCS now recommends that"
+      echo "    the upgrade process use the existing database and let the newly"
+      echo "    installed Console make any database changes/upgrades as required"
+      echo "    during the initial Console start.  As mentioned later in the"
+      echo "    installation/configuration scripts, this first (re)start can take"
+      echo "    several minutes, and a command is given to monitor the start process."
+      echo ""
+      echo "    Regardless of these installation options, any existing Console"
+      echo "    database, Security Profiles, and Baseline Profiles directories"
+      echo "    will be preserved."       
+      echo ""
+      ask_yes_or_no "Exit installation to perform database export?" yes_or_no
+      if [ "${yes_or_no}" = "YES" ] ; then
+        echo "$sbLine"
+        echo "Exiting installation/upgrade. Use the 'Administration/Enterprise Migration'"
+        echo "menus to export the current database, then rerun the SB_Install program"
+        echo "$sbLine"
+        cd ${OLDDIR}
+        exit 0
+      fi
+
+      echo ""
+      echo "Start with fresh Console database, Security Profiles, and Baseline "
+      echo "Profile directories?  "
+      ask_yes_or_no "    Start with fresh directories?" yes_or_no
+      if [ "${yes_or_no}" = "YES" ] ; then
+        blast_db="YES"
+        new_db="YES"
+        blast_profiles="YES"
+      fi  
+    fi
+  else
+    echo ""
+    echo "No existing profiles directory or Console database files to backup"
+    echo ""
+  fi
+}
+
+
+# ${ProductDirectoryName} = Prod dir name - 'security-blanket' or 'oslockdown'
+effect_db_and_profile_archiving()
+{
+
+  #
+  # Back up potentially modified files in /var/lib/${ProductDirectoryName}/files
+  echo " "
+  echo ":: Preserving potential changes made in /var/lib/${ProductDirectoryName}/files..."
+  for i in suid_whitelist sgid_whitelist exclude-dirs inclusion-fstypes
+  do
+    if [ -f /var/lib/${ProductDirectoryName}/files/${i} ] ; then
+      echo "::     Preserving potential changes made in /var/lib/${ProductDirectoryName}/files/${i}..."
+      cp -p /var/lib/${ProductDirectoryName}/files/${i} /var/lib/${ProductDirectoryName}/files/${i}.previous
+    fi
+  done
+  echo " "
+
+
+  echo ":: Performing any requested backups of profiles and database directories..."
+  echo ""
+  if [ "${archive_db}" = "YES" ] ; then
+    if [ -d /var/lib/${ProductDirectoryName}/console/db ] ; then
+      archdate=`date +"%Y%m%d_%H%M%S"`
+      echo ":: Archiving database to /var/lib/${ProductDirectoryName}/console/db_${archdate}"
+      cp -rp  /var/lib/${ProductDirectoryName}/console/db /var/lib/${ProductDirectoryName}/console/db_${archdate}
+    else
+      echo ":: No Console database directory detected, skipping backup."
+    fi
+  fi
+
+  if [ "${archive_profiles}" = "YES" ] ; then
+    if [ -d /var/lib/${ProductDirectoryName}/profiles ] ; then
+      archdate=`date +"%Y%m%d_%H%M%S"`
+      echo ":: Archiving security profiles to /var/lib/${ProductDirectoryName}/profiles_${archdate}"
+      cp -r  /var/lib/${ProductDirectoryName}/profiles /var/lib/${ProductDirectoryName}/profiles_${archdate}
+    else
+      echo ":: No security profiles directory detected, skipping backup..."
+    fi
+    if [ -d /var/lib/${ProductDirectoryName}/baseline-profiles ] ; then
+      archdate=`date +"%Y%m%d_%H%M%S"`
+      echo ":: Archiving baseline profiles to /var/lib/${ProductDirectoryName}/baseline-profiles_${archdate}"
+      cp -r  /var/lib/${ProductDirectoryName}/baseline-profiles /var/lib/${ProductDirectoryName}/baseline-profiles_${archdate}
+    else
+      echo ":: No baseline profiles directory detected, skipping backup..."
+    fi
+  fi
+
+  if [ "${blast_profiles}" = "YES" ] ; then
+    if [ -d /var/lib/${ProductDirectoryName}/profiles ] ; then
+      echo ":: Deleting existing security profiles from /var/lib/${ProductDirectoryName}/profiles "
+      rm -rf /var/lib/${ProductDirectoryName}/profiles
+    fi
+    if [ -d /var/lib/${ProductDirectoryName}/baseline-profiles ] ; then
+      echo ":: Deleting existing baseline profiles from /var/lib/${ProductDirectoryName}/baseline-profiles "
+      rm -rf /var/lib/${ProductDirectoryName}/baseline-profiles
+    fi
+  fi
+
+  if [ "${blast_db}" = "YES" ] ; then
+    if [ -d /var/lib/${ProductDirectoryName}/console/db ] ; then
+      echo ":: Deleting existing database /var/lib/${ProductDirectoryName}/console/db "
+      rm -rf /var/lib/${ProductDirectoryName}/console/db
+      new_db="YES"
+    fi
+  fi
+
+  if [ "${new_db}" = "YES" ] ; then
+    echo ":: Creating blank database directory /var/lib/${ProductDirectoryName}/console/db"
+    mkdir -p /var/lib/${ProductDirectoryName}/console/db
+    chown sbwebapp:sbwebapp /var/lib/${ProductDirectoryName}/console/db
+    chmod 700 /var/lib/${ProductDirectoryName}/console/db
+  fi
+
+}
+
+
+
+##############################################################################
+#####              MAIN INSTALLATION STARTS HERE !                       #####
+##############################################################################
+# Ask some common preliminary questions before dropping into the 
+# OS Specific installation areas
+install_gui=""
+inquire_for_export="YES"
+archive_db="NO"
+blast_db="NO"
+archive_profiles="NO"
+blast_profiles="NO"
+new_db="NO"
+host_system=`uname -s`
+
+JavaHome=""
+JavaFlavor=""
+JavaVersion=""
+
+CERT_FILES="cacert.pem \
+            GUIcert.pem \
+            GUIkey.pem \
+            GUI_keystore \
+            GUI_truststore \
+            .sb_dispatcher_keystore.dat \
+            .sb_tomcat_keystore.dat \
+            .sb_tomcat_truststore.dat"
+
+export install_gui
+export inquire_for_export
+export archive_db
+export blast_db
+export new_db
+export archive_profiles
+export blast_profiles
+export host_system
+export JavaHome
+export JavaVersion
+export JavaFlavor
+##
+## Before anything, the customer must agree to the license terms.
+##
+show_copyright
+
+echo " "
+echo "**************************************************************************"
+echo "*             O S  L O C K D O W N   I N S T A L L A T I O N             *"
+echo "*                                                                        *"
+echo "*       Copyright (c) 2008-2017 Forcepoint Federal, LLC     .            *" 
+echo "*                     Forcepoint Federal, LLC                            *"
+echo "*                       All rights reserved.                             *"
+echo "*                                                                        *"
+echo "**************************************************************************"
+
+## Verify we are root...
+if [ "${host_system}" = "SunOS" ]; then
+    if [ -z `/usr/xpg4/bin/id -u` -ne 0 ]; then
+        echo "ERROR: you must run this script as the 'root' user."
+        cd ${OLDDIR}
+        exit 1
+    fi
+else
+    if [ `id -u` -ne 0 ]; then
+        echo "ERROR: you must run this script as the 'root' user."
+        cd ${OLDDIR}
+        exit 1
+    fi
+fi
+
+#
+# Back up existing database
+#
+echo " "
+check_to_archive_existing_db_and_profiles
+
+OLDDIR=$PWD
+cd `dirname $0`
+
+# Make sure we have enough permissions to run this script
+case ${host_system} in
+  "SunOS" )  check_for_root_solaris;;
+  "Linux" )  check_for_root_linux;;
+  * )   
+      echo "'`uname -s`' operating system is not supported."
+      cd ${OLDDIR}
+      exit 1
+esac  
+
+
+if [ -z "${install_gui}" ] ; then
+  echo " "
+  echo "Install the graphical Console? "
+  echo " "
+  echo "    The graphical Console is not required for Enterprise Edition Clients. "
+  echo "    However, it is required for the system you've designated as the Enterprise "
+  echo "    Console and is STRONGLY recommended for all Standalone installations."
+  echo " "
+  echo "    For advanced command line users, you can run Standalone without a "
+  echo "    graphical Console, however, you are required to select the Standalone"
+  echo "    installation type."
+  echo ""
+  ask_yes_or_no "    Install the graphical Console package?" install_gui
+  if [ "$install_gui" = "YES" ] ; then
+  
+    # Ok, if we're doing the Console we *also* need to ensure that we're getting
+    # the right one for the Java variant *and* version we're using.
+    # Basically:
+    #
+    #  OS           JavaFlavor     JavaVersion
+    #  Solaris       Oracle         1.6
+    #  Linux/x86     Oracle         1.6/1.7
+    #  Linux/x86     OpenJDK        1.6/1.7
+    #  Linux/x86     IBM            1.7
+    #  Linux/zSeries IBM            1.7
+  
+    # Ok, get the Java Variant
+    # Since ~sbwebapp *might* not exist (for example, first install or re-install after un-installing)
+    # we'll make /usr/share/security-blanket/console/.profiles if it doesn't exist
+    
+    SBWEBAPP_HOME=`grep sbwebapp /etc/passwd | cut -d ':' -f 6`
+    if [ -z "${SBWEBAPP_HOME}" ] ; then
+      SBWEBAPP_HOME=/usr/share/oslockdown/console
+    fi
+
+    SBWEBAPP_PROFILE=${SBWEBAPP_HOME}/.profile
+    if [ ! -f ${SBWEBAPP_PROFILE} ] ; then
+       echo "Creating ${SBWEBAPP_PROFILE} to remember which Java is being used"
+       mkdir -p `dirname ${SBWEBAPP_PROFILE}`
+       touch ${SBWEBAPP_PROFILE}
+    fi
+    python JavaHomeUtils.py -i -p ${SBWEBAPP_PROFILE}
+    JavaHome=` python JavaHomeUtils.py -p ${SBWEBAPP_PROFILE}`
+  
+    if [ -z "${JavaHome}" ] ; then
+      echo "If the Console is installed than an acceptable Java JRE must be installed."
+      echo "Please refer to chapter 2 of the 'Admin Guide' for more details."
+      cd ${OLDDIR}
+      exit 1
+    fi
+    JavaFlavor=`python JavaHomeUtils.py -f -p ${SBWEBAPP_PROFILE}`
+    JavaVersion=`python JavaHomeUtils.py -v -p ${SBWEBAPP_PROFILE}`
+  fi  
+fi
+
+# Preserve any passphrases
+preserve_passphrases
+
+# do pre-install checks
+case ${host_system} in
+  "SunOS" )  pre_install_solaris;;
+  "Linux" )  pre_install_linux;;
+  * )   
+      echo "'`uname -s`' operating system is not supported."
+      cd ${OLDDIR}
+      exit 1
+esac  
+
+###############################################################################
+case ${host_system} in
+  "SunOS" )  install_solaris;;
+  "Linux" )  install_linux;;
+esac  
+
+# Restore any passphrases
+restore_passphrases
+
+# Ok, just in case we *created* the .profile, force the ownership of it
+if [ -f /usr/share/oslockdown/console/.profile ] ; then
+   chown sbwebapp:sbwebapp /usr/share/oslockdown/console/.profile
+   if [ -x /sbin/restorecon ] ; then
+      /sbin/restorecon -F /usr/share/oslockdown/console/.profile
+   fi
+fi
+# fix default options *only* if the file with older setup exists...
+if [ -f /etc/init.d/sb-dispatcher ] ; then
+  cp /etc/init.d/sb-dispatcher /etc/init.d/sb-dispatcher_orig
+  cat /etc/init.d/sb-dispatcher_orig | sed 's/^OPTIONS=""$/OPTIONS="-i "/g' > /etc/init.d/sb-dispatcher
+  rm /etc/init.d/sb-dispatcher_orig
+fi
+
+# Remove the previous (if any) license or EULA files
+for i in LICENSE EULA_US.txt EULA_INTL.txt EULA_US.pdf EULA_INTL.pdf; do
+  if [ -f /usr/share/oslockown/${i} ] ; then
+    rm -f /usr/share/oslockdown/${i}
+  fi
+done
+
+
+
+if [ -d Attributions ] ; then
+  echo " "
+  if [ -d /usr/share/oslockdown/Attributions ] ; then
+    rm -rf /usr/share/oslockdown/Attributions
+  fi
+  cp -r Attributions /usr/share/oslockdown/Attributions
+  chmod -R 444 /usr/share/oslockdown/Attributions
+  chmod ugo+x /usr/share/oslockdown/Attributions 
+fi
+
+echo " "
+echo ":: Ensuring permissions for any existing local reports are correct..."
+for thisdir in `find /var/lib/oslockdown/reports/standalone -type d`; do
+  chown root:sbwebapp ${thisdir}
+  chmod 3750 ${thisdir}
+done
+
+# Make *sure* the three comparisons directories exists, and are suitably owned
+# for Standalone installations - note that *root* owns everything in the
+# standalone dirs, but sbwebapp needs to be able to create stuff in the 
+# three comparison directories
+
+for thisfile in assessment-comparisons baseline-comparisons profile-comparisons ; do
+  mkdir -p            /var/lib/oslockdown/reports/standalone/${thisfile}
+  chown root:sbwebapp /var/lib/oslockdown/reports/standalone/${thisfile}
+  chmod 3770          /var/lib/oslockdown/reports/standalone/${thisfile}
+done
+
+for thisfile in `find /var/lib/oslockdown/reports/standalone -type f`; do
+  chown root:sbwebapp ${thisfile}
+  chmod 640 ${thisfile}
+done
+
+# force enterprise directories to be open to sbwebapp only
+if [ -d /var/lib/oslockdown/reports/ec ] ; then
+  for thisdir in `find /var/lib/oslockdown/reports/ec -type d`; do
+    chown sbwebapp:sbwebapp ${thisdir}
+    chmod 3750 ${thisdir}
+  done
+
+  for thisfile in `find /var/lib/oslockdown/reports/ec -type f`; do
+    chown sbwebapp:sbwebapp ${thisfile}
+    chmod 640 ${thisfile}
+  done
+fi
+
+echo " "
+echo ":: Ensuring permissions for any existing certificates are correct..."
+# fix certificate ownerships...
+if [ -d /var/lib/oslockdown/files/certs ] ; then
+  chown -f root:sbwebapp /var/lib/oslockdown/files/certs  /var/lib/oslockdown/files/certs/* /var/lib/oslockdown/files/certs/.sb_dispatcher_keystore.dat
+  chmod -f 3750 /var/lib/oslockdown/files/certs  /var/lib/oslockdown/files/certs/* /var/lib/oslockdown/files/certs/.sb_dispatcher_keystore.dat
+  if [ -d /var/lib/oslockdown/files/certs/.working ] ; then
+    chown -Rf root:root /var/lib/oslockdown/files/certs/.working
+  fi
+fi
+
+echo " "
+echo ":: Ensuring permissions for any existing log files are correct..."
+# fix log file permissions
+if [ -d /var/lib/oslockdown/logs ] ; then
+  chown root:sbwebapp /var/lib/oslockdown/logs
+  chmod 3770 /var/lib/oslockdown/logs
+  # all logs are group owned by sbwebapp
+  # oslockdown.log is owned by root, with perms 640
+  # all others are owned by sbwebapp, with perms 660
+  chown -f sbwebapp:sbwebapp /var/lib/oslockdown/logs/*
+  chmod -f 660 /var/lib/oslockdown/logs/*
+  chown -f root:sbwebapp /var/lib/oslockdown/logs/oslockdown.log*
+  chmod -f 640 /var/lib/oslockdown/logs/oslockdown.log*
+fi
+  
+# and lastly fix any other selinux context issues
+if [ -x /sbin/restorecon ] ; then
+   echo " "
+   echo ":: Ensuring SELinux contexts for existing files are correct..."
+   /sbin/restorecon -Fr /var/lib/oslockdown/reports /usr/share/oslockdown
+fi
+
+
+if [ -d toolupdates ] ; then
+  echo " "
+  echo ":: Checking for minor updates included with product bundle..."
+
+  for toolscript in `find toolupdates -type f`; do
+    scriptfile=`echo "${toolscript}" | sed 's/toolupdates\///'`
+    echo "    * Update found for /${scriptfile}"
+    if [ -f /${scriptfile} ] ; then
+      cat ${toolscript} > /${scriptfile}
+    else
+      echo "	* Unable to locate /${scriptfile} file, update not applied"
+    fi
+  done
+fi
+
+
+##############################################################################
+#  Prompt to see if the user would like to have the files from the docs directory
+# installed into /usr/share/oslockdown/docs
+#
+#
+
+echo " "
+echo "   You have the option of copying the files from the 'docs' directory"
+echo "   into the /usr/share/oslockdown/docs directory.  These files are"
+echo "   the PDF versions of the Admin Guide and the Modules Guide."
+
+echo " "
+ask_yes_or_no "Would you like to copy them?" install_docs
+if [ "$install_docs" = "YES" ] ; then
+  if [ -d /usr/share/oslockdown/docs ] ; then
+    echo "    * Removing previous 'docs' directory from /usr/share/oslockdown..."
+    rm -rf /usr/share/oslockdown/docs
+  fi
+  echo "    * Installing 'docs' directory in /usr/share/oslockdown..."
+  cp -r docs /usr/share/oslockdown/
+  chmod -R 444 /usr/share/oslockdown/docs
+  chmod ugo+x /usr/share/oslockdown/docs
+else
+  echo "    * Skipping installation of 'docs' directory"
+fi
+echo " "
+
+echo "Folding any custom changes to /var/lib/oslockdown/files/* now..."
+python -OO /usr/share/oslockdown/PreserveCustomChanges.pyo
+
+##############################################################################
+# CREATE CERTIFICATES IF NEEDED:
+#     If the console package was installed, check to see if certificates
+#     and keystore files are present on the system. If not, ask the customer
+#     if they'd like to create the certificates now. If they do, launch
+#     the cert_gen script
+#
+create_certificates=""
+run_setup=""
+register_client=""
+consoleType=""
+
+if [ "${install_gui}" = "YES" ] ; then
+
+    flag=0
+    if [ -f /var/lib/oslockdown/console/db/instance.script ] ; then
+        echo ":: Setting environment variables for database rebuild on next start..."
+        
+        echo "SECURITY_METADATA" >  /usr/share/oslockdown/console/.database_refresh
+        echo "SECURITY_PROFILES" >> /usr/share/oslockdown/console/.database_refresh
+        echo "BASELINE_METADATA" >> /usr/share/oslockdown/console/.database_refresh
+        echo "BASELINE_PROFILES" >> /usr/share/oslockdown/console/.database_refresh
+        chown sbwebapp:sbwebapp /usr/share/oslockdown/console/.database_refresh
+    else
+        echo ":: Pristine database directory detected, no need to trigger refresh."
+    fi
+
+    echo ":: Looking for existing certificates and keystores..."   
+    flag=0
+    if [ ! -d /var/lib/oslockdown/files/certs ]; then
+        flag=1    
+    else
+        for testFile in $CERT_FILES; do
+            if [ ! -f "/var/lib/oslockdown/files/certs/$testFile" ]; then
+               flag=1
+            fi
+        done 
+    fi
+    if [ $flag -eq 1 ]; then
+        echo " " 
+        echo "    No pre-existing security credentials found on the system." 
+        echo " "
+        ask_yes_or_no "    Create security credentials now?" create_certificates
+        if [ "$create_certificates" = "YES" ]; then
+            /usr/share/oslockdown/tools/cert_gen.sh
+	    if [ $? -ne 0 ] ; then
+	      echo "The certificate generation script returned with an error. Please"
+	      echo "resolve the error, then rerun the following two commands to"
+	      echo "finish configuring OS Lockdown."
+	      echo "    /usr/share/oslockdown/tools/cert_gen.sh"
+	      echo "    /usr/share/oslockdown/tools/SB_Setup"
+	      exit 1
+	    fi
+        else
+            echo ":: WARNING: You will not be able to setup or start OS Lockdown"
+            echo "            with out the security credentials. You may create them"
+            echo "            anytime by running the /usr/share/oslockdown/tools/cert_gen.sh"
+            echo "            script."            
+            echo ""
+            echo ":: Installation complete."
+            echo ""
+            cd ${OLDDIR}
+            exit 1
+        fi
+    else
+        echo "   Found existing security credentials."
+    fi
+
+    echo " "
+    ask_yes_or_no "Would you like to configure and start OS Lockdown now?" run_setup
+    if [ "$run_setup" = "YES" ]; then
+
+        # Setup license file placeholder to trigger Console behavior
+        /usr/share/oslockdown/tools/SB_Setup -l
+        if [ -f /var/lib/oslockdown/files/ConsoleType.txt ] ; then
+          consoleType=`cat /var/lib/oslockdown/files/ConsoleType.txt`
+        fi
+
+        # *IF* we have an Enterprise license then prompt the user about the Console
+        # providing updates....
+        if [ "${consoleType}" = "Enterprise" ] ; then
+            echo ""
+            echo "  The Console has the ability to provide updates to all attached Clients."
+            echo "  Clients running the OS Lockdown Console can be requested to update"
+            echo "  themselves from the Console."
+            echo ""
+    
+                
+            populateAutoUpdate="NO"
+            ask_yes_or_no "    Should the Console provide AutoUpdates?" populateAutoUpdate
+            if [ "${populateAutoUpdate}" = "YES" ] ; then
+                echo ":: Creating directory to hold required files for AutoUpdate..."
+                mkdir -p /var/lib/oslockdown/files/ClientUpdates
+                
+                echo ""
+                echo ":: Replicating directory hierarchy for AutoUpdate..."
+                find . -type d | xargs -n 1 -i mkdir -p /var/lib/oslockdown/files/ClientUpdates/{} 
+                echo ""
+                echo ":: Copying all required files for AutoUpdate..."
+                find . -type f -a ! -name '*console*' -a ! -name 'autoupdate-*.tgz' | xargs -n 1 -i cp -p {} /var/lib/oslockdown/files/ClientUpdates/{} 
+                cp autoupdate*.tgz /var/lib/oslockdown/files/ClientUpdates/autoupdate.tgz
+                chown -R sbwebapp:sbwebapp /var/lib/oslockdown/files/ClientUpdates
+                ##
+                ## TEMPORARY
+                ##
+                echo ""
+                echo ":: AutoUpdate files copied."
+               
+            fi
+            echo ""
+        fi
+
+        # Setup Console
+        /usr/share/oslockdown/tools/SB_Setup -c
+        echo ""
+        echo "The *first* time the Console is started after an initial install"
+        echo "or an upgrade of the OS Lockdown software can take several"
+        echo "minutes.  This is due to the sanity checks on either creating the"
+        echo "initial Console database or while performing any required updates"
+        echo "to an existing Console database."
+        echo ""
+
+        if [ "${consoleType}" = "Enterprise" ] ; then
+            echo "Attempts to register a Client at this time will appear to 'hang'"
+            echo "until the Console has finished the sanity checks."
+        fi
+
+        echo ""
+        echo "You can monitor the status of the Console startup by issuing the "
+        echo "following command in another window:"
+        echo "    tail -f /var/lib/oslockdown/logs/osl-console.log"
+        echo "The Console will be completely up when the following line appears."
+        echo "    INFO  sb.bootstrap  - URL https://..."
+        echo " "
+        echo "Installation will proceed after a 10 second pause, but this does not"
+        echo "indicate that the Console is actually up.  Please run the 'tail -f' "
+        echo "command as indicated above to monitor the Console startup, and do not"
+        echo "proceed with further steps until you have seen the indicated line."
+        echo ""
+        sleep 10
+        register_local_client="NO"
+        
+        # Assumption is that if we have installed the Console (otherwise we wouldn't be here)
+        # *AND* we have an Enterprise license file then we would be registered with *this* box
+        # If we have no Enterprise file then assume we're Standalone and a registration is not
+        # required.  The Console would create one on startup.
+        
+        if [ "${consoleType}" = "Enterprise" ] ; then
+          lastConsoleHost=`python getLastConsoleHostName.py`
+          if [ $? -eq 0 ] ; then 
+            echo "    Dispatcher appears to be registered with ${lastConsoleHost}"
+            ask_yes_or_no "    Would you like change this registration?" register_client
+          else
+            ask_yes_or_no "    Would you like to register this Client with a console?" register_client
+          fi
+          if [ "$register_client" = "YES" ]; then
+            echo " "
+            echo "           .:: REGISTER LOCAL CLIENT WITH CONSOLE  ::. "
+            echo "$sbLine"
+            # Try to register with local console
+            /usr/share/oslockdown/tools/RegisterClient -l
+          fi
+        fi
+        # Configure Dispatcher
+        /usr/share/oslockdown/tools/SB_Setup -d
+        
+    else
+        echo ":: You can run /usr/share/oslockdown/tools/SB_Setup -c at any time."
+        cd ${OLDDIR}
+        exit 0
+    fi
+else
+   ###
+   ### Enterprise Client or pure Command line (IE -  NO GUI )
+   ### 
+   echo " "
+   lastConsoleHostName=`python getLastConsoleHostName.py`
+   if [ $? -eq 0 ] ; then
+        echo " :: Client appears to have been registered with ${lastConsoleHostName}"
+        ask_yes_or_no "    Would you like to reregister this Client with a Console?" register_client
+   else
+        ask_yes_or_no "    Would you like to register this Client with a Console?" register_client
+   fi
+   if [ "$register_client" = "YES" ]; then
+        if [ ! -d /var/lib/oslockdown/files/certs ]; then
+            mkdir -p /var/lib/oslockdown/files/certs
+        fi
+        chown root:sbwebapp /var/lib/oslockdown/files/certs
+        chmod 750 /var/lib/oslockdown/files/certs
+        
+        echo " "
+        echo "                .:: REGISTER CLIENT WITH CONSOLE  ::. "
+        echo "$sbLine"
+        /usr/share/oslockdown/tools/RegisterClient
+        if [ $? -ne 0 ]; then
+            echo ":: Unable to register Client with Console at this time."
+            cd ${OLDDIR}
+            exit 1
+        fi
+   fi
+   
+   # check for valid certs - they will exist *if* the Console is installed or this Client
+   # has registered successfully with a Console
+   if [ -f /var/lib/oslockdown/files/certs/Disp.pem -a -f /var/lib/oslockdown/files/certs/cacert.pem ] ; then
+      exec /usr/share/oslockdown/tools/SB_Setup -d
+   else
+      echo ":: Client is not registered with any Console."
+      echo ":: You can issue scan/apply/undo/baseline commands and"
+      echo ":: basic reporting from the command line.  Please refer to the "
+      echo ":: Administration Guide for more details."
+   fi 
+fi
+
+
+cd ${OLDDIR}
+exit 0 
+

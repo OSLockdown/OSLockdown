@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable HAL Daemon">
+        <library>DisableHalDaemon</library>
+        <description>Disables the Hardware Abstraction Layer (HAL) daemon (haldaemon). The haldaemon provides a dynamic way of managing device interfaces. It automates device configuration and provides an API for making devices accessible to applications through the D-Bus interface. Since HAL provides valuable attack surfaces to attackers as an intermediary to privileged operations, it should be disabled unless necessary.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4">
+            <services>
+              <service seq="1" name="haldaemon"/>
+            </services>
+            <packages>
+              <package name="hal"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:5">
+            <services>
+              <service seq="1" name="haldaemon"/>
+            </services>
+            <packages>
+              <package name="hal"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:11">
+            <services>
+              <service seq="1" name="haldaemon"/>
+            </services>
+            <packages>
+              <package name="hal"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:11">
+            <services>
+              <service seq="1" name="haldaemon"/>
+            </services>
+            <packages>
+              <package name="hal"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4">
+            <services>
+              <service seq="1" name="haldaemon"/>
+            </services>
+            <packages>
+              <package name="hal"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5">
+            <services>
+              <service seq="1" name="haldaemon"/>
+            </services>
+            <packages>
+              <package name="hal"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4">
+            <services>
+              <service seq="1" name="haldaemon"/>
+            </services>
+            <packages>
+              <package name="hal"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5">
+            <services>
+              <service seq="1" name="haldaemon"/>
+            </services>
+            <packages>
+              <package name="hal"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:10">
+            <services>
+              <service seq="1" name="haldaemon"/>
+            </services>
+            <packages>
+              <package name="hal"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:11">
+            <services>
+              <service seq="1" name="haldaemon"/>
+            </services>
+            <packages>
+              <package name="hal"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:12">
+            <services>
+              <service seq="1" name="haldaemon"/>
+            </services>
+            <packages>
+              <package name="hal"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:13">
+            <services>
+              <service seq="1" name="haldaemon"/>
+            </services>
+            <packages>
+              <package name="hal"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:10">
+            <services>
+              <service seq="1" name="haldaemon"/>
+            </services>
+            <packages>
+              <package name="hal"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:10">
+            <services>
+              <service seq="1" name="haldaemon"/>
+            </services>
+            <packages>
+              <package name="hal"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6">
+            <services>
+              <service seq="1" name="haldaemon"/>
+            </services>
+            <packages>
+              <package name="hal"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:6">
+            <services>
+              <service seq="1" name="haldaemon"/>
+            </services>
+            <packages>
+              <package name="hal"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <services>
+              <service seq="1" name="haldaemon"/>
+            </services>
+            <packages>
+              <package name="hal"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

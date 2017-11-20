@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="BootLoaderConfigFilePerms" version="5.0">
+  <title xml:id="fileDACs">Boot Loader Configuration File Permissions</title>
+  <para>
+  Restricts the ownership and group ownership of the files and/or
+  directories below, as well as what maximum set of Discretionary Access
+  Controls (DACs) are allowed. The list of files/directories may have
+  options for looking recursively or performing wildcard expansion on
+  names.
+ </para>
+  <simplesect xml:id="BootLoaderConfigFilePerms-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>
+     7.4 - Reset Permissions on grub Boot Loader
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     7.5 - Reset Permissions on lilo Boot Loader
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>
+     GEN008720 - The system's boot loader configuration file(s) must
+     have mode 0600 or less permissive.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN008760 - The system's boot loader configuration files must be
+     owned by root.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN008780 - The system's boot loader configuration file(s) must be
+     group-owned by root, bin, sys, or system.
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>
+     RHEL-06-000065 - The system boot loader configuration file(s) must
+     be owned by root.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000066 - The system boot loader configuration file(s) must
+     be group-owned by root.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000067 - The system boot loader configuration file(s) must
+     have mode 0600 or less permissive.
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>
+     LNX00160 - grub.conf Permissions
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     LNX00220 - /etc/lilo.conf Permissions
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD NISPOM (Feb 2006)</title>
+      <listitem>
+        <para>
+     8.606b1 - Access 2 Requirements
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>
+     2.3.5.2 - Set Boot Loader Password
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="BootLoaderConfigFilePerms-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>List of files/directories<emphasis><para>List of files/directories to process.  May have wild card expansion (using shell globbing rules) available if the module supports it.  If empty, no file checks will be done.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Search recursively?</para>
+      </listitem>
+      <listitem>
+        <para>Expand wildcards (shell globbing)?<emphasis><para>Allow for wildcard expansion using shell globbing rules.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Allowed User Names<emphasis><para>List of user names (ignored if empty). If '&lt;SYSTEM;&gt;' is in the list, then the list of all local privileged accounts will be inserted <emphasis>at this position</emphasis>, with duplicate names removed.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Allowed Group Names<emphasis><para>List of group names (ignored if empty). If '&lt;SYSTEM;&gt;' is in the list, then the list of all local privileged group accounts will be inserted <emphasis>at this position</emphasis>, with duplicate names removed.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Maximum allowed permissions<emphasis><para>Maximum permitted Discretionary Access Controls (DACs) in <emphasis>octal</emphasis> format (i.e.,  max perms is 777 or 0777).
+      Note that only the read/write/execute bits are considered.  Note also that if a directory has read permissions for 
+      user/group/other allowed, then execute permissions for user/group/other are <emphasis>also</emphasis> allowed to allow for directory traversal.  No extra permissions are enforced, just allowed.  If empty, no permissions checks will be done.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

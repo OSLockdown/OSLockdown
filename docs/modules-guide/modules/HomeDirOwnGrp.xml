@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="HomeDirOwnGrp">
+ <title xml:id="Accounts">Home Directory Ownership</title>
+ <para>
+  Sets user and group ownership of normal users to the primary user and
+  group identified in the user account. In Linux, this module only
+  handles user accounts with an identification number between 500 and
+  65534. In Solaris, this module only handles user accounts with an
+  identification number between 100 and 65534. It does not change
+  ownership of key system directories such as <filename>/opt</filename>
+  or <filename>/var</filename> in case a user account has an incorrectly
+  configured home directory.
+  <indexterm>
+   <primary>rsh</primary>
+  </indexterm>
+ </para>
+ <para>
+  It is important that the system administrator ensures that user
+  accounts own their own directories. If a shared directory is needed,
+  do not use a designated home directory.
+ </para>
+ <para>
+  As shown in the figure below, the module has some safeguards in place.
+  This includes ignoring system accounts (UID &lt; 100 and Solaris UID
+  &lt; 500) because many of them require different ownership than
+  expected by this module. Additionally, this module builds an
+  <emphasis>exclusion list</emphasis>. This is a list of directories in
+  which ownership will never be changed by this module. The list
+  includes the following directories: <filename>/</filename> ,
+  <filename>/usr</filename> , <filename>/etc</filename> ,
+  <filename>/lib</filename> , <filename>/proc</filename> ,
+  <filename>/opt</filename> , <filename>/sbin</filename> ,
+  <filename>/usr/bin</filename> , <filename>/usr/sbin</filename> , and
+  <filename>/var/lib/nfs</filename> .
+ </para>
+ <figure pgwide="1" xml:id="figure-homedirowngrp-scan">
+  <title>Home Directory Ownership - Scan Flow</title>
+  <mediaobject>
+   <imageobject>
+    <imagedata width="550" fileref="Figures/homedirowngrp-scan.png"/>
+   </imageobject>
+  </mediaobject>
+ </figure>
+ <simplesect xml:id="HomeDirOwnGrp-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN001500 - All interactive user home directories must be owned by
+     their respective users.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001520 - All interactive user home directories must be
+     group-owned by the home directory owner's primary group.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN001500 - Home Directories Ownership
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001520 - Home Directories Group Ownership
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-3 - Access Enforcement
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2.3 - Configure system security parameters to prevent misuse
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % CommonEntities SYSTEM "../COMMON_ENTITIES.ent">
+%CommonEntities;
+]>
+<chapter version="5.0" xml:id="sb-upgrade" xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!--<?xml-stylesheet type="text/css" href="docbook.css"?>-->
+  <title>Important! Upgrading from Security Blanket to OS Lockdown</title>
+  <indexterm><primary>Upgrading</primary></indexterm>
+  <indexterm><primary>Security Blanket</primary><secondary>Upgrading from</secondary></indexterm>
+  <para>As part of the open source release process, &ldquo;Security Blanket&rdquo; has been renamed to &ldquo;OS
+    Lockdown.&rdquo; This in turn affected many of the filenames and internal code conventions that have been used for
+    years. The current installation and update process handles all required directory and file renames as they are
+    executing.</para> <para>If you are migrating from Security Blanket to OS Lockdown, be aware of the following changes. </para>
+  <para>The portion of the Uniform Resource Locator (URL) indicating which web application to use has changed from
+    &ldquo;SecurityBlanket&rdquo; to &ldquo;OSLockdown&rdquo;. For example, if the Enterprise Console was hosted on
+    machine &ldquo;webhost&rdquo; at port 8443, the URL changes from
+      <filename>https://webhost:8443/SecurityBlanket</filename> to
+    <filename>https://webhost:8443/OSLockdown</filename>.</para>
+  <para>All previous licensing limitations are no longer required. The installation detects any previous license keys
+    and automatically preserves them in the new release, as well as allows the administrator to select which
+    installation type (Enterprise or Standalone) should be installed. The product is no longer tied to a specific MAC
+    address, host ID, or zSeries process name, and all caps on the number of clients that can be managed by an
+    Enterprise Console have been removed.</para>
+  <para>Directory names:</para>
+  <itemizedlist>
+    <listitem>
+      <para><filename>/usr/share/security-blanket</filename>
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="Figures/arrow.png"/>
+          </imageobject>
+        </inlinemediaobject>
+        <filename>/usr/share/oslockdown</filename></para>
+    </listitem>
+    <listitem>
+      <para><filename>/var/lib/security-blanket</filename>
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="Figures/arrow.png"/>
+          </imageobject>
+        </inlinemediaobject>
+        <filename>/var/lib/oslockdown</filename></para>
+    </listitem>
+  </itemizedlist>
+  <para>Log files:</para>
+  <itemizedlist>
+    <listitem>
+      <para><filename>/var/lib/security-blanket/logs/security-blanket.log</filename>
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="Figures/arrow.png"/>
+          </imageobject>
+        </inlinemediaobject>
+        <filename>/var/lib/oslockdown/logs/oslockdown.log</filename></para>
+    </listitem>
+    <listitem>
+      <para><filename>/var/lib/security-blanket/logs/security-blanket-audit.log</filename>
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="Figures/arrow.png"/>
+          </imageobject>
+        </inlinemediaobject>
+        <filename>/var/lib/oslockdown/logs/oslockdown-audit.log</filename></para>
+    </listitem>
+    <listitem>
+      <para><filename>/var/lib/security-blanket/logs/sb-console.log</filename>
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="Figures/arrow.png"/>
+          </imageobject>
+        </inlinemediaobject>
+        <filename>/var/lib/oslockdown/logs/osl-console.log</filename></para>
+    </listitem>
+    <listitem>
+      <para><filename>/var/log/security-blanket-dispatcher.log</filename>
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="Figures/arrow.png"/>
+          </imageobject>
+        </inlinemediaobject>
+        <filename>/var/log/oslockdown-dispatcher.log</filename></para>
+    </listitem>
+  </itemizedlist>
+  <para>Internal configuration files:</para>
+  <itemizedlist>
+    <listitem>
+      <para><filename>/var/lib/security-blanket/security-blanket-state.xml</filename>
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="Figures/arrow.png"/>
+          </imageobject>
+        </inlinemediaobject>
+        <filename>/var/lib/oslockdown/oslockdown-state.xml</filename></para>
+    </listitem>
+    <listitem>
+      <para><filename>/usr/share/security-blanket/cfg/sb_dispatcher.properties</filename>
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="Figures/arrow.png"/>
+          </imageobject>
+        </inlinemediaobject>
+        <filename>/usr/share/oslockdown/cfg/osl-dispatcher.properties</filename></para>
+    </listitem>
+  </itemizedlist>
+  <para>Customized files written by Security Blanket/OS Lockdown:</para>
+  <itemizedlist>
+    <listitem>
+      <para><filename>/etc/logrotate.d/security-blanket</filename>
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="Figures/arrow.png"/>
+          </imageobject>
+        </inlinemediaobject>
+        <filename>/etc/logrotate.d/oslockdown</filename></para>
+    </listitem>
+    <listitem>
+      <para><filename>/etc/securityblanket_gui_banner</filename>
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="Figures/arrow.png"/>
+          </imageobject>
+        </inlinemediaobject>
+        <filename>/etc/oslockdown_gui_banner</filename></para>
+    </listitem>
+    <listitem>
+      <para><filename>/etc/modprobe.d/SecurityBlanket_remediations.conf</filename>
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="Figures/arrow.png"/>
+          </imageobject>
+        </inlinemediaobject>
+        <filename>/etc/modprobe.d/oslockdown_remediations.conf</filename></para>
+    </listitem>
+  </itemizedlist>
+  <para>Service names for starting/stopping the console and dispatcher:</para>
+  <itemizedlist>
+    <listitem>
+      <para><filename>sb-console</filename>
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="Figures/arrow.png"/>
+          </imageobject>
+        </inlinemediaobject>
+        <filename>osl-console</filename></para>
+    </listitem>
+    <listitem>
+      <para><filename>sb-dispatcher</filename>
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="Figures/arrow.png"/>
+          </imageobject>
+        </inlinemediaobject>
+        <filename>osl-dispatcher</filename></para>
+    </listitem>
+  </itemizedlist>
+  <para>The lockdown executable name for use from the command line:</para>
+  <para><filename>/usr/sbin/security-blanket</filename>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata fileref="Figures/arrow.png"/>
+      </imageobject>
+    </inlinemediaobject>
+    <filename>/usr/sbin/oslockdown </filename></para>
+  <para>The dispatcher executable name:</para>
+  <para><filename>/sbin/SB_Dispatcher</filename>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata fileref="Figures/arrow.png"/>
+      </imageobject>
+    </inlinemediaobject>
+    <filename>/sbin/OSL_Dispatcher</filename></para>
+  <para>Importantly however, the commands used to install, configure, and remove OS Lockdown remain the same: </para>
+  <itemizedlist>
+    <listitem>
+      <para>To install <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="Figures/arrow.png"/>
+          </imageobject>
+        </inlinemediaobject>
+        <filename>SB_Install</filename></para>
+    </listitem>
+    <listitem>
+      <para>To configure <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="Figures/arrow.png"/>
+          </imageobject>
+        </inlinemediaobject>
+        <filename>SB_Setup</filename></para>
+    </listitem>
+    <listitem>
+      <para>To uninstall <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="Figures/arrow.png"/>
+          </imageobject>
+        </inlinemediaobject>
+        <filename>SB_Remove</filename></para>
+    </listitem>
+  </itemizedlist>
+  <para>If you are using the provided SELinux policy, be aware that the references to &ldquo;securityblanket&rdquo; have
+    been replaced with &ldquo;oslockdown&rdquo; in all of the types/interfaces defined in the policy files. As part of
+    any auto-update scenario, the update code loads a temporary transition policy (TransitionSBtoOSL), allowing the
+    auto-updater running under the legacy &ldquo;securityblanket&rdquo; policy to correctly transition into and function
+    under the new &ldquo;oslockdown&rdquo; policy. This transitional policy is removed at the end of the auto-update
+    sequence. You may see additional SELinux AVC errors during the update. This is due to the confined processes under
+    the &ldquo;securityblanket&rdquo; policy running while this policy is being removed. This removal is the last active
+    step in the upgrade process, and can be ignored.</para>
+</chapter>

@@ -1,0 +1,90 @@
+3|Identification Control
+3.1|Password Settings
+4|Access Control
+4.1|Login Warning Banner
+4.2|GUI Login Warning Banner
+4.3|Restrict Substitute User (su) Access
+4.4|Restrict Root Login to the Console
+4.5.1|Limit SSH Protocol Use to Version 2
+4.5.2|Disable Root Login Via SSH
+4.5.3|Display Secure Shell Warning Banner
+4.5.4|Use Secure Shell RSA Authentication
+4.5.5|Allow X11 Forwarding under SSH
+4.5.6|Force Secure Shell Account Lockout
+4.5.7|Force Secure Shell to ignore rhosts
+4.5.8|Disallow Empty Passwords under SSH
+4.5|Remote Access with Secure Shell (SSH)
+5|Audit Trail
+5.1|User Login Activity Auditing
+5.2|Log Anomalous Network Connections
+5.3|Centralized Audit Logging
+5.4|Log All SSH Failed Login Activity
+5.5.1|Log Successful Network Connections
+5.5.2|Log Unsuccessful Network Connections
+5.5|Network Connection Auditing
+6|Network Security
+6.1|Kernel TCP Stack Tuning
+6.2|Configuring Stand Alone Services
+6.3.1|Restrict Access to Authorized XINETD Services
+6.3|Install and Configure XINETD Service Properties if Appropriate
+6.4|Install and Enable TCP Wrappers If Appropriate
+6.5.1|Create hosts.allow File
+6.5.2|Create hosts.deny File
+6.5|Create Host Control Files for SSH and TCP Wrappers (if Installed)
+6.6|Avoid Using Sendmail
+6.7.1|Deactivate SNMP
+6.7.2|Verify SNMP Configuration
+6.7|Configuring Simple Network Management Protocol (SNMP)
+6.8|Configuring Portmap
+6.9.1|Disable NFS When Not Required
+6.9.2|Restrict NFS to Privileged Ports
+6.9.3|Verify NFS is Configuration is Secure
+6.9|Configuring NFS
+6.10|Configuring NETFS
+6.11.1|Disable NIS When Not Required
+6.11.2|Secure NIS When Required
+6.11|Configuring NIS
+6.12.1|Disable the Listener under X11
+6.12.2|Disable the Listener under GNOME
+6.12.3|Prevent the Listener from Starting under X11
+6.12|Configuring X Server Listener
+6.13|Disable External Connections to Syslog
+6.14|Disable Internet Protocol Version 6 (IPv6) Networking
+6.14.1|Disable IPv6 at System Boot
+6.14.2|Ensure IPv6 Module Does Not Load
+6.14.3|Disable IPv6 Functionality at Network Interfaces
+6.14.4|Disable IPv6 IPTABLES Firewall
+6.15|Enabling IPTABLES Host Based Firewall
+7.0|Host Based Security
+7.1|Minimal System Install
+7.2|File System Controls
+7.3|Boot Loader Permissions
+7.4|Reset Permissions on grub Boot Loader
+7.5|Reset Permissions on lilo Boot Loader
+7.6|System umask Value
+7.6.1|Set umask for Users
+7.6.2|Set umask for Daemons
+7.7|Single User Mode Password
+7.8|Disable Control-Alt-Del
+7.9|Testing and Vulnerability Assessment
+8.0|Additional Security Best Practices
+8.1|System Hardening
+8.2|Verify File System Permissions
+8.3|Verify Unowned Files Do Not Exist
+8.4|Verify World Writable Files Are Limited
+8.5|Verify SUID/SGID Files Are Appropriate
+8.6|configure Boot Process
+8.7|Disable PCMCIA and USB
+8.8|Password Programs
+8.9|Implementing Sendmail Securely
+8.9.1|Ensure Sendmail is Deactivated
+8.9.2|Limit Sendmail to Queue Management
+8.9.3|Ensure Sendmail Will Not Serve as a Relay
+8.9.4|Change Sendmail Greeting
+8.9.5|Disable expand and verify Commands
+8.9.6|Enhance Sendmail Logging
+8.9.7|Ignore Bogus SMTP Connections
+8.9.8|Restrict Access to Sendmail Queue
+9|Sudo sudoers file
+10|SELinux (Security Enhanced Linux)
+11|Additional Linux Security Tools

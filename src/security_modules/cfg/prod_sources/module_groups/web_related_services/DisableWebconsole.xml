@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Java Web Console">
+        <library>DisableWebconsole</library>
+        <description>Disables the Solaris Java Web Console (smcwebserver(1M)).</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/a:sun:java_web_console"/>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Web Related Services</member>
+        </views>
+      </security_module>

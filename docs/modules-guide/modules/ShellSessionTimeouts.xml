@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="ShellSessionTimeouts" version="5.0">
+  <title xml:id="SessionMgmt">Set Shell Timeout Period</title>
+  <para>
+  Sets shell session timeout. Any shell session that is idle for longer
+  than the specified time is disconnected.
+ </para>
+  <para>
+  The timeout value is specified in
+  <emphasis role="italic">seconds</emphasis> and the recommended time is
+  900 seconds (or 15 minutes).
+ </para>
+  <para>
+  For accounts that require the running of long batch jobs with no
+  terminal output, override this by setting <envar>TMOUT=0</envar> for
+  Bourne/bash/korne shells and <envar>autologout</envar> for csh.tcsh
+  shells. An example of this situation is a database account which is
+  running large batch jobs. A better method is to make the scripts more
+  verbose so that output activity is more visible.
+  <indexterm><primary>TIMEOUT</primary></indexterm>
+
+  <indexterm><primary>TMOUT</primary></indexterm>
+ </para>
+  <important>
+    <para>
+   Previous versions of this module created the
+   <filename>/etc/profile.d/sb-timeout.sh</filename> and
+   <filename>/etc/profile.d/sb-timeout.csh</filename> files as the
+   remediation. The new names for the remediation files are
+   <filename>/etc/profile.d/tmout.sh</filename> and
+   <filename>/etc/profile.d/autologout.csh</filename>, to better match
+   the compliancy guidelines, several of which specify these files by
+   name.
+  </para>
+  </important>
+  <simplesect xml:id="ShellSessionTimeouts-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>
+     CC-11 - Account Monitoring and Control
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>CIA DCID 6/3 (May 2000)</title>
+      <listitem>
+        <para>
+     4.B.1.a(5) - Screen Lock
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.1.a(5)(a) - Screen Lock - Maximum Idle Time will be 15 minutes
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.2.a(16)(b) - Session Control - Station or session time-outs
+     (PL2)
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.3.a(17)(a) - Session Control - Station or session time-outs
+     (PL3)
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.3.a(20)(b)
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD JAFAN 6/3 (Oct 2004)</title>
+      <listitem>
+        <para>
+     4.B.1.a(5) - Screen Lock
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.1.a(5)(a) - Screen Lock - Maximum Idle Time will be 15 minutes
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.2.a(16)(b) - Session Control - Station or session time-outs
+     (PL2)
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.3.a(17)(a) - Session Control - Station or session time-outs
+     (PL3)
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.3.a(20)(b)
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD NISPOM (Feb 2006)</title>
+      <listitem>
+        <para>
+     8.609b2 - User Inactivity
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>
+     AC-12 - Session Termination
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>
+     2.3.5.5 - Implement Inactivity Time-out for Login Shells
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>
+     CCE-3689-7 - The idle time-out value for the default /bin/tcsh
+     shell should meet the minimum requirements.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CCE-3707-7 - The idle time-out value for the default /bin/bash
+     shell should meet the minimum requirements.
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>
+     8.5.15 - If a session has been idle for more than 15 minutes,
+     require the user to re-enter the password to re-activate the
+     terminal.
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="ShellSessionTimeouts-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Number of seconds a shell can be idle before the system automatically terminates the session.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

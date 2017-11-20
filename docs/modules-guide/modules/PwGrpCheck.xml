@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="PwGrpCheck">
+ <title xml:id="Accounts">Lock Invalid Accounts</title>
+ <para>
+  Locks any <emphasis role="italic">local</emphasis> account that has an
+  invalid configuration. Note that many system accounts may point at
+  either a 'shared' login directory, a non-existent login directory, or
+  no directory at all. Usually these accounts are locked, and as such
+  will not be reported as a finding. If the log level is set to 'debug'
+  then these accounts <emphasis role="italic">will</emphasis> be flagged
+  in the log file as 'already locked'. If the account is not locked then
+  it will be flagged as a finding.
+ </para>
+ <para>
+  At a minimum, valid configurations must contain user accounts with:
+ </para>
+ <itemizedlist>
+  <listitem>
+   <para>
+    unique user names
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    valid user and group identifiers (uid and gid)
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    valid primary groups
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    valid home directories
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    valid login shells
+   </para>
+  </listitem>
+ </itemizedlist>
+ <para>
+  In addition to verifying user account information, group accounts are
+  also checked but only reported. These checks include:
+ </para>
+ <itemizedlist>
+  <listitem>
+   <para>
+    unique group name
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    valid list of members
+   </para>
+  </listitem>
+ </itemizedlist>
+ <para>
+  Since this module only locks user accounts with invalid
+  configurations, it is imperative to manually review the logs and
+  correct user account configurations. Outside of OS Lockdown the
+  <command>pwck(8)</command> and <command>grpck(8)</command> utilities
+  can be used to manually correct invalid configurations.
+  <indexterm>
+   <primary>grpck</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>pwck</primary>
+  </indexterm>
+ </para>
+ <simplesect xml:id="PwGrpCheck-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN000300 - All accounts on the system must have unique user or
+     account names.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN000320 - All accounts must be assigned unique User
+     Identification Numbers (UIDs).
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN000380 - All GIDs referenced in the /etc/passwd file must be
+     defined in the /etc/group file.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001440 - All interactive users must be assigned a home directory
+     in the /etc/passwd file.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001460 - All interactive user home directories defined in the
+     /etc/passwd file must exist.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 6 STIG (V1R14)</title>
+   <listitem>
+    <para>
+     RHEL-06-000294 - All GIDs referenced in /etc/passwd must be defined
+     in /etc/group
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     RHEL-06-000296 - All accounts on the system must have unique user
+     or account names
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN000300 - Unique Account Name
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN000320 - Unique UID
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN000380 - Groups Referenced in /etc/passwd
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001440 - Assign Home Directories
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001460 - Assigned Home Directories Exist
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD NISPOM (Feb 2006)</title>
+   <listitem>
+    <para>
+     8.303a - Unique Identification
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-2 - Account Management
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     8.1 - Users must have a unique ID
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

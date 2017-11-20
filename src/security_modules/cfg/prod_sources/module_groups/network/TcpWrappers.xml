@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Enable TCP Wrappers">
+        <library>TcpWrappers</library>
+        <description>Verifies existence of, permissions, and required contents of the /etc/hosts.allow and /etc/hosts.deny files.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>10</severity_level>
+        <configurationOptions>
+          <option name="allowedUnames" type="userListCanBeEmpty">
+            <description>Allowed User Names</description>
+            <default>root</default>
+          </option>
+          <option name="allowedGnames" type="groupListCanBeEmpty">
+            <description>Allowed Group Names</description>
+            <default>root</default>
+          </option>
+          <option name="dacs" type="fileDACs">
+            <description>Maximum allowed permissions</description>
+            <default>644</default>
+          </option>
+          <option name="requiredLinesForAllow" type="basicMultilineStringCanBeEmpty">
+            <description>Required lines for /etc/hosts.allow</description>
+            <default/>
+          </option>
+          <option name="requiredLinesForDeny" type="basicMultilineStringCanBeEmpty">
+            <description>Required lines for /etc/hosts.deny</description>
+            <default/>
+          </option>
+        </configurationOptions>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4"/>
+          <cpe-item name="cpe:/o:centos:centos:5"/>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:novell:opensuse:10"/>
+          <cpe-item name="cpe:/o:novell:opensuse:11"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:10"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:11"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:redhat:fedora:10"/>
+          <cpe-item name="cpe:/o:redhat:fedora:11"/>
+          <cpe-item name="cpe:/o:redhat:fedora:12"/>
+          <cpe-item name="cpe:/o:redhat:fedora:13"/>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Remote Access</member>
+        </views>
+      </security_module>

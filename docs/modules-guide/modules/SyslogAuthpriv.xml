@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SyslogAuthpriv" version="5.0">
+  <title xml:id="Auditing">Secure Authpriv Logging</title>
+  <para>
+  Secures authpriv logging so that security-related logging information
+  is sent to <filename>/var/log/secure</filename> , which is readable
+  only by the superuser.
+  <indexterm><primary>/var/log</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/var/log</secondary></indexterm>
+
+  <indexterm><primary>/var/log/secure</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/var/log/secure</secondary></indexterm>
+
+  <indexterm><primary>authpriv</primary></indexterm>
+ </para>
+  <para>
+  It is recommended that you review and archive
+  <filename>/var/log/secure</filename> on a regular basis.
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2">
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="1.0*" align="left"/>
+      <colspec colname="c2" colwidth="1.0*"/>
+      <colspec colname="c3" colwidth="1.2*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Settings</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry>
+            <filename>/etc/rsyslog.conf</filename>
+            <indexterm>
+              <primary>rsyslog.conf</primary>
+            </indexterm>
+            <indexterm>
+              <primary>syslog.conf</primary>
+            </indexterm>
+          </entry>
+          <entry morerows="3">
+            <filename>authpriv.* /var/log/secure</filename>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+          <entry morerows="1">
+            <filename>/etc/syslog.conf</filename>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+          <entry>
+            <filename>/etc/rsyslog.conf</filename>
+          </entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+          <entry>
+            <filename>/etc/syslog.conf</filename>
+          </entry>
+          <entry>
+            <filename>auth.info /var/log/authlog</filename>
+            <indexterm>
+              <primary>authlog</primary>
+            </indexterm>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <para>
+  SUSE 10 and 11 systems use <emphasis>syslog-ng</emphasis> so the
+  following configuration changes will be made to
+  <filename>/etc/syslog-ng/syslog-ng.conf</filename>:
+  <indexterm><primary>syslog-ng.conf</primary></indexterm>
+ </para>
+  <programlisting>filter f_auth { facility(auth,authpriv); };
+destination d_auth { file("/var/log/secure"); };
+log { source(src); filter(f_auth); destination(d_auth); }; </programlisting>
+  <simplesect xml:id="SyslogAuthpriv-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-11 - Account Monitoring and Control</para>
+      </listitem>
+      <listitem>
+        <para>CC-6 - Maintenance, Monitoring, and Analysis of Audit Logs</para>
+      </listitem>
+      <listitem>
+        <para>CC-8 - Controlled Use of Administrative Privileges</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>5 - Audit Trail</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN001060 - The system must log successful and unsuccessful access to the root account.</para>
+      </listitem>
+      <listitem>
+        <para>GEN003660 - The system must log informational authentication data.</para>
+      </listitem>
+      <listitem>
+        <para>GEN006600 - Accounts must be locked upon 35 days of inactivity.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN001060 - Log Root Access Attempts</para>
+      </listitem>
+      <listitem>
+        <para>GEN003660 - Authentication Data Logging</para>
+      </listitem>
+      <listitem>
+        <para>GEN006600 - Access Control Program Logging</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD NISPOM (Feb 2006)</title>
+      <listitem>
+        <para>8.303a - Unique Identification</para>
+      </listitem>
+      <listitem>
+        <para>8.602a1 - Automated Audit Trail Creation</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+      <listitem>
+        <para>CIP-007-3-R5.1.2 - Generate logs of sufficient detail to create historical audit trails of individual user account access</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>AU-2 - Auditable Events</para>
+      </listitem>
+      <listitem>
+        <para>AU-3 - Content of Audit Records</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>2.5.4.4 - Monitor Syslog for Relevant Connections and Failures</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="SMB_Conf" version="5.0">
+  <title xml:id="FileSharingServices">SMB Configuration</title>
+  <para>
+  Checks for recommended global <application>Samba</application> (SMB)
+  configuration settings. <application>Samba</application> is a file
+  sharing protocol for Windows machines. Unless it is necessary for your
+  environment, it should be turned off using the
+  “<xref linkend="DisableSMB" xrefstyle="select: title page"/>”
+  module.
+ </para>
+  <indexterm>
+    <primary>Samba</primary>
+  </indexterm>
+  <informaltable frame="all" cellspacing="2" cellpadding="2">
+    <tgroup cols="4">
+      <colspec colname="c1" colwidth="1.0*" align="left"/>
+      <colspec colname="c2" colwidth="0.6*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <colspec colname="c4" colwidth="1.2*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Package</entry>
+          <entry>Configuration Files</entry>
+          <entry>Settings</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="3">samba-common
+      <indexterm><primary>samba-common</primary></indexterm></entry>
+          <entry morerows="4">
+            <filename>/etc/samba/smb.conf</filename>
+            <indexterm>
+              <primary>/etc/samba/smb.conf</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/samba/smb.conf</secondary>
+            </indexterm>
+          </entry>
+          <entry morerows="5">
+            <literallayout class="monospaced">[global] 
+guest ok = no
+security = user
+smb passwd file = 
+/etc/samba/passwd
+encrypt passwords = yes
+client lanman auth = no
+client ntlmv2 auth = yes
+server signing = 
+mandatory
+client signing = 
+mandatory</literallayout>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+          <entry>samba</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+          <entry>SUNWsmbar
+      <indexterm><primary>SUNWsmbar</primary></indexterm>
+
+      <indexterm><primary>Solaris packages</primary><secondary>SUNWsmbar</secondary></indexterm></entry>
+          <entry>
+            <filename>/etc/sfw/smb.conf</filename>
+            <indexterm>
+              <primary>/etc/sfw/smb.conf</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/sfw/smb.conf</secondary>
+            </indexterm>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <simplesect xml:id="SMB_Conf-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN006220 - The smb.conf file must use the "hosts" option to restrict access to Samba.</para>
+      </listitem>
+      <listitem>
+        <para>GEN006225 - Samba must be configured to use an authentication mechanism other than "share."</para>
+      </listitem>
+      <listitem>
+        <para>GEN006230 - Samba must be configured to use encrypted passwords.</para>
+      </listitem>
+      <listitem>
+        <para>GEN006235 - Samba must be configured to not allow guest access to shares.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000272 - The system must use SMB client signing for connecting to samba servers using smbclient.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN006220 - smb.conf Configuration</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>3.18.2.10 - Require Client SMB Packet Signing</para>
+      </listitem>
+      <listitem>
+        <para>3.18.2.2.1 - Use user Security for Servers Not in a Domain Context</para>
+      </listitem>
+      <listitem>
+        <para>3.18.2.3 - Disable Guest Access and Local Login Support</para>
+      </listitem>
+      <listitem>
+        <para>3.18.2.5 - Set the Allowed Authentication Negotiation Levels</para>
+      </listitem>
+      <listitem>
+        <para>3.18.2.9 - Require Server SMB Packet Signing</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

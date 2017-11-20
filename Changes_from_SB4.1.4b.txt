@@ -1,0 +1,53 @@
+This file lists the important changes between the last commercial release of Security Blanket 4.1.4b (May, 2016) and the initial open source release of OS Lockdown 5.0.0 (October, 2017).
+
+- The project has been renamed from 'Security Blanket' to 'OS Lockdown'.  
+  - The installer automatically renames any existing 'Security Blanket' related files to use the new 'OS Lockdown' naming scheme.  The new packages to install are also renamed to use 'oslockdown' rather than 'securityblanket'.  For Solaris, the package names use 'osl' rather than 'secblanket' or 'sb' as the internal name.  The filenames in all cases change from 'security-blanket' to oslockdown'.  See Chapter 2 of the OS Lockdown Administration Guide for details on renaming.  
+  - All 'Forcepoint' related branding/logos have been removed.
+  - The 'Device Vendor' string in the CEF header has been changed to 'OS Lockdown'.
+
+- The project is released with all non-Console related files under the GPL v3 license.  The Console related files are split with some released only under the GPL v3 license, some under the Apache V2 license, and some under a combined GPL v3 (our changes) and Apache V2.  There are 3 included Javascript files in the Console that are included due to extensive changes (Taconite, Apache V2), or due to no official home page (jquery-corners v0.3, jquery-blockui.js v2.37).  
+
+- Note that there is a list of required packages that must be downloaded prior to being able to build OS Lockdown.  A script has been provided to help with this.  Please refer to the supplied 'BUILDING.txt' file for more information.
+
+- Removal of all node-locked licensing.  
+  - The installation 'type' (Enterprise or Standalone) of any Security Blanket installation will be detected and set as the default during an OS Lockdown installation.  
+  - The user will always be prompted to keep/change the choice of Enterprise or Standalone when installing.
+  - No longer any need for discrete licenses for each installation.
+  - Removal of the maximum number of Clients any particular Enterprise installation can manage, including the 'per processor' limits for any IBM zSeries Clients.   
+  - The web-based Console application has been modified to only show the total number of Clients.
+  - All the private SSL passphrases are no longer locally encrypted, but instead are stored as plain text.  These files are suitably protected to prevent unauthorized access.
+  - A new file /var/lib/oslockdown/files/ConsoleType.txt contains either 'Enterprise' or 'Standalone' to indicate the desired functionality of the Console.  This can be changed manually or by using the /usr/share/oslockdown/tools/SB_Setup -l command.  It is highly recommended to not change from an Enterprise license to a Standalone license.  The Standalone Console can be thought of as an Enterprise Console of size 1, specially crafted with a single default Client and default Group, and with many webpages streamlined or hidden where applicable.  Note that the Console will default to an Enterprise installation if this file is missing or unreadable.
+  - Disabled the Processors page from being displayed if zSeries Clients are present.  They are now treated as standard Enterprise Clients.
+  - Updated the Enterprise/Standalone Console home page to be a single column rather than a two column display. 
+  
+- Major rework to source code structure to support building in the open source arena.  The commercial releases employed special methods in the build and packaging steps leveraging a highly structured multi-platform build environment.
+
+- Major rework of nested Makefiles to ensure that the required components are present to build.  Refer to the 'BUILDING.txt' file at the top of the OS Lockdown source for instructions on how to build OS Lockdown.
+
+- Tomcat upgraded from Tomcat 6.0.45 to Tomcat 7.0.76, and the process of 'hardening' the Tomcat installation has been greatly improved.  These hardening steps include:
+  - remove all management apps and some related log files
+  - hardcoding the log locations
+  - changing the default error page to not show the Tomcat version
+  - a custom setenv.sh script for environment 
+  - customized catalina.properties creation
+  - customized server.xml files 
+  
+- Major rework of how the OS Lockdown Administration Guide and Modules Guide are built.  The documents are built using the DocBook utilities, and now have a customization layer rather than direct edits to the DocBook utilities themselves.
+  
+- Minor tweaks to the cert_gen.sh script to assist in certificate creation.  The script will now exit if the certificate directory is not present/created.
+ 
+- Removal of SVN related information.  Historically SVN was used to manage the source code, and the SVN commit number was part of the version naming scheme.  A product build now will accept a user-generated field to replace the SVN commit number for product naming.  See the 'BUILDING.txt' document for more details.
+ 
+- Major rework of the auto-update functionality.  Due to the product renaming, this required a transitional SELinux policy to be used when upgrading from the commercial 'Security Blanket' policy to the new open source 'OS Lockdown' policy.  This transition policy is removed at the end of the auto-update.  You may find some error messages in your AVC logs if SELinux is enabled that can be ignored.  The errors occur because the legacy 'Security Blanket' policy is removed while the auto-update code is executing under that policy.  This removal is the last step of the auto-updater, and these error messages occur while the process is shutting down.
+
+- General code cleanup, removal of unused code/files from the source tree.
+
+- Addition of 'buildInstaller.py' code to assist in generating a 'combined installer' from one or more directories of compiled code from different target platforms.  This program will ask questions where it finds multiple 'equivalent' packages.  For example, the PDF documents built on any platform will work on any other platform, and not all of the Console build products need to be included.  This results in a huge space savings as the Console packages are 60 MB+ each. With regard to the Console packages, note that if you are running the IBM JRE, then the Console must be built with the IBM Java compiler.  
+
+- Fixed log line highlighting in the Console.
+
+- Added ability to export Baseline Profiles just like Security Profiles.
+
+- Numerous small fixes to how some commands are different between Linux/Solaris.
+
+- Reworked SSL certificate creation to provide a choice between SHA-1 and SHA-256 for digests.  A choice will only be presented if the system generating the certificate (an Enterprise Console or a Standalone installation) supports SHA-256.  Note that in an OS Lockdown Enterprise environment all of the Clients attached to an Enterprise Console must support SHA-256 in order to use a SHA-256 digest.  Initial testing indicates that Red Hat Enteprise Linux 4 (and CentOS/Oracle equivalents) do not support SHA-256.

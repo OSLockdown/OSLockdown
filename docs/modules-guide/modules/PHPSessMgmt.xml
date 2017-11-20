@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="PHPSessMgmt" version="5.0">
+ <title xml:id="WebServices">PHP - Enhance Session Management</title>
+ <para>
+  Enhances the PHP session management for web applications. This module:
+  <indexterm>
+   <primary>PHP</primary>
+  </indexterm>
+ </para>
+ <itemizedlist>
+  <listitem>
+   <para>
+    Increases the randomness of session filenames.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Restricts the storage location of serialized session data.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Sets the default cache control HTTP header to
+    <emphasis>nocache</emphasis> which disallows any client/proxy
+    caching.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Only uses cookies to store the session ID on the client side. This
+    prevents attacks involved in passing session IDs in URLs.
+   </para>
+  </listitem>
+ </itemizedlist>
+ <para>
+  If a web application uses PHP’s session module, a visitor accessing
+  the web site is assigned a unique ID, the session ID. This is either
+  stored in a cookie on the user side or is propagated in the URL.
+  Sending session IDs in a URL could result in a leaked session that
+  would enable a third party to hijack the session and access all
+  resources that are associated with a specific ID.
+ </para>
+ <para>
+  Session support in PHP contains a method of preserving certain data
+  across subsequent accesses by registering an arbitrary number of
+  variables. All registered variables are serialized after the request
+  finishes. This module sets parameters to help reduce the
+  predictability of the location of session data on the server.
+ </para>
+ <para>
+  The session module cannot guarantee that the information you store in
+  a session is only viewed by the user who created the session. It is
+  recommended that you actively protect the integrity of the session,
+  depending on the value associated with it.
+ </para>
+ <para>
+  If an application cannot run properly after applying this module,
+  consider updating or rewriting the application.
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="0.5*" align="left"/>
+   <colspec colname="c2" colwidth="1.0*"/>
+   <colspec colname="c3" colwidth="1.5*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Configuration Files</entry>
+     <entry>Settings</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="3"><filename>/etc/php.ini</filename>
+      <indexterm>
+       <primary>php.ini</primary>
+      </indexterm></entry>
+     <entry morerows="5"><literallayout class="monospaced">[Session]
+session.save_handler = files
+session.save_path = /var/lib/php/session
+session.use_cookies = 1
+session.use_only_cookies = 1
+session.entropy_file = /dev/urandom
+session.entropy_length = 1024
+session.cookie_lifetime = 0
+session.cache_limiter = nocache
+session.hash_function = 1
+session.hash_bits_per_character = 6</literallayout>
+      <indexterm>
+       <primary>/dev</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Files and Directories</primary>
+
+       <secondary>/dev</secondary>
+      </indexterm></entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+     <entry><filename>/etc/apache2/php.ini</filename>
+      <indexterm>
+       <primary>apache2</primary>
+      </indexterm></entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+     <entry><filename>/etc/php5/apache2/php.ini</filename></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="PHPSessMgmt-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-11 - Account Monitoring and Control
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

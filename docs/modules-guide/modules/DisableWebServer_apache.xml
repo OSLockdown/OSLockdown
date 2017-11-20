@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableWebServer_apache" version="5.0">
+ <title xml:id="WebServices">Disable Apache</title>
+ <para>
+  Disables <application>Apache™</application>, which is an HTTP
+  server.
+ </para>
+ <para>
+  Unless this machine will be serving web content, it is recommended to
+  disable <application>Apache</application>. If you need to enable
+  <application>Apache</application>, there are many external references
+  that provide secure configuration information for
+  <application>Apache</application>.
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="1.0*" align="left"/>
+   <colspec colname="c2" colwidth="0.5*"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Packages</entry>
+     <entry>Service Names</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="3">httpd
+      <indexterm>
+       <primary>httpd</primary>
+      </indexterm></entry>
+     <entry morerows="3">httpd</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+     <entry>SUNWapchr
+      <indexterm>
+       <primary>SUNWapchr</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Solaris packages</primary>
+       <secondary>SUNWapchr</secondary>
+      </indexterm></entry>
+     <entry>svc:/network/http:apache2
+      <indexterm>
+       <primary>apache2</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>svc:/network/http:apache2</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Solaris services</primary>
+       <secondary>svc:/network/http:apache2</secondary>
+      </indexterm></entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+     <entry>apache2</entry>
+     <entry>apache2</entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="DisableWebServer_apache-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-13 - Limitation and Control of Network Ports, Protocols, and
+     Services
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DHS Linux Configuration Guidance (2010.8)</title>
+   <listitem>
+    <para>
+     6.2 - Configuring Stand Alone Services
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+   <listitem>
+    <para>
+     CIP-005-3-R2.2 - Enable only ports and services needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+   <listitem>
+    <para>
+     CIP-007-3-R2.2 - Disable ports and services not needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     3.16.1 - Disable Apache if Possible
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NVD CCE</title>
+   <listitem>
+    <para>
+     CCE-4306-7 - The apache web servicer should be enabled or disabled
+     as appropriate
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CCE-4338-0 - The httpd service should be enabled or disabled as
+     appropriate.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.2 - Disable all unnecessary and insecure services
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

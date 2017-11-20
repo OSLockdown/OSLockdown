@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SysRcScriptPerms" version="5.0">
+ <title xml:id="fileDACs">System Run Control Script Permissions</title>
+ <para>
+  Restricts access to the system run control scripts. System run control
+  scripts are responsible for starting and stopping services as the
+  machine boots or shuts down.
+ </para>
+ <para>
+  It is highly recommended to apply this module to restrict access to
+  the system run control scripts. This module sets the permissions to
+  the operating system defaults and should not impact normal operations.
+ </para>
+ <simplesect xml:id="SysRcScriptPerms-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN001580 - All run control scripts must have mode 0755 or less
+     permissive.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001660 - All system start-up files must be owned by root.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001680 - All system start-up files must be group-owned by root,
+     sys, bin, other, or system.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN001580 - Run Control Scripts Permissions
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001660 - Run Control Scripts Ownership
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001680 - Run Control Scripts Group Ownership
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD NISPOM (Feb 2006)</title>
+   <listitem>
+    <para>
+     8.606b1 - Access 2 Requirements
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-3 - Access Enforcement
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

@@ -1,0 +1,309 @@
+<?xml version="1.0"?>
+<!-- ***************************************************************************** -->
+<!-- Copyright (c) 2010-2015 Forcepoint LLC.					   -->
+<!-- This file is released under the GPLv3 license.				   -->
+<!-- See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license, -->
+<!-- or visit https://www.gnu.org/licenses/gpl.html instead.	                   -->
+<!-- 									   	   --> 
+<!-- OS Lockdown Modules						   	   --> 
+<!-- ***************************************************************************** -->
+<!-- $Id: build.xml 24130 2017-11-02 20:50:37Z rsanders $ -->
+<project name="OS Lockdown Modules" default="dist" basedir=".">
+    <description>
+        OS Lockdown Modules:
+
+          - Consists of Python modules to perform security actions and 
+            are delivered as bytecode (.pyo) files.
+
+          - Primary configuration file which describes each module
+            for both the console and CoreEngine.
+    </description>
+    <import file="../../build-common.xml"/> 
+
+    <property name="build.root"  value="build"/>
+
+    <property name="root.dir" value="${build.root}/root"/>
+    <property name="sb.app.dir"  value="${root.dir}/usr/share/oslockdown"/>
+    <property name="sb.data.dir" value="${root.dir}/var/lib/oslockdown"/>
+
+    <!-- ===================================================================== -->
+    <target name="dist" depends="modules">
+        <property name="specfile" value="build/oslockdown-modules.spec"/>
+        <mkdir dir="${sb.app.dir}/cfg/schema"/>
+        <mkdir dir="${sb.data.dir}/profiles"/>
+        <mkdir dir="${sb.data.dir}/files"/>
+        <mkdir dir="${build.root}/SOURCES" />
+        <mkdir dir="${build.root}/BUILD" />
+        <mkdir dir="${build.root}/RPMS" />
+        <mkdir dir="${build.root}/SPECS" />
+        <mkdir dir="${build.root}/SRPMS" />
+        <mkdir dir="${build.root}/root" />
+        <copy todir="${sb.data.dir}/profiles" verbose="true">
+            <fileset dir="profiles" includes="*.xml"/>
+        </copy>
+        <copy file="cfg/security-modules.xml" todir="${sb.app.dir}/cfg"/>
+        <copy file="cfg/optionTypes.xml" todir="${sb.app.dir}/cfg"/>
+        <copy todir="${sb.app.dir}/cfg/schema" verbose="true">
+            <fileset dir="cfg/schema/" includes="*.xsd"/>
+        </copy>
+
+        <antcall target="set-dirperms-solaris" /> <!-- Don't worry it will be skipped in Linux -->
+        <antcall target="set-perms" /> 
+        <antcall target="create-tarfile"/>
+        <antcall target="package-rpm"/>
+        <antcall target="package-ubuntu"/>
+        <antcall target="package-solaris"/>
+
+     </target>
+
+     <!-- ******** Create archive (tar) file ********** -->
+     <target name="create-tarfile" unless="isUbuntu">
+        <delete file="${build.root}/SOURCES/oslockdown-modules.tar" />
+        <tar destfile="${build.root}/SOURCES/oslockdown-modules.tar">
+            <tarfileset dir="${root.dir}" prefix="sb/root">
+                <include name="**/*"/>
+            </tarfileset>
+        </tar>
+     </target>
+
+    <!--************* RPM  Package ***************** -->
+     <target name="package-rpm" if="isLinux" unless="isUbuntu">
+        <copy  file="build/oslockdown-modules.spec" todir="${build.root}/SPECS"/>
+        <rpm specFile="oslockdown-modules.spec" topDir="${basedir}/${build.root}" cleanBuildDir="true" failOnError="true"/> 
+        <echo>============[ DONE ]============</echo>
+        <echo>Moving built packages....       </echo>
+        <move todir="dist" overwrite="true">
+            <fileset dir="${build.root}/RPMS/noarch" includes="*.rpm"/>
+        </move>
+    </target>
+
+    <!--************* Debian (Ubuntu)  Package ***************** -->
+     <target name="package-ubuntu" if="isUbuntu">
+        <mkdir dir="${root.dir}/DEBIAN" />
+        <copy file="${build.root}/ubuntu/control" todir="${root.dir}/DEBIAN" overwrite="yes" />
+        <replace file="${root.dir}/DEBIAN/control" token="Version: 4" value="Version: ${product.pkg.evr}" summary="yes"/>
+        <exec executable="/usr/bin/dpkg-deb">
+            <arg value="--build"/>
+            <arg value="${root.dir}"/>
+            <arg value="${build.root}/dist/oslockdown-modules_${product.pkg.evr}_all.deb"/>
+        </exec>
+    </target>
+
+    <!--************* Solaris Package ***************** -->
+    <target name="package-solaris" if="isSolaris">
+        <!-- Build pkginfo file (metadata about package) -->
+        <delete file="build/pkginfo"/>
+        <echo output="build/pkginfo" append="false">PKG="TCSoslockdown-modules"${line.separator}</echo>
+        <echo output="build/pkginfo" append="true">NAME="OS Lockdown Modules"${line.separator}</echo>
+        <echo output="build/pkginfo" append="true">VERSION="${product.pkg.evr}"${line.separator}</echo>
+        <echo output="build/pkginfo" append="true">ARCH="all"${line.separator}</echo>
+        <echo output="build/pkginfo" append="true">SUNW_PRODNAME="SunOS"${line.separator}</echo>
+        <echo output="build/pkginfo" append="true">SUNW_PRODVERS="5.10"${line.separator}</echo>
+        <echo output="build/pkginfo" append="true">CLASSES="none"${line.separator}</echo>
+        <echo output="build/pkginfo" append="true">MAXINST=1${line.separator}</echo>
+        <echo output="build/pkginfo" append="true">SUNW_PKG_ALLZONES=false${line.separator}</echo>
+        <echo output="build/pkginfo" append="true">CATEGORY="utility"${line.separator}</echo>
+        <echo output="build/pkginfo" append="true">VENDOR="OSLockdown"${line.separator}</echo>
+	<echo output="build/pkginfo" append="true">BASEDIR="/"${line.separator}</echo>
+
+        <!-- Build Prototype file (package manifest) -->
+        <delete file="build/Prototype"/>
+        <copy todir="build" verbose="true" overwrite="true">
+            <fileset dir="build/solaris" includes="*"/>
+        </copy>
+        <echo output="build/Prototype" append="false">i pkginfo${line.separator}</echo>
+        <echo output="build/Prototype" append="true">i depend${line.separator}</echo>
+        <echo output="build/Prototype" append="true">i preinstall${line.separator}</echo>
+        <echo output="build/Prototype" append="true">i postinstall${line.separator}</echo>
+        <echo output="build/Prototype" append="true">i checkinstall${line.separator}</echo>
+        <echo output="build/Prototype" append="true">i preremove${line.separator}</echo>
+        <mkdir dir="build/package"/>
+        <exec executable="pkgproto" dir="build/root" output="build/Prototype" append="true">
+            <arg value="."/>
+        </exec>
+        <exec executable="pkgmk" dir="build" >
+            <arg value="-o"/>
+            <arg value="-r" />
+            <arg value="root" />
+            <arg value="-d" />
+            <arg value="package" />
+            <arg value="-f"/>
+            <arg value="Prototype"/>
+        </exec>
+        <exec executable="pkgtrans" dir="build" >
+            <arg value="-s"/>
+            <arg value="package"/>
+            <arg value="oslockdown-modules-${product.pkg.evr}.sol10.noarch.pkg"/>
+            <arg value="TCSoslockdown-modules"/>
+        </exec>
+        <move todir="dist" overwrite="true" verbose="true">
+            <fileset dir="build/package" includes="*.pkg"/>
+        </move>
+    </target>
+
+    <!-- ===================================================================== 
+           IMPORTANT: The modules must be copied in the following order       
+               because some modules must override others depending on the OS  
+               Eventuall we will re-orgnize the development tree...          
+                                                                            
+                                 Generic Modules                                         
+                                  /            \
+                               Red Hat   or   Solaris
+                               /  |   \         
+                              /   |    \
+                          SUSE  Fedora RedHat6
+
+        ===================================================================== -->
+    <target name="modules">
+        <pycompile dir="generic"/>
+        <mkdir dir="${sb.app.dir}/security_modules/"/>
+        <move todir="${sb.app.dir}/security_modules">
+            <fileset dir="generic" includes="*.pyo"/>
+        </move>
+        <sequential>
+            <antcall target="modules-redhat"/>
+            <antcall target="modules-redhat6"/>
+            <antcall target="modules-solaris"/>
+            <antcall target="modules-suse"/>
+            <antcall target="modules-fedora"/>
+        </sequential>
+    </target>
+    <target name="modules-redhat" if="isLinux">
+        <pycompile dir="redhat"/>
+        <mkdir dir="${sb.app.dir}/security_modules/"/>
+        <mkdir dir="${sb.data.dir}/files"/>
+        <move todir="${sb.app.dir}/security_modules">
+            <fileset dir="redhat" includes="*.pyo"/>
+        </move>
+    </target>
+    <target name="modules-redhat6" if="isRedHat6">
+        <echo>Red Hat 6 Modules...</echo>
+        <pycompile dir="redhat6"/>
+        <mkdir dir="${sb.app.dir}/security_modules/"/>
+        <mkdir dir="${sb.data.dir}/files"/>
+        <move todir="${sb.app.dir}/security_modules">
+            <fileset dir="redhat6" includes="*.pyo"/>
+        </move>
+    </target>
+    <target name="modules-solaris" if="isSolaris">
+        <mkdir dir="${sb.app.dir}/security_modules/"/>
+        <mkdir dir="${sb.data.dir}/files"/>
+        <pycompile dir="solaris"/>
+        <move todir="${sb.app.dir}/security_modules">
+            <fileset dir="solaris" includes="*.pyo"/>
+        </move>
+    </target>
+    <target name="modules-suse" if="isSuse">
+        <mkdir dir="${sb.app.dir}/security_modules/"/>
+        <mkdir dir="${sb.data.dir}/files"/>
+        <pycompile dir="suse"/>
+        <move todir="${sb.app.dir}/security_modules">
+            <fileset dir="suse" includes="*.pyo"/>
+        </move>
+    </target>
+    <target name="modules-fedora" if="isFedora">
+        <mkdir dir="${sb.app.dir}/security_modules/"/>
+        <mkdir dir="${sb.data.dir}/files"/>
+        <pycompile dir="fedora"/>
+        <move todir="${sb.app.dir}/security_modules">
+            <fileset dir="fedora" includes="*.pyo"/>
+        </move>
+    </target>
+    <!-- ===================================================================== -->
+    <!-- 
+          Permissions and ownership are critical. Solaris has much different
+          requirements than Linux. They are based on existing default OS perms.
+    -->
+    <target name="set-dirperms-solaris" if="isSolaris">
+        <chmod dir="${build.root}/root/var" perm="0755" verbose="true"/>
+        <chmod dir="${build.root}/root/var/lib" perm="0755" verbose="true"/>
+        <chmod dir="${build.root}/root/usr" perm="0755" verbose="true"/>
+        <chmod dir="${build.root}/root/usr/share" perm="0755" verbose="true"/>
+
+        <chown file="${build.root}/root/var"  owner="root" type="dir" verbose="true"/>
+        <chown file="${build.root}/root/usr" owner="root" type="dir" verbose="true"/>
+        <chown file="${build.root}/root/usr/share" owner="root" type="dir" verbose="true"/>
+        <chown file="${build.root}/root/var/lib" owner="root" type="dir" verbose="true"/>
+
+        <chgrp file="${build.root}/root/var" group="sys" type="dir" verbose="true"/>
+        <chgrp file="${build.root}/root/usr" group="sys" type="dir" verbose="true"/>
+        <chgrp file="${build.root}/root/usr/share" group="sys" type="dir" verbose="true"/>
+        <chgrp file="${build.root}/root/var/lib" group="other" type="dir" verbose="true"/>
+    </target>
+
+    <target name="set-perms">
+        <echo message="Setting ownerships and permissions..."/>
+
+        <chmod dir="${build.root}/root/usr/share/oslockdown" perm="0755" verbose="true"/>
+        <chmod dir="${build.root}/root/usr/share/oslockdown/cfg" perm="0755" verbose="true"/>
+        <chmod dir="${build.root}/root/usr/share/oslockdown/cfg/schema" perm="0755" verbose="true"/>
+        <chmod dir="${build.root}/root/usr/share/oslockdown/security_modules" perm="0750" verbose="true"/>
+
+        <!-- All config files should just be 0444 and owned -->
+        <chmod  perm="0444" verbose="true">
+            <fileset dir="${build.root}/root/usr/share/oslockdown/cfg" includes="**/*"/>
+        </chmod>
+
+        <!-- Modules and other 'files' (i.e., inclusion list) should be 0440 -->
+        <chmod  perm="0440" verbose="true">
+            <fileset dir="${build.root}/root/usr/share/oslockdown/security_modules" includes="**/*"/>
+            <fileset dir="${build.root}/root/var/lib/oslockdown/files" includes="**/*"/>
+        </chmod>
+
+        <!-- All files under /usr/share/oslockdown/ and  /var/lib/oslockdown  
+             should be owned by root. Do not tinker with the chgrp here. Solaris has different
+             requirements. See the Solaris related target.
+         -->
+        <chown  owner="root" verbose="true">
+            <fileset dir="${build.root}/root/usr/share/oslockdown" includes="**/*"/>
+            <fileset dir="${build.root}/root/var/lib/oslockdown" includes="**/*"/>
+        </chown>
+
+    </target>
+
+    <!-- ===================================================================== -->
+     <target name="validate" description="Validate master modules configuration (XML)...">
+         <property name="modules-config-schema" location="${basedir}/cfg/schema/SecurityModules.xsd"/>
+         <schemavalidate noNamespaceFile="${modules-config-schema}" warn="yes" file="${basedir}/cfg/security-modules.xml"/>
+         <echo message="Validated master modules configuration file."/>
+    </target>
+
+    <target name="replacer">
+        <replace dir=".">
+            <include name="**/*.py" />
+            <replacetoken>2007-2010 Raytheon</replacetoken>
+            <replacevalue>2007-2011 Raytheon</replacevalue>
+        </replace>
+    </target>
+
+    <!-- ===================================================================== -->
+    <target name="clean-modules">
+        <echo message="Removing *.pyo files..."/>
+        <delete>
+            <fileset dir="." includes="**/*.pyo"/>
+            <fileset dir="." includes="bytecompile.py"/>
+        </delete>
+        <echo message="Removing previously built packages..."/>
+        <delete>
+            <fileset dir="build/dist" includes="*.rpm"/>
+            <fileset dir="build/dist" includes="*.pkg"/>
+            <fileset dir="dist" includes="*"/>
+        </delete>
+        <delete dir="build/dist/TCSoslockdown-modules"/>
+        <delete>
+            <fileset dir="build" includes="*install"/>
+            <fileset dir="build" includes="preremove"/>
+            <fileset dir="build" includes="depend"/>
+            <fileset dir="build" includes="copyright"/>
+            <fileset dir="build" includes="pkginfo"/>
+            <fileset dir="build" includes="Prototype"/>
+        </delete>
+        <delete dir="build/root"/>
+        <delete dir="build/SPECS"/>
+        <delete dir="build/SOURCES"/>
+        <delete dir="build/RPMS"/>
+        <delete dir="build/BUILD"/>
+        <delete dir="build/SRPMS" />
+        <delete dir="build/package" />
+    </target>
+</project>

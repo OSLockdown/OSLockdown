@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profile name="DHS Basic" sysProfile="true">
+    <info>
+        <description>
+            <summary>DHS Configuration Guidance - Basic</summary>
+            <verbose>The minimal requirements set forth in the U.S. Department of Homeland Security Configuration Guidance document.</verbose>
+            <comments>This profile is based on the "Linux Configuration Guidance" version 2010.8. The warning banners included in this profile were taken from Appendix B of the "Individual Use And Operation of DHS Information Systems/Computers" (Management Directive 4900).</comments>
+        </description>
+    </info>
+    <security_module name="Access.conf File Permissions">
+        <option name="fileList">/etc/security/access.conf</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root,bin,sys,system</option>
+        <option name="dacs">640</option>
+    </security_module>
+    <security_module name="Adjust Maximum Pending Connections">
+        <option name="tcpMaxSynBacklog">4096</option>
+    </security_module>
+    <security_module name="At Directory Permissions">
+        <option name="fileList">/var/spool/at</option>
+        <option name="recursive">1</option>
+        <option name="globNames">0</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root,bin,sys,system</option>
+        <option name="dacs">755</option>
+    </security_module>
+    <security_module name="At/Cron Access File Permissions">
+        <option name="fileList">/etc/at.allow /etc/at.deny /etc/cron.allow /etc/cron.deny</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root,bin,sys,cron</option>
+        <option name="dacs">600</option>
+    </security_module>
+    <security_module name="Audit Log Rotation"/>
+    <security_module name="Audit Rules">
+        <option name="auditRules">## This file contains the auditctl rules that are loaded
+## whenever the audit daemon is started via the initscripts.
+## The rules are simply the parameters that would be passed
+## to auditctl.
+##
+## First rule - delete all
+-D
+## Increase the buffers to survive stress events.
+## Make this bigger for busy systems
+-b 8192
+## Set failure mode to syslog notice {these two are mutually exclusive}
+-f 1
+## Set failure mode to panic {these two are mutually exclusive}
+## -f 2
+## NOTE:
+## 1) if this is being used on a 32 bit machine, comment out the b64 lines
+## 2) These rules assume that login under the root account is not allowed.
+## 3) It is also assumed that 500 represents the first usable user account.
+## 4) If these rules generate too much spurious data for your tastes, limit the
+## the syscall file rules with a directory, like -F dir=/etc
+## 5) You can search for the results on the key fields in the rules
+##
+## Record the following for each audit event:
+##- Date and time of the event
+##- Userid that initiated the event
+##- Type of event
+##- Success or failure of the event
+##- For I&amp;A events, the origin of the request (e.g., terminal ID)
+##- For events that introduce an object into a user's address space, and
+## for object deletion events, the name of the object, and in MLS
+## systems, the object's security level.
+##
+## Things that could affect time
+-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change
+-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change
+#-a always,exit -F arch=b32 -S clock_settime -k time-change
+#-a always,exit -F arch=b64 -S clock_settime -k time-change
+-w /etc/localtime -p wa -k time-change
+## Things that affect identity
+-w /etc/group -p wa -k identity
+-w /etc/passwd -p wa -k identity
+-w /etc/gshadow -p wa -k identity
+-w /etc/shadow -p wa -k identity
+-w /etc/security/opasswd -p wa -k identity
+## Things that could affect system locale
+-a exit,always -F arch=b32 -S sethostname -S setdomainname -k system-locale
+-a exit,always -F arch=b64 -S sethostname -S setdomainname -k system-locale
+-w /etc/issue -p wa -k system-locale
+-w /etc/issue.net -p wa -k system-locale
+-w /etc/hosts -p wa -k system-locale
+-w /etc/sysconfig/network -p wa -k system-locale
+## Things that could affect MAC policy
+-w /etc/selinux/ -p wa -k MAC-policy
+## The SysAdmin will configure the auditing system to audit the following events
+## for all users and root:
+## - Logon (unsuccessful and successful) and logout (successful)
+## This is handled by pam, sshd, login, and gdm
+## Might also want to watch these files if needing extra information
+# -w /var/log/faillog -p wa -k logins
+# -w /var/log/lastlog -p wa -k logins
+##- Process and session initiation (unsuccessful and successful)
+##
+## The session initiation is audited by pam without any rules needed.
+## Might also want to watch this file if needing extra information
+#-w /var/run/utmp -p wa -k session
+#-w /var/log/btmp -p wa -k session
+#-w /var/log/wtmp -p wa -k session
+##- Discretionary access control permission modification (unsuccessful
+## and successful use of chown/chmod)
+-a always,exit -F arch=b32 -S chmod -S fchmod -S fchmodat -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b64 -S chown -S fchown -S fchownat -S lchown -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b64 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+##- Unauthorized access attempts to files (unsuccessful)
+-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid&gt;=500 -F auid!=4294967295 -k access
+-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid&gt;=500 -F auid!=4294967295 -k access
+-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid&gt;=500 -F auid!=4294967295 -k access
+-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid&gt;=500 -F auid!=4294967295 -k access
+##- Use of privileged commands (unsuccessful and successful)
+## use find /bin -type f -perm -04000 2&gt;/dev/null and put all those files in
+## a rule like this
+-a always,exit -F path=/bin/ping -F perm=x -F auid&gt;=500 -F auid!=4294967295 -k privileged
+##- Use of print command (unsuccessful and successful)
+##- Export to media (successful)
+## You have to mount media before using it. You must disable all automounting
+## so that its done manually in order to get the correct user requesting the
+## export
+-a always,exit -F arch=b32 -S mount -F auid&gt;=500 -F auid!=4294967295 -k export
+-a always,exit -F arch=b64 -S mount -F auid&gt;=500 -F auid!=4294967295 -k export
+##- System startup and shutdown (unsuccessful and successful)
+##- Files and programs deleted by the user (successful and unsuccessful)
+-a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid&gt;=500 -F auid!=4294967295 -k delete
+-a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -F auid&gt;=500 -F auid!=4294967295 -k delete
+##- All system administration actions
+##- All security personnel actions
+##
+## Look for pam_tty_audit and add it to your login entry point's pam configs.
+## If that is not found, use sudo which should be patched to record its
+## commands to the audit system. Do not allow unrestricted root shells or
+## sudo cannot record the action.
+-w /etc/sudoers -p wa -k actions
+## Optional - could indicate someone trying to do something bad or
+## just debugging
+#-a entry,always -F arch=b32 -S ptrace -k tracing
+#-a entry,always -F arch=b64 -S ptrace -k tracing
+## Optional - could be an attempt to bypass audit or simply legacy program
+#-a always,exit -F arch=b32 -S personality -k bypass
+#-a always,exit -F arch=b64 -S personality -k bypass
+## Put your own watches after this point
+# -w /your-file -p rwxa -k mykey
+      </option>
+    </security_module>
+    <security_module name="Audit Rules (Solaris)">
+        <option name="auditRules">dir:/var/audit
+flags:lo,ad,cc
+naflags:lo,ad,ex
+minfree:20
+     </option>
+    </security_module>
+    <security_module name="Block System Accounts"/>
+    <security_module name="Boot Loader Configuration File Permissions">
+        <option name="fileList">/boot/grub</option>
+        <option name="recursive">1</option>
+        <option name="globNames">0</option>
+        <option name="allowedUnames">root,bin</option>
+        <option name="allowedGnames">root,bin,sys,system</option>
+        <option name="dacs">640</option>
+    </security_module>
+    <security_module name="Configure Sendmail Options"/>
+    <security_module name="Create Login Banner">
+        <option name="loginBanner">You are about to access a U. S. Government computer/information system. Access to this system is restricted to authorized users only. Anyone who accesses this system without authorization or exceeds authorized access could be subjected to a fine or imprisonment, or both, under Public Law 98-473. By accessing the system you consent to having your activities and or access recorded by system software and periodically monitored. If this record reveals suspected unauthorized use or criminal activity, the evidence may be provided to supervisory personnel and law enforcement officials. DO NOT PROCESS CLASSIFIED INFORMATION ON THIS SYSTEM</option>
+    </security_module>
+    <security_module name="Create Login FTP Banner">
+        <option name="ftpLoginBanner">You are about to access a U. S. Government computer/information system. Access to this system is restricted to authorized users only. Anyone who accesses this system without authorization or exceeds authorized access could be subjected to a fine or imprisonment, or both, under Public Law 98-473. By accessing the system you consent to having your activities and or access recorded by system software and periodically monitored. If this record reveals suspected unauthorized use or criminal activity, the evidence may be provided to supervisory personnel and law enforcement officials. DO NOT PROCESS CLASSIFIED INFORMATION ON THIS SYSTEM</option>
+    </security_module>
+    <security_module name="Create Pre-Login GUI Banner">
+        <option name="preLoginBanner">All users will be required to read and accept a 'Consent to Monitor' 
+statement before being allowed to login.  The response will be logged.</option>
+    </security_module>
+    <security_module name="Create Pre-Session GUI Banner">
+        <option name="requireAssent">1</option>
+        <option name="bannerSrc">0</option>
+        <option name="bannerText">Insert your text here</option>
+        <option name="formatBanner">1</option>
+    </security_module>
+    <security_module name="Daemon Umask"/>
+    <security_module name="Default umask">
+        <option name="defaultUmask">077</option>
+    </security_module>
+    <security_module name="Disable Accepting ICMP Redirects"/>
+    <security_module name="Disable Accepting Secure Redirects"/>
+    <security_module name="Disable Apache"/>
+    <security_module name="Disable Bluetooth"/>
+    <security_module name="Disable Broadcast Packet Forwarding"/>
+    <security_module name="Disable Console Mouse Support"/>
+    <security_module name="Disable Ctrl-Alt-Del"/>
+    <security_module name="Disable DNS"/>
+    <security_module name="Disable FTP (gssftp)"/>
+    <security_module name="Disable FTP (vsftpd)"/>
+    <security_module name="Disable HP Printing and Imaging"/>
+    <security_module name="Disable IP Forwarding"/>
+    <security_module name="Disable IPv6 Kernel Module">
+        <option name="requiredLines">alias ipv6 off
+alias net-pf-10 off</option>
+    </security_module>
+    <security_module name="Disable ISDN"/>
+    <security_module name="Disable Innd"/>
+    <security_module name="Disable Kudzu"/>
+    <security_module name="Disable MCS Translation Service"/>
+    <security_module name="Disable MySQL"/>
+    <security_module name="Disable NFS Client"/>
+    <security_module name="Disable NFS Server"/>
+    <security_module name="Disable NIS Client"/>
+    <security_module name="Disable NIS Server"/>
+    <security_module name="Disable NetFS"/>
+    <security_module name="Disable Portmap Daemon"/>
+    <security_module name="Disable Postgresql"/>
+    <security_module name="Disable Power Management"/>
+    <security_module name="Disable Printer Configuration Daemon"/>
+    <security_module name="Disable Printer Daemon"/>
+    <security_module name="Disable Remote Exec (rexec)"/>
+    <security_module name="Disable Remote Login (rlogin)"/>
+    <security_module name="Disable Remote Shell (rsh)"/>
+    <security_module name="Disable Restorecon"/>
+    <security_module name="Disable Rhosts Support"/>
+    <security_module name="Disable SETroubleshoot"/>
+    <security_module name="Disable SMB"/>
+    <security_module name="Disable SNMP"/>
+    <security_module name="Disable SNMP if default public string exists"/>
+    <security_module name="Disable Sending ICMP Redirects"/>
+    <security_module name="Disable Sendmail">
+        <option name="requiredLines">DAEMON=no
+QUEUE=1h</option>
+    </security_module>
+    <security_module name="Disable Source Routing"/>
+    <security_module name="Disable Squid"/>
+    <security_module name="Disable TFTP"/>
+    <security_module name="Disable Telnet"/>
+    <security_module name="Disable Tux"/>
+    <security_module name="Disable USB and PCMCIA Devices">
+        <option name="usbDevices">2</option>
+    </security_module>
+    <security_module name="Disable UUCP"/>
+    <security_module name="Disable Webmin"/>
+    <security_module name="Enable Reverse Path Source Validation"/>
+    <security_module name="Enable Stack Protection"/>
+    <security_module name="Enable Strong TCP Sequence Number Generation"/>
+    <security_module name="Enable TCP Syncookies"/>
+    <security_module name="Enable the Audit Subsystem"/>
+    <security_module name="Enable vsftpd Additional Logging"/>
+    <security_module name="Expired Password Invalidation"/>
+    <security_module name="FTP Configuration File Permissions">
+        <option name="fileList">/etc/ftpusers /etc/vsftpd.ftpusers</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root,bin,sys,system</option>
+        <option name="dacs">640</option>
+    </security_module>
+    <security_module name="Global Initialization File Permissions">
+        <option name="fileList">/etc/bashrc /etc/csh.cshrc /etc/csh.login /etc/csh.logout, /etc/environment,
+                                /etc/ksh.kshrc, /etc/profile, /etc/profile.d /etc/suid_profile</option>
+        <option name="recursive">1</option>
+        <option name="globNames">0</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root,bin,sys,other,system</option>
+        <option name="dacs">644</option>
+    </security_module>
+    <security_module name="Hosts File Permissions">
+        <option name="fileList">/etc/hosts</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root,bin,sys,system</option>
+        <option name="dacs">644</option>
+    </security_module>
+    <security_module name="Ignore ICMP ECHO and TIMESTAMP Requests"/>
+    <security_module name="Inetd/Xinetd Configuration File Permissions">
+        <option name="fileList">/etc/xinetd.conf /etc/xinetd.d/*</option>
+        <option name="recursive">1</option>
+        <option name="globNames">1</option>
+        <option name="allowedUnames">root,bin</option>
+        <option name="allowedGnames">root,bin,sys,system</option>
+        <option name="dacs">640</option>
+    </security_module>
+    <security_module name="Kernel Core Dump Directory Permissions">
+        <option name="fileList">/var/crash</option>
+        <option name="recursive">1</option>
+        <option name="globNames">0</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root,bin,sys,system</option>
+        <option name="dacs">700</option>
+    </security_module>
+    <security_module name="LDAP Configuration File Permissions">
+        <option name="fileList">/etc/ldap.conf</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root,bin,sys,system</option>
+        <option name="dacs">644</option>
+    </security_module>
+    <security_module name="Limit Access To Root From Su">
+        <option name="requireNonRootWheelMember">0</option>
+    </security_module>
+    <security_module name="Limit Password Reuse">
+        <option name="passwordReuse">10</option>
+    </security_module>
+    <security_module name="Lock Invalid Accounts"/>
+    <security_module name="Lock Non-Root Accounts with UID 0"/>
+    <security_module name="Lock account after three failed login attempts"/>
+    <security_module name="Management Information Base (MIB) File Permissions">
+        <option name="fileList">/usr/share/snmp/mibs/*.txt /usr/share/snmp/mibs/*.mib</option>
+        <option name="recursive">0</option>
+        <option name="globNames">1</option>
+        <option name="allowedUnames"/>
+        <option name="allowedGnames"/>
+        <option name="dacs">640</option>
+    </security_module>
+    <security_module name="Maximum Time Between Password Changes">
+        <option name="passwordMaxdays">60</option>
+    </security_module>
+    <security_module name="Minimum Delay Between Password Changes">
+        <option name="passwordMindays">7</option>
+    </security_module>
+    <security_module name="NFS Export Configuration File Permissions">
+        <option name="fileList">/etc/exports</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root,bin,sys,system</option>
+        <option name="dacs">644</option>
+    </security_module>
+    <security_module name="NIS/NIS+/YP Configuration File Permissions">
+        <option name="fileList">/etc/yp /var/yp /etc/yp.conf</option>
+        <option name="recursive">1</option>
+        <option name="globNames">0</option>
+        <option name="allowedUnames">root,bin,sys</option>
+        <option name="allowedGnames">root,bin,sys</option>
+        <option name="dacs">755</option>
+    </security_module>
+    <security_module name="Name Service Switch Configuration File Permissions">
+        <option name="fileList">/etc/nsswitch.conf</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root,bin,sys,system</option>
+        <option name="dacs">644</option>
+    </security_module>
+    <security_module name="No Empty Passwords"/>
+    <security_module name="No Plus Entries in Password Files"/>
+    <security_module name="Password Expiration Warning">
+        <option name="passwordExpireWarning">14</option>
+    </security_module>
+    <security_module name="Password Policy Length Minimum">
+        <option name="passwordMinLength">12</option>
+    </security_module>
+    <security_module name="Printer Configuration File Permissions">
+        <option name="fileList">/etc/cups/printers.conf</option>
+        <option name="recursive">0</option>
+        <option name="globNames">0</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">lp</option>
+        <option name="dacs">644</option>
+    </security_module>
+    <security_module name="Remove Games User Account"/>
+    <security_module name="Remove Gopher User Account"/>
+    <security_module name="Remove Halt User Account"/>
+    <security_module name="Remove Insecure_Locks option for NFS Server"/>
+    <security_module name="Remove News User Account"/>
+    <security_module name="Remove Shutdown User Account"/>
+    <security_module name="Remove Sync User Account"/>
+    <security_module name="Remove ftp Account"/>
+    <security_module name="Require GRUB Password"/>
+    <security_module name="Resolver Configuration File Permissions">
+        <option name="fileList">/etc/resolv.conf</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root,bin,sys,system</option>
+        <option name="dacs">644</option>
+    </security_module>
+    <security_module name="Restrict Remote X Clients"/>
+    <security_module name="Root Console Only Logins">
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root</option>
+        <option name="dacs">400</option>
+        <option name="secureDevices">console,tty1,tty2,tty3,tty4,tty5,tty6</option>
+    </security_module>
+    <security_module name="SNMP Configuration File Permissions">
+        <option name="fileList">/etc/snmp</option>
+        <option name="recursive">1</option>
+        <option name="globNames">0</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root,bin,sys,system</option>
+        <option name="dacs">600</option>
+    </security_module>
+    <security_module name="SSH Parameters"/>
+    <security_module name="SSHD Disable Empty Passwords"/>
+    <security_module name="SSHD Disable Host-based Authentication"/>
+    <security_module name="SSHD Disable Rhosts Authentication"/>
+    <security_module name="SSHD Disable Rhosts RSA Authentication"/>
+    <security_module name="SSHD Disable Root Login"/>
+    <security_module name="SSHD Enable Banner"/>
+    <security_module name="SSHD Enable Ignore Rhosts"/>
+    <security_module name="SSHD Enable X11 Forwarding"/>
+    <security_module name="SSHD Maximum Authentication Attempts">
+        <option name="sshdMaxAuthTries">3</option>
+    </security_module>
+    <security_module name="SSHD Protocol"/>
+    <security_module name="Samba Configuration File Permissions">
+        <option name="fileList">/etc/samba/smb.conf</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root,bin,sys,system</option>
+        <option name="dacs">644</option>
+    </security_module>
+    <security_module name="Samba Password File Permissions">
+        <option name="fileList">/etc/samba/passdb.tdb /etc/samba/secrets.tdb</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root</option>
+        <option name="dacs">600</option>
+    </security_module>
+    <security_module name="Secure Authpriv Logging"/>
+    <security_module name="Secure Option for NFS Server"/>
+    <security_module name="Secure SUID/SGID Executables"/>
+    <security_module name="Secure Unowned Files"/>
+    <security_module name="Secure World Writable Directories"/>
+    <security_module name="Secure World Writable Files"/>
+    <security_module name="Services File Permissions">
+        <option name="fileList">/etc/services</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root,bin,sys,system</option>
+        <option name="dacs">644</option>
+    </security_module>
+    <security_module name="Set Password Aging on Active Accounts">
+        <option name="passwordAgingMindays">7</option>
+        <option name="passwordAgingMaxdays">60</option>
+        <option name="passwordAgingExpireWarning">14</option>
+        <option name="passwordAgingInvalidate">7</option>
+        <option name="exemptSystemAccounts">0</option>
+        <option name="exemptSpecificAccounts"/>
+    </security_module>
+    <security_module name="Single User Mode Password"/>
+    <security_module name="Skeleton File Permissions">
+        <option name="fileList">/etc/skel</option>
+        <option name="recursive">1</option>
+        <option name="globNames">0</option>
+        <option name="allowedUnames">root,bin</option>
+        <option name="allowedGnames">root,bin,sys,system,other</option>
+        <option name="dacs">644</option>
+    </security_module>
+    <security_module name="System Configuration File Permissions"/>
+    <security_module name="System Log File Permissions"/>
+    <security_module name="System Logging Configuration File Permissions">
+        <option name="fileList">/etc/syslog.conf</option>
+        <option name="recursive">0</option>
+        <option name="globNames">0</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root,sys,bin,system</option>
+        <option name="dacs">640</option>
+    </security_module>
+    <security_module name="Use NODEV Option for Non-root Partitions"/>
+    <security_module name="Use NOSUID and NODEV for Removable Media"/>
+    <security_module name="Use NOSUID on User Filesystems"/>
+</profile>

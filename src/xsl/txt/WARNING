@@ -1,0 +1,15 @@
+
+#####################################################
+#                     WARNING                       #
+#####################################################
+
+Do not use XML reformatters on these stylesheets 
+(XSL). The final reports are TEXT and are dependent
+on whitespace.
+
+To avoid whitespace issues, trh to use the xsl:text 
+as an inline element. Then instruct any reformatters
+that the xsl:text element is an INLINE not block.
+
+If you do, test, test, test, test and review
+the final report for aesthetics.

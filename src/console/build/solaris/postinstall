@@ -1,0 +1,39 @@
+id sbwebapp 1>/dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "'sbwebapp' account is missing"
+    exit 1
+fi
+
+# Most of this *should* have been taken care of in the core postinstall, but just to be *sure*....
+
+chown -R sbwebapp:sbwebapp /usr/share/oslockdown/console
+chown -R root:sbwebapp /usr/share/oslockdown/lib
+chown -R sbwebapp:sbwebapp /usr/share/oslockdown/cfg/wsdl
+
+chown -R sbwebapp:sbwebapp /var/lib/oslockdown/console
+
+chown -R sbwebapp:sbwebapp /var/lib/oslockdown/profiles
+chown -R sbwebapp:sbwebapp /var/lib/oslockdown/baseline-profiles
+chmod 1770 /var/lib/oslockdown/profiles /var/lib/oslockdown/baseline-profiles
+chmod g+s /var/lib/oslockdown/profiles /var/lib/oslockdown/baseline-profiles
+
+chown -R root:sbwebapp /var/lib/oslockdown/logs
+
+chown -R root:sbwebapp /var/lib/oslockdown/reports/standalone
+chmod 770 /var/lib/oslockdown/reports/standalone
+chown root:sbwebapp /var/lib/oslockdown/reports
+
+chmod 1770 /var/lib/oslockdown/logs /var/lib/oslockdown/reports
+chmod g+s /var/lib/oslockdown/logs /var/lib/oslockdown/reports
+
+
+chown root:sbwebapp /var/lib/oslockdown/files
+chmod 750 /var/lib/oslockdown/files
+
+chown root:sbwebapp /usr/share/oslockdown/cfg
+chmod 750 /usr/share/oslockdown/cfg
+
+
+svccfg -v import /var/svc/manifest/site/osl-console.xml
+
+exit 0

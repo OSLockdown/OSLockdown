@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: DisableRhnsd.xml 21205 2013-03-28 20:12:03Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableOddjobd" version="5.0">
+ <title xml:id="SysMgmtServices">Disable Oddjobd</title>
+ <para>
+  The oddjob daemon provides some additional ability to execute actions
+  via the D-Bus interface, but it is recommended that the service be
+  disabled unless required.
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="0.8*" align="left"/>
+   <colspec colname="c2" colwidth="0.5*"/>
+   <colspec colname="c3" colwidth="0.5*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Packages</entry>
+     <entry>Service Names</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry namest="c2" nameend="c3"><emphasis>Operating System Not Applicable</emphasis></entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+     <entry morerows="2">oddjob</entry>
+     <entry morerows="2">oddjobd</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+     <entry morerows="1" namest="c2" nameend="c3"><emphasis>Operating System Not Applicable</emphasis></entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="DisableOddjobd-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>DISA Red Hat 6 STIG (V1R14)</title>
+   <listitem>
+    <para>
+     RHEL-06-000266 - The oddjobd service must not be running.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

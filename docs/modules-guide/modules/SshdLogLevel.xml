@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: SshdLogLevel.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SshdLogLevel" version="5.0">
+  <title xml:id="RemoteAccessServices">SSHD Logging Level</title>
+  <para>
+  Configures the secure shell (SSH) daemon's logging level.
+ </para>
+  <para>
+  Acceptable logging levels are 'QUIET', 'FATAL', 'ERROR', 'INFO',
+  'VERBOSE', 'DEBUG', 'DEBUG1', 'DEBUG2', and 'DEBUG3'. Most guidelines
+  recommend the logging level be set to 'VERBOSE'.
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2">
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="1.0*" align="left"/>
+      <colspec colname="c2" colwidth="1.0*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Setting</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="5">
+            <filename>/etc/ssh/sshd_config</filename>
+            <indexterm>
+              <primary>/etc/ssh/sshd_config</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/ssh/sshd_config</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>ssh</primary>
+            </indexterm>
+            <indexterm>
+              <primary>sshd</primary>
+            </indexterm>
+            <indexterm>
+              <primary>sshd_config</primary>
+            </indexterm>
+          </entry>
+          <entry morerows="5">
+            <parameter>LogLevel</parameter>
+            <replaceable>level</replaceable>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <simplesect xml:id="SshdLogLevel-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Logging level<emphasis><para>Log level for the secure shell daemon (sshd).</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="SshdLogLevel-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-6 - Maintenance, Monitoring, and Analysis of Audit Logs</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+      <listitem>
+        <para>CIP-007-3-R5.1.2 - Generate logs of sufficient detail to create historical audit trails of individual user account access</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

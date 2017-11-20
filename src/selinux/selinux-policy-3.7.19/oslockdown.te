@@ -1,0 +1,242 @@
+policy_module(oslockdown,5.0.0)
+
+##############################################################################
+# Copyright (c) 2011-2014 Forcepoint LLC.
+# This file is released under the GPLv3 license.  
+# See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+# or visit https://www.gnu.org/licenses/gpl.html instead.
+##############################################################################
+#
+# Declarations
+#
+
+type oslockdown_tmp_t;
+files_tmp_file(oslockdown_tmp_t)
+
+type oslockdown_py_t;
+files_type(oslockdown_py_t)
+
+type oslockdown_rw_t;
+files_type(oslockdown_rw_t)
+
+type oslockdown_state_t;
+files_type(oslockdown_state_t)
+
+type oslockdown_lkey_t;
+files_type(oslockdown_lkey_t)
+
+type oslockdown_licso_t;
+files_type(oslockdown_licso_t)
+
+type oslockdown_var_lib_t;
+files_type(oslockdown_var_lib_t)
+
+type oslockdown_log_t;
+oslockdown_set_logs(oslockdown_t, oslockdown_log_t)
+
+type oslockdown_cert_t;
+files_type(oslockdown_cert_t)
+
+type oslockdown_console_cfg_t;
+files_type(oslockdown_console_cfg_t)
+
+type oslockdown_dispatcher_cfg_t;
+files_type(oslockdown_dispatcher_cfg_t)
+
+# The Configuration tools  
+type oslockdown_cfg_t;
+files_type(oslockdown_cfg_t);
+
+type oslockdown_cfg_exec_t;
+application_domain(oslockdown_cfg_t, oslockdown_cfg_exec_t)
+role system_r types oslockdown_cfg_t;
+logging_log_filetrans(oslockdown_cfg_t, oslockdown_dispatcher_log_t, file);
+manage_files_pattern(oslockdown_cfg_t, oslockdown_dispatcher_log_t, oslockdown_dispatcher_log_t)
+
+# The main CoreEngine domain
+type oslockdown_t;
+type oslockdown_exec_t;
+application_domain(oslockdown_t, oslockdown_exec_t)
+role system_r types oslockdown_t;
+type oslockdown_var_run_t;
+files_pid_file(oslockdown_var_run_t)
+manage_dirs_pattern(oslockdown_t, oslockdown_var_run_t, oslockdown_var_run_t)
+manage_files_pattern(oslockdown_t, oslockdown_var_run_t, oslockdown_var_run_t)
+files_pid_filetrans(oslockdown_t,oslockdown_var_run_t, { file dir} )
+
+# The Console domain
+type oslockdown_console_t;
+type oslockdown_console_exec_t;
+type oslockdown_console_initrc_t;
+type oslockdown_console_var_run_t;
+type oslockdown_console_log_t;
+init_daemon_domain(oslockdown_console_t, oslockdown_console_exec_t)
+files_pid_file(oslockdown_console_var_run_t)
+manage_dirs_pattern(oslockdown_console_t, oslockdown_console_var_run_t, oslockdown_console_var_run_t)
+manage_files_pattern(oslockdown_console_t, oslockdown_console_var_run_t, oslockdown_console_var_run_t)
+files_pid_filetrans(oslockdown_console_t,oslockdown_console_var_run_t, { file dir} )
+domain_entry_file(initrc_t, oslockdown_console_initrc_t)
+domain_auto_trans(initrc_t, oslockdown_console_exec_t, oslockdown_console_t)
+domain_auto_trans(initrc_t, oslockdown_console_initrc_t, oslockdown_console_t)
+role system_r types oslockdown_console_t;
+oslockdown_set_logs(oslockdown_console_t, oslockdown_console_log_t)
+oslockdown_access_logs(oslockdown_console_t, oslockdown_console_log_t)
+
+# The Dispatcher domain
+type oslockdown_dispatcher_t;
+type oslockdown_dispatcher_exec_t;
+type oslockdown_dispatcher_initrc_t;
+type oslockdown_dispatcher_var_run_t;
+type oslockdown_dispatcher_log_t;
+init_daemon_domain(oslockdown_dispatcher_t, oslockdown_dispatcher_exec_t)
+files_pid_file(oslockdown_dispatcher_var_run_t)
+manage_dirs_pattern(oslockdown_dispatcher_t, oslockdown_dispatcher_var_run_t, oslockdown_dispatcher_var_run_t)
+manage_files_pattern(oslockdown_dispatcher_t, oslockdown_dispatcher_var_run_t, oslockdown_dispatcher_var_run_t)
+files_pid_filetrans(oslockdown_dispatcher_t,oslockdown_dispatcher_var_run_t, { file dir} )
+domain_entry_file(initrc_t, oslockdown_dispatcher_initrc_t)
+role system_r types oslockdown_dispatcher_t;
+oslockdown_set_logs(oslockdown_dispatcher_t, oslockdown_dispatcher_log_t)
+oslockdown_access_logs(oslockdown_dispatcher_t, oslockdown_dispatcher_log_t)
+
+########################################
+#
+# oslockdown local policy
+#
+
+## internal communication is often done using fifo and unix sockets.
+#allow oslockdown_t self:fifo_file rw_file_perms;
+#allow oslockdown_t self:unix_stream_socket create_stream_socket_perms;
+
+auth_use_nsswitch(oslockdown_t)
+logging_send_syslog_msg(oslockdown_t)
+logging_send_audit_msgs(oslockdown_t)
+
+
+# note that both of these optionals pass either unconfined or sysadm, the _t and _r suffixes 
+# are appended inside the interface
+
+# allow unconfined_t and sysadm_t domains in to oslockdown_cfg_t
+oslockdown_cfg_run(unconfined)
+oslockdown_cfg_run(sysadm)
+oslockdown_cfg_run(oslockdown)
+
+# allow unconfined_t and sysadm_t domains in to oslockdown_t
+oslockdown_run(unconfined)
+oslockdown_run(sysadm)
+optional_policy(`
+	oslockdown_ignore_signull(oslockdown_t)
+');
+optional_policy(`
+	rpm_signull(oslockdown_t)
+');
+
+# allow unconfined_t and sysadm_t and oslockdown_cfg_t domains in to oslockdown_console_t
+allow oslockdown_cfg_t oslockdown_console_initrc_t:file { open read getattr execute ioctl execute_no_trans };
+oslockdown_console_run(unconfined)
+oslockdown_console_run(sysadm)
+oslockdown_console_run(oslockdown_cfg)
+oslockdown_console_common(oslockdown_console_t)
+oslockdown_console_common(oslockdown_cfg_t)
+
+
+# allow unconfined_t and sysadm_t and oslockdown_cfg_t domains in to oslockdown_dispatcher_t
+#allow oslockdown_cfg_t oslockdown_dispatcher_initrc_t:file { open read getattr execute ioctl execute_no_trans };
+oslockdown_dispatcher_run(unconfined)
+oslockdown_dispatcher_run(sysadm)
+oslockdown_dispatcher_run(oslockdown_cfg)
+oslockdown_dispatcher_common(oslockdown_dispatcher_t)
+
+
+# Enable the config tools to do the required configurations
+oslockdown_basic_auths(oslockdown_cfg_t)
+rpm_domtrans(oslockdown_cfg_t)
+oslockdown_run_shell(oslockdown_cfg_t)
+oslockdown_allow_cfg(oslockdown_cfg_t)
+
+# Allow oslockdown_t to transition to oslockdown_dispatcher_t for autoupdate
+oslockdown_dispatcher_run(oslockdown)
+allow oslockdown_t oslockdown_dispatcher_initrc_t:file { open read getattr execute ioctl execute_no_trans };
+seutil_domtrans_loadpolicy(oslockdown_t)
+seutil_exec_setfiles(oslockdown_t)
+require {
+	type setfiles_t;
+}
+allow setfiles_t oslockdown_t:fifo_file write;
+
+oslockdown_basic_auths(oslockdown_t)
+oslockdown_write_state(oslockdown_t)
+oslockdown_module_common(oslockdown_t)
+oslockdown_monolithic(oslockdown_t)
+oslockdown_run_sestatus(oslockdown_t)
+oslockdown_run_shell(oslockdown_t)
+oslockdown_use_tmp_files(oslockdown_t)
+oslockdown_read_py_files(oslockdown_t)
+oslockdown_read_py_files(oslockdown_cfg_t)
+allow oslockdown_t oslockdown_dispatcher_t:tcp_socket {read write};
+allow oslockdown_t oslockdown_dispatcher_t:udp_socket {read write};
+
+oslockdown_run(oslockdown_dispatcher)
+oslockdown_basic_auths(oslockdown_dispatcher_t)
+oslockdown_read_certs(oslockdown_dispatcher_t)
+
+oslockdown_basic_auths(oslockdown_console_t)
+oslockdown_read_certs(oslockdown_console_t)
+
+
+# fixes for config/start on RHEL6 ENFORCING - need to rethink some stuff
+require {
+	type oslockdown_console_exec_t;
+	type oslockdown_var_lib_t;
+	type chkpwd_exec_t;
+	type oslockdown_cfg_t;
+	type initrc_t;
+	type var_log_t;
+	type oslockdown_console_initrc_t;
+	type oslockdown_dispatcher_t;
+	type fprintd_t;
+	type run_init_exec_t;
+	type oslockdown_console_t;
+	class capability { net_admin fowner chown };
+	class process { siginh rlimitinh transition setexec noatsecure };
+	class dir setattr;
+	class file { execute read getattr execute_no_trans ioctl entrypoint open };
+}
+
+#============= fprintd_t ==============
+fprintd_dbus_chat(fprintd_t)
+
+#============= oslockdown_cfg_t ==============
+allow oslockdown_cfg_t chkpwd_exec_t:file { read execute open execute_no_trans };
+allow oslockdown_cfg_t initrc_t:process { siginh transition noatsecure rlimitinh };
+allow oslockdown_cfg_t run_init_exec_t:file { read execute open execute_no_trans };
+allow oslockdown_cfg_t self:capability net_admin;
+allow oslockdown_cfg_t self:process setexec;
+auth_read_shadow(oslockdown_cfg_t)
+dbus_send_system_bus(oslockdown_cfg_t)
+dbus_system_bus_client(oslockdown_cfg_t)
+fprintd_dbus_chat(oslockdown_cfg_t)
+kernel_request_load_module(oslockdown_cfg_t)
+seutil_read_default_contexts(oslockdown_cfg_t)
+
+#============= oslockdown_console_t ==============
+allow oslockdown_console_t oslockdown_console_exec_t:file execute_no_trans;
+allow oslockdown_console_t oslockdown_console_initrc_t:file { read entrypoint ioctl open getattr };
+allow oslockdown_console_t oslockdown_var_lib_t:dir setattr;
+allow oslockdown_console_t self:capability { fowner chown sys_tty_config};
+allow oslockdown_console_t self:process setrlimit;
+allow oslockdown_console_t var_log_t:dir setattr;
+consoletype_exec(oslockdown_console_t)
+hostname_exec(oslockdown_console_t)
+init_read_utmp(oslockdown_console_t)
+kernel_request_load_module(oslockdown_console_t)
+
+#============= oslockdown_dispatcher_t ==============
+allow oslockdown_dispatcher_t self:capability net_admin;
+kernel_request_load_module(oslockdown_dispatcher_t)
+
+require {
+	type oslockdown_cfg_t;
+	type initrc_t;
+	class process { siginh rlimitinh transition noatsecure };
+}
+

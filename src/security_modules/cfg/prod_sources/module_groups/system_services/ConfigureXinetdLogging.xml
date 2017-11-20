@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Configure Xinetd Logging">
+        <library>ConfigureXinetdLogging</library>
+        <description>Ensures required logging lines are enabled for all xinetd services.  Note that the options below are only for Linux, and that this module may overwrite custom settings for files in /etc/xinetd.d directory.  Solaris does not require user options.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>10</severity_level>
+        <configurationOptions>
+          <option name="log_type" type="basicStringCanBeEmpty">
+            <description>Required line for log_type</description>
+            <default>SYSLOG authpriv</default>
+          </option>
+          <option name="log_on_success" type="basicStringCanBeEmpty">
+            <description>Required line for log_on_success</description>
+            <default>HOST PID USERID EXIT</default>
+          </option>
+          <option name="log_on_failure" type="basicStringCanBeEmpty">
+            <description>Required line for log_on_failure</description>
+            <default>HOST USERID</default>
+          </option>
+          <option name="addToSubFilesIfMissing" type="yesOrNo">
+            <description>Add to all /etc/xinetd.d/* files if missing?</description>
+            <default>0</default>
+          </option>
+        </configurationOptions>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4"/>
+          <cpe-item name="cpe:/o:centos:centos:5"/>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:novell:opensuse:10"/>
+          <cpe-item name="cpe:/o:novell:opensuse:11"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:10"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:11"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:redhat:fedora:10"/>
+          <cpe-item name="cpe:/o:redhat:fedora:11"/>
+          <cpe-item name="cpe:/o:redhat:fedora:12"/>
+          <cpe-item name="cpe:/o:redhat:fedora:13"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

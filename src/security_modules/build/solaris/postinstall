@@ -1,0 +1,4 @@
+if [ -f /usr/share/oslockdown/oslockdown-mini.xml ] ; then
+  cp -fp /usr/share/oslockdown/console/conf/server.xml_http /usr/share/oslockdown/console/conf/server.xml
+  cp -fp /usr/share/oslockdown/cfg/security-modules-mini.xml /usr/share/oslockdown/cfg/security-modules.xml
+fi

@@ -1,0 +1,2 @@
+svcadm disable ndd-config
+svccfg delete -f ndd-config

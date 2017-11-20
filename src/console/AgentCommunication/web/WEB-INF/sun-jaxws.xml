@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">
+	<endpoint name="agent" 
+		implementation="com.trustedcs.sb.services.AgentServiceImpl" 
+		url-pattern="/services/agent" />
+	<endpoint name="console" 
+		implementation="com.trustedcs.sb.services.ConsoleServiceImpl" 
+		url-pattern="/services/console" />
+	<endpoint name="reports" 
+		implementation="com.trustedcs.sb.services.ReportsServiceImpl" 
+		url-pattern="/services/reports" />
+	<endpoint name="scheduler" 
+		implementation="com.trustedcs.sb.services.SchedulerServiceImpl" 
+		url-pattern="/services/scheduler" />
+</endpoints>

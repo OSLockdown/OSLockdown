@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable LDAP Client Cache Manager">
+        <library>DisableLdapCacheMgr</library>
+        <description>Disables the Solaris LDAP client cache manager (ldap_cachemgr(1M)) daemon; which manages client configuration for LDAP based Network Information Service lookups.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

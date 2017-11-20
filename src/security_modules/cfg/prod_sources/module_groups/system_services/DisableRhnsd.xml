@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Rhnsd">
+        <library>DisableRhnsd</library>
+        <description>The rhnsd daemon polls the Red Hat Network web site for scheduled actions. Unless it is actually necessary to schedule updates remotely through the RHN website, it is recommended that the service be disabled.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4">
+            <services>
+              <service seq="1" name="rhnsd"/>
+            </services>
+            <packages>
+              <package name="rhnsd"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5">
+            <services>
+              <service seq="1" name="rhnsd"/>
+            </services>
+            <packages>
+              <package name="rhnsd"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6">
+            <services>
+              <service seq="1" name="rhnsd"/>
+            </services>
+            <packages>
+              <package name="rhnsd"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5">
+            <services>
+              <service seq="1" name="rhnsd"/>
+            </services>
+            <packages>
+              <package name="rhnsd"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <services>
+              <service seq="1" name="rhnsd"/>
+            </services>
+            <packages>
+              <package name="rhnsd"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

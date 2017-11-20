@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SysctlPerms" version="5.0">
+ <title xml:id="fileDACs">Sysctl.conf Permissions</title>
+ <para>
+  Secures configuration file permissions so that non-privileged users
+  cannot modify <emphasis role="bold">sysctl.conf(5)</emphasis>.
+  Parameters for the kernel are stored in this file. This file should be
+  owned by the root user, belong to the root group, and be readable and
+  writable only by the root user. This module is highly recommended
+  because setting the access permissions to anything less restrictive
+  invites modifications or allows individuals to gather information that
+  could potentially be used to find a security weakness.
+  <indexterm>
+   <primary>sysctl.conf</primary>
+  </indexterm>
+ </para>
+ <simplesect xml:id="SysctlPerms-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN000000-LNX00480 - The /etc/sysctl.conf file must be owned by
+     root.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN000000-LNX00500 - The /etc/sysctl.conf file must be group-owned
+     by root.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN000000-LNX00520 - The /etc/sysctl.conf file must have mode 0600
+     or less permissive.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     LNX00480 - /etc/sysctl.conf Ownership
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     LNX00500 - /etc/sysctl.conf Group Ownership
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     LNX00520 - / etc/sysctl.conf Permissions
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD NISPOM (Feb 2006)</title>
+   <listitem>
+    <para>
+     8.606b1 - Access 2 Requirements
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-3 - Access Enforcement
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

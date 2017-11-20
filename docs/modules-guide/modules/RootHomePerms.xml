@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="RootHomePerms" version="5.0">
+  <title xml:id="Accounts">Root Home Directory Permissions</title>
+  <para>
+  Restricts access to the root home directory to only those users with
+  root privileges. This module expects the root home directory to be a
+  directory other than <filename>/</filename>, otherwise it will fail
+  and the module will <emphasis role="strong">not</emphasis> make any
+  changes.
+  <indexterm><primary>/root</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/root</secondary></indexterm>
+ </para>
+  <para>
+  If scripts or applications are running as root, consider rewriting
+  them to run as a non-privileged user. Rarely must an application or a
+  script absolutely have to be run as root. If the module fails because
+  the home directory is <filename>/</filename>, then the root home
+  directory must manually be configured to be something other than
+  <filename>/</filename>.
+ </para>
+  <simplesect xml:id="RootHomePerms-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CC-8 - Controlled Use of Administrative Privileges
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>
+     GEN000900 - The root user's home directory must not be the root
+     directory (/).
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN000920 - The root account's home directory (other than /) must
+     have mode 0700.
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>
+     GEN000900 - Root's Home Directory
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN000920 - Root's Home Directory Permissions
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD NISPOM (Feb 2006)</title>
+      <listitem>
+        <para>
+     8.606b1 - Access 2 Requirements
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>
+     AC-3 - Access Enforcement
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>
+     2.2.3 - Configure system security parameters to prevent misuse
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="RootHomePerms-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Maximum allowed permissions<emphasis><para>Maximum permitted Discretionary Access Controls (DACs) in <emphasis>octal</emphasis> format (i.e.,  max perms is 777 or 0777).
+      Note that only the read/write/execute bits are considered.  Note also that if a directory has read permissions for 
+      user/group/other allowed, then execute permissions for user/group/other are <emphasis>also</emphasis> allowed to allow for directory traversal.  No extra permissions are enforced, just allowed.  If empty, no permissions checks will be done.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="RootPath" version="5.0">
+ <title xml:id="Accounts">Root Path</title>
+ <para>
+  Including the current working directory ('.') or other writable
+  directory in the root executable path allows an attacker to gain
+  superuser status by forcing an administrator operating as root to
+  execute a Trojan horse program.
+ </para>
+ <para>
+  This module is unable to remove the current working directory ('.')
+  from the root path because there are too many variables involved in
+  locating where this insertion takes place. The system administrator
+  must perform this task.
+ </para>
+ <simplesect xml:id="RootPath-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN000940 - The root account's executable search path must be the
+     vendor default and must contain only absolute paths.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN000960 - The root account must not have world-writable
+     directories in its executable search path.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN000940 - Root's Search Path
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN000960 - Root's Search Path
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     2.3.4.1 - Ensure that No Dangerous Directories Exist in Root’s
+     Path
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.3.4.2 - Ensure that User Home Directories are not Group-Writable
+     or World-Readable
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

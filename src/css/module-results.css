@@ -1,0 +1,96 @@
+/**
+* Copyright (c) 2007-2014 Forcepoint LLC.
+* This file is released under the GPLv3 license.  
+* See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+* or visit https://www.gnu.org/licenses/gpl.html instead.
+ *
+ * NOTE: Other CSS files must @import this file at the TOP of
+ *       of their file before ANY css instructions. 
+ *
+ *       These classes are assigned to table cells from within 
+ *       the  common-xhtml.xsl template "module.result" 
+ * 
+ */
+
+table.sectionTable td.moduleResults {
+    background-color: #eef1f8;
+    width: 200px;
+    text-align: center;
+    padding: 4px;
+}
+table.sectionTable td.moduleAborted { 
+   background-color: lightgray; 
+   color: black; 
+}
+table.sectionTable td.moduleApplied { 
+   background-color: green; 
+   color: white; 
+   font-weight: bold; 
+}
+table.sectionTable td.moduleError { 
+   background-color: red; 
+   color: white; font-weight: bold; 
+}
+table.sectionTable td.moduleFail { 
+   background-color: red; 
+   color: white; 
+   font-weight: bold; 
+}
+table.sectionTable td.moduleManualActionReqd { 
+   background-color: lightgray; 
+   color: black; 
+}
+table.sectionTable td.moduleNotApplicable { 
+   background-color: lightgray; 
+   color: black; 
+} 
+table.sectionTable td.moduleNotRequired { 
+   background-color: lightgray; 
+   color: black; 
+}
+table.sectionTable td.moduleNotScanned { 
+   background-color: lightgray; 
+   color: black; 
+}
+table.sectionTable td.moduleOSnotApplicable { 
+   background-color: lightgray; 
+   color: black; 
+}
+table.sectionTable td.modulePass { 
+   background-color: green; 
+   color: black; 
+   font-weight: bold; 
+}
+table.sectionTable td.moduleUnavailable { 
+   background-color: lightgray; 
+   color: black; 
+}
+table.sectionTable td.moduleUndone { 
+   background-color: green; 
+   color: white; 
+   font-weight: bold; 
+}
+
+
+/******************************************************
+  *  Module Severity Levels
+  *****************************************************/
+table.sectionTable td.moduleSeverity {
+    background-color: #eef1f8;
+    width: 100px;
+    text-align: center;
+    padding: 4px;
+}
+
+table.sectionTable td.moduleSeverityHigh {
+    background-color: orange;
+    color: black;
+}
+table.sectionTable td.moduleSeverityMedium {
+    background-color: yellow;
+    color: black;
+}
+table.sectionTable td.moduleSeverityLow {
+    background-color: lightgray;
+    color: black;
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableConsolePerms" version="5.0">
+  <title xml:id="Accounts">Disable console.perms File</title>
+  <para>
+  Renames the <filename>/etc/security/console.perms</filename> file to
+  <filename>/etc/security/console.perms.disabled</filename>. This file
+  gives users (at the physical console) capabilities that they would not
+  otherwise have, and removes those capabilities when the users are no
+  longer logged in at the console. It provides two main types of
+  capabilities: file permissions and authentication.
+  <indexterm><primary>/etc/security/console.perms</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/etc/security/console.perms</secondary></indexterm>
+
+  <indexterm><primary>console</primary></indexterm>
+ </para>
+  <para>
+  This module affects the ability for non-privileged users to reboot and
+  perform power-management functions from the console. See
+  <systemitem class="library">console.perms(5)</systemitem>
+  for more information.
+ </para>
+  <simplesect xml:id="DisableConsolePerms-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN000000-LNX00600 - The Linux PAM system must not grant sole access to admin privileges to the first user who logs into the console.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>LNX00600 - PAM Configuration</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

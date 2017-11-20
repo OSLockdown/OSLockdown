@@ -1,0 +1,132 @@
+#!/bin/sh 
+#
+#
+# Determine JAVA_HOME
+# Initially pull it out of ~sbwebapp/.profile if set
+# Otherwise try and autodetect
+# Last (and if in interactive mode  (IE - no '-q' flag) ask for it
+#
+# Return JAVA_HOME on stdout, errors go to stderr
+#
+#
+##############################################################################
+
+. /usr/share/oslockdown/tools/shell_utils
+
+
+##############################################################################
+# Function - determine if all of openjdk is installed, called differently
+# for SuSE vice RH/CentOS/Fedora
+
+test_java_home_sunjdk()
+{
+    pkgbase="$1"
+    isPkgInstalled "${pkgbase}"
+    if [ $? -eq 1 ]; then
+        javaFile="`rpm -q ${pkgbase} --list |egrep '/bin/java$' | head -1`"
+        JavaHome="`dirname \"${javaFile}\"`"
+        dirDepth="`echo $JavaHome |awk -F/ '{print NF-1}'`"
+        JavaHome="`echo $JavaHome |cut -d/ -f1-${dirDepth}`"
+    fi
+}
+
+##############################################################################
+# Function - determine if all of openjdk is installed, called differently
+# for SuSE vice RH/CentOS/Fedora
+
+test_java_home_openjdk()
+{
+    prefix=$1
+    pkgbase="${prefix}-openjdk"
+    isPkgInstalled "${pkgbase}"
+    if [ $? -eq 1 ]; then
+        javaFile="`rpm -q ${pkgbase} --list |egrep '/bin/java$' | head -1`"
+        JavaHome="`dirname \"$javaFile\"`"
+        dirDepth="`echo $JavaHome |awk -F/ '{print NF-1}'`"
+        JavaHome="`echo $JavaHome |cut -d/ -f1-${dirDepth}`"
+    fi
+}
+##############################################################################
+# Function - Determine JAVA_HOME
+set_java_home()
+{
+    profile="/usr/share/oslockdown/console/.profile"
+    possibleDir=""
+    JavaHome=""
+    # First, check to see if JAVA_HOME is already set in the .profile file
+    if [ -r "${profile}" ]; then
+        currentJavaHome="`egrep '^JAVA_HOME=' ${profile} |cut -f2 -d=`"
+        if [ ! -z "{$currentJavaHome}" ]; then
+            JavaHome=${currentJavaHome}
+        fi
+    elif [ ! -z "${JAVA_HOME}" ] ; then
+      JavaHome="${JAVA_HOME}"
+    fi
+
+    if [ "${SOLARIS}" = "yes" -a -z "$JavaHome" ]; then
+        # Solaris Java Development Kit (http://java.sun.com)
+        possibleDir="`ls -1d /usr/jdk/jdk1.6* |sort -rn |head -1`"
+        if [ ! -z "${possibleDir}" ]; then
+            if [ -x "${possibleDir}/bin/java" ]; then
+                JavaHome=${possibleDir}
+            fi
+        fi
+    else
+        # Linux (Red Hat, Fedora, CentOS) OpenJDK Package
+
+        if [ -z "${JavaHome}" ] ; then
+            test_java_home_openjdk "java-1.6.0"
+        fi
+       
+        # Linux (SUSE and openSUSE 11) OpenJDK Package
+        if [ -z "${JavaHome}" ] ; then
+            test_java_home_openjdk "java-1_6_0"
+        fi
+
+        # Sun's JDK packages
+        if [ -z "${JavaHome}" ] ; then
+            test_java_home_sunjdk jdk
+        fi
+
+        # If we still haven't determined JavaHome, let's try Sun's 
+        # Linux JDK package's default location:
+        # 
+        if [ -z "${JavaHome}" ]; then
+            isPkgInstalled "jdk"
+            if [ $? -eq 1 ]; then
+                javaFile="`rpm -q java-1_6_0-openjdk-devel --list |egrep '/bin/java$' | head -1`"
+                JavaHome="`dirname \"$javaFile\"`"
+                dirDepth="`echo $JavaHome |awk -F/ '{print NF-1}'`"
+                JavaHome="`echo $JavaHome |cut -d/ -f1-${dirDepth}`"
+            fi
+        fi
+    fi
+
+    rawtext=""
+    if [ "${INTERACTIVE}" = "false" ]; then
+        if [ -z "${JavaHome}" ]; then
+            echo " "
+            echo "        Unable to find suitable JAVA_HOME"
+            echo " "
+            echo "Aborting non-interactive mode."
+            exit 1
+        else
+            echo "        Defaulting to ${JavaHome}"
+        fi
+    else
+        while [ -z "${rawtext}" ];
+        do
+            ask_for_string "        Enter JAVA_HOME" JavaHome "${JavaHome}"
+            if [ ! -z "${rawtext}" ] ; then
+              JavaHome="${rawtext}"
+            else
+              if [ ! -z "${JavaHome}" ]; then
+                  rawtext=${JavaHome}
+              fi
+            fi
+        done
+    fi
+}
+
+
+

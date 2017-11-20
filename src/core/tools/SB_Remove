@@ -1,0 +1,220 @@
+#!/bin/sh
+##############################################################################
+#
+# Security Blanket/OS Lockdown Removal Script 
+#
+# Copyright (c) 2007-2016 by Forcepoint LLC
+# This file is released under the GPLv3 license.  
+# See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+# or visit https://www.gnu.org/licenses/gpl.html instead.
+#  
+##############################################################################
+
+##############################################################################
+# Function - Get a Yes/No answer from a user
+# $1 = prompt
+# $2 = result variable
+
+ask_yes_or_no()
+{
+    myans=""
+    myprompt="${1}"
+    if [ -z "${myprompt}" ] ; then
+        myprompt = "Please answer (yes/no): "
+    fi
+    echo ""
+  
+    if [ "`uname -s`" = "SunOS" ]; then
+        # Solaris
+        myans=`ckyorn -Q -p "${myprompt} "`
+        case $myans in                                              
+            "YES"|"YEs"|"Yes"|"yes"|"Y"|"y") myans="YES" ;;      
+            "NO"|"No"|"no"|"N"|"n") myans="NO" ;;             
+        esac
+    else 
+        # Linux
+        while [ "$myans" != "YES" -a "$myans" != "NO" ]; do         
+            read -e -p "${myprompt} [y/n]: " myans         
+                case $myans in                                              
+                    "YES"|"YEs"|"Yes"|"yes"|"Y"|"y") myans="YES" ;;      
+                    "NO"|"No"|"no"|"N"|"n") myans="NO" ;;             
+                esac
+            if [ "${myans}" != "YES" -a "${myans}" != "NO" ] ; then
+                echo "Please specify either yes or no." 
+            fi
+        done                                                              
+    fi
+    echo 
+    if [ ! -z "${2}" ] ; then   
+        eval "${2}=\"$myans\""
+    fi
+}
+
+remove_v4_solaris() 
+{
+
+
+  ask_yes_or_no "Non-interactive removal (i.e., just do it)? "  yes_or_no
+  if [ "${yes_or_no}" = "YES" ] ; then
+    pkgCmdFlags=""
+    tempFile=`mktemp /tmp/.SB_pkgAnswerFile_XXXXXXXX`
+    
+    if [ ! -z "${tempFile}" ] ; then
+    
+      echo "mail=" > $tempFile
+      echo "instance=unique" >> $tempFile
+      echo "partial=nocheck" >> $tempFile
+      echo "runlevel=ask" >> $tempFile
+      echo "idepend=quit" >> $tempFile
+      echo "rdepend=quit" >> $tempFile
+      echo "space=ask" >> $tempFile
+      echo "setuid=quit" >> $tempFile
+      echo "conflict=nocheck" >> $tempFile
+      echo "action=nocheck" >> $tempFile
+      echo "authentication=quit" >> $tempFile
+      echo "basedir=default" >> $tempFile
+      pkgCmdFlags=" -n -a ${tempFile}" 
+    else
+      echo "Unable to create answer file, removal is interactive."
+    fi
+  fi
+  if [ `svcs -a | grep osl-console | wc -l ` = 1 ] ; then
+    echo "Attempting to shutdown 'osl-console' service..."
+    /usr/sbin/svcadm disable osl-console
+  fi
+  if [ "`svcs -a | grep osl-dispatcher | wc -l `" = "1" ] ; then
+    echo "Attempting to shutdown 'osl-dispatcher' service..."
+    /usr/sbin/svcadm disable osl-dispatcher
+  fi
+  PKGS_TO_REMOVE=""
+  SB_pkgs="TCSsbcerts TCSsbconsole TCSsbdispatcher TCSsblicense TCSsbmodules TCSsbmodulesmini TCSsecblanket"
+  OSL_pkgs="TCSoslockdown-console TCSoslockdown-dispatcher  TCSoslockdown-modules  TCSoslockdown"
+  
+  for pkg in ${SB_pkgs} ${OSL_pkgs}; do 
+    pkginfo -q ${pkg}
+    if [ $? -eq 0 ] ; then
+      PKGS_TO_REMOVE=`echo "${PKGS_TO_REMOVE} ${pkg}"`
+    fi
+  done
+
+  # go remove packages if we actually found any to remove
+  if [ ! -z "$PKGS_TO_REMOVE" ] ; then
+    /usr/sbin/pkgrm ${pkgCmdFlags} ${PKGS_TO_REMOVE}
+  else
+    echo "No 'Security Blanket/OS Lockdown' related packages found."
+  fi
+  if [ ! -z "${tempFile}" ] ; then
+    rm ${tempFile}
+  fi
+  if [ -x /usr/sbin/userdel ] ; then
+    echo "Attempting to remove 'sbwebapp' user account..." 
+    /usr/sbin/userdel sbwebapp
+  fi
+}
+
+remove_v4_linux()
+{
+  if [ -x /etc/init.d/osl-console ] ; then
+    echo "Attempting to shutdown osl-console' service..."
+    /etc/init.d/osl-console stop
+  fi
+  if [ -x /etc/init.d/osl-dispatcher ] ; then
+    /etc/init.d/osl-dispatcher status 1>/dev/null 2>&1
+    if [ $? -ne 3 ]; then
+      echo "Attempting to shutdown 'osl-dispatcher' service..."
+      /etc/init.d/osl-dispatcher stop
+    fi
+  fi
+  # remove selinux port assigments for SB (if any - quiet if not needed)
+  remove_selinux_portmanage_setup
+
+  # NOTE - we have to remove the security-blanket-selinux or oslockdown-selinux package *LAST* to avoid a nasty AVC overload
+
+  RPMS_TO_REMOVE=""
+  SB_RPMs="security-blanket security-blanket-modules security-blanket-modules-mini security-blanket-console security-blanket-console-ibmjava security-blanket-console-ibmjava7 security-blanket-betacerts security-blanket-dispatcher security-blanket-license security-blanket-license-mini security-blanket-selinux security-blanket-gui"
+  OSL_RPMs="oslockdown oslockdown-modules oslockdown-console oslockdown-console-ibmjava oslockdown-dispatcher oslockdown-selinux "
+  for rpm in ${SB_RPMs} ${OSL_RPMs}; do
+    rpm -q --quiet ${rpm}
+    if [ $? -eq 0 ] ; then
+      case "${rpm}" in 
+         *selinux*) SELINUX_RPM="${rpm}";;
+	 *)         RPMS_TO_REMOVE="${RPMS_TO_REMOVE} ${rpm}" ;;
+      esac
+    fi
+  done
+ 
+   
+  # go remove packages if we actually found any to remove
+  if [ ! -z "$RPMS_TO_REMOVE" ] ; then
+    rpm -e ${RPMS_TO_REMOVE}
+  else
+    echo "No 'Security Blanket/OS Lockdown' related packages found."
+  fi
+  if [ -x /usr/sbin/userdel ] ; then
+    echo "Attempting to remove 'sbwebapp' user account..." 
+    /usr/sbin/userdel sbwebapp
+  fi
+}
+
+check_for_root_linux()
+{
+  if [ `id -u` != "0" ]; then
+ 	echo "ERROR: you must run this script as the 'root' user."
+        exit 1
+  fi
+}
+check_for_root_solaris()
+{
+  if [ `/usr/xpg4/bin/id -u` != "0" ]; then
+  	  echo "ERROR: you must run this script as the 'root' user."
+  	  exit 1
+  fi
+}
+
+remove_selinux_portmanage_setup()
+{
+  SEMANAGE=/usr/sbin/semanage
+  if [ -x ${SEMANAGE} ] ; then
+    for sePortType in securityblanket_console_port_t securityblanket_console_mgt_port_t securityblanket_agent_port_t 
+    do
+      oldPortNum=`${SEMANAGE} port -l | egrep "^${sePortType}\W" | awk '{print $3}'`
+      if [ ! -z "${oldPortNum}" ] ; then
+        echo "Removing ${oldPortNum} as the port for type ${sePortType}..."
+        ${SEMANAGE} port -d -t ${sePortType} -p tcp ${oldPortNum}
+      fi
+    done
+  fi
+}
+ 
+##############################################################################
+# Error Checking
+#
+host_system=`uname -s`
+SELINUX_RPM=""
+
+# make sure we have enough permissions to run this script
+case ${host_system} in
+  "SunOS" )  check_for_root_solaris && remove_v4_solaris;;
+  "Linux" )  check_for_root_linux   && remove_v4_linux;;
+  * )   
+      echo "Security Blanket/OS Lockdown not supported on the `uname -s` operating system."
+      cd ${OLDDIR}
+      exit 1
+esac  
+
+# If we see a directory that *might* be holding RPMs from a previous version, remove it...
+# This directory is for autoupdates...
+if [ -d /var/lib/security-blanket/files/ClientUpdates ] ; then
+    echo ""
+    echo ":: Removing directory holding updates for previous version..."
+    rm -rf /var/lib/security-blanket/files/ClientUpdates
+fi
+
+
+# Ok, terminal stuff - *IF* we are running SELinux *and* we have the SELinux RPM then we have to pull this at the 
+# last moment, after doing what we can to ensure we're the only process under SB -or- OSL policy
+
+if [ ! -z "${SELINUX_RPM}" ] ; then
+  exec rpm -e ${SELINUX_RPM}  
+fi
+

@@ -1,0 +1,9 @@
+Package: oslockdown-console
+Version: 4 
+Section: utils
+Priority: optional
+Architecture: all
+Depends: oslockdown-modules (>= 5.0.0)
+Maintainer: OSLockdown
+Homepage:  https://www.github.com/OSLockdown/OSLockdown
+Description: OS Lockdown Web Console

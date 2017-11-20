@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SshParameters" version="5.0">
+  <title xml:id="RemoteAccessServices">SSH Parameters</title>
+  <para>
+  Configures the secure shell (SSH) to only use protocol version 2 on
+  outbound client connections by default. Version 1 of the SSH supported
+  protocols contains security concerns and known vulnerabilities.
+ </para>
+  <para>
+  The default SSH behavior is for both client and server to negotiate a
+  protocol version 2 connection before it tries a version 1 connection.
+  This module limits the negotiation to only protocol version 2.
+ </para>
+  <tip>
+    <para>
+   Some older network devices only support version 1. For example, an
+   old router with legacy firmware. If you cannot upgrade the device but
+   must connect to it, you can force protocol version 1 on the command
+   line from your host with the <parameter>"-1"</parameter> option. See
+   the <command>ssh(1)</command> manual page for more details.
+  </para>
+  </tip>
+  <simplesect xml:id="SshParameters-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>4.5.1 - Limit SSH Protocol Use to Version 2</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN005501 - The SSH client must be configured to only use the SSHv2 protocol.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN005500 - SSH Version 1 Compatibility</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+      <listitem>
+        <para>2.2.3 - Configure system security parameters to prevent misuse</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

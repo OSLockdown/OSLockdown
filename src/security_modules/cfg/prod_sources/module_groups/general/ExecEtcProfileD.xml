@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="90" name="Exec shell startups in /etc/profile.d">
+        <library>ExecEtcProfileD</library>
+        <description>Under Solaris, ensure that files in /etc/profile.d are executed by a login shell.  N/A for Linux, as these are executed by default</description>
+        <scan_weight>10</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>5</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+        </platforms>
+        <compliancy/>
+        <dependencies>
+          <module_library selected="true">ExecEtcProfileD</module_library>
+        </dependencies>
+        <views>
+          <member>General</member>
+        </views>
+      </security_module>

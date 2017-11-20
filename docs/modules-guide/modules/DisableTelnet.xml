@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableTelnet" version="5.0">
+ <title xml:id="RemoteAccessServices">Disable Telnet</title>
+ <para>
+  Disables Telnet, which uses an unencrypted network protocol that
+  allows passwords to be stolen by network eavesdroppers or the session
+  to be hijacked by outsiders.
+  <indexterm>
+   <primary>Telnet</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>password</primary>
+  </indexterm>
+ </para>
+ <para>
+  It is recommended to always disable Telnet service. SSH provides the
+  same functionality in a secure manner and it is a better choice.
+  <indexterm>
+   <primary>Telnet</primary>
+  </indexterm>
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="1.0*" align="left"/>
+   <colspec colname="c2" colwidth="1.0*"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Package</entry>
+     <entry>Service Names</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="4">telnet-server
+      <indexterm>
+       <primary>telnet-server</primary>
+      </indexterm></entry>
+     <entry morerows="4">telnet</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+     <entry>SUNWtnetr
+      <indexterm>
+       <primary>SUNWtnetr</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Solaris packages</primary>
+       <secondary>SUNWtnetr</secondary>
+      </indexterm></entry>
+     <entry>svc:/network/telnet:default
+      <indexterm>
+       <primary>svc:/network/telnet:default</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Solaris services</primary>
+       <secondary>svc:/network/telnet:default</secondary>
+      </indexterm></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="DisableTelnet-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-13 - Limitation and Control of Network Ports, Protocols, and
+     Services
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DHS Linux Configuration Guidance (2010.8)</title>
+   <listitem>
+    <para>
+     6.2 - Configuring Stand Alone Services
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN003850 - The telnet daemon must not be running.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 6 STIG (V1R14)</title>
+   <listitem>
+    <para>
+     RHEL-06-000211 - The telnet daemon must not be running.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN004800 - Unencrypted FTP or Telnet
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+   <listitem>
+    <para>
+     CIP-005-3-R2.2 - Enable only ports and services needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+   <listitem>
+    <para>
+     CIP-007-3-R2.2 - Disable ports and services not needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-17 - Remote Access
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     3.1.3 - Guidance for Unfamiliar Services
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.2 - Disable all unnecessary and insecure services
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.3 - Encrypt all non-console administrative access
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     8.4 - Render all passwords unreadable during transmission and
+     storage on all system components.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

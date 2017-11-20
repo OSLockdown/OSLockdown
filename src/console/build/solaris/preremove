@@ -1,0 +1,7 @@
+
+svcadm disable osl-console
+svccfg delete -f osl-console
+
+if [ -d /usr/share/oslockdown/console/webapps/OSLockdown ]; then
+    rm -rf /usr/share/oslockdown/console/webapps/OSLockdown
+fi

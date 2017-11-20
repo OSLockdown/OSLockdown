@@ -1,0 +1,9 @@
+Package: oslockdown-dispatcher
+Version: 4 
+Section: utils
+Priority: optional
+Architecture: all
+Depends: libssl0.9.8, libgcc1, libstdc++6
+Maintainer: OSLockdown
+Homepage:  https://www.github.com/OSLockdown/OSLockdown
+Description: OS Lockdown Dispatcher

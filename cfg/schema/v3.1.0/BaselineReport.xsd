@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- ********************************************************************** -->
+<xs:annotation>
+    <xs:documentation>
+       Copyright (c) 2007-2014 Forcepoint LLC.  				    
+       This file is released under the GPLv3 license.				    
+       See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+       or visit https://www.gnu.org/licenses/gpl.html instead.      
+      
+       OS Lockdown - Baseline Report Schema
+    </xs:documentation>
+    <xs:appinfo>
+        This XML created by the Python module: BaselineReporting.pyo
+    </xs:appinfo>
+</xs:annotation>
+
+<!-- ********************************************************************** -->
+
+  <xs:element name="BaselineReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="report" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="version" type="xs:NMTOKEN" use="required"/>
+      <xs:attribute name="hostname" type="xs:string" use="required" />
+      <xs:attribute name="distro_ver" type="xs:string" use="required" />
+      <xs:attribute name="distro" type="xs:string" use="required" />
+      <xs:attribute name="mach" type="xs:string" use="required" />
+      <xs:attribute name="generator" type="xs:string" use="required" />
+      <xs:attribute name="kernel" type="xs:string" use="required" />
+      <xs:attribute name="created" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="file">
+    <xs:annotation>
+      <xs:appinfo>
+        This element contains information regarding a specific file
+        installed on the system. The attributes are described as
+        follows:
+
+          - path      - Full (absolute) system path to the file
+          - suid/sgid - SETUID/SETGID: Is the respective bit turned on?
+          - mtime     - Last time the file was modified
+          - uid/gid   - User ID/Group ID: File ownership.
+          - mode      - File permissions in a four digit decimal number.
+                        This is a converted octal so, each digit can only
+                        be 0-7. 
+          - sha1      - SHA1 Cryptographic checksum of the file contents.
+                        Most device (/dev) files simply have "xx" since
+                        it is impractical to compute a checksum on them.
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:attribute name="suid"  type="xs:boolean"  use="required"/>
+      <xs:attribute name="sgid"  type="xs:boolean"  use="required"/>
+      <xs:attribute name="mtime" type="xs:integer" use="required"/>
+      <xs:attribute name="uid"   type="xs:integer" use="required"/>
+      <xs:attribute name="gid"   type="xs:integer" use="required"/>
+      <xs:attribute name="path"  type="xs:string"  use="required"/>
+      <xs:attribute name="mode"  type="xs:string"  use="required"/>
+      <xs:attribute name="sha1"  type="xs:string"  use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="file_group">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="file" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="name"        type="xs:string" use="required" />
+      <xs:attribute name="fingerprint" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="report">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="file_group" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="rpm"/>
+            <xs:element ref="patch"/>
+        </xs:choice>
+        <xs:element ref="section"    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="rpm">
+    <xs:complexType mixed="true">
+      <xs:attribute name="release" type="xs:string" use="required" />
+      <xs:attribute name="version" type="xs:string" use="required" />
+      <xs:attribute name="summary" type="xs:string" use="required" />
+      <xs:attribute name="name"    type="xs:string" use="required" />
+      <xs:attribute name="install_localtime" type="xs:string" use="optional" />
+      <xs:attribute name="installtime" type="xs:string" use="required" />
+      <xs:attribute name="epoch"   type="xs:string" use="optional" default=""/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="patch">
+    <xs:complexType>
+      <xs:attribute name="patchname" type="xs:string" use="required" />
+      <xs:attribute name="pkgname" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="section">
+    <xs:complexType mixed="true">
+      <xs:attribute name="fullname"    type="xs:string" use="optional" />
+      <xs:attribute name="name"        type="xs:string" use="required" />
+      <xs:attribute name="fingerprint" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

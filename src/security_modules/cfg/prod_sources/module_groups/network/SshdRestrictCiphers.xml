@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="SSHD Restrict Ciphers">
+        <library>SshdRestrictCiphers</library>
+        <description>Configures the secure shell (SSH) daemon to only use FIPS140-2 approved ciphers.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>10</severity_level>
+        <configurationOptions>
+          <option name="mustStartWith" type="basicMultilineStringCanBeEmpty">
+            <description>Cipher must (not) start with</description>
+            <helpText>Acceptable ciphers must start with one of the following entries.  A leading '!' indicates that the cipher must not start with that text.</helpText>
+            <default></default>
+          </option>
+          <option name="mustContain" type="basicMultilineStringCanBeEmpty">
+            <description>Cipher must (not) contain</description>
+            <helpText>Acceptable ciphers must contain one of the following entries.  A leading '!' indicates that the cipher must not contain that text.</helpText>
+            <default></default>
+          </option>
+          <option name="mustEndWith" type="basicMultilineStringCanBeEmpty">
+            <description>Cipher must (not) end with</description>
+            <helpText>Acceptable ciphers must end with one of the following entries.  A leading '!' indicates that the cipher must not end with that text.</helpText>
+            <default></default>
+          </option>
+        </configurationOptions>
+        <platforms>
+          <cpe-item name="cpe:/a:openbsd:openssh"/>
+          <cpe-item name="cpe:/o:centos:centos:4"/>
+          <cpe-item name="cpe:/o:centos:centos:5"/>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:novell:opensuse:10"/>
+          <cpe-item name="cpe:/o:novell:opensuse:11"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:10"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:11"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:redhat:fedora:10"/>
+          <cpe-item name="cpe:/o:redhat:fedora:11"/>
+          <cpe-item name="cpe:/o:redhat:fedora:12"/>
+          <cpe-item name="cpe:/o:redhat:fedora:13"/>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Remote Access</member>
+        </views>
+      </security_module>

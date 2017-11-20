@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SetCdeScreenSaver" version="5.0">
+  <title xml:id="SessionMgmt">Set CDE Screen Saver</title>
+  <para>
+  Configures timeout and activation values for the screen saver program
+  for all Solaris Common Desktop Environment (CDE) users.
+  <indexterm><primary>CDE</primary></indexterm>
+
+  <indexterm><primary>Common Desktop Environment</primary></indexterm>
+ </para>
+  <para>
+  It is recommended to set the timeout parameter to no more than 10
+  minutes.
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2">
+    <tgroup cols="4">
+      <colspec colname="c1" colwidth="0.8*" align="left"/>
+      <colspec colname="c2" colwidth="0.5*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <colspec colname="c4" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Package</entry>
+          <entry>Configuration Files</entry>
+          <entry>Settings</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="4" namest="c2" nameend="c4">
+            <emphasis>Operating System Not Applicable</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+          <entry>SUNWdtwm</entry>
+          <entry>
+            <filename>/usr/dt/config/*/sys.resources</filename>
+          </entry>
+          <entry><parameter>dtsession*saverTimeout:</parameter> and
+      <parameter>dtsession*lockTimeout:</parameter></entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <simplesect xml:id="SetCdeScreenSaver-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>
+     CC-11 - Account Monitoring and Control
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>CIA DCID 6/3 (May 2000)</title>
+      <listitem>
+        <para>
+     4.B.1.a(5) - Screen Lock
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.1.a(5)(a) - Screen Lock - Maximum Idle Time will be 15 minutes
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.2.a(16)(b) - Session Control - Station or session time-outs
+     (PL2)
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.3.a(17)(a) - Session Control - Station or session time-outs
+     (PL3)
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>
+     GEN000500 - Inactivity
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD JAFAN 6/3 (Oct 2004)</title>
+      <listitem>
+        <para>
+     4.B.1.a(5) - Screen Lock
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.1.a(5)(a) - Screen Lock - Maximum Idle Time will be 15 minutes
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.2.a(16)(b) - Session Control - Station or session time-outs
+     (PL2)
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.3.a(17)(a) - Session Control - Station or session time-outs
+     (PL3)
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD NISPOM (Feb 2006)</title>
+      <listitem>
+        <para>
+     8.609b2 - User Inactivity
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>
+     AC-11 - Session Lock
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>
+     8.5.15 - If a session has been idle for more than 15 minutes,
+     require the user to re-enter the password to re-activate the
+     terminal.
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="SetCdeScreenSaver-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Number of minutes a graphical CDE session can be idle before a password protected screen saver is activated.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

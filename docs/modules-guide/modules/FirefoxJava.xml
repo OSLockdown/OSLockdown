@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: FirefoxJava.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="FirefoxJava" version="5.0">
+  <title xml:id="DesktopApps">Firefox - Java</title>
+  <para>
+  Configure Firefox to allow or disallow Java from loading code into the
+  local machine which has more access to the local operating system as
+  compared to HTML.
+  <indexterm><primary>Firefox</primary></indexterm>
+
+  <indexterm><primary>Java</primary></indexterm>
+ </para>
+  <para>
+  Depending on the option chosen for the profile, the following is set
+  to either 'true' or 'false' in each user’s
+  <filename>$HOME/.mozilla/firefox/*/prefs.js</filename>:
+  <indexterm><primary>.profile</primary></indexterm>
+<programlisting>user_pref("security.enable_java", 'true');</programlisting>
+  or
+<programlisting>user_pref("security.enable_java", 'false');</programlisting>
+ </para>
+  <simplesect xml:id="FirefoxJava-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>
+     GEN004100 - Browser Allows Active Scripting
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     2.2.3 - Configure system security parameters to prevent misuse
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="FirefoxJava-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Javascript</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,50 @@
+############################
+## For Test Purposes Only ##
+############################
+if __name__ == '__main__':
+    import os
+    import sys
+    sys.path.append("/usr/share/oslockdown")
+    core_path =  os.path.normpath(os.path.join(os.getcwd(), "../../core/sb_utils/misc"))
+    sys.path.append(core_path)
+    import tcs_utils
+
+    class_name = os.path.basename(__file__).split('.')[0]
+    Test =  globals()[class_name]()
+
+    print
+    print "%s Testing %s" % ("="*35, "="*35)
+    ##############
+    ## Test Scan #
+    ##############
+    results = ''
+    status_msg = ''
+    messages = {}
+    try:
+        (results, status_msg, messages) = Test.scan()
+    except tcs_utils.OSNotApplicable, err:
+        results = "OS NA - %s " % str(err)
+
+    except Exception, err:
+        results = str(err)
+
+    print "%10s : %s, %s, %s" % ("SCAN", str(results), status_msg, str(messages))
+
+    ###############
+    ## Test Apply #
+    ###############
+    results = ''
+    change_record = ''
+    messages = {}
+    try:
+        (results, change_record, messages) = Test.scan()
+    except tcs_utils.OSNotApplicable, err:
+        results = "OS NA - %s " % str(err)
+
+    except Exception, err:
+        results = str(err)
+
+    print "%10s : %s, %s, %s" % ("APPLY", str(results), change_record, str(messages))
+
+    print
+

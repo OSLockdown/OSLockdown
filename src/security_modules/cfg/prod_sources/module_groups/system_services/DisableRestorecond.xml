@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Restorecon">
+        <library>DisableRestorecond</library>
+        <description>Disables the SELinux Restorecon daemon. This deaemon monitors a list of files which are frequently created or modified on running systems, and whose SELinux contexts are not set correctly. The restorecond program is fairly simple, so it brings low risk, but, in its default configuration, does not add much value to a system. An automated program such as restorecond may be used to monitor problematic files for context problems, or system administrators may be trained to check file contexts of newly-created files.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:5">
+            <services>
+              <service seq="1" name="restorecond"/>
+            </services>
+            <packages>
+              <package name="policycoreutils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5">
+            <services>
+              <service seq="1" name="restorecond"/>
+            </services>
+            <packages>
+              <package name="policycoreutils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:10">
+            <services>
+              <service seq="1" name="restorecond"/>
+            </services>
+            <packages>
+              <package name="policycoreutils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:11">
+            <services>
+              <service seq="1" name="restorecond"/>
+            </services>
+            <packages>
+              <package name="policycoreutils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:12">
+            <services>
+              <service seq="1" name="restorecond"/>
+            </services>
+            <packages>
+              <package name="policycoreutils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5">
+            <services>
+              <service seq="1" name="restorecond"/>
+            </services>
+            <packages>
+              <package name="policycoreutils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:13">
+            <services>
+              <service seq="1" name="restorecond"/>
+            </services>
+            <packages>
+              <package name="policycoreutils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6">
+            <services>
+              <service seq="1" name="restorecond"/>
+            </services>
+            <packages>
+              <package name="policycoreutils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:6">
+            <services>
+              <service seq="1" name="restorecond"/>
+            </services>
+            <packages>
+              <package name="policycoreutils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <services>
+              <service seq="1" name="restorecond"/>
+            </services>
+            <packages>
+              <package name="policycoreutils"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Security Services</member>
+          <member>SELinux</member>
+        </views>
+      </security_module>

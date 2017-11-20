@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableAutofs" version="5.0">
+ <title xml:id="SysServices">Disable Autofs Daemon</title>
+ <para>
+  Disables the autofs daemon. The autofs daemon facilitates automated
+  mounting of filesystems.
+  <indexterm>
+   <primary>autofs</primary>
+  </indexterm>
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="1.0*" align="left"/>
+   <colspec colname="c2" colwidth="1.0*"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Package</entry>
+     <entry>Service Names</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="4">autofs</entry>
+     <entry morerows="4">autofs
+      <indexterm>
+       <primary>autofs</primary>
+      </indexterm></entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+     <entry namest="c2" nameend="c3">Not part of the Solaris operating system.</entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="DisableAutofs-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN008440 - Automated file system mounting tools must not be
+     enabled unless needed.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 6 STIG (V1R14)</title>
+   <listitem>
+    <para>
+     RHEL-06-000526 - Automated file system mounting tools must not be
+     enabled unless needed.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

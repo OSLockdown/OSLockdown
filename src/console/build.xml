@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<!-- ************************************************************************ -->
+<!-- Copyright (c) 2007-2017 Forcepoint LLC.                                       -->
+<!-- This file is released under the GPLv3 license.                                -->
+<!-- See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,  -->
+<!-- or visit https://www.gnu.org/licenses/gpl.html instead.                       -->
+<!--                                                                          -->
+<!--   OS Lockdown Console                                               -->
+<!-- ************************************************************************ -->
+<!-- $Id: build.xml 23917 2017-03-07 15:44:30Z rsanders $ -->
+
+<project name="OS Lockdown Console" default="console" basedir=".">
+    <description>OS Lockdown Console</description>
+    <import file="../../build-common.xml"/> 
+
+    <property environment="env"/>    
+    <property name="grails.lib.dir" location="grails/OSLockdown/lib/" />
+    <property name="javahelp.dest.dir" location="grails/OSLockdown/web-app/sbhelp" />
+    <property name="javahelp.src.dir" location="${dir.docs}/dist/javahelp"/>
+
+    <available file="${grails.lib.dir}/consolews.jar" property="consolews.jar.exists" />
+
+
+    <!-- ===================================================================== -->
+    <!--
+           BUILD ALL - Default target
+     -->
+
+    <target name="console" description="Build all"
+            depends="add-fop-jars,console-jaxws,console-docs,console-docs-copy"/>
+
+    <!-- ===================================================================== -->
+    <!--                   Third Party Jars for WAR File                       -->
+    <!-- ===================================================================== -->
+    <target name="add-fop-jars"  description="Copy Apache FOP jars to be used in WAR">
+        <copy file="${env.FOP_HOME}/build/fop.jar" todir="${grails.lib.dir}" />
+        <copy file="${env.FOP_HOME}/lib/avalon-framework-4.2.0.jar" todir="${grails.lib.dir}" />
+        <copy file="${env.FOP_HOME}/lib/batik-all-1.7.jar" todir="${grails.lib.dir}" />
+        <copy file="${env.FOP_HOME}/lib/xmlgraphics-commons-1.4.jar" todir="${grails.lib.dir}" />
+    </target>
+
+    <target name="clean-grails-lib-dir" description="Clean Grails library">
+        <delete>
+            <fileset dir="${grails.lib.dir}" includes="*.jar" />
+        </delete>
+    </target>
+    <!-- ===================================================================== -->
+    <!--                   Console to Client Communications                    -->
+    <!-- ===================================================================== -->
+    <target name="console-jaxws" description="Copy JAXWS components to be used in WAR">
+        <copy todir="${grails.lib.dir}">
+            <fileset dir="${env.JAXWSRI_HOME}/lib">
+               <include name="*.jar" />
+            </fileset>
+        </copy>
+        <copy file="grails/OSLockdown/grails-app/conf/sun-jaxws.xml" todir="grails/OSLockdown/web-app/WEB-INF/"/>
+    </target>
+
+    <target name="console-wsdl" description="Build and Copy WSDL for comms for WAR">
+        <echo>Console WSDL</echo>
+        <exec executable="${env.ANT_HOME}/bin/ant" dir="AgentCommunication">
+            <arg value="-f"/>
+            <arg value="build.xml"/>
+        </exec>
+        <copy todir="${grails.lib.dir}">
+            <fileset dir="AgentCommunication/build/dist/">
+               <include name="*.jar" />
+            </fileset>
+        </copy>
+        <jar destfile="${grails.lib.dir}/consolews.jar" basedir="AgentCommunication/build/classes"
+             excludes="**/services/client/**" />
+        <copy todir="${grails.lib.dir}">
+            <fileset dir="AgentCommunication/build/dist/">
+                <include name="*.jar"/>
+            </fileset>
+        </copy>
+
+
+    </target>
+
+
+    <!-- ===================================================================== -->
+    <!--                              Documentation                            -->
+    <!-- ===================================================================== -->
+    <target name="console-docs" description="Build Product Javahelp Docs">
+        <property name="draft.mode" value="no"/>
+        <property name="show.comments" value="0"/>
+        <subant target="docs">
+            <fileset dir="${dir.docs}" includes="build.xml"/>
+        </subant>
+    </target>
+    <target name="console-docs-copy">
+        <mkdir dir="${javahelp.dest.dir}" />
+        <copy todir="${javahelp.dest.dir}">
+            <fileset dir="${javahelp.src.dir}">
+               <include name="**/*"/>
+            </fileset>
+        </copy>
+
+        <mkdir dir="grails/OSLockdown/web-app/css"/>
+        <copy todir="grails/OSLockdown/web-app/css">
+            <fileset dir="../css">
+               <include name="*.css"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="console-clean-docs" description="Clean Javahelp Docs from WAR area">
+       <delete dir="${javahelp.dest.dir}/Figures"/>
+       <delete dir="${javahelp.dest.dir}/admin"/>
+       <delete dir="${javahelp.dest.dir}/modules"/>
+       <delete dir="${javahelp.dest.dir}/releasenotes"/>
+    </target>
+
+    <!-- ===================================================================== -->
+    <!--                          API Documentation                            -->
+    <!-- ===================================================================== -->
+    <target name="api-docs" description="Generate Javadoc/Groovydoc">
+       <mkdir dir="docs/api"/>
+       <groovydoc destdir="docs/api"
+                  footer="Copyright &#169; 2007-2017 Forcepoint, Inc.. All Rights Reserved."
+                  doctitle="OS Lockdown Console"
+                  windowtitle="OS Lockdown Console"
+                  use="true"
+                  private="true"
+                  sourcepath="grails/OSLockdown/src:AgentCommunication/src"/>
+    </target>
+
+    <!-- ===================================================================== -->
+    <!--                              Clean All                                -->
+    <!-- ===================================================================== -->
+    <target name="clean-console" description="Clean">
+       <parallel>
+           <antcall target="console-clean-docs"/>
+           <antcall target="clean-grails-lib-dir"/>
+       </parallel>
+        <delete>
+            <fileset dir="grails/OSLockdown/web-app/css" includes="*-report.css" />
+        </delete>
+        <delete dir="docs/api" failonerror="false"/> 
+        <delete file="grails/OSLockdown/web-app/css/assessment-comparison.css" />
+
+        <!-- Not sure why these images aren't stored statically in directory -->
+        <delete file="grails/OSLockdown/web-app/images/leftnav_top.png"/>
+        <delete file="grails/OSLockdown/web-app/images/springsource.png"/>
+        <delete file="grails/OSLockdown/web-app/images/leftnav_midstretch.png"/>
+        <delete file="grails/OSLockdown/web-app/images/leftnav_btm.png"/>
+        <delete file="grails/OSLockdown/web-app/images/grails_logo.png"/>
+        <delete file="grails/OSLockdown/web-app/images/grails_logo.jpg"/>
+        <delete file="grails/OSLockdown/web-app/images/spinner.gif"/>
+
+    </target>
+ 
+</project>

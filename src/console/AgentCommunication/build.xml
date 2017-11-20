@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2007-2014 Forcepoint LLC.                                       -->
+<!-- This file is released under the GPLv3 license.                                -->
+<!-- See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license, -->
+<!-- or visit https://www.gnu.org/licenses/gpl.html instead.                       -->
+<project name="AgentCommunication" default="dist" basedir=".">
+
+    <description>Agent communication web-services stack</description>
+
+    <!-- set global properties for this build -->
+    <property environment="env"/>
+    <property name="src" value="src" />
+    <property name="web" value="web" />
+    <property name="wsdl.dir" value="${web}/wsdl" />
+    <property name="build" value="build" />
+    <property name="build.classes" value="build/classes" />
+    <property name="build.dist" value="build/dist" />
+    <property name="apt" value="apt" />
+    <property name="apt.src" value="apt/src" />
+    <property name="wsgen" value="wsgen" />
+    <property name="wsgen.src" value="wsgen/src" />
+    <property name="wsgen.resources" value="wsgen/resources" />
+    <property name="jaxws.dir" value="${env.JAXWSRI_HOME}" />
+    <property name="grails.dir" value="../grails/OSLockdown" />
+    <property name="grails.lib.dir" value="${grails.dir}/lib" />
+    <property name="build.compiler" value="modern"/>
+
+    <pathconvert  property="log4j.jar">
+      <path >
+    	<fileset dir="${env.GRAILS_HOME}/lib">
+    	  <include name="**/log4j*.jar" />
+    	  <exclude name="**/*sources.jar"/>
+    	  <exclude name="**/*javadoc.jar"/>
+    	</fileset>
+      </path>
+    </pathconvert>
+
+    <pathconvert  property="commons.cli.jar">
+      <path >
+    	<fileset dir="${env.GRAILS_HOME}/lib">
+    	  <include name="**/commons-cli*.jar" />
+    	  <exclude name="**/*sources.jar"/>
+    	  <exclude name="**/*javadoc.jar"/>
+    	</fileset>
+      </path>
+    </pathconvert>
+    
+
+    <!-- jaxws ilb files -->
+    <path id="jax-ws.classpath">
+        <fileset dir="${jaxws.dir}/lib">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>
+
+
+    <target name="testLocatedJars" >
+      <echo message="log4j.jar       = ${log4j.jar}"/>
+      <echo message="commons.cli.jar = ${commons.cli.jar}"/>
+    </target>
+
+
+    <!-- Clean -->
+    <target name="clean">
+        <delete dir="${build}" />
+        <delete dir="${wsgen}" />
+        <delete dir="${apt}" />
+    </target>
+
+    <!-- Init Target -->
+    <target name="init">
+        <!-- Create the time stamp -->
+        <tstamp />
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="${build.classes}" />
+        <mkdir dir="${build.dist}" />
+        <mkdir dir="${wsgen.src}" />
+        <mkdir dir="${wsgen.resources}" />
+        <mkdir dir="${apt.src}" />
+    </target>
+
+    <!-- APT usage -->
+    <!--
+    <taskdef name="apt" classname="com.sun.tools.ws.ant.Apt">
+        <classpath refid="jax-ws.classpath" />
+    </taskdef>
+    -->
+    <target name="apt" depends="init">
+        <apt debug="on" verbose="${verbose}" destdir="${build.classes}"
+             preprocessdir="${apt.src}" classpath="${commons.cli.jar}:${log4j.jar}" fork="true">
+            <classpath refid="jax-ws.classpath" />
+            <option name="r" value="${build}" />
+            <src path="${basedir}/src" />
+            <include name="**/com/trustedcs/sb/services/*.java" />
+        </apt>
+    </target>
+
+    <!-- wsgen usage -->
+    <taskdef name="wsgen" classname="com.sun.tools.ws.ant.WsGen">
+        <classpath refid="jax-ws.classpath" />
+    </taskdef>
+    <target name="wsgen" depends="apt">
+        <wsgen destdir="${build.classes}" resourcedestdir="${wsgen.resources}" sourcedestdir="${wsgen.src}" genwsdl="true" sei="com.trustedcs.sb.services.UpdateSBServiceImpl" xendorsed="true">
+            <classpath refid="jax-ws.classpath" />
+            <classpath path="${build.classes}" />
+        </wsgen>
+        <wsgen destdir="${build.classes}" resourcedestdir="${wsgen.resources}" sourcedestdir="${wsgen.src}" genwsdl="true" sei="com.trustedcs.sb.services.AgentServiceImpl" xendorsed="true">
+            <classpath refid="jax-ws.classpath" />
+            <classpath path="${build.classes}" />
+        </wsgen>
+        <wsgen destdir="${build.classes}" resourcedestdir="${wsgen.resources}" sourcedestdir="${wsgen.src}" genwsdl="true" sei="com.trustedcs.sb.services.ConsoleServiceImpl" xendorsed="true">
+            <classpath refid="jax-ws.classpath" />
+            <classpath path="${build.classes}" />
+        </wsgen>
+        <wsgen destdir="${build.classes}" resourcedestdir="${wsgen.resources}" sourcedestdir="${wsgen.src}" genwsdl="true" sei="com.trustedcs.sb.services.ReportsServiceImpl" xendorsed="true">
+            <classpath refid="jax-ws.classpath" />
+            <classpath path="${build.classes}" />
+        </wsgen>
+        <wsgen destdir="${build.classes}" resourcedestdir="${wsgen.resources}" sourcedestdir="${wsgen.src}" genwsdl="true" sei="com.trustedcs.sb.services.SchedulerServiceImpl" xendorsed="true">
+            <classpath refid="jax-ws.classpath" />
+            <classpath path="${build.classes}" />
+        </wsgen>
+        <wsgen destdir="${build.classes}" resourcedestdir="${wsgen.resources}" sourcedestdir="${wsgen.src}" genwsdl="true" sei="com.trustedcs.sb.services.TaskVerificationServiceImpl" xendorsed="true">
+            <classpath refid="jax-ws.classpath" />
+            <classpath path="${build.classes}" />
+        </wsgen>
+        <wsgen destdir="${build.classes}" resourcedestdir="${wsgen.resources}" sourcedestdir="${wsgen.src}" genwsdl="true" sei="com.trustedcs.sb.services.ClientRegistrationServiceImpl" xendorsed="true">
+            <classpath refid="jax-ws.classpath" />
+            <classpath path="${build.classes}" />
+        </wsgen>
+    </target>
+
+    <!-- Compile the SEI classes -->
+    <target name="compile-sei" depends="init">
+        <javac debug="true" debuglevel="lines,vars,source" srcdir="src" destdir="${build.classes}" includes="com/trustedcs/sb/services/sei/**" classpathref="jax-ws.classpath" classpath="${log4j.jar}"/>
+    </target>
+
+    <!-- Client Generation -->
+    <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+        <classpath refid="jax-ws.classpath" />
+    </taskdef>
+    <target name="client" depends="compile-sei,wsgen">
+        <wsimport debug="true" verbose="false" keep="false" sourcedestdir="${wsgen.src}" destdir="${build.classes}" wsdl="${wsgen.resources}/UpdateSBServiceImplService.wsdl" xendorsed="true" package="com.trustedcs.sb.services.client.updatesb" />
+        <wsimport debug="true" verbose="false" keep="false" sourcedestdir="${wsgen.src}" destdir="${build.classes}" wsdl="${wsgen.resources}/AgentServiceImplService.wsdl" xendorsed="true" package="com.trustedcs.sb.services.client.agent" />
+        <wsimport debug="true" verbose="false" keep="false" sourcedestdir="${wsgen.src}" destdir="${build.classes}" wsdl="${wsgen.resources}/ConsoleServiceImplService.wsdl" xendorsed="true" package="com.trustedcs.sb.services.client.console" />
+        <wsimport debug="true" verbose="false" keep="false" sourcedestdir="${wsgen.src}" destdir="${build.classes}" wsdl="${wsgen.resources}/ReportsServiceImplService.wsdl" xendorsed="true" package="com.trustedcs.sb.services.client.reports" />
+        <wsimport debug="true" verbose="false" keep="false" sourcedestdir="${wsgen.src}" destdir="${build.classes}" wsdl="${wsgen.resources}/SchedulerServiceImplService.wsdl" xendorsed="true" package="com.trustedcs.sb.services.client.scheduler" />
+        <wsimport debug="true" verbose="false" keep="false" sourcedestdir="${wsgen.src}" destdir="${build.classes}" wsdl="${wsgen.resources}/TaskVerificationServiceImplService.wsdl" xendorsed="true" package="com.trustedcs.sb.services.client.taskverification" />
+        <wsimport debug="true" verbose="false" keep="false" sourcedestdir="${wsgen.src}" destdir="${build.classes}" wsdl="${wsgen.resources}/ClientRegistrationServiceImplService.wsdl" xendorsed="true" package="com.trustedcs.sb.services.client.clientregistration" />
+        <javac debug="true" debuglevel="lines,vars,source" srcdir="src" destdir="${build.classes}" includes="com/trustedcs/sb/ws/client/**" classpathref="jax-ws.classpath" classpath="${commons.cli.jar}:${log4j.jar}"/>
+    </target>
+
+    <!-- creates the distribution -->
+    <target name="dist" depends="war">
+        <jar destfile="${build.dist}/agentwsc.jar" basedir="${build}/classes" includes="**/services/client/agent/**" />
+        <jar destfile="${build.dist}/consolewsc.jar" basedir="${build}/classes" includes="**/services/client/console/**" />
+        <jar destfile="${build.dist}/reportswsc.jar" basedir="${build}/classes" includes="**/services/client/reports/**" />
+        <jar destfile="${build.dist}/schedulerwsc.jar" basedir="${build}/classes" includes="**/services/client/scheduler/**" />
+        <jar destfile="${build.dist}/taskverificationwsc.jar" basedir="${build}/classes" includes="**/services/client/taskverification/**" />
+        <jar destfile="${build.dist}/clientregistrationwsc.jar" basedir="${build}/classes" includes="**/services/client/clientregistration/**" />
+        <jar destfile="${build.dist}/updatesbwsc.jar" basedir="${build}/classes" includes="**/services/client/updatesb/**" />
+        <jar destfile="${build.dist}/testswsc.jar" basedir="${build}/classes" includes="com/trustedcs/sb/ws/client/**" />
+    </target>
+
+    <!-- Create the WAR file -->
+    <target name="war" depends="client">
+        <war destfile="${build.dist}/agentws.war" webxml="web/WEB-INF/web.xml">
+            <lib dir="${jaxws.dir}/lib">
+                <include name="**/*.jar" />
+            </lib>
+            <classes dir="build/classes">
+                <exclude name="**/services/client/**" />
+            </classes>
+            <zipfileset file="web/WEB-INF/sun-jaxws.xml" prefix="WEB-INF" />
+        </war>
+    </target>
+
+    <!-- Console Web Service jar -->
+    <target name="consolews-jar" depends="client">
+        <jar destfile="${build.dist}/consolews.jar"
+      basedir="build/classes"
+      excludes="**/services/client/**" />
+    </target>
+
+    <target name="wsdl-production">
+        <copy todir="/usr/share/oslockdown/cfg/wsdl">
+            <fileset dir="${wsgen.resources}">
+                <include name="*.wsdl"/>
+                <include name="*.xsd"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- Copy the xsl files to the production locations -->
+    <target name="xsl-production">
+        <mkdir dir="/usr/share/oslockdown/cfg/stylesheets/common"/>
+        <copy todir="/usr/share/oslockdown/cfg/stylesheets/common">
+            <fileset dir="../../xsl/common">
+                <include name="*.ent"/>
+                <include name="*.xsl"/>
+            </fileset>
+        </copy>
+        <mkdir dir="/usr/share/oslockdown/cfg/stylesheets/csv"/>
+        <copy todir="/usr/share/oslockdown/cfg/stylesheets/csv">
+            <fileset dir="../../xsl/csv">
+                <include name="*.xsl"/>
+            </fileset>
+        </copy>
+        <mkdir dir="/usr/share/oslockdown/cfg/stylesheets/fo"/>
+        <copy todir="/usr/share/oslockdown/cfg/stylesheets/fo">
+            <fileset dir="../../xsl/fo">
+                <include name="*.xsl"/>
+            </fileset>
+        </copy>
+        <mkdir dir="/usr/share/oslockdown/cfg/stylesheets/txt"/>
+        <copy todir="/usr/share/oslockdown/cfg/stylesheets/txt">
+            <fileset dir="../../xsl/txt">
+                <include name="*.xsl"/>
+            </fileset>
+        </copy>
+        <mkdir dir="/usr/share/oslockdown/cfg/stylesheets/xhtml"/>
+        <copy todir="/usr/share/oslockdown/cfg/stylesheets/xhtml">
+            <fileset dir="../../xsl/xhtml">
+                <include name="*.xsl"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- Copy jars to Grails -->
+    <target name="copy-to-grails" depends="dist,consolews-jar">
+        <copy todir="${grails.lib.dir}">
+            <fileset dir="${build.dist}">
+                <include name="*.jar"/>
+            </fileset>
+        </copy>
+    </target>
+
+</project>

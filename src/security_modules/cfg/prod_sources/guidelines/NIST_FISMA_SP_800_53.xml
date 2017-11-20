@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<compliancy source="NIST" name="FISMA" version="SP 800-53" enabled="True">
+  <title>Federal Information Security Management Act of 2002</title>
+  <subtitle>NIST Special Publication 800-53 (Rev. 3)</subtitle>
+  <style>LineItemPerModule</style>
+  <abstract> <para> The Federal Information Security Management Act of 2002 ("FISMA", 44 U.S.C. &#x00a7; 3541, et seq.)
+  is a U.S. federal law enacted in 2002 as Title III of the E-Government Act of 2002 (Pub.L.
+  107-347, 116 Stat. 2899). The U.S. National Institute of Standards and Technology (NIST) publishes
+  the recommended security controls for Federal Information Systems and Organizations. </para>
+</abstract>
+  <line-items>
+    <line-item name="AC-10" description="Concurrent Session Control"/>
+    <line-item name="AC-11" description="Session Lock">
+      <module libraryName="SetCdeScreenSaver"/>
+      <module libraryName="SetGnomeSS"/>
+      <module libraryName="SetXScreenSaverDefaults"/>
+    </line-item>
+    <line-item name="AC-12" description="Session Termination">
+      <module libraryName="ShellSessionTimeouts"/>
+      <module libraryName="SshdSetIdleTimeout"/>
+    </line-item>
+    <line-item name="AC-14" description="Permitted Actions w/o Identification or Authentication">
+      <module libraryName="RemoveSMBguest"/>
+    </line-item>
+    <line-item name="AC-17" description="Remote Access">
+      <module libraryName="DisableFTP_gssftp"/>
+      <module libraryName="DisableFTP_vsftpd"/>
+      <module libraryName="DisableTelnet"/>
+      <module libraryName="EnableAdditionalFTPLogging_vsftpd"/>
+      <module libraryName="SyslogMaillog"/>
+    </line-item>
+    <line-item name="AC-18" description="Wireless Access Restrictions">
+      <module libraryName="DisableBluetooth"/>
+      <module libraryName="DisableBluetoothInputDevs"/>
+      <module libraryName="DisableBluetoothKernelModules"/>
+      <module libraryName="DisableIrda"/>
+    </line-item>
+    <line-item name="AC-19" description="Access Control for Portable and Mobile Systems">
+      <module libraryName="DisableBluetooth"/>
+      <module libraryName="DisableKudzu"/>
+    </line-item>
+    <line-item name="AC-2" description="Account Management">
+      <module libraryName="BlockSystemAccounts"/>
+      <module libraryName="GopherAccount"/>
+      <module libraryName="HaltAccount"/>
+      <module libraryName="LockDuplicateUidZeros"/>
+      <module libraryName="PasswordInvalidate"/>
+      <module libraryName="PwGrpCheck"/>
+      <module libraryName="RemoveFTPaccount"/>
+      <module libraryName="RemoveGamesAccount"/>
+      <module libraryName="RemoveNewsAccount"/>
+      <module libraryName="ShutdownAccount"/>
+      <module libraryName="SyncAccount"/>
+    </line-item>
+    <line-item name="AC-20" description="Personally Owned Information Systems">
+      <module libraryName="DisableUSB"/>
+    </line-item>
+    <line-item name="AC-3" description="Access Enforcement">
+      <module libraryName="AtCronAccessFilePerms"/>
+      <module libraryName="AudioDevFilePerms"/>
+      <module libraryName="ConfigureLddPerms"/>
+      <module libraryName="CorrectUnevenPerms"/>
+      <module libraryName="CreateFTPUsers"/>
+      <module libraryName="CrontabDirPerms"/>
+      <module libraryName="CrontabPerms"/>
+      <module libraryName="CrontabScriptPerms"/>
+      <module libraryName="DaemonUmask"/>
+      <module libraryName="DefaultUmask"/>
+      <module libraryName="DisablePAMConsole"/>
+      <module libraryName="EnableStackProtection"/>
+      <module libraryName="GlobalInitializationFilePerms"/>
+      <module libraryName="GssftpUmask"/>
+      <module libraryName="HomeDirContentPerms"/>
+      <module libraryName="HomeDirOwnGrp"/>
+      <module libraryName="HomeDirPerms"/>
+      <module libraryName="LimitAccessFromSu"/>
+      <module libraryName="ManPagePerms"/>
+      <module libraryName="NFSanon"/>
+      <module libraryName="NFSInsecureLocks"/>
+      <module libraryName="NntpFilePerms"/>
+      <module libraryName="NoEmptyPasswords"/>
+      <module libraryName="PasswdPerms"/>
+      <module libraryName="RemoveSMBguest"/>
+      <module libraryName="RestrictCompilerTools"/>
+      <module libraryName="RestrictMesgCmd"/>
+      <module libraryName="RestrictTracerouteUse"/>
+      <module libraryName="RootHomePerms"/>
+      <module libraryName="SecureNetrcFiles"/>
+      <module libraryName="SecureSetXIDFiles"/>
+      <module libraryName="SecureUnownedFiles"/>
+      <module libraryName="SecureWorldWritableDevices"/>
+      <module libraryName="SecureWorldWritableDirectories"/>
+      <module libraryName="SecureWorldWritableFiles"/>
+      <module libraryName="SetMesgN"/>
+      <module libraryName="ShadowPerms"/>
+      <module libraryName="ShellBinPerms"/>
+      <module libraryName="SkeletonFilePerms"/>
+      <module libraryName="SshdDisableEmptyPasswords"/>
+      <module libraryName="SshdDisableGSSAPIAuth"/>
+      <module libraryName="SshdDisableHostbasedAuth"/>
+      <module libraryName="SshdDisableKerberosAuth"/>
+      <module libraryName="SshdDisableRhostsAuth"/>
+      <module libraryName="SshdDisableRhostsRSAAuth"/>
+      <module libraryName="SshDisableGSSAPIAuth"/>
+      <module libraryName="SshdSetCompression"/>
+      <module libraryName="SshdStrictModeChecking"/>
+      <module libraryName="SshdUsePrivilegeSeparation"/>
+      <module libraryName="SyncEtcShells"/>
+      <module libraryName="SysCmdFilePerms"/>
+      <module libraryName="SNMPConfigFilePerms"/>
+      <module libraryName="KernelDumpDirPerms"/>
+      <module libraryName="AtDirPerms"/>
+      <module libraryName="NisYpConfigPerms"/>
+      <module libraryName="ExportsConfigFilePerms"/>
+      <module libraryName="MailAgentAliasesFilePerms"/>
+      <module libraryName="SambaConfigFilePerms"/>
+      <module libraryName="SambaPasswordFilePerms"/>
+      <module libraryName="ServicesFilePerms"/>
+      <module libraryName="FTPConfigFilePerms"/>
+      <module libraryName="PrinterConfigFilePerms"/>
+      <module libraryName="LDAPConfigFilePerms"/>
+      <module libraryName="MIBFilePerms"/>
+      <module libraryName="HostsFilePerms"/>
+      <module libraryName="NsswitchConfFilePerms"/>
+      <module libraryName="ResolvConfFilePerms"/>
+      <module libraryName="SysConfigFilePerms"/>
+      <module libraryName="SysctlPerms"/>
+      <module libraryName="SysDevDirPerms"/>
+      <module libraryName="SysLibFilePerms"/>
+      <module libraryName="SysLogFilePerms"/>
+      <module libraryName="SysLoggingConfigFilePerms"/>
+      <module libraryName="SysRcScriptPerms"/>
+      <module libraryName="UserDotFilePerms"/>
+    </line-item>
+    <line-item name="AC-7" description="Unsuccessful Login Attempts">
+      <module libraryName="AccountLocks"/>
+      <module libraryName="LoginDelay"/>
+    </line-item>
+    <line-item name="AC-8" description="System Use Notification">
+      <module libraryName="CreateLoginBanner"/>
+      <module libraryName="CreateLoginFTPBanner"/>
+      <module libraryName="CreatePreLoginGUIBanner"/>
+      <module libraryName="CreatePreSessionGUIBanner"/>
+      <module libraryName="SshdEnableBanner"/>
+    </line-item>
+    <line-item name="AU-1" description="Audit and Accountability Policy and Procedures">
+      <module libraryName="AuditEnable"/>
+    </line-item>
+    <line-item name="AU-10" description="Non-repudiation">
+      <module libraryName="AuditRules"/>
+      <module libraryName="AuditRulesSolaris"/>
+      <module libraryName="RootConsole"/>
+    </line-item>
+    <line-item name="AU-11" description="Audit Retention">
+      <module libraryName="AuditLogRotation"/>
+    </line-item>
+    <line-item name="AU-2" description="Auditable Events">
+      <module libraryName="AuditRules"/>
+      <module libraryName="AuditRulesSolaris"/>
+      <module libraryName="EnableAdditionalFTPLogging_vsftpd"/>
+      <module libraryName="PHPlogging"/>
+      <module libraryName="SyslogAuthpriv"/>
+      <module libraryName="SyslogCronLogging"/>
+      <module libraryName="SyslogMaillog"/>
+    </line-item>
+    <line-item name="AU-3" description="Content of Audit Records">
+      <module libraryName="AuditRules"/>
+      <module libraryName="AuditRulesSolaris"/>
+      <module libraryName="EnableAdditionalFTPLogging_vsftpd"/>
+      <module libraryName="PHPlogging"/>
+      <module libraryName="SyslogAuthpriv"/>
+      <module libraryName="SyslogCronLogging"/>
+      <module libraryName="SyslogMaillog"/>
+    </line-item>
+    <line-item name="AU-4" description="Audit Storage Capacity">
+      <module libraryName="AuditEnable"/>
+    </line-item>
+    <line-item name="AU-8" description="Time Stamps">
+      <module libraryName="AuditRules"/>
+      <module libraryName="AuditRulesSolaris"/>
+    </line-item>
+    <line-item name="AU-9" description="Protection of Audit Information">
+      <module libraryName="CorrectUnevenPerms"/>
+      <module libraryName="SecureSetXIDFiles"/>
+      <module libraryName="SecureUnownedFiles"/>
+      <module libraryName="SecureWorldWritableDevices"/>
+      <module libraryName="SecureWorldWritableDirectories"/>
+      <module libraryName="SecureWorldWritableFiles"/>
+      <module libraryName="SambaConfigFilePerms"/>
+      <module libraryName="SambaPasswordFilePerms"/>
+      <module libraryName="LDAPConfigFilePerms"/>
+      <module libraryName="SysConfigFilePerms"/>
+      <module libraryName="SysLogFilePerms"/>
+    </line-item>
+    <line-item name="IA-2" description="User Identification and Authentication">
+      <module libraryName="LockDuplicateUidZeros"/>
+      <module libraryName="NoEmptyPasswords"/>
+      <module libraryName="SshdDisableEmptyPasswords"/>
+    </line-item>
+    <line-item name="IA-5" description="Authenticator Management">
+      <module libraryName="PasswdPerms"/>
+      <module libraryName="PasswordChangeDelay"/>
+      <module libraryName="PasswordMaxDays"/>
+      <module libraryName="PasswordPolicyConsecutive"/>
+      <module libraryName="PasswordPolicyDiffChars"/>
+      <module libraryName="PasswordPolicyLowercase"/>
+      <module libraryName="PasswordPolicyMinlen"/>
+      <module libraryName="PasswordPolicyNumbers"/>
+      <module libraryName="PasswordPolicySpecial"/>
+      <module libraryName="PasswordPolicyUppercase"/>
+      <module libraryName="PasswordWarnAge"/>
+      <module libraryName="SetPassAgingOnAccts"/>
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="IA-6" description="Authenticator Feedback">
+      <module libraryName="PasswordWarnAge"/>
+    </line-item>
+    <line-item name="SC-5" description="Denial of Service Protection">
+      <module libraryName="AcceptRedirects"/>
+      <module libraryName="ArpCleanupInterval"/>
+      <module libraryName="ArpCleanupInterval_IRE"/>
+      <module libraryName="ICMPEchoIgnoreBroadcasts"/>
+      <module libraryName="IPForward"/>
+      <module libraryName="LogMartianPackets"/>
+      <module libraryName="RPFilter"/>
+      <module libraryName="SecureRedirects"/>
+      <module libraryName="SendRedirects"/>
+      <module libraryName="SourceRoute"/>
+      <module libraryName="TCPMaxSynBacklog"/>
+      <module libraryName="TcpStrongISS"/>
+      <module libraryName="TCPSyncookies"/>
+    </line-item>
+    <line-item name="SC-9" description="Transmission Confidentiality">
+      <module libraryName="SshdEnableX11Forwarding"/>
+    </line-item>
+  </line-items>
+</compliancy>

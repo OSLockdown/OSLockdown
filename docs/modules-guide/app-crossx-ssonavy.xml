@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: app-crossx-ssonavy.xml 11879 2010-08-31 17:12:55Z jadams $ -->
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="app-crossx-ssonavy" version="5.0">
+ <title>U.S. Navy SSO Information Assurance Department</title>
+ <para>
+  The SECSCN software is provided by the SSO Navy Information Assurance
+  Department software as a non-invasive method of assessing systems for
+  security.
+ </para>
+ <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="app-crossx-ssonavy-modules.xml"/>
+</section>

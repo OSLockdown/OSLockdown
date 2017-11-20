@@ -1,0 +1,37 @@
+#-----------------------------------------------------------------------------
+# Network Device Driver Settings: /etc/default/ndd
+#
+# This file was provided as part of OS Lockdown
+#-----------------------------------------------------------------------------
+# Settings in this file will be read by svc:/site/ndd-config:default
+# 
+# If you make a change to this file but want to # avoid a reboot, rerun 
+# the service:
+#
+#     svcadm restart svc:/site/ndd-config:default
+#
+#-----------------------------------------------------------------------------
+# To see execution log, examine:
+#   /var/svc/log/site-ndd-config:default.log
+#
+# All settings listed here on a single line in the form of: parameter=value
+# Blank and commented lines are ignored.
+#
+#-----------------------------------------------------------------------------
+#
+# NOTE: You can add your own settings here but be aware that some parameters
+#       are maintained by Security Blanekt. Therefore, they may change 
+#       depending on your OS Lockdown profile.
+#
+# NOTE: Disabling IP forwarding with ndd(1M)/ip_forwarding is deprecated.
+#       It is recommended that you do not use this file to set that parameter.
+#       you should use the OS Lockdown module provided or you can set it
+#       manually with the routeadm(1M) command.
+#-----------------------------------------------------------------------------
+
+tcp_rev_src_routes=0
+ip_forward_src_routed=0
+ip6_forward_src_routed=0
+
+arp_cleanup_interval=60000
+

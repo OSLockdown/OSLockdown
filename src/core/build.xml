@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!-- Copyright (c) 2007-2014 Forcepoint LLC.                                       -->
+<!-- This file is released under the GPLv3 license.                                -->
+<!-- See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license, -->
+<!-- or visit https://www.gnu.org/licenses/gpl.html instead.                       -->
+<!--                                                                               -->
+<!--   OS Lockdown Core                                                            -->
+<project name="OS Lockdown Core" default="init" basedir=".">
+    <description>
+        OS Lockdown Core:
+
+          - Consists of Engine to load and perform module actions
+          - Consists of higher-level functions and classes
+          - Consists of Baseline components
+    </description>
+    <import file="../../build-common.xml"/> 
+
+    <property name="build.root"  value="build"/>
+
+    <property name="root.dir" value="${build.root}/root"/>
+    <property name="sb.app.dir"  value="${root.dir}/usr/share/oslockdown"/>
+    <property name="sb.data.dir" value="${root.dir}/var/lib/oslockdown"/>
+
+    <target name="init">
+       <echo>OS Lockdown Core</echo>
+    </target>
+
+    <!-- ===================================================================== -->
+    <target name="replacer">
+        <replace dir="." summary="yes">
+            <include name="**/*.py" />
+            <replacetoken>2007-2010 by Raytheon</replacetoken>
+            <replacevalue>2007-2011 Raytheon</replacevalue>
+        </replace>
+    </target>
+
+    <target name="bytecode">
+        <pycompile dir="."/>
+    </target>
+
+
+    <target name="clean-core">
+        <echo message="Removing *.pyo files..."/>
+        <delete verbose="yes">
+            <fileset dir="." includes="**/*.pyo"/>
+            <fileset dir="." includes="bytecompile.py"/>
+        </delete>
+    </target>
+
+
+</project>

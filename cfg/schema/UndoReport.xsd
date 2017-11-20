@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ***************************************************************************** -->
+<!-- Copyright (c) 2007-2014 Forcepoint LLC.                                       -->
+<!-- This file is released under the GPLv3 license.                                -->
+<!-- See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license, -->
+<!-- or visit https://www.gnu.org/licenses/gpl.html instead.                       -->
+<!--                                                                          	   -->
+<!--   OS Lockdown - Security Undo Report                                	   -->
+<!-- ***************************************************************************** -->
+<!-- $Id: UndoReport.xsd 23919 2017-03-07 19:44:51Z rsanders $ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation>OS Lockdown - Security Undo Report Schema</xs:documentation>
+    <xs:appinfo>This XML created by the Python module: CoreEngine.pyo</xs:appinfo>
+  </xs:annotation>
+  <xs:element name="UndoReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="report" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="description" minOccurs="0" type="xs:string" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="created" type="xs:string" use="required"/>
+            <xs:attribute name="profile" type="xs:string" use="required"/>
+            <xs:attribute name="hostname" type="xs:string" use="required"/>
+            <xs:attribute name="dist" type="xs:string" use="required"/>
+            <xs:attribute name="distVersion" type="xs:string" use="required"/>
+            <xs:attribute name="kernel" type="xs:string" use="required"/>
+            <xs:attribute name="cpuInfo" type="xs:string" use="required"/>
+            <xs:attribute name="arch" type="xs:string" use="required"/>
+            <xs:attribute name="totalMemory" type="xs:string" use="required"/>
+            <xs:attribute name="execTimeMs" type="xs:string" use="optional"/>
+            <xs:attribute name="cpe" use="optional">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="cpe:/o:\S+:\S+:\d+(\.\d+)*"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="modules" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <!-- ***************************** 
+                         The Module 
+                   ***************************** 
+               -->
+              <xs:element name="module" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType mixed="true">
+                  <xs:sequence>
+                    <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:sequence>
+                      <xs:element name="views" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="view" minOccurs="0" maxOccurs="unbounded"/>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="compliancy" minOccurs="1" maxOccurs="1">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="line-item" minOccurs="0" maxOccurs="unbounded">
+                              <xs:complexType>
+                                <xs:attribute name="source" type="xs:string" use="required">
+                                  <xs:annotation>
+                                    <xs:documentation>Organization which supplied the guideline. For example, DISA, SANS, or PCI.</xs:documentation>
+                                  </xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="name" type="xs:string" use="required">
+                                  <xs:annotation>
+                                    <xs:documentation>Name of the guideline. For example, UNIX STIG.</xs:documentation>
+                                  </xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="version" type="xs:string" use="required">
+                                  <xs:annotation>
+                                    <xs:documentation>Version or date of the guideline (ref name).</xs:documentation>
+                                  </xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="item" type="xs:string" use="required"/>
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="details" minOccurs="0" maxOccurs="1">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="statusMessage" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="messages" minOccurs="0" maxOccurs="1">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="message" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:sequence>
+                  <xs:attribute name="severity" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:NMTOKEN">
+                        <xs:enumeration value="High"/>
+                        <xs:enumeration value="Medium"/>
+                        <xs:enumeration value="Low"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                  <xs:attribute name="results" type="xs:string" use="required"/>
+                  <xs:attribute name="severityLevel" type="xs:string" use="required"/>
+                  <xs:attribute name="execTimeMs" type="xs:string" use="optional"/>
+                  <xs:attribute name="fullyCompleted" type="xs:boolean" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <!-- *************** -->
+      </xs:sequence>
+      <xs:attribute name="sbVersion" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

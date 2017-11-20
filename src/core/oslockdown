@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# Copyright (c) 2007-2014 Forcepoint LLC.
+# This file is released under the GPLv3 license.  
+# See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+# or visit https://www.gnu.org/licenses/gpl.html instead.
+#
+# Wrapper Script to Launch OS Lockdown
+#
+umask 077
+PROG=/usr/share/oslockdown/oslockdown.py
+EXECPROG=""
+
+if [ ! -f ${PROG} -a -f ${PROG}o ]; then
+    PROG=${PROG}o
+fi
+
+if [ `uname -s` = 'SunOS' ] ; then
+    EXECPROG="/usr/bin/python2.4"
+else
+    EXECPROG="/usr/bin/python"
+fi
+
+if [ -z "${EXECPROG}" ] ; then
+    echo "Unable to determine executable Python name"
+elif [ ! -x ${EXECPROG} ] ; then
+    echo "${EXECPROG} does not exist or is not executable!"
+else
+    ${EXECPROG} -OO ${PROG} "$@"
+fi

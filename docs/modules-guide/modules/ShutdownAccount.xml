@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="ShutdownAccount" version="5.0">
+  <title xml:id="Accounts">Remove Shutdown User Account</title>
+  <para>
+  Removes the <emphasis>shutdown</emphasis> system account so that only
+  a root login can shutdown the system. As a general precaution, it is
+  recommended that you remove this system account. The more accounts
+  that are present on the system, the more opportunities an attacker has
+  to gain access or information about your system.
+ </para>
+  <para>
+  It is recommended to apply this module unless the
+  <emphasis role="italic">shutdown</emphasis> user account is required
+  by your system.
+ </para>
+  <simplesect xml:id="ShutdownAccount-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>3.1 - Password Settings</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN000000-LNX00320 - The system must not have special privilege accounts, such as shutdown and halt.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>LNX00320 - Special Privileged Accounts</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+      <listitem>
+        <para>CIP-007-3-R5.2.1 - Remove, disable, or rename factory default accounts</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>AC-2 - Account Management</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2.4 - Remove all unnecessary functionality</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

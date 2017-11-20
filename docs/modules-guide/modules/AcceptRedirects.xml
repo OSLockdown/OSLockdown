@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="AcceptRedirects" version="5.0">
+ <title xml:id="NetworkConfig">Disable Accepting ICMP Redirects</title>
+ <para>
+  Configures the system to refuse ICMP redirects.
+  <indexterm>
+   <primary>ICMP</primary>
+  </indexterm>
+ </para>
+ <para>
+  The ICMP protocol uses “redirect” messages to notify a traffic
+  source of its suboptimal use of routing. Such a redirect is normally
+  sent by the default router to the system to indicate that there is a
+  shorter route to a particular destination.
+ </para>
+ <para>
+  Allowing your system to accept ICMP redirects is a security risk. It
+  is recommended to apply this module to prevent denial-of-service
+  attacks.
+  <indexterm>
+   <primary>denial-of-service</primary>
+  </indexterm>
+ </para>
+ <table xml:id="table-icmp-redirects" frame="all" tocentry="0" cellspacing="2" cellpadding="2" pgwide="1">
+  <title>IP Settings to Refuse ICMP Redirects</title>
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="0.5*" align="left"/>
+   <colspec colname="c2" colwidth="0.5*"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Configuration Files</entry>
+     <entry>Setting</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="4"><filename>/etc/sysctl.conf</filename>
+      <indexterm>
+       <primary>/etc/sysctl.conf</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Files and Directories</primary>
+
+       <secondary>/etc/sysctl.conf</secondary>
+      </indexterm>
+
+      <indexterm>
+       <primary>sysctl.conf</primary>
+      </indexterm></entry>
+     <entry morerows="4"><literallayout class="monospaced">
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+net.ipv6.conf.all.accept_redirects = 0
+net.ipv6.conf.default.accept_redirects = 0</literallayout>
+      <indexterm>
+       <primary>accept_redirects</primary>
+      </indexterm></entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+     <entry><filename>/etc/default/ndd</filename>
+      <indexterm>
+       <primary>/etc/default/ndd</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Files and Directories</primary>
+
+       <secondary>/etc/default/ndd</secondary>
+      </indexterm>
+
+      <indexterm>
+       <primary>ndd</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>ip6_ignore_redirect</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>ip_ignore_redirect</primary>
+      </indexterm></entry>
+     <entry><literallayout class="monospaced">ip_ignore_redirect = 1
+ip6_ignore_redirect = 1</literallayout></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </table>
+ <para>
+  See the <emphasis>Solaris Tunable Parameters Reference
+  Manual</emphasis>
+  <footnote xml:id="sol-turnable">
+   <para>
+    Sun Microsystems. <emphasis role="underline">Solaris Tunable
+    Parameters Reference Manual</emphasis>. Santa Clara, CA: Sun
+    Microsystems Press, 2005.
+   </para>
+  </footnote>
+  and the Linux kernel’s networking variables/parameters (in the
+  <filename>ip-sysctl.txt</filename> file) for more information.
+  <indexterm>
+   <primary>Kernel</primary>
+  </indexterm>
+ </para>
+ <simplesect xml:id="AcceptRedirects-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-13 - Limitation and Control of Network Ports, Protocols, and
+     Services
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DHS Linux Configuration Guidance (2010.8)</title>
+   <listitem>
+    <para>
+     6.1 - Kernel TCP Stack Tuning
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN003609 - The system must ignore IPv4 Internet Control Message
+     Protocol (ICMP) redirect messages.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN007860 - The system must ignore IPv6 ICMP redirect messages.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 6 STIG (V1R14)</title>
+   <listitem>
+    <para>
+     RHEL-06-000084 - The system must not accept ICMPv4 redirect packets
+     on any interface.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     RHEL-06-000091 - The system must ignore ICMPv4 redirect messages by
+     default.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     RHEL-06-000099 - The system must ignore ICMPv6 redirects by
+     default.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN003600 - Network Security Settings
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     SC-5 - Denial of Service Protection
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

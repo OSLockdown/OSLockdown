@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: ConfigureNTP.xml 21205 2013-03-28 20:12:03Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="ConfigureNTP" version="5.0">
+ <title xml:id="NetworkServices">Configure Time Synchronization</title>
+ <para>
+  Configures the Network Time Protocol (NTP) daemon to synchronize time.
+  This module ensures the <filename>ntp.conf(5)</filename> configuration
+  file matches the contents provided, the NTP daemon is configured to
+  start during system startup, and is currently running.
+ </para>
+ <para>
+  Time synchronization is <emphasis role="italics">critical</emphasis>
+  to accurate logging and correlating events. It is strongly recommended
+  that the NTP daemon documentation be reviewed and use this module to
+  deploy a consistent configuration across the enterprise.
+ </para>
+ <para>
+  The default installation of the NTP daemon software for many operating
+  systems points to an external time source. If your machines do not
+  have Internet access, it is recommended to configure one or more of
+  your own servers to function as time servers. You can then use this
+  module to configure other servers to point to your designated time
+  servers.
+ </para>
+ <simplesect xml:id="ConfigureNTP-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (2.1)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (5 R1.23)</title>
+   <listitem>
+    <para>
+     GEN000240 - Network Time-Server
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

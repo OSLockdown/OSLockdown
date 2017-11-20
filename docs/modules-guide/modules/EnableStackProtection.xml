@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="EnableStackProtection" version="5.0">
+  <title xml:id="General">Enable Stack Protection</title>
+  <para>
+  Enables the stack to be marked as nonexecutable, which helps make
+  buffer-overflow attacks more difficult. This module is not applicable
+  to Linux-based systems.
+ </para>
+  <para>
+  A Solaris system running a 64-bit kernel makes the stacks of all
+  64-bit applications nonexecutable by default. Setting this parameter
+  is necessary to make 32-bit applications nonexecutable on systems
+  running 64-bit or 32-bit kernels.
+ </para>
+  <para>
+  This parameter exists on all systems running the Solaris 2.6, 7, 8, 9,
+  or 10 releases, but it is only effective on 64-bit SPARC and AMD64
+  architectures.
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2">
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.5*" align="left"/>
+      <colspec colname="c2" colwidth="0.5*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Setting</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="4" namest="c2" nameend="c3">Linux kernels must support the NX feature. Red Hat Enterprise Linux 4
+      and SUSE 9.1 and later <emphasis role="italic">do</emphasis>
+      support this feature. (See the
+      “<xref linkend="CheckXdNxSupport" xrefstyle="select: title page"/>”
+      and
+      “<xref linkend="EnableKernelExecShield" xrefstyle="select: title page"/>”
+      modules for more information).</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+        <row>
+          <entry>Solaris 10 (SPARC Global zone only)</entry>
+          <entry>
+            <filename>/etc/system</filename>
+            <indexterm>
+              <primary>/etc/system</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/system</secondary>
+            </indexterm>
+          </entry>
+          <entry>
+            <literallayout class="monospaced">
+set noexec_user_stack = 1
+set noexec_user_stack_log = 1</literallayout>
+            <indexterm>
+              <primary>noexec_user_stack</primary>
+            </indexterm>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <simplesect xml:id="EnableStackProtection-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN003540 - Disable Executable Stack</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>AC-3 - Access Enforcement</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,148 @@
+#!/bin/bash
+# Copyright (c) 2007-2014 Forcepoint LLC.
+# This file is released under the GPLv3 license.  
+# See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+# or visit https://www.gnu.org/licenses/gpl.html instead.
+#
+# osl-console   This shell script takes care of starting and stopping
+#              osl-console daemon
+#
+##############################################################################
+
+# Set your JAVA_HOME Here....
+
+if [ -d /usr/jdk/jdk1.6.0_16 ]; then
+    JAVA_HOME=/usr/jdk/jdk1.6.0_16/
+    export JAVA_HOME
+fi
+
+#############################################################################
+RETVAL=0
+
+if [ ! -r /lib/svc/share/smf_include.sh ]; then
+    echo "Unable source /lib/svc/share/smf_include.sh"
+    exit 1
+fi
+. /lib/svc/share/smf_include.sh
+
+
+progstart="su - sbwebapp -c \"/usr/share/oslockdown/console/bin/startup.sh\" >/dev/null"
+progstop="su - sbwebapp -c \"/usr/share/oslockdown/console/bin/shutdown.sh\" >/dev/null"
+
+dirfixes="/var/lib/oslockdown/profiles 
+          /var/lib/oslockdown/reports 
+          /var/lib/oslockdown/logs 
+          /usr/share/oslockdown/tools/
+          /var/lib/oslockdown/console/db
+          /var/lib/oslockdown/console/temp"
+
+
+java_check() {
+    results=`su - sbwebapp -c ./bin/java_test.sh | tail -1`
+    if [ "$results" != '$JAVA_HOME/bin/java is executable' ] ; then
+      echo $results
+      return 1
+    else
+      return 0
+    fi
+}
+
+ensureDirectorySettings()
+{
+    dirfixes="/var/lib/oslockdown/profiles         
+              /var/lib/oslockdown/reports          
+              /var/lib/oslockdown/logs             
+              /var/lib/oslockdown/console/db       
+              /var/lib/oslockdown/console/temp"    
+    for sbdir in $dirfixes
+    do
+        [ ! -d $sbdir ] && mkdir $sbdir
+        chmod 700 $sbdir
+        chown sbwebapp $sbdir
+    done
+}
+
+start() {
+        if [ ! -f /usr/share/oslockdown/console/conf/catalina.properties ]; then
+           echo "Error: Missing /usr/share/oslockdown/console/conf/catalina.properties"
+           echo
+           echo "You must run setup: /usr/share/oslockdown/tools/SB_Setup"
+           exit $SMF_EXIT_ERR_CONFIG
+        fi
+
+        echo  "Starting OS Lockdown Console:"	
+        id sbwebapp 1>/dev/null 2>&1
+        if [ $? -ne 0 ]; then
+            printf "\t[FAILED]\n"
+            echo "  Error: 'sbwebapp' user is missing"
+            return $?
+        fi
+#        ensureDirectorySettings
+
+#       chown -R sbwebapp /var/lib/oslockdown/reports/standalone
+        $progstart 
+        printf "\t[OK]\n"
+        RETVAL=$?
+        return $RETVAL
+}
+
+stop() {
+        printf "Shutting down OS Lockdown Console: "
+
+        [ ! -d /var/lib/oslockdown/logs ] && mkdir /var/lib/oslockdown/logs
+        $progstop 2>/dev/null
+        RETVAL=$?
+        if [ $RETVAL -eq 0 ]; then
+            printf "\t[OK]\n"
+        else
+            printf "\t[FAILED]\n"
+        fi
+	if [ ${RETVAL} -eq 0 ] ; then
+	  echo -n "Pausing 5 seconds for shutdown to finish:"
+	  sleep 5
+          printf "\t[OK]\n"
+	fi 
+        echo
+        return $RETVAL
+}
+
+
+#
+# Process Args
+#
+# See how we were called.
+case "$1" in
+  start)
+        java_check
+        if [ $? -ne 0 ]; then
+            exit  $SMF_EXIT_ERR
+        fi
+        start
+        if [ $? -ne 0 ]; then
+            exit  $SMF_EXIT_ERR
+        fi
+        ;;
+  stop)
+        stop
+        if [ $? -ne 0 ]; then
+            exit  $SMF_EXIT_ERR
+        fi
+        ;;
+  restart|reload)
+        stop
+        start
+        if [ $? -ne 0 ]; then
+            exit  $SMF_EXIT_ERR
+        fi
+	;;
+  status)
+        printf "OS Lockdown Console Status: "
+        /usr/ucb/ps -auxww |awk '/^sbwebapp .*java.*oslockdown\/console/ {flag=1; print "Running..."; for(i=9;i<NF;i++) printf "  %s\n", $i} END {if (flag != 1) print "Not running"}'
+        echo
+        ;;
+  *)
+        echo $"Usage: $0 {start|stop|restart|status}"
+        exit  $SMF_EXIT_ERR
+esac
+
+exit $SMF_EXIT_OK

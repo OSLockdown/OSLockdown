@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisablePAMConsole" version="5.0">
+  <title xml:id="Accounts">Disable PAM Console Library</title>
+  <para>
+  Disables PAM from granting sole access to administrative privileges to
+  the first user who logs into the console. The PAM Console library
+  gives users (at the physical console) capabilities that they would not
+  otherwise have, and removes those capabilities when the users are no
+  longer logged in at the console. It provides two main types of
+  capabilities: file permissions and authentication.
+  <indexterm><primary>PAM</primary></indexterm>
+
+  <indexterm><primary>console</primary></indexterm>
+ </para>
+  <para>
+  This module affects the ability for non-privileged users to reboot and
+  perform power-management functions from the console. See
+  <systemitem class="library">pam_console(8)</systemitem>
+  for more information.
+  <indexterm><primary>pam_console</primary></indexterm>
+ </para>
+  <simplesect xml:id="DisablePAMConsole-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN000000-LNX00600 - The Linux PAM system must not grant sole access to admin privileges to the first user who logs into the console.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>LNX00600 - PAM Configuration</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD NISPOM (Feb 2006)</title>
+      <listitem>
+        <para>8.613a1 - Access to Protection Functions</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>AC-3 - Access Enforcement</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,74 @@
+##############################################################################
+# Copyright (c) 2011-2014 Forcepoint LLC.
+# This file is released under the GPLv3 license.  
+# See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+# or visit https://www.gnu.org/licenses/gpl.html instead.
+##############################################################################
+
+# Main entry point
+/usr/sbin/oslockdown	--			gen_context(system_u:object_r:oslockdown_exec_t,s0)
+
+# PID files
+/var/run/oslockdown\.pid                   -- 	gen_context(system_u:object_r:oslockdown_var_run_t,s0)
+/var/run/oslockdown-dispatcher\.pid                   -- 	gen_context(system_u:object_r:oslockdown_dispatcher_var_run_t,s0)
+
+# Configuration tools
+/usr/share/oslockdown/tools(/.*)? 		gen_context(system_u:object_r:oslockdown_cfg_exec_t,s0)
+# Do not transition *INTO* SB_Remove
+/usr/share/oslockdown/tools/SB_Remove 		gen_context(system_u:object_r:oslockdown_cfg_t,s0)
+
+# Generic files in /usr/share/oslockdown
+/usr/share/oslockdown(/.*)?			gen_context(system_u:object_r:oslockdown_rw_t,s0)
+
+# All python code at top level
+/usr/share/oslockdown/.*\.pyo --			gen_context(system_u:object_r:oslockdown_py_t,s0)
+
+# Python *.so file for SWIG license wrapper
+/usr/share/oslockdown/sb_utils/auth/_Affirm.so --	gen_context(system_u:object_r:oslockdown_licso_t,s0)
+
+# Subdirectories holding python code
+/usr/share/oslockdown/security_modules(/.*)? 	gen_context(system_u:object_r:oslockdown_py_t,s0)
+/usr/share/oslockdown/sb_utils(/.*)? 		gen_context(system_u:object_r:oslockdown_py_t,s0)
+
+# Generic files in /var
+/var/lib/oslockdown(/.*)?				gen_context(system_u:object_r:oslockdown_var_lib_t,s0)
+
+# Logs - remember that these *could* be rotated off...
+/var/lib/oslockdown/logs				gen_context(system_u:object_r:var_log_t,s0)
+/var/lib/oslockdown/logs/catalina\.(.*)*log(.*)* --	gen_context(system_u:object_r:oslockdown_console_log_t,s0)
+/var/lib/oslockdown/logs/localhost\.(.*)*log(.*)* --	gen_context(system_u:object_r:oslockdown_console_log_t,s0)
+/var/lib/oslockdown/logs/manager\.(.*)*log(.*)* --	gen_context(system_u:object_r:oslockdown_console_log_t,s0)
+/var/lib/oslockdown/logs/oslockdown-console\.log(.*)* --	gen_context(system_u:object_r:oslockdown_console_log_t,s0)
+/var/lib/oslockdown/logs/oslockdown-audit\.log(.*)* --	gen_context(system_u:object_r:oslockdown_console_log_t,s0)
+/var/lib/oslockdown/logs/oslockdown\.log(.*)* --	gen_context(system_u:object_r:oslockdown_log_t,s0)
+/var/log/oslockdown-dispatcher\.log(.*)* --         gen_context(system_u:object_r:oslockdown_dispatcher_log_t,s0)
+/var/log/oslockdown-dispatcher\.stacktrace(.*)* --         gen_context(system_u:object_r:oslockdown_dispatcher_log_t,s0)
+
+# SSL Certificates
+/var/lib/oslockdown/files/certs(/.*)?		gen_context(system_u:object_r:oslockdown_cert_t,s0)
+
+# License files
+/var/lib/oslockdown/files/\.sb.*\.dat		gen_context(system_u:object_r:oslockdown_lkey_t,s0)
+/var/lib/oslockdown/files/ConsoleType.txt	gen_context(system_u:object_r:oslockdown_lkey_t,s0)
+
+# State file
+/var/lib/oslockdown/oslockdown-state\.xml --	gen_context(system_u:object_r:oslockdown_state_t,s0)
+
+# 'sbwebapp' user directory -> remember this is a 'regular' user running a Java process
+/usr/share/oslockdown/console(/.*)?		gen_context(system_u:object_r:user_home_t,s0)
+
+# Dispatcher cfg file
+/usr/share/oslockdown/cfg/osl-dispatcher.properties -- gen_context(system_u:object_r:oslockdown_dispatcher_cfg_t,s0)
+
+# Dispatcher entry point
+/etc/init\.d/osl-dispatcher -- 				gen_context(system_u:object_r:oslockdown_dispatcher_initrc_t,s0)
+/etc/rc\.d/init\.d/osl-dispatcher -- 			gen_context(system_u:object_r:oslockdown_dispatcher_initrc_t,s0)
+
+# Dispatcher direct exec
+/sbin/OSL_Dispatcher -- 					gen_context(system_u:object_r:oslockdown_dispatcher_exec_t,s0)
+
+# Console entry points
+/etc/init\.d/osl-console -- 				gen_context(system_u:object_r:oslockdown_console_initrc_t,s0)
+/etc/rc\.d/init\.d/osl-console -- 			gen_context(system_u:object_r:oslockdown_console_initrc_t,s0)
+/usr/share/oslockdown/console/bin/startup.sh --   gen_context(system_u:object_r:oslockdown_console_exec_t,s0)
+/usr/share/oslockdown/console/bin/shutdown.sh --   gen_context(system_u:object_r:oslockdown_console_exec_t,s0)

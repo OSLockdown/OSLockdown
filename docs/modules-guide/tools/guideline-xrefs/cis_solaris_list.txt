@@ -1,0 +1,161 @@
+1.1|Apply Latest OS Patches
+1.2|Install Solaris 10 Encryption Kit
+1|Install Patches and Additional Software
+2|Restrict Services
+2.1|Establish a Secure Baseline
+2.2.1|Disable Local CDE ToolTalk Database Server
+2.2.2|Disable Local CDE Calendar Manager
+2.2.3|Disable Local Common Desktop Environment (CDE)
+2.2.4|Disable Local sendmail Service
+2.2.5|Disable Local Web Console
+2.2.6|Disable Local WBEM
+2.2.7|Disable Local BSD Print Protocol Adapter
+2.2|Disable Unnecessary Local Services
+2.3.10|Disable automount daemon
+2.3.11|Disable Apache services
+2.3.12|Disable Solaris Volume Manager Services
+2.3.13|Disable Solaris Volume Manager GUI
+2.3.14|Disable Local RPC Port Mapping Service
+2.3.1|Disable RPC Encryption Key
+2.3.2|Disable NIS Server Daemons
+2.3.3|Disable NIS Client Daemons
+2.3.4|Disable NIS+ daemons
+2.3.5|Disable LDAP Cache Manager
+2.3.6|Disable Kerberos TGT Expiration Warning
+2.3.7|Disable Generic Security Services (GSS) daemons
+2.3.8|Disable Volume Manager
+2.3.9|Disable Samba Support
+2.3|Disable Other Services
+2.4.10|Enable Trivial File Transfer Protocol (TFTP) Services
+2.4.11|Enable Printer Server Daemons
+2.4.12|Enable Simple Network Management Protocol (SNMP)
+2.4.1|Enable Kerberos server daemons
+2.4.2|Enable NFS server processes
+2.4.3|Enable NFS client processes
+2.4.4|Enable telnet access
+2.4.5|Enable FTP Access
+2.4.6|Enable boot Services
+2.4.7|Enable Reverse Address Resolution Protocol (RARP)
+2.4.8|Enable DHCP Server Support
+2.4.9|Enable Domain Name System (DNS) Server Support
+2.4|Enable Required Services
+2.5|Configure TCP Wrappers
+3|Kernel Tuning
+3.1|Restrict Core Dumps to Protected Directory
+3.2|Enable Stack Protection
+3.3|Enable Strong TCP Sequence Number Generation
+3.4|Modify Network Parameters
+3.4.1|Disable Source Packet Forwarding
+3.4.2|Disable Broadcast Packet Forwarding
+3.4.3|Disable Response to ICMP Timestamp Requests
+3.4.4|Disable Response to ICMP Broadcast Timestamp Requests
+3.4.5|Disable Response to ICMP Netmask Requests
+3.4.6|Disable ICMPv6 Redirect Messages
+3.4.7|Disable Response to Broadcast ICMPv4 Echo Request
+3.4.8|Disable Response to Multicast Echo Request
+3.4.9|Set Interval for Scanning IRE_CACHE
+3.4.10|Ignore ICMP Redirect Messages
+3.4.11|Set Strict Multihoming
+3.4.12|Disable ICMPv4 Redirect Messages
+3.4.13|Set ARP Cleanup Interval
+3.4.14|Disable TCP Reverse IP Source Routing
+3.4.15|Set Maximum Number of Half-open TCP Connections
+3.4.16|Set Maximum Number of Incoming Connections
+3.4.17|Lock down dtspcd(8)
+3.5|Disable Network Routing
+4|Logging
+4.1|Enable inetd Connection Logging
+4.2|Enable FTP daemon Logging
+4.3|Enable Debug Level Daemon Logging
+4.4|Capture syslog AUTH Messages
+4.5|Enable Login Records
+4.6|Capture All Failed Login Attempts
+4.7|Enable cron Logging
+4.8|Enable System Accounting
+4.9|Enable Kernel Level Auditing
+5|File/Directory Permissions/Access
+5.1|Set daemon umask
+5.2|Restrict Set-UID on User Mounted Devices
+5.3|Verify System File Permissions
+5.4|Set Sticky Bit on World Writable Directories
+6|System Access, Authentication, and Authorization
+6.1|Disable login: Prompts on Serial Ports
+6.2|Disable “nobody” Access for RPC Encryption Key Storage Service
+6.3|Configure SSH
+6.3.1|Set SSH Protocol to 2
+6.3.2|Disable SSH X11Forwarding
+6.3.3|Set SSH MaxAuthTries to 3
+6.3.4|Set SSH MaxAuthTriesLog to 0
+6.3.5|Set SSH IgnoreRhosts to yes
+6.3.6|Set SSH RhostsAuthentication to no
+6.3.7|Set SSH RhostsRSAAuthentication to no
+6.3.8|Disable SSH root login
+6.3.9|Set SSH PermitEmptyPasswords to no
+6.3.10|Set SSH Banner
+6.4|Disable .rhosts Support in /etc/pam.conf
+6.5|Restrict FTP Use
+6.6|Verify Delay between Failed Login Attempts Set to 4
+6.7|Set Default Screen Lock for CDE Users
+6.8|Set Default Screen Lock for GNOME Users
+6.9|Restrict at/cron to Authorized Users
+6.10|Restrict root Login to System Console
+6.11|Set Retry Limit for Account Lockout
+6.12|Set EEPROM Security Mode and Log Failed Access
+6.13|Secure the GRUB Menu
+7|User Accounts and Environment
+7.10|Check Permissions on User Home Directories
+7.11|Check User Dot File Permissions
+7.12|Check Permissions on User .netrc Files
+7.13|Check for Presence of User .rhosts Files
+7.14|Set Default umask for Users
+7.15|Set Default umask for ftp Users
+7.16|Set “mesg n” as Default for All Users
+7.1|Disable System Accounts
+7.2|Ensure Password Fields are Not Empty
+7.3|Set Password Expiration Parameters on Active Accounts
+7.4|Set Strong Password Creation Policies
+7.5|Verify No Legacy “+” Entries Exist in passwd, shadow, and group Files
+7.6|Verify No UID 0 Accounts Exist Other than root
+7.7|Set Default Group for root Account
+7.8|Change Home Directory for root Account
+7.9|Ensure root PATH Integrity
+8|Warning Banners
+8.1|Create Warnings for Standard Login Services
+8.2|Create Warning Banner for CDE Users
+8.3|Create Warning Banner for GNOME Users
+8.4|Create Warning Banner for FTP daemon
+8.5|Check Banner Setting for telnet is Null
+8.6|Create Power On Warning
+8.7|Change Default Greeting String for Sendmail
+9|System Maintenance
+9.1|Check for Remote Consoles
+9.2|Verify System File Permissions
+9.3|Ensure Password Fields are Not Empty
+9.4|Verify No Legacy “+” Entries Exist in passwd, shadow, and group Files
+9.5|Verify No UID 0 Accounts Exist Other than root
+9.6|Ensure root PATH Integrity
+9.7|Check Permissions on User Home Directories
+9.8|Check User Dot File Permissions
+9.9|Check Permissions on User .netrc Files
+9.10|Check for Presence of User .rhosts Files
+9.11|Check Groups in /etc/passwd
+9.12|Check That Users Are Assigned Home Directories
+9.13|Check That Defined Home Directories Exist
+9.14|Check User Home Directory Ownership
+9.15|Check for Duplicate UIDs
+9.16|Check for Duplicate GIDs
+9.17|Check That Reserved UIDs Are Assigned to System Accounts
+9.18|Check for Duplicate User Names
+9.19|Check for Duplicate Group Names
+9.20|Check for Presence of User .netrc Files
+9.21|Check for Presence of User .forward Files
+9.22|Find World Writable Files
+9.23|Find SUID/SGID System Executables
+9.24|Find Un-owned Files and Directories
+9.25|Find Files and Directories with Extended Attributes
+SN.1|Enable process accounting at boot time
+SN.2|Use full path names in /etc/dfs/dfstab file
+SN.3|Restrict access to power management functions
+SN.4|Restrict access to sys-suspend feature
+SN.5|Create symlinks for dangerous files
+SN.7|Remove Support for Internet Services (inetd)

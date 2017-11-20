@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: DisableRhnsd.xml 21205 2013-03-28 20:12:03Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="EnablePostfix" version="5.0">
+ <title xml:id="SysMgmtServices">Enable Postfix</title>
+ <para>
+  The postfix daemon is responsible for local mail delivery, and is
+  essential to many maintenance and notification activities. It is
+  recommended that this service always be on.
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="0.8*" align="left"/>
+   <colspec colname="c2" colwidth="0.5*"/>
+   <colspec colname="c3" colwidth="0.8*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Package</entry>
+     <entry>Service Names</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry>postfix</entry>
+     <entry>postfix</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+     <entry namest="c2" nameend="c3">Not applicable.</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+     <entry morerows="2">postfix</entry>
+     <entry morerows="2">postfix</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+     <entry namest="c2" nameend="c3">Not applicable.</entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="EnablePostfix-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>DISA Red Hat 6 STIG (V1R14)</title>
+   <listitem>
+    <para>
+     RHEL-06-000287 - The postfix service must be enabled for mail
+     delivery.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<!-- ************************************************************************ -->
+<!--   Copyright (c) 2007-2010 Forcepoint LLC.                                -->
+<!--   This file is released under the GPLv3 license.                                -->
+<!--   See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,  -->
+<!-- or visit https://www.gnu.org/licenses/gpl.html instead.                       -->
+<!--                                                                          -->
+<!--   Security Blanket Documentation - Build Java Help Files                 -->
+<!-- ************************************************************************ -->
+<!-- $Id: build.xml 24005 2017-03-27 17:38:08Z rsanders $ -->
+
+<project name="Security Blanket Documentation" default="docs" basedir=".">
+    <description>Security Blanket Documentation</description>
+    <import file="../build-common.xml"/>
+
+    <property name="tools" location="tools"/>
+    <property name="javahelp.xsl" value="xsl/tcs-javahelp.xsl"/>
+    <property name="javahelp.css" value="css/docbook.css" />
+
+    <property name="pdf.xsl" value="xsl/tcs-pdf.xsl"/>
+    <property name="admin.guide.pdf.xsl" value="xsl/tcs-pdf-admin-guide.xsl"/>
+
+    <property environment="env" />
+    <property name="fop.home" value="${env.FOP_HOME}" /> 
+    <property name="saxon.home" value="${env.SAXON_HOME}" /> 
+   <!-- 
+        Set properties based on the existence of 'already' generated docs 
+
+        This will speed up the day-to-day console builds because new docs
+        won't be generated if the javahelp/* files have already been generated.
+
+        Prior to production release... make sure the dist/* directory is empty!
+    -->
+    <available file="dist/javahelp/admin" type="dir" property="docs.admin.exists" />
+    <available file="dist/javahelp/modules" type="dir" property="docs.modules.exists" />
+    <available file="dist/javahelp/customernotification" type="dir" property="docs.customernotification.exists" />
+
+    <uptodate property="admin.guide.idxUpToDate"
+              srcfile="admin-guide/wordlist.txt"
+              targetfile="admin-guide/admin-guide-index.xml" />
+
+    <!-- Form our list of jars for using the docbook libraries -->
+    <path id="DOCBOOK-jar-list">
+     <pathelement location="${saxon.home}/saxon.jar" />
+     <pathelement location="${fop.home}/lib/xercesImpl-2.7.1.jar" />
+    </path>
+    <!-- Form our list of jars for using the FOP libraries -->
+    <path id="FOP-jar-list">
+      <pathelement location="${fop.home}/lib/xmlgraphics-commons-1.4.jar"/>
+      <pathelement location="${fop.home}/lib/xml-apis-ext-1.3.04.jar"/>
+      <pathelement location="${fop.home}/lib/xml-apis-1.3.04.jar"/>
+      <pathelement location="${fop.home}/lib/xercesImpl-2.7.1.jar"/>
+      <pathelement location="${fop.home}/lib/xalan-2.7.0.jar"/>
+      <pathelement location="${fop.home}/lib/serializer-2.7.0.jar"/>
+      <pathelement location="${fop.home}/lib/commons-logging-1.0.4.jar"/>
+      <pathelement location="${fop.home}/lib/commons-io-1.3.1.jar"/>
+      <pathelement location="${fop.home}/lib/batik-all-1.7.jar"/>
+      <pathelement location="${fop.home}/lib/avalon-framework-4.2.0.jar"/>
+      <pathelement location="${fop.home}/build/fop.jar"/>
+      <pathelement location="${fop.home}/build/fop-sandbox.jar"/>
+      <pathelement location="${fop.home}/build/fop-sandbox.jar"/>
+      <pathelement location="${fop.home}/build/fop-hyph.jar"/>
+    </path>
+
+    <!-- Form our list of jars for creating the PDFs -->
+    <path id="FOP-jar-list">
+      <pathelement location="${fop.home}/lib/xmlgraphics-commons-1.4.jar"/>
+      <pathelement location="${fop.home}/lib/xml-apis-ext-1.3.04.jar"/>
+      <pathelement location="${fop.home}/lib/xml-apis-1.3.04.jar"/>
+      <pathelement location="${fop.home}/lib/xercesImpl-2.7.1.jar"/>
+      <pathelement location="${fop.home}/lib/xalan-2.7.0.jar"/>
+      <pathelement location="${fop.home}/lib/serializer-2.7.0.jar"/>
+      <pathelement location="${fop.home}/lib/commons-logging-1.0.4.jar"/>
+      <pathelement location="${fop.home}/lib/commons-io-1.3.1.jar"/>
+      <pathelement location="${fop.home}/lib/batik-all-1.7.jar"/>
+      <pathelement location="${fop.home}/lib/avalon-framework-4.2.0.jar"/>
+      <pathelement location="${fop.home}/build/fop.jar"/>
+      <pathelement location="${fop.home}/build/fop-sandbox.jar"/>
+      <pathelement location="${fop.home}/build/fop-sandbox.jar"/>
+      <pathelement location="${fop.home}/build/fop-hyph.jar"/>
+    </path>
+
+    <target name="init">
+       <echo message="${env.DRAFT_MODE}" />
+    </target>
+
+    <!-- ===================================================================== -->
+    <target name="docs">
+       <!-- <splash  showduration="0" displayText="Building ${ant.project.name}" /> -->
+       <antcall target="modules-guide" />
+       <antcall target="admin-guide" />
+    </target>
+
+    <!-- ===================================================================== -->
+    <target name="modules-guide" unless="docs.modules.exists">
+        <mkdir dir="dist/javahelp/modules" />
+        <mkdir dir="dist/javahelp/Figures" />
+        <copy todir="dist/javahelp/modules/Figures">
+            <fileset dir="modules-guide/Figures">
+               <include name="*.png"/>
+               <include name="*.jpg"/>
+            </fileset>
+        </copy>
+        <copy file="${javahelp.css}" todir="dist/javahelp/modules/" />
+        <java classname="com.icl.saxon.StyleSheet" fork="true" failonerror="true">
+          <classpath refid='DOCBOOK-jar-list' />
+          <sysproperty key="javax.xml.parsers.DocumentBuilderFactory" value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+          <sysproperty key="javax.xml.parsers.SAXParserFactory" value="org.apache.xerces.jaxp.SAXParserFactoryImpl" />
+          <sysproperty key="org.apache.xerces.xni.parser.XMLParserConfiguration" value="org.apache.xerces.parsers.XIncludeParserConfiguration" />
+          <!-- these jvm arg isn't needed on 64 bit boxes, but the build may
+	       fail on 32 bit boxes or Solaris boxes with 'too many nested' errror otherwise -->
+	  <jvmarg value="-Xss1m" />
+	  <jvmarg value="-Xmx1024m" />
+	  <arg value="-t" />
+          <arg value="modules-guide/oslockdown-modules.xml" />
+          <arg value="${javahelp.xsl}" />
+          <arg value="use.extensions=0" />
+          <arg value="base.dir=dist/javahelp/modules/" />
+          <arg value="draft.mode=${draft.mode}" />
+          <arg value="tcs.doc.rev=${product.pkg.evr}" />
+          <arg value="show.comments=${show.comments}" />
+        </java>
+        <echo message="Document (tcs.doc.rev) = ${product.pkg.evr}"/>
+        <echo message="Setting charset to UTF-8"/>
+        <replace dir="dist/javahelp/modules/">
+            <include name="*.html" />
+            <include name="*.hs" />
+            <replacetoken>ISO-8859-1</replacetoken>
+            <replacevalue>UTF-8</replacevalue>
+        </replace>
+    </target>
+
+    <target name="replacer">
+        <replace dir="modules-guide/modules/">
+            <include name="*.xml" />
+            <replacetoken>SUSE 11</replacetoken>
+            <replacevalue>SUSE 10 and 11</replacevalue>
+        </replace>
+    </target>
+
+    <!-- ===================================================================== -->
+    <target name="modules-guide-pdf">
+        <mkdir dir="dist/fo/modules" />
+        <mkdir dir="dist/pdf" />
+        <mkdir dir="dist/fo/modules/Figures" />
+        <copy todir="dist/fo/modules/Figures">
+            <fileset dir="modules-guide/Figures">
+               <include name="*.png"/>
+               <include name="*.jpg"/>
+            </fileset>
+        </copy>
+        <java classname="com.icl.saxon.StyleSheet" fork="true" failonerror="true">
+          <classpath refid='DOCBOOK-jar-list' />
+          <sysproperty key="javax.xml.parsers.DocumentBuilderFactory" value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+          <sysproperty key="javax.xml.parsers.SAXParserFactory" value="org.apache.xerces.jaxp.SAXParserFactoryImpl" />
+          <sysproperty key="org.apache.xerces.xni.parser.XMLParserConfiguration" value="org.apache.xerces.parsers.XIncludeParserConfiguration" />
+          <arg value="-o" />
+          <arg value="dist/fo/modules/modules-guide.fo"/>
+          <arg value="-t" />
+          <arg value="modules-guide/oslockdown-modules.xml" />
+          <arg value="${pdf.xsl}" />
+          <!-- these jvm arg isn't needed on 64 bit boxes, but the build may
+	       fail on 32 bit boxes or Solaris boxes with 'too many nested' errror otherwise -->
+          <jvmarg value="-Xss1m" />
+          <jvmarg value="-Xmx1024m" />
+        </java>
+        <java classname="org.apache.fop.cli.Main" fork="true" failonerror="true">
+          <classpath refid='FOP-jar-list' />
+          <arg value="-v" />
+          <arg value="-fo" />
+          <arg value="dist/fo/modules/modules-guide.fo"/>
+          <arg value="-pdf" />
+          <arg value="dist/pdf/modules-guide.pdf"/>
+          <!-- these jvm arg isn't needed on 64 bit boxes, but the build may
+	       fail on 32 bit boxes or Solaris boxes with 'too many nested' errror otherwise -->
+          <jvmarg value="-Xss1m" />
+          <jvmarg value="-Xmx1024m" />
+        </java>
+    </target>
+
+
+
+
+    <!-- ===================================================================== -->
+    <target name="admin-guide-pdf">
+        <mkdir dir="dist/fo/admin-guide" />
+        <mkdir dir="dist/pdf" />
+        <copy todir="dist/fo/admin-guide/Figures">
+            <fileset dir="admin-guide/Figures">
+               <include name="*.png"/>
+               <include name="*.gif"/>
+            </fileset>
+        </copy>
+        <java classname="com.icl.saxon.StyleSheet" fork="true" failonerror="true">
+          <classpath refid='DOCBOOK-jar-list' />
+          <sysproperty key="javax.xml.parsers.DocumentBuilderFactory" value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+          <sysproperty key="javax.xml.parsers.SAXParserFactory" value="org.apache.xerces.jaxp.SAXParserFactoryImpl" />
+          <sysproperty key="org.apache.xerces.xni.parser.XMLParserConfiguration" value="org.apache.xerces.parsers.XIncludeParserConfiguration" />
+          <arg value="-o" />
+          <arg value="dist/fo/admin-guide/admin-guide.fo"/>
+          <arg value="-t" />
+          <arg value="admin-guide/SB_Book.xml" />
+          <arg value="${admin.guide.pdf.xsl}" />
+        </java>
+        <java classname="org.apache.fop.cli.Main" fork="true" failonerror="true">
+          <classpath refid='FOP-jar-list' />
+          <arg value="-v" />
+          <arg value="-fo" />
+          <arg value="dist/fo/admin-guide/admin-guide.fo"/>
+          <arg value="-pdf" />
+          <arg value="dist/pdf/admin-guide.pdf"/>
+        </java>
+    </target>
+
+
+    <!-- ===================================================================== -->
+    <target name="admin-guide" unless="docs.admin.exists" >
+        <mkdir dir="dist/javahelp/admin" />
+        <mkdir dir="dist/javahelp/admin/Figures" />
+        <copy file="${javahelp.css}" todir="dist/javahelp/admin/" />
+        <copy todir="dist/javahelp/admin/Figures">
+            <fileset dir="admin-guide/Figures">
+               <exclude name="Thumbs.db"/>
+            </fileset>
+        </copy>
+        <java classname="com.icl.saxon.StyleSheet" fork="true" failonerror="true">
+          <classpath refid='DOCBOOK-jar-list' />
+          <sysproperty key="javax.xml.parsers.DocumentBuilderFactory" value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+          <sysproperty key="javax.xml.parsers.SAXParserFactory" value="org.apache.xerces.jaxp.SAXParserFactoryImpl" />
+          <sysproperty key="org.apache.xerces.xni.parser.XMLParserConfiguration" value="org.apache.xerces.parsers.XIncludeParserConfiguration" />
+          <arg value="-t" />
+          <arg value="admin-guide/SB_Book.xml" />
+          <arg value="${javahelp.xsl}" />
+          <arg value="use.extensions=0" />
+          <arg value="base.dir=dist/javahelp/admin/" />
+          <arg value="draft.mode=${draft.mode}" />
+          <arg value="tcs.doc.rev=${product.pkg.evr}" />
+          <arg value="show.comments=${show.comments}" />
+        </java>
+        <echo message="Setting charset to UTF-8"/>
+        <replace dir="dist/javahelp/admin/">
+            <include name="*.html" />
+            <include name="*.hs" />
+            <replacetoken>ISO-8859-1</replacetoken>
+            <replacevalue>UTF-8</replacevalue>
+        </replace>
+    </target>
+
+    <!-- ===================================================================== -->
+    <target name="clean-docs">
+        <delete dir="dist/javahelp" />
+        <delete dir="dist/temp" />
+        <delete dir="dist/fo" />
+        <delete dir="dist/pdf" />
+        <delete >
+	  <fileset dir="dist" includes="*.txt" />
+	</delete >
+    </target>
+
+</project>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: CheckXdNxSupport.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="CheckXdNxSupport" version="5.0">
+  <title xml:id="HardwareServices">Check Kernel for XD/NX Support</title>
+  <para>
+  Scan-only module, which checks the running Linux kernel to see if it
+  supports Execute Disable (XD) or No Execute (NX).
+ </para>
+  <para>
+  Later 32-bit processors in the x86 family support the ability to
+  prevent code execution on a per memory page basis. Generically and on
+  AMD processors, this ability is called No Execute (NX), while on
+  Intel® processors it is called Execute Disable (XD). This ability can
+  help prevent exploitation of buffer overflow vulnerabilities and
+  should be activated whenever possible. Extra steps must be taken to
+  ensure that this protection is enabled on 32-bit x86 systems. Other
+  processors, such as Itanium®, POWER™, and 64-bit x86 (both AMD64 or
+  Intel 64), have included such support since inception and the standard
+  kernel for those platforms supports the feature.
+ </para>
+  <para>
+  This module examines the <filename>/proc/cpuinfo</filename> file for
+  any CPUs which have the 'PAE' and 'NX' flag set. If these flags are
+  set, the module will use the <filename>uname(1)</filename> utility’s
+  <filename><emphasis role="italic">-r</emphasis></filename> option to
+  determine the running kernel’s name. If the name does not end with
+  the string “PAE”, it is assumed the current kernel does not
+  support PAE so the module will report a failure. This module will only
+  scan the system, so it is the responsibility of the system
+  administrator to install the “kernel-PAE” package and boot the
+  system using a PAE-enabled kernel.
+ </para>
+  <simplesect xml:id="CheckXdNxSupport-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>2.2.4.4 - Enable Execute Disable (XD) or No Execute (NX) Support on 32-bit x86 Systems</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-4172-3 - Kernel support for the XD/NX processor feature should be enabled or disabled as appropriate</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

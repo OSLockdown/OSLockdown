@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profile name="DISA RHEL6 STIG" sysProfile="true">
+    <info>
+        <description>
+            <summary>Profile supporting DISA RHEL6 STIG (V1R10)</summary>
+            <verbose>Initial Profile to support DISA RHEL6 STIG</verbose>
+            <comments/>
+        </description>
+    </info>
+    <security_module name="Audit Rules">
+        <option name="auditRules">### INITIAL RULES FROM RHEL60 /etc/audit/audit.rules
+# This file contains the auditctl rules that are loaded
+# whenever the audit daemon is started via the initscripts
+# The rules are simply the parameters that would be passed
+# to auditctl.
+
+# First rule - delete all
+-D
+
+#Increase the buffers to survive stress events.
+# Make this bigger for busy systems
+-b 320
+
+# Feel free to add below this line.  See auditctl man page.
+
+#audit_time_rules (RHEL-06-000165)
+-a always,exit -F arch=b32 -S adjtimex -k audit_time_rules
+-a always,exit -F arch=b64 -S adjtimex -k audit_time_rules
+
+#audit_time_rules (RHEL-06-000167)
+-a always,exit -F arch=b32 -S settimeofday -k audit_time_rules
+-a always,exit -F arch=b64 -S settimeofday -k audit_time_rules
+
+# audit_time_rules (RHEL-06-000169)
+-a always,exit -F arch=b32 -S stime -k audit_time_rules
+
+# audit_time_rules (RHEL-06-000171)
+-a always,exit -F arch=b32 -S clock_settime -k audit_time_rules
+-a always,exit -F arch=b64 -S clock_settime -k audit_time_rules
+
+# audit_time_rules (RHEL-06-999173)
+-w /etc/localtime -p wa -k audit_time_rules
+
+# audit_account_changes (RHEL-06-000174, RHEL-06-000175
+#      RHEL-06-000176, RHEL-06-000177)
+-w /etc/group -p wa -k audit_account_changes
+-w /etc/passwd -p wa -k audit_account_changes
+-w /etc/gshadow -p wa -k audit_account_changes
+-w /etc/shadow -p wa -k audit_account_changes
+-w /etc/security/opasswd -p wa -k audit_account_changes   
+
+# audit_network_modifications (RHEL-06-000182)
+-a always,exit -F arch=b32 -S sethostname -S setdomainname -k audit_network_modifications
+-a always,exit -F arch=b64 -S sethostname -S setdomainname -k audit_network_modifications
+-w /etc/issue -p wa -k audit_network_modifications
+-w /etc/issue.net -p wa -k audit_network_modifications
+-w /etc/hosts -p wa -k audit_network_modifications
+-w /etc/sysconfig/network -p wa -k audit_network_modifications   
+
+# MAC-policy (RHEL-06-000183)
+-w /etc/selinux/ -p wa -k MAC-policy
+
+# perm_mod (RHEL-06-000184)
+-a always,exit -F arch=b32 -S chmod -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b32 -S chmod -F auid=0 -k perm_mod
+-a always,exit -F arch=b64 -S chmod -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b64 -S chmod -F auid=0 -k perm_mod   
+
+# perm_mod (RHEL-06-000185)
+-a always,exit -F arch=b32 -S chown -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b32 -S chown -F auid=0 -k perm_mod
+-a always,exit -F arch=b64 -S chown -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b64 -S chown -F auid=0 -k perm_mod   
+
+# perm_mod (RHEL-06-000186)
+-a always,exit -F arch=b32 -S fchmod -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b32 -S fchmod -F auid=0 -k perm_mod
+-a always,exit -F arch=b64 -S fchmod -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b64 -S fchmod -F auid=0 -k perm_mod   
+
+# perm_mod (RHEL-06-000187)
+-a always,exit -F arch=b32 -S fchmodat -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b32 -S fchmodat -F auid=0 -k perm_mod
+-a always,exit -F arch=b64 -S fchmodat -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b64 -S fchmodat -F auid=0 -k perm_mod
+
+# perm_mod (RHEL-06-000188)
+-a always,exit -F arch=b32 -S fchown -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b32 -S fchown -F auid=0 -k perm_mod
+-a always,exit -F arch=b64 -S fchown -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b64 -S fchown -F auid=0 -k perm_mod
+
+#perm_mod (RHEL-06-000189)
+-a always,exit -F arch=b32 -S fchownat -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b32 -S fchownat -F auid=0 -k perm_mod
+-a always,exit -F arch=b64 -S fchownat -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b64 -S fchownat -F auid=0 -k perm_mod  
+
+# perm_mod (RHEL-06-000190)
+-a always,exit -F arch=b32 -S fremovexattr -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b32 -S fremovexattr -F auid=0 -k perm_mod
+-a always,exit -F arch=b64 -S fremovexattr -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b64 -S fremovexattr -F auid=0 -k perm_mod
+
+# perm_mod (RHEL-06-000191)
+-a always,exit -F arch=b32 -S fsetxattr -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b32 -S fsetxattr -F auid=0 -k perm_mod
+-a always,exit -F arch=b64 -S fsetxattr -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b64 -S fsetxattr -F auid=0 -k perm_mod
+
+# perm_mod (RHEL-06-000192)
+-a always,exit -F arch=b32 -S lchown -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b32 -S lchown -F auid=0 -k perm_mod
+-a always,exit -F arch=b64 -S lchown -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b64 -S lchown -F auid=0 -k perm_mod   
+
+# perm_mod (RHEL-06-000193)
+-a always,exit -F arch=b32 -S lremovexattr -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b32 -S lremovexattr -F auid=0 -k perm_mod
+-a always,exit -F arch=b64 -S lremovexattr -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b64 -S lremovexattr -F auid=0 -k perm_mod 
+
+# perm_mod (RHEL-06-000194)
+-a always,exit -F arch=b32 -S lsetxattr -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b32 -S lsetxattr -F auid=0 -k perm_mod
+-a always,exit -F arch=b64 -S lsetxattr -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b64 -S lsetxattr -F auid=0 -k perm_mod
+
+# perm_mod (RHEL-06-000195)
+-a always,exit -F arch=b32 -S removexattr -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b32 -S removexattr -F auid=0 -k perm_mod
+-a always,exit -F arch=b64 -S removexattr -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b64 -S removexattr -F auid=0 -k perm_mod
+
+# perm_mod (RHEL-06-000196)
+-a always,exit -F arch=b32 -S setxattr -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b32 -S setxattr -F auid=0 -k perm_mod
+-a always,exit -F arch=b64 -S setxattr -F auid&gt;=500 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b64 -S setxattr -F auid=0 -k perm_mod
+
+# access (RHEL-06-000197)
+-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid&gt;=500 -F auid!=4294967295 -k access
+-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid&gt;=500 -F auid!=4294967295 -k access
+-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid=0 -k access
+-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid=0 -k access
+
+# export (RHEL-06-000199)
+-a always,exit -F arch=b32 -S mount -F auid&gt;=500 -F auid!=4294967295 -k export
+-a always,exit -F arch=b32 -S mount -F auid=0 -k export   
+-a always,exit -F arch=b64 -S mount -F auid&gt;=500 -F auid!=4294967295 -k export
+-a always,exit -F arch=b64 -S mount -F auid=0 -k export   
+
+# delete (RHEL-06-000200)
+-a always,exit -F arch=b32 -S rmdir -S unlink -S unlinkat -S rename -S renameat -F auid&gt;=500 -F auid!=4294967295 -k delete
+-a always,exit -F arch=b32 -S rmdir -S unlink -S unlinkat -S rename -S renameat -F auid=0 -k delete   
+-a always,exit -F arch=b64 -S rmdir -S unlink -S unlinkat -S rename -S renameat -F auid&gt;=500 -F auid!=4294967295 -k delete
+-a always,exit -F arch=b64 -S rmdir -S unlink -S unlinkat -S rename -S renameat -F auid=0 -k delete 
+
+# actions (RHEL-06-000201)  
+-w /etc/sudoers -p wa -k actions
+
+# modules (RHEL-06-000202)
+-w /sbin/insmod -p x -k modules
+-w /sbin/rmmod -p x -k modules
+-w /sbin/modprobe -p x -k modules
+-a always,exit -F arch=b64 -S init_module -S delete_module -k modules
+-a always,exit -F arch=b32 -S init_module -S delete_module -k modules
+
+</option>
+    </security_module>
+    <security_module name="Block System Accounts"/>
+    <security_module name="Boot Loader Configuration File Permissions">
+        <option name="fileList">/boot/grub</option>
+        <option name="recursive">1</option>
+        <option name="globNames">0</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root</option>
+        <option name="dacs">600</option>
+    </security_module>
+    <security_module name="Check for separate /home file system"/>
+    <security_module name="Check for separate /tmp file system"/>
+    <security_module name="Check for separate /var file system"/>
+    <security_module name="Check for separate /var/log file system"/>
+    <security_module name="Check for separate /var/log/audit file system"/>
+    <security_module name="Configure /etc/audit/auditd.conf Settings">
+        <option name="auditConfs">space_left_action = email
+num_logs = 5
+max_log_file = 6
+max_log_file_action = rotate
+space_left = 100
+action_mail_acct = root
+disk_full_action = syslog
+disk_error_action = syslog
+admin_space_left_action = single</option>
+    </security_module>
+    <security_module name="Consult the RPM Database for file/directory setting">
+        <option name="honorChangesBySB">1</option>
+        <option name="packageExemptions"/>
+        <option name="fileExemptions"/>
+    </security_module>
+    <security_module name="Create Login Banner">
+        <option name="loginBanner">You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+-At any time, the USG may inspect and seize data stored on this IS.
+-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.</option>
+    </security_module>
+    <security_module name="Create Login FTP Banner">
+        <option name="ftpLoginBanner">USE BANNER</option>
+    </security_module>
+    <security_module name="Default umask">
+        <option name="defaultUmask">077</option>
+    </security_module>
+    <security_module name="Disable Abrtd"/>
+    <security_module name="Disable Accepting ICMP Redirects"/>
+    <security_module name="Disable Accepting Secure Redirects"/>
+    <security_module name="Disable Autofs Daemon"/>
+    <security_module name="Disable Avahi Daemon"/>
+    <security_module name="Disable Bluetooth"/>
+    <security_module name="Disable Bluetooth Kernel Modules">
+        <option name="requiredLines">install net-pf-31 /bin/true
+install bluetooth /bin/true</option>
+    </security_module>
+    <security_module name="Disable Core Dumps"/>
+    <security_module name="Disable Ctrl-Alt-Del"/>
+    <security_module name="Disable Graphical Login"/>
+    <security_module name="Disable IP Forwarding"/>
+    <security_module name="Disable IPv6 Kernel Module">
+        <option name="requiredLines">options ipv6 disable=1</option>
+    </security_module>
+    <security_module name="Disable Inetd"/>
+    <security_module name="Disable Interactive Boot"/>
+    <security_module name="Disable NIS Client"/>
+    <security_module name="Disable Netconsole"/>
+    <security_module name="Disable Ntpdate"/>
+    <security_module name="Disable Oddjobd"/>
+    <security_module name="Disable Qpidd"/>
+    <security_module name="Disable Rdisc"/>
+    <security_module name="Disable Remote Exec (rexec)"/>
+    <security_module name="Disable Remote Login (rlogin)"/>
+    <security_module name="Disable Remote Shell (rsh)"/>
+    <security_module name="Disable Rhnsd"/>
+    <security_module name="Disable Sending ICMP Redirects"/>
+    <security_module name="Disable Source Routing"/>
+    <security_module name="Disable Support for DCCP">
+        <option name="requiredLines">install dccp /bin/true</option>
+    </security_module>
+    <security_module name="Disable Support for RDS">
+        <option name="requiredLines">install rds /bin/true</option>
+    </security_module>
+    <security_module name="Disable Support for SCTP">
+        <option name="requiredLines">install sctp /bin/true</option>
+    </security_module>
+    <security_module name="Disable Support for TIPC">
+        <option name="requiredLines">install tipc /bin/true</option>
+    </security_module>
+    <security_module name="Disable Support for USB Storage devices">
+        <option name="requiredLines">install usb-storage /bin/true</option>
+    </security_module>
+    <security_module name="Disable TFTP"/>
+    <security_module name="Disable Telnet"/>
+    <security_module name="Disable atd Service"/>
+    <security_module name="Enable Auditing For All Processes"/>
+    <security_module name="Enable Crond"/>
+    <security_module name="Enable ExecShield Kernel Module">
+        <option name="requiredLines">kernel.exec-shield=1
+kernel.randomize_va_space=2</option>
+    </security_module>
+    <security_module name="Enable Ip6tables"/>
+    <security_module name="Enable Iptables"/>
+    <security_module name="Enable Reverse Path Source Validation"/>
+    <security_module name="Enable TCP Syncookies"/>
+    <security_module name="Enable postfix"/>
+    <security_module name="Enable the Audit Subsystem"/>
+    <security_module name="Enable vsftpd Additional Logging"/>
+    <security_module name="Ensure SELinux is Properly Enabled">
+        <option name="SELINUX">enforcing</option>
+        <option name="SELINUXTYPE">targeted</option>
+    </security_module>
+    <security_module name="Ensure YUM repositories use gpgcheck"/>
+    <security_module name="Ignore Bogus ICMP4 Error Responses"/>
+    <security_module name="Ignore ICMP ECHO and TIMESTAMP Requests"/>
+    <security_module name="Limit Password Reuse">
+        <option name="passwordReuse">5</option>
+    </security_module>
+    <security_module name="Lock Invalid Accounts"/>
+    <security_module name="Lock Non-Root Accounts with UID 0"/>
+    <security_module name="Lock expired account after inactivity">
+        <option name="daysInactive">35</option>
+    </security_module>
+    <security_module name="Log Martian Packets"/>
+    <security_module name="Maximum Number of Logins per User">
+        <option name="maxLoginsByUser">10</option>
+    </security_module>
+    <security_module name="Maximum Time Between Password Changes">
+        <option name="passwordMaxdays">60</option>
+    </security_module>
+    <security_module name="Minimum Delay Between Password Changes">
+        <option name="passwordMindays">1</option>
+    </security_module>
+    <security_module name="No Empty Passwords"/>
+    <security_module name="No Hashes Allowed in Passwd/Group Files">
+        <option name="fileList">/etc/passwd /etc/group /etc/gshadow</option>
+    </security_module>
+    <security_module name="Password Expiration Warning">
+        <option name="passwordExpireWarning">7</option>
+    </security_module>
+    <security_module name="Password Perms">
+        <option name="fileList">/etc/passwd /etc/group</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root</option>
+        <option name="dacs">644</option>
+    </security_module>
+    <security_module name="Password Policy Consecutive Characters">
+        <option name="passwordConsecutiveChars">3</option>
+    </security_module>
+    <security_module name="Password Policy Different Characters">
+        <option name="passwordDiffChars">8</option>
+    </security_module>
+    <security_module name="Password Policy Length Minimum">
+        <option name="passwordMinLength">15</option>
+    </security_module>
+    <security_module name="Password Policy Lowercase Minimum"/>
+    <security_module name="Password Policy Numeric Minimum"/>
+    <security_module name="Password Policy Special Characters"/>
+    <security_module name="Password Policy Uppercase Minimum"/>
+    <security_module name="Remove Insecure_Locks option for NFS Server"/>
+    <security_module name="Remove rsh authorization files"/>
+    <security_module name="Require GRUB Password"/>
+    <security_module name="Root Console Only Logins">
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root</option>
+        <option name="dacs">400</option>
+        <option name="secureDevices">console
+tty1</option>
+    </security_module>
+    <security_module name="SELinux Find unlabeled_t files">
+        <option name="checkWhichFiles">0</option>
+    </security_module>
+    <security_module name="SELinux Must Not Be Disabled"/>
+    <security_module name="SMB Configuration"/>
+    <security_module name="SSHD Disable Empty Passwords"/>
+    <security_module name="SSHD Disable Host-based Authentication"/>
+    <security_module name="SSHD Disable Rhosts Authentication"/>
+    <security_module name="SSHD Disable Root Login"/>
+    <security_module name="SSHD Enable Banner"/>
+    <security_module name="SSHD Enable Ignore Rhosts"/>
+    <security_module name="SSHD Permit User Environment"/>
+    <security_module name="SSHD Print Last Login by User"/>
+    <security_module name="SSHD Protocol"/>
+    <security_module name="SSHD Restrict Ciphers">
+        <option name="mustStartWith">3des aes</option>
+        <option name="mustContain"/>
+        <option name="mustEndWith"/>
+    </security_module>
+    <security_module name="SSHD Set Idle Timeout Interval for User Logins">
+        <option name="sshdIdleTimeout">900</option>
+    </security_module>
+    <security_module name="Screen Package Installed"/>
+    <security_module name="Secure Netrc Files"/>
+    <security_module name="Secure Option for NFS Server"/>
+    <security_module name="Secure World Writable Directories"/>
+    <security_module name="Secure World Writable Files"/>
+    <security_module name="Set Mandatory Screen Saver">
+        <option name="gnomeSaverActivate">15</option>
+    </security_module>
+    <security_module name="Set Password Aging on Active Accounts">
+        <option name="passwordAgingMindays">1</option>
+        <option name="passwordAgingMaxdays">60</option>
+        <option name="passwordAgingExpireWarning">7</option>
+        <option name="passwordAgingInvalidate">35</option>
+        <option name="exemptSystemAccounts">0</option>
+        <option name="exemptSpecificAccounts"/>
+    </security_module>
+    <security_module name="Set TFTP Startup Directory"/>
+    <security_module name="Shadow Perms">
+        <option name="fileList">/etc/shadow /etc/gshadow</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames">root</option>
+        <option name="dacs">000</option>
+    </security_module>
+    <security_module name="Single User Mode Password"/>
+    <security_module name="System Command File Permissions">
+        <option name="fileList">/bin /usr/bin /usr/local/bin /sbin /usr/sbin /usr/local/sbin</option>
+        <option name="recursive">1</option>
+        <option name="globNames">0</option>
+        <option name="allowedUnames">root</option>
+        <option name="allowedGnames"/>
+        <option name="dacs">755</option>
+    </security_module>
+    <security_module name="System Library File Permissions">
+        <option name="fileList">/lib /lib64 /usr/lib /usr/local/lib /usr/local/lib64 /usr/lib64</option>
+        <option name="recursive">1</option>
+        <option name="globNames">0</option>
+        <option name="allowedUnames">&lt;SYSTEM&gt;</option>
+        <option name="allowedGnames"/>
+        <option name="dacs">755</option>
+    </security_module>
+    <security_module name="System Log File Permissions"/>
+    <security_module name="Use NODEV Option for Non-root Partitions"/>
+    <security_module name="Use NOSUID on User Filesystems"/>
+    <security_module name="Verify required software cryptographic certs are installed">
+        <option name="requiredCerts">gpg(Red Hat, Inc. (release key &lt;security@redhat.com&gt;)</option>
+        <option name="showExtraCerts">1</option>
+    </security_module>
+</profile>

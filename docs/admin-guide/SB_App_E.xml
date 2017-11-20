@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % CommonEntities SYSTEM "../COMMON_ENTITIES.ent">
+%CommonEntities;
+]>
+<appendix version="5.0" xml:id="app-command-line" xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!--<?xml-stylesheet type="text/css" href="docbook.css"?>-->
+  <title>Command Line Options</title>
+  <indexterm><primary>oslockdown(8)</primary></indexterm>
+  <para>OS Lockdown can be run from the command line, non-interactively, in order to:</para>
+  <itemizedlist>
+    <listitem>
+      <para>Scan a system and generate an Assessment report.</para>
+    </listitem>
+    <listitem>
+      <para>Automatically apply all necessary changes to bring the system into compliance with the specified
+        profile.</para>
+    </listitem>
+    <listitem>
+      <para>Undo any changes made by the last Apply action of the specified profile.</para>
+    </listitem>
+    <listitem>
+      <para>Generate a system baseline.</para>
+    </listitem>
+    <listitem>
+      <para>Compare two Baseline reports.</para>
+    </listitem>
+  </itemizedlist>
+  <para>See the <command>oslockdown(8)</command> man page for a complete list of options and examples.</para>
+</appendix>

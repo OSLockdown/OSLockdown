@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableRemoteSyslog" version="5.0">
+ <title xml:id="SysServices">Disable Remote Syslog</title>
+ <para>
+  Configures the syslog daemon to not accept messages from other
+  systems.
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="0.5*" align="left"/>
+   <colspec colname="c2" colwidth="1.0*"/>
+   <colspec colname="c3" colwidth="0.8*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Configuration File or Property</entry>
+     <entry>Setting</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="2"><filename>/etc/init.d/syslog</filename>
+      <indexterm>
+       <primary>/etc/init.d/syslog</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Files and Directories</primary>
+
+       <secondary>/etc/init.d/syslog</secondary>
+      </indexterm></entry>
+     <entry morerows="3"><envar>SYSLOGD_OPTIONS</envar> does not contain
+      “<parameter>-r</parameter>”
+      <indexterm>
+       <primary>SYSLOGD_OPTIONS</primary>
+      </indexterm></entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+     <entry><filename>/etc/init.d/rsyslog</filename></entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+     <entry><filename>/etc/sysconfig/syslog</filename></entry>
+     <entry><envar>SYSLOGD_PARAMS</envar> does not contain
+      “<parameter>-r</parameter>”</entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+     <entry><command>svcprop -p config/log_from_remote system-log</command></entry>
+     <entry><parameter>false</parameter></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="DisableRemoteSyslog-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-6 - Maintenance, Monitoring, and Analysis of Audit Logs
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN005480 - The syslog daemon must not accept remote messages
+     unless it is a syslog server documented using site-defined
+     procedures.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN005480 - Syslog Accepts Remote Messages
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+   <listitem>
+    <para>
+     CIP-005-3-R2.2 - Enable only ports and services needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+   <listitem>
+    <para>
+     CIP-007-3-R2.2 - Disable ports and services not needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.2 - Disable all unnecessary and insecure services
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

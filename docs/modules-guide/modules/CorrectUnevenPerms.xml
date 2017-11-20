@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="CorrectUnevenPerms" version="5.0">
+ <title xml:id="fileDACs">Correct Uneven File Permissions</title>
+ <para>
+  Ensures files and directories do not have uneven file permissions.
+  This means that the group must not have more permissions than the
+  owner. If the permissions are uneven, this module will reset the
+  permissions so that the extra permissions will be removed.
+ </para>
+ <para>
+  This module does not check files inside user home directories.
+ </para>
+ <simplesect xml:id="CorrectUnevenPerms-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN001140 - System files and directories must not have uneven
+     access permissions.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN001140 - Uneven File Permissions
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD NISPOM (Feb 2006)</title>
+   <listitem>
+    <para>
+     8.606b1 - Access 2 Requirements
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-3 - Access Enforcement
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     AU-9 - Protection of Audit Information
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

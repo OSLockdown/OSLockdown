@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: DisableBootCaching.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableBootCaching" version="5.0">
+ <title xml:id="SysServices">Disable Boot Caching</title>
+ <para>
+  Disables the readahead_early and readahead_later services on Red Hat
+  systems. These services provide one-time caching of files belonging to
+  some boot services, with the goal of allowing the system to boot
+  faster.
+ </para>
+ <para>
+  According to the <emphasis role="italic">NSA Guide to the Secure
+  Configuration of RHEL5</emphasis>, the “...readahead services do not
+  substantially increase a system’s risk exposure, but they also do
+  not provide great benefit. Unless the system is running a specialized
+  application for which the file caching substantially improves system
+  boot time, this guide recommends disabling the services.”
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2" pgwide="0">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="0.8*" align="left"/>
+   <colspec colname="c2" colwidth="0.5*"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Package</entry>
+     <entry>Service Names</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="2"><emphasis>No check</emphasis></entry>
+     <entry morerows="2"><para>
+       readahead_early
+      </para>
+
+      <para>
+       readahead_later
+      </para></entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+     <entry namest="c1" nameend="c2">Not Applicable</entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+     <entry morerows="1" namest="c2" nameend="c3"><emphasis>Operating System Not Applicable</emphasis></entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="DisableBootCaching-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-13 - Limitation and Control of Network Ports, Protocols, and
+     Services
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+   <listitem>
+    <para>
+     CIP-005-3-R2.2 - Enable only ports and services needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+   <listitem>
+    <para>
+     CIP-007-3-R2.2 - Disable ports and services not needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     3.3.12 - Boot Caching (readahead early/readahead later)
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NVD CCE</title>
+   <listitem>
+    <para>
+     CCE-4302-6 - The readahead_later service should be enabled or
+     disabled as appropriate.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CCE-4421-4 - The readahead_early service should be enabled or
+     disabled as appropriate.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

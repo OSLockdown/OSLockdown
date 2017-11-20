@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="900" name="SELinux Find unlabeled_t files">
+        <library>SELinuxFindUnlabeledFiles</library>
+        <description>Examine the filesystem looking for any files with the 'unlabeled_t' SELinux context.
+        If SELinix is unsupported or disabled, this Module will always pass.
+        Note that this Module is a 'scan-only' Module, any findings required manual action to remediate.</description>
+        <scan_weight>10</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <configurationOptions>
+          <option name="checkWhichFiles" type="checkWhichFiles">
+            <description>Files to check?</description>
+            <helpText>Should only files in /dev or all files be checked?</helpText>
+            <default>0</default>
+          </option>
+         </configurationOptions>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4"/>
+          <cpe-item name="cpe:/o:centos:centos:5"/>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:redhat:fedora:10"/>
+          <cpe-item name="cpe:/o:redhat:fedora:11"/>
+          <cpe-item name="cpe:/o:redhat:fedora:12"/>
+          <cpe-item name="cpe:/o:redhat:fedora:13"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>SELinux</member>
+        </views>
+      </security_module>

@@ -1,0 +1,3 @@
+To test, execute the following as root:
+
+# python -OO ./baseline.py 

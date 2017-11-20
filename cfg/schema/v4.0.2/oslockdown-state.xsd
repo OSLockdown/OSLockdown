@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <!-- ***************************************************************************** -->
+    <!-- Copyright (c) 2007-2014 Forcepoint LLC.                                       -->
+    <!-- This file is released under the GPLv3 license.                                -->
+    <!-- See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license, -->
+    <!-- or visit https://www.gnu.org/licenses/gpl.html instead.                       -->
+    <!--   OS Lockdown - State File                                               -->
+    <!-- ***************************************************************************** -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:annotation>
+    <xs:documentation> OS Lockdown - State File</xs:documentation>
+    <xs:appinfo> This XML created by the Python module: AssessmentGen.pyo </xs:appinfo>
+</xs:annotation>
+
+  <xs:element name="analysis">
+    <xs:complexType>
+      <xs:attribute name="result" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="Fail" />
+            <xs:enumeration value="Pass" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="date" type="xs:string" use="required" />
+      <xs:attribute name="reason" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="change_record">
+    <xs:complexType mixed="true"/>
+  </xs:element>
+
+  <xs:element name="action">
+    <xs:complexType>
+      <xs:attribute name="date"      type="xs:string" use="required" />
+      <xs:attribute name="operation" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="oslockdown">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="state" />
+      </xs:sequence>
+      <xs:attribute name="version" type="xs:NMTOKEN" use="required" />
+      <xs:attribute name="sbVersion" type="xs:NMTOKEN" use="optional" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="security_module">
+    <xs:complexType>
+      <xs:sequence>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="analysis"      minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="change_record" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="action"        minOccurs="0" maxOccurs="1"/>
+      </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="state">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="security_module" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

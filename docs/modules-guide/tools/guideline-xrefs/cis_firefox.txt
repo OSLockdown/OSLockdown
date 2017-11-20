@@ -1,0 +1,28 @@
+2.2.1|Enable Auto Update 
+2.2.2|Enable Update Notifications
+2.3.1|Enable SSL 3.0 and TLS 1.0 
+2.3.2|Enable Warning of Loading Mixed Content 
+2.3.3|Enable Warning of Using Weak Encryption
+2.3.4|Enable Online Certificate Status Protocol
+2.4.1|Disabling Auto-Install of Add-Ons
+2.5.1|Disable Closing of Windows via Scripts
+2.5.2|Disable Caching of SSL Pages
+2.5.3|Disable Downloading on Desktop
+2.5.5|Enable Virus Scanning for Downloads
+2.5.6|Block Report Web Forgeries
+2.5.7|Block Report Attack Sites
+2.5.8|Disable Displaying Javascript in History URLs 
+2.6.2|Disable Referer from an SSL Website
+2.6.3|Disable Sending LM Hash
+2.7.1|Accept Only 1st Party Cookies
+2.7.2|Disallow Credential Storage
+2.7.3|Disable Prompting for Credential Storage
+2.7.4|Delete History and Form Data
+2.7.5|Delete Download History
+2.7.6|Delete Search and Form History
+2.7.8|Clear SSL Form Session Data 
+2.7.9|Enable Warning When Entering Insecure Site
+2.7.10|Enable Warning When Submitting Clear Text Form Data
+2.8.1|Disable Closing of Windows via Scripts
+2.8.2|Disable Javascript's Ability to Change Status bar text
+2.8.3|Disable Java

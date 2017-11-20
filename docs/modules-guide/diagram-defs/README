@@ -1,0 +1,12 @@
+###############################################################################
+module-diagrams: $(MODGRAPHS)
+	$(TEST) -x $(DOT)
+	$(TEST) -x $(MV)
+
+	@for i in $(MODGRAPHS); do \
+	IMG=`echo $$i |sed 's/.dot/.png/'`;\
+	    $(DOT) -Tpng $$i > $$IMG ;\
+	    $(MV) -f $$IMG modules-guide/images ;\
+	    echo "$$i --> $$IMG --> modules-guide/images ";\
+	done
+

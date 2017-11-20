@@ -1,0 +1,14 @@
+<!ENTITY SB_prodname         "OS Lockdown">
+<!ENTITY SB_prodvers         "5.0.0">
+<!ENTITY SB_reldate          "November, 2017">
+<!ENTITY SB_supportphone     "TBD">
+<!ENTITY SB_supporturl       "https://www.github.com/OSLockdown/OSLockdown">
+<!ENTITY SB_productdownload  "https://www.github.com/OSLockdown/OSLockdown">
+<!ENTITY SB_copyright        "2007-2017">
+<!ENTITY SB_support_file     "https://www.github.com/OSLockdown/OSLockdown">
+
+<!-- See http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references -->
+<!ENTITY ldquo "&#x201C;"> <!-- Left double quote -->
+<!ENTITY rdquo "&#x201D;"> <!-- Right double quote -->
+<!ENTITY lsquo "&#x2018;"> <!-- Left single quote -->
+<!ENTITY rsquo "&#x2019;"> <!-- Right single quote -->

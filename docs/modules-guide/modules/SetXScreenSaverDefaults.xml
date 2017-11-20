@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SetXScreenSaverDefaults" version="5.0">
+  <title xml:id="SessionMgmt">Set X Screen Saver Application Defaults</title>
+  <para>
+  Configures the default timeout and activation values for the X screen
+  saver program.
+ </para>
+  <para>
+  It is recommended to set the timeout parameter to no more than 10
+  minutes.
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2" pgwide="1">
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="1.0*" align="left"/>
+      <colspec colname="c2" colwidth="1.2*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Setting</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="4">
+            <filename>/usr/share/X11/app-defaults/XScreenSaver</filename>
+            <indexterm>
+              <primary>X11</primary>
+            </indexterm>
+            <indexterm>
+              <primary>XScreenSaver</primary>
+            </indexterm>
+          </entry>
+          <entry morerows="5">
+            <literallayout class="monospaced">*lock: true
+*lockTimeout: 0:00:00
+*timeout: <replaceable>0:MM:00</replaceable>
+      </literallayout>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+          <entry>
+            <filename>/usr/openwin/lib/app-defaults/XScreenSaver</filename>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <para>
+  The Solaris variant of this module also ensures that the SUNWxwsvr
+  package is installed. Otherwise, it will report <emphasis>not
+  applicable</emphasis>.
+ </para>
+  <simplesect xml:id="SetXScreenSaverDefaults-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>
+     CC-11 - Account Monitoring and Control
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>CIA DCID 6/3 (May 2000)</title>
+      <listitem>
+        <para>
+     4.B.1.a(5) - Screen Lock
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.1.a(5)(a) - Screen Lock - Maximum Idle Time will be 15 minutes
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.2.a(16)(b) - Session Control - Station or session time-outs
+     (PL2)
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.3.a(17)(a) - Session Control - Station or session time-outs
+     (PL3)
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>
+     GEN000500 - Inactivity
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD JAFAN 6/3 (Oct 2004)</title>
+      <listitem>
+        <para>
+     4.B.1.a(5) - Screen Lock
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.1.a(5)(a) - Screen Lock - Maximum Idle Time will be 15 minutes
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.2.a(16)(b) - Session Control - Station or session time-outs
+     (PL2)
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.3.a(17)(a) - Session Control - Station or session time-outs
+     (PL3)
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD NISPOM (Feb 2006)</title>
+      <listitem>
+        <para>
+     8.609b2 - User Inactivity
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>
+     AC-11 - Session Lock
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>
+     8.5.15 - If a session has been idle for more than 15 minutes,
+     require the user to re-enter the password to re-activate the
+     terminal.
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="SetXScreenSaverDefaults-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Number of minutes a graphical X Windows session can be idle before a password protected screen saver is activated.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

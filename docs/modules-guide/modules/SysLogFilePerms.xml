@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="SysLogFilePerms">
+ <title xml:id="fileDACs">System Log File Permissions</title>
+ <para>
+  Controls system log files in <filename>/var/log</filename> so they
+  have file permissions that prevent world read access, and in some
+  cases, even group access. Proper file ownership is also established.
+  <indexterm>
+   <primary>/var/log</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Files and Directories</primary>
+   <secondary>/var/log</secondary>
+  </indexterm>
+
+  <indexterm>
+   <primary>rsh</primary>
+  </indexterm>
+ </para>
+ <para>
+  This module sets most all of the log file permissions to their
+  defaults. It should have no impact on normal system operations.
+ </para>
+ <note>
+  <title>Note: Operating system reboots may reset some permissions</title>
+  <para>
+   This module sets the recommended file permissions on
+   <filename>/var/log/wtmp</filename>. However, when the operating
+   system boots, the permissions are reset. After a system has been
+   rebooted and OS Lockdown is run, this module will report a failure
+   again, but will reset the permissions if an apply was chosen.
+  </para>
+  <para>
+   Linux customers who use the DISA SRR Scripts Version 5, Release 1.22
+   or earlier will receive a false positive on GEN002680 and GEN002700.
+   This is because the SRR scripts do not check both
+   <filename>/var/log/audit.d</filename> and
+   <filename>/var/log/audit/audit.log</filename>. Ticket CSD-AR001410371
+   is open with DISA.
+  </para>
+ </note>
+ <simplesect xml:id="SysLogFilePerms-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CC-6 - Maintenance, Monitoring, and Analysis of Audit Logs
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>CIA DCID 6/3 (May 2000)</title>
+   <listitem>
+    <para>
+     4.B.1.b(2)(b) - Auditing - Protect contents of audit trails against
+     unauthorized access
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     4.B.2.a(4)(b) - Auditing - Protect contents of audit trails against
+     unauthorized access (PL2)
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     4.B.4.a(6)(b)
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DHS Linux Configuration Guidance (2010.8)</title>
+   <listitem>
+    <para>
+     5 - Audit Trail
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN001260 - System log files must have mode 0640 or less
+     permissive.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN002680 - System audit logs must be owned by root.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN002690 - System audit logs must be group-owned by root, bin,
+     sys, or system.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN002700 - System audit logs must have mode 0640 or less
+     permissive.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN003180 - The cronlog file must have mode 0600 or less
+     permissive.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN004480 - The SMTP service log file must be owned by root.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN004500 - The SMTP service log file must have mode 0644 or less
+     permissive.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 6 STIG (V1R14)</title>
+   <listitem>
+    <para>
+     RHEL-06-000133 - All rsyslog-generated log files must be owned by
+     root.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     RHEL-06-000134 - All rsyslog-generated log files must be
+     group-owned by root.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     RHEL-06-000135 - All rsyslog-generated log files must have mode
+     0600 or less permissive.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN001260 - System Log File Permissions
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN002680 - Audit Logs Accessibility
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN002700 - Audit Logs Permissions
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN003180 - Cronlog Permissions
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN004480 - Critical Sendmail Log File Ownership
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN004500 - Critical Sendmail Log File Permissions
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD JAFAN 6/3 (Oct 2004)</title>
+   <listitem>
+    <para>
+     4.B.1.b(2)(b) - Auditing - Protect contents of audit trails against
+     unauthorized access
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     4.B.2.a(4)(b) - Auditing - Protect contents of audit trails against
+     unauthorized access (PL2)
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     4.B.4.a(6)(b)
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD NISPOM (Feb 2006)</title>
+   <listitem>
+    <para>
+     8.602a2 - Audit Trail Protection
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     8.606b1 - Access 2 Requirements
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-3 - Access Enforcement
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     AU-9 - Protection of Audit Information
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     2.6.1.1.2 - Confirm Existence and Permissions of System Log Files
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NVD CCE</title>
+   <listitem>
+    <para>
+     CCE-3701-0 - All syslog log files should be owned by the
+     appropriate group.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CCE-4233-3 - File permissions for all syslog log files should be
+     set correctly.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CCE-4366-1 - All syslog log files should be owned by the
+     appropriate user.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     10.5.1 - Limit viewing of audit trails
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     10.5.2 - Protect audit trail files from unauthorized modifications
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

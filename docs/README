@@ -1,0 +1,28 @@
+groff -Tascii -man security-blanket.8
+
+groff -Tps -man security-blanket.8 > security-blanket8.ps
+ps2pdf13 security-blanket8.ps
+
+
+How to make a bullet in Man pages:
+
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+\fIAccount Validation\fR: All accesses to a samba server are checked against PAM to see if the account is vaild, not disabled and is permitt
+ed to login at this time\&. This also applies to encrypted logins\&.
+.RE
+
+
+Preformatted Text
+.nf
+_your_pre_fromatted_
+_text_goes_here_____
+.fi
+

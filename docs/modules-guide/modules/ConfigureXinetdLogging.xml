@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="ConfigureXinetdLogging" version="5.0">
+  <title xml:id="RemoteAccessServices">Configure Xinetd Logging</title>
+  <para>
+  Verify that the indicated settings are made to the
+  <filename>/etc/xinetd.conf</filename> file and possibly all files in
+  the <filename>/etc/xinetd.d</filename> directory.
+ </para>
+  <simplesect xml:id="ConfigureXinetdLogging-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>
+     CC-13 - Limitation and Control of Network Ports, Protocols, and
+     Services
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>
+     GEN003800 - Inetd or xinetd logging/tracing must be enabled.
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>
+     GEN003800 - inetd Logging
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     2.2.2 - Disable all unnecessary and insecure services
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="ConfigureXinetdLogging-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Required line for log_type</para>
+      </listitem>
+      <listitem>
+        <para>Required line for log_on_success</para>
+      </listitem>
+      <listitem>
+        <para>Required line for log_on_failure</para>
+      </listitem>
+      <listitem>
+        <para>Add to all /etc/xinetd.d/* files if missing?</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="TftpSecureMode">
+  <title xml:id="FileTransferServices">Set TFTP Startup Directory</title>
+  <para>
+  Sets the TFTP startup directory to <filename>/tftpboot</filename> for
+  incoming connections.
+  <indexterm><primary>FTP</primary></indexterm>
+
+  <indexterm><primary>TFTP</primary></indexterm>
+ </para>
+  <para>
+  On Linux systems, this module checks the
+  <filename>/etc/xinetd.d/tftp</filename> file to ensure that the
+  <parameter>server_args</parameter> parameter includes the
+  <parameter>-s</parameter> flag. Note that while a valid directory
+  should be given as the argument, it is not required by the module. If
+  the <parameter>-s</parameter> does not exist, or there is no directory
+  provided, then these fields will be added when applied.
+  <indexterm><primary>/etc/xinetd.d</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/etc/xinetd.d</secondary></indexterm>
+
+  <indexterm><primary>xinetd</primary></indexterm>
+ </para>
+  <para>
+  On Solaris systems, this module ensures that TFTP’s
+  <parameter>inetd_start/exec</parameter> service property includes the
+  <parameter>-s /tftpboot</parameter> argument. This is done using the
+  <command>svcprop(1)</command> command.
+ </para>
+  <para>
+  This is the default configuration. If TFTP is not needed, it is
+  recommended to use OS Lockdown’s
+  “<link linkend="DisableTFTP">Disable TFTP</link>” module to
+  disable the TFTP service.
+ </para>
+  <simplesect xml:id="TftpSecureMode-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN005080 - The TFTP daemon must operate in "secure mode" which provides access only to a single directory on the host file system.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000338 - The TFTP daemon must operate in secure mode which provides access only to a single directory on the host file system.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN005080 - TFTP Secure Mode</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+      <listitem>
+        <para>2.2.3 - Configure system security parameters to prevent misuse</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

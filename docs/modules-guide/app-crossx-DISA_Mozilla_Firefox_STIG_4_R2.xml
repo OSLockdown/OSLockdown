@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="app-crossx-DISA_Mozilla_Firefox_STIG_4_R2">
+  <title>DISA Mozilla Firefox STIG v4 R2</title>
+  <para>
+    <abstract>
+    <para>OS Lockdown can address the following items. It should be noted that many of these
+items are taken from various STIGs however, there is not an industry standard profile delivered
+with OS Lockdown. This is because these items do not cover a guideline in its entirety; therefore,
+a dedicated OS Lockdown profile is not warranted.</para>
+  </abstract>
+  </para>
+  <para>
+    <literallayout>   14   Total number of line items in guideline
+   14   Items at least partially addressed by OS Lockdown
+    0   Items not addressed by OS Lockdown</literallayout>
+  </para>
+  <table xml:id="app-crossx-DISA_Mozilla_Firefox_STIG_4_R2-DTBF003-DTBF184" frame="all" tocentry="1" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>DISA Mozilla Firefox STIG v4 R2</title>
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.2*" align="center"/>
+      <colspec colname="c2" colwidth="0.5*" align="left"/>
+      <colspec colname="c3" colwidth="0.5*" align="left"/>
+      <thead>
+        <row>
+          <entry>Item</entry>
+          <entry>Title</entry>
+          <entry>OS Lockdown Modules</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>DTBF003</entry>
+          <entry>Installed version of Firefox unsupported</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableFirefox" xrefstyle="select: title page">Disable Firefox if older than 3.0</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>DTBF010</entry>
+          <entry>Disable SSLv2</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FirefoxEncryption" xrefstyle="select: title page">Firefox - Encryption</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>DTBF030</entry>
+          <entry>Enable TLS v1.0</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FirefoxEncryption" xrefstyle="select: title page">Firefox - Encryption</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>DTBF050</entry>
+          <entry>Verification</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FirefoxEncryption" xrefstyle="select: title page">Firefox - Encryption</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>DTBF105</entry>
+          <entry>Shell Protocol</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FirefoxNetwork" xrefstyle="select: title page">Firefox - Network</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>DTBF130</entry>
+          <entry>Switching from secure to insecure</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FirefoxPrivacy" xrefstyle="select: title page">Firefox - Privacy</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>DTBF140</entry>
+          <entry>Autofill forms</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FirefoxPrivacy" xrefstyle="select: title page">Firefox - Privacy</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>DTBF160</entry>
+          <entry>Password Store</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FirefoxPrivacy" xrefstyle="select: title page">Firefox - Privacy</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>DTBF170</entry>
+          <entry>Cookies</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FirefoxPrivacy" xrefstyle="select: title page">Firefox - Privacy</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>DTBF180</entry>
+          <entry>Pop-up windows</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FirefoxDynamicContent" xrefstyle="select: title page">Firefox - Dynamic Content</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>DTBF181</entry>
+          <entry>Javascript move or resize windows</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FirefoxJavascript" xrefstyle="select: title page">Firefox - JavaScript</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>DTBF182</entry>
+          <entry>Javascript raise or lower windows</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FirefoxJavascript" xrefstyle="select: title page">Firefox - JavaScript</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>DTBF183</entry>
+          <entry>Javascript Context Menus</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FirefoxJavascript" xrefstyle="select: title page">Firefox - JavaScript</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>DTBF184</entry>
+          <entry>Javascript hiding or changing status bar</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FirefoxJavascript" xrefstyle="select: title page">Firefox - JavaScript</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+</section>

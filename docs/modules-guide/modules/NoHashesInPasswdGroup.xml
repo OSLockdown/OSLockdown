@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="NoHashesInPasswdGroup">
+  <title xml:id="Passwords">No Hashes Allowed in Passwd/Group Files</title>
+  <para>
+  This module looks for password entries in the given files that are
+  hashed passwords, <emphasis role="italic">including</emphasis> those
+  that are locked. The second field of the Unix/Linux
+  <filename>/etc/passwd</filename>, <filename>/etc/group</filename>, or
+  <filename>/etc/gshadow</filename> file is the password field. If the
+  first character of this field in <filename>/etc/passwd</filename> or
+  <filename>/etc/group</filename> is an 'x' (or '*' for Linux) then this
+  indicates that the password is 'shadowed' in the
+  <filename>/etc/shadow</filename> or <filename>/etc/gshadow</filename>
+  file respectively. This file is normally protected so that regular
+  users are unable to read the file. If the first character of this file
+  is an '!' on any system, then the user or group account is considered
+  'locked'.
+ </para>
+  <note>
+    <para>
+   Some guidelines indicate that a locked account should not be
+   considered a failure for this particular step. OS Lockdown will flag
+   these locked accounts.
+  </para>
+  </note>
+  <note>
+    <para>
+   The recommended resolution if hashed passwords are found in the
+   <filename>/etc/passwd</filename> or <filename>/etc/group</filename>
+   files is to run the <command>pwconv</command> system command to
+   migrate those fields into the appropriate shadow file. OS Lockdown
+   will detect that there are hash passwords present, but will not run
+   <command>pwconv</command> on the off chance that the
+   <filename>/etc/passwd</filename>, <filename>/etc/shadow</filename>,
+   <filename>/etc/group</filename>, and
+   <filename>/etc/gshadow</filename> files may not be in sync with each
+   other.
+  </para>
+  </note>
+  <simplesect xml:id="NoHashesInPasswdGroup-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>List of files/directories<emphasis><para>List of files/directories to process.  May have wild card expansion (using shell globbing rules) available if the module supports it.  If empty, no file checks will be done.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="NoHashesInPasswdGroup-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN000000-LNX001476 - The /etc/gshadow file must not contain any group password hashes.</para>
+      </listitem>
+      <listitem>
+        <para>GEN001470 - The /etc/passwd file must not contain password hashes.</para>
+      </listitem>
+      <listitem>
+        <para>GEN001475 - The /etc/group file must not contain any group password hashes.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000031 - The /etc/passwd file must not contain password hashes.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN001470 - The /etc/passwd file must not contain password hashes.</para>
+      </listitem>
+      <listitem>
+        <para>GEN001475 - The /etc/group file must not contain any group password hashes.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

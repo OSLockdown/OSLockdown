@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: app-module-behavior-exclusion-list.xml 23964 2017-03-21 21:04:23Z acochrane $ -->
+<section version="5.0" xml:id="app-module-behavior-exclusion-list" xmlns="http://docbook.org/ns/docbook">
+ <title>Excluding Directories from Scans</title>
+ <para> Starting in v3.0.3, OS Lockdown provides the ability to exclude directories to prevent OS Lockdown from scanning
+  large file systems. For example, a database server may have a SAN-mounted file system used only by the database. Or in
+  a cluster configuration many servers have the same shared storage mounted. Therefore, there is no need to have every
+  server scan these file systems. </para>
+ <para> Currently, only the following modules will ignore directories identified in the master exclusion list: </para>
+ <itemizedlist>
+  <listitem>
+   <para>
+    <link linkend="SecureUnownedFiles">Secure Unowned Files</link>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <link linkend="SecureWorldWritableDirectories">Secure World Writable Directories</link>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <link linkend="SecureNetrcFiles">Secure Netrc Files</link>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <link linkend="SecureWorldWritableFiles">SecureWorldWritableFiles</link>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <link linkend="CorrectUnevenPerms">Correct Uneven File Permissions</link>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <link linkend="HomeDirContentPerms">Home Directory Contents</link>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <link linkend="ManPagePerms">Restrict Write-Access on Man Pages</link>
+   </para>
+  </listitem>
+ </itemizedlist>
+ <informaltable cellpadding="2" cellspacing="2" frame="all" pgwide="1">
+  <tgroup cols="2">
+   <colspec colwidth="1.0*"/>
+   <colspec colwidth="1.0*"/>
+   <tbody valign="middle">
+    <row>
+     <entry><para>
+       <figure xml:id="exclusion-list-flow">
+        <title>Master Exclusion List</title>
+        <mediaobject>
+         <imageobject>
+          <imagedata fileref="Figures/exclusion-list-flow.png" format="PNG" width="190"/>
+         </imageobject>
+        </mediaobject>
+       </figure>
+      </para></entry>
+     <entry valign="top"><para> The <filename>/var/lib/oslockdown/files/exclude-dirs</filename> file is the list of directories to exclude. Each
+       line is an absolute path (must begin with /) of a directory to exclude. If a line contains a wild card (asterisk
+       or question mark), then the line is ignored. </para>
+      <para> The process of building the master exclusion list is as follows: </para>
+      <itemizedlist>
+       <listitem>
+        <para> Load the <filename>exclude-dirs</filename> file, adding only absolute path entries which contain no
+         wildcards. </para>
+       </listitem>
+       <listitem>
+        <para> Adds default list of directories to ignore which currently include <filename>/proc</filename> and
+          <filename>/selinux</filename> . </para>
+       </listitem>
+       <listitem>
+        <para> If in a Solaris global zone, append the root path to each child zone to the list. </para>
+       </listitem>
+       <listitem>
+        <para> Load the <filename>/var/lib/oslockdown/files/inclusion-fstypes</filename> which is a list of acceptable
+         files systems (i.e., ext3 or ufs). This is a simple text file which can be edited by the system administrator. </para>
+       </listitem>
+       <listitem>
+        <para> List all mounted file systems by examining the system's <filename>/etc/mtab</filename> or
+          <filename>/etc/mnttab</filename> ; then add any mount points of non-acceptable file systems to the exclusion
+         list. So, if nfs is not listed as an acceptable file system type; each mount point of nfs-mounted file systems
+         will be added to the exclusion list. Note, this could also include <filename>/tmp</filename> if it is mounted
+         as a tempfs and tempfs is not listed as an acceptable file system. </para>
+       </listitem>
+       <listitem>
+        <para> Remove duplicates in the master exclusion list. </para>
+       </listitem>
+       <listitem>
+        <para> Finally, remove any paths in which their parent has already been listed. For example, if
+          <filename>/opt</filename> and <filename>/opt/h</filename> is listed only <filename>/opt</filename> will remain
+         on the list. </para>
+       </listitem>
+      </itemizedlist></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+</section>

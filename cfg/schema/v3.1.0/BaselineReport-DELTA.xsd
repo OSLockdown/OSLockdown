@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- ********************************************************************** -->
+<xs:annotation>
+    <xs:documentation>
+       Copyright (c) 2007-2014 Forcepoint LLC.  				    
+       This file is released under the GPLv3 license.				    
+       See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+       or visit https://www.gnu.org/licenses/gpl.html instead.      
+      
+       OS Lockdown - Baseline Comparison (Delta) Report Schema
+    </xs:documentation>
+    <xs:appinfo>
+        This XML created by the Python module: BaselineReporting.pyo
+    </xs:appinfo>
+</xs:annotation>
+
+<!-- ********************************************************************** -->
+
+  <xs:element name="BaselineReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="report" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="hostname" type="xs:string" use="optional" />
+      <xs:attribute name="distro_ver" type="xs:string" use="optional" />
+      <xs:attribute name="distro" type="xs:string" use="optional" />
+      <xs:attribute name="mach" type="xs:string" use="optional" />
+      <xs:attribute name="generator" type="xs:string" use="optional" />
+      <xs:attribute name="kernel" type="xs:string" use="optional" />
+      <xs:attribute name="created" type="xs:string" use="required" />
+      <xs:attribute name="newreport" type="xs:string" use="required" />
+      <xs:attribute name="oldreport" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="file">
+    <xs:complexType>
+      <xs:attribute name="path"  type="xs:string"  use="required"/>
+
+    <!-- First Report -->
+      <xs:attribute name="gid1"   type="xs:integer" use="optional"/>
+      <xs:attribute name="mode1"  type="xs:string"  use="optional"/>
+      <xs:attribute name="mtime1" type="xs:string" use="optional"/>
+      <xs:attribute name="sgid1"  type="xs:boolean" use="optional"/>
+      <xs:attribute name="sha11"  type="xs:string"  use="optional"/>
+      <xs:attribute name="suid1"  type="xs:boolean" use="optional"/>
+      <xs:attribute name="uid1"   type="xs:integer" use="optional"/>
+
+    <!-- Second Report -->
+      <xs:attribute name="gid2"   type="xs:integer" use="optional"/>
+      <xs:attribute name="mode2"  type="xs:string"  use="optional"/>
+      <xs:attribute name="mtime2" type="xs:string" use="optional"/>
+      <xs:attribute name="sgid2"  type="xs:boolean" use="optional"/>
+      <xs:attribute name="sha12"  type="xs:string"  use="optional"/>
+      <xs:attribute name="suid2"  type="xs:boolean" use="optional"/>
+      <xs:attribute name="uid2"   type="xs:integer" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="file_group">
+    <xs:complexType mixed="true">
+      <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="filediffs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="file" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="report">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="file_group" />
+            <xs:element ref="filediffs"/>
+            <xs:element ref="section"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="rpm">
+    <xs:complexType mixed="true">
+      <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="section">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="rpm"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

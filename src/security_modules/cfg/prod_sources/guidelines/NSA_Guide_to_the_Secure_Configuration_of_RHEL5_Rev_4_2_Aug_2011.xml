@@ -1,0 +1,497 @@
+<?xml version="1.0"?>
+<compliancy source="NSA" name="Guide to the Secure Configuration of RHEL5" version="Rev. 4.2 / Aug 2011" enabled="True">
+  <title>U.S. National Security Agency</title>
+  <style>ModulesPerLineItem</style>
+  <abstract> <para>
+  The National Security Agency/Central Security Service (NSA/CSS) is
+  home to America's codemakers and codebreakers. The Central Security
+  Service was established in 1972 to promote a full partnership between
+  NSA and the cryptologic elements of the armed forces.
+ </para>
+ <para>
+  NSA/CSS is unique among the U.S. defense agencies because of its
+  government-wide responsibilities. NSA/CSS provides products and
+  services to the Department of Defense, the Intelligence Community,
+  government agencies, industry partners, and select allies and
+  coalition partners.
+ </para>
+ <para> NSA's Information Assurance Mission focuses on protecting National Security Information and
+  Information Systems, in accordance with National Security Directive 42. As such, their lines of
+  business include: IA Guidance, Security Engineering, and Integrated Computer Network Operations.
+  OS Lockdown supports many of the items identified in their <emphasis>Guide to the Secure
+   Configuration of Red Hat Enterprise Linux 5</emphasis> <footnote><para>http://www.nsa.gov/ia/guidance/security_configuration_guides/current_guides.shtml</para></footnote>. </para></abstract>
+  <line-items>
+    <line-item name="2.1.1.1.1" description="Create Separate Partition or Logical Volume for /tmp">
+      <module libraryName="CheckFS_tmp"/>
+    </line-item>
+    <line-item name="2.1.1.1.2" description="Create Separate Partition or Logical Volume for /var">
+      <module libraryName="CheckFS_var"/>
+    </line-item>
+    <line-item name="2.1.1.1.3" description="Create Separate Partition or Logical Volume for /var/log">
+      <module libraryName="CheckFS_varlog"/>
+    </line-item>
+    <line-item name="2.1.1.1.4" description="Create Separate Partition or Logical Volume for /var/log/audit">
+      <module libraryName="CheckFS_varlogaudit"/>
+    </line-item>
+    <line-item name="2.1.1.1.5" description="Create Separate Partition or Logical Volume for /home">
+      <module libraryName="CheckFS_home"/>
+    </line-item>
+    <line-item name="2.1.2.2" description="Disable the rhnsd Daemon">
+      <module libraryName="DisableRhnsd"/>
+    </line-item>
+    <line-item name="2.2.1.1" description="Add nodev Option to Non-Root Local Partitions">
+      <module libraryName="FstabNodev"/>
+      <module libraryName="FstabRemovableMedia"/>
+    </line-item>
+    <line-item name="2.2.1.2" description="Add nodev, nosuid, and noexec Options to Removable Media Partitions"/>
+    <line-item name="2.2.1.4" description="Bind-mount /var/tmp/to /tmp">
+      <module libraryName="Bind_VarTmp_To_Tmp"/>
+    </line-item>
+    <line-item name="2.2.2.1" description="Restrict Console Device Access"/>
+    <line-item name="2.2.2.2" description="Disable USB Device Support"/>
+    <line-item name="2.2.2.2.1" description="Disable Modprobe Loading of USB Storage Driver">
+      <module libraryName="DisableUSB"/>
+    </line-item>
+    <line-item name="2.2.2.2.2" description="Remove USB Storage Driver"/>
+    <line-item name="2.2.2.2.3" description="Disable Kernel Support for USB via Bootloader Configuration"/>
+    <line-item name="2.2.2.2.4" description="Disable Booting from USB Devices"/>
+    <line-item name="2.2.2.3" description="Disable the Automounter if Possible">
+      <module libraryName="DisableNFS_client"/>
+    </line-item>
+    <line-item name="2.2.2.4" description="Disable GNOME Automounting if Possible">
+      <module libraryName="DisableGnomeAutomounting"/>
+    </line-item>
+    <line-item name="2.2.2.5" description="Disable Mounting of Uncommon Filesystem Types">
+      <module libraryName="DisableKernelSprt_fstypes"/>
+    </line-item>
+    <line-item name="2.2.3.1" description="Verify Permissions on passwd, shadow, group and gshadow Files">
+      <module libraryName="PasswdPerms"/>
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="2.2.3.2" description="Verify that All World-Writable Directories Have Sticky Bits Set">
+      <module libraryName="SecureWorldWritableDirectories"/>
+    </line-item>
+    <line-item name="2.2.3.3" description="Find Unauthorized World-Writable Files">
+      <module libraryName="SecureWorldWritableDevices"/>
+      <module libraryName="SecureWorldWritableFiles"/>
+    </line-item>
+    <line-item name="2.2.3.4" description="Find Unauthorized SUID/SGID System Executables">
+      <module libraryName="SecureSetXIDFiles"/>
+    </line-item>
+    <line-item name="2.2.3.5" description="Find and Repair Unowned Files">
+      <module libraryName="SecureUnownedFiles"/>
+    </line-item>
+    <line-item name="2.2.3.6" description="Verify that All World-Writable Directories Have Proper Ownership"/>
+    <line-item name="2.2.4.1" description="Set Daemon umask">
+      <module libraryName="DaemonUmask"/>
+    </line-item>
+    <line-item name="2.2.4.2" description="Disable Core Dumps">
+      <module libraryName="DisableCoreDumps"/>
+    </line-item>
+    <line-item name="2.2.4.2.1" description="Ensure SUID Core Dumps are Disabled">
+      <module libraryName="DisableSuidCoreDumps"/>
+    </line-item>
+    <line-item name="2.2.4.3" description="Enable ExecShield">
+      <module libraryName="EnableKernelExecShield"/>
+    </line-item>
+    <line-item name="2.2.4.3.1" description="Ensure ExecShield is Enabled"/>
+    <line-item name="2.2.4.4" description="Enable Execute Disable (XD) or No Execute (NX) Support on 32-bit x86 Systems">
+      <module libraryName="CheckXdNxSupport"/>
+    </line-item>
+    <line-item name="2.2.4.4.1" description="Check for Processor Support on x86 Systems"/>
+    <line-item name="2.2.4.4.2" description="Install New Kernel on Supported x86 Systems"/>
+    <line-item name="2.2.4.4.3" description="Enable NX or XD Support in the BIOS"/>
+    <line-item name="2.2.4.5.1" description="Disable Prelink">
+      <module libraryName="DisablePrelinking"/>
+    </line-item>
+    <line-item name="2.2.4.5.2" description="Undo Existing Prelinking">
+      <module libraryName="DisablePrelinking"/>
+    </line-item>
+    <line-item name="2.2.5" description="Disable Mounting of Uncommon Filesystem Types"/>
+    <line-item name="2.3.1.1" description="Restrict Root Logins to System Console">
+      <module libraryName="RootConsole"/>
+    </line-item>
+    <line-item name="2.3.1.2" description="Limit su Access to the Root Account">
+      <module libraryName="LimitAccessFromSu"/>
+    </line-item>
+    <line-item name="2.3.1.3" description="Configure sudo to Improve Auditing of Root Access"/>
+    <line-item name="2.3.1.4" description="Block Shell and Login Access for Non-Root System Accounts">
+      <module libraryName="BlockSystemAccounts"/>
+    </line-item>
+    <line-item name="2.3.1.5" description="Verify that No Accounts Have Empty Password Fields">
+      <module libraryName="NoEmptyPasswords"/>
+    </line-item>
+    <line-item name="2.3.1.6" description="Verify that No Non-Root Accounts Have UID 0">
+      <module libraryName="LockDuplicateUidZeros"/>
+    </line-item>
+    <line-item name="2.3.1.7" description="Set Password Expiration Parameters">
+      <module libraryName="PasswordChangeDelay"/>
+      <module libraryName="PasswordMaxDays"/>
+      <module libraryName="PasswordWarnAge"/>
+      <module libraryName="SetPassAgingOnAccts"/>
+    </line-item>
+    <line-item name="2.3.1.8" description="Remove Legacy &#x2019;+&#x2019; Entries from Password Files">
+      <module libraryName="NoPlusPasswdEntries"/>
+    </line-item>
+    <line-item name="2.3.3.1" description="Set Password Quality Requirements"/>
+    <line-item name="2.3.3.1.1" description="Set Password Quality Requirements, if using pam cracklib">
+      <module libraryName="PasswordPolicyConsecutive"/>
+      <module libraryName="PasswordPolicyDiffChars"/>
+      <module libraryName="PasswordPolicyLowercase"/>
+      <module libraryName="PasswordPolicyMinlen"/>
+      <module libraryName="PasswordPolicyNumbers"/>
+      <module libraryName="PasswordPolicySpecial"/>
+      <module libraryName="PasswordPolicyUppercase"/>
+    </line-item>
+    <line-item name="2.3.3.1.2" description="Set Password Quality Requirements, if using pam passwdqc"/>
+    <line-item name="2.3.3.2" description="Set Lockouts for Failed Password Attempts">
+      <module libraryName="AccountLocks"/>
+    </line-item>
+    <line-item name="2.3.3.3" description="Use pam deny.so to Quickly Deny Access to a Service"/>
+    <line-item name="2.3.3.4" description="Restrict Execution of userhelper to Console Users"/>
+    <line-item name="2.3.3.5" description="Upgrade Password Hashing Algorithm to SHA-512"/>
+    <line-item name="2.3.3.6" description="Limit Password Reuse">
+      <module libraryName="PasswordReuse"/>
+    </line-item>
+    <line-item name="2.3.4.1" description="Ensure that No Dangerous Directories Exist in Root&#x2019;s Path">
+      <module libraryName="RootPath"/>
+    </line-item>
+    <line-item name="2.3.4.2" description="Ensure that User Home Directories are not Group-Writable or World-Readable">
+      <module libraryName="RootPath"/>
+    </line-item>
+    <line-item name="2.3.4.3" description="Ensure that User Dot-Files are not World-writable">
+      <module libraryName="UserDotFilePerms"/>
+    </line-item>
+    <line-item name="2.3.4.4" description="Ensure that Users Have Sensible Umask Values"/>
+    <line-item name="2.3.4.5" description="Ensure that Users do not Have .netrc Files"/>
+    <line-item name="2.3.5.1" description="Set BIOS Password"/>
+    <line-item name="2.3.5.2" description="Set Boot Loader Password">
+      <module libraryName="RequireGrubPassword"/>
+      <module libraryName="BootLoaderConfigFilePerms"/>
+    </line-item>
+    <line-item name="2.3.5.3" description="Require Authentication for Single-User Mode">
+      <module libraryName="SingleUserMode"/>
+    </line-item>
+    <line-item name="2.3.5.4" description="Disable Interactive Boot">
+      <module libraryName="DisableInteractiveBoot"/>
+    </line-item>
+    <line-item name="2.3.5.5" description="Implement Inactivity Time-out for Login Shells">
+      <module libraryName="ShellSessionTimeouts"/>
+    </line-item>
+    <line-item name="2.3.5.6" description="Configure Screen Locking"/>
+    <line-item name="2.3.5.6.1" description="Configure GUI Screen Locking">
+      <module libraryName="SetGnomeSS"/>
+    </line-item>
+    <line-item name="2.3.5.6.2" description="Configure Console Screen Locking"/>
+    <line-item name="2.3.5.7" description="Disable Unnecessary Ports"/>
+    <line-item name="2.3.7.1" description="Modify the System Login Banner">
+      <module libraryName="CreateLoginBanner"/>
+      <module libraryName="CreatePreLoginGUIBanner"/>
+      <module libraryName="CreatePreSessionGUIBanner"/>
+    </line-item>
+    <line-item name="2.3.7.2" description="Implement a GUI Warning Banner"/>
+    <line-item name="2.4.2" description="Enable SELinux">
+      <module libraryName="SELinuxIsPropEnabled"/>
+    </line-item>
+    <line-item name="2.4.2.1" description="Ensure SELinux is Properly Enabled">
+      <module libraryName="SELinuxIsPropEnabled"/>
+    </line-item>
+    <line-item name="2.4.3.1" description="Disable and Remove SETroubleshoot if Possible">
+      <module libraryName="DisableSETroubleshoot"/>
+    </line-item>
+    <line-item name="2.4.3.2" description="Disable MCS Translation Service (mcstrans) if Possible">
+      <module libraryName="DisableMcstrans"/>
+    </line-item>
+    <line-item name="2.4.3.3" description="Disable Restorecon Service">
+      <module libraryName="DisableRestorecond"/>
+    </line-item>
+    <line-item name="2.5.1.1" description="Network Parameters for Hosts Only"/>
+    <line-item name="2.5.1.2" description="Network Parameters for Hosts and Routers"/>
+    <line-item name="2.5.3.1.1" description="Disable Automatic Loading of IPv6 Kernel Module">
+      <module libraryName="DisableIPv6KernelModule"/>
+    </line-item>
+    <line-item name="2.5.3.1.2" description="Disable Interface Usage of IPv6"/>
+    <line-item name="2.5.3.2.1" description="Disable Automatic Configuration"/>
+    <line-item name="2.5.3.2.2" description="Manually Assign Global IPv6 Address"/>
+    <line-item name="2.5.3.2.3" description="Use Privacy Extensions for Address if Necessary"/>
+    <line-item name="2.5.3.2.4" description="Manually Assign IPv6 Router Address"/>
+    <line-item name="2.5.3.2.5" description="Limit Network-Transmitted Configuration"/>
+    <line-item name="2.5.4.1" description="How TCP Wrapper Protects Services">
+      <module libraryName="TcpWrappers"/>
+    </line-item>
+    <line-item name="2.5.4.4" description="Monitor Syslog for Relevant Connections and Failures">
+      <module libraryName="SyslogAuthpriv"/>
+    </line-item>
+    <line-item name="2.5.5.1" description="Inspect and Activate Default Rules">
+      <module libraryName="EnableIptables"/>
+      <module libraryName="EnableIp6tables"/>
+    </line-item>
+    <line-item name="2.5.7.1" description="Disable Support for DCCP">
+      <module libraryName="DisableKernelSprt_DCCP"/>
+    </line-item>
+    <line-item name="2.5.7.2" description="Disable Support for SCTP">
+      <module libraryName="DisableKernelSprt_SCTP"/>
+    </line-item>
+    <line-item name="2.5.7.3" description="Disable Support for RDS">
+      <module libraryName="DisableKernelSprt_RDS"/>
+    </line-item>
+    <line-item name="2.5.7.4" description="Disable Support for TIPC">
+      <module libraryName="DisableKernelSprt_TIPC"/>
+    </line-item>
+    <line-item name="2.6.1.1.1" description="Ensure All Important Messages are Captured"/>
+    <line-item name="2.6.1.1.2" description="Confirm Existence and Permissions of System Log Files">
+      <module libraryName="SysLogFilePerms"/>
+    </line-item>
+    <line-item name="2.6.1.1.3" description="Send Logs to a Remote Loghost"/>
+    <line-item name="2.6.1.1.4" description="Enable syslogd to Accept Remote Messages on Loghosts Only"/>
+    <line-item name="2.6.1.3.1" description="Ensure All Logs are Rotated by logrotate"/>
+    <line-item name="2.6.2.1" description="Enable the auditd Service">
+      <module libraryName="AuditEnable"/>
+    </line-item>
+    <line-item name="2.6.2.2" description="Configure auditd Data Retention"/>
+    <line-item name="2.6.2.3" description="Enable Auditing for Processes Which Start Prior to the Audit Daemon">
+      <module libraryName="EnableAuditingForAllProcesses"/>
+    </line-item>
+    <line-item name="2.6.2.4" description="Configure auditd Rules for Comprehensive Auditing">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="2.6.2.4.1" description="Records Events that Modify Date and Time Information"/>
+    <line-item name="2.6.2.4.10" description="Ensure auditd Collects Information on Exporting to Media (successful)"/>
+    <line-item name="2.6.2.4.11" description="Ensure auditd Collects Files Deletion Events by User (successful and unsuccessful)"/>
+    <line-item name="2.6.2.4.12" description="Ensure auditd Collects System Administrator Actions"/>
+    <line-item name="2.6.2.4.13" description="Make the auditd Configuration Immutable-"/>
+    <line-item name="2.6.2.4.2" description="Record Events that Modify User/Group Information"/>
+    <line-item name="2.6.2.4.3" description="Record Events that Modify the System&#x2019;s Network Environment"/>
+    <line-item name="2.6.2.4.4" description="Record Events that Modify the System&#x2019;s Mandatory Access Controls"/>
+    <line-item name="2.6.2.4.5" description="Ensure auditd Collects Logon and Logout Events"/>
+    <line-item name="2.6.2.4.6" description="Ensure auditd Collects Process and Session Initiation Information"/>
+    <line-item name="2.6.2.4.7" description="Ensure auditd Collects Discretionary Access Control Permission Modification Events"/>
+    <line-item name="2.6.2.4.8" description="Ensure auditd Collects Unauthorized Access Attempts to Files (unsuccessful)"/>
+    <line-item name="2.6.2.4.9" description="Ensure auditd Collects Information on the Use of Privileged Commands"/>
+    <line-item name="3.1.3" description="Guidance for Unfamiliar Services">
+      <module libraryName="DisableFinger"/>
+      <module libraryName="DisableFspd"/>
+      <module libraryName="DisableFTP_gssftp"/>
+      <module libraryName="DisableGated"/>
+      <module libraryName="DisableInetd"/>
+      <module libraryName="DisableInnd"/>
+      <module libraryName="DisableMail_cyrus"/>
+      <module libraryName="DisableRexec"/>
+      <module libraryName="DisableRlogin"/>
+      <module libraryName="DisableRouted"/>
+      <module libraryName="DisableRpc_Ugidd"/>
+      <module libraryName="DisableRsh"/>
+      <module libraryName="DisableTelnet"/>
+      <module libraryName="DisableUucp"/>
+      <module libraryName="DisableWebmin"/>
+      <module libraryName="DisableWebServer_tux"/>
+    </line-item>
+    <line-item name="3.11.2.1" description="Disable the Listening Sendmail Daemon">
+      <module libraryName="DisableSendmail"/>
+    </line-item>
+    <line-item name="3.11.3.2" description="Configure SMTP Greeting Banner">
+      <module libraryName="SendmailOpts"/>
+    </line-item>
+    <line-item name="3.11.5.2" description="Configure SMTP Greeting Banner">
+      <module libraryName="SendmailOpts"/>
+    </line-item>
+    <line-item name="3.13.1.1" description="Disable Services Used Only by NFS">
+      <module libraryName="DisableNFS_client"/>
+    </line-item>
+    <line-item name="3.13.1.2" description="Disable netfs if Possible">
+      <module libraryName="DisableNetFS"/>
+    </line-item>
+    <line-item name="3.13.1.3" description="Disable RPC Portmapper if Possible">
+      <module libraryName="DisablePortmap"/>
+    </line-item>
+    <line-item name="3.13.3.1" description="Disable NFS Server Daemons">
+      <module libraryName="DisableNFS_client"/>
+    </line-item>
+    <line-item name="3.13.4.1.1" description="Use Access Lists to Enforce Authorization Restrictions on Mounts"/>
+    <line-item name="3.13.4.1.2" description="Use Root-Squashing on All Exports"/>
+    <line-item name="3.13.4.1.3" description="Restrict NFS Clients to Privileged Ports">
+      <module libraryName="NFSSecure"/>
+    </line-item>
+    <line-item name="3.13.4.1.4" description="Export Filesystems Read-Only if Possible"/>
+    <line-item name="3.14.1" description="Disable DNS Server if Possible">
+      <module libraryName="DisableDNS"/>
+    </line-item>
+    <line-item name="3.15.1" description="Disable vsftpd if Possible">
+      <module libraryName="DisableFTP_vsftpd"/>
+    </line-item>
+    <line-item name="3.15.3.2" description="Create Warning Banners for All FTP Users">
+      <module libraryName="CreateLoginFTPBanner"/>
+    </line-item>
+    <line-item name="3.16.1" description="Disable Apache if Possible">
+      <module libraryName="DisableWebServer_apache"/>
+    </line-item>
+    <line-item name="3.16.4.4.1" description="Configure PHP Securely">
+      <module libraryName="PHPDisableHttpUpload"/>
+      <module libraryName="PHPlogging"/>
+      <module libraryName="PHPRemoteExec"/>
+    </line-item>
+    <line-item name="3.17.1" description="Disable Dovecot if Possible">
+      <module libraryName="DisableMail_dovecot"/>
+    </line-item>
+    <line-item name="3.18.1" description="Disable Samba if Possible">
+      <module libraryName="DisableSMB"/>
+    </line-item>
+    <line-item name="3.18.2.10" description="Require Client SMB Packet Signing">
+      <module libraryName="SMB_Conf"/>
+    </line-item>
+    <line-item name="3.18.2.2.1" description="Use user Security for Servers Not in a Domain Context">
+      <module libraryName="SMB_Conf"/>
+    </line-item>
+    <line-item name="3.18.2.3" description="Disable Guest Access and Local Login Support">
+      <module libraryName="SMB_Conf"/>
+    </line-item>
+    <line-item name="3.18.2.5" description="Set the Allowed Authentication Negotiation Levels">
+      <module libraryName="SMB_Conf"/>
+    </line-item>
+    <line-item name="3.18.2.9" description="Require Server SMB Packet Signing">
+      <module libraryName="SMB_Conf"/>
+    </line-item>
+    <line-item name="3.19.1" description="Disable Squid if Possible">
+      <module libraryName="DisableSquid"/>
+    </line-item>
+    <line-item name="3.2.1" description="Inetd and Xinetd"/>
+    <line-item name="3.2.2" description="Telnet"/>
+    <line-item name="3.2.3.1" description="Remove the Rsh Server Commands from the System"/>
+    <line-item name="3.2.3.2" description="Remove .rhosts Support from PAM Configuration Files">
+      <module libraryName="DisableRhostsSupport"/>
+    </line-item>
+    <line-item name="3.2.4" description="NIS (Disable)">
+      <module libraryName="DisableNIS_client"/>
+    </line-item>
+    <line-item name="3.2.5" description="TFTP Server">
+      <module libraryName="DisableTFTP"/>
+    </line-item>
+    <line-item name="3.20.1" description="Disable SNMP Server if Possible">
+      <module libraryName="DisableSNMP"/>
+    </line-item>
+    <line-item name="3.20.2" description="Configure SNMP Server if Necessary">
+    </line-item>
+    <line-item name="3.3.1" description="Installation Helper Service (firstboot)">
+      <module libraryName="DisableFirstbootSvc"/>
+    </line-item>
+    <line-item name="3.3.10" description="Smart Card Support (pcscd)">
+      <module libraryName="DisableSmartcard"/>
+    </line-item>
+    <line-item name="3.3.11" description="SMART Disk Monitoring Support (smartd)">
+      <module libraryName="DisableSMARTD"/>
+    </line-item>
+    <line-item name="3.3.12" description="Boot Caching (readahead early/readahead later)">
+      <module libraryName="DisableBootCaching"/>
+    </line-item>
+    <line-item name="3.3.13.1" description="D-Bus IPC Service (messagebus)"/>
+    <line-item name="3.3.13.2" description="HAL Daemon (haldaemon)">
+      <module libraryName="DisableHalDaemon"/>
+    </line-item>
+    <line-item name="3.3.14.1" description="Bluetooth Host Controller Interface Daemon (bluetooth)">
+      <module libraryName="DisableBluetooth"/>
+    </line-item>
+    <line-item name="3.3.14.2" description="Bluetooth Input Devices (hidd)">
+      <module libraryName="DisableBluetoothInputDevs"/>
+    </line-item>
+    <line-item name="3.3.14.3" description="Disable Bluetooth Kernel Modules">
+      <module libraryName="DisableBluetoothKernelModules"/>
+    </line-item>
+    <line-item name="3.3.15.1" description="Advanced Power Management Subsystem (apmd)">
+      <module libraryName="DisableApmd"/>
+    </line-item>
+    <line-item name="3.3.15.2" description="Advanced Configuration and Power Interface (acpid)">
+      <module libraryName="DisableAcpid"/>
+    </line-item>
+    <line-item name="3.3.15.3" description="CPU Throttling (cpuspeed)">
+      <module libraryName="DisableCpuThrottling"/>
+    </line-item>
+    <line-item name="3.3.16.1" description="Disable the irda Service if Possible">
+      <module libraryName="DisableIrda"/>
+    </line-item>
+    <line-item name="3.3.17.1" description="Disable the Raw Devices Daemon if Possible">
+      <module libraryName="DisableRawDevicesDaemon"/>
+    </line-item>
+    <line-item name="3.3.2" description="Console Mouse Service (gpm)">
+      <module libraryName="DisableGpm"/>
+    </line-item>
+    <line-item name="3.3.3" description="Interrupt Distribution on Multiprocessor Systems (irqbalance)">
+      <module libraryName="DisableIrqbalance"/>
+    </line-item>
+    <line-item name="3.3.4" description="ISDN Support (isdn)">
+      <module libraryName="DisableISDN"/>
+    </line-item>
+    <line-item name="3.3.5" description="Kdump Kernel Crash Analyzer (kdump)">
+      <module libraryName="DisableKdump"/>
+    </line-item>
+    <line-item name="3.3.6" description="Kudzu Hardware Probing Utility (kudzu)">
+      <module libraryName="DisableKudzu"/>
+    </line-item>
+    <line-item name="3.3.7" description="Software RAID Monitor (mdmonitor)">
+      <module libraryName="DisableMdmonitor"/>
+    </line-item>
+    <line-item name="3.3.8" description="IA32 Microcode Utility (microcode ctl)">
+      <module libraryName="DisableIA32MicrocodeUtility"/>
+    </line-item>
+    <line-item name="3.3.9.3" description="Disable Zeroconf Networking">
+      <module libraryName="DisableZeroconfNet"/>
+    </line-item>
+    <line-item name="3.4.2" description="Restrict Permissions on Files Used by cron">
+      <module libraryName="CrontabPerms"/>
+      <module libraryName="CrontabScriptPerms"/>
+      <module libraryName="AtCronAccessFilePerms"/>
+    </line-item>
+    <line-item name="3.4.3" description="Disable at if Possible">
+      <module libraryName="DisableAtd"/>
+    </line-item>
+    <line-item name="3.4.4" description="Restrict at and cron to Authorized Users"/>
+    <line-item name="3.5.2.1" description="Ensure Only Protocol 2 Connections Allowed">
+      <module libraryName="SshdProtocol"/>
+    </line-item>
+    <line-item name="3.5.2.2" description="Limit Users&#x2019; SSH Access"/>
+    <line-item name="3.5.2.3" description="Set Idle Timeout Interval for User Logins">
+      <module libraryName="SshdSetIdleTimeout"/>
+    </line-item>
+    <line-item name="3.5.2.4" description="Disable .rhosts Files">
+      <module libraryName="SshdDisableRhostsAuth"/>
+      <module libraryName="SshdEnableIgnoreRhosts"/>
+    </line-item>
+    <line-item name="3.5.2.5" description="Disable Host-Based Authentication">
+      <module libraryName="SshdDisableHostbasedAuth"/>
+    </line-item>
+    <line-item name="3.5.2.6" description="Disable root Login via SSH">
+      <module libraryName="SshdDisableRootLogin"/>
+    </line-item>
+    <line-item name="3.5.2.7" description="Disable Empty Passwords">
+      <module libraryName="SshdDisableEmptyPasswords"/>
+    </line-item>
+    <line-item name="3.5.2.8" description="Enable a Warning Banner">
+      <module libraryName="SshdEnableBanner"/>
+    </line-item>
+    <line-item name="3.6.1.1" description="Disable X Windows at System Boot">
+      <module libraryName="DisableGuiLogin"/>
+    </line-item>
+    <line-item name="3.6.1.3.1" description="Disable X Font Server">
+      <module libraryName="DisableXFS"/>
+    </line-item>
+    <line-item name="3.6.1.3.2" description="Disable X Window System Listening">
+      <module libraryName="RemoteXClients"/>
+    </line-item>
+    <line-item name="3.6.2.1" description="Create Warning Banners for GUI Login Users"/>
+    <line-item name="3.7.1" description="Disable Avahi Server if Possible">
+      <module libraryName="DisableAvahi"/>
+    </line-item>
+    <line-item name="3.7.1.1" description="Disable Avahi Server Software"/>
+    <line-item name="3.8.1" description="Disable the CUPS Service if Possible">
+      <module libraryName="DisablePrinter"/>
+    </line-item>
+    <line-item name="3.8.3.1.1" description="Disable Printer Browsing Entirely if Possible">
+      <module libraryName="DisableCupsPrinterBrowsing"/>
+    </line-item>
+    <line-item name="3.8.4.1" description="Disable HPLIP Service if Possible">
+      <module libraryName="DisableHPServices"/>
+    </line-item>
+    <line-item name="3.9.3" description="Disable DHCP Server if Possible">
+      <module libraryName="DisableDhcpd"/>
+    </line-item>
+  </line-items>
+</compliancy>

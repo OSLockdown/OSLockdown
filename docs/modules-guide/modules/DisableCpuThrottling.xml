@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: DisableCpuThrottling.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableCpuThrottling" version="5.0">
+ <title xml:id="HardwareServices">Disable CPU Throttling</title>
+ <para>
+  Disables the cpuspeed daemon which uses hardware support to throttle
+  the CPU when the system is idle. If CPU power optimization is
+  necessary, do not use this module.
+  <indexterm>
+   <primary>cpuspeed</primary>
+  </indexterm>
+ </para>
+ <simplesect xml:id="DisableCpuThrottling-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-13 - Limitation and Control of Network Ports, Protocols, and
+     Services
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+   <listitem>
+    <para>
+     CIP-005-3-R2.2 - Enable only ports and services needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+   <listitem>
+    <para>
+     CIP-007-3-R2.2 - Disable ports and services not needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     3.3.15.3 - CPU Throttling (cpuspeed)
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NVD CCE</title>
+   <listitem>
+    <para>
+     CCE-4051-9 - The cpuspeed service should be enabled or disabled as
+     appropriate.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

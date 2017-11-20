@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="HomeDirContentPerms" version="5.0">
+ <title xml:id="Accounts">Home Directory Contents</title>
+ <para>
+  Ensures files and directories inside user home directories are
+  secured. This means these files and directories must be:
+ </para>
+ <itemizedlist>
+  <listitem>
+   <para>
+    Owned by the owner of the home directory.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Must not have world (other) permissions.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Must not have group write permissions.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    In addition to the previous two bullets, all local initialization
+    files (dot files) do not have group execute.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    .Xauthority files do not have group or world permissions.
+   </para>
+  </listitem>
+ </itemizedlist>
+ <para>
+  There are some cases in which these rules should not apply; therefore,
+  this module has safeguards in place to ensure the system functions
+  normally. This module will explicitly ignore the following accounts:
+  'daemon', 'nobody', 'apache', 'bin', 'operator', 'listen', 'uucp', and
+  'rpm', regardless of the UID assigned to them. It will also ignore any
+  account that has a 'system' UID assigned to it (i.e., UID &lt; 100 for
+  Solaris, UID &lt; 500 for Linux).
+ </para>
+ <para>
+  Additionally, it will ignore the following directories if they are
+  assigned to any account: <filename>/sbin</filename> ,
+  <filename>/bin</filename> , <filename>/dev</filename> ,
+  <filename>/var/lib/nfs</filename> , <filename>/var/spool</filename> ,
+  <filename>/usr/share</filename> , <filename>/usr/net/nls</filename> ,
+  <filename>/usr/lib/uucp</filename> , <filename>/var/adm</filename> ,
+  and <filename>/var/lib/rpm</filename> .
+  <indexterm>
+   <primary>/dev</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Files and Directories</primary>
+   <secondary>/dev</secondary>
+  </indexterm>
+
+  <indexterm>
+   <primary>nobody</primary>
+  </indexterm>
+ </para>
+ <simplesect xml:id="HomeDirContentPerms-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN001540 - All files and directories contained in interactive user
+     home directories must be owned by the home directory's owner.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001550 - All files and directories contained in user home
+     directories must be group-owned by a group of which the home
+     directory's owner is a member.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001560 - All files and directories contained in user home
+     directories must have mode 0750 or less permissive.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001860 - All local initialization files must be owned by the
+     home directorys user or root.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN005180 - All .Xauthority files must have mode 0600 or less
+     permissive.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN001540 - Home Directories File Ownership
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001560 - Home Directories File Permissions
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001860 - Local Initialization Files Ownership
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN005180 - .Xauthority File Permissions
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD NISPOM (Feb 2006)</title>
+   <listitem>
+    <para>
+     8.606b1 - Access 2 Requirements
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-3 - Access Enforcement
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2.3 - Configure system security parameters to prevent misuse
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

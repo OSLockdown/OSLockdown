@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: FirefoxJavascript.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="FirefoxJavascript" version="5.0">
+  <title xml:id="DesktopApps">Firefox - JavaScript</title>
+  <para>
+  Configure Firefox to disallow JavaScript from manipulating various
+  characteristics of the web browser such as context menus, window
+  scaling, and status bar messages.
+  <indexterm><primary>Firefox</primary></indexterm>
+
+  <indexterm><primary>Java</primary></indexterm>
+ </para>
+  <para>
+  The following parameters are set in each user’s
+  <filename>$HOME/.mozilla/firefox/*/prefs.js</filename>:
+<programlisting>user_pref("dom.disable_window_status_change", 'true');
+user_pref("dom.disable_window_flip", 'true');
+user_pref("dom.event.contextmenu.enabled", 'false');
+user_pref("dom.disable_window_move_resize", 'true' );</programlisting>
+ </para>
+  <simplesect xml:id="FirefoxJavascript-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA Mozilla Firefox STIG (v4 R2)</title>
+      <listitem>
+        <para>
+     DTBF181 - Javascript move or resize windows
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     DTBF182 - Javascript raise or lower windows
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     DTBF183 - Javascript Context Menus
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     DTBF184 - Javascript hiding or changing status bar
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>
+     GEN004100 - Browser Allows Active Scripting
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     2.2.3 - Configure system security parameters to prevent misuse
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="FirefoxJavascript-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Javascript</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

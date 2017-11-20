@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SetGnomeSS" version="5.0">
+  <title xml:id="SessionMgmt">Set Mandatory Screen Saver</title>
+  <para>
+  Configures mandatory timeout and activation values for the screen
+  saver program for all users of the GNOME desktop.
+  <indexterm><primary>GNOME</primary></indexterm>
+ </para>
+  <para>
+  It is recommended to set the timeout parameter to no more than 15
+  minutes.
+ </para>
+  <para>
+  Commands used to retrieve the current screen saver settings:
+ </para>
+  <screen>gconftool-2 --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--get /apps/gnome-screensaver/idle_activation_enabled
+
+gconftool-2 --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--get /apps/gnome-screensaver/lock_enabled
+
+gconftool-2 --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--get /apps/gnome-screensaver/mode
+
+gconftool-2 --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--get /apps/gnome-screensaver/idle_delay</screen>
+  <para>
+  Commands used to set the screen saver:
+ </para>
+  <screen>gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--type bool --set /apps/gnome-screensaver/idle_activation_enabled true
+
+gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--type bool --set /apps/gnome-screensaver/lock_enabled true
+
+gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--type string --set /apps/gnome-screensaver/mode blank-only
+
+gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--type int --set /apps/gnome-screensaver/idle_delay 15</screen>
+  <para>
+  The <emphasis>15</emphasis> applied to the
+  <parameter>idle_delay</parameter> parameter will be replaced with the
+  option value provided to the profile.
+  <indexterm><primary>.profile</primary></indexterm>
+ </para>
+  <simplesect xml:id="SetGnomeSS-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>
+     CC-11 - Account Monitoring and Control
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>CIA DCID 6/3 (May 2000)</title>
+      <listitem>
+        <para>
+     4.B.1.a(5) - Screen Lock
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.1.a(5)(a) - Screen Lock - Maximum Idle Time will be 15 minutes
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.2.a(16)(b) - Session Control - Station or session time-outs
+     (PL2)
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.3.a(17)(a) - Session Control - Station or session time-outs
+     (PL3)
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>
+     GEN000500 - Graphical desktop environments provided by the system
+     must automatically lock after 15 minutes of inactivity and the
+     system must require users to re-authenticate to unlock the
+     environment.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN000500-2 - The graphical desktop environment must set the idle
+     timeout to no more than 15 minutes.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN000500-3 - Graphical desktop environments provided by the system
+     must have automatic lock enabled.
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>
+     RHEL-06-000257 - The graphical desktop environment must set the
+     idle timeout to no more than 15 minutes.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000258 - The graphical desktop environment must
+     automatically lock after 15 minutes of inactivity and the system
+     must require user reauthentication to unlock the environment.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000259 - The graphical desktop environment must have
+     automatic lock enabled.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000260 - The system must display a publicly-viewable
+     pattern during a graphical desktop environment session lock.
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>
+     GEN000500 - Inactivity
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD JAFAN 6/3 (Oct 2004)</title>
+      <listitem>
+        <para>
+     4.B.1.a(5) - Screen Lock
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.1.a(5)(a) - Screen Lock - Maximum Idle Time will be 15 minutes
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.2.a(16)(b) - Session Control - Station or session time-outs
+     (PL2)
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     4.B.3.a(17)(a) - Session Control - Station or session time-outs
+     (PL3)
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD NISPOM (Feb 2006)</title>
+      <listitem>
+        <para>
+     8.609b2 - User Inactivity
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>
+     AC-11 - Session Lock
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>
+     2.3.5.6.1 - Configure GUI Screen Locking
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>
+     CCE-14023-6 - The screen lock (password protection) function of the
+     gnome desktop screensaver should be enabled or disabled as
+     appropriate as a mandatory setting for all users.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CCE-14604-3 - The gnome desktop screensaver should be enabled or
+     disabled as appropriate as a mandatory setting for all users.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CCE-14735-5 - The screen blanking function of the gnome desktop
+     screensaver should be enabled or disabled as appropriate as a
+     mandatory setting for all users.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CCE-3315-9 - The allowed period of inactivity gnome desktop lockout
+     should be configured correctly.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CCE-3910-7 - The vlock package should be installed or not as
+     appropriate
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>
+     8.5.15 - If a session has been idle for more than 15 minutes,
+     require the user to re-enter the password to re-activate the
+     terminal.
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="SetGnomeSS-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Number of minutes a graphical GNOME session can be idle before a password protected screen saver is activated.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

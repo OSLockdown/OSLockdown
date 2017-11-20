@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % CommonEntities SYSTEM "../COMMON_ENTITIES.ent">
+%CommonEntities;
+]>
+<preface version="5.0" xml:id="preface" xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+   xmlns:xlink="http://www.w3.org/1999/xlink">
+   <!--<?xml-stylesheet type="text/css" href="docbook.css"?>-->
+   <title>Preface</title>
+   <section xml:id="preface-purpose">
+      <title>Purpose</title>
+      <para>This document serves as both the OS Lockdown administrative and user guide. It describes the tasks required
+         to install, administer, and run the OS Lockdown application.</para>
+   </section>
+   <section xml:id="preface-audience">
+      <title>Audience</title>
+      <para>This guide is intended for system administrators and end users responsible for installing, administering,
+         and running the OS Lockdown application.</para>
+   </section>
+   <section xml:id="preface-conventions">
+      <title>Conventions Used in this Guide</title>
+      <para>The following conventions identify particular information within the body of this guide.</para>
+      <indexterm>
+         <primary>Conventions</primary>
+      </indexterm>
+      <note>
+         <para>Notes emphasize additional information.</para>
+      </note>
+      <warning>
+         <para>Warnings alert you to anything that could damage your system, cause loss of data, or expose your system
+            to security vulnerabilities.</para>
+      </warning>
+      <important>
+         <para>Alerts you to additional information that must be considered before continuing.</para>
+      </important>
+      <para>The following typographic conventions are used in this guide:</para>
+      <informaltable frame="all">
+         <tgroup cols="2">
+            <colspec align="left" colwidth="1*"/>
+            <colspec align="left" colwidth="1.78*"/>
+            <thead>
+               <row>
+                  <entry align="left">Format</entry>
+                  <entry align="left">Description</entry>
+               </row>
+            </thead>
+            <tbody>
+               <row>
+                  <entry>
+                     <para>Bold font </para>
+                  </entry>
+                  <entry>
+                     <para>Used to identify Graphical User Interface (GUI) elements, such as buttons, fields, field
+                        labels, and menu items. For example:</para>
+                     <para>Type the <emphasis role="bold">IP Address</emphasis> and click <emphasis role="bold"
+                           >OK</emphasis>.</para>
+                     <para>Select the <emphasis role="bold">Burn Archived Logs to CD</emphasis> checkbox.</para>
+                  </entry>
+               </row>
+               <row>
+                  <entry>
+                     <para>Italic font</para>
+                  </entry>
+                  <entry>
+                     <para>Used to identify book titles or words that require emphasis. For example:</para>
+                     <para>It is <emphasis role="italic">strongly recommended</emphasis> that you read the
+                           <emphasis>User’s Guide</emphasis>.</para>
+                  </entry>
+               </row>
+               <row>
+                  <entry>
+                     <para>Monospaced font</para>
+                  </entry>
+                  <entry>
+                     <para>Used to identify names of files, directories, and commands. For example:</para>
+                     <para>The license file is available here: <filename>/usr/include/sys/license.txt</filename>.</para>
+                     <!-- usage: para/filename -->
+                  </entry>
+               </row>
+               <row>
+                  <entry> Monospaced bold font </entry>
+                  <entry>
+                     <para>When not accompanying screen output, used to identify text that users need to type. For
+                        example:</para>
+                     <para><userinput>/usr/bin/ls</userinput></para>
+                     <!-- usage: /para/userinput/ -->
+                  </entry>
+               </row>
+               <row>
+                  <entry> Shaded monospaced font </entry>
+                  <entry>
+                     <para>Used to identify screen output. For example:</para>
+                     <para>
+                        <screen>####### Configuration Information #########
+Include "conf/httpd-common.conf"</screen>
+                        <!-- usage: /screen -->
+                     </para>
+                  </entry>
+               </row>
+               <row>
+                  <entry> Shaded monospaced bold font </entry>
+                  <entry>
+                     <para>When accompanying screen output, used to identify text that users need to type. For
+                        example:</para>
+                     <para>
+                        <screen># <userinput>vi /etc/sysconfig/network</userinput></screen>
+                        <!-- usage: /screen/userinput/ -->
+                     </para>
+                  </entry>
+               </row>
+            </tbody>
+         </tgroup>
+      </informaltable>
+   </section>
+   <section xml:id="preface-relatedpubs">
+      <title>Related Publications</title>
+      <para>The OS Lockdown documentation set consists of:</para>
+      <indexterm>
+         <primary>OS Lockdown</primary>
+         <secondary>Publications</secondary>
+      </indexterm>
+      <indexterm>
+         <primary>Publications</primary>
+      </indexterm>
+      <itemizedlist>
+         <listitem>
+            <para><citetitle>OS Lockdown Administration Guide</citetitle></para>
+         </listitem>
+         <listitem>
+            <para><citetitle>OS Lockdown Modules Guide</citetitle></para>
+         </listitem>
+      </itemizedlist>
+   </section>
+   <section xml:id="preface-custsupport">
+      <title>Support</title>
+      <para>Refer to <link
+         xlink:href="https://www.github.com/OSLockdown/OSLockdown"/> for information.</para>
+      <indexterm>
+         <primary>Getting Help</primary>
+      </indexterm>
+   </section>
+</preface>

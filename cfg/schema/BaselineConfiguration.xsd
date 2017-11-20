@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <!-- ******************************************************************************** -->
+    <!--   Copyright (c) 2007-2014 Forcepoint LLC.					  -->
+    <!--   This file is released under the GPLv3 license.				  -->
+    <!--   See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,  -->
+    <!--   or visit https://www.gnu.org/licenses/gpl.html instead.        -->	
+    <!--                                                                          	  -->
+    <!--   OS Lockdown - Baseline Modules                                    	  -->
+    <!-- ******************************************************************************** -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:annotation>
+        <xs:documentation>Defines the modules used to collect system or application information by
+            OS Lockdown's Baseline component. Modules are grouped by report sections; these
+            sections map to where the data will be stored in the final baseline report. Data
+            represented in this schema serves two purposes: (1) Defines the available modules and
+            aids the graphical user interface (console) in the construction of a 'baseline-profile'.
+            (2) When the Baseline component reads a 'baseline-profile', this data will be consulted
+            to identify the Python module to be used to perform the collection (pyModulePath
+            atrribute).
+        </xs:documentation>
+    </xs:annotation>
+    <!--
+        **********************************************************************
+    -->
+    <xs:element name="BaselineConfiguration">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="section" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="sbVersion" type="xs:string" use="required" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="section">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element ref="module" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="required" />
+            <xs:attribute name="pyModulePath" type="xs:string" use="required" />
+        </xs:complexType>
+    </xs:element>
+    <!-- ************************************************************************** -->
+    <xs:element name="module">
+        <xs:annotation>
+            <xs:documentation>Modules collect information from the system and their results are
+                stored in the 'subsection' element of the final baseline report.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="info" minOccurs="1" maxOccurs="1" />
+                <xs:element ref="parameter" minOccurs="1" maxOccurs="1" />
+                <xs:element name="subOption" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>All subOptions are simple boolean values to be included in
+                            the baseline profile. So, the baseline profile builder should simply
+                            display the attribute "name" and the user decides weather to enable or
+                            disable it. Then when the baseline profile is constructed, subOption
+                            XYZ's "enable" attribute would be either true or false.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                        <xs:attribute name="paramName" type="xs:string" use="required" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="required" />
+            <xs:attribute name="pyModulePath" type="xs:string" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="parameter">
+        <xs:complexType>
+            <xs:attribute name="optionType" type="xs:string" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ************************************************************************** -->
+    <!-- Metadata about the subsection (baseline module) -->
+    <xs:element name="info">
+        <xs:annotation>
+            <xs:documentation>Data to use when constructing a 'baseline-profile'. It is intended to
+                give the profile builder (user) information about the module. This information
+                includes impact to the system and the importance of the information. This will help
+                the user weigh resource consumption against value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="description" type="xs:string" minOccurs="1" maxOccurs="1" />
+                <xs:element name="reportSubtitle" type="xs:string" minOccurs="1"
+                    maxOccurs="1" />
+                <xs:element name="storageSpecs" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="sizeCategory" use="required">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:NMTOKEN">
+                                    <xs:enumeration value="Small" />
+                                    <xs:enumeration value="Medium" />
+                                    <xs:enumeration value="Large" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="avgKbPerReport" use="required">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:integer">
+                                    <xs:minInclusive value="1" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="systemLoadImpact" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="value" use="required">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:NMTOKEN">
+                                    <xs:enumeration value="Low" />
+                                    <xs:enumeration value="Medium" />
+                                    <xs:enumeration value="High" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="forensicsImportance" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="value" use="required">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:NMTOKEN">
+                                    <xs:enumeration value="Low" />
+                                    <xs:enumeration value="Medium" />
+                                    <xs:enumeration value="High" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="help" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="uri" type="xs:string" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

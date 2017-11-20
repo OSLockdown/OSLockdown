@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="RestrictMesgCmd" version="5.0">
+ <title xml:id="Accounts">Restrict Use of Mesg Command</title>
+ <para>
+  Ensures user’s local shell initialization files do not use
+  <command>mesg(1)</command> command with the 'y' option.
+  <indexterm>
+   <primary>mesg</primary>
+  </indexterm>
+ </para>
+ <para>
+  This prevents users from adjusting access to their own terminals with
+  the <command>mesg(1)</command> command. By default, only the owner can
+  read and write to their terminal.
+ </para>
+ <simplesect xml:id="RestrictMesgCmd-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN001960 - Local Initialization Files mesg -y
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-3 - Access Enforcement
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

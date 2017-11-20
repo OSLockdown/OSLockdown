@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="HomeDirPerms">
+ <title xml:id="Accounts">Home Directory Permissions</title>
+ <para>
+  Configures user home directories to have file permissions that prevent
+  all access by other users, while also preventing write access by users
+  in the same group.
+ </para>
+ <para>
+  If it is necessary for other users to have access to the files, then
+  manually change the permissions. If this creates problems for
+  applications that must share files, configure the application, if
+  possible, to use another more common directory such as
+  <filename>/var/log</filename> or a spooling directory which is common
+  between applications. It is recommended that this only be done on a
+  case-by-case basis and that all changes are well documented.
+  <indexterm>
+   <primary>/var/log</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Files and Directories</primary>
+   <secondary>/var/log</secondary>
+  </indexterm>
+ </para>
+ <para>
+  As shown in the figure below, the module has some safeguards in place.
+  This includes ignoring system accounts (UID &lt; 100 and Solaris UID
+  &lt; 500) because many of them require permissions greater than
+  expected by this module. Additionally, this module builds an
+  <emphasis>exclusion list</emphasis>. This is a list of directories in
+  which permissions will never be changed by this module. The list
+  includes the following directories: <filename>/</filename> ,
+  <filename>/usr</filename> , <filename>/etc</filename> ,
+  <filename>/lib</filename> , <filename>/proc</filename> ,
+  <filename>/opt</filename> , <filename>/sbin</filename> ,
+  <filename>/usr/bin</filename> , <filename>/usr/sbin</filename> , and
+  <filename>/var/lib/nfs</filename> .
+ </para>
+ <figure pgwide="1" xml:id="figure-homedirperms-scan">
+  <title>Home Directory Perms - Scan Flow</title>
+  <mediaobject>
+   <imageobject>
+    <imagedata width="550" fileref="Figures/homedirperms-scan.png"/>
+   </imageobject>
+  </mediaobject>
+ </figure>
+ <para>
+  When the module is <emphasis>applied</emphasis>, the process is
+  repeated except when it finds a directory with permissions &gt; 750;
+  the permissions are set to 750.
+ </para>
+ <simplesect xml:id="HomeDirPerms-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN001480 - All user home directories must have mode 0750 or less
+     permissive.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN001480 - Home Directories Permissions
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD NISPOM (Feb 2006)</title>
+   <listitem>
+    <para>
+     8.606b1 - Access 2 Requirements
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-3 - Access Enforcement
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.3 - Configure system security parameters to prevent misuse
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

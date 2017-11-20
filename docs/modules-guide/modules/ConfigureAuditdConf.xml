@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="ConfigureAuditdConf">
+  <title xml:id="Auditing">Configure /etc/audit/auditd.conf Settings</title>
+  <para>
+  Verify that the indicated lines are contained in the
+  <filename>/etc/audit/auditd.conf</filename> file. Note that the
+  specific settings vary between guidelines and also can change based on
+  site requirements. OS Lockdown does not perform checks here except
+  that the lines below are or are not present in the
+  <filename>auditd.conf</filename> file with the required settings.
+  Lines missing (or with different settings) will be added/corrected
+  when applied. Note that on Red Hat Enterprise Linux 4 systems the
+  <filename>/etc/auditd.conf</filename> file may be examined rather than
+  the <filename>/etc/audit/auditd.conf</filename> file.
+ </para>
+  <simplesect xml:id="ConfigureAuditdConf-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>
+     GEN002719 - The audit system must alert the SA in the event of an
+     audit processing failure.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN002730 - The audit system must alert the SA when the audit
+     storage volume approaches its capacity.
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>
+     RHEL-06-000005 - The audit system must alert designated staff
+     members when the audit storage volume approaches capacity.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000159 - The system must retain enough rotated audit logs
+     to cover the required log retention period.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000160 - The system must set a maximum audit log file size.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000161 - The system must rotate audit log files that reach
+     the maximum file size.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000163 - The audit system must switch the system to
+     single-user mode when available audit storage volume becomes
+     dangerously low.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000311 - The audit system must provide a warning when
+     allocated audit record storage volume reaches a documented
+     percentage of maximum audit record storage capacity.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000313 - The audit system must identify staff members to
+     receive notifications of audit log storage volume capacity issues.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000510 - The audit system must take appropriate action when
+     the audit storage volume is full.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000511 - The audit system must take appropriate action when
+     there are disk errors on the audit storage volume.
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="ConfigureAuditdConf-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>List of setting (one per line, "NAME VALUE")</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

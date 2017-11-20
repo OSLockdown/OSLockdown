@@ -1,0 +1,1 @@
+svccfg -v import /var/svc/manifest/site/osl-dispatcher.xml

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Create Pre-Session GUI Banner">
+        <library>CreatePreSessionGUIBanner</library>
+        <description>Displays a warning banner during GUI login which may assist in prosecuting unauthorized system use.  This banner is displayed after the user has authenticated, but before the desktop is presented</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <configurationOptions>
+          <option name="requireAssent" type="requireAssent">
+            <description>Require Consent to Continue?</description>
+            <helpText>Select between using a Consent Banner (with the username and answer logged), or simply use an Informative banner.</helpText>
+            <default>1</default>
+          </option>
+          <option name="bannerSrc" type="GUIBannerSrc">
+            <description>Source for Banner Text.</description>
+            <helpText>Select the source of the test, either the 'Message of the Day' file (/etc/motd) or from the 'Manual Banner Text' field.</helpText>
+            <default>0</default>
+          </option>
+          <option name="bannerText" type="basicMultilineString">
+            <description>Manual Banner Text.</description>
+            <helpText>Text for the Banner if different from /etc/motd</helpText>
+            <default>Insert your text here</default>
+          </option>
+          <option name="formatBanner" type="formatBanner">
+            <description>Reformat Banner for Display?</description>
+            <helpText>Allow reformatting the text into 'paragraphs', with line breaks inserted into appropriate places.  All single newlines will be converted to two spaces.  Two newlines will be treated as an explicit paragraph boundary.</helpText>
+            <default>1</default>
+            
+          </option>
+        </configurationOptions>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4"/>
+          <cpe-item name="cpe:/o:centos:centos:5"/>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:novell:opensuse:10"/>
+          <cpe-item name="cpe:/o:novell:opensuse:11"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:10"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:11"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:redhat:fedora:10"/>
+          <cpe-item name="cpe:/o:redhat:fedora:11"/>
+          <cpe-item name="cpe:/o:redhat:fedora:12"/>
+          <cpe-item name="cpe:/o:redhat:fedora:13"/>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Banners</member>
+        </views>
+      </security_module>

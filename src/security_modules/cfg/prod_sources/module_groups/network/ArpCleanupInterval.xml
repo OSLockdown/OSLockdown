@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="ARP Cleanup Interval">
+        <library>ArpCleanupInterval</library>
+        <description>Set the length of time unsolicited requests remain in the ARP cache.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>5</severity_level>
+        <configurationOptions>
+          <option name="arpCleanupInterval" type="sixteenBitInteger">
+            <description>The length of time that unsolicited Address Resolution Protocol (ARP) requests remain in the ARP cache.</description>
+            <default>30000</default>
+            <units>milliseconds</units>
+          </option>
+        </configurationOptions>
+        <platforms>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Network</member>
+        </views>
+      </security_module>

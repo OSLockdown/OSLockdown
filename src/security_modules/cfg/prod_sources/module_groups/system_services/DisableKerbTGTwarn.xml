@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Kerberos TGT Expiration Warning">
+        <library>DisableKerbTGTwarn</library>
+        <description>Disables the Solaris Kerberos warning daemon (ktkt_warnd(1M)). When this daemon is enabled on Kerberos clients it can warn users when their Kerberos tickets are about to expire, or renew the tickets before they expire.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/a:mit:kerberos"/>
+          <cpe-item name="cpe:/o:sun:sunos:5.10">
+            <services>
+              <service seq="1" name="svc:/network/security/ktkt_warn:default" stop-now="true"/>
+            </services>
+            <packages>
+              <package name="SUNWkrbr"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

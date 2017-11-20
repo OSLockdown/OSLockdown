@@ -1,0 +1,14 @@
+getent group sbwebapp > /dev/null || groupadd sbwebapp
+getent passwd sbwebapp > /dev/null || \
+    useradd -g sbwebapp -s /bin/sh -d /usr/share/oslockdown/console -c "OS Lockdown GUI" sbwebapp
+    if [ $? -ne 0 ]; then 
+        echo "Unable to add 'sbwebapp' user."
+        exit 1
+    fi
+    passwd -N sbwebapp
+    if [ $? -ne 0 ]; then
+        echo "Unable to set account 'sbwebapp' to no-login (NL)"
+        exit 1
+    fi
+
+exit 0

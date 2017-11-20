@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % CommonEntities SYSTEM "../COMMON_ENTITIES.ent">
+%CommonEntities;
+]>
+<chapter version="5.0" xml:id="deploy-planning" xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+   xmlns:xlink="http://www.w3.org/1999/xlink">
+   <!--<?xml-stylesheet type="text/css" href="docbook.css"?>-->
+   <title>Deployment Planning</title>
+   <indexterm>
+      <primary>OS Lockdown</primary>
+      <secondary>Deployment</secondary>
+   </indexterm>
+   <indexterm>
+      <primary>Deployment</primary>
+      <secondary>Prerequisites</secondary>
+   </indexterm>
+   <indexterm>
+      <primary>Global Zones</primary>
+   </indexterm>
+   <para>This chapter lists the prerequisites required prior to deploying OS Lockdown.</para>
+   <note>
+      <para>Solaris Zones and OS Lockdown</para>
+      <para>A global zone comprises the entire system and is equivalent to a normal Solaris operating system instance.
+         It has access to the physical hardware and can see and control all processes. Inside the global zone are
+         non-global zones. These zones are isolated from the physical hardware characteristics of the machine.</para>
+      <para>There are two basic types of non-global zones: <emphasis role="bold">whole root</emphasis> and <emphasis
+            role="bold">sparse root</emphasis>.</para>
+      <para>A whole root zone includes a complete copy of the operating system on disk.</para>
+      <para>A sparse root zone does not include its own copy of the operating system binaries and libraries. This means
+         it does not have copies of the <filename>/usr</filename>, <filename>/sbin</filename>,
+            <filename>/platform</filename>, or <filename>/lib</filename> directories. Instead, programs in the
+         non-global zone use the files that reside in the global zone via loopback file system (LOFS) mount
+         point.</para>
+   </note>
+   <warning>
+      <para>Note that part of OS Lockdown installs in the <filename>/usr/</filename> file system which is shared as
+         read-only to a sparse root zone. Do <emphasis>not</emphasis> install OS Lockdown in a sparse root zone. Only
+         install OS Lockdown in a global zone or a whole root non-global zone. Also, do not change the installation
+         location when installing OS Lockdown.</para>
+   </warning>
+   <important>
+      <para>Currently, OS Lockdown has been officially tested on Solaris 10 U3-U9. In May 2011, Oracle released patches
+         143506-02 and 143507-02 which removed the <trademark>Python</trademark> 2.4.4 development libraries and
+         installed Python 2.6 as the primary Python version. OS Lockdown has been modified to work in this environment,
+         but due to the licensing restrictions placed by Oracle on obtaining these patches and more recent versions of
+         Solaris 10, additional testing has not been performed. Limited testing by end-users with Solaris 10 update 10
+         installations show the modifications are working as intended. </para>
+   </important>
+   <section xml:id="sb-deploy-steps">
+      <title>Required: OS Lockdown Deployment Steps</title>
+      <important>
+         <para>The following steps are <emphasis role="italic">required</emphasis> prior to deploying both OS Lockdown
+            editions (Enterprise and Standalone).</para>
+      </important>
+      <note>
+         <para>Execute all commands with root permissions.</para>
+      </note>
+      <para>Perform the following deployment steps:</para>
+      <orderedlist numeration="arabic">
+         <listitem>
+            <para>Select the server hardware and coordinate network connectivity. Refer to <xref
+                  linkend="console-hardware" xrefstyle="select: label quotedtitle"/> for details.<indexterm>
+                  <primary>MAC Address</primary>
+               </indexterm><indexterm>
+                  <primary>Deployment</primary>
+                  <secondary>Instructions</secondary>
+               </indexterm></para>
+         </listitem>
+         <listitem>
+            <para>Select the correct web browser versions and configure them. Refer to <xref
+                  linkend="recommended-web-browsers" xrefstyle="select: label quotedtitle"/> for a list of recommended
+               web browsers.</para>
+         </listitem>
+         <listitem>
+            <para>Determine whether your system meets the following requirements:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>OS Lockdown requires <trademark>Java</trademark> v1.6 or v1.7.</para>
+               </listitem>
+               <listitem>
+                  <para>If you are using Solaris, patch 121606-04+ for SPARC or 121607-04+ for x86 systems (updates
+                     Python to 2.4 or higher).</para>
+               </listitem>
+               <listitem>
+                  <para>If you are using Solaris, the operating system must have American English language support to include 8-bit Universal
+                     Character Set (UCS)/Unicode Transformation Format (UTF-8). For Solaris systems, this means the
+                     &ldquo;SUNWeu8os&rdquo; package must be installed.</para>
+                  <para>To determine if a system has the proper language support, execute the following command:</para>
+                  <para>
+                     <screen># <userinput>/usr/bin/locale -a |/bin/grep -i en_US.utf</userinput></screen>
+                  </para>
+                  <para>Verify that either <filename>en_US.utf8</filename> or <filename>en_US.UTF-8</filename> is
+                     returned. If the command returns nothing, then the language support must be installed.</para>
+               </listitem>
+            </itemizedlist>
+         </listitem>
+         <listitem>
+            <para>If you are upgrading a v4.0.8 or earlier OS Lockdown Console, it is recommended that you use the
+               graphical interface to export the database prior to installing new software. Refer to <xref
+                  linkend="enterprise-mig" xrefstyle="select: label quotedtitle"/> for details.</para>
+         </listitem>
+         <listitem>
+            <para>Install and configure the OS Lockdown application. Refer to <xref linkend="install-config"
+                  xrefstyle="select: label quotedtitle"/> for details.</para>
+         </listitem>
+      </orderedlist>
+   </section>
+   <section xml:id="console-hardware">
+      <title>OS Lockdown Console Hardware</title>
+      <para>The OS Lockdown Console is capable of managing thousands of clients. The scanning, configuring, and
+         baselining work is performed on each client. The OS Lockdown Console, however, must have enough disk space to
+         store client reports and enough physical memory and processing power to aggregate reports for large groups of
+         clients and to perform report comparisons.</para>
+      <para>It is recommended that you have at least a P4 2.0 GHz or <trademark>Sun</trademark>
+         <trademark class="registered">UltraSPARC</trademark> III processor. For OS Lockdown Consoles a minimum of 1 GB of physical memory is 
+	 recommended. For larger deployments, 2 GB or more physical memory is recommended.<indexterm>
+            <primary>OS Lockdown Console</primary>
+            <secondary>Memory Increase</secondary>
+         </indexterm>
+      </para>
+      <note>
+         <para>If the OS Lockdown Console reports an &ldquo;out of memory&rdquo; error, even though you have enough
+            physical memory, increase the memory allocated to the OS Lockdown Console during start up.</para> <para>To increase the
+            memory, edit the following section in the <filename>/usr/share/oslockdown/console/bin/setenv.sh</filename>
+            file:</para>
+         <screen># Set Memory Size startup size
+JAVA_OPTS="$JAVA_OPTS -Xmx512M"
+export JAVA_OPTS</screen>
+      </note>
+      <para>The amount of disk space required is dependent on the number of clients, the frequency of report creation,
+         and how long the reports must be archived. For OS Lockdown Consoles managing fewer than 500 clients and are
+         generating reports on a weekly basis, 4 GB of storage is recommended. Otherwise, 8 GB or more of storage is
+         recommended. In both scenarios, a six month archive is assumed. </para>
+      <indexterm>
+         <primary>Deployment</primary>
+         <secondary>Storage Space</secondary>
+      </indexterm>
+      <para>The console-to-client communications is SOAP-based TLSv1 encrypted and authenticated. When the OS Lockdown
+         Console is requested (or scheduled) to perform an action, it pushes small profiles (up to 20 or 30 KB) to the
+         clients. When the action is complete, the OS Lockdown Console receives notification that reports are available.
+         When the OS Lockdown Console retrieves reports, it retrieves Baseline reports (6-8 MB), Assessment reports
+         (&gt;1 MB), Apply reports (&gt;1 MB), and Undo reports (&gt;1 MB).</para>
+   </section>
+   <section xml:id="recommended-web-browsers">
+      <title>Recommended Web Browsers</title>
+      <para>The preferred web browsers for the OS Lockdown Console in OS Lockdown v2.0 and later are:</para>
+      <indexterm>
+         <primary>Web Browsers</primary>
+         <secondary>Recommended</secondary>
+      </indexterm>
+      <indexterm>
+         <primary>Browsers</primary>
+         <secondary>Recommended</secondary>
+      </indexterm>
+      <indexterm>
+         <primary>Firefox</primary>
+      </indexterm>
+      <indexterm>
+         <primary>Internet Explorer</primary>
+      </indexterm>
+      <indexterm>
+         <primary>TLS</primary>
+      </indexterm>
+      <indexterm>
+         <primary>Security</primary>
+         <secondary>TLS</secondary>
+      </indexterm>
+      <itemizedlist>
+         <listitem>
+            <para><trademark class="registered">Firefox</trademark> 3 and higher</para>
+         </listitem>
+         <listitem>
+            <para><trademark class="registered">Internet Explorer</trademark> 7 and higher</para>
+         </listitem>
+      </itemizedlist>
+      <para>Since the OS Lockdown Console uses Transport Layer Security (TLS) for encryption, you must enable it.</para>
+      <indexterm>
+         <primary>Transport Layer Security (TLS)</primary>
+         <secondary>Enabling</secondary>
+      </indexterm>
+      <procedure xml:id="procedure-enable-tls-firefox">
+         <para>To enable TLS in Firefox:</para>
+         <step>
+            <para>Select <emphasis role="bold">Tools</emphasis> &gt; <emphasis role="bold">Options</emphasis>. The
+                  <emphasis role="bold">Options</emphasis> page displays.</para>
+         </step>
+         <step>
+            <para>Click the <emphasis role="bold">Advanced</emphasis> icon.</para>
+         </step>
+         <step>
+            <para>Click the <emphasis role="bold">Encryption</emphasis> tab. </para>
+         </step>
+         <step>
+            <para>Select the <emphasis role="bold">Use TLS 1.0</emphasis> checkbox.</para>
+         </step>
+         <step>
+            <para>Click <emphasis role="bold">OK</emphasis>.</para>
+         </step>
+      </procedure>
+      <procedure xml:id="procedure-enable-tls-ie">
+         <para>To enable TLS in Internet Explorer:</para>
+         <step>
+            <para>Select <emphasis role="bold">Tools</emphasis> &gt; <emphasis role="bold">Internet Options</emphasis>.
+               The <emphasis role="bold">Internet Options</emphasis> page displays.</para>
+         </step>
+         <step>
+            <para>Click the <emphasis role="bold">Advanced</emphasis> tab.</para>
+         </step>
+         <step>
+            <para>Select the <emphasis role="bold">Use TLS 1.0</emphasis> checkbox.</para>
+         </step>
+         <step>
+            <para>Click <emphasis role="bold">OK</emphasis>.</para>
+         </step>
+      </procedure>
+   </section>
+</chapter>

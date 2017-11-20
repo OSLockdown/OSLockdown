@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: DisableSuidCoreDumps.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableSuidCoreDumps" version="5.0">
+  <title xml:id="General">Disable SUID Core Dumps</title>
+  <para>
+  Explicitly prevents any SUID program from writing a core dump file on
+  abnormal termination.
+  <indexterm><primary>SUID</primary></indexterm>
+ </para>
+  <para>
+  Core dumps can consume considerable amounts of disk space, and may
+  contain sensitive data. It is recommended to disable core dumps if
+  they are not needed, especially for programs that may contain
+  privileged user information such as from SUID programs.
+  <indexterm><primary>Core dumps</primary></indexterm>
+ </para>
+  <para>
+  This module ensures the following line is present in
+  <filename>/etc/sysctl.conf</filename> on Linux systems:
+  <indexterm><primary>/etc/sysctl.conf</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/etc/sysctl.conf</secondary></indexterm>
+
+  <indexterm><primary>sysctl.conf</primary></indexterm>
+ </para>
+  <programlisting>fs.suid_dumpable = 0</programlisting>
+  <simplesect xml:id="DisableSuidCoreDumps-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>2.2.4.2.1 - Ensure SUID Core Dumps are Disabled</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-4247-3 - Core dumps for setuid programs should be enabled or disabled as appropriate</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

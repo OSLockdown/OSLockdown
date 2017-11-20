@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="ShadowPerms" version="5.0">
+  <title xml:id="fileDACs">Shadow Perms</title>
+  <para>
+  Secures shadow files with permissions that protect them from being
+  directly modified by unauthorized users.
+ </para>
+  <para>
+    <important>
+      <para>
+    Note that the <filename>/etc/shadow</filename> file on SUSE/openSUSE
+    systems should be owned by the “shadow” user. This requirement
+    will be enforced.
+   </para>
+    </important>
+    <indexterm>
+      <primary>shadow</primary>
+    </indexterm>
+  </para>
+  <simplesect xml:id="ShadowPerms-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>
+     GEN000000-LNX001431 - The /etc/gshadow file must be owned by root.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN000000-LNX001432 - The /etc/gshadow file must be group-owned by
+     root.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN000000-LNX001433 - The /etc/gshadow file must have mode 0400.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN001400 - The /etc/shadow (or equivalent) file must be owned by
+     root.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN001410 - The /etc/shadow file (or equivalent) must be
+     group-owned by root, bin, or sys.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN001420 - The /etc/shadow (or equivalent) file must have mode
+     0400.
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>
+     RHEL-06-000033 - The /etc/shadow file must be owned by root.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000034 - The /etc/shadow file must be group-owned by root.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000035 - The /etc/shadow file must have mode 0000.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000036 - The /etc/gshadow file must be owned by root.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000037 - The /etc/gshadow file must be group-owned by root.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000038 - The /etc/gshadow file must have mode 0000.
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD NISPOM (Feb 2006)</title>
+      <listitem>
+        <para>
+     8.303d - Access to Authentication Data
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     8.606b1 - Access 2 Requirements
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>
+     AC-3 - Access Enforcement
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     IA-5 - Authenticator Management
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>
+     2.2.3.1 - Verify Permissions on passwd, shadow, group and gshadow
+     Files
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>
+     CCE-3276-3 - The /etc/group file should be owned by the appropriate
+     user.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CCE-3495-9 - The /etc/passwd file should be owned by the
+     appropriate group.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CCE-3566-7 - File permissions for /etc/passwd should be set
+     correctly.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CCE-3883-6 - The /etc/group file should be owned by the appropriate
+     group.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CCE-3918-0 - The /etc/shadow file should be owned by the
+     appropriate user.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CCE-3958-6 - The /etc/passwd file should be owned by the
+     appropriate user.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CCE-3967-7 - File permissions for /etc/group should be set
+     correctly.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CCE-3988-3 - The /etc/shadow file should be owned by the
+     appropriate group.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     CCE-4130-1 - File permissions for /etc/shadow should be set
+     correctly.
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     8.4 - Render all passwords unreadable during transmission and
+     storage on all system components.
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="ShadowPerms-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>List of files/directories<emphasis><para>List of files/directories to process.  May have wild card expansion (using shell globbing rules) available if the module supports it.  If empty, no file checks will be done.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Allowed User Names<emphasis><para>List of user names (ignored if empty). If '&lt;SYSTEM;&gt;' is in the list, then the list of all local privileged accounts will be inserted <emphasis>at this position</emphasis>, with duplicate names removed.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Allowed Group Names<emphasis><para>List of group names (ignored if empty). If '&lt;SYSTEM;&gt;' is in the list, then the list of all local privileged group accounts will be inserted <emphasis>at this position</emphasis>, with duplicate names removed.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Maximum allowed permissions<emphasis><para>Maximum permitted Discretionary Access Controls (DACs) in <emphasis>octal</emphasis> format (i.e.,  max perms is 777 or 0777).
+      Note that only the read/write/execute bits are considered.  Note also that if a directory has read permissions for 
+      user/group/other allowed, then execute permissions for user/group/other are <emphasis>also</emphasis> allowed to allow for directory traversal.  No extra permissions are enforced, just allowed.  If empty, no permissions checks will be done.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

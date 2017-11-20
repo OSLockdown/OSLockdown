@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableSQL_postgresql" version="5.0">
+ <title xml:id="Database">Disable Postgresql</title>
+ <para>
+  Disables the PostgreSQL database server.
+  <indexterm>
+   <primary>PostgreSQL</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>SQL</primary>
+  </indexterm>
+ </para>
+ <para>
+  Disabling PostgreSQL does not prevent client-based applications from
+  connecting to remote PostgreSQL database servers.
+ </para>
+ <para>
+  If you must run PostgreSQL, take necessary steps to secure it.
+ </para>
+ <para>
+  It is recommended that you change the PostgreSQL root password after
+  installation and restrict access to its default TCP port of 5432 on
+  your host with the <command>iptables(8)</command> administration tool.
+  <indexterm>
+   <primary>iptables</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>password</primary>
+  </indexterm>
+ </para>
+ <para>
+  Also, make sure that database user accounts have complex passwords and
+  restrict the accounts on a host or network basis by avoiding the use
+  of the wildcard (%) in user accounts.
+  <indexterm>
+   <primary>svc:/application/database/postgresql</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Solaris services</primary>
+   <secondary>svc:/application/database/postgresql</secondary>
+  </indexterm>
+
+  <indexterm>
+   <primary>svc:/application/database/postgresql:version_81</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Solaris services</primary>
+   <secondary>svc:/application/database/postgresql:version_81</secondary>
+  </indexterm>
+
+  <indexterm>
+   <primary>svc:/application/database/postgresql:version_82</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Solaris services</primary>
+   <secondary>svc:/application/database/postgresql:version_82</secondary>
+  </indexterm>
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="0.5*" align="left"/>
+   <colspec colname="c2" colwidth="0.5*"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Package</entry>
+     <entry>Service Names</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="4">postgresql-server
+      <indexterm>
+       <primary>postgresql-server</primary>
+      </indexterm></entry>
+     <entry morerows="4">postgresql</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+     <entry><emphasis>No check</emphasis></entry>
+     <entry><literallayout>svc:/application/database/postgresql:version_81
+svc:/application/database/postgresql:version_82
+svc:/application/database/postgresql</literallayout></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="DisableSQL_postgresql-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-13 - Limitation and Control of Network Ports, Protocols, and
+     Services
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DHS Linux Configuration Guidance (2010.8)</title>
+   <listitem>
+    <para>
+     6.2 - Configuring Stand Alone Services
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+   <listitem>
+    <para>
+     CIP-005-3-R2.2 - Enable only ports and services needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+   <listitem>
+    <para>
+     CIP-007-3-R2.2 - Disable ports and services not needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.2 - Disable all unnecessary and insecure services
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

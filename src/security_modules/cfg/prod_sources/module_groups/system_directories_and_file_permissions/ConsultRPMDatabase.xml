@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Consult the RPM Database for file/directory setting">
+        <library>ConsultRPMDatabase</library>
+        <description>Use the data within the RPM database to verify permissions on files and directories.</description>
+        <scan_weight>10</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <configurationOptions>
+          <option name="honorChangesBySB" type="yesOrNo">
+            <description>Should files owned by root/root with permissions of 000 be left alone?</description>
+            <helpText>If OS Lockdown needs to remove a file or entry (for example, if an unowned file is found) the 
+            ownership it set to root:root, and the permissions are set to 000.  This module would undo every single one of those
+            changes unless told to allow those changes to persist.</helpText>
+            <default>1</default>
+          </option>
+          <option name="packageExemptions" type="basicMultilineStringCanBeEmpty">
+            <description>List of RPM packages to ignore</description>
+            <default></default>
+          </option>
+          <option name="fileExemptions" type="basicMultilineStringCanBeEmpty">
+            <description>List of specific files/dirs to ignore (<emphasis>dirs are treated non-recursively</emphasis>), one entry per line</description>
+            <default></default>
+          </option>
+        </configurationOptions>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4"/>
+          <cpe-item name="cpe:/o:centos:centos:5"/>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:novell:opensuse:10"/>
+          <cpe-item name="cpe:/o:novell:opensuse:11"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:10"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:11"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:redhat:fedora:10"/>
+          <cpe-item name="cpe:/o:redhat:fedora:11"/>
+          <cpe-item name="cpe:/o:redhat:fedora:12"/>
+          <cpe-item name="cpe:/o:redhat:fedora:13"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Directories and File Permissions</member>
+        </views>
+      </security_module>

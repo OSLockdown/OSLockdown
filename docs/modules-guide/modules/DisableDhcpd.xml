@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableDhcpd" version="5.0">
+  <title xml:id="NetworkServices">Disable Dhcpd</title>
+  <para>
+  Dhcpd is a daemon that provides Dynamic Host Control Protocol (DHCP)
+  addressing assignments.
+ </para>
+  <para>
+  IP address assignment will typically be handled by your network
+  administrator and the presence of a DHCP server on your network can
+  potentially cause a network failure. Disable this daemon unless
+  otherwise required.
+  <indexterm><primary>DHCP</primary></indexterm>
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2">
+    <tgroup cols="3">
+      <colspec colwidth="0.8*"/>
+      <colspec colwidth="0.5*"/>
+      <colspec colwidth="0.8*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Packages</entry>
+          <entry>Service Names</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="3">dhcp</entry>
+          <entry morerows="3">dhcpd
+      <indexterm><primary>dhcpd</primary></indexterm></entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+          <entry>SUNWdhcsr
+      <indexterm><primary>SUNWdhcsr</primary></indexterm>
+
+      <indexterm><primary>Solaris packages</primary><secondary>SUNWdhcsr</secondary></indexterm></entry>
+          <entry>svc:/network/dhcp-server:default
+      <indexterm><primary>dhcp-server</primary></indexterm>
+
+      <indexterm><primary>svc:/network/dhcp-server:default</primary></indexterm>
+
+      <indexterm><primary>Solaris services</primary><secondary>svc:/network/dhcp-server:default</secondary></indexterm></entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+          <entry>dhcp-server</entry>
+          <entry>dhcp</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <simplesect xml:id="DisableDhcpd-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-13 - Limitation and Control of Network Ports, Protocols, and Services</para>
+      </listitem>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+      <listitem>
+        <para>CIP-005-3-R2.2 - Enable only ports and services needed for operations</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+      <listitem>
+        <para>CIP-007-3-R2.2 - Disable ports and services not needed for operations</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>3.9.3 - Disable DHCP Server if Possible</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-4336-4 - The dhcpd service should be enabled or disabled as appropriate.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+      <listitem>
+        <para>2.2.2 - Disable all unnecessary and insecure services</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,364 @@
+/**
+* Copyright (c) 2007-2014 Forcepoint LLC.
+* This file is released under the GPLv3 license.  
+* See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+* or visit https://www.gnu.org/licenses/gpl.html instead.
+ *
+ * 
+ */
+@import url("module-results.css");
+
+body {
+    background-color: white;
+    color: black;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+/** 
+  * Hyperlinks
+  */
+a { text-decoration: none; color: #467fc5; }
+a:link { color: #467fc5; }
+a:visited { color: #315581 }
+a:hover   { color: #899eb7; text-decoration: underline }
+a:active  { color: #FF0000; } 
+
+
+/*****************************************************************************
+    Tables (Generic) 
+ ****************************************************************************/
+table {
+    background-color: white;
+    border: solid 1px black;
+    border-bottom: none;      /* Because the td/th will add bottom border */
+    border-spacing: 0px;
+    border-collapse: collapse;
+    font-size: 10pt;
+    margin-top: 3.0em;
+    padding: 0px;
+    width: 100%
+
+}
+
+table thead th {
+    font-style: normal;
+    font-weight: bold;
+    background-color: #c8c5a1;
+    color: black;
+    text-align: left;
+    border-bottom: solid 1px #000000;
+    padding: 4px;
+    white-space: nowrap;
+}
+
+/** The first table header row is a bit darker than
+  * subheader rows in a table.
+  */
+table thead > tr:first-child th {
+    background-color: #a19670; 
+}
+
+table tbody tr.odd {
+    background-color: white;
+}
+
+table tbody tr.even {
+    background-color:  #eef1f8;
+}
+
+table tbody td {
+    padding: 4px;
+    border-bottom: solid 1px #000000;
+    vertical-align: top;
+}
+
+
+/**
+  * This is for the icons for 'sortable' tables
+  *   icons are the not sorted, sort up, and sort down.
+  */
+span.sortarrow img { 
+    border: none; 
+    vertical-align: text-bottom;
+}
+
+table tbody td div.moduleDescription {
+    margin-left: 1em;
+    margin-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    font-weight: normal;
+    font-style: italic;
+}
+
+div.moduleDescription, div.hostnameDetails > ul {
+        font-style: normal;
+        list-style-type: circle;
+}
+
+table tbody td div.hostnameDetails {
+    font-size: 90%;
+    padding-left: 0;
+    font-weight: normal;
+    font-style: italic;
+}
+
+div.hostnameDetails > ul {
+        font-style: normal;
+        list-style-type: none;
+}
+
+
+/*****************************************************************************
+    Header Table (Top of the report)
+ ****************************************************************************/
+table.hdrTable {
+    border: none;
+    width: 100%;
+    padding: 0px;
+    border-spacing: 0;
+    margin-top: 0em;
+}
+
+
+/*****************************************************************************
+    Summary Tables have a slightly different format because we want the
+    first column under tbody to "standout"
+ ****************************************************************************/
+
+ /* :first-child does not work in IE6 :-( */
+ /* table.summaryTable tbody tr td:first-child { */
+
+/* table.summaryTable tbody tr td:first-child { */
+table.summaryTable td.firstCol {
+    width: 10%;
+    background-color: #eef1f8;
+    color: black;
+    font-weight: bold;
+    text-align: right;
+    border-right: 1px solid black;
+    padding-right: 0.5em;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+/** 
+  * Had to abandoned the use of nth-child()
+  * See "CSS selectors and pseudo selectors browser compatibility"
+  *   http://kimblim.dk/css-tests/selectors/
+  *
+  * Instead we will use the plus operator in selecting the second
+  * column.
+  */
+
+table.summaryTable tbody tr > td.firstCol + td {
+    padding-left: 0.5em;
+    /* font-weight: bold; */
+
+}
+
+table.summaryTable div.profileDescription {
+    font-size: 90%;
+    font-style: italic;
+    font-weight: normal;
+    margin: 0.1em;
+}
+
+
+
+/*****************************************************************************
+    Sections of the Baseline (i.e., Files, Software, Network)
+ ****************************************************************************/
+table.sectionTable {
+    width: 100%;
+    background-color: #eef1f8;
+    padding: 0px;
+    border-spacing: 0;
+    margin-top: 1.0em;
+    border-left: solid 1px black;
+    border-right: solid 1px black;
+}
+
+table.sectionTable th {
+    font-style: normal;
+    font-weight: bold;
+    background-color: #a19670;
+    color: white;
+    text-align: left;
+    border-top: solid 1px #000000;
+    border-bottom: solid 1px #000000;
+    padding: 4px;
+}
+
+table.sectionTable td {
+    background-color: white;
+    /* font-size: 11px; */
+    padding: 2px;
+    padding-top: 5px;
+    border-bottom: solid 1px black;
+    overflow-x: visible;
+}
+
+table.sectionTable td.sectionSubHeader {
+    background-color: #c8c5a1;
+    color: black;
+    border-right: solid 1px black;
+}
+
+table.sectionTable td.subSectionTitle {
+    background-color: #eef1f8;
+    width: 20%;
+    font-weight: bold;
+    vertical-align: text-top;
+    font-size: 105%;
+    border-right: solid 1px black;
+}
+
+table.sectionTable td div.subSectionInfoBox {
+    font-size: 80%;
+    font-weight: normal;
+    font-style: italic;
+    padding-left: 10px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+div.subSectionInfoBox div.navigTop {
+    text-align: right; 
+    font-style: normal;
+}
+
+/** For output of a command, fixed width **/
+table.sectionTable td pre {
+    font-family: courier;
+    font-size: 90%;
+    padding: 2px;
+}
+
+table.sectionTable td div.cmdOutput {
+    overflow-x: auto; 
+    width: 700px
+}
+
+table.sectionTable td ul {
+    list-style-type: circle;
+    text-indent: 4px;
+    padding-left: 2em;
+    margin-bottom: 0;
+}
+
+table.sectionTable td ul li {
+    /* font-size: 11px; */
+    text-indent: 4px;
+    line-height: 1.5em;
+}
+
+
+/** Module Information **/
+table.sectionTable td.moduleName {
+    background-color: white;
+    color: black;
+    padding: 4px;
+    /*font-size: 14px; */
+    border-bottom: solid 1px gray;
+}
+
+table.sectionTable td.moduleHighlight {
+    background-color: #eef1f8;
+    padding: 4px;
+    color: black;
+    /* font-size: 14px;*/
+}
+
+/******************************************************
+  *  Module Description, compliancy, and messages 
+  *****************************************************/
+table.sectionTable td.moduleName div.moduleDescription {
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    font-weight: normal;
+}
+
+table.sectionTable td.moduleName div.moduleDescription ul.compliancyList {
+        list-style-type: square;
+        font-size: 90%;
+}
+
+table.sectionTable td.moduleName div.moduleDescription ul.moduleMessages {
+        list-style-type: circle;
+        font-size: 80%;
+        background-color: #eef1f8; 
+}
+
+table.sectionTable td.moduleName div.moduleDescription h4.compliancyList,h4.moduleMessages {
+    font-size: 100%;
+    font-weight: bold;
+    line-height: 1.2em;
+}
+
+table.sectionTable td.moduleName div.moduleDescription p.statusMessage {
+    font-size: 95%;
+    color: black;
+    font-style: italic;
+    /* background-color: #eef1f8; */
+}
+
+
+/** Statistics **/
+table th.statsHeader {
+    text-align: center;
+    color: black;
+    background-color: #eef1f8;
+}
+
+table.sectionTable td.statsCell {
+    text-align: center;
+}
+
+/*****************************************************************************
+    Navigational Table Header Cell (used to quick jump)
+ ****************************************************************************/
+table.sectionTable th.navigTop {
+    text-align: right;
+}
+
+table.sectionTable th.navigTop a:link, a:visited, a:active {
+    text-decoration: none;
+}
+
+table.sectionTable th.navigTop a:hover {
+    text-decoration: none;
+    color: yellow;
+}
+
+/*****************************************************************************
+    Footer  (Bottom of the report)
+ ****************************************************************************/
+table.footerTable {
+    border: 0px;
+    margin-top: 1em;
+    width: 100%;
+    background-color: white;
+    padding: 0px;
+    font-size: 10px;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+table.footerTable td {
+    border: 0px;
+ }
+
+
+
+/****************************************************************************/
+.infoName {
+   font-weight: bold;
+}
+
+.infoItem {
+   font-weight: normal;
+}

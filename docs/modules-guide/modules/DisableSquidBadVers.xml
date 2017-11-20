@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableSquidBadVers" version="5.0">
+ <title xml:id="WebServices">Disable Squid if Older than 2.4STABLE6</title>
+ <para>
+  Disables the <application>Squid</application> service if the currently
+  installed version is at least 2.4.STABLE6. When this module was
+  written, prior versions of <application>Squid</application> had
+  vulnerabilities including a vulnerability in the authentication
+  header.
+  <indexterm>
+   <primary>Squid</primary>
+  </indexterm>
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="1.0*" align="left"/>
+   <colspec colname="c2" colwidth="1.5*"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Method</entry>
+     <entry>Service to Disable</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="4">Uses RPM API (librpm) to get information on 'squid'</entry>
+     <entry morerows="4">squid</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+    </row>
+    <row>
+     <entry morerows="1">Solaris 10</entry>
+     <entry><command>/usr/bin/pkgparam SUNWsquidr VERSION</command>
+      <indexterm>
+       <primary>SUNWsquidr</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Solaris packages</primary>
+
+       <secondary>SUNWsquidr</secondary>
+      </indexterm></entry>
+     <entry>squid</entry>
+    </row>
+    <row>
+     <entry><command>/usr/bin/pkgparam CSKsquid VERSION</command>
+      <indexterm>
+       <primary>CSKsquid</primary>
+      </indexterm></entry>
+     <entry>svc:/network/http:squid-csk
+      <indexterm>
+       <primary>svc:/network/http:squid-csk</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Solaris services</primary>
+       <secondary>svc:/network/http:squid-csk</secondary>
+      </indexterm></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="DisableSquidBadVers-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-13 - Limitation and Control of Network Ports, Protocols, and
+     Services
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN005640 - Squid Web Proxy Authentication Header Vulnerability
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN005660 - Squid Web Proxy MSNT Auth Helper Vulnerability
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN005680 - Squid Web Proxy Version
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

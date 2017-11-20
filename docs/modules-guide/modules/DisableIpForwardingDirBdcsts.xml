@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: DisableIpForwardingDirBdcsts.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableIpForwardingDirBdcsts" version="5.0">
+  <title xml:id="NetworkConfig">Disable Broadcast Packet Forwarding</title>
+  <para>
+  Directed broadcasts are packets that are sent from one system on a
+  foreign network to all systems on another network. Directed broadcasts
+  are the basis for the “smurf” attack where forged ICMP packets are
+  sent from a host to the broadcast address of a remote network. The
+  source address in the ICMP packets is forged to contain the address of
+  the victim host. The systems on the remote network receive the ICMP
+  packet and then reply back to the victim host thereby flooding the
+  host with traffic. Any Solaris system that has IP forwarding enabled
+  will forward directed broadcasts as well.
+  <indexterm><primary>ICMP</primary></indexterm>
+
+  <indexterm><primary>smurf</primary></indexterm>
+ </para>
+  <table xml:id="table-disable-bdcst-pkt-forwarding" frame="all" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>IP Settings to Prohibit the Sending of ICMP Redirects</title>
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.5*" align="left"/>
+      <colspec colname="c2" colwidth="0.5*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Setting</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry namest="c2" nameend="c3" morerows="4">
+            <emphasis>Operating System Not Applicable</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+          <entry>
+            <filename>/etc/default/ndd</filename>
+            <indexterm>
+              <primary>/etc/default/ndd</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/default/ndd</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>ndd</primary>
+            </indexterm>
+          </entry>
+          <entry>
+            <filename>ip_forward_directed_broadcasts=0</filename>
+            <indexterm>
+              <primary>.forward</primary>
+            </indexterm>
+            <indexterm>
+              <primary>ip_forward</primary>
+            </indexterm>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+  <para>
+  See the <emphasis>Solaris Tunable Parameters Reference
+  Manual</emphasis>
+  <footnote><para>
+    Sun Microsystems. <emphasis role="underline">Solaris Tunable
+    Parameters Reference Manual</emphasis>. Santa Clara, CA: Sun
+    Microsystems Press, 2005.
+   </para></footnote>
+  for more information.
+ </para>
+  <simplesect xml:id="DisableIpForwardingDirBdcsts-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>6.1 - Kernel TCP Stack Tuning</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

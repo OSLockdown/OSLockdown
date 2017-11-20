@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableSVM" version="5.0">
+ <title xml:id="SysMgmtServices">Disable Solaris Volume Manager</title>
+ <para>
+  Disables the Solaris Volume Manager (SVM) services. This module
+  disables the SVM initialization, multipath upgrade, and monitor
+  services.
+  <indexterm>
+   <primary>SVM</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Solaris Volume Manager</primary>
+  </indexterm>
+ </para>
+ <warning>
+  <title>WARNING: Solaris Mounted Filesystems on SVM Metadevices</title>
+  <para>
+   During the scanning phase, this module will use the
+   <command>metastat(1M)</command> utility to see if there are any
+   metadevice state databases present. If so, the module will log a
+   warning message.
+  </para>
+  <para>
+   When applying this module, it will look for mounted filesystems using
+   SVM metadevices ( <filename>/dev/md/*</filename> ) in the
+   <filename>mnttab(4)</filename> file. If it finds any, log entries
+   will be made and the module will <emphasis role="strong">NOT
+   DISABLE</emphasis> SVM services. This prevents accidental shutdown of
+   vital services required by mounted filesystems.
+  </para>
+ </warning>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="2">
+   <colspec colname="c1" colwidth="1.0*" align="left"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Service Names</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="4"><emphasis>Operating System Not Applicable</emphasis></entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+    </row>
+    <row>
+     <entry>Solaris 10 (Global zone only)</entry>
+     <indexterm>
+      <primary>/dev</primary>
+     </indexterm>
+     <indexterm>
+      <primary>Files and Directories</primary>
+
+      <secondary>/dev</secondary>
+     </indexterm>
+     <indexterm>
+      <primary>svc:/system/device/mpxio-upgrade:default</primary>
+     </indexterm>
+     <indexterm>
+      <primary>Solaris services</primary>
+
+      <secondary>svc:/system/device/mpxio-upgrade:default</secondary>
+     </indexterm>
+     <indexterm>
+      <primary>svc:/system/mdmonitor:default</primary>
+     </indexterm>
+     <indexterm>
+      <primary>Solaris services</primary>
+
+      <secondary>svc:/system/mdmonitor:default</secondary>
+     </indexterm>
+     <indexterm>
+      <primary>svc:/system/metainit:default</primary>
+     </indexterm>
+     <indexterm>
+      <primary>Solaris services</primary>
+
+      <secondary>svc:/system/metainit:default</secondary>
+     </indexterm>
+     <entry><simplelist type="horiz" columns="1">
+       <member>svc:/system/metainit:default</member>
+       <member>svc:/system/device/mpxio-upgrade:default</member>
+       <member>svc:/system/mdmonitor:default</member>
+      </simplelist></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="DisableSVM-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-13 - Limitation and Control of Network Ports, Protocols, and
+     Services
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+   <listitem>
+    <para>
+     CIP-005-3-R2.2 - Enable only ports and services needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+   <listitem>
+    <para>
+     CIP-007-3-R2.2 - Disable ports and services not needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NVD CCE</title>
+   <listitem>
+    <para>
+     CCE-4411-5 - The mdmonitor service (Solaris 10 &lt;= 11/06) should
+     be enabled or disabled as appropriate
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CCE-4499-0 - The mpxio-upgrade service should be enabled or
+     disabled as appropriate
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.2 - Disable all unnecessary and insecure services
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

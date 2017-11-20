@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation>
+        Copyright (c) 2007-2014 Forcepoint LLC.
+        This file is released under the GPLv3 license.
+        See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+        or visit https://www.gnu.org/licenses/gpl.html instead.
+	
+        OS Lockdown - All Modules (identifies all modules available
+        to the product)
+
+        The XML file for OS Lockdown (and this XSD defines) is:
+        /usr/share/oslockdown/security-modules.xml 
+    </xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="stringWithXML" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="emphasis" type="xs:token"/>
+      <xs:element name="filename" type="xs:token"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:element name="oslockdown">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="security_modules" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="module_group" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element ref="security_module" minOccurs="1" maxOccurs="unbounded"/>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="version" type="xs:NMTOKEN" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!--
+       Primary Building Block of OS Lockdown
+    -->
+  <xs:element name="security_module">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="library" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="description" type="stringWithXML" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="scan_weight" minOccurs="1" maxOccurs="1">
+          <xs:simpleType>
+            <xs:restriction base="xs:integer">
+              <xs:minInclusive value="0"/>
+              <xs:maxInclusive value="10"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="action_weight" minOccurs="1" maxOccurs="1">
+          <xs:simpleType>
+            <xs:restriction base="xs:integer">
+              <xs:minInclusive value="0"/>
+              <xs:maxInclusive value="10"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="severity_level" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="configurationOptions" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="option" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="description" type="stringWithXML" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="helpText" type="stringWithXML" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="default" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="units" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                  <xs:attribute name="type" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="ignoreLegacyOptions" type="xs:boolean" use="optional"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="platforms" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cpe-item" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="services" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="service" minOccurs="1" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="seq" type="xs:string" use="required"/>
+                              <xs:attribute name="name" type="xs:string" use="required"/>
+                              <xs:attribute name="global-zone-only" type="xs:boolean" use="optional"/>
+                              <xs:attribute name="stop-now" type="xs:boolean" use="optional"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="packages" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="package" minOccurs="1" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="name" type="xs:string" use="required"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="compliancy" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="line-item" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="version" type="xs:string" use="optional"/>
+                  <xs:attribute name="name" type="xs:string" use="optional"/>
+                  <xs:attribute name="option" type="xs:string" use="optional"/>
+                  <xs:attribute name="item" type="xs:string" use="required"/>
+                  <xs:attribute name="source" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:NMTOKEN">
+                        <xs:enumeration value="CAG"/>
+                        <xs:enumeration value="CCE"/>
+                        <xs:enumeration value="CIA"/>
+                        <xs:enumeration value="CIS"/>
+                        <xs:enumeration value="DHS"/>
+                        <xs:enumeration value="DISA"/>
+                        <xs:enumeration value="DoD"/>
+                        <xs:enumeration value="NERC"/>
+                        <xs:enumeration value="NIST"/>
+                        <xs:enumeration value="NSA"/>
+                        <xs:enumeration value="NVD"/>
+                        <xs:enumeration value="PCI"/>
+                        <xs:enumeration value="SANS"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dependencies" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="module_library" maxOccurs="unbounded">
+                <xs:complexType mixed="true">
+                  <xs:attribute name="selected" type="xs:boolean" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="views" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="member" minOccurs="1" maxOccurs="unbounded">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="3"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="sortKey" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

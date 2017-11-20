@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="Bind_VarTmp_To_Tmp" version="5.0">
+ <title xml:id="Filesystems">Bind Mount /var/tmp to /tmp</title>
+ <para>
+  Requires <filename>/tmp</filename> be mounted to
+  <filename>/var/tmp</filename> with restrictive options.
+ </para>
+ <para>
+  This module examines <filename>/etc/fstab</filename>, checking that
+  the <filename>/tmp</filename> directory is mounted as
+  <filename>/var/tmp</filename> using restrictive options. The desired
+  mount line in <filename>/etc/fstab</filename> looks like the
+  following:
+<screen>/tmp /var/tmp none rw,noexec,nosuid,nodev,bin 0 0</screen>
+  If this line is not found exactly as above, or if
+  <filename>/tmp</filename> or <filename>/var/tmp</filename> are
+  explicitly mounted in any other fashion, warning messages are
+  displayed. This module is scan-only, so any changes must be performed
+  manually.
+ </para>
+ <simplesect xml:id="Bind_VarTmp_To_Tmp-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     2.2.1.4 - Bind-mount /var/tmp/to /tmp
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

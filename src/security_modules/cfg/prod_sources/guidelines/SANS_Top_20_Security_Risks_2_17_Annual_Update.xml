@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<compliancy source="SANS" name="Top-20 Security Risks" version="2.17 Annual Update" enabled="False">
+  <line-items>
+    <line-item name="S1.3">
+      <module libraryName="PHPDisableHttpUpload"/>
+      <module libraryName="PHPlogging"/>
+      <module libraryName="PHPRemoteExec"/>
+      <module libraryName="PHPRemoveMySQLPass"/>
+      <module libraryName="PHPSessMgmt"/>
+    </line-item>
+    <line-item name="S3.5">
+      <module libraryName="DisableMail_cyrus"/>
+      <module libraryName="DisableMail_dovecot"/>
+      <module libraryName="DisableWebServer_apache"/>
+      <module libraryName="DisableWebServer_tux"/>
+    </line-item>
+  </line-items>
+</compliancy>

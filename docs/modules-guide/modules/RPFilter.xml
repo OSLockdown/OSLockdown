@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="RPFilter" version="5.0">
+  <title xml:id="NetworkConfig">Enable Reverse Path Source Validation</title>
+  <para>
+  Configures the system to perform source validation by reversed path.
+  When you enable reverse path source validation, inbound packets are
+  dropped if the IP address from where the packets were received is not
+  reachable (i.e., asymmetrical route).
+ </para>
+  <para>
+  Enabling this may cause problems in complex networks running a slow
+  and unreliable protocol, using static routes, or where asymmetric
+  routes are present. Asymmetric routes are not common, but may be
+  necessary in certain cases. By default, Linux drops packets in which
+  asymmetric routes are used because of the security risk.
+  <footnote><para>
+    Benvenuti, Christian. <emphasis role="underline">Understanding Linux
+    Network Internals</emphasis>, Chapter 31. Sebastopol, CA: O'Reilly
+    Media, Inc., 2006.
+   </para></footnote>
+ </para>
+  <table xml:id="table-rpfilter-settings" frame="all" tocentry="0" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>IP Settings to Enable Reverse Path Source Validation</title>
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.5*" align="left"/>
+      <colspec colname="c2" colwidth="0.5*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Setting</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="4">
+            <filename>/etc/sysctl.conf</filename>
+            <indexterm>
+              <primary>/etc/sysctl.conf</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/sysctl.conf</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>sysctl.conf</primary>
+            </indexterm>
+          </entry>
+          <entry morerows="4">
+            <literallayout class="monospaced">
+net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.rp_filter = 1</literallayout>
+            <indexterm>
+              <primary>rp_filter</primary>
+            </indexterm>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+          <entry namest="c2" nameend="c3">
+            <emphasis>Operating System Not Applicable</emphasis>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+  <simplesect xml:id="RPFilter-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-13 - Limitation and Control of Network Ports, Protocols, and Services</para>
+      </listitem>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>6.1 - Kernel TCP Stack Tuning</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000096 - The system must use a reverse-path filter for IPv4 network traffic when possible on all interfaces.</para>
+      </listitem>
+      <listitem>
+        <para>RHEL-06-000097 - The system must use a reverse-path filter for IPv4 network traffic when possible by default.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>SC-5 - Denial of Service Protection</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

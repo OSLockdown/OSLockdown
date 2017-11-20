@@ -1,0 +1,23 @@
+4.B.1.a(2)|Identification and Authentication - Unique Users
+4.B.1.a(5)|Screen Lock
+4.B.1.a(5)(a)|Screen Lock - Maximum Idle Time will be 15 minutes
+4.B.1.a(6)(a)|Session Control - Login Warning Banners
+4.B.1.a(6)(b)|Session Control - Login Warning Banners - Consent
+4.B.1.b(2)(a)|Auditing - Date and time entity performed system action
+4.B.1.b(2)(b)|Auditing - Protect contents of audit trails against unauthorized access
+4.B.1.b(2)(d)(1)|Auditing - Record Successful and unsuccessful logons and logoffs
+4.B.1.b(2)(d)(2)|Auditing - Record accesses to security-relevant objects
+4.B.1.b(2)(d)(3)|Auditing - Record activities at the system console
+4.B.1.b(3)(e)|Identification and Authentication - Aging of static authenticators
+4.B.2.a(4)(a)|Auditing - Date and time entity performed system action (PL2)
+4.B.2.a(4)(b)|Auditing - Protect contents of audit trails against unauthorized access (PL2)
+4.B.2.a(4)(d)(1)|Auditing - Record Successful and unsuccessful logons and logoffs (PL2)
+4.B.2.a(4)(d)(2)|Auditing - Record accesses to security-relevant objects (PL2)
+4.B.2.a(4)(d)(3)|Auditing - Record activities at the system console (PL2)
+4.B.2.a(16)(b)|Session Control - Station or session time-outs (PL2)
+4.B.2.a(16)(c)|Session Control - Limit retry on logon as technically feasible (PL2)
+4.B.2.b(5)(a)|System Assurance - Control access to the security support structure (PL2)
+4.B.3.a(7)|Auditing - Record changes to the mechanism's list of user formal access permissions (PL3)
+4.B.3.a(9)(e)|Identification and Authentication - Aging of static authenticators
+4.B.3.a(9)(f)|Identification and Authentication - Limiting reuse of static authenticators
+4.B.3.a(17)(a)|Session Control - Station or session time-outs (PL3)

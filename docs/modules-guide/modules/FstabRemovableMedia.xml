@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="FstabRemovableMedia" version="5.0">
+  <title xml:id="Filesystems">Use NOSUID and NODEV for Removable Media</title>
+  <para>
+  Places the <parameter class="option">nodev</parameter> and
+  <parameter class="option">nosuid</parameter> options on removable
+  media partitions, which prevents users from bringing set-UID programs
+  into the system via CD-ROMs and floppy disks.
+ </para>
+  <para>
+  On Linux systems, this module modifies the
+  <filename>/etc/fstab</filename> file. However, the modified entries in
+  the file are managed entries which are rewritten at system boot time
+  (see the <command>fstab-sync(8)</command> manual page). As a result,
+  this module will report a failure after each reboot.
+  <indexterm><primary>/etc/fstab</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/etc/fstab</secondary></indexterm>
+ </para>
+  <para>
+  On Solaris systems, this module modifies the
+  <filename>/etc/rmmount.conf</filename> and
+  <filename>/etc/vfstab</filename> files.
+  <indexterm><primary>/etc/rmmount.conf</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/etc/rmmount.conf</secondary></indexterm>
+
+  <indexterm><primary>/etc/vfstab</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/etc/vfstab</secondary></indexterm>
+ </para>
+  <simplesect xml:id="FstabRemovableMedia-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>7.2 - File System Controls</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN002420 - Removable media, remote file systems, and any file system not containing approved setuid files must be mounted with the "nosuid" option.</para>
+      </listitem>
+      <listitem>
+        <para>GEN002430 - Removable media, remote file systems, and any file system not containing approved device files must be mounted with the "nodev" option.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN002420 - File Systems Mounted With nosuid</para>
+      </listitem>
+      <listitem>
+        <para>SOL00020 - /etc/rmmount.conf Configuration</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>2.2.1.1 - Add nodev Option to Non-Root Local Partitions</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-3522-0 - The nodev option should be enabled or disabled as appropriate for all removable media.</para>
+      </listitem>
+      <listitem>
+        <para>CCE-4042-8 - The nosuid option should be enabled or disabled as appropriate for all removable media.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableNetAnalysisTools" version="5.0">
+  <title xml:id="NetworkServices">Disable Network Analysis Tools</title>
+  <para>
+  Disables network analysis tools by removing execution permissions.
+  These include Wireshark®, tcpdump, and Ethereal®.
+  <indexterm><primary>tcpdump</primary></indexterm>
+ </para>
+  <simplesect xml:id="DisableNetAnalysisTools-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN003865 - Network analysis tools must not be installed.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN003865 - Network analysis tools enabled.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SetMesgN" version="5.0">
+  <title xml:id="Accounts">Limit Term Write Access to Owner</title>
+  <para>
+  Restricts write-access to a user’s terminal to only that user. See
+  <command>mesg(1)</command> and <command>write(1)</command> for more
+  information.
+  <indexterm><primary>mesg</primary></indexterm>
+ </para>
+  <para>
+  This communication method between users is seldom used anymore.
+  Setting this should have no impact on normal system operations.
+ </para>
+  <para>
+  This module sets <parameter>mesg n</parameter> instead of
+  <parameter>mesg -n</parameter> . In Red Hat Enterprise Linux, the
+  preceding dash is not correct and in Solaris the command will work
+  with or without the dash. This information is provided to help explain
+  false positives produced by other assessment tools.
+ </para>
+  <para>
+    <important>
+      <para>
+    This module will not enforce permissions on these files, as other
+    modules are responsible for doing so.
+   </para>
+    </important>
+  </para>
+  <simplesect xml:id="SetMesgN-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>
+     GEN001780 - Global initialization files must contain the "mesg -n"
+     or "mesg n" commands.
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>
+     GEN001780 - Global Initialization Files do not Contain mesg -n
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>
+     AC-3 - Access Enforcement
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>
+     2.2.3 - Configure system security parameters to prevent misuse
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="SetMesgN-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Files to Search ('free' text, supports quotes and shell 'globbing')<emphasis><para>List of files/directories to process.  May have wild card expansion (using shell globbing rules) available if the module supports it.  If empty, no file checks will be done.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

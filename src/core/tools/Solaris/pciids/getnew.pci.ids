@@ -1,0 +1,3 @@
+#!/bin/ksh
+mv pci.ids pci.ids.old
+wget -nd http://pciids.sourceforge.net/pci.ids

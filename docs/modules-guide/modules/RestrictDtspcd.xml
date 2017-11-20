@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="RestrictDtspcd" version="5.0">
+  <title xml:id="SysServices">Restrict the CDE Subprocess Control Service</title>
+  <para>
+  This Solaris-only module adds the CDE Subprocess Control Service
+  (dtspcd) daemon's port (tcp/6112) to the privileged port list. This
+  prevents users from opening the service. When this module is applied,
+  it adds port tcp/6112 to the running kernel as follows:
+  <indexterm><primary>CDE</primary></indexterm>
+ </para>
+  <screen>/usr/sbin/ndd -set /dev/tcp tcp_extra_priv_ports_add 6112</screen>
+  <para>
+  It also adds <filename>tcp_extra_priv_ports_add=6112</filename> to
+  <filename>/etc/default/ndd</filename>.
+  <indexterm><primary>/etc/default/ndd</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/etc/default/ndd</secondary></indexterm>
+
+  <indexterm><primary>ndd</primary></indexterm>
+ </para>
+  <simplesect xml:id="RestrictDtspcd-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+      <listitem>
+        <para>CIP-005-3-R2.2 - Enable only ports and services needed for operations</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+      <listitem>
+        <para>CIP-007-3-R2.2 - Disable ports and services not needed for operations</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

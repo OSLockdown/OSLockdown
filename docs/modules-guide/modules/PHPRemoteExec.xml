@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="PHPRemoteExec" version="5.0">
+ <title xml:id="WebServices">PHP - General Security</title>
+ <para>
+  Configures the PHP framework to help protect web applications from
+  security defects, ranging from insufficient validation to application
+  logic errors.
+  <indexterm>
+   <primary>PHP</primary>
+  </indexterm>
+ </para>
+ <itemizedlist>
+  <listitem>
+   <para>
+    Disallows functions that use a filename as a parameter from using
+    HTTP and FTP URLs
+    (<parameter class="option">allow_url_fopen=off</parameter>).
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Disables the registering of globals
+    (<parameter class="option">register_globals</parameter>). This will
+    help prevent the injection of variables into your scripts, like
+    request variables from HTML forms.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Enables the <parameter class="option">magic_quotes</parameter> state
+    for GPC (Get/Post/Cookie) operations. When
+    <emphasis role="italic">magic_quotes</emphasis> are on, all '
+    (single quote), " (double quote), \ (backslash) and NUL’s are
+    escaped with a backslash automatically.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Sets the <parameter class="option">expose_php</parameter> parameter
+    to off. Otherwise, PHP may expose the fact that it is installed on
+    the server (e.g., by adding its signature to the Web server header).
+    It is not a security threat in any way, but it makes it difficult to
+    determine whether you use PHP on your server or not.
+   </para>
+  </listitem>
+ </itemizedlist>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="1.0*" align="left"/>
+   <colspec colname="c2" colwidth="1.0*"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Configuration Files</entry>
+     <entry>Settings</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, and 12</entry>
+     <entry morerows="3"><filename>/etc/php.ini</filename>
+      <indexterm>
+       <primary>php.ini</primary>
+      </indexterm></entry>
+     <entry morerows="5"><literallayout class="monospaced">
+[PHP]
+register_globals = Off
+magic_quotes = Off
+allow_url_fopen= Off</literallayout>
+      <indexterm>
+       <primary>allow_url_fopen</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>magic_quotes</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>register_globals</primary>
+      </indexterm></entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+     <entry><filename>/etc/apache2/php.ini</filename>
+      <indexterm>
+       <primary>apache2</primary>
+      </indexterm></entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+     <entry><filename>/etc/php5/apache2/php.ini</filename></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <para>
+  The registering of globals is a high level vulnerability identified by
+  SANS and it is disabled by default. The only parameter that is not a
+  default is the <parameter class="option">allow_url_fopen</parameter>
+  parameter. This is another attack vector identified by SANS and it is
+  highly recommended that you apply this module to disable the
+  registering of globals.
+ </para>
+ <simplesect xml:id="PHPRemoteExec-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     3.16.4.4.1 - Configure PHP Securely
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

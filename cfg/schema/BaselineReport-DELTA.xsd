@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ****************************************************************************** -->
+<!--  Copyright (c) 2007-2014 Forcepoint LLC.                                       -->
+<!--  This file is released under the GPLv3 license.                                -->
+<!--  See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license, -->
+<!--  or visit https://www.gnu.org/licenses/gpl.html instead.       -->
+<!--                                                                          	    -->
+<!--   OS Lockdown - Baseline Comparison (Delta) Report                  	    -->
+<!-- ****************************************************************************** -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation> 
+        OS Lockdown - Baseline Comparison (Delta) Report Schema
+    </xs:documentation>
+  </xs:annotation>
+  <xs:element name="BaselineReportDelta">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="report" minOccurs="2" maxOccurs="2"/>
+        <xs:element name="sections" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="section" maxOccurs="unbounded">
+                <xs:complexType mixed="true">
+                  <xs:sequence>
+                    <xs:element name="subSection" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:choice>
+                          <xs:element name="content" maxOccurs="1">
+                            <xs:complexType>
+                              <xs:attribute name="hasChanged" type="xs:boolean" use="required"/>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="fileGroups" maxOccurs="1">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="fileGroup" maxOccurs="unbounded">
+                                  <xs:complexType mixed="true">
+                                    <xs:sequence>
+                                      <xs:element name="added">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element ref="file" minOccurs="0" maxOccurs="unbounded"/>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="removed">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element ref="file" minOccurs="0" maxOccurs="unbounded"/>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="changed">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="fileDelta" minOccurs="0" maxOccurs="unbounded">
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element ref="file" minOccurs="2" maxOccurs="2"/>
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="name" type="xs:string" use="required"/>
+                                    <xs:attribute name="hasChanged" type="xs:boolean" use="required"/>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="packages" maxOccurs="1">
+                            <xs:complexType mixed="true">
+                              <xs:sequence>
+                                <xs:element name="added">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element ref="package" minOccurs="0" maxOccurs="unbounded"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="removed">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element ref="package" minOccurs="0" maxOccurs="unbounded"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="changed">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="packageDelta" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element ref="package" maxOccurs="2"/>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="hasChanged" type="xs:boolean" use="required"/>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="patches" maxOccurs="1">
+                            <xs:complexType mixed="true">
+                              <xs:sequence>
+                                <xs:element name="added">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element ref="patch" minOccurs="0" maxOccurs="unbounded"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="removed">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element ref="patch" minOccurs="0" maxOccurs="unbounded"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="changed">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="patchDelta" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element ref="patch" maxOccurs="2"/>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="hasChanged" type="xs:boolean" use="required"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:choice>
+                        <xs:attribute name="name" type="xs:string" use="required"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="created" type="xs:string" use="required"/>
+      <xs:attribute name="sbVersion" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="report">
+    <xs:complexType>
+      <xs:attribute name="hostname" type="xs:string" use="required"/>
+      <xs:attribute name="dist" type="xs:string" use="required"/>
+      <xs:attribute name="distVersion" type="xs:string" use="required"/>
+      <xs:attribute name="arch" type="xs:string" use="required"/>
+      <xs:attribute name="kernel" type="xs:string" use="required"/>
+      <xs:attribute name="cpuInfo" type="xs:string" use="required"/>
+      <xs:attribute name="totalMemory" type="xs:string" use="required"/>
+      <xs:attribute name="created" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="file">
+    <xs:complexType>
+      <xs:attribute name="path" type="xs:string" use="required"/>
+      <xs:attribute name="mode" type="xs:string" use="optional"/>
+      <xs:attribute name="mtime" type="xs:string" use="optional"/>
+      <xs:attribute name="uid" type="xs:integer" use="optional"/>
+      <xs:attribute name="suid" type="xs:boolean" use="optional"/>
+      <xs:attribute name="gid" type="xs:integer" use="optional"/>
+      <xs:attribute name="sgid" type="xs:boolean" use="optional"/>
+      <xs:attribute name="xattr" type="xs:string" use="optional"/>
+      <xs:attribute name="sha1" type="xs:string" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="package">
+    <xs:complexType mixed="true">
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="release" type="xs:string" use="required"/>
+      <xs:attribute name="version" type="xs:string" use="required"/>
+      <xs:attribute name="install_localtime" type="xs:string" use="optional"/>
+      <xs:attribute name="installtime" type="xs:string" use="required"/>
+      <xs:attribute name="epoch" type="xs:string" use="optional" default=""/>
+      <xs:attribute name="summary" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="patch">
+    <xs:complexType mixed="true">
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="pkg" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

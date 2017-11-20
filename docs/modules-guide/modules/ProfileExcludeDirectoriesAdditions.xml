@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="ProfileExcludeDirectoriesAdditions">
+  <title xml:id="ProfileSpecificAdditions">(PROFILE CUSTOMIZATION) - additions to exclude-dirs</title>
+  <para>
+  This module allows the profile to contain specific executables that
+  should be added to
+  <filename>/var/lib/oslockdown/files/exclude_dirs</filename> file
+  processing when this profile is run. The additions are transient, and
+  will not persist past the execution of the profile.
+ </para>
+  <simplesect xml:id="ProfileExcludeDirectoriesAdditions-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Additional directories to exclude (one per line)<emphasis><para>This allows for Profile specific directories that OS Lockdown will exclude from processing.  There should be one directory per line.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="ProfileExcludeDirectoriesAdditions-compliancy">
+    <title>Compliancy</title>
+    <para>N/A</para>
+  </simplesect>
+</section>

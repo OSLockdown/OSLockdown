@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="EnableSysstat" version="5.0">
+  <title xml:id="Auditing">System Accounting</title>
+  <para>
+  Enables system accounting to gather system usage such as CPU
+  utilization and Disk I/O.
+ </para>
+  <para>
+  It is recommended that you apply this module and routinely analyze the
+  system’s operating behavior to determine a baseline. Spikes in
+  activity could expose potentially malicious or abnormal activity.
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2" pgwide="0">
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.5*" align="left"/>
+      <colspec colname="c2" colwidth="0.5*"/>
+      <colspec colname="c3" colwidth="0.5*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Package</entry>
+          <entry>Service Names</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="3">sysstat
+      <indexterm><primary>sysstat</primary></indexterm></entry>
+          <entry morerows="3">sysstat</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10</entry>
+          <entry morerows="1">sysstat</entry>
+          <entry>sysstat</entry>
+        </row>
+        <row>
+          <entry>SUSE 11</entry>
+          <entry>boot.sysstat</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+          <entry>SUNWaccu
+      <indexterm><primary>SUNWaccu</primary></indexterm>
+
+      <indexterm><primary>Solaris packages</primary><secondary>SUNWaccu</secondary></indexterm></entry>
+          <entry>svc:/system/sar:default
+      <indexterm><primary>svc:/system/sar:default</primary></indexterm>
+
+      <indexterm><primary>Solaris services</primary><secondary>svc:/system/sar:default</secondary></indexterm></entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <para>
+  On Solaris systems, the <emphasis>sys</emphasis> account’s crontab
+  will also be modified to include the following:
+<programlisting>0,20,40 * * * * /usr/lib/sa/sa1 
+45 23 * * * /usr/lib/sa/sa2 -s 0:00 -e 23:59 -i 1200 -A</programlisting>
+ </para>
+  <indexterm>
+    <primary>crontab</primary>
+  </indexterm>
+  <simplesect xml:id="EnableSysstat-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-11 - Account Monitoring and Control</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-4075-8 - Kernel level auditing for administrative actions should be enabled or disabled as appropriate</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

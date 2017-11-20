@@ -1,0 +1,34 @@
+2.1|Do not use vendor-supplied defaults for system passwords and other security parameters
+2.2|Configuration standards for system components consistent with industry-accepted system hardening standards
+2.2.2|Disable all unnecessary and insecure services
+2.2.3|Configure system security parameters to prevent misuse
+2.2.4|Remove all unnecessary functionality
+2.3|Encrypt all non-console administrative access
+8.1|Users must have a unique ID
+8.2|Password Authentication
+8.4|Render all passwords unreadable during transmission and storage on all system components.
+8.5.9|Change user passwords at least every 90 days.
+8.5.10|Require a minimum password length of at least seven characters.
+8.5.11|Use passwords containing both numeric and alphabetic characters.
+8.5.12|Do not allow an individual to submit a new password that is the same as any of the last four passwords he or she has used.
+8.5.13|Limit repeated access attempts by locking out the user ID after not more than six attempts.
+8.5.14|Set the lockout duration to a minimum of 30 minutes or until administrator enables the user ID.
+8.5.15|If a session has been idle for more than 15 minutes, require the user to re-enter the password to re-activate the terminal.
+10.1|Link all access to system components to each individual user
+10.2|Implement automated audit trails for all system components
+8.5.16|Authenticate all access to any database containing cardholder data.  This includes access by applications, administrators, and all other users.
+10.2.1|Audit Events: All individual user accesses to cardholder data
+10.2.2|Audit Events: All actions taken by any individual with root or administrative privileges
+10.2.3|Audit Events: Access to all audit trails
+10.2.4|Audit Events: Invalid logical access attempts
+10.2 5|Audit Events: Use of identification and authentication mechanisms
+10.2.6|Audit Events: Initialization of the audit logs
+10.2.7|Audit Events: Creation and deletion of system-level objects.
+10.3.1|Audit Events: User identification
+10.3.2|Audit Events: Type of event
+10.3.3|Audit Events: Date and time
+10.3.4|Audit Events: Success or failure indication
+10.3.5|Audit Events: Origination of event
+10.3.6|Audit Events: Identity or name of affected data, system component
+10.5.1|Limit viewing of audit trails 
+10.5.2|Protect audit trail files from unauthorized modifications

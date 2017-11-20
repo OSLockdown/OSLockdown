@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % CommonEntities SYSTEM "../COMMON_ENTITIES.ent">
+%CommonEntities;
+]>
+<book version="5.0" xml:id="mob-user-guide" xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!--<?xml-stylesheet type="text/css" href="docbook.css"?>-->
+  <info>
+    <title>&SB_prodname; Administration Guide</title>
+    <subtitle>Version &SB_prodvers;</subtitle>
+  </info>
+  <!-- ************ Start the Chapters *********** -->
+  <xi:include href="SB_Preface.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  <xi:include href="SB_Introduction.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  <xi:include href="SB_Upgrade.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  <xi:include href="SB_Deployment_Planning.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  <xi:include href="SB_Console_Installation.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  <xi:include href="SB_System_Basics.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  <xi:include href="SB_Using_System.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  <xi:include href="SB_App_Install_Notes.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  <xi:include href="SB_App_Known_Issues.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  <xi:include href="SB_App_E.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  <xi:include href="SB_App_F.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  <xi:include href="SB_App_G.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  <xi:include href="SB_App_SUID.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  <xi:include href="SB_App_CEF_Format.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  <index/>
+</book>

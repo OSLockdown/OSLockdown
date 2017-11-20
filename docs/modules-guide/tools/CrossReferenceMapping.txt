@@ -1,0 +1,62 @@
+File in docs/.../guideline-xfrefs            file in src/security_modules/cfg/prod_sources/guidelines used to build security-modules.xml
+cag.txt                                      CAG_20_Critical_Security_Controls_2_3.xml
+   **only ref-ed in ModGuideAppendix         SANS_Top_20_Security_Risks_2_16_Annual_Update.xml
+   **only ref-ed in ModGuideAppendix         SANS_Top_20_Security_Risks_2_17_Annual_Update.xml
+                                             
+
+dcid.txt                                     CIA_DCID_6_3_May_2000.xml
+                                             
+
+cis_firefox.txt                              CIS_Mozilla_Firefox_3_5_1_0_0.xml
+                                             
+
+cis_mysql.txt                                CIS_MySQL_1_0.xml
+                                             
+
+cis_rhel4.txt                                CIS_RHEL4_1_0_5.xml
+                                             
+
+cis_rhel5.txt                                CIS_RHEL5_1_1_2.xml
+                                             
+
+cis_solaris_list.txt                         CIS_Solaris_10_U3_U8_5_0_0.xml
+                                             
+
+cis_suse.txt                                 CIS_SUSE_2_0.xml
+                                             
+
+dhs.txt                                      DHS_Linux_Configuration_Guidance_2010_8.xml
+                                             
+
+stig_firefox.txt                             DISA_Mozilla_Firefox_STIG_4_R2.xml
+                                             
+
+stig_rhel5.txt                               DISA_Red_Hat_5_STIG_V1R2.xml
+                                             
+
+stig_unix.txt                                DISA_UNIX_STIG_5_R1_30.xml
+                                             
+
+jafan.txt                                    DoD_JAFAN_6_3_Oct_2004.xml
+                                             
+
+nispom8.txt                                  DoD_NISPOM_Feb_2006.xml
+                                             
+
+ferc_cip.txt                                 NERC_Cyber_Security_Electronic_Security_Perimeters_CIP_005_3.xml
+                                             NERC_Cyber_Security_Systems_Security_Management_CIP_007_3.xml
+                                             
+
+fisma.txt                                    NIST_FISMA_SP_800_53.xml
+                                             
+
+nsa_rhel5.txt                                NSA_Guide_to_the_Secure_Configuration_of_RHEL5_Rev_4_2_Aug_2011.xml
+                                             
+
+cce.txt                                      NVD_CCE.xml
+                                             
+
+pcidss.txt                                   PCI_DSS_2_0.xml
+
+
+stig_new_xccdf_items.txt                     N/A

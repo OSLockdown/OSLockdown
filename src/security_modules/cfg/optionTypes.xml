@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2009-2014 Forcepoint LLC.                                       -->
+<!-- This file is released under the GPLv3 license.                                -->
+<!-- See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license, -->
+<!-- or visit https://www.gnu.org/licenses/gpl.html instead.                       -->
+<optionTypes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../sb-schemas/OptionTypes.xsd">
+
+  <!-- Generic Numbers -->
+  <optionType name="basicInteger">
+    <number precision="integer"/>
+  </optionType>
+  <optionType name="basicLong">
+    <number precision="long"/>
+  </optionType>
+  <optionType name="positiveInteger">
+    <number precision="integer">
+      <range>
+        <min value="0" inclusive="true"/>
+      </range>
+    </number>
+  </optionType>
+  <optionType name="positiveIntegerExcludingZero">
+    <number precision="integer">
+      <range>
+        <min value="0" inclusive="false"/>
+      </range>
+    </number>
+  </optionType>
+  <optionType name="sixteenBitInteger">
+    <number precision="integer">
+      <range>
+        <min value="1" inclusive="true"/>
+        <max value="65536" inclusive="true"/>
+      </range>
+    </number>
+  </optionType>
+
+  <optionType name="thirtytwoBitInteger">
+    <number precision="integer">
+      <range>
+        <min value="1" inclusive="true"/>
+        <max value="2147483647" inclusive="true"/>
+      </range>
+    </number>
+  </optionType>
+  <optionType name="GUIBannerSrc">
+      <string>
+          <enumList>
+              <enum value="0">&#x2f;etc&#x2f;motd</enum>
+              <enum value="1">Manual entry (below)</enum>
+          </enumList>
+      </string>
+      <helpText>Should the banner source be taken from /etc/motd, or from a user specified text block.</helpText>
+  </optionType>
+  <optionType name="formatBanner">
+      <string>
+          <enumList>
+              <enum value="0">Use text 'as is'</enum>
+              <enum value="1">Allow reformatting</enum>
+          </enumList>
+      </string>
+      <helpText>Allow the banner text to be reformatted slighly into 'paragraphs'.  Explicit new paragraphs are indicated by two newlines.  All other newlines are converted to two space.</helpText>
+  </optionType>
+  <optionType name="requireAssent">
+      <string>
+          <enumList>
+              <enum value="0">Informational only</enum>
+              <enum value="1">Consent Required</enum>
+          </enumList>
+      </string>
+      <helpText>Is this an Information banner, or should the user be required to agree or disagree to the banner (with the answer logged)?</helpText>
+  </optionType>
+
+  <!-- Generic String -->
+  <optionType name="basicString">
+    <string/>
+  </optionType>
+  <optionType name="basicStringCanBeEmpty">
+    <string minLength="0" />
+  </optionType>
+
+  <optionType name="basicMultilineString">
+    <string multiLine="true"/>
+  </optionType>
+  <optionType name="basicMultilineStringCanBeEmpty">
+    <string multiLine="true" minLength="0"/>
+  </optionType>
+
+  <optionType name="modprobeLines">
+    <string multiLine="true"/>
+    <helpText>One or more lines that can disable or otherwise alter how kernel modules are loaded/configured/disabled.</helpText>
+  </optionType>
+
+  <optionType name="userListCanBeEmpty">
+    <string minLength="0" />
+    <helpText>List of user names (ignored if empty). If '&lt;SYSTEM;&gt;' is in the list, then the list of all local privileged accounts will be inserted <emphasis>at this position</emphasis>, with duplicate names removed.</helpText>
+  </optionType>
+  <optionType name="groupListCanBeEmpty">
+    <string minLength="0" />
+    <helpText>List of group names (ignored if empty). If '&lt;SYSTEM;&gt;' is in the list, then the list of all local privileged group accounts will be inserted <emphasis>at this position</emphasis>, with duplicate names removed.</helpText>
+  </optionType>
+
+  <optionType name="fileList">
+    <string multiLine="true"/>
+    <helpText>List of files/directories to process.  May have wild card expansion (using shell globbing rules) available if the module supports it.  If empty, no file checks will be done.</helpText>
+  </optionType>
+  <optionType name="fileListCanBeEmpty">
+    <string multiLine="true" minLength="0"/>
+    <helpText>List of files/directories to process.  May have wild card expansion (using shell globbing rules) available if the module supports it.  If empty, no file checks will be done.</helpText>
+  </optionType>
+
+
+  <!-- DAC permissions -->
+  <optionType name="fileDACs">
+    <string minLength="0">
+      <regexp value="^$|0?[0-7]{3}"/>
+    </string>
+    <helpText>Maximum permitted Discretionary Access Controls (DACs) in <emphasis>octal</emphasis> format (i.e.,  max perms is 777 or 0777).
+      Note that only the read/write/execute bits are considered.  Note also that if a directory has read permissions for 
+      user/group/other allowed, then execute permissions for user/group/other are <emphasis>also</emphasis> allowed to allow for directory traversal.  No extra permissions are enforced, just allowed.  If empty, no permissions checks will be done.</helpText>
+  </optionType>
+
+  <optionType name="yesOrNo">
+      <string>
+          <enumList>
+              <enum value="0">No</enum>
+              <enum value="1">Yes</enum>
+          </enumList>
+      </string>
+  </optionType>
+
+  <optionType name="checkWhichFiles">
+      <string>
+          <enumList>
+              <enum value="0">Files in &#x2f;dev files only</enum>
+              <enum value="1">All Files</enum>
+          </enumList>
+      </string>
+  </optionType>
+
+  <optionType name="allowGlobbing">
+      <string>
+          <enumList>
+              <enum value="0">No</enum>
+              <enum value="1">Yes</enum>
+          </enumList>
+      </string>
+      <helpText>Allow for wildcard expansion using shell globbing rules.</helpText>
+  </optionType>
+
+  <optionType name="sshdCompressionMode">
+      <string>
+          <enumList>
+              <enum value="0">Disabled</enum>
+              <enum value="1">Delayed</enum>
+              <enum value="2">Enabled</enum>
+          </enumList>
+      </string>
+      <helpText>Should compression be disabled, delayed (i.e., enabled after authentication), or enabled.</helpText>
+  </optionType>
+
+  
+  <optionType name="usbDevicesType">
+      <string>
+          <enumList>
+              <enum value="1">All USB devices will be disabled including USB keyboards</enum>
+              <enum value="2">Only USB storage devices will be disabled.</enum>
+          </enumList>
+      </string>
+      <helpText>Should all USB devices be disabled or only USB storage in the grub.conf file.  Note that on more recent Linux versions option 2 may have no effect, as the USB subsystem may be built into the kernel instead of being loaded on command.</helpText>
+  </optionType>
+
+  <optionType name="EnabledOrDisabled">
+      <string>
+          <enumList>
+              <enum value="0">Disabled</enum>
+              <enum value="1">Enabled</enum>
+          </enumList>
+      </string>
+  </optionType>
+
+  <optionType name="sshdLogLevel">
+      <string>
+          <enumList>
+              <enum value="QUIET">QUIET</enum>
+              <enum value="FATAL">FATAL</enum>
+              <enum value="ERROR">ERROR</enum>
+              <enum value="INFO">INFO</enum>
+              <enum value="VERBOSE">VERBOSE</enum>
+              <enum value="DEBUG">DEBUG</enum>
+              <enum value="DEBUG1">DEBUG1</enum>
+              <enum value="DEBUG2">DEBUG2</enum>
+              <enum value="DEBUG3">DEBUG3</enum>
+          </enumList>
+      </string>
+      <helpText>Log level for the secure shell daemon (sshd).</helpText>
+  </optionType>
+
+  <optionType name="selinuxModeEnum">
+      <string>
+          <enumList>
+              <enum value="disabled">disabled</enum>
+              <enum value="permissive">permissive</enum>
+              <enum value="enforcing">enforcing</enum>
+          </enumList>
+      </string>
+      <helpText>Specify what mode SELinux should execute in after the next reboot.</helpText>
+  </optionType>
+
+  <optionType name="selinuxPolicyEnum">
+      <string>
+          <enumList>
+              <enum value="targeted">targeted</enum>
+              <enum value="strict">strict</enum>
+              <enum value="mls">strict</enum>
+          </enumList>
+      </string>
+      <helpText>Specify the policy SELinux should be in after the next reboot.</helpText>
+  </optionType>
+  
+  <!-- ***************************************************************************************** -->
+  <!-- Time-based option Parameters -->
+
+  <!-- Number of seconds in one day -->
+  <optionType name="secondsOneDay">
+    <number precision="integer">
+      <range>
+        <min value="1" inclusive="true"/>
+        <max value="86400" inclusive="true"/>
+      </range>
+    </number>
+  </optionType>
+
+  <!-- Number of minutes in one day -->
+  <optionType name="minutesOneDay">
+    <number precision="integer">
+      <range>
+        <min value="1" inclusive="true"/>
+        <max value="1440" inclusive="true"/>
+      </range>
+    </number>
+  </optionType>
+
+  <!-- Number of days in a year -->
+  <optionType name="daysInYear">
+    <number precision="integer">
+      <range>
+        <min value="1" inclusive="true"/>
+        <max value="365" inclusive="true"/>
+      </range>
+    </number>
+  </optionType>
+
+  <!-- ***************************************************************************************** -->
+  <!-- Networking -->
+  <optionType name="ipAddress">
+    <string>
+      <regexp value="\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b"/>
+    </string>
+  </optionType>
+  <optionType name="emailAddressType">
+    <string>
+      <regexp value="^(?:[a-zA-Z0-9_'^&amp;/+-])+(?:\.(?:[a-zA-Z0-9_'^&amp;/+-])+)*@(?:(?:\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\.){3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\]?)|(?:[a-zA-Z0-9-]+\.)+(?:[a-zA-Z]){2,}\.?)$"/>
+    </string>
+  </optionType>
+  <!-- Port Ranges -->
+  <optionType name="wellKnownPortRangeType">
+    <number precision="integer">
+      <range>
+        <min value="0" inclusive="true"/>
+        <max value="1023" inclusive="true"/>
+      </range>
+    </number>
+  </optionType>
+
+  <optionType name="registeredPortRangeType">
+    <number precision="integer">
+      <range>
+        <min value="1024" inclusive="true"/>
+        <max value="49151" inclusive="true"/>
+      </range>
+    </number>
+  </optionType>
+  <optionType name="anyPortRangeType">
+    <number precision="integer">
+      <range>
+        <min value="0" inclusive="true"/>
+        <max value="65535" inclusive="true"/>
+      </range>
+    </number>
+  </optionType>
+
+
+ <!-- ***************************************************************************************** -->
+ <!-- Password Related Options -->
+  <optionType name="passwordMinLength">
+    <number precision="integer">
+      <range>
+        <min value="1" inclusive="true"/>
+        <max value="256" inclusive="true"/>
+      </range>
+    </number>
+    <helpText>Minimum length of the new password.</helpText>
+  </optionType>
+
+  <optionType name="passwordDiffChars">
+    <number precision="integer">
+      <range>
+        <min value="0" inclusive="true"/>
+        <max value="256" inclusive="true"/>
+      </range>
+    </number>
+    <helpText>Minimum number of different characters in the new password.</helpText>
+  </optionType>
+
+  <optionType name="passwordConsecutiveChars">
+    <number precision="integer">
+      <range>
+        <min value="0" inclusive="true"/>
+        <max value="256" inclusive="true"/>
+      </range>
+    </number>
+    <helpText>Maximum number of same character repeats in the new password.</helpText>
+  </optionType>
+
+  <optionType name="passwordMaxLength">
+    <number precision="integer">
+      <range>
+        <min value="1" inclusive="true"/>
+        <max value="256" inclusive="true"/>
+      </range>
+    </number>
+    <helpText>Maximum length of the new password.</helpText>
+  </optionType>
+
+  <optionType name="passwordMindaysType">
+    <number precision="integer">
+      <range>
+        <min value="1" moduleRef="Minimum Delay Between Password Changes" optionRef="passwordMindays" inclusive="true"/>
+        <max value="365" inclusive="true"/>
+      </range>
+    </number>
+    <helpText>The minimum time (in days) allowed between password changes.</helpText>
+  </optionType>
+
+  <optionType name="passwordMaxdaysType">
+    <number precision="integer">
+      <range>
+        <min value="1" inclusive="true"/>
+        <max value="365" moduleRef="Maximum Time Between Password Changes" optionRef="passwordMaxdays" inclusive="true"/>
+      </range>
+    </number>
+    <helpText>The maximum time (in days) between password changes.</helpText>
+  </optionType>
+
+  <optionType name="passwordString">
+    <string minLength="3" maxLength="64" password="true"/>
+  </optionType>
+
+</optionTypes>

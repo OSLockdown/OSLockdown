@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="AuditEnable">
+  <title xml:id="Auditing">Enable the Audit Subsystem</title>
+  <para>
+  Enables the audit subsystem to record security-relevant events
+  occurring on the system. This information is critical to understanding
+  security breaches or vulnerabilities. Once auditing is enabled, it is
+  recommended that you periodically review the audit logs.
+ </para>
+  <para>
+  The audit rules configuration determines how many events will be
+  recorded by the audit subsystem. The audit rules configuration needs
+  to carefully balance the number of events recorded against system
+  performance needs. An overload of event records can occur and
+  substantially reduce system performance.
+  <indexterm><primary>audit.rules</primary></indexterm>
+ </para>
+  <informaltable cellpadding="2" cellspacing="2" frame="all">
+    <tgroup cols="3">
+      <colspec colwidth="0.6*"/>
+      <colspec colwidth="0.5*"/>
+      <colspec colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Packages or Config File</entry>
+          <entry>Service Name or Parameter</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="4">audit</entry>
+          <entry morerows="4">auditd
+      <indexterm><primary>auditd</primary></indexterm></entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+        <row>
+          <entry>Solaris 10 (Global Zone Only)</entry>
+          <entry>
+            <filename>/etc/system</filename>
+            <indexterm>
+              <primary>/etc/system</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/system</secondary>
+            </indexterm>
+          </entry>
+          <entry>
+            <parameter>set c2audit:audit_load = 1</parameter>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <note>
+    <para>
+   On Linux systems, this module will <emphasis role="italic">not
+   enable</emphasis> auditing if there is less than 32 MB of storage on
+   the designated filesystem.
+  </para>
+  </note>
+  <simplesect xml:id="AuditEnable-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-11 - Account Monitoring and Control</para>
+      </listitem>
+      <listitem>
+        <para>CC-6 - Maintenance, Monitoring, and Analysis of Audit Logs</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>CIA DCID 6/3 (May 2000)</title>
+      <listitem>
+        <para>4.B.1.b(2)(a) - Auditing - Date and time entity performed system action</para>
+      </listitem>
+      <listitem>
+        <para>4.B.2.a(16)(b) - Session Control - Station or session time-outs (PL2)</para>
+      </listitem>
+      <listitem>
+        <para>4.B.2.a(4)(a) - Auditing - Date and time entity performed system action (PL2)</para>
+      </listitem>
+      <listitem>
+        <para>4.B.2.b(5)(a) - System Assurance - Control access to the security support structure (PL2)</para>
+      </listitem>
+      <listitem>
+        <para>4.B.3.a(17)(a) - Session Control - Station or session time-outs (PL3)</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>5 - Audit Trail</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN002660 - Auditing must be implemented.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000145 - The operating system must produce audit records containing sufficient information to establish the identity of any user/subject associated with the event.</para>
+      </listitem>
+      <listitem>
+        <para>RHEL-06-000148 - The operating system must employ automated mechanisms to facilitate the monitoring and control of remote access methods.</para>
+      </listitem>
+      <listitem>
+        <para>RHEL-06-000154 - The operating system must produce audit records containing sufficient information to establish what type of events occurred.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN002660 - Configure and Implement Auditing</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD JAFAN 6/3 (Oct 2004)</title>
+      <listitem>
+        <para>4.B.1.b(2)(a) - Auditing - Date and time entity performed system action</para>
+      </listitem>
+      <listitem>
+        <para>4.B.2.a(16)(b) - Session Control - Station or session time-outs (PL2)</para>
+      </listitem>
+      <listitem>
+        <para>4.B.2.a(4)(a) - Auditing - Date and time entity performed system action (PL2)</para>
+      </listitem>
+      <listitem>
+        <para>4.B.2.b(5)(a) - System Assurance - Control access to the security support structure (PL2)</para>
+      </listitem>
+      <listitem>
+        <para>4.B.3.a(17)(a) - Session Control - Station or session time-outs (PL3)</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD NISPOM (Feb 2006)</title>
+      <listitem>
+        <para>8.303a - Unique Identification</para>
+      </listitem>
+      <listitem>
+        <para>8.602a1 - Automated Audit Trail Creation</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+      <listitem>
+        <para>CIP-007-3-R5.1.2 - Generate logs of sufficient detail to create historical audit trails of individual user account access</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>AU-1 - Audit and Accountability Policy and Procedures</para>
+      </listitem>
+      <listitem>
+        <para>AU-4 - Audit Storage Capacity</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>2.6.2.1 - Enable the auditd Service</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-4292-9 - The auditd service should be enabled or disabled as appropriate.</para>
+      </listitem>
+      <listitem>
+        <para>CCE-4675-5 - Kernel level auditing should be enabled or disabled as appropriate</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>10.2 - Implement automated audit trails for all system components</para>
+      </listitem>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

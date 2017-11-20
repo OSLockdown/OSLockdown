@@ -1,0 +1,6 @@
+if [ "`uname -r`" != "5.10" ];then
+   echo "Only Solaris 10 is supported."
+   exit 1
+fi
+
+exit 0

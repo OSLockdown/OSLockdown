@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="ConfigureLddPerms">
+  <title xml:id="fileDACs">Configure Permissions on /usr/bin/ldd</title>
+  <para>
+  Restricts the use of the audit tool commands by ensuring the command
+  is owned by the correct user/group, with permissions no greater than
+  the supplied Discretionary Access Controls (DACs) values.
+ </para>
+  <para>
+  If it is impractical to limit the use of this commands to root, you
+  should consider setting the group owner to
+  <emphasis role="italic">wheel</emphasis> and setting the group execute
+  bit. This will allow system administrators to use the commands.
+  <indexterm><primary>wheel</primary></indexterm>
+ </para>
+  <important>
+    <para>
+   SUID/SGID bits are not considered here. If a command should be
+   SUID/SGID, then the bits must be set manually (if not already set)
+   and the command added to
+   <filename>/var/lib/oslockdown/files/suid_whitelist.custom</filename>
+   or
+   <filename>/var/lib/oslockdown/files/sgid_whitelist.custom</filename>
+   as appropriate.
+  </para>
+  </important>
+  <simplesect xml:id="ConfigureLddPerms-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>
+     GEN007960 - The 'ldd' command must be disabled unless it protects
+     against the execution of untrusted files.
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>
+     GEN001180 - Network Services Daemon Permissions
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN001200 - System Command Permissions
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN001220 - System Files, Programs, and Directories Ownership
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN001240 - System Files, Programs, and Directories Group Ownership
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN005100 - TFTP SUID/SGID Bit
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD NISPOM (Feb 2006)</title>
+      <listitem>
+        <para>
+     8.606b1 - Access 2 Requirements
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>
+     AC-3 - Access Enforcement
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="ConfigureLddPerms-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Allowed User Names<emphasis><para>List of user names (ignored if empty). If '&lt;SYSTEM;&gt;' is in the list, then the list of all local privileged accounts will be inserted <emphasis>at this position</emphasis>, with duplicate names removed.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Allowed Group Names<emphasis><para>List of group names (ignored if empty). If '&lt;SYSTEM;&gt;' is in the list, then the list of all local privileged group accounts will be inserted <emphasis>at this position</emphasis>, with duplicate names removed.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Maximum allowed permissions<emphasis><para>Maximum permitted Discretionary Access Controls (DACs) in <emphasis>octal</emphasis> format (i.e.,  max perms is 777 or 0777).
+      Note that only the read/write/execute bits are considered.  Note also that if a directory has read permissions for 
+      user/group/other allowed, then execute permissions for user/group/other are <emphasis>also</emphasis> allowed to allow for directory traversal.  No extra permissions are enforced, just allowed.  If empty, no permissions checks will be done.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

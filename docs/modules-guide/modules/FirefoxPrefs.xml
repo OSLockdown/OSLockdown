@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="FirefoxPrefs" version="5.0">
+ <title xml:id="DesktopApps">Configure User Firefox Prefs</title>
+ <para>
+  This module has been retired because it has been expanded into
+  multiple modules.
+ </para>
+ <itemizedlist>
+  <title>See:</title>
+  <listitem>
+   <para>
+    <xref linkend="FirefoxPrivacy" xrefstyle="select: title page"/>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <xref linkend="FirefoxAddons" xrefstyle="select: title page"/>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <xref linkend="FirefoxDynamicContent" xrefstyle="select: title page"/>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <xref linkend="FirefoxEncryption" xrefstyle="select: title page"/>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <xref linkend="FirefoxJava" xrefstyle="select: title page"/>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <xref linkend="FirefoxJavascript" xrefstyle="select: title page"/>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <xref linkend="FirefoxNetwork" xrefstyle="select: title page"/>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <xref linkend="FirefoxUpdating" xrefstyle="select: title page"/>
+   </para>
+  </listitem>
+ </itemizedlist>
+ <simplesect xml:id="FirefoxPrefs-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN004040 - Browser Software Update Feature
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

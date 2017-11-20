@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % CommonEntities SYSTEM "../COMMON_ENTITIES.ent">
+%CommonEntities;
+]>
+<chapter version="5.0" xml:id="intro" xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+   xmlns:xlink="http://www.w3.org/1999/xlink">
+   <!--<?xml-stylesheet type="text/css" href="docbook.css"?>-->
+   <title>Introduction</title>
+   <para>OS Lockdown is an economical operating system hardening tool (refer to <xref linkend="intro-clients"
+         xrefstyle="select: label quotedtitle"/> for a list of supported operating systems). Through a centralized web
+      console (the OS Lockdown Console), it enables you to periodically check and re-check the state of security in your
+      enterprise-wide systems and apply changes by configuring the operating systems based on site security
+      requirements. </para>
+   <para>With a rich set of configuration options available for assessing the security state of your systems, OS
+      Lockdown assists you in defining and applying security settings applicable to your systems. The module
+      descriptions described in the <citetitle>OS Lockdown Modules Guide</citetitle> are context sensitive and provide
+      default information and guidance on how to use each module. The OS Lockdown Console has a web interface to
+      facilitate the management of security settings. With the enhanced reporting capabilities of OS Lockdown, you can
+      generate an Assessment report as a record of the security state of each system in the enterprise and view a log of
+      changes and activity.</para>
+   <para>In accordance with established security guidelines, OS Lockdown provides security profiles that are based on
+      requirements from organizations such as the Defense Information Systems Agency (DISA), and the SysAdmin, Audit,
+      Network, Security (SANS) Institute. OS Lockdown uses the profiles that you select (or create) to assess your
+      enterprise-wide servers (or clients) as well as to automatically configure the client operating systems to comply
+      with the security profile. You can create groups to organize the clients in your enterprise and collectively apply
+      security settings. OS Lockdown then assesses and configures each group of clients according to the security
+      profile you select.</para>
+   <section xml:id="intro-sb-editions">
+      <title>OS Lockdown Editions</title>
+      <para>OS Lockdown is available in two editions: <emphasis role="bold">OS Lockdown Enterprise</emphasis> and
+            <emphasis role="bold">OS Lockdown Standalone</emphasis>.</para>
+      <indexterm>
+         <primary>Product Editions</primary>
+         <secondary>Description of</secondary>
+         <tertiary>Enterprise</tertiary>
+      </indexterm>
+      <indexterm>
+         <primary>Product Editions</primary>
+         <secondary>Description of</secondary>
+         <tertiary>Standalone</tertiary>
+      </indexterm>
+      <indexterm>
+         <primary>OS Lockdown</primary>
+         <secondary>Enterprise Edition</secondary>
+         <tertiary>Introduction of</tertiary>
+      </indexterm>
+      <indexterm>
+         <primary>OS Lockdown</primary>
+         <secondary>Standalone Edition</secondary>
+         <tertiary>Introduction of</tertiary>
+      </indexterm>
+      <indexterm>
+         <primary>Standalone Edition</primary>
+         <secondary>Description of</secondary>
+      </indexterm>
+      <indexterm>
+         <primary>Enterprise Edition</primary>
+         <secondary>Description of</secondary>
+      </indexterm>
+      <itemizedlist>
+         <listitem>
+            <para><emphasis role="bold">OS Lockdown Enterprise</emphasis> edition is designed for medium to large
+                  <trademark class="registered">Linux</trademark> and <trademark>Solaris</trademark> information
+               technology organizations. The OS Lockdown Enterprise edition provides a centralized console to monitor
+               and control clients. The OS Lockdown Console is installed on a single host. It issues commands to the
+               clients, and manages generated reports, communicating with each client through a dispatcher process
+               running on each client machine (authenticating over Hypertext Transfer Protocol Secure (HTTPS)). The OS
+               Lockdown Console allows multiple machines to be locked down using the same profile. A machine may belong
+               to a single group, but multiple groups are allowed using criteria such as location, mission function, or
+               a desired lock down profile to define the group. A particular security profile can be used to lock down a
+               group consisting of heterogeneous operating systems, with each system only applying those modules that
+               are supported for that system. </para>
+         </listitem>
+      </itemizedlist>
+      <itemizedlist>
+         <listitem>
+            <para><emphasis role="bold">OS Lockdown Standalone</emphasis> edition is applicable for locking down and
+               monitoring operating system security for a handful of servers individually. The OS Lockdown Standalone
+               edition provides an easy to use Graphical User Interface (GUI) or command line capability to run the
+               Quick Scan, Scan, Apply, Undo, and Baseline actions on that computer. The application is structured
+               around profiles, which contain detailed security information to prevent security risks. The profiles are
+               made up of clients, groups, modules, and guidelines. Each module controls specific security functions,
+               such as limiting password length and reuse. You can add or remove modules, and change configuration
+               options in your profile, depending on your system’s security needs, to build a customized security
+               platform that addresses your system’s specific security risks.</para>
+         </listitem>
+      </itemizedlist>
+   </section>
+   <section xml:id="intro-architecture">
+      <title>OS Lockdown Architecture</title>
+      <para>The OS Lockdown application is implemented as a multi-tiered architecture. Console-to-client communications
+         use Simple Object Access Protocol (SOAP) messages using HTTPS over Transport Layer Security (TLS) so that the
+         communication is both secure and encrypted. The OS Lockdown Console provides user access restriction through
+         both Role-Based Access Control (RBAC) and requires an HTTPS connection. This multi-tiered architecture provides
+         for sound security out-of-the-box, as end-users do not require access to the client machines that are being
+         monitored. In addition, its flexibility offers a greater number of deployment options.</para>
+      <para>The OS Lockdown Console is protected from standard cross-site scripting and Structured Query Language (SQL)
+         injection attacks through the <trademark>Grails</trademark> framework. Access to the database is performed by
+         Object-Relational Mapping (ORM), as opposed to direct SQL queries, and all strings that are sent to the
+         database are sanitized prior to being persisted.</para>
+      <indexterm>
+         <primary>Architecture</primary>
+      </indexterm>
+      <indexterm>
+         <primary>OS Lockdown</primary>
+         <secondary>Architecture</secondary>
+      </indexterm>
+      <indexterm>
+         <primary>System Architecture</primary>
+      </indexterm>
+      <indexterm>
+         <primary>Grails</primary>
+      </indexterm>
+      <indexterm>
+         <primary>Simple Object Access Protocol (SOAP)</primary>
+      </indexterm>
+      <indexterm>
+         <primary>SOAP</primary>
+      </indexterm>
+      <indexterm>
+         <primary>Object-Relational Mapping (ORM)</primary>
+      </indexterm>
+      <indexterm>
+         <primary>ORM</primary>
+      </indexterm>
+      <figure pgwide="1" xml:id="arch-diagram">
+         <title>Enterprise Architecture</title>
+         <mediaobject>
+            <imageobject>
+               <imagedata fileref="Figures/arch_diagram_new.png"/>
+            </imageobject>
+         </mediaobject>
+      </figure>
+   </section>
+   <section xml:id="intro-to-sys-elements">
+      <title>An Introduction to the System Elements</title>
+      <section xml:id="intro-profiles">
+         <title>Profiles</title>
+         <indexterm>
+            <primary>Profiles</primary>
+            <secondary>DCID</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Profiles</primary>
+            <secondary>DHS Basic</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Profiles</primary>
+            <secondary>DHS Enhanced</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Profiles</primary>
+            <secondary>DISA UNIX STIG</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Profiles</primary>
+            <secondary>FERC CIP</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Profiles</primary>
+            <secondary>JAFAN</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Profiles</primary>
+            <secondary>NISPOM</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Profiles</primary>
+            <secondary>NSA Guide</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>DCID</primary>
+         </indexterm>
+         <indexterm>
+            <primary>DHS Basic</primary>
+         </indexterm>
+         <indexterm>
+            <primary>DHS Enhanced</primary>
+         </indexterm>
+         <indexterm>
+            <primary>DISA UNIX STIG</primary>
+         </indexterm>
+         <indexterm>
+            <primary>FERC CIP</primary>
+         </indexterm>
+         <indexterm>
+            <primary>JAFAN</primary>
+         </indexterm>
+         <indexterm>
+            <primary>NISPOM</primary>
+         </indexterm>
+         <indexterm>
+            <primary>NSA Guide</primary>
+         </indexterm>
+         <indexterm>
+            <primary>Profiles</primary>
+            <secondary>PCI DSS</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Profiles</primary>
+            <secondary>Web Services Protection</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>PCI DSS</primary>
+         </indexterm>
+         <indexterm>
+            <primary>Web Services Protection</primary>
+         </indexterm>
+         <indexterm>
+            <primary>Profiles</primary>
+            <secondary>Description of</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Profiles</primary>
+            <secondary>Industry-Standard</secondary>
+         </indexterm>
+         <para>Profiles are a collection of modules used to implement and enforce your security policy. OS Lockdown
+            profiles are completely customizable, allowing you to use common tools across multiple systems within
+            larger enterprises. You can create new security profiles based on proven industry standards or your own site
+            security needs. When you create or select profiles, you are building a system security policy that contains
+            modules with configured options.</para>
+         <para>OS Lockdown provides the following industry-standard profiles:</para>
+         <itemizedlist>
+            <listitem>
+               <para>DCID - contains requirements from the Director of Central Intelligence Directives (DCID).</para>
+            </listitem>
+            <listitem>
+               <para>DHS Basic - contains the minimal requirements set forth in the US Department of Homeland Security
+                  (DHS) Configuration Guidance document.</para>
+            </listitem>
+            <listitem>
+               <para>DHS Enhanced - contains the requirements set forth in the US DHS Configuration Guidance
+                  document.</para>
+            </listitem>
+            <listitem>
+               <para>DISA <trademark class="registered">UNIX</trademark> STIG - contains modules that address Defense
+                  Information Systems Agency (DISA) UNIX Security Technical Implementation Guides (STIGs) security
+                  recommendations.</para>
+               <para>DISA deprecated the script based UNIX SRR script (on which this profile is based) in late 2011. It
+                  is provided here for users with legacy <trademark class="registered">Red Hat</trademark>
+                  <trademark class="registered">Enterprise Linux</trademark> 4 installations.</para>
+            </listitem>
+            <listitem>
+               <para>DISA RHEL5 STIG - contains modules that address DISA UNIX STIGs security recommendations for the
+                  Red Hat Enterprise Linux 5 operating system.</para>
+            </listitem>
+            <listitem>
+               <para>DISA RHEL6 STIG - contains modules that address DISA UNIX STIGs security recommendations for the
+                  Red Hat Enterprise Linux 6 operating system.</para>
+            </listitem>
+            <listitem>
+               <para>FERC CIP - contains modules that address the Critical Infrastructure Protection (CIP) standards for
+                  electricity distributors. </para>
+            </listitem>
+            <listitem>
+               <para>JAFAN - the Joint Air Force-Army-Navy (JAFAN) manual established the security policy and procedures
+                  for storing, processing, and communicating classified Department of Defense (DoD) Special Access
+                  Program (SAP) information in information systems.</para>
+            </listitem>
+            <listitem>
+               <para>NISPOM - contains modules that address the National Industrial Security Program Operating Manual
+                  (NISPOM).</para>
+            </listitem>
+            <listitem>
+               <para>NSA Guide - contains modules that support many items identified in the National Security Agency’s
+                  (NSA) <emphasis role="italic">Guide to the Secure Configuration of Red Hat Enterprise Linux
+                     5</emphasis>. This profile can also be used on other systems as well.</para>
+            </listitem>
+            <listitem>
+               <para>PCI DSS - Payment Card Industry (PCI) Security Standards Council includes members from <trademark
+                     class="registered">Visa</trademark>, <trademark class="registered">MasterCard</trademark>,
+                     <trademark class="registered">American Express</trademark>, <trademark class="registered"
+                     >Discover</trademark>, and JCB International Credit Card Company. This council administers the Data
+                  Security Standard (DSS). </para>
+            </listitem>
+            <listitem>
+               <para>Web Services Protection - contains modules that address standard security functionality for
+                  providing robust web protection.</para>
+            </listitem>
+         </itemizedlist>
+         <para>Depending on the needs of your system, choose one of these industry-standard profiles and you can be
+            confident that you are applying some of the best practices and security recommendations from the most well
+            respected sources.</para>
+         <note>
+            <para>You cannot modify or delete industry-standard profiles directly; however, you can create a copy for
+               modification.</para>
+         </note>
+         <para>Refer to <xref linkend="managing-profiles" xrefstyle="select: label quotedtitle"/> for details on working
+            with profiles. </para>
+      </section>
+      <section xml:id="intro-modules">
+         <title>Modules</title>
+         <indexterm>
+            <primary>Modules</primary><secondary>Description of</secondary>
+         </indexterm>
+         <para>Modules are the building blocks of security profiles within OS Lockdown. Each module represents a
+            specific security lockdown procedure, which in turn represents one or more system configuration operations.
+            Modules can perform operations that range from setting file permissions and adjusting password policy to
+            altering core operating system behavior through the use of kernel options. Modules with adjustable
+            parameters allow you to modify their parameter values (for example, see the &ldquo;Password Policy Length
+            Minimum&rdquo; module in <xref linkend="modify-module-param" xrefstyle="select: label"/>). </para>
+         <para>You can add or remove modules from your profile. Even though you can remove a module from a profile, the
+            module remains part of the pool. OS Lockdown provides you with the freedom to load a profile and run OS
+            Lockdown against modules instead of having to reconfigure the application each time it is executed.</para>
+         <para>Refer to <xref linkend="managing-profiles" xrefstyle="select: label quotedtitle"/> for details on working
+            with modules. </para>
+      </section>
+      <section xml:id="intro-clients">
+         <title>Clients</title>
+         <indexterm><primary>Clients</primary><secondary>Description of</secondary></indexterm>
+         <indexterm><primary>Operating System</primary><secondary>Supported</secondary></indexterm>
+         <indexterm><primary>Supported Operating Systems</primary></indexterm>
+         <indexterm><primary>CentOS</primary></indexterm>
+         <indexterm><primary>Fedora</primary></indexterm>
+         <indexterm><primary>Novell SUSE</primary></indexterm>
+         <indexterm><primary>openSUSE</primary></indexterm>
+         <indexterm><primary>Oracle Enterprise Linux</primary></indexterm>
+         <indexterm><primary>Red Hat Enterprise Linux</primary></indexterm>
+         <indexterm><primary>Solaris</primary></indexterm>
+         <para>A client is any supported operating system that is managed by the OS Lockdown Console. The client must
+            have a reachable Internet Protocol (IP) address.</para>
+         <note>
+            <para>Refer to <xref linkend="intro-selinux" xrefstyle="select: label quotedtitle"/> for a list of operating
+               systems that support Security-Enhanced Linux. </para>
+         </note>
+         <para>The following table lists the supported operating systems in OS Lockdown v&SB_prodvers;:</para>
+         <informaltable frame="all">
+            <tgroup cols="3">
+               <colspec colwidth="0.28*"/>
+               <colspec align="left" colwidth="0.28*"/>
+               <colspec colwidth="0.28*"/>
+               <thead>
+                  <row>
+                     <entry>Operating System</entry>
+                     <entry>Architectures</entry>
+                     <entry>Releases</entry>
+                  </row>
+               </thead>
+               <tbody>
+                  <row>
+                     <entry>CentOS</entry>
+                     <entry>i386 (32-bit) and x86_64 (64-bit)</entry>
+                     <entry><itemizedlist>
+                           <listitem>
+                              <para>4.x</para>
+                           </listitem>
+                           <listitem>
+                              <para>5.x</para>
+                           </listitem>
+                           <listitem>
+                              <para>6.x</para>
+                           </listitem>
+                        </itemizedlist>
+                     </entry>
+                  </row>
+                  <row>
+                     <entry><trademark>Fedora</trademark></entry>
+                     <entry>i386 (32-bit) and x86_64 (64-bit)</entry>
+                     <entry>10 - 13</entry>
+                  </row>
+                  <row>
+                     <entry><trademark class="registered">Novell</trademark>
+                        <trademark class="registered">SUSE</trademark></entry>
+                     <entry>i386 (32-bit) and x86_64 (64-bit)</entry>
+                     <entry><itemizedlist>
+                           <listitem>
+                              <para>10 SP3</para>
+                           </listitem>
+                           <listitem>
+                              <para>10 SP4</para>
+                           </listitem>
+                           <listitem>
+                              <para>11 GA-SP4</para>
+                           </listitem>
+                        </itemizedlist>
+                     </entry>
+                  </row>
+                  <row>
+                     <entry>Novell SUSE</entry>
+                     <entry>s390x (<trademark class="registered">IBM</trademark> System <trademark class="registered"
+                           >z</trademark>)</entry>
+                     <entry><itemizedlist>
+                           <listitem>
+                              <para>10 SP3</para>
+                           </listitem>
+                           <listitem>
+                              <para>10 SP4</para>
+                           </listitem>
+                           <listitem>
+                              <para>11 GA-SP4</para>
+                           </listitem>
+                        </itemizedlist>
+                     </entry>
+                  </row>
+                  <row>
+                     <entry><trademark class="registered">openSUSE</trademark></entry>
+                     <entry>i386 (32-bit) and x86_64 (64-bit)</entry>
+                     <entry><itemizedlist>
+                           <listitem>
+                              <para>10.3</para>
+                           </listitem>
+                           <listitem>
+                              <para>11.0 - 11.3</para>
+                           </listitem>
+                        </itemizedlist>
+                     </entry>
+                  </row>
+                  <row>
+                     <entry><trademark class="registered">Oracle</trademark> Enterprise Linux</entry>
+                     <entry>i386 (32-bit) and x86_64 (64-bit)</entry>
+                     <entry><itemizedlist>
+                           <listitem>
+                              <para>4.x</para>
+                           </listitem>
+                           <listitem>
+                              <para>5.x</para>
+                           </listitem>
+                           <listitem>
+                              <para>6.x</para>
+                           </listitem>
+                        </itemizedlist>
+                     </entry>
+                  </row>
+                  <row>
+                     <entry>Red Hat Enterprise Linux</entry>
+                     <entry>i386 (32-bit) and x86_64 (64-bit)</entry>
+                     <entry><itemizedlist>
+                           <listitem>
+                              <para>4.x</para>
+                           </listitem>
+                           <listitem>
+                              <para>5.x</para>
+                           </listitem>
+                           <listitem>
+                              <para>6.x</para>
+                           </listitem>
+                        </itemizedlist></entry>
+                  </row>
+                  <row>
+                     <entry>Red Hat Enterprise Linux</entry>
+                     <entry>s390x (IBM System z)</entry>
+                     <entry><itemizedlist>
+                           <listitem>
+                              <para>5.2+</para>
+                           </listitem>
+                           <listitem>
+                              <para>6.x</para>
+                           </listitem>
+                        </itemizedlist>
+                     </entry>
+                  </row>
+                  <row>
+                     <entry><trademark>Solaris</trademark></entry>
+                     <entry>x86 and <trademark class="registered">SPARC</trademark></entry>
+                     <entry>10 (update 3 - 8, limited testing performed on 9+ updates)</entry>
+                  </row>
+               </tbody>
+            </tgroup>
+         </informaltable>
+         <para>Refer to <xref linkend="managing-clients" xrefstyle="select: label quotedtitle"/> for details on working
+            with clients in the OS Lockdown Enterprise edition.</para>
+         <note>
+            <para>Client functionality is <emphasis role="italic">not</emphasis> available in the OS Lockdown Standalone
+               edition.</para>
+         </note>
+      </section>
+      <section xml:id="intro-groups">
+         <title>Groups</title>
+         <indexterm>
+            <primary>Groups</primary><secondary>Description of</secondary>
+         </indexterm>
+         <para>By associating all clients in a group, you can scan or reconfigure the operating systems of those clients
+            with a single profile.</para>
+         <para>Refer to <xref linkend="managing-groups" xrefstyle="select: label quotedtitle"/> for details on working
+            with groups in the OS Lockdown Enterprise edition.</para>
+         <note>
+            <para>Group functionality is <emphasis role="italic">not</emphasis> available in the OS Lockdown Standalone
+               edition.</para>
+         </note>
+      </section>
+      <section xml:id="intro-reports-logs">
+         <title>Reports and Logs</title>
+         <indexterm>
+            <primary>Reports</primary><secondary>Description of</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Reports</primary><secondary>Apply</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Reports</primary><secondary>Assessment</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Reports</primary><secondary>Assessment Comparison</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Reports</primary><secondary>Baseline</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Reports</primary><secondary>Group Assessment</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Reports</primary><secondary>Group Asset</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Reports</primary><secondary>Undo</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Reports</primary><secondary>XML</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Logs</primary><secondary>Description of</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Logs</primary><secondary>Console Audit</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Logs</primary><secondary>Client Application</secondary>
+         </indexterm>
+         <para>You can generate and print a report/log of your system’s security status and any related vulnerability.
+            Types of reports and logs include: <itemizedlist>
+               <listitem>
+                  <para>Apply Reports</para>
+               </listitem>
+               <listitem>
+                  <para>Assessment Reports</para>
+               </listitem>
+               <listitem>
+                  <para>Assessment Comparison Reports</para>
+               </listitem>
+               <listitem>
+                  <para>Baseline Reports</para>
+               </listitem>
+               <listitem>
+                  <para>Baseline Comparison Reports</para>
+               </listitem>
+               <listitem>
+                  <para>Group Assessment Reports (<emphasis role="italic">not</emphasis> available on the OS Lockdown
+                     Standalone edition)</para>
+               </listitem>
+               <listitem>
+                  <para>Group Asset Reports (<emphasis role="italic">not</emphasis> available on the OS Lockdown
+                     Standalone edition)</para>
+               </listitem>
+             
+               <listitem>
+                  <para>Undo Reports</para>
+               </listitem>
+               <listitem>
+                  <para>Console Audit Logs</para>
+               </listitem>
+               <listitem>
+                  <para>Client Application Logs </para>
+               </listitem>
+            </itemizedlist>All reports are generated in Extensible Markup Language (XML) format, allowing system
+            administrators to create customized reports by deploying their own Extensible Stylesheet Language
+            Transformation (XSLT) template files. Due to the structured nature of XML, OS Lockdown reports can be fed
+            into third party databases, as needed.</para>
+         <para>Reports can aid in satisfying compliance to policy or procedures. For example, in the DISA UNIX STIG, the
+            GEN000160 System Baseline Backup on Write-Protected Media guideline can be satisfied using Baseline reports.
+            OS Lockdown baselines the system, and once the baseline is complete, copy the contents of the
+               <filename>/var/lib/oslockdown/reports/</filename> directory to write-protected media to satisfy this
+            guideline.</para>
+         <para>Refer to <xref linkend="managing-reports" xrefstyle="select: label quotedtitle"/> for details on working
+            with reports and logs. </para>
+      </section>
+   </section>
+   <section xml:id="intro-security-features">
+      <title>Security Features</title>
+      <formalpara>
+         <title>Console-to-Client Communications</title>
+         <indexterm>
+            <primary>Security</primary><secondary>Console-to-Client Communications</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Security</primary><secondary>Description of</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>System Connections</primary>
+         </indexterm>
+         <indexterm>
+            <primary>Security</primary><secondary>Features</secondary>
+         </indexterm>
+         <para>All console-to-client communications are encrypted and authenticated using the Transport Layer Security
+            (TLS) protocol.</para>
+      </formalpara>
+      <para>Key Features:</para>
+      <itemizedlist>
+         <listitem>
+            <para>Connections between the browser and the OS Lockdown Console are over HTTPS</para>
+         </listitem>
+         <listitem>
+            <para>Commands from the OS Lockdown Console to clients are over mutually authenticated HTTPS</para>
+         </listitem>
+      </itemizedlist>
+      <para>The installation process assists in generating SSL certificates using a self-signed, user-generated
+         Certificate Authority (CA), or generating Certificate Signing Requests (CSRs) to send to a third party CA
+         outside of OS Lockdown.</para>
+      <formalpara>
+         <title>Client Protections - Performance</title>
+         <indexterm>
+            <primary>Security</primary><secondary>Client Protections</secondary><tertiary>Performance</tertiary>
+         </indexterm>
+         <para>The dispatcher provides the ability to define peak hours and a load threshold. These controls help
+            protect the client during peak hours or when it is too busy by refusing to respond to OS Lockdown Console
+            requests. For example, if the client’s peak operational hours are defined as 8:00 AM to 12:00 PM, OS
+            Lockdown Console operators are not allowed to run remote scans on the client during that time. Doing so
+            could cause a denial of service.</para>
+      </formalpara>
+      <formalpara>
+         <title>Client Protections - Network Availability</title>
+         <indexterm>
+            <primary>Security</primary><secondary>Client Protections</secondary><tertiary>Network
+               Availability</tertiary>
+         </indexterm>
+         <para>The dispatcher can also be requested to bind to a specific address. The address can be a
+            hostname/nodename, or an explicit IPv4 dotted decimal address.</para>
+      </formalpara>
+   </section>
+   <section xml:id="intro-network-connectivity">
+      <title>Network Connectivity</title>
+      <para>The OS Lockdown Console offers an efficient way to remotely administer OS Lockdown protected machines. Users
+         connect to the OS Lockdown Console through a web browser and the OS Lockdown Console connects to client
+         dispatchers.</para>
+      <indexterm>
+         <primary>Network Connectivity</primary>
+      </indexterm>
+      <indexterm>
+         <primary>TCP/6443</primary>
+      </indexterm>
+      <formalpara>
+         <title>TCP/6443 - OS Lockdown Clients (dispatchers) accepts OS Lockdown Console connections (encrypted)</title>
+         <indexterm>
+            <primary>OS Lockdown Console</primary>
+            <secondary>Network Connections</secondary>
+            <tertiary>TCP/6443</tertiary>
+         </indexterm>
+         <para>The default configuration sets remote client dispatchers to accept TCP connections on port 6443 - you can
+            change this port during the execution of the <filename>SB_Install</filename> script (refer to <xref
+               linkend="install-config" xrefstyle="select: label quotedtitle"/> for details). For OS Lockdown Consoles
+            managing clients on other subnetworks separated by firewalls, ensure that the firewall allows connections to
+            the dispatcher’s TCP port.</para>
+      </formalpara>
+      <formalpara>
+         <title>TCP/8443 - OS Lockdown Console accepts connections from web browsers and all OS Lockdown Clients
+            (encrypted)</title>
+         <indexterm>
+            <primary>OS Lockdown Console</primary>
+            <secondary>Network Connections</secondary>
+            <tertiary>TCP/8443</tertiary>
+         </indexterm>
+         <indexterm>
+            <primary>TCP/8443</primary>
+         </indexterm>
+         <para>By default, the OS Lockdown Console accepts HTTPS browser connections and OS Lockdown Clients on TCP port
+            8443 - you can change this during installation. For OS Lockdown Consoles that service users (web browsers)
+            from other subnetworks separated by firewalls, ensure that the firewall allows connections to the TCP (SSL)
+            port.</para>
+      </formalpara>
+      <para>Communication between the OS Lockdown Console and client’s dispatcher is kept short to preserve bandwidth.
+         The OS Lockdown Console sends a message to the dispatcher, which initiates an action (Quick Scan, Scan, Apply,
+         Undo, or Baseline). If the action is a &ldquo;short-term&rdquo; command (requesting status or requesting a
+         report) the response will be sent back immediately. For &ldquo;long-term&rdquo; commands (such as a Quick Scan,
+         Scan, Apply, Undo, or Baseline), the dispatcher will acknowledge the command. When the command sequence
+         finishes, a notification is sent to the OS Lockdown Console with the completion status. When the details on the
+         report are required, the OS Lockdown Console will first check to see if it already has that data from a
+         previous request, and will fetch it from the client if not. You can view the report in your web browser, or in
+         PDF (portable document format), TXT (text file), or CSV (comma-separated values) format. Since the reports are
+         in XML format, you can customize them by using XSLT style sheets.</para>
+   </section>
+   <section xml:id="intro-selinux">
+      <title>SELinux</title>
+      <important>
+         <para>When transitioning an operating system with SELinux from disabled to enforcing mode, it is <emphasis
+               role="italic">strongly</emphasis> recommended to first boot into permissive mode, perform a complete file
+            system relabel, and then reboot into enforcing mode. Refer to your operating system documentation for
+            details.</para>
+      </important>
+      <para>Security-Enhanced Linux (SELinux) is an enhancement to the standard Linux kernel that provides for
+         fine-grained security by providing and enforcing Media Access Controls (MACs).</para>
+      <indexterm><primary>SELinux</primary><secondary>Description of</secondary></indexterm>
+      <para>This release of OS Lockdown supports Red Hat Enterprise Linux 4, 5, and 6 (and the CentOS/Oracle
+         equivalents) employing the &ldquo;targeted&rdquo; SELinux policy – as well as Fedora 10 through 13. Recent
+         releases of Novell SUSE and openSUSE may have SELinux as a technology preview; however, OS Lockdown does not
+         support them in SELinux-enabled mode.</para>
+      <indexterm><primary>SELinux</primary><secondary>Targeted Policy</secondary></indexterm>
+      <para>Since SELinux has evolved quickly and policy development is ongoing, there may be drastic differences
+         between an older operating system such as Red Hat Enterprise Linux 4 and more recent versions such as Red Hat Enterprise
+         Linux 6.</para>
+      <para>The concept of &ldquo;least privilege&rdquo; is a hallmark of SELinux. The least privilege concept states
+         that a process should only be granted the privileges it needs to operate, and no others. With least privilege
+         in place, if the process is compromised, the attacker cannot perform any activity outside of those defined for
+         the process. For example, if your web browser is compromised, the attacker is only able to perform those
+         actions allowed by the web browser. In cases where the compromise might result in root level permissions,
+         SELinux prevents the compromised code from executing unauthorized actions.</para>
+      <indexterm><primary>Least Privilege</primary></indexterm>
+      <indexterm><primary>SELinux</primary><secondary>Least Privilege</secondary></indexterm>
+      <para>In the case of a compromised web browser, SELinux can prevent the compromised code from altering the
+         password file or creating new accounts. Since OS Lockdown configures and assesses the operating system, it
+         requires the ability to access and potentially edit almost every file and directory on the system. While
+         writing OS Lockdown’s SELinux policy, the least privilege concept was implemented wherever possible.</para>
+      <para>The following changes were made to the product in order for OS Lockdown to support SELinux-enabled operating
+         systems:</para>
+      <itemizedlist>
+         <listitem>
+            <para><emphasis role="bold">Directory/File Security Context Labeling</emphasis> – If SELinux is detected as
+               running (i.e., permissive or enforcing mode), any file or directory that OS Lockdown creates or modifies
+               will have the correct security context reapplied to it. Effectively, OS Lockdown calls
+                  <filename>/sbin/restorecon</filename> for each affected file or directory. If these steps are not
+               performed, OS Lockdown can alter the file’s security context to the point where the system may not
+               function correctly. <note>
+                  <para>OS Lockdown does <emphasis role="italic">not</emphasis> keep track of the original context of
+                     each file, nor does it restore the original context when an Undo operation is performed. As files are altered the 
+		     security context that the SELinux system deems appropriate will be reapplied to those files.  It does,
+                     however, keep track of the original Discretionary Access Control (DAC) information.</para>
+               </note></para>
+            <para/>
+         </listitem>
+         <listitem>
+            <para><emphasis role="bold">SELinux Policy as a &ldquo;confined&rdquo; process</emphasis> – Additional
+               policy files allow OS Lockdown to operate as &ldquo;confined&rdquo; processes. As a
+               &ldquo;confined&rdquo; process, SELinux restricts the capabilities and actions of OS Lockdown. If the OS
+               Lockdown SELinux policy is not installed (or not available such as for Red Hat Enterprise Linux 4) OS
+               Lockdown operates as an &ldquo;unconfined&rdquo; process.</para>
+            <para>The difference between the &ldquo;unconfined&rdquo; and &ldquo;confined&rdquo; process is that
+               &ldquo;unconfined&rdquo; processes operate mostly unaffected by SELinux. SELinux restricts a
+               &ldquo;confined&rdquo; process to the approved actions as specified in the active SELinux policy.</para>
+            <para><emphasis role="bold">SELinux Support Details by Operating System</emphasis></para>
+            <para>Support for SELinux is provided for the following operating system with Directory/File Security
+               Context Labeling only:</para>
+            <para>- Red Hat Enterprise Linux 4.x</para>
+            <para>Support for SELinux is provided for the following operating systems with both Security Context
+               Labeling and with optional SELinux policy files:</para>
+            <para><literallayout>- Red Hat Enterprise Linux 5.x 
+- Red Hat Enterprise Linux 6.x 
+- Fedora 10 
+- Fedora 11 
+- Fedora 12 
+- Fedora 13 </literallayout></para>
+            <note>
+               <para>As a reminder, OS Lockdown has only been tested with the vendor supplied &ldquo;targeted&rdquo;
+                  policy. If another policy is used (such as the &ldquo;mls&rdquo; or &ldquo;strict&rdquo; policies)
+                  there is no guarantee of correct operation. </para>
+            </note>
+            <para/>
+         </listitem>
+         <listitem>
+            <para><emphasis role="bold">Detecting/Resolving Problems with SELinux and OS Lockdown</emphasis> – OS
+               Lockdown SELinux is written to work with the stock &ldquo;targeted&rdquo; policy shipped with each
+               supported Linux version. If this policy is modified, or additional application policy files are applied,
+               OS Lockdown may not have the permissions it requires. Even with the stock policy, it is possible OS
+               Lockdown may not have a permission it requires to operate in the specific environment it is operating
+               within.</para>
+            <para>If OS Lockdown attempts an action that SELinux denies, an entry is made in the log files
+                  (<filename>/var/log/messages</filename> or <filename>/var/log/audit/audit.log</filename> depending on
+               the operating system and configuration). This is called an AVC denial – a message detailing what process
+               attempted the action, what object was acted on, the Security Contexts of both, and the attempted
+               action.</para>
+            <para>Use the following two commands to help determine the problem and suggest a fix. The
+                  <filename>audit2allow</filename> command processes the AVC denial messages and suggests a fix. The
+                  <filename>audit2why</filename> command explains why a particular action failed. In earlier versions of
+               SELinux, these were separate commands. In more recent versions, the functionality of
+                  <filename>audit2why</filename> has been added to <filename>audit2allow</filename>.</para>
+            <para>The <filename>audit2allow</filename> command can also be used to generate a file containing the
+               additional policy rules that can be compiled and added to the current policy. Refer to your operating
+               system documentation for the exact arguments and examples of using <filename>audit2allow</filename>
+               and/or <filename>audit2why</filename> to resolve SELinux issues.</para>
+            <note>
+               <para>Additional software packages from your vendor may be required to compile and install any such
+                  policy changes.</para>
+            </note>
+            <para>OS Lockdown defines the following four SELinux domains that can be seen in the AVC messages:</para>
+            <para><literallayout><emphasis role="bold">oslockdown_cfg_t</emphasis> – responsible for configuring OS Lockdown
+<emphasis role="bold">oslockdown_console_t</emphasis> – responsible for the OS Lockdown Console
+<emphasis role="bold">oslockdown_dispatcher_t</emphasis> – responsible for the dispatcher process
+<emphasis role="bold">oslockdown_t</emphasis> – responsible for all Scan/Apply/Undo/Baseline operations</literallayout></para>
+         </listitem>
+      </itemizedlist>
+   </section>
+</chapter>

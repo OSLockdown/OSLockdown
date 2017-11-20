@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % CommonEntities SYSTEM "../COMMON_ENTITIES.ent">
+%CommonEntities;
+]>
+<appendix version="5.0" xml:id="app-diags" xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!--<?xml-stylesheet type="text/css" href="docbook.css"?>-->
+  <title>Diagnostics</title>
+  <para>Use the following diagnostics to help troubleshoot during the OS Lockdown installation. </para>
+  <indexterm><primary>Diagnostics</primary><secondary>Running</secondary></indexterm>
+  <section xml:id="sb-setup-diags">
+    <title>SB_Setup Diagnostic</title>
+    <para>Execute these diagnostics when the <filename>SB_Setup</filename> script is run to configure the system. It
+      performs numerous checks ranging from ensuring required packages are installed to verifying whether a TCP port is
+      available. These basic diagnostics can be run at any time as root with the &ldquo;-e&rdquo; option:</para>
+    <indexterm><primary>Diagnostics</primary><secondary>SB_Setup</secondary></indexterm>
+    <screen># <userinput>/usr/share/oslockdown/tools/SB_Setup -e</userinput></screen>
+  </section>
+  <section xml:id="diag-dump">
+    <title>Diagnostic Dump</title>
+    <para>Each time the OS Lockdown core engine is requested to perform an action such as Scan, Apply, Undo, or
+      Baseline, more detailed diagnostics are performed. These diagnostics can be performed anytime from the command
+      line as root: </para>
+    <indexterm><primary>Diagnostics</primary><secondary>Diagnostic Dump</secondary></indexterm>
+    <screen># <userinput>/usr/sbin/oslockdown -D</userinput></screen>
+  </section>
+</appendix>

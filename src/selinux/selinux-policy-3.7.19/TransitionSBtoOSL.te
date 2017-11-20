@@ -1,0 +1,42 @@
+module TransitionSBtoOSL 1.0;
+
+require {
+        type securityblanket_t;
+        type securityblanket_var_lib_t;
+        type devpts_t;
+        type semanage_exec_t;
+        class dir {getattr search add_name write create};
+        class file {execute execute_no_trans create write open read append};
+        class process { transition noatsecure siginh rlimitinh sigchld setsched};
+        class fd { use };
+        class fifo_file { getattr read write append ioctl lock open};
+        class chr_file { getattr read write ioctl open append };
+        class tcp_socket {read write};
+        class socket {read write};
+        class udp_socket {read write};
+        class rawip_socket {read write};
+        class netlink_socket {read write};
+        class packet_socket {read write};
+        class unix_stream_socket {read write};
+        class unix_dgram_socket {read write};
+        class appletalk_socket {read write};
+        class netlink_route_socket {read write};
+        class netlink_firewall_socket {read write};
+        class netlink_tcpdiag_socket {read write};
+        class netlink_nflog_socket {read write};
+        class netlink_xfrm_socket {read write};
+        class netlink_selinux_socket {read write};
+        class netlink_audit_socket {read write};
+        class netlink_ip6fw_socket {read write};
+        class netlink_dnrt_socket {read write};
+        class netlink_kobject_uevent_socket {read write};
+        class tun_socket {read write};
+        class capability {sys_module sys_nice};
+        role system_r;
+}
+
+#============= securityblanket_t ==============
+oslockdown_cfg_run(securityblanket);
+oslockdown_dispatcher_run(securityblanket);
+allow securityblanket_t semanage_exec_t:file { execute execute_no_trans} ;
+allow oslockdown_cfg_t securityblanket_var_lib_t:file read;

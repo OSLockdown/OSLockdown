@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: DisableRhnsd.xml 21205 2013-03-28 20:12:03Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="EnableIp6tables" version="5.0">
+ <title xml:id="SysMgmtServices">Enable Ip6tables</title>
+ <para>
+  The ip6tables daemon is responsible for providing host-based firewall
+  capability for IPv6 and ICMPv6. This module will check for the
+  ip6tables package and turn the service on (if not already on). Refer
+  to the <filename>ip6tables</filename> man pages for information on how
+  to configure the firewall.
+ </para>
+ <para>
+  <note>
+   <para>
+    The SUSE and openSUSE operating system wrap ip6tables in a different
+    startup mechanism. Please refer to the operating system
+    documentation for further assistance.
+   </para>
+  </note>
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="0.8*" align="left"/>
+   <colspec colname="c2" colwidth="0.5*"/>
+   <colspec colname="c3" colwidth="0.8*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Package</entry>
+     <entry>Service Names</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="1">iptables-ipv6</entry>
+     <entry morerows="1">ip6tables</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4, 5, and 6</entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+     <entry namest="c2" nameend="c3">See operating system documentation.</entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+     <entry namest="c2" nameend="c3">See operating system documentation.</entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="EnableIp6tables-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>DISA Red Hat 6 STIG (V1R14)</title>
+   <listitem>
+    <para>
+     RHEL-06-000103 - The system must employ a local IPv6 firewall.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     2.5.5.1 - Inspect and Activate Default Rules
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

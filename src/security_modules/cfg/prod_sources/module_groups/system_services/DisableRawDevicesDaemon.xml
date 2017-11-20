@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Raw Devices Service">
+        <library>DisableRawDevicesDaemon</library>
+        <description>Disable the Raw Devices service, which assigns raw devices to block devices and is commonly used by database systems.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:5">
+            <services>
+              <service seq="1" name="rawdevices"/>
+            </services>
+            <packages>
+              <package name="initscripts"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5">
+            <services>
+              <service seq="1" name="rawdevices"/>
+            </services>
+            <packages>
+              <package name="initscripts"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5">
+            <services>
+              <service seq="1" name="rawdevices"/>
+            </services>
+            <packages>
+              <package name="initscripts"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Hardware</member>
+        </views>
+      </security_module>

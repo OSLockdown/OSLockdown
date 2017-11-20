@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2007-2014 Forcepoint LLC.                                       -->
+<!-- This file is released under the GPLv3 license.                                -->
+<!-- See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license, -->
+<!-- or visit https://www.gnu.org/licenses/gpl.html instead.                       -->
+<BaselineProfile name="Default" sysProfile='true'>
+  <info>
+     <description>
+           <summary>Default Baseline Profile</summary>
+           <verbose> </verbose>
+           <comments> </comments>
+     </description>
+  </info>
+  <section name="Auditing and Logging">
+    <module name="Kernel Auditing Rules" enabled='false'/>
+    <module name="Kernel Auditing Configuration" enabled='false'/>
+    <module name="System Logging Configuration" enabled='false'/>
+  </section>
+  <section name="Network">
+    <module name="Routing" enabled='true'/>
+    <module name="Firewall" enabled='true'/>
+  </section>
+  <section name="Software">
+    <module name="Software" enabled='true'/>
+  </section>
+  <section name="Hardware">
+    <module name="USB Buses and Devices" enabled='true'/>
+    <module name="DMI/SMBIOS Table" enabled='true'/>
+    <module name="BIOS Memory and Known Entry Points" enabled='true'/>
+    <module name="PCI Devices" enabled='true'/>
+  </section>
+  <section name="Files">
+    <module name="Device Files" enabled='true'/>  
+    <module name="User Commands" enabled='true'/>  
+    <module name="System Binaries" enabled='true'/>  
+    <module name="Standard System Binaries (non-essential)" enabled='true'/>  
+    <module name="Locally-installed Standard System Binaries (non-essential)" enabled='true'/>  
+    <module name="Essential shared libraries and kernel modules" enabled='true'/>  
+    <module name="Libraries for programming and packages" enabled='true'/>  
+    <module name="Host-specific System Configuration" enabled='true'/>  
+    <module name="Boot Loader Files" enabled='true'/>  
+  </section>
+</BaselineProfile>
+

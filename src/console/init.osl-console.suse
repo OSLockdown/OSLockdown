@@ -1,0 +1,130 @@
+#!/bin/bash
+# Copyright (c) 2007-2014 Forcepoint LLC.
+# This file is released under the GPLv3 license.  
+# See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+# or visit https://www.gnu.org/licenses/gpl.html instead.
+s
+### BEGIN INIT INFO
+# Provides:       osl-console
+# Required-Start: $network 
+# Required-Stop:  $network
+# Default-Start:  3 5 
+# Default-Stop:
+# Description:    OS Lockdown Console
+### END INIT INFO
+
+
+##############################################################################
+
+RETVAL=0
+progstart="su - sbwebapp -m -c \"/usr/share/oslockdown/console/bin/startup.sh\""
+progstop="su - sbwebapp -m -c \"/usr/share/oslockdown/console/bin/shutdown.sh\""
+
+dirfixes="/var/lib/oslockdown/profiles 
+          /var/lib/oslockdown/reports 
+          /var/lib/oslockdown/logs 
+          /var/lib/oslockdown/console/db
+          /var/lib/oslockdown/console/temp"
+
+LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/share/oslockdown/lib
+export LD_LIBRARY_PATH
+
+java_check() {
+    
+    if [ -x /sbin/runuser ] ; then 
+      results="`/sbin/runuser --command='./bin/java_test.sh' - sbwebapp | tail -1`"
+    else
+      results=`su - sbwebapp -c ./bin/java_test.sh | tail -1`
+    fi
+    if [ "$results" != '$JAVA_HOME/bin/java is executable' ] ; then
+      retval=1
+    else
+      retval=0
+    fi
+    return $retval
+}
+
+
+ensureDirectorySettings()
+{
+    dirfixes="/var/lib/oslockdown/profiles 
+              /var/lib/oslockdown/reports 
+              /var/lib/oslockdown/logs 
+              /var/lib/oslockdown/console/db
+              /var/lib/oslockdown/console/temp"
+    for sbdir in $dirfixes
+    do
+        [ ! -d $sbdir ] && mkdir $sbdir
+        chmod 700 $sbdir
+        chown sbwebapp $sbdir
+    done
+}
+
+start() {
+        echo "Starting OS Lockdown Console..."	
+        id -u sbwebapp 1>/dev/null 2>&1
+        if [ $? -ne 0 ]; then
+            echo "[FAILED]"
+            echo "  Error: 'sbwebapp' user is missing"
+            return $?
+        fi 
+
+#        ensureDirectorySettings
+
+        $progstart 
+        echo
+        RETVAL=$?
+        return $RETVAL
+}
+
+stop() {
+        echo "Shutting down OS Lockdown Console..."
+
+        [ ! -d /var/lib/oslockdown/logs ] && mkdir /var/lib/oslockdown/logs
+        $progstop 2>/dev/null
+        RETVAL=$?
+        return $RETVAL
+}
+
+
+#
+# Process Args
+#
+# See how we were called.
+case "$1" in
+  start)
+        java_check
+        RETVAL=$?
+        if [ $RETVAL -ne 1 ]; then
+           start
+        else
+           echo "FATAL: Unable to start osl-console"
+        fi
+        ;;
+  stop)
+        stop
+        ;;
+  restart|reload)
+        stop
+        echo "Waiting 5 seconds..."
+        sleep 5
+        start
+	RETVAL=$?
+	;;
+  status)
+        PID=`ps -U sbwebapp -o pid,cmd |awk '/.*java.*catalina\.startup\.Bootstrap/ {print $1}'`
+        if [ ! -z "$PID" ]; then
+            echo $"osl-console (pid $PID) is running..."
+            ps ww --noheading -p $PID -o cmd |awk '{for(ff=2; ff<NF-1; ff++) printf "  %s\n", $ff}'
+            RETVAL=0
+        else
+            echo "osl-console is not running..."
+            RETVAL=1
+        fi
+        ;;
+  *)
+        echo $"Usage: $0 {start|stop|status|restart}"
+        RETVAL=3
+esac
+
+exit $RETVAL

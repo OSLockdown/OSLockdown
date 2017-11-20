@@ -1,0 +1,39 @@
+digraph sm {
+    labelloc = "t"     // top
+    fontname = "Arial"
+    fontsize = "8pt"  
+    //rankdir="LR"
+
+    node [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 8
+        shape = "box"
+        style = "rounded"
+    ]
+
+    edge [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 8
+        arrowhead = "ovee"
+    ]
+
+    "exclude-dirs file" [shape="note"]
+    "inclusion-fstypes" [shape="note"]
+    "Final List" [shape="note"]
+    "In a Solaris\nGlobal zone?" [shape="diamond"]
+
+    // Flow
+    "exclude-dirs file" -> "Load" [style="dashed"]
+    "Load" -> "Remove non-absolute\npath entries"
+    "Remove non-absolute\npath entries" -> "Remove entries\nwith wildcards"
+    "Remove entries\nwith wildcards" -> "Add /proc and\n/selinux" 
+    "Add /proc and\n/selinux" -> "In a Solaris\nGlobal zone?"
+    "In a Solaris\nGlobal zone?" -> "Add root path of\neach child zone" [label="yes"]
+    "Add root path of\neach child zone" -> "Add mount points of\nnon-acceptable fstypes"
+    "In a Solaris\nGlobal zone?" -> "Add mount points of\nnon-acceptable fstypes" [label="no"]
+    "inclusion-fstypes" -> "Add mount points of\nnon-acceptable fstypes" [style="dashed"]
+    "Add mount points of\nnon-acceptable fstypes" -> "Remove Duplicates"
+    "Remove Duplicates" -> "Remove child\nif parent is listed"
+    "Remove child\nif parent is listed" -> "Final List"
+
+}

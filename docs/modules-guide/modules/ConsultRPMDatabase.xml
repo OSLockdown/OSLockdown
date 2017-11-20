@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="ConsultRPMDatabase">
+  <title xml:id="fileDACs">Consult the RPM Database for file/directory Setting</title>
+  <para>
+  Use the information in the system RPM database to verify the various
+  attributes (such as ownership, permissions, and MD5 signatures) of the
+  files/directories for all installed packages. This module can detect
+  places where the settings are invalid and call upon RPM to restore
+  certain settings. Some attributes can only be restored by
+  re-installing the associated packages, which is beyond the scope of
+  this module. As well, this module can be told not to change some
+  discrepancies, for example places where OS Lockdown has made other
+  changes to the system, or where certain RPMs or files/directories are
+  required to be changed.
+ </para>
+  <formalpara>
+    <title>Exemptions</title>
+    <para>
+   RPM has the concept of 'configuration' files, which are expected to
+   change from what is originally installed. By default this module will
+   exempt such files from the MD5 signature check. If the file is
+   <emphasis role="italic">missing</emphasis> however, this will be
+   flagged as a potential problem.
+  </para>
+    <para>
+   Specific RPMs can be entered to ignore, such as the case of an RPM
+   whose internal defaults are wrong, or one where the files are
+   modified after being installed.
+  </para>
+    <para>
+   Specific files or directories can also be entered to ignore. Note
+   that if a directory is entered, it is <emphasis>not</emphasis>
+   treated recursively, so only the directory itself (not the contents)
+   will be ignored.
+  </para>
+  </formalpara>
+  <important>
+    <para>
+   This module uses the RPM to detect places where the RPM database is
+   not in agreement with what is actually on file. However, rather than
+   just asking RPM to resolve these problems, each inconsistency is
+   evaluated to see if a change should be made. Part of this is to allow
+   for system administrators to make an accommodation for instances
+   where specific RPMs, files, or directories
+   <emphasis role="italics">need</emphasis> to have settings that differ
+   from what was installed. In addition, other OS Lockdown modules may
+   make changes to installed files and directories (for example
+   <link linkend="SecureUnownedFiles">Remove Unowned Files</link> which
+   set unowned files to root:root ownership and permissions of 000) that
+   would be undone by asking RPM to restore those settings. In cases
+   where this module is told not to take action, a message to that
+   effect is always logged.
+  </para>
+    <para>
+   To mitigate those potential issues, the behavior of this module can
+   be fine tuned using the options provided below.
+  </para>
+    <para>
+   Please make changes to these options carefully, as the changes can
+   directly impact the security posture of your system.
+  </para>
+  </important>
+  <simplesect xml:id="ConsultRPMDatabase-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>
+     RHEL-06-000278 - The system package management tool must verify
+     permissions on all files and directories associated with the audit
+     package.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000279 - The system package management tool must verify
+     ownership on all files and directories associated with the audit
+     package.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000280 - The system package management tool must verify
+     group-ownership on all files and directories associated with the
+     audit package.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000281 - The system package management tool must verify
+     contents of all files associated with the audit package.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000516 - The system package management tool must verify
+     ownership on all files and directories associated with packages.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000517 - The system package management tool must verify
+     group-ownership on all files and directories associated with
+     packages.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000518 - The system package management tool must verify
+     permissions on all files and directories associated with packages.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000519 - The system package management tool must verify
+     contents of all files associated with packages.
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="ConsultRPMDatabase-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Should files owned by root/root with permissions of 000 be left alone?<emphasis><para>If OS Lockdown needs to remove a file or entry (for example, if an unowned file is found) the 
+            ownership it set to root:root, and the permissions are set to 000.  This module would undo every single one of those
+            changes unless told to allow those changes to persist.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>List of RPM packages to ignore</para>
+      </listitem>
+      <listitem>
+        <para>List of specific files/dirs to ignore (dirs are treated non-recursively), one entry per line</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: DisableIPv6KernelModule.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableIPv6KernelModule" version="5.0">
+  <title xml:id="NetworkConfig">Disable IPv6 Kernel Module</title>
+  <para>
+  Prevents the kernel from loading the IPv6 module.
+ </para>
+  <para>
+  This modules will examine all files in
+  <filename>/etc/modprobe.d</filename> and the
+  <filename>/etc/modprobe.conf</filename> file (if they exist) and look
+  for the line(s) that are specified as arguments. If a line is found
+  that matches the first two whitespace separated fields but not the
+  remainder, then it will be updated to match the provided lines. If no
+  matching line is found, then it will be added to either
+  <filename>/etc/modprobe.d/oslockdown_modprobe_settings</filename> (if
+  <filename>/etc/modprobe.d</filename> is a directory), or to
+  <filename>/etc/modprobe.conf</filename>.
+ </para>
+  <para>
+  This module is not applicable to Oracle Solaris.
+ </para>
+  <indexterm>
+    <primary>/etc/modprobe.conf</primary>
+  </indexterm>
+  <simplesect xml:id="DisableIPv6KernelModule-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Required lines to disable Firewire kernel module(s)<emphasis><para>One or more lines that can disable or otherwise alter how kernel modules are loaded/configured/disabled.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="DisableIPv6KernelModule-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>6.14.2 - Ensure IPv6 Module Does Not Load</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN007700 - The IPv6 protocol handler must not be bound to the network stack unless needed.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000098 - The IPv6 protocol handler must not be bound to the network stack unless needed.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>2.5.3.1.1 - Disable Automatic Loading of IPv6 Kernel Module</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-3562-6 - Automatic loading of the IPv6 kernel module should be enabled or disabled as appropriate.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableCupsPrinterBrowsing" version="5.0">
+  <title xml:id="Printing">Disable CUPS Printer Browsing</title>
+  <para>
+  Disable the ability for Common UNIX Printing System (CUPS) to
+  broadcast the available printers on this system or receive broadcasts
+  from other CUPS-enabled systems.
+  <indexterm><primary>CUPS</primary></indexterm>
+ </para>
+  <para>
+  In Linux systems, the following lines will be set in
+  <filename>/etc/cups/cupsd.conf</filename>:
+  <indexterm><primary>cupsd.conf</primary></indexterm>
+ </para>
+  <programlisting>Browsing Off
+BrowseAllow none</programlisting>
+  <simplesect xml:id="DisableCupsPrinterBrowsing-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-13 - Limitation and Control of Network Ports, Protocols, and Services</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>3.8.3.1.1 - Disable Printer Browsing Entirely if Possible</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-4407-3 - CUPS should be allowed or denied the ability to listen for Incoming printer information as appropriate</para>
+      </listitem>
+      <listitem>
+        <para>CCE-4420-6 - Remote print browsing should be enabled or disabled as appropriate</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

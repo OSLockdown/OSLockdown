@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ***************************************************************************** -->
+<!-- Copyright (c) 2007-2014 Forcepoint LLC.                                       -->
+<!-- This file is released under the GPLv3 license.                                -->
+<!-- See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license, -->
+<!-- or visit https://www.gnu.org/licenses/gpl.html instead.                       -->
+<!--                                                                          	   -->
+<!--   OS Lockdown - Notification Body for console to client comms       	   -->
+<!-- ***************************************************************************** -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="details">
+    <xs:complexType>
+      <xs:sequence>
+
+        <xs:element name="data">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attributeGroup name="dataEntryAttributes">
+                    <xs:attribute name="name" use="required" type="xs:string"/>
+                    <xs:attribute name="value" use="required" type="xs:string"/>
+                  </xs:attributeGroup>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="exceptions">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="exception" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attributeGroup name="exceptionEntryAttributes">
+                    <xs:attribute name="level" use="required" type="xs:string"/>
+                    <xs:attribute name="message" use="required" type="xs:string"/>
+                  </xs:attributeGroup>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+      </xs:sequence>
+      <xs:attribute name="success" type="xs:boolean" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

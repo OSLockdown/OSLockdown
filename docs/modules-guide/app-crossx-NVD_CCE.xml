@@ -1,0 +1,2001 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="app-crossx-NVD_CCE">
+  <title>NVD CCE </title>
+  <para>
+    <abstract> <para>
+  The Common Configuration Enumeration (CCE) list provides unique identifiers to security-related system configuration 
+  issues in order to improve workflow by facilitating fast and accurate correlation 
+  of configuration data across multiple information sources and tools.
+ </para>
+</abstract>
+  </para>
+  <para>
+    <literallayout>  172   Total number of line items in guideline
+  172   Items at least partially addressed by OS Lockdown
+    0   Items not addressed by OS Lockdown</literallayout>
+  </para>
+  <table xml:id="app-crossx-NVD_CCE-CCE_3276_3-CCE_18244_4" frame="all" tocentry="1" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>NVD CCE </title>
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.2*" align="center"/>
+      <colspec colname="c2" colwidth="0.5*" align="left"/>
+      <colspec colname="c3" colwidth="0.5*" align="left"/>
+      <thead>
+        <row>
+          <entry>Item</entry>
+          <entry>Title</entry>
+          <entry>OS Lockdown Modules</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>CCE-3276-3</entry>
+          <entry>The /etc/group file should be owned by the appropriate user.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3315-9</entry>
+          <entry>The allowed period of inactivity gnome desktop lockout should be configured correctly.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SetGnomeSS" xrefstyle="select: title page">Set Mandatory Screen Saver</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3399-3</entry>
+          <entry>The sticky bit should be set or not set as appropriate for all world-writable directories.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureWorldWritableDirectories" xrefstyle="select: title page">Secure World Writable Directories</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3412-4</entry>
+          <entry>The firstboot service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableFirstbootSvc" xrefstyle="select: title page">Disable Firstboot Service</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3416-5</entry>
+          <entry>The rhnsd service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableRhnsd" xrefstyle="select: title page">Disable Rhnsd</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3425-6</entry>
+          <entry>The kdump service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKdump" xrefstyle="select: title page">Disable Kernel Crash Analyzer</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3455-3</entry>
+          <entry>The smartd service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSMARTD" xrefstyle="select: title page">Disable SMART Disk Monitoring Support</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3485-0</entry>
+          <entry>Logins through the specified virtual console device should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RootConsole" xrefstyle="select: title page">Root Console Only Logins</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3495-9</entry>
+          <entry>The /etc/passwd file should be owned by the appropriate group.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3522-0</entry>
+          <entry>The nodev option should be enabled or disabled as appropriate for all removable media.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FstabRemovableMedia" xrefstyle="select: title page">Use NOSUID and NODEV for Removable Media</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3535-2</entry>
+          <entry>The rpcgssd service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableGssd" xrefstyle="select: title page">Disable GSS Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3562-6</entry>
+          <entry>Automatic loading of the IPv6 kernel module should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableIPv6KernelModule" xrefstyle="select: title page">Disable IPv6 Kernel Module</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3566-7</entry>
+          <entry>File permissions for /etc/passwd should be set correctly.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3573-3</entry>
+          <entry>All files should be owned by a group as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureUnownedFiles" xrefstyle="select: title page">Secure Unowned Files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3578-2</entry>
+          <entry>The named service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableDNS" xrefstyle="select: title page">Disable DNS</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3622-8</entry>
+          <entry>The NIS update daemon should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNIS_server" xrefstyle="select: title page">Disable NIS Server</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3624-4</entry>
+          <entry>The SELinux policy should be set appropriately.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SELinuxIsPropEnabled" xrefstyle="select: title page">Ensure SELinux is Properly Enabled</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3650-9</entry>
+          <entry>The metaed service should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSVMgui" xrefstyle="select: title page">Disable Solaris Volume Manager GUI</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3660-8</entry>
+          <entry>Remote connections from accounts with empty passwords should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdDisableEmptyPasswords" xrefstyle="select: title page">SSHD Disable Empty Passwords</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3662-4</entry>
+          <entry>The WBEM services should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableWbem" xrefstyle="select: title page">Disable WBEM</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3668-1</entry>
+          <entry>The mcstrans service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableMcstrans" xrefstyle="select: title page">Disable MCS Translation Service</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3689-7</entry>
+          <entry>The idle time-out value for the default /bin/tcsh shell should meet the minimum requirements.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ShellSessionTimeouts" xrefstyle="select: title page">Set shell timeout period</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3701-0</entry>
+          <entry>All syslog log files should be owned by the appropriate group.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3705-1</entry>
+          <entry>The ypbind service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNIS_client" xrefstyle="select: title page">Disable NIS Client</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3707-7</entry>
+          <entry>The idle time-out value for the default /bin/bash shell should meet the minimum requirements.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ShellSessionTimeouts" xrefstyle="select: title page">Set shell timeout period</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3755-6</entry>
+          <entry>CUPS service should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisablePrinter" xrefstyle="select: title page">Disable Printer Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3818-2</entry>
+          <entry>The grub boot loader should have password protection enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RequireGrubPassword" xrefstyle="select: title page">Require GRUB Password</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3847-1</entry>
+          <entry>The dovecot service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableMail_dovecot" xrefstyle="select: title page">Disable Mail (Dovecot mail server)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3854-7</entry>
+          <entry>The mdmonitor service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableMdmonitor" xrefstyle="select: title page">Disable Software RAID Monitor</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3857-0</entry>
+          <entry>NFS server functionality should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NFSInsecureLocks" xrefstyle="select: title page">Remove Insecure_Locks option for NFS Server</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3883-6</entry>
+          <entry>The /etc/group file should be owned by the appropriate group.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3910-7</entry>
+          <entry>The vlock package should be installed or not as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SetGnomeSS" xrefstyle="select: title page">Set Mandatory Screen Saver</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3918-0</entry>
+          <entry>The /etc/shadow file should be owned by the appropriate user.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3919-8</entry>
+          <entry>The vsftpd service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableFTP_vsftpd" xrefstyle="select: title page">Disable FTP (vsftpd)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3923-0</entry>
+          <entry>File permissions for /etc/grub.conf should be set correctly.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysConfigFilePerms" xrefstyle="select: title page">System Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3950-3</entry>
+          <entry>The local rpc port mapping service should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisablePortmap" xrefstyle="select: title page">Disable Portmap Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3958-6</entry>
+          <entry>The /etc/passwd file should be owned by the appropriate user.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3967-7</entry>
+          <entry>File permissions for /etc/group should be set correctly.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3977-6</entry>
+          <entry>SELinux should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SELinuxIsPropEnabled" xrefstyle="select: title page">Ensure SELinux is Properly Enabled</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3987-5</entry>
+          <entry>Login access to non-root system accounts should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="BlockSystemAccounts" xrefstyle="select: title page">Block System Accounts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3988-3</entry>
+          <entry>The /etc/shadow file should be owned by the appropriate group.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-3999-0</entry>
+          <entry>The SELinux state should be set appropriately.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SELinuxIsPropEnabled" xrefstyle="select: title page">Ensure SELinux is Properly Enabled</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4009-7</entry>
+          <entry>Anonymous root logins are enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="LockDuplicateUidZeros" xrefstyle="select: title page">Lock Non-Root Accounts with UID 0</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4042-8</entry>
+          <entry>The nosuid option should be enabled or disabled as appropriate for all removable media.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FstabRemovableMedia" xrefstyle="select: title page">Use NOSUID and NODEV for Removable Media</xref>
+              </member>
+              <member>
+                <xref linkend="NosuidOnUserFilesystems" xrefstyle="select: title page">Use NOSUID on User Filesystems</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4051-9</entry>
+          <entry>The cpuspeed service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableCpuThrottling" xrefstyle="select: title page">Disable CPU Throttling</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4060-0</entry>
+          <entry>The system login banner text should be set correctly.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CreateLoginBanner" xrefstyle="select: title page">Create Login Banner</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4072-5</entry>
+          <entry>The autofs service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNFS_client" xrefstyle="select: title page">Disable NFS Client</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4074-1</entry>
+          <entry>X Windows System Listening for remote connections should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RemoteXClients" xrefstyle="select: title page">Restrict Remote X Clients</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4075-8</entry>
+          <entry>Kernel level auditing for administrative actions should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+              <member>
+                <xref linkend="EnableSysstat" xrefstyle="select: title page">System Accounting</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4092-3</entry>
+          <entry>The "maximum password age" policy should meet minimum requirements.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordMaxDays" xrefstyle="select: title page">Maximum Time Between Password Changes</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4097-2</entry>
+          <entry>The password warn age should be set appropriately</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordWarnAge" xrefstyle="select: title page">Password Expiration Warning</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4100-4</entry>
+          <entry>The pcscd service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSmartcard" xrefstyle="select: title page">Disable Smart Card Support</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4112-9</entry>
+          <entry>The cups service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisablePrinter" xrefstyle="select: title page">Disable Printer Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4114-5</entry>
+          <entry>NIS file inclusions should be set appropriately in the /etc/passwd file</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NoPlusPasswdEntries" xrefstyle="select: title page">No Plus Entries in Password Files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4123-6</entry>
+          <entry>The irqbalance service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableIrqbalance" xrefstyle="select: title page">Disable IRQ Balance Service</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4129-3</entry>
+          <entry>The restorecond service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableRestorecond" xrefstyle="select: title page">Disable Restorecon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4130-1</entry>
+          <entry>File permissions for /etc/shadow should be set correctly.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4144-2</entry>
+          <entry>The /etc/grub.conf file should be owned by the appropriate user.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysConfigFilePerms" xrefstyle="select: title page">System Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4146-7</entry>
+          <entry>ExecShield randomized placement of virtual memory regions should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="EnableKernelExecShield" xrefstyle="select: title page">Enable ExecShield Kernel Module</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4154-1</entry>
+          <entry>The password minimum length should be set appropriately</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordPolicyConsecutive" xrefstyle="select: title page">Password Policy Consecutive Characters</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyDiffChars" xrefstyle="select: title page">Password Policy Different Characters</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyMinlen" xrefstyle="select: title page">Password Policy Length Minimum</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4168-1</entry>
+          <entry>ExecShield should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="EnableKernelExecShield" xrefstyle="select: title page">Enable ExecShield Kernel Module</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4172-3</entry>
+          <entry>Kernel support for the XD/NX processor feature should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CheckXdNxSupport" xrefstyle="select: title page">Check Kernel for XD/NX Support</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4180-6</entry>
+          <entry>The "minimum password age" policy should meet minimum requirements.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordChangeDelay" xrefstyle="select: title page">Minimum Delay Between Password Changes</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4187-1</entry>
+          <entry>The USB device support module should be loaded or not as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableUSB" xrefstyle="select: title page">Disable USB and PCMCIA Devices</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4197-0</entry>
+          <entry>The /etc/grub.conf file should be owned by the appropriate group.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysConfigFilePerms" xrefstyle="select: title page">System Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4211-9</entry>
+          <entry>The kudzu service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKudzu" xrefstyle="select: title page">Disable Kudzu</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4220-0</entry>
+          <entry>The daemon umask should be set as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DaemonUmask" xrefstyle="select: title page">Daemon Umask</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4223-4</entry>
+          <entry>All files should be owned by a user as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureUnownedFiles" xrefstyle="select: title page">Secure Unowned Files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4225-9</entry>
+          <entry>Core dumps for all users should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableCoreDumps" xrefstyle="select: title page">Disable Core Dumps</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4229-1</entry>
+          <entry>The gpm service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableGpm" xrefstyle="select: title page">Disable Console Mouse Support</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4231-7</entry>
+          <entry>The GNOME automounter (gnome-volume-manager) should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableGnomeAutomounting" xrefstyle="select: title page">Disable GNOME Automounting</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4233-3</entry>
+          <entry>File permissions for all syslog log files should be set correctly.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4240-8</entry>
+          <entry>The smserver service should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="UserMountableMedia" xrefstyle="select: title page">User Mountable Media</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4241-6</entry>
+          <entry>The requirement for a password to boot into single-user mode should be configured correctly.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SingleUserMode" xrefstyle="select: title page">Single User Mode Password</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4245-7</entry>
+          <entry>The ability for users to perform interactive startups should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableInteractiveBoot" xrefstyle="select: title page">Disable Interactive Boot</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4247-3</entry>
+          <entry>Core dumps for setuid programs should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSuidCoreDumps" xrefstyle="select: title page">Disable SUID Core Dumps</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4249-9</entry>
+          <entry>The nodev option should be enabled or disabled as appropriate for all non-root partitions.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FstabNodev" xrefstyle="select: title page">Use NODEV Option for Non-root Partitions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4254-9</entry>
+          <entry>The setroubleshoot service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSETroubleshoot" xrefstyle="select: title page">Disable SETroubleshoot</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4266-3</entry>
+          <entry>The metainit service (Solaris 10 &lt;= 11/06) should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSVM" xrefstyle="select: title page">Disable Solaris Volume Manager</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4273-9</entry>
+          <entry>The tftp service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableTFTP" xrefstyle="select: title page">Disable TFTP</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4279-6</entry>
+          <entry>The ldap cache manager should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableLdapCacheMgr" xrefstyle="select: title page">Disable LDAP Client Cache Manager</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4289-5</entry>
+          <entry>The apmd service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableApmd" xrefstyle="select: title page">Disable Power Management</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4292-9</entry>
+          <entry>The auditd service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditEnable" xrefstyle="select: title page">Enable the Audit Subsystem</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4298-6</entry>
+          <entry>The acpid service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableAcpid" xrefstyle="select: title page">Disable ACPI Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4299-4</entry>
+          <entry>The NIS xfr daemon should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNIS_server" xrefstyle="select: title page">Disable NIS Server</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4302-6</entry>
+          <entry>The readahead_later service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableBootCaching" xrefstyle="select: title page">Disable Boot Caching</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4305-9</entry>
+          <entry>The volume manager GUI mdcomm service should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSVMgui" xrefstyle="select: title page">Disable Solaris Volume Manager GUI</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4306-7</entry>
+          <entry>The apache web servicer should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableWebServer_apache" xrefstyle="select: title page">Disable Apache</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4325-7</entry>
+          <entry>SSH version 1 protocol support should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdProtocol" xrefstyle="select: title page">SSHD Protocol</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4327-3</entry>
+          <entry>The calendar manager should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableCDEcalmgr" xrefstyle="select: title page">Disable CDE Calendar Manager Server</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4336-4</entry>
+          <entry>The dhcpd service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableDhcpd" xrefstyle="select: title page">Disable Dhcpd</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4338-0</entry>
+          <entry>The httpd service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableWebServer_apache" xrefstyle="select: title page">Disable Apache</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4354-7</entry>
+          <entry>The volfs service should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="UserMountableMedia" xrefstyle="select: title page">User Mountable Media</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4355-4</entry>
+          <entry>The bluetooth service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableBluetooth" xrefstyle="select: title page">Disable Bluetooth</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4356-2</entry>
+          <entry>The microcode_ctl service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableIA32MicrocodeUtility" xrefstyle="select: title page">Disable IA32 Microcode Utility</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4359-6</entry>
+          <entry>NFS client functionality should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNFS_client" xrefstyle="select: title page">Disable NFS Client</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4362-0</entry>
+          <entry>The NIS passwd daemon should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNIS_server" xrefstyle="select: title page">Disable NIS Server</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4364-6</entry>
+          <entry>The haldaemon service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableHalDaemon" xrefstyle="select: title page">Disable HAL Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4365-3</entry>
+          <entry>The avahi-daemon service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableAvahi" xrefstyle="select: title page">Disable Avahi Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4366-1</entry>
+          <entry>All syslog log files should be owned by the appropriate user.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4370-3</entry>
+          <entry>SSH host-based authentication should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdDisableHostbasedAuth" xrefstyle="select: title page">SSHD Disable Host-based Authentication</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4375-2</entry>
+          <entry>The sendmail services should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSendmail" xrefstyle="select: title page">Disable Sendmail</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4377-8</entry>
+          <entry>The hidd service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableBluetoothInputDevs" xrefstyle="select: title page">Disable Bluetooth Input Devices Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4387-7</entry>
+          <entry>Root login via SSH should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshRestrictCiphers" xrefstyle="select: title page">SSH Restrict Ciphers</xref>
+              </member>
+              <member>
+                <xref linkend="SshRestrictHMAC" xrefstyle="select: title page">SSH Restrict HMAC</xref>
+              </member>
+              <member>
+                <xref linkend="SshdDisableRootLogin" xrefstyle="select: title page">SSHD Disable Root Login</xref>
+              </member>
+              <member>
+                <xref linkend="SshdPrintLastLog" xrefstyle="select: title page">SSHD Print Last Login by User</xref>
+              </member>
+              <member>
+                <xref linkend="SshdRestrictCiphers" xrefstyle="select: title page">SSHD Restrict Ciphers</xref>
+              </member>
+              <member>
+                <xref linkend="SshdRestrictHMAC" xrefstyle="select: title page">SSHD Restrict HMAC</xref>
+              </member>
+              <member>
+                <xref linkend="SshdRestrictUsersGroups" xrefstyle="select: title page">SSHD Restrict Users and Groups</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4393-5</entry>
+          <entry>The web console should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableWebconsole" xrefstyle="select: title page">Disable Java Web Console</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4396-8</entry>
+          <entry>The nfslock service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNFS_client" xrefstyle="select: title page">Disable NFS Client</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4407-3</entry>
+          <entry>CUPS should be allowed or denied the ability to listen for Incoming printer information as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableCupsPrinterBrowsing" xrefstyle="select: title page">Disable CUPS Printer Browsing</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4411-5</entry>
+          <entry>The mdmonitor service (Solaris 10 &lt;= 11/06) should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSVM" xrefstyle="select: title page">Disable Solaris Volume Manager</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4420-6</entry>
+          <entry>Remote print browsing should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableCupsPrinterBrowsing" xrefstyle="select: title page">Disable CUPS Printer Browsing</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4421-4</entry>
+          <entry>The readahead_early service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableBootCaching" xrefstyle="select: title page">Disable Boot Caching</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4425-5</entry>
+          <entry>The hplip service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableHPServices" xrefstyle="select: title page">Disable HP Printing and Imaging</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4431-3</entry>
+          <entry>SSH warning banner should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdEnableBanner" xrefstyle="select: title page">SSHD Enable Banner</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4448-7</entry>
+          <entry>The xfs service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableXFS" xrefstyle="select: title page">Disable XFS</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4462-8</entry>
+          <entry>X Windows should be enabled or disabled at system boot as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableGuiLogin" xrefstyle="select: title page">Disable Graphical Login</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4465-1</entry>
+          <entry>Restriction of NFS clients to privileged ports should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NFSSecure" xrefstyle="select: title page">Secure Option for NFS Server</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4473-5</entry>
+          <entry>The nfs service should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNFS_server" xrefstyle="select: title page">Disable NFS Server</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4475-0</entry>
+          <entry>Emulation of the rsh command through the ssh server should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdEnableIgnoreRhosts" xrefstyle="select: title page">SSHD Enable Ignore Rhosts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4477-6</entry>
+          <entry>The meta service should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSVMgui" xrefstyle="select: title page">Disable Solaris Volume Manager GUI</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4486-7</entry>
+          <entry>The NIS server daemon should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNIS_server" xrefstyle="select: title page">Disable NIS Server</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4499-0</entry>
+          <entry>The mpxio-upgrade service should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSVM" xrefstyle="select: title page">Disable Solaris Volume Manager</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4508-8</entry>
+          <entry>The tooltalk service should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableCDEttdbserver" xrefstyle="select: title page">Disable CDE ToolTalk Database Server</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4517-9</entry>
+          <entry>The Samba smbd service should be enabled or disabled as approriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSMB" xrefstyle="select: title page">Disable SMB</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4533-6</entry>
+          <entry>The netfs service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNetFS" xrefstyle="select: title page">Disable NetFS</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4550-0</entry>
+          <entry>The portmap service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisablePortmap" xrefstyle="select: title page">Disable Portmap Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4551-8</entry>
+          <entry>The smb service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSMB" xrefstyle="select: title page">Disable SMB</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4556-7</entry>
+          <entry>The squid service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSquid" xrefstyle="select: title page">Disable Squid</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4557-5</entry>
+          <entry>The Kerberos TGT Expiration warning should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKerbTGTwarn" xrefstyle="select: title page">Disable Kerberos TGT Expiration Warning</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4571-6</entry>
+          <entry>The metamh service should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSVMgui" xrefstyle="select: title page">Disable Solaris Volume Manager GUI</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4584-9</entry>
+          <entry>The DHCP server functionality should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableDhcpd" xrefstyle="select: title page">Disable Dhcpd</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4588-0</entry>
+          <entry>The Generic Security Service daemons should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableGssd" xrefstyle="select: title page">Disable GSS Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4592-2</entry>
+          <entry>The NIS client daemons should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNIS_client" xrefstyle="select: title page">Disable NIS Client</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4596-3</entry>
+          <entry>The keyserv service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableRpcKeyserv" xrefstyle="select: title page">Disable RPC Keyserv</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4600-3</entry>
+          <entry>Kernel level auditing for file attribute modification should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4610-2</entry>
+          <entry>Kernel level auditing for root login/logout should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4675-5</entry>
+          <entry>Kernel level auditing should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditEnable" xrefstyle="select: title page">Enable the Audit Subsystem</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-4679-7</entry>
+          <entry>Kernel level auditing for login/logout should be enabled or disabled as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14011-1</entry>
+          <entry>/var/log should be configured on an appropriate filesystem partition.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CheckFS_varlog" xrefstyle="select: title page">Check for separate /var/log file system</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14023-6</entry>
+          <entry>The screen lock (password protection) function of the gnome desktop screensaver should be enabled or disabled as appropriate as a mandatory setting for all users.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SetGnomeSS" xrefstyle="select: title page">Set Mandatory Screen Saver</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14027-7</entry>
+          <entry>Disable or enable support for RDS as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_RDS" xrefstyle="select: title page">Disable Support for RDS</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14054-1</entry>
+          <entry>Zeroconf networking should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableZeroconfNet" xrefstyle="select: title page">Disable Zeroconf Networking</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14061-6</entry>
+          <entry>The SSH 'keep alive' message count should be set to an appropriate value.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdSetIdleTimeout" xrefstyle="select: title page">SSHD Set Idle Timeout Interval for User Logins</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14071-5</entry>
+          <entry>NIS file inclusions should be set appropriately in the /etc/shadow file</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NoPlusPasswdEntries" xrefstyle="select: title page">No Plus Entries in Password Files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14088-9</entry>
+          <entry>The 'wheel' group should exist or not as appropriate</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="LimitAccessFromSu" xrefstyle="select: title page">Limit Access To Root From Su</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14089-7</entry>
+          <entry>Support for cramfs filesystems should be enabeld or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_fstypes" xrefstyle="select: title page">Disable Mounting of Uncommon Filesystem Types</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14093-9</entry>
+          <entry>Support for hfsplus filesystems should be enabeld or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_fstypes" xrefstyle="select: title page">Disable Mounting of Uncommon Filesystem Types</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14113-5</entry>
+          <entry>The minimum number of digits required for new passwords should be set as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordPolicyNumbers" xrefstyle="select: title page">Password Policy Numeric Minimum</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14118-4</entry>
+          <entry>Support for squashfs filesystems should be enabeld or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_fstypes" xrefstyle="select: title page">Disable Mounting of Uncommon Filesystem Types</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14122-6</entry>
+          <entry>The minimum number of special characters required for new passwords should be set as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordPolicySpecial" xrefstyle="select: title page">Password Policy Special Characters</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14132-5</entry>
+          <entry>Disable or enable support for SCTP as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_SCTP" xrefstyle="select: title page">Disable Support for SCTP</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14161-4</entry>
+          <entry>/tmp should be configured on an appropriate filesystem partition.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CheckFS_tmp" xrefstyle="select: title page">Check for separate /tmp file system</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14171-3</entry>
+          <entry>/var/log/audit should be configured on an appropriate filesystem partition.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CheckFS_varlogaudit" xrefstyle="select: title page">Check for separate /var/log/audit file system</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14268-7</entry>
+          <entry>Disable or enable support for DCCP as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_DCCP" xrefstyle="select: title page">Disable Support for DCCP</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14340-4</entry>
+          <entry>Files with the setuid attribute enabled should be reviewed as appropriate to determine whether that condition is correct.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureSetXIDFiles" xrefstyle="select: title page">Secure SUID/SGID Executables</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14457-6</entry>
+          <entry>Support for freevxfs filesystems should be enabeld or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_fstypes" xrefstyle="select: title page">Disable Mounting of Uncommon Filesystem Types</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14466-7</entry>
+          <entry>The at daemon should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableAtd" xrefstyle="select: title page">Disable atd Service</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14559-9</entry>
+          <entry>/home should be configured on an appropriate filesystem partition.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CheckFS_home" xrefstyle="select: title page">Check for separate /home file system</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14604-3</entry>
+          <entry>The gnome desktop screensaver should be enabled or disabled as appropriate as a mandatory setting for all users.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SetGnomeSS" xrefstyle="select: title page">Set Mandatory Screen Saver</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14675-3</entry>
+          <entry>NIS file inclusions should be set appropriately in the /etc/group file</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NoPlusPasswdEntries" xrefstyle="select: title page">No Plus Entries in Password Files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14712-4</entry>
+          <entry>The minimum number of lower case characters required for new passwords should be set as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordPolicyLowercase" xrefstyle="select: title page">Password Policy Lowercase Minimum</xref>
+              </member>
+              <member>
+                <xref linkend="PasswordPolicyUppercase" xrefstyle="select: title page">Password Policy Uppercase Minimum</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14735-5</entry>
+          <entry>The screen blanking function of the gnome desktop screensaver should be enabled or disabled as appropriate as a mandatory setting for all users.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SetGnomeSS" xrefstyle="select: title page">Set Mandatory Screen Saver</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14777-7</entry>
+          <entry>/var should be configured on an appropriate filesystem partition.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CheckFS_var" xrefstyle="select: title page">Check for separate /var file system</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14794-2</entry>
+          <entry>All world-writable directories should be owned by an appropriate user.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureWorldWritableDevices" xrefstyle="select: title page">Secure World Writable Devices</xref>
+              </member>
+              <member>
+                <xref linkend="SecureWorldWritableFiles" xrefstyle="select: title page">Secure World Writable Files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14825-4</entry>
+          <entry>The isdn4k-utils package should installed or uninstalled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableISDN" xrefstyle="select: title page">Disable ISDN</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14853-6</entry>
+          <entry>Support for jffs2 filesystems should be enabeld or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_fstypes" xrefstyle="select: title page">Disable Mounting of Uncommon Filesystem Types</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14871-8</entry>
+          <entry>Support for udf filesystems should be enabeld or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_fstypes" xrefstyle="select: title page">Disable Mounting of Uncommon Filesystem Types</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14911-2</entry>
+          <entry>Disable or enable support for TIPC as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_TIPC" xrefstyle="select: title page">Disable Support for TIPC</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14939-3</entry>
+          <entry>The "password reuse" policy should meet minimum requirements.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordReuse" xrefstyle="select: title page">Limit Password Reuse</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-14970-8</entry>
+          <entry>Files with the setgid attribute enabled should be reviewed as appropriate to determine whether that condition is correct.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureSetXIDFiles" xrefstyle="select: title page">Secure SUID/SGID Executables</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-15047-4</entry>
+          <entry>Access to the root account via su should be restricted to the wheel group or not as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="LimitAccessFromSu" xrefstyle="select: title page">Limit Access To Root From Su</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-15087-0</entry>
+          <entry>Support for hfs filesystems should be enabeld or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_fstypes" xrefstyle="select: title page">Disable Mounting of Uncommon Filesystem Types</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-18156-0</entry>
+          <entry>The rawdevices service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableRawDevicesDaemon" xrefstyle="select: title page">Disable Raw Devices Service</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>CCE-18244-4</entry>
+          <entry>The irda service should be enabled or disabled as appropriate.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableIrda" xrefstyle="select: title page">Disable IRDA Service</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+</section>

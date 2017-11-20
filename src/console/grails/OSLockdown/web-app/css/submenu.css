@@ -1,0 +1,79 @@
+/*
+ * Copyright 2009 Forcepoint LLC, and licensed under the GPLv3 License.
+ *
+ * See 'GPLv3_LICENSE.txt' at the root of the source tree for the full GPLv3 license, or
+ * visit https://www.gnu.org/licenses/gpl.html instead.
+ */
+#navHolder {
+float: left; 
+width: 100%; 
+background-color: #808284;
+border-top: 2px solid white; 
+border-bottom: 2px solid white;
+z-index: 200;
+}
+
+#jsddm {
+margin: 0;
+padding: 0	
+}
+
+#jsddm li {
+float: left;
+list-style: none;
+/* font: 12px Tahoma, Arial */	
+}
+
+#jsddm li a {
+display: block;
+background: #808284;
+padding: 4px 11px;
+/* text-decoration: none; */
+font-weight: 700;
+border-right: 1px solid white;
+/* width: 70px; */
+color: #eef1f8;
+white-space: nowrap
+}
+
+#jsddm li a:hover {
+background: #7399c6;
+}
+
+#jsddm li a.home:active, #jsddm li a.home:focus {
+background: #c8c5a1;
+color: #000;
+padding: 4px 11px;
+}
+
+#jsddm li ul {
+/*comment out offset for drop down*/
+/*margin: 0 0 0 -45px;*/
+/*#margin: 0 0 0 -13px;*/
+position: absolute;
+visibility: hidden;
+border-top: 1px solid white;
+border-left: 1px solid white;
+display: block; 
+z-index: 200;
+}
+
+#jsddm li ul li {
+float: none;
+display: inline;
+padding: 0;
+}
+
+#jsddm li ul li a {
+width: auto;
+font-size: 90%;
+#font-size: 87%;
+background: #c3d2e7;
+color: #000000;
+border-bottom: 1px solid white;
+font-weight: 700;
+}
+
+#jsddm li ul li a:hover {
+background: #7399c6;
+color: #eef1f8;

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableSQL_mysql" version="5.0">
+ <title xml:id="Database">Disable MySQL</title>
+ <para>
+  Disables the <application>MySQL</application> database server.
+  <indexterm>
+   <primary>MySQL</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>SQL</primary>
+  </indexterm>
+ </para>
+ <para>
+  Disabling <application>MySQL</application> does not prevent
+  client-based applications from connecting to remote
+  <application>MySQL</application> database servers.
+ </para>
+ <para>
+  If you must run <application>MySQL</application>, take the necessary
+  steps to secure it.
+ </para>
+ <para>
+  It is recommended to set the <application>MySQL</application> root
+  password (which by default is blank) and restrict access to its
+  default TCP port of 3306 on your host with the
+  <command>iptables(8)</command> administration tool.
+  <indexterm>
+   <primary>iptables</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>password</primary>
+  </indexterm>
+ </para>
+ <para>
+  Also, make sure database user accounts have complex passwords and
+  restrict the accounts on a host or network basis by avoiding the use
+  of the wildcard (%) in user accounts.
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="0.5*" align="left"/>
+   <colspec colname="c2" colwidth="0.5*"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Package</entry>
+     <entry>Service Names</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="3">mysql-server
+      <indexterm>
+       <primary>mysql-server</primary>
+      </indexterm></entry>
+     <entry morerows="3">mysqld
+      <indexterm>
+       <primary>mysqld</primary>
+      </indexterm></entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+     <entry><emphasis>No check</emphasis>
+      <indexterm>
+       <primary>svc:/application/database/mysql:default</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Solaris services</primary>
+
+       <secondary>svc:/application/database/mysql:default</secondary>
+      </indexterm>
+
+      <indexterm>
+       <primary>svc:/application/database/mysql:mysql-csk</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Solaris services</primary>
+
+       <secondary>svc:/application/database/mysql:mysql-csk</secondary>
+      </indexterm>
+
+      <indexterm>
+       <primary>svc:/application/database/mysql:mysql32-csk</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Solaris services</primary>
+
+       <secondary>svc:/application/database/mysql:mysql32-csk</secondary>
+      </indexterm></entry>
+     <entry><literallayout>svc:/application/database/mysql:default
+
+<emphasis>CoolStack (Solaris AMP):</emphasis>
+
+  svc:/application/database/mysql:mysql32-csk
+  svc:/application/database/mysql:mysql-csk</literallayout></entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+     <entry>mysql</entry>
+     <entry>mysql</entry>
+    </row>
+    <row>
+     <entry>openSUSE 11.3</entry>
+     <entry><emphasis>No check</emphasis></entry>
+     <entry>mysql</entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="DisableSQL_mysql-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-13 - Limitation and Control of Network Ports, Protocols, and
+     Services
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DHS Linux Configuration Guidance (2010.8)</title>
+   <listitem>
+    <para>
+     6.2 - Configuring Stand Alone Services
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+   <listitem>
+    <para>
+     CIP-005-3-R2.2 - Enable only ports and services needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+   <listitem>
+    <para>
+     CIP-007-3-R2.2 - Disable ports and services not needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.2 - Disable all unnecessary and insecure services
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

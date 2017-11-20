@@ -1,0 +1,406 @@
+<?xml version="1.0"?>
+<compliancy source="CAG" name="20 Critical Security Controls" version="v2.3" enabled="True">
+  <title>20 Critical Security Controls, Version 2.3 (November 2009)</title>
+  <subtitle>Twenty Critical Controls for Effective Cyber Defense: Consensus Audit
+  Guidelines (CAG)</subtitle>
+  <style>LineItemPerModule</style>
+  <abstract>
+   <quote>This consensus document of 20 crucial controls is designed to begin
+   the process of establishing that prioritized baseline of information
+   security measures and controls. The consensus effort that has
+   produced this document has identified 20 specific technical security
+   controls that are viewed as effective in blocking currently known
+   high-priority attacks, as well as those attack types expected in the
+   near future. Fifteen of these controls can be monitored, at least in
+   part, automatically and continuously. The consensus effort has also
+   identified a second set of five controls that are essential but that
+   do not appear to be able to be monitored continuously or
+   automatically with current technology and practices. Each of the 20
+   control areas includes multiple individual subcontrols, each
+   specifying actions an organization can take to help improve its
+   defenses.</quote>
+
+  </abstract>
+  <line-items>
+    <line-item name="CC-1" description="Inventory of Authorized and Unauthorized Devices"/>
+    <line-item name="CC-10" description="Continuous Vulnerability Assessment and Remediation"/>
+    <line-item name="CC-11" description="Account Monitoring and Control">
+      <module libraryName="AccountLocks"/>
+      <module libraryName="AuditEnable"/>
+      <module libraryName="AuditRules"/>
+      <module libraryName="AuditRulesSolaris"/>
+      <module libraryName="BlockSystemAccounts"/>
+      <module libraryName="EnableSysstat"/>
+      <module libraryName="LockDuplicateUidZeros"/>
+      <module libraryName="PasswordInvalidate"/>
+      <module libraryName="PHPSessMgmt"/>
+      <module libraryName="SetCdeScreenSaver"/>
+      <module libraryName="SetGnomeSS"/>
+      <module libraryName="SetPassAgingOnAccts"/>
+      <module libraryName="SetXScreenSaverDefaults"/>
+      <module libraryName="ShellSessionTimeouts"/>
+      <module libraryName="SshdSetIdleTimeout"/>
+      <module libraryName="SyslogAuthpriv"/>
+    </line-item>
+    <line-item name="CC-12" description="Malware Defenses"/>
+    <line-item name="CC-13" description="Limitation and Control of Network Ports, Protocols, and Services">
+      <module libraryName="AcceptRedirects"/>
+      <module libraryName="ConfigureXinetdLogging"/>
+      <module libraryName="DisableAcpid"/>
+      <module libraryName="DisableAtd"/>
+      <module libraryName="DisableAvahi"/>
+      <module libraryName="DisableBluetooth"/>
+      <module libraryName="DisableBluetoothKernelModules"/>
+      <module libraryName="DisableBootCaching"/>
+      <module libraryName="DisableCDEcalmgr"/>
+      <module libraryName="DisableCDEttdbserver"/>
+      <module libraryName="DisableCpuThrottling"/>
+      <module libraryName="DisableCupsPrinterBrowsing"/>
+      <module libraryName="DisableDhcpd"/>
+      <module libraryName="DisableDNS"/>
+      <module libraryName="DisableFileShare"/>
+      <module libraryName="DisableFinger"/>
+      <module libraryName="DisableFirstbootSvc"/>
+      <module libraryName="DisableFspd"/>
+      <module libraryName="DisableFTP_vsftpd"/>
+      <module libraryName="DisableGated"/>
+      <module libraryName="DisableGpm"/>
+      <module libraryName="DisableGssd"/>
+      <module libraryName="DisableHalDaemon"/>
+      <module libraryName="DisableHPServices"/>
+      <module libraryName="DisableIA32MicrocodeUtility"/>
+      <module libraryName="DisableInetd"/>
+      <module libraryName="DisableInnd"/>
+      <module libraryName="DisableIrda"/>
+      <module libraryName="DisableIrqbalance"/>
+      <module libraryName="DisableISDN"/>
+      <module libraryName="DisableKdump"/>
+      <module libraryName="DisableKerbTGTwarn"/>
+      <module libraryName="DisableKernelFirewire"/>
+      <module libraryName="DisableKernelSprt_DCCP"/>
+      <module libraryName="DisableKernelSprt_RDS"/>
+      <module libraryName="DisableKernelSprt_SCTP"/>
+      <module libraryName="DisableKernelSprt_TIPC"/>
+      <module libraryName="DisableKernelUSBStorage"/>
+      <module libraryName="DisableKudzu"/>
+      <module libraryName="DisableLdapCacheMgr"/>
+      <module libraryName="DisableMail_cyrus"/>
+      <module libraryName="DisableMail_dovecot"/>
+      <module libraryName="DisableMdmonitor"/>
+      <module libraryName="DisableNetFS"/>
+      <module libraryName="DisableNFS_client"/>
+      <module libraryName="DisableNFS_server"/>
+      <module libraryName="DisableNIS_client"/>
+      <module libraryName="DisableNIS_server"/>
+      <module libraryName="DisablePortmap"/>
+      <module libraryName="DisablePrinter"/>
+      <module libraryName="DisablePrinterConfig"/>
+      <module libraryName="DisableRawDevicesDaemon"/>
+      <module libraryName="DisableRexec"/>
+      <module libraryName="DisableRhnsd"/>
+      <module libraryName="DisableRhostsSupport"/>
+      <module libraryName="DisableRlogin"/>
+      <module libraryName="DisableRouted"/>
+      <module libraryName="DisableRpcKeyserv"/>
+      <module libraryName="DisableRpc_Ugidd"/>
+      <module libraryName="DisableRsh"/>
+      <module libraryName="DisableSendmail"/>
+      <module libraryName="DisableSendmailBadVers"/>
+      <module libraryName="DisableSerialLoginPrompt"/>
+      <module libraryName="DisableSMARTD"/>
+      <module libraryName="DisableSMB"/>
+      <module libraryName="DisableSNMP"/>
+      <module libraryName="DisableSQL_mysql"/>
+      <module libraryName="DisableSQL_postgresql"/>
+      <module libraryName="DisableSquid"/>
+      <module libraryName="DisableSquidBadVers"/>
+      <module libraryName="DisableSVM"/>
+      <module libraryName="DisableSVMgui"/>
+      <module libraryName="DisableTelnet"/>
+      <module libraryName="DisableTFTP"/>
+      <module libraryName="DisableUSB"/>
+      <module libraryName="DisableUucp"/>
+      <module libraryName="DisableWbem"/>
+      <module libraryName="DisableWebconsole"/>
+      <module libraryName="DisableWebmin"/>
+      <module libraryName="DisableWebServer_apache"/>
+      <module libraryName="DisableWebServer_tux"/>
+      <module libraryName="DisableXFS"/>
+      <module libraryName="ICMPEchoIgnoreBroadcasts"/>
+      <module libraryName="IPForward"/>
+      <module libraryName="LogMartianPackets"/>
+      <module libraryName="RPFilter"/>
+      <module libraryName="SecureRedirects"/>
+      <module libraryName="SendRedirects"/>
+      <module libraryName="SourceRoute"/>
+      <module libraryName="TCPMaxSynBacklog"/>
+      <module libraryName="TcpStrongISS"/>
+      <module libraryName="TCPSyncookies"/>
+    </line-item>
+    <line-item name="CC-14" description="Wireless Device Control"/>
+    <line-item name="CC-15" description="Data Loss Prevention"/>
+    <line-item name="CC-16" description="Secure Network Engineering"/>
+    <line-item name="CC-17" description="Penetration Tests and Red Team Exercises"/>
+    <line-item name="CC-18" description="Incident Response Capability"/>
+    <line-item name="CC-19" description="Data Recovery Capability"/>
+    <line-item name="CC-2" description="Inventory of Authorized and Unauthorized Software"/>
+    <line-item name="CC-20" description="Security Skills Assessment and Appropriate Training to Fill Gaps"/>
+    <line-item name="CC-3" description="Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers">
+      <module libraryName="AcceptRedirects"/>
+      <module libraryName="AccountLocks"/>
+      <module libraryName="ArpCleanupInterval"/>
+      <module libraryName="ArpCleanupInterval_IRE"/>
+      <module libraryName="AudioDevFilePerms"/>
+      <module libraryName="BlockSystemAccounts"/>
+      <module libraryName="BootLoaderConfigFilePerms"/>
+      <module libraryName="ChangeSNMPStrings"/>
+      <module libraryName="ConfigureLddPerms"/>
+      <module libraryName="ConfigureXinetdLogging"/>
+      <module libraryName="CorrectGlobalInitPathVars"/>
+      <module libraryName="CorrectRcPathVars"/>
+      <module libraryName="CorrectUnevenPerms"/>
+      <module libraryName="CreateFTPUsers"/>
+      <module libraryName="CreateLoginBanner"/>
+      <module libraryName="CreateLoginFTPBanner"/>
+      <module libraryName="CreatePreLoginGUIBanner"/>
+      <module libraryName="CreatePreSessionGUIBanner"/>
+      <module libraryName="CrontabDirPerms"/>
+      <module libraryName="CrontabPerms"/>
+      <module libraryName="CrontabScriptPerms"/>
+      <module libraryName="CtrlAltDel"/>
+      <module libraryName="DaemonUmask"/>
+      <module libraryName="DefaultUmask"/>
+      <module libraryName="DisableApmd"/>
+      <module libraryName="DisableAvahi"/>
+      <module libraryName="DisableBluetooth"/>
+      <module libraryName="DisableCDEcalmgr"/>
+      <module libraryName="DisableCDEttdbserver"/>
+      <module libraryName="DisableCoreDumps"/>
+      <module libraryName="DisableDhcpd"/>
+      <module libraryName="DisableDNS"/>
+      <module libraryName="DisableFileShare"/>
+      <module libraryName="DisableFinger"/>
+      <module libraryName="DisableFirefox"/>
+      <module libraryName="DisableFspd"/>
+      <module libraryName="DisableFTP_gssftp"/>
+      <module libraryName="DisableFTP_vsftpd"/>
+      <module libraryName="DisableGaimClient"/>
+      <module libraryName="DisableGated"/>
+      <module libraryName="DisableGnomeAutomounting"/>
+      <module libraryName="DisableGpm"/>
+      <module libraryName="DisableGssd"/>
+      <module libraryName="DisableGuiLogin"/>
+      <module libraryName="DisableHPServices"/>
+      <module libraryName="DisableInetd"/>
+      <module libraryName="DisableInnd"/>
+      <module libraryName="DisableISDN"/>
+      <module libraryName="DisableKerbTGTwarn"/>
+      <module libraryName="DisableKudzu"/>
+      <module libraryName="DisableLdapCacheMgr"/>
+      <module libraryName="DisableMail_cyrus"/>
+      <module libraryName="DisableMail_dovecot"/>
+      <module libraryName="DisableNetAnalysisTools"/>
+      <module libraryName="DisableNetFS"/>
+      <module libraryName="DisableNFS_client"/>
+      <module libraryName="DisableNFS_server"/>
+      <module libraryName="DisableNIS_client"/>
+      <module libraryName="DisableNIS_server"/>
+      <module libraryName="DisablePAMConsole"/>
+      <module libraryName="DisablePortmap"/>
+      <module libraryName="DisablePrinter"/>
+      <module libraryName="DisablePrinterConfig"/>
+      <module libraryName="DisableRexec"/>
+      <module libraryName="DisableRhostsSupport"/>
+      <module libraryName="DisableRlogin"/>
+      <module libraryName="DisableRouted"/>
+      <module libraryName="DisableRpcKeyserv"/>
+      <module libraryName="DisableRpc_Ugidd"/>
+      <module libraryName="DisableRsh"/>
+      <module libraryName="DisableSendmail"/>
+      <module libraryName="DisableSendmailBadVers"/>
+      <module libraryName="DisableSendmailHelp"/>
+      <module libraryName="DisableSerialLoginPrompt"/>
+      <module libraryName="DisableSMB"/>
+      <module libraryName="DisableSNMP"/>
+      <module libraryName="DisableSQL_mysql"/>
+      <module libraryName="DisableSQL_postgresql"/>
+      <module libraryName="DisableSquid"/>
+      <module libraryName="DisableSquidBadVers"/>
+      <module libraryName="DisableSVM"/>
+      <module libraryName="DisableSVMgui"/>
+      <module libraryName="DisableTelnet"/>
+      <module libraryName="DisableTFTP"/>
+      <module libraryName="DisableUSB"/>
+      <module libraryName="DisableUucp"/>
+      <module libraryName="DisableWbem"/>
+      <module libraryName="DisableWebconsole"/>
+      <module libraryName="DisableWebmin"/>
+      <module libraryName="DisableWebServer_apache"/>
+      <module libraryName="DisableWebServer_tux"/>
+      <module libraryName="DisableXFS"/>
+      <module libraryName="DisableYahooIM"/>
+      <module libraryName="EnableStackProtection"/>
+      <module libraryName="FstabNodev"/>
+      <module libraryName="FstabRemovableMedia"/>
+      <module libraryName="GlobalInitializationFilePerms"/>
+      <module libraryName="GopherAccount"/>
+      <module libraryName="GrubPassword"/>
+      <module libraryName="GssftpUmask"/>
+      <module libraryName="HaltAccount"/>
+      <module libraryName="HomeDirContentPerms"/>
+      <module libraryName="HomeDirOwnGrp"/>
+      <module libraryName="HomeDirPerms"/>
+      <module libraryName="ICMPEchoIgnoreBroadcasts"/>
+      <module libraryName="IPForward"/>
+      <module libraryName="InetdXinetdConfigFilePerms"/>
+      <module libraryName="LimitAccessFromSu"/>
+      <module libraryName="LockDuplicateUidZeros"/>
+      <module libraryName="LoginDelay"/>
+      <module libraryName="LogMartianPackets"/>
+      <module libraryName="ManPagePerms"/>
+      <module libraryName="MySQLHist"/>
+      <module libraryName="NFSanon"/>
+      <module libraryName="NFSInsecureLocks"/>
+      <module libraryName="NFSSecure"/>
+      <module libraryName="NntpFilePerms"/>
+      <module libraryName="NosuidOnUserFilesystems"/>
+      <module libraryName="PasswdPerms"/>
+      <module libraryName="PasswordInvalidate"/>
+      <module libraryName="PHPDisableHttpUpload"/>
+      <module libraryName="PwGrpCheck"/>
+      <module libraryName="RemoteXClients"/>
+      <module libraryName="RemoveFTPaccount"/>
+      <module libraryName="RemoveGamesAccount"/>
+      <module libraryName="RemoveNewsAccount"/>
+      <module libraryName="RemoveSMBguest"/>
+      <module libraryName="RequireGrubPassword"/>
+      <module libraryName="RestrictAtCron"/>
+      <module libraryName="RestrictCompilerTools"/>
+      <module libraryName="RestrictDtspcd"/>
+      <module libraryName="RestrictMesgCmd"/>
+      <module libraryName="RestrictTracerouteUse"/>
+      <module libraryName="RootConsole"/>
+      <module libraryName="RootHomePerms"/>
+      <module libraryName="RootPath"/>
+      <module libraryName="RootShell"/>
+      <module libraryName="RPFilter"/>
+      <module libraryName="SecureNetrcFiles"/>
+      <module libraryName="SecureRedirects"/>
+      <module libraryName="SecureSetXIDFiles"/>
+      <module libraryName="SecureUnownedFiles"/>
+      <module libraryName="SecureWorldWritableDevices"/>
+      <module libraryName="SecureWorldWritableDirectories"/>
+      <module libraryName="SecureWorldWritableFiles"/>
+      <module libraryName="SendmailOpts"/>
+      <module libraryName="SendRedirects"/>
+      <module libraryName="SetCdeScreenSaver"/>
+      <module libraryName="SetGnomeSS"/>
+      <module libraryName="SetMesgN"/>
+      <module libraryName="SetXScreenSaverDefaults"/>
+      <module libraryName="ShadowPerms"/>
+      <module libraryName="ShellBinPerms"/>
+      <module libraryName="ShellSessionTimeouts"/>
+      <module libraryName="ShutdownAccount"/>
+      <module libraryName="SingleUserMode"/>
+      <module libraryName="SkeletonFilePerms"/>
+      <module libraryName="SMB_Conf"/>
+      <module libraryName="SourceRoute"/>
+      <module libraryName="SshdDisableEmptyPasswords"/>
+      <module libraryName="SshdDisableHostbasedAuth"/>
+      <module libraryName="SshdDisableRhostsAuth"/>
+      <module libraryName="SshdDisableRootLogin"/>
+      <module libraryName="SshdEnableBanner"/>
+      <module libraryName="SshdEnableIgnoreRhosts"/>
+      <module libraryName="SshdEnableX11Forwarding"/>
+      <module libraryName="SshdPrintLastLog"/>
+      <module libraryName="SshdProtocol"/>
+      <module libraryName="SshdRestrictCiphers"/>
+      <module libraryName="SshdRestrictHMAC"/>
+      <module libraryName="SshdRestrictUsersGroups"/>
+      <module libraryName="SshdSetIdleTimeout"/>
+      <module libraryName="SshParameters"/>
+      <module libraryName="SshRestrictCiphers"/>
+      <module libraryName="SshRestrictHMAC"/>
+      <module libraryName="SyncAccount"/>
+      <module libraryName="SyncEtcShells"/>
+      <module libraryName="SysCmdFilePerms"/>
+      <module libraryName="SNMPConfigFilePerms"/>
+      <module libraryName="KernelDumpDirPerms"/>
+      <module libraryName="AtDirPerms"/>
+      <module libraryName="NisYpConfigPerms"/>
+      <module libraryName="ExportsConfigFilePerms"/>
+      <module libraryName="MailAgentAliasesFilePerms"/>
+      <module libraryName="ServicesFilePerms"/>
+      <module libraryName="FTPConfigFilePerms"/>
+      <module libraryName="AtCronAccessFilePerms"/>
+      <module libraryName="PrinterConfigFilePerms"/>
+      <module libraryName="LDAPConfigFilePerms"/>
+      <module libraryName="MIBFilePerms"/>
+      <module libraryName="HostsFilePerms"/>
+      <module libraryName="NsswitchConfFilePerms"/>
+      <module libraryName="ResolvConfFilePerms"/>
+      <module libraryName="SysConfigFilePerms"/>
+      <module libraryName="SysctlPerms"/>
+      <module libraryName="SysDevDirPerms"/>
+      <module libraryName="SysLibFilePerms"/>
+      <module libraryName="SysLogFilePerms"/>
+      <module libraryName="SysLoggingConfigFilePerms"/>
+      <module libraryName="SysRcScriptPerms"/>
+      <module libraryName="TCPMaxSynBacklog"/>
+      <module libraryName="TcpStrongISS"/>
+      <module libraryName="TCPSyncookies"/>
+      <module libraryName="TelnetBanner"/>
+      <module libraryName="TftpSecureMode"/>
+      <module libraryName="UserDotFilePerms"/>
+      <module libraryName="UserMountableMedia"/>
+    </line-item>
+    <line-item name="CC-4" description="Secure Configurations for Network Devices such as Firewalls, Routers, and Switches"/>
+    <line-item name="CC-5" description="Boundary Defense"/>
+    <line-item name="CC-6" description="Maintenance, Monitoring, and Analysis of Audit Logs">
+      <module libraryName="AuditEnable"/>
+      <module libraryName="AuditRules"/>
+      <module libraryName="AuditRulesSolaris"/>
+      <module libraryName="DisableRemoteSyslog"/>
+      <module libraryName="EnableAdditionalFTPLogging_vsftpd"/>
+      <module libraryName="PHPlogging"/>
+      <module libraryName="SshdLogLevel"/>
+      <module libraryName="SyslogAuthpriv"/>
+      <module libraryName="SyslogCronLogging"/>
+      <module libraryName="SysLogFilePerms"/>
+      <module libraryName="SyslogMaillog"/>
+    </line-item>
+    <line-item name="CC-7" description="Application Software Security"/>
+    <line-item name="CC-8" description="Controlled Use of Administrative Privileges">
+      <module libraryName="BlockSystemAccounts"/>
+      <module libraryName="LimitAccessFromSu"/>
+      <module libraryName="LockDuplicateUidZeros"/>
+      <module libraryName="NoEmptyPasswords"/>
+      <module libraryName="NoPlusPasswdEntries"/>
+      <module libraryName="PasswordChangeDelay"/>
+      <module libraryName="PasswordInvalidate"/>
+      <module libraryName="PasswordMaxDays"/>
+      <module libraryName="PasswordPolicyConsecutive"/>
+      <module libraryName="PasswordPolicyDiffChars"/>
+      <module libraryName="PasswordPolicyLowercase"/>
+      <module libraryName="PasswordPolicyMinlen"/>
+      <module libraryName="PasswordPolicyNumbers"/>
+      <module libraryName="PasswordPolicySpecial"/>
+      <module libraryName="PasswordPolicyUppercase"/>
+      <module libraryName="PasswordReuse"/>
+      <module libraryName="PasswordWarnAge"/>
+      <module libraryName="RootConsole"/>
+      <module libraryName="RootHomePerms"/>
+      <module libraryName="SetPassAgingOnAccts"/>
+      <module libraryName="SingleUserMode"/>
+      <module libraryName="SshdDisableRootLogin"/>
+      <module libraryName="SshdPrintLastLog"/>
+      <module libraryName="SshdRestrictCiphers"/>
+      <module libraryName="SshdRestrictHMAC"/>
+      <module libraryName="SshdRestrictUsersGroups"/>
+      <module libraryName="SshRestrictCiphers"/>
+      <module libraryName="SshRestrictHMAC"/>
+      <module libraryName="SyslogAuthpriv"/>
+    </line-item>
+    <line-item name="CC-9" description="Controlled Access Based on Need to Know"/>
+  </line-items>
+</compliancy>

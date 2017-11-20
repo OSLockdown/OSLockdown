@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="app-crossx-CIA_DCID_6_3_May_2000">
+  <title>CIA DCID 6/3 May 2000</title>
+  <para>
+    <abstract><para> DCID 6/3 is the Certification and Accreditation (C&amp;A) process used by U.S. federal
+  agencies working on intelligence projects (e.g., the CIA). Specifically, information technology
+  projects that require anyone working on them have a Top Secret, Sensitive Compartmentalized
+  Information (SCI) clearance use the DCID 6/3 process. DCID stands for Director of Central
+  Intelligence Directive and 6/3 refers to the process described in section 6, part 3 of the
+  compendious Director of Central Intelligence Directives. The C&amp;A process that the Intelligence
+  Community (IC) used before DCID 6/3 came along was called DCID 1/16. </para>
+ <para> The DCID 6/3 model is based on C&amp;A performed on information systems that are
+  characterized by Protection Levels (PL), and DCID 6/3 defines five different protection levels.
+  DCID 6/3 deals only with classified information and its PL model helps ensure that only properly
+  cleared people have access to classified information. Although the DCID 6/3 model was designed for
+  classified information and intelligence work, it is publicly available for review, and any agency
+  or private organization can adopt the methodology, and customize it according to their own unique
+  requirements. The <emphasis role="italic">DCID Standards Manual</emphasis>, which defines the DCID
+  6/3 C&amp;A process, can be found on the Federation of American Scientists Web site. </para>
+ <para> The DCID 6/3 C&amp;A process must also comply with the <emphasis role="italic">DCID 6/3
+   Policy Manual</emphasis>. The <emphasis role="italic">DCID 6/3 Policy Manual</emphasis> can be
+  found on the Web. </para>
+ <para> Many of the requirements for IC C&amp;A are based on physical security, since classified
+  information must always be physically secured. Aside from physical security, the IC puts a lot of
+  emphasis on encryption. The emphasis in these two areas is what really sets apart DCID C&amp;A
+  from the other C&amp;A methodologies. </para>
+</abstract>
+  </para>
+  <para>
+    <literallayout>   26   Total number of line items in guideline
+   26   Items at least partially addressed by OS Lockdown
+    0   Items not addressed by OS Lockdown</literallayout>
+  </para>
+  <table xml:id="app-crossx-CIA_DCID_6_3_May_2000-4.B.1.a(2)-4.B.4.a(6)(b)" frame="all" tocentry="1" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>CIA DCID 6/3 May 2000</title>
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.2*" align="center"/>
+      <colspec colname="c2" colwidth="0.5*" align="left"/>
+      <colspec colname="c3" colwidth="0.5*" align="left"/>
+      <thead>
+        <row>
+          <entry>Item</entry>
+          <entry>Title</entry>
+          <entry>OS Lockdown Modules</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>4.B.1.a(2)</entry>
+          <entry>Identification and Authentication - Unique Users</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="LockDuplicateUidZeros" xrefstyle="select: title page">Lock Non-Root Accounts with UID 0</xref>
+              </member>
+              <member>
+                <xref linkend="NoEmptyPasswords" xrefstyle="select: title page">No Empty Passwords</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.1.a(5)</entry>
+          <entry>Screen Lock</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SetCdeScreenSaver" xrefstyle="select: title page">Set CDE Screen Saver</xref>
+              </member>
+              <member>
+                <xref linkend="SetGnomeSS" xrefstyle="select: title page">Set Mandatory Screen Saver</xref>
+              </member>
+              <member>
+                <xref linkend="SetXScreenSaverDefaults" xrefstyle="select: title page">Set X Screen Saver Application Defaults</xref>
+              </member>
+              <member>
+                <xref linkend="ShellSessionTimeouts" xrefstyle="select: title page">Set shell timeout period</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.1.a(5)(a)</entry>
+          <entry>Screen Lock - Maximum Idle Time will be 15 minutes</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SetCdeScreenSaver" xrefstyle="select: title page">Set CDE Screen Saver</xref>
+              </member>
+              <member>
+                <xref linkend="SetGnomeSS" xrefstyle="select: title page">Set Mandatory Screen Saver</xref>
+              </member>
+              <member>
+                <xref linkend="SetXScreenSaverDefaults" xrefstyle="select: title page">Set X Screen Saver Application Defaults</xref>
+              </member>
+              <member>
+                <xref linkend="ShellSessionTimeouts" xrefstyle="select: title page">Set shell timeout period</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.1.a(6)(a)</entry>
+          <entry>Session Control - Login Warning Banners</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CreateLoginBanner" xrefstyle="select: title page">Create Login Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreateLoginFTPBanner" xrefstyle="select: title page">Create Login FTP Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreatePreLoginGUIBanner" xrefstyle="select: title page">Create Pre-Login GUI Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreatePreSessionGUIBanner" xrefstyle="select: title page">Create Pre-Session GUI Banner</xref>
+              </member>
+              <member>
+                <xref linkend="SshdEnableBanner" xrefstyle="select: title page">SSHD Enable Banner</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.1.a(6)(b)</entry>
+          <entry>Session Control - Login Warning Banners - Consent</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CreateLoginBanner" xrefstyle="select: title page">Create Login Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreateLoginFTPBanner" xrefstyle="select: title page">Create Login FTP Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreatePreLoginGUIBanner" xrefstyle="select: title page">Create Pre-Login GUI Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreatePreSessionGUIBanner" xrefstyle="select: title page">Create Pre-Session GUI Banner</xref>
+              </member>
+              <member>
+                <xref linkend="SshdEnableBanner" xrefstyle="select: title page">SSHD Enable Banner</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.1.b(2)(a)</entry>
+          <entry>Auditing - Date and time entity performed system action</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+              <member>
+                <xref linkend="AuditEnable" xrefstyle="select: title page">Enable the Audit Subsystem</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.1.b(2)(b)</entry>
+          <entry>Auditing - Protect contents of audit trails against unauthorized access</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.1.b(2)(d)(1)</entry>
+          <entry>Auditing - Record Successful and unsuccessful logons and logoffs</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.1.b(2)(d)(2)</entry>
+          <entry>Auditing - Record accesses to security-relevant objects</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.1.b(2)(d)(3)</entry>
+          <entry>Auditing - Record activities at the system console</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.1.b(3)(e)</entry>
+          <entry>Identification and Authentication - Aging of static authenticators</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordMaxDays" xrefstyle="select: title page">Maximum Time Between Password Changes</xref>
+              </member>
+              <member>
+                <xref linkend="SetPassAgingOnAccts" xrefstyle="select: title page">Set Password Aging on Active Accounts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.2.a(4)(a)</entry>
+          <entry>Auditing - Date and time entity performed system action (PL2)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditEnable" xrefstyle="select: title page">Enable the Audit Subsystem</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.2.a(4)(b)</entry>
+          <entry>Auditing - Protect contents of audit trails against unauthorized access (PL2)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.2.a(4)(d)(1)</entry>
+          <entry>Auditing - Record Successful and unsuccessful logons and logoffs (PL2)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.2.a(4)(d)(2)</entry>
+          <entry>Auditing - Record accesses to security-relevant objects (PL2)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.2.a(4)(d)(3)</entry>
+          <entry>Auditing - Record activities at the system console (PL2)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.2.a(16)(b)</entry>
+          <entry>Session Control - Station or session time-outs (PL2)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditEnable" xrefstyle="select: title page">Enable the Audit Subsystem</xref>
+              </member>
+              <member>
+                <xref linkend="SshdSetIdleTimeout" xrefstyle="select: title page">SSHD Set Idle Timeout Interval for User Logins</xref>
+              </member>
+              <member>
+                <xref linkend="SetCdeScreenSaver" xrefstyle="select: title page">Set CDE Screen Saver</xref>
+              </member>
+              <member>
+                <xref linkend="SetGnomeSS" xrefstyle="select: title page">Set Mandatory Screen Saver</xref>
+              </member>
+              <member>
+                <xref linkend="SetXScreenSaverDefaults" xrefstyle="select: title page">Set X Screen Saver Application Defaults</xref>
+              </member>
+              <member>
+                <xref linkend="ShellSessionTimeouts" xrefstyle="select: title page">Set shell timeout period</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.2.a(16)(c)</entry>
+          <entry>Session Control - Limit retry on logon as technically feasible (PL2)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AccountLocks" xrefstyle="select: title page">Lock account after three failed login attempts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.2.b(5)(a)</entry>
+          <entry>System Assurance - Control access to the security support structure (PL2)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditEnable" xrefstyle="select: title page">Enable the Audit Subsystem</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.3.a(7)</entry>
+          <entry>Auditing - Record changes to the mechanism's list of user formal access permissions (PL3)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+              <member>
+                <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.3.a(9)(e)</entry>
+          <entry>Identification and Authentication - Aging of static authenticators</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SetPassAgingOnAccts" xrefstyle="select: title page">Set Password Aging on Active Accounts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.3.a(9)(f)</entry>
+          <entry>Identification and Authentication - Limiting reuse of static authenticators</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordReuse" xrefstyle="select: title page">Limit Password Reuse</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.3.a(17)(a)</entry>
+          <entry>Session Control - Station or session time-outs (PL3)</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditEnable" xrefstyle="select: title page">Enable the Audit Subsystem</xref>
+              </member>
+              <member>
+                <xref linkend="SshdSetIdleTimeout" xrefstyle="select: title page">SSHD Set Idle Timeout Interval for User Logins</xref>
+              </member>
+              <member>
+                <xref linkend="SetCdeScreenSaver" xrefstyle="select: title page">Set CDE Screen Saver</xref>
+              </member>
+              <member>
+                <xref linkend="SetGnomeSS" xrefstyle="select: title page">Set Mandatory Screen Saver</xref>
+              </member>
+              <member>
+                <xref linkend="SetXScreenSaverDefaults" xrefstyle="select: title page">Set X Screen Saver Application Defaults</xref>
+              </member>
+              <member>
+                <xref linkend="ShellSessionTimeouts" xrefstyle="select: title page">Set shell timeout period</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.3.a(20)(b)</entry>
+          <entry/>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdSetIdleTimeout" xrefstyle="select: title page">SSHD Set Idle Timeout Interval for User Logins</xref>
+              </member>
+              <member>
+                <xref linkend="ShellSessionTimeouts" xrefstyle="select: title page">Set shell timeout period</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.3.a(20)(c)</entry>
+          <entry/>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AccountLocks" xrefstyle="select: title page">Lock account after three failed login attempts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>4.B.4.a(6)(b)</entry>
+          <entry/>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+</section>

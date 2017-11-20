@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableKernelSprt_TIPC" version="5.0">
+  <title xml:id="NetworkConfig">Disable Support for TIPC</title>
+  <para>
+  Prevent kernel from loading the Transparent Inter-Process
+  Communication (TIPC) protocol module.
+ </para>
+  <para>
+  This modules will examine all files in
+  <filename>/etc/modprobe.d</filename> and the
+  <filename>/etc/modprobe.conf</filename> file (if they exist) and look
+  for the line(s) that are specified as arguments. If a line is found
+  that matches the first two whitespace separated fields but not the
+  remainder, then it will be updated to match the provided lines. If no
+  matching line is found, then it will be added to either
+  <filename>/etc/modprobe.d/oslockdown_modprobe_settings</filename> (if
+  <filename>/etc/modprobe.d</filename> is a directory), or to
+  <filename>/etc/modprobe.conf</filename>.
+ </para>
+  <para>
+  This module is not applicable to Oracle Solaris.
+ </para>
+  <indexterm>
+    <primary>/etc/modprobe.conf</primary>
+  </indexterm>
+  <simplesect xml:id="DisableKernelSprt_TIPC-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Required lines to disable Firewire kernel module(s)<emphasis><para>One or more lines that can disable or otherwise alter how kernel modules are loaded/configured/disabled.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="DisableKernelSprt_TIPC-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-13 - Limitation and Control of Network Ports, Protocols, and Services</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN007540 - The Transparent Inter-Process Communication (TIPC) protocol must be disabled or uninstalled.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000127 - The Transparent Inter-Process Communication (TIPC) protocol must be disabled unless required.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>2.5.7.4 - Disable Support for TIPC</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-14911-2 - Disable or enable support for TIPC as appropriate.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

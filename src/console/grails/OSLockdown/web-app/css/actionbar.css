@@ -1,0 +1,138 @@
+/*
+ * Copyright 2009-2010 Forcepoint LLC, and licensed under the GPLv3 License.
+ *
+ * See 'GPLv3_LICENSE.txt' at the root of the source tree for the full GPLv3 license, or
+ * visit https://www.gnu.org/licenses/gpl.html instead.
+ */
+ 
+/**************************************************************
+ *                              ACTION BAR
+ * 
+ * This style applies to the action bar in the left margin
+ * for the Client and Group screens.  The individual buttons
+ * reuse the "btn" style in TBD css file.
+ *
+ * Because YUI reset clears all the fieldset styling, it needs
+ * to be redefined here.
+ **************************************************************/
+
+/*
+ * Each related set of action buttons/links is grouped inside a
+ * colored div with rounded corners and a title.
+ */
+#actionbar {
+padding: 1em; /* padding around the entire nav bar */
+text-align:center;	
+font-size: 97%;
+#font-size: 95%;
+}
+
+
+/*
+ * Each group of buttons is inside of an .action div and
+ * contains a .action_title div and ul with the buttons
+ */
+.action_title {
+background-color: #7499c6;
+font-weight: 700;	
+line-height: 2em;	
+color: #000;
+#line-height: 1.5em;
+#margin-top: -1em;
+margin-bottom: 0.7em;
+#margin-bottom: 0.7em;
+} 
+
+.actions {	
+text-align:center;		
+background-color: #eef1f8;
+/* separate each group of actions, more vertical distance than action bar padding */		
+margin-bottom: 1em;
+#margin-top: 0.6em;
+
+/*
+* For some strange reason, the margin on the bottom of the lowest .btn doesn't take
+* effect unless there is padding on the bottom of the surrounding .action div.
+*/
+padding-bottom: 0.4em;
+}
+
+.actions li {
+/*padding:  .1em .7em .1em  .5em;*/
+margin: 0.1em 2.3em 0.5em 2.2em;
+#margin: 0.1em 3.7em 0.4em 0.6em;
+}
+
+/*
+ * The .btn class is applied to the links and submit inputs in the action bar.
+ * The <a> links are changed to display:block so they expand to fill the width.
+ */
+.action_bar_btn, .action_bar_btn:visited {
+display: block;	
+/* Background image works, now I need an actual image to use */
+background: url(../images/btnbg.jpg) #c3d2e7;
+color: black;
+border: 1px #7399c6 solid;
+margin: 0.5em 4.4em 0 0em;
+#margin: 0.01em 1.25em 0 0.1em;
+		
+	/* A width is needed to force the submit buttons to expand */
+	width: 100%;
+}
+.action_bar_btn:hover {
+display: block;	
+background: url(../images/btnbg_over.jpg) #c8c5a1;
+color: #000;
+border: 1px #a19670 solid;
+margin: 0.5em 4.4em 0 0em;
+#margin: 0.01em 1.25em 0 0.1em;
+cursor: pointer;
+}
+
+.action_bar_btn:active {
+display: block;	
+background-color: #980230;
+color: #000;
+font-weight: 600;
+border: 1px #000 solid;
+margin: 0.5em 4.4em 0 0em;
+#margin: 0.01em 1.25em 0 0.1em;
+cursor: pointer;
+}
+
+.action_bar_btninput, .action_bar_btninput:visited {
+display: block;	
+/* Background image works, now I need an actual image to use */
+background: url(../images/btnbg.jpg) #c3d2e7;
+color: black;
+border: 1px #7399c6 solid;
+margin: 0.6em 0 0.6em 0.08em;
+#margin: 0.06em 0.255em 0.6em 0.175em;
+		
+	/* A width is needed to force the submit buttons to expand */
+	width: 100%;
+}
+.action_bar_btninput:hover {
+display: block;	
+background: url(../images/btnbg_over.jpg) #c8c5a1;
+color: #000;
+border: 1px #a19670 solid;
+margin: 0.6em 0 0.6em 0.08em;
+#margin: 0.06em 0.255em 0.6em 0.175em;
+cursor: pointer;
+}
+
+.action_bar_btninput:active {
+display: block;	
+background-color: #980230;
+color: #000;
+font-weight: 600;
+margin: 0.6em 0 0.6em 0.08em;
+#margin: 0.06em 0.255em 0.6em 0.175em;
+border: 1px #000 solid;
+cursor: pointer;
+}
+
+.actions li select {
+	margin: .5em 0em .5em 0em;		
+}	

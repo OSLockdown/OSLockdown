@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Ntpdate">
+        <library>DisableNtpdate</library>
+        <description>  The 'ntpdate' daemon is used to configure system time when a box reboots.  This functionality is present in the 'ntpd' service, and therefore should not be used.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6">
+            <services>
+              <service seq="1" name="ntpdate"/>
+            </services>
+            <packages>
+              <package name="ntpdate"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <services>
+              <service seq="1" name="ntpdate"/>
+            </services>
+            <packages>
+              <package name="ntpdate"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:6">
+            <services>
+              <service seq="1" name="ntpdate"/>
+            </services>
+            <packages>
+              <package name="ntpdate"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:10">
+            <services>
+              <service seq="1" name="ntpdate"/>
+            </services>
+            <packages>
+              <package name="ntpdate"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:11">
+            <services>
+              <service seq="1" name="ntpdate"/>
+            </services>
+            <packages>
+              <package name="ntpdate"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:12">
+            <services>
+              <service seq="1" name="ntpdate"/>
+            </services>
+            <packages>
+              <package name="ntpdate"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:13">
+            <services>
+              <service seq="1" name="ntpdate"/>
+            </services>
+            <packages>
+              <package name="ntpdate"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

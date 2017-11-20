@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable IRDA Service">
+        <library>DisableIrda</library>
+        <description>Disable the Infrared Data Association (IrDA) service.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:5">
+            <services>
+              <service seq="1" name="irda"/>
+            </services>
+            <packages>
+              <package name="irda-utils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5">
+            <services>
+              <service seq="1" name="irda"/>
+            </services>
+            <packages>
+              <package name="irda-utils"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5">
+            <services>
+              <service seq="1" name="irda"/>
+            </services>
+            <packages>
+              <package name="irda-utils"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Hardware</member>
+          <member>Wireless</member>
+        </views>
+      </security_module>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: FirefoxEncryption.xml 21641 2013-08-12 18:32:52Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="FirefoxEncryption" version="5.0">
+ <title xml:id="DesktopApps">Firefox - Encryption</title>
+ <para>
+  Configure Firefox to use the Transport Layer Security (TLS)
+  cryptographic protocol and disable its predecessor, Secure Socket
+  Layer (SSL) cryptographic protocol. This module also configures the
+  browser to warn users if they enter a website using weak encryption or
+  a website with mixed levels of encryption.
+  <indexterm>
+   <primary>Firefox</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>SSL</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>TLS</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Transport Layer Security</primary>
+  </indexterm>
+ </para>
+ <para>
+  The following parameters are set in each user’s
+  <filename>$HOME/.mozilla/firefox/*/prefs.js</filename>:
+<programlisting>user_pref("security.enable_ssl2", false);
+user_pref("security.enable_ssl3", false)
+user_pref("security.enable_tls", true);
+user_pref("security.warn_viewing_mixed", true);
+user_pref("security.warn_entering_weak", true);
+user_pref("security.OCSP.enabled", 1);
+user_pref("security.default_personal_cert", "Ask Every Time");</programlisting>
+ </para>
+ <simplesect xml:id="FirefoxEncryption-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>DISA Mozilla Firefox STIG (v4 R2)</title>
+   <listitem>
+    <para>
+     DTBF010 - Disable SSLv2
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     DTBF030 - Enable TLS v1.0
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     DTBF050 - Verification
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN004120 - Browser Data Redirection Warning
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN004160 - Browser Certificate Warning
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN004200 - Browser SSL Configuration
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.3 - Configure system security parameters to prevent misuse
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

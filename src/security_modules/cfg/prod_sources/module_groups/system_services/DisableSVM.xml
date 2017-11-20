@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Solaris Volume Manager">
+        <library>DisableSVM</library>
+        <description>Disables the Solaris Volume Manager (SVM) services. This module disables the SVM initialization, multipath upgrade, and monitor services.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

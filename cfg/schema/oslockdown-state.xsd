@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ************************************************************************ -->
+<!-- Copyright (c) 2007-2014 Forcepoint LLC.                                       -->
+<!-- This file is released under the GPLv3 license.                                -->
+<!-- See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license, -->
+<!-- or visit https://www.gnu.org/licenses/gpl.html instead.                       -->
+<!--                                                                          -->
+<!--   OS Lockdown - Modules States                                      -->
+<!-- ************************************************************************ -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="ModuleStates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="info" minOccurs="1" maxOccurs="1" />
+        <xs:element ref="module" minOccurs="1" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="sbVersion" use="required" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="info">
+    <xs:complexType>
+      <xs:attribute name="nodename" use="required" type="xs:string" />
+      <xs:attribute name="platform" use="required" type="xs:string" />
+      <xs:attribute name="lastAction" use="required" type="xs:string" />
+      <xs:attribute name="lastActionTime" use="required" type="xs:string" />
+    </xs:complexType>
+   </xs:element>
+
+  <xs:element name="module">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="action" minOccurs="3" maxOccurs="3" />
+        <xs:element ref="ChangeRecords" minOccurs="1" maxOccurs="1" />
+      </xs:sequence>
+      <xs:attribute name="libraryName" use="required" type="xs:string" />
+      <xs:attribute name="name" use="required" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="action">
+    <xs:complexType>
+      <xs:attribute name="operation" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="scan"/>
+            <xs:enumeration value="apply"/>
+            <xs:enumeration value="undo"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+
+      <!-- These are optional attributes because the action may not have been performed yet -->
+      <xs:attribute name="result" use="optional">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Pass"/>
+            <xs:enumeration value="Fail"/>
+            <xs:enumeration value="Applied"/>
+            <xs:enumeration value="Undone"/>
+            <xs:enumeration value="Not Required"/>
+
+            <!-- Exceptions -->
+            <xs:enumeration value="Error"/>
+            <xs:enumeration value="NA"/>
+            <xs:enumeration value="OS NA"/>
+            <xs:enumeration value="Zone NA"/>
+            <xs:enumeration value="NAVAIL"/>
+            <xs:enumeration value="Module Unsupported"/>
+
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="fullyCompleted" type="xs:boolean" use="optional"/>
+      <xs:attribute name="execTimeMs" type="xs:integer" use="optional"/>
+      <xs:attribute name="date" type="xs:string"  use="optional"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ChangeRecords">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="change_record" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="change_record">
+    <xs:complexType mixed="true">
+      <xs:attribute name="seq" type="xs:integer" use="required" />
+      <xs:attribute name="date" type="xs:string"  use="optional" />
+      <xs:attribute name="sbVersion" type="xs:string" use="optional" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

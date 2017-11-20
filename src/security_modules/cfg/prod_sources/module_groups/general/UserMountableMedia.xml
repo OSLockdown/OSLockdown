@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="User Mountable Media">
+        <library>UserMountableMedia</library>
+        <description>Restricts the use of removable media drives. User-mountable media is a security risk. Allowing users to mount and access data from removable media drives makes it easier for malicious programs and data to be imported onto the network or for data to be removed from the server.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4"/>
+          <cpe-item name="cpe:/o:centos:centos:5"/>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:novell:opensuse:10"/>
+          <cpe-item name="cpe:/o:novell:opensuse:11"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:10"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:11"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:redhat:fedora:10"/>
+          <cpe-item name="cpe:/o:redhat:fedora:11"/>
+          <cpe-item name="cpe:/o:redhat:fedora:12"/>
+          <cpe-item name="cpe:/o:redhat:fedora:13"/>
+          <cpe-item name="cpe:/o:sun:sunos:5.10">
+            <services>
+              <service seq="1" name="svc:/system/filesystem/volfs:default" stop-now="true"/>
+              <service seq="2" name="svc:/network/rpc/smserver:default" stop-now="true"/>
+            </services>
+            <packages>
+              <package name="SUNWvolr"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>General</member>
+        </views>
+      </security_module>

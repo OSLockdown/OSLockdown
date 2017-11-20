@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Portmap Daemon">
+        <library>DisablePortmap</library>
+        <description>Disables the Portmap daemon that is used to convert RPC program numbers into DARPA protocol port numbers. RPC is an unencrypted protocol that may carry authentication information.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4">
+            <services>
+              <service seq="1" name="portmap" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="portmap"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:5">
+            <services>
+              <service seq="1" name="portmap" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="portmap"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:10">
+            <services>
+              <service seq="1" name="portmap" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="portmap"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:10">
+            <services>
+              <service seq="1" name="portmap" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="portmap"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:11">
+            <services>
+              <service seq="1" name="rpcbind" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="rpcbind"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:11">
+            <services>
+              <service seq="1" name="rpcbind" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="rpcbind"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4">
+            <services>
+              <service seq="1" name="portmap" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="portmap"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5">
+            <services>
+              <service seq="1" name="portmap" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="portmap"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6">
+            <services>
+              <service seq="1" name="rpcbind" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="rpcbind"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:10">
+            <services>
+              <service seq="1" name="rpcbind" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="rpcbind"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:11">
+            <services>
+              <service seq="1" name="rpcbind" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="rpcbind"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:12">
+            <services>
+              <service seq="1" name="rpcbind" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="rpcbind"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:sun:sunos:5.10">
+            <services>
+              <service seq="1" name="svc:/network/rpc/bind:default" stop-now="true"/>
+            </services>
+            <packages>
+              <package name="SUNWcsr"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4">
+            <services>
+              <service seq="1" name="portmap" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="portmap"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5">
+            <services>
+              <service seq="1" name="portmap" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="portmap"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:13">
+            <services>
+              <service seq="1" name="rpcbind" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="rpcbind"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:10">
+            <services>
+              <service seq="1" name="rpcbind" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="rpcbind"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:10">
+            <services>
+              <service seq="1" name="rpcbind" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="rpcbind"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:6">
+            <services>
+              <service seq="1" name="rpcbind" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="rpcbind"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <services>
+              <service seq="1" name="rpcbind" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="rpcbind"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <dependencies>
+          <module_library selected="true">DisableNFS_server</module_library>
+          <module_library selected="true">DisableRpc_Ugidd</module_library>
+          <module_library selected="true">DisableRpcKeyserv</module_library>
+        </dependencies>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

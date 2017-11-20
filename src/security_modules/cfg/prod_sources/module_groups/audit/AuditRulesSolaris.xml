@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Audit Rules (Solaris)">
+        <library>AuditRulesSolaris</library>
+        <description>Configures the Solais audit subsystem to record relevant security events such as file access, file deletions, login, logout, session initiations, discretionary access control changes, and administrative actions.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <configurationOptions>
+          <option name="auditRules" type="basicMultilineString">
+            <description>Kernel auditing rules.</description>
+          </option>
+        </configurationOptions>
+        <platforms>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+        </platforms>
+        <compliancy/>
+        <dependencies>
+          <module_library selected="true">AuditEnable</module_library>
+        </dependencies>
+        <views>
+          <member>Audit</member>
+          <member>Kernel</member>
+        </views>
+      </security_module>

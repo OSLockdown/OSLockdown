@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SshdStrictModeChecking" version="5.0">
+  <title xml:id="RemoteAccessServices">SSHD Strict Mode Checking</title>
+  <para>
+  Configures the secure shell daemon to use strict mode checking of the
+  home directory configuration files. This setting ensures that the sshd
+  related files/directories in the users home account are not world
+  writable.
+ </para>
+  <para>
+  For all operating systems, the
+  <filename>/etc/ssh/sshd_config</filename> file will be examined. If
+  present, the values for the 'StrictModes' settings will be examined.
+  If the setting is not 'yes', then it will be corrected.
+ </para>
+  <simplesect xml:id="SshdStrictModeChecking-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>4.5.4 - Use Secure Shell RSA Authentication</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN005536 - The SSH daemon must perform strict mode checking of home directory configuration files.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>AC-3 - Access Enforcement</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+      <listitem>
+        <para>2.2.3 - Configure system security parameters to prevent misuse</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: EnableKernelExecShield.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="EnableKernelExecShield" version="5.0">
+  <title xml:id="General">Enable ExecShield Kernel Module</title>
+  <para>
+  The Linux kernel provides a number of features to provide protection
+  against buffer overflows and provide address space randomization.
+  These features include random placement of the stack and other memory
+  regions, prevention of execution in memory that should only hold data,
+  and special handling of text buffers. These features should be on by
+  default; however, this module will also ensure it is implicitly in
+  <filename>/etc/sysctl.conf</filename>.
+  <indexterm><primary>/etc/sysctl.conf</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/etc/sysctl.conf</secondary></indexterm>
+
+  <indexterm><primary>ExecShield</primary></indexterm>
+
+  <indexterm><primary>sysctl.conf</primary></indexterm>
+ </para>
+  <para>
+  Please refer to your kernel documentation for more information on
+  these features, and look in the <filename>/proc/sys/kernel</filename>
+  pseudo-directory for additional settings that can be altered.
+ </para>
+  
+  <simplesect xml:id="EnableKernelExecShield-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Required settings for /etc/sysconf.conf, one per line &lt;param&gt; = &lt;valuegt;</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+<simplesect xml:id="EnableKernelExecShield-compliancy"><title>Compliancy</title><itemizedlist><title>DISA Red Hat 5 STIG (V1R17)</title><listitem><para>GEN003540 - The system must implement non-executable program stacks.</para></listitem><listitem><para>GEN008420 - The system must use available memory address randomization techniques.</para></listitem></itemizedlist><itemizedlist><title>DISA Red Hat 6 STIG (V1R14)</title><listitem><para>RHEL-06-000078 - The system must implement virtual address space randomization.</para></listitem><listitem><para>RHEL-06-000079 - The system must limit the ability of processes to have simultaneous write and execute access to memory.</para></listitem></itemizedlist><itemizedlist><title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title><listitem><para>2.2.4.3 - Enable ExecShield</para></listitem></itemizedlist><itemizedlist><title>NVD CCE</title><listitem><para>CCE-4146-7 - ExecShield randomized placement of virtual memory regions should be enabled or disabled as appropriate</para></listitem><listitem><para>CCE-4168-1 - ExecShield should be enabled or disabled as appropriate</para></listitem></itemizedlist></simplesect></section>

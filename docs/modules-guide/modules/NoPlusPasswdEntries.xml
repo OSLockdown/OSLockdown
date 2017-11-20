@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="NoPlusPasswdEntries" version="5.0">
+  <title xml:id="Passwords">No Plus Entries in Password Files</title>
+  <para>
+  Removes any '+' characters from local identification and
+  authentication (IA) repositories: passwd, shadow, and group files.
+  <indexterm><primary>passwd</primary></indexterm>
+ </para>
+  <para>
+  The '+' character is used to include Network Information Service (NIS)
+  maps into local IA mechanisms. If NIS is not used, then do not use the
+  '+' character because it poses a security risk.
+  <indexterm><primary>NIS</primary></indexterm>
+
+  <indexterm><primary>NIS+</primary></indexterm>
+ </para>
+  <simplesect xml:id="NoPlusPasswdEntries-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-8 - Controlled Use of Administrative Privileges</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN001980 - The .rhosts, .shosts, hosts.equiv, shosts.equiv, /etc/passwd, /etc/shadow, and/or /etc/group files must not contain a plus (+) without defining entries for NIS+ netgroups.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN001980 - Plus (+) in Access Control Files</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>2.3.1.8 - Remove Legacy ’+’ Entries from Password Files</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-14071-5 - NIS file inclusions should be set appropriately in the /etc/shadow file</para>
+      </listitem>
+      <listitem>
+        <para>CCE-14675-3 - NIS file inclusions should be set appropriately in the /etc/group file</para>
+      </listitem>
+      <listitem>
+        <para>CCE-4114-5 - NIS file inclusions should be set appropriately in the /etc/passwd file</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

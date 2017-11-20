@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SyncAccount" version="5.0">
+  <title xml:id="Accounts">Remove Sync User Account</title>
+  <para>
+  Removes the <emphasis>sync</emphasis> user account. As a general
+  precaution, default system accounts that are not used or needed should
+  be removed. The more accounts that are present on the system, the more
+  opportunities an attacker has to gain access or information about your
+  system.
+ </para>
+  <para>
+  It is recommended to remove the <emphasis>sync</emphasis> user account
+  unless it is required by your system.
+ </para>
+  <simplesect xml:id="SyncAccount-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>3.1 - Password Settings</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>LNX00320 - Special Privileged Accounts</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+      <listitem>
+        <para>CIP-007-3-R5.2.1 - Remove, disable, or rename factory default accounts</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>AC-2 - Account Management</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2.4 - Remove all unnecessary functionality</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

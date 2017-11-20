@@ -1,0 +1,319 @@
+BUILDING OS LOCKDOWN
+====================
+
+LICENSE NOTES ON INCLUDED CODE
+------------------------------
+  Please see the LICENSES.txt file for detailed information on licensing.  
+  In summary, the OS Lockdown source code is licensed uder the GPLv3, the
+  Apache V2, and for some files in the Console unit the combined GPLv3 and
+  Apache V2 licenses.  The dependencies required to build OS Lockdown may
+  involve additional licenses.
+
+BUILD REQUIREMENTS
+------------------
+  OS Lockdown is designed to use as few 'external' requirements as
+  possible.  The vendor-supplied ISOs should have everything required to
+  run OS Lockdown (with the possible exception of Java), but additional packages
+  are required to build it.  The Console unit will require access to the 
+  internet during the first 
+  build to pull all of the packages it requires to build.  These
+  packages will be cached for use in later builds.
+    
+  The first time you build OS Lockdown on a distro will be a multistep process.
+  Thereafter it should proceed much faster.
+  
+  Currently OS Lockdown should build and execute on the following
+  systems:
+    32/64 bit Intel-based platforms
+        Red Hat Enterprise Linux 4, 5, and 6 
+    	    This includes the CentOS, Oracle, and Scientific Linux equivalents.
+        Fedora 10/11/12/13
+        SUSE 10/11
+        openSUSE 10/11
+        Solaris 10
+    IBM zSeries mainframes
+    	RedHat 5/6
+	SUSE 10/11
+    SPARC platforms
+        Solaris 10
+	
+PREREQUISITES
+-------------
+  The following directions assume that you are building OS Lockdown 
+  on a system that is more or less a software development install.  
+  These platforms have many of the explicit software prerequisites already 
+  installed.  If you are using a more minimal environment you may need to 
+  install dependencies not listed explicitly below.
+  
+  There are a number of required packages that must be available to
+  build OS Lockdown.  Most of them are found on your vendor-supplied OS
+  media (or possibly the SDK disks for Solaris/SUSE/openSUSE).  Ensure that
+  you have access (via yum, zypper, or otherwise) to your vendor media and 
+  then execute 'make env-setup' from the top level of the OS Lockdown 
+  tarball as root.  Depending on your specific system, many of these 
+  prerequisites may already be installed.
+
+  
+  This list covers the most common set, although some packages may be named
+  differently on some systems.  Everything below should be on the OS 
+  installation disk.  You may need to find the 'swig' packages for Solaris
+  from the internet and install them manually.
+  
+    Linux: gcc gcc-c++ openssl openssl-devel xmlto python python-devel
+  	   rpm-build rpmdevtools swig
+    Solaris: SUNWgcc SUNWbash SUNWgmake SUNWopenssl-include SUNGWbinutils
+
+    Solaris build note:
+    	- Swig must be built from source.  Information is provided later in
+	  this document on downloading and building swig
+        - The default path must include /usr/sfw/bin and /usr/ccs/bin before
+	  the system provide defaults, and 'gmake' should be used instead
+	  of 'make' (gmake is located in /usr/sfw/bin).
+	- A Java 1.6 or 1.7 JDK must be installed on the system.
+        - SUNWeu8os and SUNWeuluf are required to install OS Lockdown, but not 
+          to build it.
+
+  OS Lockdown requires a Java 1.6 or Java 1.7 development package
+  to be installed. OS Lockdown has been tested with the OpenJDK 1.6/1.7
+  packages, the Oracle 1.6/1.7 packages, or the IBM 1.6/1.7 packages.  The
+  full development kit is required, not just the runtime engine.  Due to the
+  variability in how the packages are named, it is up to you to ensure a
+  compatible package is installed.
+
+  The following non-vendor packages must be downloaded in order to build
+  OS Lockdown.  The version number beside the project name is the version 
+  that was last used/tested with the commercial release.  A more recent 
+  release of a particular package may or may not work.  Specifically for the 
+  docbook and tomcat packages OS Lockdown has customizations that are
+  applied during the build process.  The remaining packages are used as is.  
+  It is also highly recommended to use a directory outside the OS Lockdown 
+  source tree when downloaded and installing these packages.
+
+  The 'download-prerequisites.sh' shell script will pull the last tested
+  versions of code down for these prerequisites.  Note that more recent
+  versions of these may work, these versions were the last ones uses
+  that have been tested.  The script is executed with :
+    sh download-prerequisites.sh DEST
+  where DEST is the destination directory.  For each download the script
+  will unpack the package as required for OS Lockdown to use it.  It does
+  not build gSOAP or SWIG.
+
+  Apache Ant (1.9.2 - use apache-ant-1.9.2-bin.tar.gz) 
+      http://ant.apache.org
+  Apache FOP (1.0 - use fop-1.0-bin.tar.gz)):
+      http://xmlgraphics.apache.org
+  Apache Tomcat (7.0.82 - use apache-tomcat-7.0.82.tar.gz):
+      http://tomcat.apache.org
+  docbook-xsl-stylesheets (1.74.0 - use docbook-xml-1.74.0.tar.gz):
+      https://sourceforge.net/projects/docbook
+  Grails (2.3.7 - use grails-2.3.7.zip):
+      https://github.com/grails
+  gSOAP (2.8.18 - use gsoap-2.8.18.zip):
+      https://sourceforge.net/projects/gsoap2
+  JAXWS-RI (2.2.5 - use jaxws-ri-2.2.5.zip):
+      https://jax-ws.java.net
+  SAXON (6.5.5 - use saxon6-5-5.zip) :
+      https://sourceforge.net/projects/saxon
+
+  Most Linux distro provide swig as an installable package.  Solaris 10 users
+  will need to download the source and build it locally.  The Solaris build
+  expects to find swig in /usr/local/bin.
+
+  swig (1.39 - use swig-1.3.39.tar.gz ):
+      https://sourceforge.net/projects/swig
+
+  All of these packages *except* the apache-tomcat download should be 
+  unpacked before using. There are two exceptions:
+  - The Tomcat download should be left alone.
+  - The Saxon 6.5.5 zip file does not create a subdirectory to expand into, but 
+    drops everything into the current directory.  You will need to create a 
+    new directory and extract this zip file into that directory.  Use this 
+    new directory for the SAXON_HOME variable below.
+
+INTERNET EXPLORER 7 OR EARLIER   
+------------------------------
+  If you are planning on using Internet Explorer 7 to connect with the OS 
+  Lockdown Console web application you will also need to perform the following 
+  steps:
+     - Download https://github.com/douglascrockford/JSON-js/json2.js and 
+       place it in the oslockdown/src/console/grails/OSLockdown/webapps/js 
+       directory
+     - Edit oslockdown/src/console/grails/OSLockdown/grails-app/conf/ApplicationResources.groovy
+       and uncomment the line containing 'resource url:'/js/json2.js'
+       
+  Of all of the downloaded packages, only gSOAP (and swig if on Solaris) 
+  needs to be build prior to OS Lockdown. Unpack those source downloads
+  and build with the following commands (replace prefix with '/usr/local' 
+  for example).  Note that if you configure gSOAP differently, please edit the 
+  Makefile in the src/dispatcher directory and alter the GSOAP_CONF_WITH_IPV6 
+  variable.  Replace 'PREFIX' with the final directory where these file should 
+  be installed.
+  
+  LINUX:
+    gSOAP : ./configure --prefix=PREFIX --enable-ipv6 CXX="g++ -fPIC" 
+            make && make install
+
+  SOLARIS:
+    gSOAP : ./configure --prefix=PREFIX --enable-ipv6 CXX="g++ -fPIC" MAKE=gmake INSTALL=/usr/ucb/install
+            gmake && gmake install
+
+    swig :  ./configure --prefix=/usr/local
+  	    gmake && gmake install
+        	
+REQUIRED ENVIRONMENT VARIABLES
+------------------------------
+  The following environment variables are required for OS Lockdown to build.  
+  Note that all will be pointing to a directory with the exception of 
+  TOMCAT_ARCHIVE.
+  
+  GRAILS_HOME
+      Points to unpacked Grails directory
+  FOP_HOME
+      Points to unpacked FOP directory
+  SAXON_HOME
+      Points to SAXON directory
+  JAXWSRI_HOME
+      Points to unpacked JAXWS directory
+  ANT_HOME
+      Points to unpacked ANT  directory
+  ANT
+      Points to ${ANT_HOME}/bin/ant
+  TOMCAT_ARCHIVE
+      Points to downloaded Tomcat archive
+  DOCBOOK_STYLESHEETS
+      Points to unpacked docbook-xsl directory
+  JAVA_HOME
+      Points to JAVA 1.6 or 1.7 SDK installation directory
+      ${JAVA_HOME/bin/javac should be an executable program 
+  GRAILS_DEP_HOME (OPTIONAL - but highly recommended)
+      The Grails package will download a large number of components using the 
+      Ivy dependency resolver.  If not set, then the dependencies will be 
+      placed in the src/grails/OSLockdown/grails_downloads directory.  
+      This directory is used as a cache for all required dynamic dependencies 
+      for Grails and the Console.
+  JAVA_HOME2 (OPTIONAL - used for building the Console twice on a box with a 
+      different JAVA SDK).  This allows the Console to be built a second time 
+      on one box with a different JAVA_HOME.  The Console package will just 
+      have 'console' in the name when built with the OpenJDK or Oracle
+      SDK, and 'console-ibmjava' when built with the IBM SDK.
+       
+  Once these environment variables are set, you can perform a basic test that 
+  they are correct by typing 'make testLocations' in the oslockdown directory.  
+  This will quickly look at the settings to see whether the above variables are 
+  correctly set and can be used to locate some required pieces of each tool. 
+
+  As one example, this target tests that ${JAVA_HOME} is a directory, and that
+  ${JAVA_HOME}/bin/java and ${JAVA_HOME}/bin/javac are executable.
+
+
+SETTING VERSION AND RELEASE NAMES
+---------------------------------
+  Prior to doing a build you need to edit the VERSION_RELEASE.txt file and
+  ensure the SB_VERSION and SB_RELEASE fields have the correct values.  These
+  should be in 'tag=value' form.  If you have made any changes to these values
+  you need to execute 'python update_version.py' to propogate these changes. 
+  These steps are required because there are certain files (the SELinux policy
+  files for example) where there is no easy way to import an environment 
+  variable with the correct settings.
+  
+  The SB_VERSION field represents the X.Y.Z release number (for example, 5.0.0
+  for the initial open source release of OS Lockdown), and the SB_RELEASE field
+  represents the 'build' name (for example, 'RC1').  Historically for the
+  legacy Security Blanket software the SB_RELEASE field represented the SVN 
+  commit number used as the source for the build.
+      
+
+  
+BUILDING OS LOCKDOWN
+--------------------
+  To build OS Lockdown first ensure that you are in the top level of the
+  OS Lockdown tarball.
+  
+  *****  IMPORTANT
+      You will need to be root in order to build the packages.
+  *****  IMPORTANT
+      
+  This is not the recommended method to build packages and should be fixed.  
+  You must have the above prerequisites installed. For both Linux and Solaris 
+  builds, the entire build will occur within the oslockdown directory tree.  
+  Under Linux this happens because the 'rpmbuild' command is explicitly called 
+  with the '_topdir' macro being redefined. 
+
+  The command to build OS Lockdown for the current distro you are on is simply
+  this (Solaris - use 'gmake' instead): 
+    make build
+    
+  When the build is done you should have multiple files in the build/dist 
+  directory.  These should be the Linux RPMs or Solaris PKGs, and several log 
+  files from the build.  Depending on the distribution  4 or 5 final PKG or
+  RPM files.  
+  Importantly, there should also be a 'BUILT_FOR' file that contains the target
+  platform style for this build.  For instance, this file will say 
+  'redhat-5-i386' when built on *any* Red Hat or CentOS release 5 i386 system.
+  This information is important to build a combined  installer, or for using 
+  'autoupdates'. 
+  
+SUSE/openSUSE SPECIFIC NOTE
+---------------------------
+  The Grails-2.3.7 baseline used above is using jline-2.11, which seems 
+  to have a problem on SUSE/openSUSE boxes.  A required workaround is to make 
+  sure that you execute 'touch ~/.inputrc' before building.  This step is not
+  done during the build itself.
+  
+  In addition, Grails 2.3.7 appears to not work at all with SUSE10 on the x86 
+  platforms.  It works correctly on the OpenSUSE 10 platforms, and for SUSE10
+  on the IBM zSeries mainframe.  Some online notes indicate the problem may be 
+  in the 'jansi-1.11.jar' file, which may not be directly compatible with SUSE
+  10 without being rebuilt.  For SUSE10 x86 this is a 'Will Not Fix' at this 
+  point.  SUSE 10 builds will build the remainder of the packages however,  
+  and the Console RPM from another Linux distro will install and work fine on 
+  SUSE 10.
+    
+  
+BUILDING AN INSTALLATION TARBALL
+--------------------------------
+  A script has been provided to help build a 'combined installer' tarball.  The
+  resulting tarball is similar to how OS Lockdown was commercially distributed,
+  where one single tarball held all supported platforms.  
+  
+  The steps for building a combined installer are:
+  
+  1) Build OS Lockdown on all desired platforms.  
+  2) For each platform the final build products are in oslockdown/build/dist, 
+     and these directories need to be copied back to this box, or otherwise be
+     visible from this box (for instance, via NFS).  Note that each build 
+     product directory must have a unique name.
+  3) Execute the following command to build a combined tarball:  
+       python buildInstaller.py -a archiveName -n relName prodDir1 [prodDir2...]
+     
+     where
+     -a archiveName = specify the location of the resulting tarball (.tgz 
+                      added if needed)
+     -n relName = specify directory name within tarball to hold contents
+           if not present then name taken after examining the build products
+
+     prodDir1 = name of directory holding products from build1
+     prodDir2 = name of directory holding products from build2
+      
+  Here are two examples.  Suppose all the build products are in /tmp/products as
+  /tmp/products/dir1, /tmp/products/dir2, and /tmp/products/dir3, and there are
+  no other files or directories in /tmp/products.  Both of these two commands
+  are equivalent.
+  
+    python buildInstaller.py -a /tmp/OSL -n FirstBuild /tmp/products/dir1 /tmp/products/dir2 /tmp/products/dir3
+    python buildInstaller.py -a /tmp/OSL -n FirstBuild /tmp/products/*
+    
+    
+  Both create a new tarball /tmp/OSL.tgz, which contains the directory 
+  FirstBuild using the build products contained in the three directories.
+  The tarball will create a new directory 'FirstBuild' that will hold all
+  the files required for the installation.	
+      
+INSTALLING OS LOCKDOWN
+----------------------
+  Detailed directions for installing OS Lockdown are in the Admin Guide, located in the 'docs' 
+  directory within the tarball.  To simply install, unpack the tarball, cd into
+  the newly created directory, and execute the 'SB_Install' script.
+     
+       
+     

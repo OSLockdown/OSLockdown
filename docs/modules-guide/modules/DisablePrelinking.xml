@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: 6KernelModule.xml 16473 2011-10-03 17:26:53Z jadams $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisablePrelinking" version="5.0">
+ <title xml:id="SysServices">Disable Prelinking</title>
+ <para>
+  This module disables prelinking by modifying the
+  <filename>/etc/sysconfig/prelink</filename> to prevent the operating
+  system from periodically prelinking system binaries, in addition to
+  calling <command>/usr/sbin/prelink -ua</command> to revert any
+  prelinking that had been done. When an undo is performed,
+  <filename>/etc/sysconfig/prelink</filename> is restored, and the next
+  time the <filename>/etc/cron.daily/prelink</filename> job is run, all
+  prelinks will be recalculated.
+  <indexterm>
+   <primary>sysconfig</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>System Services</primary>
+  </indexterm>
+ </para>
+ <para>
+  This module examines the <filename>/etc/sysconfig/prelink</filename>
+  file to ensure that the following line is present:
+ </para>
+<programlisting>PRELINKING=no</programlisting>
+ <simplesect xml:id="DisablePrelinking-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     2.2.4.5.1 - Disable Prelink
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.4.5.2 - Undo Existing Prelinking
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

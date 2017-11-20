@@ -1,0 +1,182 @@
+2.1.1.1.1|Create Separate Partition or Logical Volume for /tmp
+2.1.1.1.2|Create Separate Partition or Logical Volume for /var
+2.1.1.1.3|Create Separate Partition or Logical Volume for /var/log
+2.1.1.1.4|Create Separate Partition or Logical Volume for /var/log/audit
+2.1.1.1.5|Create Separate Partition or Logical Volume for /home
+2.1.2.2|Disable the rhnsd Daemon
+2.2.1.1|Add nodev Option to Non-Root Local Partitions
+2.2.1.2|Add nodev, nosuid, and noexec Options to Removable Media Partitions
+2.2.2.1|Restrict Console Device Access
+2.2.2.2|Disable USB Device Support
+2.2.2.2.1|Disable Modprobe Loading of USB Storage Driver
+2.2.2.2.2|Remove USB Storage Driver
+2.2.2.2.3|Disable Kernel Support for USB via Bootloader Configuration
+2.2.2.2.4|Disable Booting from USB Devices
+2.2.2.3|Disable the Automounter if Possible
+2.2.2.4|Disable GNOME Automounting if Possible
+2.2.2.5|Disable Mounting of Uncommon Filesystem Types
+2.2.3.1|Verify Permissions on passwd, shadow, group and gshadow Files
+2.2.3.2|Verify that All World-Writable Directories Have Sticky Bits Set
+2.2.3.3|Find Unauthorized World-Writable Files
+2.2.3.4|Find Unauthorized SUID/SGID System Executables
+2.2.3.5|Find and Repair Unowned Files
+2.2.3.6|Verify that All World-Writable Directories Have Proper Ownership
+2.2.4.1|Set Daemon umask
+2.2.4.2|Disable Core Dumps
+2.2.4.2.1|Ensure SUID Core Dumps are Disabled
+2.2.4.3|Enable ExecShield
+2.2.4.3.1|Ensure ExecShield is Enabled
+2.2.4.4|Enable Execute Disable (XD) or No Execute (NX) Support on 32-bit x86 Systems
+2.2.4.4.1|Check for Processor Support on x86 Systems
+2.2.4.4.2|Install New Kernel on Supported x86 Systems
+2.2.4.4.3|Enable NX or XD Support in the BIOS
+2.2.5|Disable Mounting of Uncommon Filesystem Types
+2.3.1.1|Restrict Root Logins to System Console
+2.3.1.2|Limit su Access to the Root Account
+2.3.1.3|Configure sudo to Improve Auditing of Root Access
+2.3.1.4|Block Shell and Login Access for Non-Root System Accounts
+2.3.1.5|Verify that No Accounts Have Empty Password Fields
+2.3.1.6|Verify that No Non-Root Accounts Have UID 0
+2.3.1.7|Set Password Expiration Parameters
+2.3.1.8|Remove Legacy ’+’ Entries from Password Files
+2.3.3.1|Set Password Quality Requirements
+2.3.3.1.1|Set Password Quality Requirements, if using pam cracklib
+2.3.3.1.2|Set Password Quality Requirements, if using pam passwdqc
+2.3.3.2|Set Lockouts for Failed Password Attempts
+2.3.3.3|Use pam deny.so to Quickly Deny Access to a Service
+2.3.3.4|Restrict Execution of userhelper to Console Users
+2.3.3.5|Upgrade Password Hashing Algorithm to SHA-512
+2.3.3.6|Limit Password Reuse
+2.3.4.1|Ensure that No Dangerous Directories Exist in Root’s Path
+2.3.4.2|Ensure that User Home Directories are not Group-Writable or World-Readable
+2.3.4.3|Ensure that User Dot-Files are not World-writable
+2.3.4.4|Ensure that Users Have Sensible Umask Values
+2.3.4.5|Ensure that Users do not Have .netrc Files
+2.3.5.1|Set BIOS Password
+2.3.5.2|Set Boot Loader Password
+2.3.5.3|Require Authentication for Single-User Mode
+2.3.5.4|Disable Interactive Boot
+2.3.5.5|Implement Inactivity Time-out for Login Shells
+2.3.5.6|Configure Screen Locking
+2.3.5.6.1|Configure GUI Screen Locking
+2.3.5.6.2|Configure Console Screen Locking
+2.3.5.7|Disable Unnecessary Ports
+2.3.7.1|Modify the System Login Banner
+2.3.7.2|Implement a GUI Warning Banner
+2.4.2|Enable SELinux
+2.4.2.1|Ensure SELinux is Properly Enabled
+2.4.3.1|Disable and Remove SETroubleshoot if Possible
+2.4.3.2|Disable MCS Translation Service (mcstrans) if Possible
+2.4.3.3|Disable Restorecon Service 
+2.5.1.1|Network Parameters for Hosts Only
+2.5.1.2|Network Parameters for Hosts and Routers
+2.5.3.1.1|Disable Automatic Loading of IPv6 Kernel Module
+2.5.3.1.2|Disable Interface Usage of IPv6
+2.5.3.2.1|Disable Automatic Configuration
+2.5.3.2.2|Manually Assign Global IPv6 Address
+2.5.3.2.3|Use Privacy Extensions for Address if Necessary
+2.5.3.2.4|Manually Assign IPv6 Router Address
+2.5.3.2.5|Limit Network-Transmitted Configuration
+2.5.4.4|Monitor Syslog for Relevant Connections and Failures
+2.5.7.1|Disable Support for DCCP
+2.5.7.2|Disable Support for SCTP
+2.5.7.3|Disable Support for RDS
+2.5.7.4|Disable Support for TIPC
+2.6.1.1.1|Ensure All Important Messages are Captured
+2.6.1.1.2|Confirm Existence and Permissions of System Log Files
+2.6.1.1.3|Send Logs to a Remote Loghost
+2.6.1.1.4|Enable syslogd to Accept Remote Messages on Loghosts Only
+2.6.1.3.1|Ensure All Logs are Rotated by logrotate
+2.6.2.1|Enable the auditd Service
+2.6.2.2|Configure auditd Data Retention
+2.6.2.3|Enable Auditing for Processes Which Start Prior to the Audit Daemon
+2.6.2.4|Configure auditd Rules for Comprehensive Auditing
+2.6.2.4.1|Records Events that Modify Date and Time Information
+2.6.2.4.2|Record Events that Modify User/Group Information
+2.6.2.4.3|Record Events that Modify the System’s Network Environment
+2.6.2.4.4|Record Events that Modify the System’s Mandatory Access Controls
+2.6.2.4.5|Ensure auditd Collects Logon and Logout Events
+2.6.2.4.6|Ensure auditd Collects Process and Session Initiation Information
+2.6.2.4.7|Ensure auditd Collects Discretionary Access Control Permission Modification Events
+2.6.2.4.8|Ensure auditd Collects Unauthorized Access Attempts to Files (unsuccessful)
+2.6.2.4.9|Ensure auditd Collects Information on the Use of Privileged Commands
+2.6.2.4.10|Ensure auditd Collects Information on Exporting to Media (successful)
+2.6.2.4.11|Ensure auditd Collects Files Deletion Events by User (successful and unsuccessful)
+2.6.2.4.12|Ensure auditd Collects System Administrator Actions
+2.6.2.4.13|Make the auditd Configuration Immutable-
+3.1.3|Guidance for Unfamiliar Services
+3.2.1|Inetd and Xinetd
+3.2.2|Telnet
+3.2.3.1|Remove the Rsh Server Commands from the System
+3.2.3.2|Remove .rhosts Support from PAM Configuration Files
+3.2.4|NIS (Disable)
+3.2.5|TFTP Server 
+3.3.1|Installation Helper Service (firstboot)
+3.3.2|Console Mouse Service (gpm)
+3.3.3|Interrupt Distribution on Multiprocessor Systems (irqbalance)
+3.3.4|ISDN Support (isdn)
+3.3.5|Kdump Kernel Crash Analyzer (kdump)
+3.3.6|Kudzu Hardware Probing Utility (kudzu)
+3.3.7|Software RAID Monitor (mdmonitor)
+3.3.8|IA32 Microcode Utility (microcode ctl)
+3.3.9.3|Disable Zeroconf Networking
+3.3.10|Smart Card Support (pcscd)
+3.3.11|SMART Disk Monitoring Support (smartd)
+3.3.12|Boot Caching (readahead early/readahead later)
+3.3.13.1|D-Bus IPC Service (messagebus)
+3.3.13.2|HAL Daemon (haldaemon)
+3.3.14.1|Bluetooth Host Controller Interface Daemon (bluetooth)
+3.3.14.2|Bluetooth Input Devices (hidd)
+3.3.14.3|Disable Bluetooth Kernel Modules
+3.3.15.1|Advanced Power Management Subsystem (apmd)
+3.3.15.2|Advanced Configuration and Power Interface (acpid)
+3.3.15.3|CPU Throttling (cpuspeed)
+3.3.16.1|Disable the irda Service if Possible
+3.3.17.1|Disable the Raw Devices Daemon if Possible
+3.4.2|Restrict Permissions on Files Used by cron
+3.4.3|Disable at if Possible
+3.4.4|Restrict at and cron to Authorized Users
+3.5.2.1|Ensure Only Protocol 2 Connections Allowed
+3.5.2.2|Limit Users’ SSH Access
+3.5.2.3|Set Idle Timeout Interval for User Logins
+3.5.2.4|Disable .rhosts Files
+3.5.2.5|Disable Host-Based Authentication
+3.5.2.6|Disable root Login via SSH
+3.5.2.7|Disable Empty Passwords
+3.5.2.8|Enable a Warning Banner
+3.6.1.1|Disable X Windows at System Boot
+3.6.1.3.1|Disable X Font Server
+3.6.1.3.2|Disable X Window System Listening
+3.6.2.1|Create Warning Banners for GUI Login Users
+3.7.1|Disable Avahi Server if Possible
+3.7.1.1|Disable Avahi Server Software
+3.8.1|Disable the CUPS Service if Possible
+3.8.3.1.1|Disable Printer Browsing Entirely if Possible
+3.8.4.1|Disable HPLIP Service if Possible
+3.9.3|Disable DHCP Server if Possible
+3.11.2.1|Disable the Listening Sendmail Daemon
+3.11.3.2|Configure SMTP Greeting Banner
+3.11.5.2|Configure SMTP Greeting Banner
+3.13.1.1|Disable Services Used Only by NFS
+3.13.1.2|Disable netfs if Possible
+3.13.1.3|Disable RPC Portmapper if Possible
+3.13.3.1|Disable NFS Server Daemons
+3.13.4.1.1|Use Access Lists to Enforce Authorization Restrictions on Mounts
+3.13.4.1.2|Use Root-Squashing on All Exports
+3.13.4.1.3|Restrict NFS Clients to Privileged Ports
+3.13.4.1.4|Export Filesystems Read-Only if Possible
+3.14.1|Disable DNS Server if Possible
+3.15.1|Disable vsftpd if Possible
+3.15.3.2|Create Warning Banners for All FTP Users
+3.16.1|Disable Apache if Possible
+3.16.4.4.1|Configure PHP Securely
+3.17.1|Disable Dovecot if Possible
+3.18.1|Disable Samba if Possible
+3.18.2.2.1|Use user Security for Servers Not in a Domain Context
+3.18.2.3|Disable Guest Access and Local Login Support
+3.18.2.5|Set the Allowed Authentication Negotiation Levels
+3.18.2.9|Require Server SMB Packet Signing
+3.18.2.10|Require Client SMB Packet Signing
+3.19.1|Disable Squid if Possible
+3.20.1|Disable SNMP Server if Possible
+3.20.2|Configure SNMP Server if Necessary

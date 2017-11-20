@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="LockDuplicateUidZeros" version="5.0">
+ <title xml:id="Accounts">Lock Non-Root Accounts with UID 0</title>
+ <para>
+  Locks any account that has a user identification (UID) of zero that is
+  also not the root user. Only the root user should have this unique
+  UID. A user with the same UID will have the same privileges as root.
+ </para>
+ <para>
+  It is highly recommended that you apply this module.
+ </para>
+ <note>
+  <title>Manual Action May Be Required</title>
+  <para>
+   This module will only lock the questionable account. Subsequent scans
+   will also fail until you manually remove the account in question.
+  </para>
+ </note>
+ <simplesect xml:id="LockDuplicateUidZeros-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-11 - Account Monitoring and Control
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CC-8 - Controlled Use of Administrative Privileges
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>CIA DCID 6/3 (May 2000)</title>
+   <listitem>
+    <para>
+     4.B.1.a(2) - Identification and Authentication - Unique Users
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN000880 - The root account must be the only account having a UID
+     of 0.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 6 STIG (V1R14)</title>
+   <listitem>
+    <para>
+     RHEL-06-000032 - The root account must be the only account having a
+     UID of 0.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN000880 - Root's UID
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD JAFAN 6/3 (Oct 2004)</title>
+   <listitem>
+    <para>
+     4.B.1.a(2) - Identification and Authentication - Unique Users
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD NISPOM (Feb 2006)</title>
+   <listitem>
+    <para>
+     8.303a - Unique Identification
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-2 - Account Management
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     IA-2 - User Identification and Authentication
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     2.3.1.6 - Verify that No Non-Root Accounts Have UID 0
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NVD CCE</title>
+   <listitem>
+    <para>
+     CCE-4009-7 - Anonymous root logins are enabled or disabled as
+     appropriate
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     8.1 - Users must have a unique ID
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

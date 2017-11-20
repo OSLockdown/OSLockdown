@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="ConfigureLDAPConf" version="5.0">
+  <title xml:id="AuthServices">Configure /etc/ldap.conf Settings</title>
+  <para>
+  Verify that the indicated lines are contained in the
+  <filename>/etc/ldap.conf</filename> file.
+ </para>
+  <simplesect xml:id="ConfigureLDAPConf-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>
+     GEN008020 - If the system is using LDAP for authentication or
+     account information, the LDAP TLS connection must require the
+     server provide a certificate with a valid trust path to a trusted
+     CA.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN008040 - If the system is using LDAP for authentication or
+     account information, the system must verify the LDAP server's
+     certificate has not been revoked.
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="ConfigureLDAPConf-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>List of setting (one per line, "NAME VALUE")</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

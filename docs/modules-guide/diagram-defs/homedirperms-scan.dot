@@ -1,0 +1,42 @@
+digraph sm {
+    labelloc = "t"     // top
+    fontname = "Arial"
+    fontsize = "8pt"  
+    rankdir="LR"
+
+    node [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 8
+        shape = "box"
+        style = "rounded"
+    ]
+
+    edge [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 8
+        arrowhead = "ovee"
+    ]
+
+    
+    "Iterate over\nlocal accounts" -> "Is Solaris?"
+    "Pass"           [ color = green,  fontcolor = black ]
+    "Iterate over\nlocal accounts" -> "Pass" [label="no more accts"]
+
+    "Is Solaris?" -> "Is UID < 100?" [label="yes"]
+    "Is Solaris?" -> "Is UID < 500?" [label="no"]
+
+    "Is UID < 100?" -> "Iterate over\nlocal accounts" [label="yes"]
+    "Is UID < 500?" -> "Iterate over\nlocal accounts" [label="yes"]
+
+    "Is UID < 100?" -> "Is account \nnfsnobody or nobody\nor home directory\non exclusion list?" [label="no"]
+    "Is UID < 500?" -> "Is account \nnfsnobody or nobody\nor home directory\non exclusion list?" [label="no"]
+
+    "Is account \nnfsnobody or nobody\nor home directory\non exclusion list?" -> "Iterate over\nlocal accounts" [label="yes"]
+    "Is account \nnfsnobody or nobody\nor home directory\non exclusion list?" -> "Directory\nPerms > 750?" [label="no"]
+
+    "Fail"           [ color = red,    fontcolor = red ]
+    "Directory\nPerms > 750?" -> "Fail" [label="yes"]
+    "Directory\nPerms > 750?" -> "Iterate over\nlocal accounts" [label="no"]
+
+
+}

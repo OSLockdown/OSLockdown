@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable CDE ToolTalk Database Server">
+        <library>DisableCDEttdbserver</library>
+        <description>Disables the Local CDE ToolTalk Database Server. The ToolTalk service enables independent CDE desktop applications to communicate with each other without having direct knowledge of each other.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:sun:sunos:5.10">
+            <services>
+              <service seq="1" name="svc:/network/rpc/cde-ttdbserver:tcp" stop-now="true" global-zone-only="false"/>
+            </services>
+            <packages>
+              <package name="SUNWtltk"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Database Services</member>
+        </views>
+      </security_module>

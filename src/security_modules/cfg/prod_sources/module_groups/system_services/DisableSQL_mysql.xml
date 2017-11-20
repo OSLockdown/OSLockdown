@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable MySQL">
+        <library>DisableSQL_mysql</library>
+        <description>Disables the MySQL database server.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/a:mysql:mysql"/>
+          <cpe-item name="cpe:/o:centos:centos:4">
+            <services>
+              <service seq="1" name="mysqld"/>
+            </services>
+            <packages>
+              <package name="mysql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:5">
+            <services>
+              <service seq="1" name="mysqld"/>
+            </services>
+            <packages>
+              <package name="mysql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:11.3">
+            <services>
+              <service seq="1" name="mysql"/>
+            </services>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:11">
+            <services>
+              <service seq="1" name="mysql"/>
+            </services>
+            <packages>
+              <package name="mysql"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:11">
+            <services>
+              <service seq="1" name="mysql"/>
+            </services>
+            <packages>
+              <package name="mysql"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4">
+            <services>
+              <service seq="1" name="mysqld"/>
+            </services>
+            <packages>
+              <package name="mysql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5">
+            <services>
+              <service seq="1" name="mysqld"/>
+            </services>
+            <packages>
+              <package name="mysql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:10">
+            <services>
+              <service seq="1" name="mysqld"/>
+            </services>
+            <packages>
+              <package name="mysql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:11">
+            <services>
+              <service seq="1" name="mysqld"/>
+            </services>
+            <packages>
+              <package name="mysql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:12">
+            <services>
+              <service seq="1" name="mysqld"/>
+            </services>
+            <packages>
+              <package name="mysql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:sun:sunos:5.10">
+            <services>
+              <service seq="1" name="svc:/application/database/mysql:default"/>
+              <service seq="2" name="svc:/application/database/mysql:mysql32-csk"/>
+              <service seq="3" name="svc:/application/database/mysql:mysql-csk"/>
+            </services>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4">
+            <services>
+              <service seq="1" name="mysqld"/>
+            </services>
+            <packages>
+              <package name="mysql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5">
+            <services>
+              <service seq="1" name="mysqld"/>
+            </services>
+            <packages>
+              <package name="mysql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:13">
+            <services>
+              <service seq="1" name="mysqld"/>
+            </services>
+            <packages>
+              <package name="mysql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:10">
+            <services>
+              <service seq="1" name="mysql"/>
+            </services>
+            <packages>
+              <package name="mysql"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:10">
+            <services>
+              <service seq="1" name="mysql"/>
+            </services>
+            <packages>
+              <package name="mysql"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6">
+            <services>
+              <service seq="1" name="mysqld"/>
+            </services>
+            <packages>
+              <package name="mysql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:6">
+            <services>
+              <service seq="1" name="mysqld"/>
+            </services>
+            <packages>
+              <package name="mysql-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <services>
+              <service seq="1" name="mysqld"/>
+            </services>
+            <packages>
+              <package name="mysql-server"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

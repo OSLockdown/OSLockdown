@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="TCPMaxSynBacklog" version="5.0">
+  <title xml:id="NetworkConfig">Adjust Maximum Pending Connections</title>
+  <para>
+  Configures the maximum number of SYN requests to keep in memory. These
+  SYN requests are part of the TCP handshake process used to establish
+  connections.
+ </para>
+  <para>
+  This module has adjustable parameters; the default is 4096. A high
+  number of connection requests can take up memory and processor power
+  and can lead to denial-of-service situations. Reduce this number if
+  your machine is low on resources.
+  <indexterm><primary>denial-of-service</primary></indexterm>
+ </para>
+  <table xml:id="table-maxbacklog-tcp_syncookies" frame="all" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>Setting the Maximum Number of TCP SYN Requests Kept in Memory</title>
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.5*" align="left"/>
+      <colspec colname="c2" colwidth="0.5*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Setting</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="4">
+            <filename>/etc/sysctl.conf</filename>
+            <indexterm>
+              <primary>/etc/sysctl.conf</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/sysctl.conf</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>sysctl.conf</primary>
+            </indexterm>
+          </entry>
+          <entry morerows="4">
+            <filename>net.ipv4.tcp_max_syn_backlog = 4096</filename>
+            <indexterm>
+              <primary>tcp_max_syn_backlog</primary>
+            </indexterm>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+          <entry>
+            <filename>/etc/default/ndd</filename>
+            <indexterm>
+              <primary>/etc/default/ndd</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/default/ndd</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>ndd</primary>
+            </indexterm>
+          </entry>
+          <entry>
+            <literallayout class="monospaced">tcp_conn_req_max_q = 1024 
+tcp_conn_req_max_q0 = 4096</literallayout>
+            <indexterm>
+              <primary>tcp_conn_req_max_q</primary>
+            </indexterm>
+            <indexterm>
+              <primary>tcp_conn_req_max_q0</primary>
+            </indexterm>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+  <simplesect xml:id="TCPMaxSynBacklog-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Maximum number of remembered connection requests, which have not received an acknowledgment from connecting client.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="TCPMaxSynBacklog-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-13 - Limitation and Control of Network Ports, Protocols, and Services</para>
+      </listitem>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>6.1 - Kernel TCP Stack Tuning</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN003601 - TCP backlog queue sizes must be set appropriately.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN003600 - Network Security Settings</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>SC-5 - Denial of Service Protection</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Netconsole">
+        <library>DisableNetconsole</library>
+        <description>  Unless there is a need to debug kernel panics, it is recommended that this service be disabled.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4">
+            <services>
+              <service seq="1" name="netconsole" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="initscripts"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:5">
+            <services>
+              <service seq="1" name="netconsole" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="initscripts"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4">
+            <services>
+              <service seq="1" name="netconsole" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="initscripts"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5">
+            <services>
+              <service seq="1" name="netconsole" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="initscripts"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:10">
+            <services>
+              <service seq="1" name="netconsole" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="initscripts"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:11">
+            <services>
+              <service seq="1" name="netconsole" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="initscripts"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:12">
+            <services>
+              <service seq="1" name="netconsole" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="initscripts"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4">
+            <services>
+              <service seq="1" name="netconsole" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="initscripts"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5">
+            <services>
+              <service seq="1" name="netconsole" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="initscripts"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:13">
+            <services>
+              <service seq="1" name="netconsole" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="initscripts"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6">
+            <services>
+              <service seq="1" name="netconsole" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="initscripts"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:6">
+            <services>
+              <service seq="1" name="netconsole" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="initscripts"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <services>
+              <service seq="1" name="netconsole" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="initscripts"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

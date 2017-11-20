@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: FirefoxUpdating.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="FirefoxUpdating" version="5.0">
+  <title xml:id="DesktopApps">Firefox - Updating</title>
+  <para>
+  Enable or disable the auto-updating of Firefox software components.
+  Some guidelines require that auto-updating be enabled while others
+  require them to be disabled. So, depending on the context which this
+  module is deployed, the assessment results may have different meaning.
+  <indexterm><primary>Firefox</primary></indexterm>
+
+  <indexterm><primary>.profile</primary></indexterm>
+ </para>
+  <para>
+  Depending on the option chosen for the profile, the following is set
+  to either 'true' or 'false' in each user’s
+  <filename>$HOME/.mozilla/firefox/*/prefs.js</filename>:
+<literallayout class="monospaced">user_pref("app.update.auto", 'true');
+user_pref("security.xpconnect.plugin.unrestricted", 'true');</literallayout>
+  or
+<literallayout class="monospaced">user_pref("app.update.auto", 'false');
+user_pref("security.xpconnect.plugin.unrestricted", 'false');</literallayout>
+ </para>
+  <simplesect xml:id="FirefoxUpdating-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>
+     GEN004040 - Browser Software Update Feature
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="FirefoxUpdating-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Firefox auto update</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

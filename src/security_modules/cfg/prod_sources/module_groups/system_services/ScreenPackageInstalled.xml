@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Screen Package Installed">
+        <library>ScreenPackageInstalled</library>
+        <description>The screen package provides a locking capability to any tty device, analogous to a graphical screen lock.  It is recommended that this service be installed.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6">
+            <packages>
+              <package name="screen"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:6">
+            <packages>
+              <package name="screen"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <packages>
+              <package name="screen"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

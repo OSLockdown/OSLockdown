@@ -1,0 +1,1056 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % CommonEntities SYSTEM "../COMMON_ENTITIES.ent">
+%CommonEntities;
+]>
+<appendix version="5.0" xml:id="app-troubleshoot" xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!--<?xml-stylesheet type="text/css" href="docbook.css"?>-->
+  <title>Troubleshooting</title>
+  <note>
+    <para>Execute all commands with root permissions.</para>
+  </note>
+  <section>
+    <title>Installation Issues</title>
+    <section>
+      <title>Missing Packages</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <indexterm><primary>Installation</primary><secondary>Packages</secondary><tertiary>Missing</tertiary></indexterm>
+      <para>During installation the installer indicates that the &ldquo;patch&rdquo; package (or other packages) is
+        missing.</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>There is an actual Linux package called &ldquo;patch&rdquo; that is required for OS Lockdown to operate. All
+        missing packages must be installed before OS Lockdown will install correctly.</para>
+    </section>
+    <section>
+      <title>Verifying Installation Packages</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <indexterm><primary>Installation</primary><secondary>Packages</secondary><tertiary>Verifying</tertiary></indexterm>
+      <para>I’m not sure everything was installed. How can I tell?</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>Type the following command and verify the list of installed packages with those listed below:</para>
+      <para>
+        <screen># <userinput>/usr/sbin/oslockdown -D</userinput></screen>
+      </para>
+      <para><emphasis role="bold">Linux:</emphasis></para>
+      <para>Packages for the OS Lockdown Console:</para>
+      <para>(Where 5.x.x is your OS Lockdown version; rxxxxx is the OS Lockdown revision number; and df.x is the package
+        name distribution field (e.g., e15 = Red Hat Enterprise Linux 5))</para>
+      <para>
+        <itemizedlist>
+          <listitem>
+            <para>oslockdown-5.x.x-rxxxxx.df.x</para>
+          </listitem>
+          <listitem>
+            <para>oslockdown-dispatcher-5.x.x-rxxxxx.df.x</para>
+          </listitem>
+          <listitem>
+            <para>oslockdown-console-5.x.x-rxxxxx</para>
+          </listitem>
+          <listitem>
+            <para>oslockdown-modules-5.x.x-rxxxxx.df.x</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+      <para>Packages for the client:</para>
+      <para>(Where 5.x.x is your OS Lockdown version; rxxxxx is the OS Lockdown revision number; and df.x is the package
+        name distribution field (e.g., e15 = Red Hat Enterprise Linux 5))</para>
+      <para><itemizedlist>
+          <listitem>
+            <para>oslockdown-5.x.x-rxxxxx.df.x</para>
+          </listitem>
+          <listitem>
+            <para>oslockdown-dispatcher-5.x.x-rxxxxx.df.x</para>
+          </listitem>
+          <listitem>
+            <para>oslockdown-modules-5.x.x-rxxxxx.df.x</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+      <para><emphasis role="bold">Solaris:</emphasis>
+      </para>
+      <para>Packages for the OS Lockdown Console:</para>
+      <para>(Where 5.x.x is your OS Lockdown version and rxxxxx is the OS Lockdown revision number)</para>
+      <para><itemizedlist>
+          <listitem>
+            <para>TCSoslockdown-modules 5.x.x-rxxxxx</para>
+          </listitem>
+          <listitem>
+            <para>TCSoslockdown 5.x.x-rxxxxx</para>
+          </listitem>
+          <listitem>
+            <para>TCSoslockdown-console 5.x.x-rxxxxx</para>
+          </listitem>
+          <listitem>
+            <para>TCSoslockdown-dispatcher 5.x.x-rxxxxx</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+      <para>Packages for the client:</para>
+      <para>(Where 5.x.x is your OS Lockdown version and rxxxxx is the OS Lockdown revision number)</para>
+      <para>
+        <itemizedlist>
+          <listitem>
+            <para>TCSoslockdown-modules 5.x.x-rxxxxx</para>
+          </listitem>
+          <listitem>
+            <para>TCSoslockdown 5.x.x-rxxxxx</para>
+          </listitem>
+          <listitem>
+            <para>TCSoslockdown-dispatcher 5.x.x-rxxxxx</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </section>
+    <section>
+      <title>Communications Error</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <indexterm><primary>Installation</primary><secondary>Communications Error</secondary></indexterm>
+      <para>I received a Communications Error during the &ldquo;Register Local Client with Console&rdquo; section of the
+        OS Lockdown installation.</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>If you receive a Communications Error (as shown below), the following may be true:</para>
+      <itemizedlist>
+        <listitem>
+          <para>You are using an incorrect version of Java. OS Lockdown requires Java v1.6 or v1.7.</para>
+          <para>Install an acceptable version of Java and re-run the <filename>SB_Install</filename> script.</para>
+        </listitem>
+        <listitem>
+          <para>The OS Lockdown Console is not running.</para>
+        </listitem>
+        <listitem>
+          <para>A host-based firewall on the OS Lockdown Console is blocking the port.</para>
+        </listitem>
+      </itemizedlist>
+      <screen>.:: REGISTER LOCAL CLIENT WITH CONSOLE  ::.
+************************************************************************
+        
+What Enterprise Console would you like to register this client with?
+Console's host address      [localhost]:
+Console's TCP port          [8443]:
+        
+What should the console know about this client?
+Client's descriptive name [sol10-x86-u9]:
+Client's host address     [sol10-x86-u9]:
+Client's TCP port         [6443]:
+        
+Client's location         :
+Client's contact          :
+        
+:: Attempting to register with https://localhost:8443/oslockdown/services/
+   clientregistration
+        
+***********************************************************
+COMMUNICATIONS ERROR:
+        
+SOAP 1.1 fault: SOAP-ENV:Client[no subcode]
+"Connection refused"
+Detail: connect failed in tcp_connect()</screen>
+    </section>
+  </section>
+  <section>
+    <title>OS Lockdown Console Issues</title>
+    <section>
+      <title>Determining OS Lockdown Console Status</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <indexterm>
+        <primary>OS Lockdown Console</primary>
+        <secondary>Determining Status</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>Status</primary>
+        <secondary>OS Lockdown Console</secondary>
+        <tertiary>Determining</tertiary>
+      </indexterm>
+      <para>I’ve installed the OS Lockdown Console. How can I check to see if it is running?</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>For Linux, type:</para>
+      <screen># <userinput>/sbin/service osl-console status</userinput></screen>
+      <para>For Solaris, type: <screen># <userinput>/usr/bin/svcs osl-console</userinput></screen></para>
+    </section>
+    <section>
+      <title>Permitting Root Login</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <indexterm>
+        <primary>Root Login</primary>
+        <secondary>Permitting</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>OS Lockdown Console</primary>
+        <secondary>Root Login</secondary>
+      </indexterm>
+      <para>How do I permit the root user to log in directly after applying a profile?</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>Many users apply a OS Lockdown profile that includes the &ldquo;Root Console Only Logins&rdquo; module. This
+        module alters the <filename>/etc/securetty</filename> file to a single approved point where the root user can
+        directly log in, by default the OS Lockdown Console device (<filename>/dev/console</filename>, but with the
+          <filename>/dev</filename> prefix removed). Many VM frameworks instead treat <filename>/dev/tty1</filename> as
+        the OS Lockdown Console device. This prevents the root user from logging in directly at a text prompt. Note that
+        this module does <emphasis role="italic">not</emphasis> restrict the root user from logging in via the
+        GUI.</para>
+      <para>To re-enable the root user to log in directly at the text prompt, you may need to manually edit
+          <filename>/etc/securetty</filename> on the affected machines to add any allowed devices where root should be
+        allowed, and then remove the &ldquo;Root Console Only Logins&rdquo; module from your profile. </para>
+      <para>Note the following from the <citetitle>OS Lockdown Modules Guide</citetitle>: &ldquo;When running the
+        operating system in a virtual machine, a common misconception is that a direct login on the virtual console is
+        the same as <filename>/dev/console</filename>. Many virtualization frameworks such as <trademark
+          class="registered">VMware</trademark> configure this as <filename>tty1</filename>. Therefore, this module may
+        prevent direct login to the root account.&rdquo;</para>
+    </section>
+    <section>
+      <title>CVE-2011-013 Security Vulnerability</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <indexterm><primary>Security Vulnerability</primary><secondary>CVE-2011-013</secondary></indexterm>
+      <para>Is the OS Lockdown Console vulnerable to CVE-2011-013<footnote>
+          <para>http://mail-archives.apache.org/mod_mbox/www-announce/201102.mbox/%3C4D4CB07E.9010206@apache.org%3E</para>
+        </footnote>?</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>No. The default installation does not enable the &ldquo;Manager application.&rdquo; You can verify that the
+        &ldquo;Remove the Manager application&rdquo; has been removed by attempting to connect to your OS Lockdown
+        Console as follows:</para>
+      <screen><emphasis role="bold">http://yourconsole:8443/manager/status</emphasis></screen>
+      <para>Error code 404 displays because it is disabled.</para>
+      <para>The latest version of Tomcat (7.0.76) is included in the v&SB_prodvers; release. </para>
+    </section>
+    <section>
+      <title>No Connection to Client</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <indexterm><primary>Clients</primary><secondary>No Connection</secondary></indexterm>
+      <para>Why can’t my OS Lockdown Console connect to a client?</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>This can be caused by one of the following: <orderedlist numeration="arabic">
+          <listitem>
+            <para>Ensure the dispatcher process is running on the client.</para>
+            <para>For Linux, type:</para>
+            <screen># <userinput>/sbin/service osl-dispatcher status</userinput></screen>
+            <para>For Solaris, type:</para>
+            <screen># <userinput>/usr/bin/svcs osl-dispatcher</userinput></screen>
+          </listitem>
+          <listitem>
+            <para>If the process is not running, start it.</para>
+            <para>For Linux, type:</para>
+            <screen># <userinput>/sbin/service osl-dispatcher start</userinput></screen>
+            <para>For Solaris, type:</para>
+            <screen># <userinput>/usr/sbin/svcsadm enable osl-dispatcher</userinput></screen>
+          </listitem>
+          <listitem>
+            <para>Check the <filename>/var/log/oslockdown-dispatcher.log</filename> for any problems. </para>
+          </listitem>
+          <listitem>
+            <para>Ensure no network or host-based firewall rules are blocking the port. The default port is TCP/6443. If
+              you need to change it, edit the <filename>/etc/init.d/osl-dispatcher</filename> script and restart the
+              service.</para>
+          </listitem>
+          <listitem>
+            <para>If this is a new configuration, ensure that the client and OS Lockdown Console system clocks are
+              synchronized. This can result in PKI certificates expiring which will prohibit communications.</para>
+          </listitem>
+        </orderedlist>
+      </para>
+    </section>
+    <section>
+      <title>Viewing Client Log - Out of Memory Exception</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <indexterm><primary>Out of Memory Exception</primary><secondary>Viewing Client Log</secondary></indexterm>
+      <indexterm><primary>Viewing</primary><secondary>Client Application Logs</secondary><tertiary>Out of Memory
+          Exception</tertiary></indexterm>
+      <para>Why does the OS Lockdown Console report an &ldquo;out of memory&rdquo; exception when I try to view a client
+        log?</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>The client log is too big. The OS Lockdown Console was able to retrieve it from the client; however, it is
+        unable to display it on the OS Lockdown Console.</para>
+      <para>Rotate the client log (<filename>/var/lib/oslockdown/logs/oslockdown.log</filename>) and try viewing it from
+        the OS Lockdown Console again.</para>
+      <para>OS Lockdown ships with <filename>/etc/logrotate.d/oslockdown</filename> which can be used with <emphasis
+          role="bold">logrotate(8)</emphasis>.</para>
+      <indexterm><primary>logrotate(8)</primary></indexterm>
+      <para>Refer to <xref linkend="console-audit-log" xrefstyle="select: label quotedtitle"/> in this document for
+        additional information.</para>
+      <note>
+        <para>In OS Lockdown v4.0.3, log rotation is automatic and does not require an external utility such as
+            <emphasis role="bold">logrotate(8)</emphasis>. </para>
+      </note>
+    </section>
+    <section>
+      <title>Comparing Baseline Reports - Out of Memory Exception</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <indexterm><primary>Out of Memory Exception</primary><secondary>Comparing Baseline Reports</secondary></indexterm>
+      <indexterm><primary>Reports</primary><secondary>Baseline Comparison</secondary><tertiary>Out of Memory
+          Exception</tertiary></indexterm>
+      <para>Why does the OS Lockdown Console report an &ldquo;out of memory&rdquo; exception when I try to compare
+        Baseline reports?</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>Increase the memory allocated to the OS Lockdown Console during start up.</para>
+      <para>To increase the memory, edit the following section in the
+          <filename>/usr/share/oslockdown/console/bin/setenv.sh</filename> file:</para>
+      <screen># Set Memory Size startup size
+JAVA_OPTS="$JAVA_OPTS -Xmx512M"
+export JAVA_OPTS</screen>
+      <para>Change <filename>-Xmx512M</filename> to <filename>-Xmx1024M</filename> and restart the OS Lockdown
+        Console.</para>
+      <para>Some users try to compare a Solaris system to Linux or two different Linux distributions. This may result in
+        an &ldquo;out of memory&rdquo; exception when trying to render a PDF report. In some cases, the Apache FOP<footnote>
+          <para>http://xmlgraphics.apache.org/fop/</para>
+        </footnote> component can consume upwards of 4 GB of memory. Therefore, it is recommended to avoid such
+        comparisons or render an HTML or text formatted report.</para>
+     
+    </section>
+    <section>
+      <title>Cannot Reach OS Lockdown Console from a Browser</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <indexterm>
+        <primary>Browsers</primary>
+        <secondary>No Connection to</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>OS Lockdown Console</primary>
+        <secondary>No Connection from Browser</secondary>
+      </indexterm>
+      <para>I’ve installed the OS Lockdown Console and have verified that everything is running, but I can’t reach it
+        from a browser.</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <itemizedlist>
+        <listitem>
+          <para>Do you have any firewalls up that prevent access to the OS Lockdown Console port (TCP/8443) and/or the
+            dispatcher port (TCP/6443)?</para>
+          <para>By default, Linux runs with the host-based firewalls running. You can either shut the firewall(s) down,
+            modify them to allow these ports through, or reconfigure OS Lockdown to specify different port
+            numbers.</para>
+          <para>To access the OS Lockdown Console, default port TCP/8443 must be allowed in on the OS Lockdown Console
+            machine. Each dispatcher also requires default port TCP/6443 through the firewalls.</para>
+        </listitem>
+        <listitem>
+          <para>You can also perform basic network communication tests such as:</para>
+          <para>Can you &ldquo;ping&rdquo; the machine where the OS Lockdown Console is running?</para>
+          <para>Is the OS Lockdown Console’s hostname correctly mapped to the IP address?</para>
+          <para>Can you connect to the OS Lockdown Console’s port?</para>
+          <para>The command <filename>openssl s_client -connect &lt;OS Lockdown Console>:&lt;8443></filename> should try
+            and connect with the OS Lockdown Console (replace <filename>&lt;OS Lockdown Console></filename> with the
+            hostname/IP address, and <filename>&lt;8443></filename> with the correct port number if the default was not
+            used).</para>
+          <note>
+            <para>This command will not function 100% correctly, as the information required to use the certificates is
+              not passed, but it can be used to verify that basic network connectivity exists.</para>
+          </note>
+          <para>Check for any errors in <filename>/var/lib/oslockdown/logs/osl-console.log</filename> or
+              <filename>/var/lib/oslockdown/logs/catalina*.log</filename> files (where <filename>*</filename> represents
+            a time stamp, so it is site and date specific).</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section>
+      <title>Moving OS Lockdown Console Hosts</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>I need to move my OS Lockdown Console from one host to another. How do I do it?</para>
+      <indexterm>
+        <primary>OS Lockdown Console</primary>
+        <secondary>Moving Hosts</secondary>
+      </indexterm>
+      <para>
+        <emphasis role="bold">Solution:</emphasis></para>
+      <orderedlist numeration="arabic">
+        <listitem>
+          <para>Install OS Lockdown just like you did the first time (refer to <xref linkend="install-config"
+              xrefstyle="select: label quotedtitle"/>).</para>
+        </listitem>
+        <listitem>
+          <para>For each remote client (for the Enterprise edition), register that client with the new OS Lockdown
+            Console.</para>
+        </listitem>
+      </orderedlist>
+    </section>
+    <section>
+      <title>New Hostname or Address</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>My OS Lockdown Console has a new hostname or IP address. How will this affect OS Lockdown?</para>
+      <para>
+        <emphasis role="bold">Solution:</emphasis></para>
+      <para>You may have to reconfigure the OS Lockdown Console to reflect this new address.</para>
+      <para>If only the box’s IP address is changing, and you configured OS Lockdown to use hostnames (i.e., the answer
+        to <xref linkend="at-the-by-what" xrefstyle="select: label quotedtitle"/> in <xref linkend="ent-console-install"
+          xrefstyle="select: label quotedtitle"/>), then no action is required. Otherwise you must reconfigure the OS
+        Lockdown Console (refer to <xref linkend="reconfig-console" xrefstyle="select: label quotedtitle"/>). </para>
+    </section>
+    <section xml:id="reconfig-console">
+      <title>Reconfiguring the OS Lockdown Console</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <indexterm>
+        <primary>OS Lockdown Console</primary>
+        <secondary>Reconfiguring</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>Reconfiguring</primary>
+        <secondary>OS Lockdown Console</secondary>
+      </indexterm>
+      <para>How do I reconfigure the OS Lockdown Console?</para>
+      <para>
+        <emphasis role="bold">Solution:</emphasis></para>
+      <orderedlist numeration="arabic">
+        <listitem>
+          <para>Type the following command:</para>
+          <para>
+            <screen># <userinput>/usr/share/oslockdown/tools/SB_Setup -c</userinput></screen>
+          </para>
+        </listitem>
+        <listitem>
+          <para>Accept the current configuration details by pressing <keycap>&lt;Enter&gt;</keycap> when prompted.
+          </para>
+        </listitem>
+      </orderedlist>
+    </section>
+    <section>
+      <title>Manually Starting the OS Lockdown Console</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <indexterm>
+        <primary>OS Lockdown Console</primary>
+        <secondary>Manually Starting</secondary>
+      </indexterm>
+      <para>How do I manually start the OS Lockdown Console?</para>
+      <para>
+        <emphasis role="bold">Solution:</emphasis></para>
+      <para>Refer to <xref linkend="troubleshoot-start-stop" xrefstyle="select: label quotedtitle"/>. </para>
+    </section>
+    <section>
+      <title>Manually Stopping the OS Lockdown Console</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <indexterm>
+        <primary>OS Lockdown Console</primary>
+        <secondary>Manually Stopping</secondary>
+      </indexterm>
+      <para>How do I manually stop the OS Lockdown Console?</para>
+      <para>
+        <emphasis role="bold">Solution:</emphasis></para>
+      <para>Refer to <xref linkend="troubleshoot-start-stop" xrefstyle="select: label quotedtitle"/>. </para>
+    </section>
+    <section>
+      <title>Manually Restarting the OS Lockdown Console</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <indexterm>
+        <primary>OS Lockdown Console</primary>
+        <secondary>Manually Restarting</secondary>
+      </indexterm>
+      <para>How do I manually restart the OS Lockdown Console?</para>
+      <para>
+        <emphasis role="bold">Solution:</emphasis></para>
+      <para>Refer to <xref linkend="troubleshoot-start-stop" xrefstyle="select: label quotedtitle"/>. </para>
+    </section>
+    <section xml:id="troubleshoot-osl-console">
+      <title>OS Lockdown Console Will Not Start</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>The OS Lockdown Console will not start.</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>Perform the following checks:</para>
+      <orderedlist numeration="arabic">
+        <listitem>
+          <para>After running the OS Lockdown installation script (<filename>SB_Install</filename>), run the diagnostics
+            to determine if the console package is installed. Refer to <xref linkend="app-diags"
+              xrefstyle="select: label quotedtitle"/> for diagnostics steps.</para>
+        </listitem>
+        <listitem>
+          <para>Verify that the <filename>osl-console</filename> service is running.</para>
+          <para>For Linux, type:</para>
+          <screen># <userinput>/sbin/service osl-console status</userinput></screen>
+          <para>If the status is disabled, then enable the service. Type:</para>
+          <screen># <userinput>/sbin/service osl-console start</userinput></screen>
+          <para>Verify that the service is supposed to start at boot time. Type:</para>
+          <screen># <userinput>/sbin/chkconfig osl-console --list</userinput></screen>
+          <para>If the status for runlevel 3 and runlevel 5 is not on, type:</para>
+          <screen># <userinput>/sbin/chkconfig osl-console on</userinput></screen>
+          <para>If the service will not start, check the Catalina log for more information in
+              <filename>/var/lib/oslockdown/logs</filename>.</para>
+          <para>For Solaris, type:</para>
+          <screen># <userinput>/usr/bin/svcs osl-console</userinput></screen>
+          <para>If the status is disabled, then enable the service. Type:</para>
+          <screen># <userinput>/usr/bin/svcadm enable osl-console</userinput></screen>
+          <para>If the service will not start, check the Catalina log for more information in
+              <filename>/var/lib/oslockdown/logs</filename>.</para>
+          <para/>
+        </listitem>
+        <listitem>
+          <para>If the service is running, ensure Java is running with OS Lockdown. Type:</para>
+          <screen># <userinput>/bin/ps -U sbwebapp</userinput></screen>
+          <para>There should be one Java process running under the sbwebapp user.</para>
+          <para>If Java is not running, verify that the Java version is v1.6 or v1.7. Type:</para>
+          <screen># <userinput>/bin/su - sbwebapp</userinput>
+# <userinput>$ ${JAVA_HOME}/bin/java -version</userinput></screen>
+          <para/>
+        </listitem>
+        <listitem>
+          <para>Check for a certificate issue. When you start your browser and attempt to reach the OS Lockdown Console,
+            you might see the following message (in Firefox):</para>
+          <note>
+            <para>In Internet Explorer, the message states &ldquo;There is a problem with this website’s security
+              certificate.&rdquo;</para>
+          </note>
+          <figure xml:id="secure-connection-failed">
+            <title>Secure Connection Failed</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="Figures/secure_connection_failed.png"/>
+              </imageobject>
+            </mediaobject>
+          </figure>
+          <para>Add the exception by clicking the <emphasis role="bold">Or you can add an exception...</emphasis>
+            link.</para>
+          <para>If you still cannot access the OS Lockdown Console after adding the certificate exception, check to see
+            if TLSv1 is enabled in your browser.</para>
+          <para>If TLSv1 is enabled, determine whether the certificates are installed and correct. The certificates
+            reside in <filename>/var/lib/oslockdown/files/certs</filename>. </para>
+          <para/>
+        </listitem>
+        <listitem>
+          <para>Verify the OS Lockdown Console port.</para>
+          <para>Determine whether you are using the port identified during configuration. Type:</para>
+          <screen># <userinput>/bin/netstat –an | grep &lt;port></userinput></screen>
+          <para>Check the Catalina log for more information in <filename>/var/lib/oslockdown/logs</filename>.</para>
+          <para>Determine whether the selected port is causing a port conflict by using <filename>lsof</filename> to
+            troubleshoot (refer to the <emphasis role="bold">lsof(8)</emphasis> man page).</para>
+          <indexterm><primary>lsof(8)</primary></indexterm>
+          <para>If the port is causing conflict, run the <filename>SB_Setup</filename> script and change the port when
+            prompted.</para>
+          <para/>
+        </listitem>
+        <listitem>
+          <para>Verify whether the URL is correct.</para>
+          <para>Is the URL a host-based name? If so, is it resolvable?</para>
+          <para/>
+        </listitem>
+        <listitem>
+          <para>Is the firewall enabled and blocking the OS Lockdown Console?</para>
+          <para>Is it a host-based firewall? If so, turn it off, or add an appropriate rule for the OS Lockdown Console
+            to run (refer to the <emphasis role="bold">iptables(8)</emphasis> man page in Linux or <emphasis role="bold"
+              >ipf (1M)</emphasis> in Solaris).</para>
+          <indexterm><primary>iptables(8)</primary></indexterm>
+          <para>Is your firewall network-based? Contact your Network Administrator for assistance.</para>
+        </listitem>
+      </orderedlist>
+    </section>
+    <section xml:id="zseries-extended-high-cpu">
+      <title>zSeries - Extended High CPU </title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>OS Lockdown Console shows extended high CPU utilization even when &ldquo;idle&rdquo; (no
+        Scan/Apply/Undo/Baseline active).</para>
+      <para>There is a known issue with certain versions of the IBM supplied Java Runtime Engine (JRE) that can cause
+        high CPU utilization for an extended length of time. Refer to <link
+          xlink:href="http://www-01.ibm.com/support/docview.wss?uid=isg1IZ73533"/> for more information from IBM. The
+        specific issue was first reported on AIX, but has been observed in other platforms as well.</para>
+      <para>
+        <emphasis role="bold">Solution:</emphasis></para>
+      <para>A possible fix is to edit <filename>/usr/share/oslockdown/console/bin/setenv.sh</filename> and add the
+        following text near the bottom of the file:</para>
+      <screen><command>JAVA_OPTS="$JAVA_OPTS -Dcom.ibm.tools.attach.enable=no"</command>
+<command>export JAVA_OPTS</command></screen>
+    </section>
+    <section xml:id="zseries-java-traceback">
+      <title>zSeries - Java Traceback </title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>You may receive a Java traceback from the OS Lockdown Console regarding &ldquo;JVMVRFY012 stack shape
+        inconsistent&rdquo;. This is due to an issue in the current (as of April 4, 2012) shipped IBM JRE packages
+        (JRE/JDK 1.6 SR10 and earlier). IBM has identified the problem and the issue should be fixed in the next JRE
+        release (SR11) from IBM.</para>
+      <para>
+        <emphasis role="bold">Solution:</emphasis></para>
+      <para>IBM is developing an iFix for the affected JREs. Contact your IBM vendor and request information on PMR
+        66499,001,866.</para>
+    </section>
+  </section>
+  <section>
+    <title>Certificate Issues</title>
+    <section>
+      <title>Bad Certificate Error</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <indexterm>
+        <primary>Certificates</primary>
+        <secondary>Bad Certificate Error</secondary>
+      </indexterm>
+      <para>I receive the &ldquo;javax.net.ssl.SSLHandshakeException: bad certificate&rdquo; error when I try to connect
+        to my client. What’s the problem?</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>The issue could be caused by the following:</para>
+      <para><itemizedlist>
+          <listitem>
+            <para>If the system clocks on the client and OS Lockdown Console are out of sync, the certificates may be
+              considered out of date. Change the clock on the client to match the clock on the OS Lockdown Console.
+            </para>
+          </listitem>
+          <listitem>
+            <para>If the client manually copied the certificate from the OS Lockdown Console (as opposed to using the
+                <filename>RegisterClient</filename> script), then the certificates might be in the wrong
+              directory.</para>
+            <para>Verify that the certificates are present in the <filename>/var/lib/oslockdown/files/certs</filename>
+              directory on the client. If not, then re-run the <filename>RegisterClient</filename> script.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </section>
+    <section xml:id="regen-certs">
+      <title>Regenerating Certificates</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <indexterm>
+        <primary>Certificates</primary>
+        <secondary>Regenerating</secondary>
+      </indexterm>
+      <para>How do I regenerate certificates?</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>The certificates must be manually regenerated, and then the clients must request the new
+        certificates.</para>
+      <para><orderedlist>
+          <listitem>
+            <para>On the OS Lockdown Console, generate new certificates. Type:
+              <screen># <userinput>/usr/share/oslockdown/tools/cert_gen.sh</userinput></screen></para>
+            <para>The certificate files are created in the <filename>/var/lib/oslockdown/files/certs</filename>
+              directory.</para>
+          </listitem>
+          <listitem>
+            <para>On the OS Lockdown Console, copy the new passphrases in the OS Lockdown Console startup files.
+              Type:<screen># <userinput>/usr/share/oslockdown/tools/SB_Setup -c</userinput></screen>
+            </para>
+          </listitem>
+          <listitem>
+            <para>For <emphasis role="italic">each</emphasis> remote client, generate a new registration request and
+              request the latest certificates.
+              Type:<screen># <userinput>/usr/share/oslockdown/tools/RegisterClient -c</userinput></screen></para>
+          </listitem>
+          <listitem>
+            <para>Delete these new requests from the <emphasis role="bold">Auto-Registration Request</emphasis> page on
+              the OS Lockdown Console. </para>
+          </listitem>
+          <listitem>
+            <para>Restart the dispatcher on each client to retrieve the latest certificates. Type:
+              <screen># <userinput>/sbin/service osl-dispatcher restart</userinput></screen>
+            </para>
+          </listitem>
+        </orderedlist>
+      </para>
+    </section>
+  </section>
+  <section>
+    <title>Client Issues</title>
+    <section>
+      <title>Non-Responsive Client</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>OS Lockdown is up, but I can’t seem to do anything with a client.</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>If you are running OS Lockdown Enterprise edition: <itemizedlist>
+          <listitem>
+            <para>Do you have a group created?</para>
+          </listitem>
+          <listitem>
+            <para>Does the group have assigned Security and Baseline profiles?</para>
+          </listitem>
+          <listitem>
+            <para>Is the client a member of that group?</para>
+          </listitem>
+          <listitem>
+            <para>From the <emphasis role="bold">Client Details</emphasis> page (<xref linkend="client-details-page"
+                xrefstyle="select: label"/>), can you retrieve information on that client by clicking the <emphasis
+                role="bold">Refresh Details</emphasis> and <emphasis role="bold">Refresh Dispatcher Status</emphasis>
+              buttons?</para>
+            <para>If you are running the OS Lockdown Standalone edition, try to retrieve client information on the
+                <emphasis role="bold">Dashboard</emphasis> (or <emphasis role="bold">Home</emphasis> page) (<xref
+                linkend="dashboard-standalone" xrefstyle="select: label"/>).</para>
+            <para>If you receive errors when trying to talk with the client, verify that the dispatcher is running on
+              that client (or the OS Lockdown Console machine if you are running the Standalone edition).</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </section>
+  </section>
+  <section>
+    <title>Java Issues</title>
+    <section>
+      <title>Java on Client Machines</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>Do I need Java on client machines?</para>
+      <indexterm><primary>Java Runtime Environment (JRE)</primary></indexterm>
+      <indexterm><primary>Java Development Kit (JDK)</primary></indexterm>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>No. Java Runtime Environment (JRE) 1.6 or 1.7 is only required on the machine you have designated as the OS
+        Lockdown Console.</para>
+      <note>
+        <para>For v4.0.2 OS Lockdown Consoles and earlier, a Java Development Kit (JDK) 1.6.x is required. </para>
+      </note>
+    </section>
+    <section>
+      <title>Java Home Default</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <indexterm><primary>JAVA_HOME</primary><secondary>Default Value</secondary></indexterm>
+      <indexterm>
+        <primary>Java Runtime Environment (JRE)</primary>
+      </indexterm>
+      <indexterm>
+        <primary>Java Development Kit (JDK)</primary>
+      </indexterm>
+      <para>When creating the certificates during installation, I am prompted for the <filename>JAVA_HOME</filename>
+        location, but the default value is not provided.</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>The installer attempts to locate an acceptable version of Java 1.6 or 1.7 (either the Java Runtime
+        Environment (JRE) or the Java Development Kit (JDK)) and provides this as part of the prompt. If no such version
+        can be found, then the prompt is blank. <emphasis role="italic">It is your responsibility to provide an
+          acceptable version of Java (1.6 or 1.7).</emphasis></para>
+      <para>Note the following: <itemizedlist>
+          <listitem>
+            <para>The Oracle-provided Java packages work for all supported platforms, and is currently the required
+              version for Solaris and several Linux versions.</para>
+          </listitem>
+          <listitem>
+            <para>For the Red Hat Enterprise Linux 5, Red Hat Enterprise Linux 6, and Fedora families, the openJDK
+              runtime is sufficient.</para>
+          </listitem>
+          <listitem>
+            <para>Oracle Java is required for Red Hat Enterprise Linux 4, Novell SUSE10 and openSUSE11.</para>
+          </listitem>
+          <listitem>
+            <para>The IBM Java JRE is required for IBM System z installations.</para>
+          </listitem>
+          <listitem>
+            <para>It is possible to install multiple versions of Java on a single system simultaneously, but only one
+              such version can be installed using the official system packager (RPM or PKG).</para>
+          </listitem>
+          <listitem>
+            <para>The <filename>JAVA_HOME</filename> variable is <emphasis role="italic">not</emphasis> where the Java
+              and keytool executables reside. They are located up two levels (<filename>${JAVA_HOME}/bin/java</filename>
+              and <filename>${JAVA_HOME}/bin/keytool</filename> respectively). This location is required for both the
+              certificate creation as well as the OS Lockdown Console configuration steps.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </section>
+  </section>
+  <section>
+    <title>Command Line Issues</title>
+    <section>
+      <title>Viewing Reports from the Command Line</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>How do I view my reports from the command line?</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>All reports are stored as XML documents on each client in
+          <filename>/var/lib/oslockdown/reports/standalone</filename>. When the OS Lockdown Console retrieves them, an
+        appropriate XSL is used to generate other formats such as XHTML, CSV, text, and PDF (FO > PDF).</para>
+      <indexterm><primary>oslockdown(8)</primary></indexterm>
+      <para>As of v4.0.2, the <emphasis role="bold">oslockdown(8)</emphasis> command line utility includes the -x option
+        to transform reports into text formatted reports. If you choose to generate other formats, you can use the
+        stylesheets provided in <filename>/usr/share/oslockdown/cfg/stylesheets</filename> or create your own using the
+        schemas installed in <filename>/usr/share/oslockdown/cfg/schema</filename>.</para>
+      <note>
+        <para>Linux systems must have the <filename>libxslt-python</filename> package installed.</para>
+        <para>Solaris systems must have the <filename>SUNWlxsl-python</filename> package installed.</para>
+      </note>
+    </section>
+  </section>
+  <section>
+    <title>Module Issues</title>
+    <section>
+      <title>Preventing Removal of SUID and SGID Bits</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>How do I prevent SUID and SGID bits from being removed from an authorized file?</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>The &ldquo;Secure SUID/SGID Executables&rdquo; module performs this action. You can authorize additional
+        files by editing the whitelist on the client machine. Refer to <xref linkend="app-suid"
+          xrefstyle="select: label quotedtitle"/> for more information about limiting OS Lockdown’s behavior.</para>
+      <note>
+        <para>Wildcards are not supported.</para>
+      </note>
+    </section>
+    <section>
+      <title>Failed Modules after Reboot</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>After an Apply, why do some OS Lockdown modules fail a Scan after I reboot the system?</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>The &ldquo;System Log File Permissions&rdquo; module restricts the permissions on log files; however, when
+        the system is rebooted, some log files are reset. In particular, <filename>/var/log/wtmp</filename> (accounting
+        login records) is reset when the system is rebooted.</para>
+      <para>Those systems running a graphical desktop may see <filename>/var/log/Xorg*</filename> files being reset as a
+        result of the window manager creating new sessions. In both situations, a subsequent Scan will report a failure
+        and a subsequent Apply will correct the permissions. These issues are documented in the <citetitle>OS Lockdown
+          Modules Guide</citetitle>. </para>
+      <note>
+        <para>OS Lockdown does not monitor file status in real-time; therefore, if changes are made to a file after OS
+          Lockdown performs an Apply, then OS Lockdown will not notice those changes until a later Scan or Apply
+          action.</para>
+      </note>
+    </section>
+    <section>
+      <title>Determining Why Modules Failed</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>How do I determine why a OS Lockdown module failed?</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>When OS Lockdown performs a Scan, each module typically reports a pass, fail, or a not applicable. Many
+        module names are intuitive so it is easy to determine why they failed, while others are not.</para>
+      <para>Refer to the following tips:</para>
+      <itemizedlist>
+        <listitem>
+          <para>Refer to the <citetitle>OS Lockdown Modules Guide</citetitle> (accessible from the OS Lockdown Console
+            and as a PDF included with the product). Most modules indicate exactly which configuration file it is
+            examining/modifying, the parameter, and the associated setting. To view module information, edit your
+            profile, then click on the module name, and then click the [more] link.</para>
+        </listitem>
+        <listitem>
+          <para>Examine the client’s application log via the Client Application Log page (<xref linkend="sb-log-page"
+              xrefstyle="select: label"/>). You can filter the log by module name. You can also examine the client’s log
+              (<filename>/var/lib/oslockdown/logs/oslockdown.log</filename>) via command line.</para>
+          <para>As of OS Lockdown v4.0.3, an enhanced Assessment report and two new reports (Apply and Undo) are
+            included. The enhanced reports include &ldquo;Module Messages&rdquo; detailing why the module failed, what
+            file was edited, or what service and package it was expecting. This consolidates critical information
+            streamlining the work flow. The client application log (<filename>oslockdown.log</filename>) provides
+            additional details. </para>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section xml:id="unlocking-the-screensaver">
+      <title>Unlocking the Screensaver</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>Why won’t my screensaver unlock? </para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>This is a known problem with many versions of Linux - not specifically a problem with OS Lockdown. The
+        remediation required for the &ldquo;Lock accounts after 3 failed login attempts&rdquo; module requires the
+        &ldquo;pam_tally.so&rdquo; PAM module to be used, but the Gnome screensaver is not able to correctly execute
+        this module due to a permissions issue. A manual workaround is provided below, but if you are running a Red Hat
+        Enterprise Linux 5 system, you may be able to download a patch from Red Hat<footnote>
+          <para>http://rhn.redhat.com/errata/RHSA-2010-0819.html</para>
+        </footnote>.</para>
+      <para>Account Locks and Mandatory Screen Saver: A problem has been identified with the &ldquo;Lock accounts after
+        3 failed login attempts&rdquo; module on some Linux platforms. The changes implemented by this module do not
+        correctly lock accounts after the failure count has been exceeded. DISA was contacted (TMS Action Request
+        CSD-AR001850790) to request clarification on how to fix this module to pass the GEN000460 requirement. While
+        this module does not perform correctly, it does not cause additional harmful effects, except when combined with
+        the &ldquo;Mandatory screen saver&rdquo; module. When both modules are active, regular users are unable to
+        authenticate to any screen saver preventing the screen saver to unlock.</para>
+      <para>To fix this problem, perform the following: <warning>
+          <para>Performing these steps will remove password failure counting from the screensaver. </para>
+        </warning>
+        <orderedlist>
+          <listitem>
+            <para>Type the following commands:</para>
+            <screen># <userinput>cd /etc/pam.d</userinput>
+# <userinput>cp -p system-auth system-auth-notally</userinput></screen>
+          </listitem>
+          <listitem>
+            <para>Edit <filename>system-auth-notally</filename> with your favorite editor and make sure all lines
+              containing <filename>pam_tally.so</filename> are commented out.</para>
+          </listitem>
+          <listitem>
+            <para>Edit the <filename>gnome-screensaver</filename> file and change all references of
+                <filename>system-auth</filename> to <filename>system-auth-notally</filename>. </para>
+          </listitem>
+        </orderedlist>
+      </para>
+    </section>
+    <section>
+      <title>Non-effective Applied Profile</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>I’ve applied (or undone) a profile, but not all of the changes are effective.</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>Try rebooting, especially for Linux. Many of the services that are disabled on Linux are not actually
+        stopped if they were running, nor are services automatically restarted after undoing a profile. </para>
+    </section>
+  </section>
+  <section>
+    <title>Database Issues</title>
+    <section>
+      <title>Removing the OS Lockdown Console Database</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>How do I remove the OS Lockdown Console database?</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>Type the following commands:</para>
+      <screen># <userinput>/sbin/service osl-console stop</userinput>
+# <userinput>cd /var/lib/oslockdown/console/db</userinput>
+# <userinput>/bin/rm -rf *</userinput>
+# <userinput>/sbin/service osl-console start</userinput></screen>
+    </section>
+  </section>
+  <section>
+    <title>Compliancy Issues</title>
+    <section>
+      <title>DISA SRR Script Report Failure</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>After using OS Lockdown, why does the DISA SRR script report a failure on PDI GEN002680?</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>During regression testing, DISA was contacted (TMS Action Request CSD-AR001410371) regarding the false
+        positive their SRR script was producing. After executing the SRR script, this PDI is reported as a failure
+        because the SRR script only looks for the existence of the <filename>/var/log/audit.d</filename> directory and
+        then examines the permissions of files within said directory. However, if the directory does not exist, the PDI
+        is immediately reported as a failure. The SRR script does <emphasis role="italic">not</emphasis> check
+          <filename>/var/log/audit/audit.log</filename> as the checklist states. </para>
+    </section>
+  </section>
+  <section>
+    <title>General Issues</title>
+    <section>
+      <title>Using OS Lockdown</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>How do I use OS Lockdown?</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>Refer to the <citetitle>OS Lockdown Administration Guide</citetitle>. </para>
+    </section>
+    <section>
+      <title>Reconfiguring the Dispatcher</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>How do I reconfigure the dispatcher?</para>
+      <indexterm><primary>Reconfiguring</primary><secondary>Dispatcher</secondary></indexterm>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <orderedlist>
+        <listitem>
+          <para>Type the following command:</para>
+          <screen># <userinput>/usr/share/oslockdown/tools/SB_Setup -d</userinput></screen>
+        </listitem>
+        <listitem>
+          <para>Accept the current configuration details by pressing <keycap>&lt;Enter&gt;</keycap> when prompted.
+          </para>
+        </listitem>
+      </orderedlist>
+    </section>
+    <section>
+      <title>Diagnostic Check</title>
+      <para><emphasis role="bold">Issue:</emphasis></para>
+      <para>How do I perform a quick diagnostic check?</para>
+      <para><emphasis role="bold">Solution:</emphasis></para>
+      <para>Type the following command:</para>
+      <screen># <userinput>/usr/sbin/oslockdown -D</userinput></screen>
+      <para>See also <xref linkend="app-diags" xrefstyle="select: label quotedtitle"/>.</para>
+    </section>
+    <section xml:id="troubleshoot-start-stop">
+      <title>Starting and Stopping OS Lockdown Services</title>
+      <para>The <filename>service</filename> command is responsible for starting and stopping the OS Lockdown Console
+        and dispatcher services.</para>
+      <indexterm>
+        <primary>Service Commands</primary>
+        <secondary>OS Lockdown Console</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>Service Commands</primary>
+        <secondary>Dispatcher</secondary>
+      </indexterm>
+      <para>Refer to the following table for OS Lockdown Console service commands:</para>
+      <informaltable>
+        <tgroup cols="3">
+          <colspec colwidth="0.28*"/>
+          <colspec align="left" colwidth="0.35*"/>
+          <colspec colwidth="0.38*"/>
+          <thead>
+            <row>
+              <entry>OS Lockdown Console Action</entry>
+              <entry>Linux Command</entry>
+              <entry>Solaris Command</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>Start the OS Lockdown Console</entry>
+              <entry>
+                <filename>/sbin/service osl-console start</filename>
+              </entry>
+              <entry>
+                <filename>/usr/sbin/svcadm enable osl-console</filename>
+              </entry>
+            </row>
+            <row>
+              <entry>Stop the OS Lockdown Console</entry>
+              <entry>
+                <filename>/sbin/service osl-console stop</filename>
+              </entry>
+              <entry>
+                <filename>/usr/sbin/svcadm disable osl-console</filename>
+              </entry>
+            </row>
+            <row>
+              <entry>Restart the OS Lockdown Console</entry>
+              <entry>
+                <filename>/sbin/service osl-console restart</filename>
+              </entry>
+              <entry><filename>/usr/sbin/svcadm restart osl-console</filename></entry>
+            </row>
+            <row>
+              <entry>Get Status of the OS Lockdown Console</entry>
+              <entry>
+                <filename>/sbin/service osl-console status</filename>
+              </entry>
+              <entry><filename>/usr/bin/svcs osl-console</filename></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+      <para>Refer to the following table for dispatcher service commands:</para>
+      <informaltable>
+        <tgroup cols="3">
+          <colspec colwidth="0.28*"/>
+          <colspec align="left" colwidth="0.35*"/>
+          <colspec colwidth="0.38*"/>
+          <thead>
+            <row>
+              <entry>Dispatcher Action</entry>
+              <entry>Linux Command</entry>
+              <entry>Solaris Command</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>Start the Dispatcher</entry>
+              <entry>
+                <filename>/sbin/service osl-dispatcher start</filename>
+              </entry>
+              <entry>
+                <filename>/usr/sbin/svcadm enable osl-dispatcher</filename>
+              </entry>
+            </row>
+            <row>
+              <entry>Stop the Dispatcher</entry>
+              <entry>
+                <filename>/sbin/service osl-dispatcher stop</filename>
+              </entry>
+              <entry>
+                <filename>/usr/sbin/svcadm disable osl-dispatcher</filename>
+              </entry>
+            </row>
+            <row>
+              <entry>Restart the Dispatcher</entry>
+              <entry>
+                <filename>/sbin/service osl-dispatcher restart</filename>
+              </entry>
+              <entry><filename>/usr/sbin/svcadm restart osl-dispatcher</filename></entry>
+            </row>
+            <row>
+              <entry>Get Status of the Dispatcher</entry>
+              <entry>
+                <filename>/sbin/service osl-dispatcher status</filename>
+              </entry>
+              <entry><filename>/usr/bin/svcs osl-dispatcher</filename></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+    </section>
+  </section>
+  <section>
+    <title>SELinux</title>
+    <section>
+      <title>Detecting/Resolving Problems with SELinux and OS Lockdown</title>
+      <para>OS Lockdown SELinux is written to work with the stock &ldquo;targeted&rdquo; policy shipped with each
+        supported Linux version. If this policy is modified, or additional application policy files are applied, OS
+        Lockdown may not have the permissions it requires. Even with the stock policy, it is possible OS Lockdown may
+        not have a permission it requires to operate in the specific environment it is operating within.</para>
+      <para>If OS Lockdown attempts an action that SELinux denies, an entry is made in the log files
+          (<filename>/var/log/messages</filename> or <filename>/var/log/audit/audit.log</filename> depending on the
+        operating system and configuration). This is called an AVC denial – a message detailing what process attempted
+        the action, what object was acted on, the Security Contexts of both, and the attempted action.</para>
+      <para>Use the following two commands to help determine the problem and suggest a fix. The
+          <filename>audit2allow</filename> command processes the AVC denial messages and suggests a fix. The
+          <filename>audit2why</filename> command explains why a particular action failed. In earlier versions of
+        SELinux, these were separate commands. In more recent versions, the functionality of
+          <filename>audit2why</filename> has been added to <filename>audit2allow</filename>.</para>
+      <para>The <filename>audit2allow</filename> command can also be used to generate a file containing the additional
+        policy rules that can be compiled and added to the current policy. Refer to your operating system documentation
+        for the exact arguments and examples of using <filename>audit2allow</filename> and/or
+          <filename>audit2why</filename> to resolve SELinux issues.</para>
+      <note>
+        <para>Additional software packages from your vendor may be required to compile and install any such policy
+          changes.</para>
+      </note>
+      <para>OS Lockdown defines the following four SELinux domains that can be seen in the AVC messages:</para>
+      <para><literallayout><emphasis role="bold">oslockdown_cfg_t</emphasis> – responsible for configuring OS Lockdown. 
+<emphasis role="bold">oslockdown_console_t</emphasis> – responsible for the OS Lockdown Console. 
+<emphasis role="bold">oslockdown_dispatcher_t</emphasis> – responsible for the dispatcher process. 
+<emphasis role="bold">oslockdown_t</emphasis> – responsible for all Scan/Apply/Undo/Baseline operations.</literallayout></para>
+    </section>
+  </section>
+</appendix>

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: AuditRulesSolaris.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="AuditRulesSolaris" version="5.0">
+  <title xml:id="Auditing">Audit Rules (Solaris)</title>
+  <para>
+  Configures the audit subsystem to record relevant security events such
+  as administrative actions, file access, file deletions, login, logout,
+  session initiations, and access control changes.
+  <footnote xml:id="mcdougall"><para>
+    McDougall, Richard and Jim Mauro. <emphasis role="underline">Solaris
+    Internals: Solaris 10 and OpenSolaris Kernel
+    Architecture</emphasis>. Santa Clara, CA: Sun Microsystems Press,
+    2007.
+   </para></footnote>
+ </para>
+  <para>
+  The audit rules configuration must be finely tuned to balance the
+  number of recorded events against system performance needs. An
+  overload of event records can occur and substantially reduce system
+  performance. This rules set will not be initialized until the audit
+  subsystem is restarted, so it is safe to apply the change and review
+  the rules manually.
+  <indexterm><primary>audit.rules</primary></indexterm>
+ </para>
+  <para>
+  Using the
+  “<xref xrefstyle="select: title" linkend="AuditLogRotation"/>”
+  module with this module is strongly recommended.
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2">
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.5*" align="left"/>
+      <colspec colname="c2" colwidth="0.6*"/>
+      <colspec colname="c3" colwidth="0.5*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Settings</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Solaris 10</entry>
+          <entry>
+            <filename>/etc/security/audit_control</filename>
+            <indexterm>
+              <primary>audit_control</primary>
+            </indexterm>
+          </entry>
+          <entry>Industry-standard profiles provide auditing rules.
+      <indexterm><primary>.profile</primary></indexterm></entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <simplesect xml:id="AuditRulesSolaris-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Kernel auditing rules.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="AuditRulesSolaris-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-11 - Account Monitoring and Control</para>
+      </listitem>
+      <listitem>
+        <para>CC-6 - Maintenance, Monitoring, and Analysis of Audit Logs</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>CIA DCID 6/3 (May 2000)</title>
+      <listitem>
+        <para>4.B.1.b(2)(a) - Auditing - Date and time entity performed system action</para>
+      </listitem>
+      <listitem>
+        <para>4.B.1.b(2)(d)(1) - Auditing - Record Successful and unsuccessful logons and logoffs</para>
+      </listitem>
+      <listitem>
+        <para>4.B.1.b(2)(d)(2) - Auditing - Record accesses to security-relevant objects</para>
+      </listitem>
+      <listitem>
+        <para>4.B.1.b(2)(d)(3) - Auditing - Record activities at the system console</para>
+      </listitem>
+      <listitem>
+        <para>4.B.2.a(4)(d)(1) - Auditing - Record Successful and unsuccessful logons and logoffs (PL2)</para>
+      </listitem>
+      <listitem>
+        <para>4.B.2.a(4)(d)(2) - Auditing - Record accesses to security-relevant objects (PL2)</para>
+      </listitem>
+      <listitem>
+        <para>4.B.2.a(4)(d)(3) - Auditing - Record activities at the system console (PL2)</para>
+      </listitem>
+      <listitem>
+        <para>4.B.3.a(7) - Auditing - Record changes to the mechanism's list of user formal access permissions (PL3)</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>5 - Audit Trail</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN002720 - Audit Failed File and Program Access Attempts</para>
+      </listitem>
+      <listitem>
+        <para>GEN002740 - Audit File and Program Deletion</para>
+      </listitem>
+      <listitem>
+        <para>GEN002760 - Audit Administrative, Privileged, and Security Actions</para>
+      </listitem>
+      <listitem>
+        <para>GEN002800 - Audit Login, Logout, and Session Initiation</para>
+      </listitem>
+      <listitem>
+        <para>GEN002820 - Audit Discretionary Access Control Permission Modifications</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD JAFAN 6/3 (Oct 2004)</title>
+      <listitem>
+        <para>4.B.1.b(2)(a) - Auditing - Date and time entity performed system action</para>
+      </listitem>
+      <listitem>
+        <para>4.B.1.b(2)(d)(1) - Auditing - Record Successful and unsuccessful logons and logoffs</para>
+      </listitem>
+      <listitem>
+        <para>4.B.1.b(2)(d)(2) - Auditing - Record accesses to security-relevant objects</para>
+      </listitem>
+      <listitem>
+        <para>4.B.1.b(2)(d)(3) - Auditing - Record activities at the system console</para>
+      </listitem>
+      <listitem>
+        <para>4.B.2.a(4)(a) - Auditing - Date and time entity performed system action (PL2)</para>
+      </listitem>
+      <listitem>
+        <para>4.B.2.a(4)(d)(1) - Auditing - Record Successful and unsuccessful logons and logoffs (PL2)</para>
+      </listitem>
+      <listitem>
+        <para>4.B.2.a(4)(d)(2) - Auditing - Record accesses to security-relevant objects (PL2)</para>
+      </listitem>
+      <listitem>
+        <para>4.B.2.a(4)(d)(3) - Auditing - Record activities at the system console (PL2)</para>
+      </listitem>
+      <listitem>
+        <para>4.B.3.a(7) - Auditing - Record changes to the mechanism's list of user formal access permissions (PL3)</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD NISPOM (Feb 2006)</title>
+      <listitem>
+        <para>8.303a - Unique Identification</para>
+      </listitem>
+      <listitem>
+        <para>8.602a1 - Automated Audit Trail Creation</para>
+      </listitem>
+      <listitem>
+        <para>8.602d1 - Audit 4 Requirements</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+      <listitem>
+        <para>CIP-007-3-R5.1.2 - Generate logs of sufficient detail to create historical audit trails of individual user account access</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>AU-10 - Non-repudiation</para>
+      </listitem>
+      <listitem>
+        <para>AU-2 - Auditable Events</para>
+      </listitem>
+      <listitem>
+        <para>AU-3 - Content of Audit Records</para>
+      </listitem>
+      <listitem>
+        <para>AU-8 - Time Stamps</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-4075-8 - Kernel level auditing for administrative actions should be enabled or disabled as appropriate</para>
+      </listitem>
+      <listitem>
+        <para>CCE-4600-3 - Kernel level auditing for file attribute modification should be enabled or disabled as appropriate</para>
+      </listitem>
+      <listitem>
+        <para>CCE-4610-2 - Kernel level auditing for root login/logout should be enabled or disabled as appropriate</para>
+      </listitem>
+      <listitem>
+        <para>CCE-4679-7 - Kernel level auditing for login/logout should be enabled or disabled as appropriate</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>10.1 - Link all access to system components to each individual user</para>
+      </listitem>
+      <listitem>
+        <para>10.2.2 - Audit Events: All actions taken by any individual with root or administrative privileges</para>
+      </listitem>
+      <listitem>
+        <para>10.2.3 - Audit Events: Access to all audit trails</para>
+      </listitem>
+      <listitem>
+        <para>10.2.7 - Audit Events: Creation and deletion of system-level objects.</para>
+      </listitem>
+      <listitem>
+        <para>10.3.1 - Audit Events: User identification</para>
+      </listitem>
+      <listitem>
+        <para>10.3.2 - Audit Events: Type of event</para>
+      </listitem>
+      <listitem>
+        <para>10.3.3 - Audit Events: Date and time</para>
+      </listitem>
+      <listitem>
+        <para>10.3.4 - Audit Events: Success or failure indication</para>
+      </listitem>
+      <listitem>
+        <para>10.3.5 - Audit Events: Origination of event</para>
+      </listitem>
+      <listitem>
+        <para>10.3.6 - Audit Events: Identity or name of affected data, system component</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

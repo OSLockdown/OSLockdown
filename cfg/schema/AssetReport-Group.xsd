@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ***************************************************************************** -->
+<!-- Copyright (c) 2007-2014 Forcepoint LLC.                                       -->
+<!-- This file is released under the GPLv3 license.                                -->
+<!-- See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license, -->
+<!-- or visit https://www.gnu.org/licenses/gpl.html instead.                       -->
+<!--                                                                          	   -->
+<!--   OS Lockdown - Group Asset Report                                  	   -->
+<!-- ***************************************************************************** -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation>OS Lockdown - Group Asset Report Schema</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AssetReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="description" minOccurs="0" type="xs:string" maxOccurs="1"/>
+        <xs:element name="client" minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="hostAddress" type="xs:string" use="required"/>
+            <xs:attribute name="clientVersion" type="xs:string" use="required"/>
+            <xs:attribute name="distribution" type="xs:string" use="required"/>
+            <xs:attribute name="kernel" type="xs:string" use="required"/>
+            <xs:attribute name="uptime" type="xs:string" use="required"/>
+            <xs:attribute name="architecture" type="xs:string" use="required"/>
+            <xs:attribute name="loadAverage" type="xs:string" use="required"/>
+            <xs:attribute name="memory" type="xs:string" use="required"/>
+            <xs:attribute name="location" type="xs:string" use="required"/>
+            <xs:attribute name="contact" type="xs:string" use="required"/>
+            <xs:attribute name="port" type="xs:integer" use="required"/>
+            <xs:attribute name="errorMsg" type="xs:string" use="optional"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="created" type="xs:string" use="required"/>
+      <xs:attribute name="sbVersion" type="xs:string" use="required"/>
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="profile" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: ChangeSNMPStrings.xml 24061 2017-04-04 14:59:36Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="ChangeSNMPStrings" version="5.0">
+ <title xml:id="SysMgmtServices">Disable SNMP if Default Public String Exists</title>
+ <para>
+  Disables the SNMP agent if the default community 'public' has not been
+  changed.
+  <indexterm>
+   <primary>SNMP</primary>
+  </indexterm>
+ </para>
+ <para>
+  If you must use SNMP to monitor your system, ensure that the default
+  public and private community strings are changed in
+  <filename>snmpd.conf(5)</filename> .
+  <indexterm>
+   <primary>snmpd</primary>
+  </indexterm>
+ </para>
+ <para>
+  See <xref linkend="DisableSNMP" xrefstyle="select: title page"/> for a
+  list of the specific services being disabled.
+ </para>
+ <note>
+  <title>Note: Manual action may be required</title>
+  <para>
+   This module only disables the agent. It does not remove the default
+   community strings from the configuration file. Therefore, other
+   scanners such as DISA’s SRR may report it as a problem. You must
+   manually edit the configuration file and set your own strings.
+  </para>
+ </note>
+ <simplesect xml:id="ChangeSNMPStrings-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DHS Linux Configuration Guidance (2010.8)</title>
+   <listitem>
+    <para>
+     6.7.2 - Verify SNMP Configuration
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN005300 - SNMP communities, users, and passphrases must be
+     changed from the default.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN005300 - Changed SNMP Community Strings
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+   <listitem>
+    <para>
+     CIP-005-3-R4.4 - Review of controls for default accounts,
+     passwords, and network management community strings
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.1 - Do not use vendor-supplied defaults for system passwords and
+     other security parameters
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

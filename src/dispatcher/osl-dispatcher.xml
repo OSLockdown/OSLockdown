@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!-- $Id: osl-dispatcher.xml 23982 2017-03-22 20:41:03Z rsanders $ -->
+<!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
+<service_bundle type='manifest' name='TCS:osl-dispatcher'>
+    <service name='site/osl-dispatcher' type='service' version='1'>
+        <create_default_instance enabled='false' />
+        <single_instance />
+
+        <dependency name='usr' type='service' grouping='require_all' restart_on='none'>
+            <service_fmri value='svc:/system/filesystem/minimal' />
+        </dependency>
+
+        <exec_method type='method' name='start' exec='/lib/svc/method/osl-dispatcher start' timeout_seconds='60' />
+        <exec_method type='method' name='stop' exec='/lib/svc/method/osl-dispatcher stop' timeout_seconds='60' /> 
+        <exec_method type='method' name='status' exec='/lib/svc/method/osl-dispatcher status' timeout_seconds='60' /> 
+        <exec_method type='method' name='restart' exec='/lib/svc/method/osl-dispatcher restart' timeout_seconds='60' /> 
+
+        <property_group name='startd' type='framework'>
+            <propval name='duration' type='astring' value='transient' />
+        </property_group>
+
+       <stability value='Unstable' />
+       <template>
+           <common_name>
+               <loctext xml:lang='C'>OSLockdown Dispatcher</loctext>
+           </common_name>
+
+       </template>
+    </service>
+
+</service_bundle>

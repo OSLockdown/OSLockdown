@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="GrubBootSingleImage" version="5.0">
+  <title xml:id="General">GRUB Boot Single Image</title>
+  <para>
+  Examines the GRand Unified Bootloader (GRUB) config file (usually
+  <filename>/boot/grub/grub.conf</filename> or
+  <filename>/boot/grub/menu.lst</filename>) to see if there is only a
+  single bootable definition. If not, the default boot definition is
+  retained and all other boot definitions are removed.
+  <indexterm><primary>GRUB</primary></indexterm>
+ </para>
+  <para>
+  If the immutable bit is set in the extended attributes on the
+  configuration file, it is removed while making any changes and then
+  restored.
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2">
+    <tgroup cols="2">
+      <colspec colname="c1" colwidth="1.0*" align="left"/>
+      <colspec colname="c2" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="4">
+            <filename>/boot/grub/grub.conf</filename>
+            <indexterm>
+              <primary>/boot</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/boot</secondary>
+            </indexterm>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+        <row>
+          <entry>Solaris 10 (x86 only)</entry>
+          <entry>
+            <filename>/boot/grub/menu.lst</filename>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5.2+ (zSeries)
+      <indexterm><primary>zSeries</primary></indexterm></entry>
+          <entry>GRUB not used on IBM zSeries platforms. Instead the zSeries Initial
+      Program Loader (z/IPL) is used.
+      <indexterm><primary>z/IPL</primary></indexterm></entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <simplesect xml:id="GrubBootSingleImage-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>LNX00280 - Capable of Dual Boot</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

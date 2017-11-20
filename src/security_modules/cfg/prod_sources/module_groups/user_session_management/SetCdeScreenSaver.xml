@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Set CDE Screen Saver">
+        <library>SetCdeScreenSaver</library>
+        <description>Configures timeout and activation values for the screen saver program for all Solaris Common Desktop Environment (CDE) users.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <configurationOptions>
+          <option name="cdeSaverActivate" type="minutesOneDay">
+            <description>Number of minutes a graphical CDE session can be idle before a password protected screen saver is activated.</description>
+            <default>10</default>
+            <units>minutes</units>
+          </option>
+        </configurationOptions>
+        <platforms>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>User Session Management</member>
+        </views>
+      </security_module>

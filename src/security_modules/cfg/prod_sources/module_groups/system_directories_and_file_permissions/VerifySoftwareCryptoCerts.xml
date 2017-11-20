@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Verify required software cryptographic certs are installed">
+        <library>VerifySoftwareCryptoCerts</library>
+        <description>Verify required software cryptographic signatures are installed.</description>
+        <scan_weight>10</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <configurationOptions>
+          <option name="requiredCerts" type="basicMultilineStringCanBeEmpty">
+            <description>Required certificate lines</description>
+            <helpText>A line of required certificate values (one per line)</helpText>
+            <default></default>
+          </option>
+          <option name="showExtraCerts" type="yesOrNo">
+            <description>Should any certificates found other than the above be shown?</description>
+            <helpText>Display any additional certificates found on the system that aren't in the required list.
+            May help detect if a person is attempting to install malicious software...</helpText>
+            <default>1</default>
+          </option>
+        </configurationOptions>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Directories and File Permissions</member>
+        </views>
+      </security_module>

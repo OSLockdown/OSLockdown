@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="AuditLogRotation">
+  <title xml:id="Auditing">Audit Log Rotation</title>
+  <para>
+  Configures the system to rotate audit logs on a daily basis.
+ </para>
+  <para>
+  This module should be used in conjunction with the
+  “<xref linkend="AuditEnable" xrefstyle="select: title"/>” module.
+  Depending on the rules set by the
+  “<xref linkend="AuditRules" xrefstyle="select: title"/>” or the
+  “<xref linkend="AuditRulesSolaris" xrefstyle="select: title"/>”
+  module, the audit subsystem can quickly consume large amounts of disk
+  space.
+ </para>
+  <para>
+  Creating a process to ensure the audit logs are transferred to a
+  secure location is strongly recommended. For example, use an isolated
+  server or offline physical media such as tapes or DVDs. The type of
+  information your system processes and your business requirements will
+  determine the necessary retention period and help to define the
+  “secure location”.
+  <indexterm><primary>/dev</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/dev</secondary></indexterm>
+
+  <indexterm><primary>/dev/null</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/dev/null</secondary></indexterm>
+
+  <indexterm><primary>/var/log</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/var/log</secondary></indexterm>
+
+  <indexterm><primary>/var/log/audit/audit.log</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/var/log/audit/audit.log</secondary></indexterm>
+
+  <indexterm><primary>auditd</primary></indexterm>
+ </para>
+  <informaltable cellpadding="2" cellspacing="2" frame="all" pgwide="1">
+    <tgroup cols="3">
+      <colspec align="left" colwidth="0.4*"/>
+      <colspec colwidth="0.5*"/>
+      <colspec colwidth="0.7*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Settings</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry><trademark>Fedora</trademark>
+      10, 11, 12, and 13</entry>
+          <entry morerows="4">
+            <filename>/etc/logrotate.d/audit</filename>
+            <indexterm>
+              <primary>logrotate</primary>
+            </indexterm>
+          </entry>
+          <entry morerows="4">
+            <literallayout class="monospaced">/var/log/audit/audit.log {
+    daily
+    rotate 14
+    compress
+    notifempty
+    missingok
+    postrotate
+    /sbin/service auditd \ 
+    restart 1&gt;/dev/null 2&gt;&amp;1 || true
+    endscript
+}</literallayout>
+          </entry>
+        </row>
+        <row>
+          <entry><trademark class="registered">Red Hat</trademark><trademark class="registered">Enterprise Linux</trademark>
+      4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry><trademark class="registered">SUSE</trademark>
+      10 and 11</entry>
+        </row>
+        <row>
+          <entry><trademark>Solaris</trademark>
+      10</entry>
+          <entry>Root’s crontab
+      <indexterm><primary>crontab</primary></indexterm></entry>
+          <entry>
+            <filename>0 0 * * * /usr/sbin/audit -n</filename>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <simplesect xml:id="AuditLogRotation-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>5 - Audit Trail</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN002860 - Audit logs must be rotated daily.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN002860 - Audit Logs Rotation</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>AU-11 - Audit Retention</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

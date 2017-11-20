@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="CtrlAltDel" version="5.0">
+  <title xml:id="General">Disable Ctrl-Alt-Del</title>
+  <para>
+  Disables the
+  <keycombo><keycap>Ctrl</keycap><keycap>Alt</keycap><keycap>Del</keycap></keycombo>
+  reboot key sequence to prevent some accidental system reboots in mixed
+  operating system environments where
+  <keycombo><keycap>Ctrl</keycap><keycap>Alt</keycap><keycap>Del</keycap></keycombo>
+  is commonly used to initiate a login. The use of
+  <keycombo><keycap>Ctrl</keycap><keycap>Alt</keycap><keycap>Del</keycap></keycombo>
+  is an easy way for an attacker who has physical access to the system
+  to circumvent security measures of the system.
+ </para>
+  <para>
+  Disabling the
+  <keycombo><keycap>Ctrl</keycap><keycap>Alt</keycap><keycap>Del</keycap></keycombo>
+  key sequence should have no impact on the usability of your system.
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2" pgwide="1">
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.8*" align="left"/>
+      <colspec colname="c2" colwidth="1.0*"/>
+      <colspec colname="c3" colwidth="0.8*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Setting</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, and 12</entry>
+          <entry>
+            <filename>/etc/event.d/control-alt-delete</filename>
+          </entry>
+          <entry>Comment out the line: <emphasis role="strong">exec /sbin/shutdown -r now
+      "Control-Alt-Delete pressed"</emphasis>
+      <indexterm><primary>/sbin/sh</primary></indexterm>
+
+      <indexterm><primary>Files and Directories</primary><secondary>/sbin/sh</secondary></indexterm></entry>
+        </row>
+        <row>
+          <entry>Fedora 13</entry>
+          <entry>
+            <filename>/etc/init/control-alt-delete.conf</filename>
+          </entry>
+          <entry>Comment out the line: <emphasis role="strong">start on
+      control-alt-delete</emphasis></entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+          <entry morerows="1">
+            <filename>/etc/inittab</filename>
+            <indexterm>
+              <primary>/etc/inittab</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/inittab</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>inittab</primary>
+            </indexterm>
+          </entry>
+          <entry morerows="1">Comment out the line that starts with:
+      <emphasis role="strong">ca::ctrlaltdel:/sbin/shutdown</emphasis></entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+          <entry>
+            <filename>/etc/init/control-alt-delete.conf</filename>
+          </entry>
+          <entry>Comment out the line: <emphasis role="strong">start on
+      control-alt-delete</emphasis></entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+          <entry><filename>/etc/inittab</filename> &gt;</entry>
+          <entry>Comment out the line that starts with:
+      <emphasis role="strong">ca::ctrlaltdel:/sbin/shutdown</emphasis></entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+          <entry namest="c2" nameend="c3">
+            <emphasis>Operating System Not Applicable</emphasis>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <note>
+    <para>
+   Specifically for Red Hat Enterprise Linux 6, if the mandatory gconf
+   setting of
+   <filename>/apps/gnome_settings_daemon/keybinding/power</filename> is
+   not set to ' ' (empty quotes, which indicates 'disabled'), then it
+   will be explicitly set. Users who are currently logged in will not
+   see this change until they log out and log back in.
+  </para>
+    <para>
+   This functionality will occur for the other operating systems (as
+   appropriate) in future releases.
+  </para>
+  </note>
+  <simplesect xml:id="CtrlAltDel-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>7.8 - Disable Control-Alt-Del</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN000000-LNX00580 - The x86 CTRL-ALT-DELETE key sequence must be disabled.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000286 - The x86 Ctrl-Alt-Delete key sequence must be disabled.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>LNX00580 - Ctrl-Alt-Delete Sequence</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

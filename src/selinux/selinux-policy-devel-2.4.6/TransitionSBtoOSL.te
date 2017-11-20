@@ -1,0 +1,21 @@
+module TransitionSBtoOSL 1.0;
+
+require {
+        type securityblanket_t;
+        type securityblanket_var_lib_t;
+        type devpts_t;
+        type devpts_t;
+        class dir {getattr search add_name write create};
+        class file {execute execute_no_trans create write};
+        class process { transition noatsecure siginh rlimitinh sigchld };
+        class fd {use };
+        class fifo_file { getattr read write append ioctl lock};
+        class chr_file { getattr read write ioctl };
+
+        role system_r;
+}
+
+#============= securityblanket_t ==============
+oslockdown_cfg_run(securityblanket);
+oslockdown_dispatcher_run(securityblanket);
+allow oslockdown_cfg_t securityblanket_var_lib_t:file read;

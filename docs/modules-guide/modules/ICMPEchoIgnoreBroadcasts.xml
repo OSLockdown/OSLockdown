@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="ICMPEchoIgnoreBroadcasts" version="5.0">
+  <title xml:id="NetworkConfig">Ignore ICMP ECHO and TIMESTAMP Requests</title>
+  <para>
+  Configures the system to disregard ICMP ECHO or TIMESTAMP requests
+  that were sent to broadcast or multicast addresses.
+  <indexterm><primary>ICMP</primary></indexterm>
+
+  <indexterm><primary>multicast</primary></indexterm>
+ </para>
+  <para>
+  Ignoring these types of requests prevents your system from being part
+  of a “smurf” attack. If your network is flooded with these types
+  of requests, you should try to identify the source before it creates a
+  denial-of-service situation for systems that cannot be configured to
+  ignore these requests.
+  <indexterm><primary>denial-of-service</primary></indexterm>
+
+  <indexterm><primary>smurf</primary></indexterm>
+ </para>
+  <table xml:id="table-igore-echo-timestamp" frame="all" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>ICMP Settings to Ignore Echo and Timestamp Requests</title>
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.5*" align="left"/>
+      <colspec colname="c2" colwidth="0.5*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Setting</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="4">
+            <filename>/etc/sysctl.conf</filename>
+            <indexterm>
+              <primary>/etc/sysctl.conf</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/sysctl.conf</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>sysctl.conf</primary>
+            </indexterm>
+          </entry>
+          <entry morerows="4">
+            <filename>net.ipv4.icmp_echo_ignore_broadcasts = 1</filename>
+            <indexterm>
+              <primary>icmp_echo_ignore_broadcasts</primary>
+            </indexterm>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+          <entry>
+            <filename>/etc/default/ndd</filename>
+            <indexterm>
+              <primary>/etc/default/ndd</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/default/ndd</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>ndd</primary>
+            </indexterm>
+            <indexterm>
+              <primary>ip6_respond_to_echo_multicast</primary>
+            </indexterm>
+            <indexterm>
+              <primary>ip_respond_to_address_mask_broadcast</primary>
+            </indexterm>
+            <indexterm>
+              <primary>ip_respond_to_echo_broadcast</primary>
+            </indexterm>
+            <indexterm>
+              <primary>ip_respond_to_echo_multicast</primary>
+            </indexterm>
+            <indexterm>
+              <primary>ip_respond_to_timestamp</primary>
+            </indexterm>
+            <indexterm>
+              <primary>ip_respond_to_timestamp_broadcast</primary>
+            </indexterm>
+            <indexterm>
+              <primary>multicast</primary>
+            </indexterm>
+          </entry>
+          <entry>
+            <literallayout class="monospaced">ip_respond_to_echo_broadcast = 0
+ip_respond_to_echo_multicast = 0
+ip6_respond_to_echo_multicast = 0
+ip_respond_to_address_mask_broadcast = 0
+ip_respond_to_timestamp = 0
+ip_respond_to_timestamp_broadcast = 0</literallayout>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+  <para>
+  See the <emphasis>Solaris Tunable Parameters Reference
+  Manual</emphasis>
+  <footnote><para>
+    Sun Microsystems. <emphasis role="underline">Solaris Tunable
+    Parameters Reference Manual</emphasis>. Santa Clara, CA: Sun
+    Microsystems Press, 2005.
+   </para></footnote>
+  and the Linux kernel’s networking variables/parameters (in the
+  <filename>ip-sysctl.txt</filename> file) for more information.
+  <indexterm><primary>Kernel</primary></indexterm>
+ </para>
+  <simplesect xml:id="ICMPEchoIgnoreBroadcasts-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-13 - Limitation and Control of Network Ports, Protocols, and Services</para>
+      </listitem>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>6.1 - Kernel TCP Stack Tuning</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN003603 - The system must not respond to Internet Control Message Protocol v4 (ICMPv4) echoes sent to a broadcast address.</para>
+      </listitem>
+      <listitem>
+        <para>GEN003604 - The system must not respond to Internet Control Message Protocol (ICMP) timestamp requests sent to a broadcast address.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000092 - The system must not respond to ICMPv4 sent to a broadcast address.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN003600 - Network Security Settings</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>SC-5 - Denial of Service Protection</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

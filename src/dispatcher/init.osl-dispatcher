@@ -1,0 +1,86 @@
+#!/bin/bash
+#
+# Copyright (c) 2009-2014 Forcepoint LLC.
+# This file is released under the GPLv3 license.  
+# See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+# or visit https://www.gnu.org/licenses/gpl.html instead.
+#
+# OSL_Dispatcher    This shell script takes care of starting and stopping
+#              OSL_Dispatcher daemon
+#
+# chkconfig: 2345 20 80
+# description: OSLockdown agent daemon
+#
+
+OPTIONS=""
+
+# Source function library.
+if [ ! -r /etc/init.d/functions ]; then
+    echo "Error: missing /etc/init.d/functions"
+    exit 0
+fi
+
+. /etc/init.d/functions
+
+PID_FILE=/var/run/OSL_Dispatcher.pid
+RETVAL=0
+prog="/sbin/OSL_Dispatcher"
+
+if [ ! -x $prog ]; then
+    echo "Error: missing $prog"
+    exit 0
+fi
+
+start() {
+        echo -n $"Starting $prog: "	
+        daemon $prog $OPTIONS
+        RETVAL=$?
+        echo
+        return $RETVAL
+}
+
+# Send a SIGTERM first, but delay 10 seconds before sending the SIGKILL to let the program try and clean up nicely
+stop() {
+        echo -n $"Shutting down $prog: "
+        killproc -d 10 OSL_Dispatcher 
+        RETVAL=$?
+        echo 
+        return $RETVAL
+}
+
+# See how we were called.
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart|reload)
+        stop
+        start
+	RETVAL=$?
+	;;
+  status)
+        # RHEL 4.8 pidof command does not support the -p option
+        if [ -x /sbin/pidof ]; then
+            opt_test=`/sbin/pidof -p OSL_Dispatcher 2>&1 |grep "invalid options"`
+            if [ -z "$opt_test" ]; then
+                status -p $PID_FILE osl-dispatcher
+                RETVAL=$?
+            else
+                status $prog
+                RETVAL=$?
+            fi     
+        else
+            status -p $PID_FILE osl-dispatcher
+            RETVAL=$?
+        fi
+        ;;
+
+  *)
+        echo $"Usage: $0 {start|stop|restart|status}"
+        RETVAL=3
+esac
+
+exit $RETVAL

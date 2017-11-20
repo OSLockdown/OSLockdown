@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="CheckFS_varlog" version="5.0">
+  <title xml:id="Filesystems">Check for Separate /var/log File System</title>
+  <para>
+  The <filename>/var/log</filename> file system must be its own separate
+  partition or logical volume.
+ </para>
+  <para>
+  This module checks the list of currently mounted file systems to
+  ensure <filename>/var/log</filename> is a dedicated, separate file
+  system. Since this is a scan-only module, this module will report that
+  a manual action is required during an apply if it is not a dedicated,
+  separate file system.
+ </para>
+  <para>
+  This module is not applicable to Oracle Solaris.
+ </para>
+  <simplesect xml:id="CheckFS_varlog-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000003 - The system must use a separate file system for /var/log.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>2.1.1.1.3 - Create Separate Partition or Logical Volume for /var/log</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-14011-1 - /var/log should be configured on an appropriate filesystem partition.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="CheckFS_home" version="5.0">
+  <title xml:id="Filesystems">Check for Separate /home File System</title>
+  <para>
+  The <filename>/home</filename> file system must be its own separate
+  partition or logical volume.
+ </para>
+  <para>
+  This module checks the list of currently mounted file systems to
+  ensure <filename>/home</filename> is a dedicated, separate file
+  system. Since this is a scan-only module, this module will report that
+  a manual action is required during an apply if it is not a dedicated,
+  separate file system.
+ </para>
+  <para>
+  This module is not applicable to Oracle Solaris.
+ </para>
+  <simplesect xml:id="CheckFS_home-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN003620 - A separate file system must be used for user home directories (such as /home or an equivalent).</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000007 - The system must use a separate file system for user home directories.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>2.1.1.1.5 - Create Separate Partition or Logical Volume for /home</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-14559-9 - /home should be configured on an appropriate filesystem partition.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,174 @@
+'\" t
+.\"     Title: OSL_Dispatcher
+.\"      Date: 12/15/2010
+.\"    Manual: System Administration Commands
+.\"    Source: OS Lockdown Dispatcher
+.\"  Language: English
+.\"
+.TH "OSL_DISPATCHER" "1M" "12/15/2010" "OS Lockdown Dispatcher" "System Administration Commands"
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+OSL_Dispatcher \- allow remote console to execute local OS Lockdown commands.
+.SH "SYNOPSIS"
+.HP \w'\fBOSL_Dispatcher\fR\ 'u
+\fBOSL_Dispatcher\fR  [\-p\ \fIport\fR] [\-l\ \fIloglevel\fR] [\-L\ \fImaxMB\fR] [\-T\ \fIthreshold\fR] [\-A\ \fIaddress\fR] [\-s\ \fIstart_time\fR\ \-e\ \fIend_time\fR]
+.\" -----------------------------------------------------------------
+.\" Description
+.\" -----------------------------------------------------------------
+.SH "DESCRIPTION"
+.PP
+The \fBOSL_Dispatcher\fR (dispatcher) allows an OS Lockdown console to execute local OS Lockdown commands\&. The console-to-dispatcher communications is encrypted and authenticated using Transport Layer Security (TLS).
+.\" -----------------------------------------------------------------
+.\" Command Line Options
+.\" -----------------------------------------------------------------
+.SH "OPTIONS"
+.PP 
+The recommended method of changing dispatcher options is to run the \fI/usr/share/oslockdown/tools/SB_Setup\fR or edit the \fI/lib/svc/method/sb\-dispatcher\fR script to modify the \fBOPTIONS\fR variable\&.
+.TP
+\fB\-p \fR\fIport\fR
+Set TCP \fIport\fR to listen on\&. Default is 6443\&.
+.TP
+\fB\-A \fR\fIaddress\fR
+Bind dispatcher to a specific interface \fIaddress\fR for all inbound connections. The address can be a host/node name or an IPv4 address. If a host/node name is used, then the dispatcher will bind to the first matching IPv4 address.
+.TP
+\fB\-l \fR\fIloglevel\fR
+Set the \fIloglevel\fR (0\-7)\&. Level 7 is the most verbose (debug)\&. The default is level 5\&.
+.TP
+\fB\-L \fR\fImaxMB\fR
+Set the maximum size in MB of a Client Application Log to receive in MB(megabytes)&. The default is level 5(MB)\&.
+.TP
+\fB\-T \fR\fIthreshold\fR
+Set the \fIthreshold\fR from 0\&.01 to 1\&.00\&. This equates to the current 15 minute load average\&. If the load average is greater than or equal to \fIthreshold\fR, then the console will be denied access to the dispatcher\&.
+.TP
+\fB\-s \fR\fIstart_time\fR \-e \fIend_time\fR
+Define peak hours as between \fIstart_time\fR and \fIend_time\fR\&. During peak hours, the console is denied access to the dispatcher\&. Times must be specified using a 24 hour clock\&.
+.\" -----------------------------------------------------------------
+.\" Examples
+.\" -----------------------------------------------------------------
+.SH "EXAMPLES"
+.TP
+Starting:
+\fBsvcadm enable osl-dispatcher\fR 
+.TP
+Stopping:
+\fBsvcadm disable osl-dispatcher\fR 
+.TP
+Define Peak Hours as 8AM to 4PM:
+To prevent the dispatcher from responding to requests during this time, set the \fBOPTIONS\fR variable in the \fI/lib/svc/method/osl-dispatcher\fR to:
+.sp
+\fBOPTIONS="-s 0800 -e 1600"\fR
+.sp 
+Restart the dispatcher.
+.\" -----------------------------------------------------------------
+.\" Files
+.\" -----------------------------------------------------------------
+.SH "FILES"
+.TP
+\fB/lib/svc/method/osl-dispatcher\fR
+Script used to start, stop, and obtain status of the dispatcher process. Once the dispatcher is installed and configured, it is best to use the \fBsvcadm\fR(1M) utility to manage the dispatcher service.
+.TP
+\fB/var/svc/manifest/site/osl-dispatcher.xml\fR
+Dispatcher's service manifest file used to register it with the Solaris service management facility (SMF).
+.TP
+\fB/var/svc/log/site-osl-dispatcher:default.log\fR
+Service management facility's log messages related to the starting and stopping of the dispatcher.
+.TP
+\fB/var/log/oslockdown-dispatcher.log\fR
+Console-to-dispatcher connections, requests, and diagnostics depending on log level.
+.TP
+\fB/var/lib/oslockdown/files/certs/Disp.pem\fR
+The dispatcher's private and public key. For security reasons, this file should \fBalways\fR be owned by root and have a file mode of 0400.
+.TP
+\fB/var/lib/oslockdown/files/certs/cacert.pem\fR
+The root Certificate Authority's (CA) public key. This public key allows the dispatcher to validate the console's authenticity. 
+.TP
+\fB/var/run/OSL_Dispatcher.pid\fR
+Stores the currently running dispatcher's process identification (pid) number.
+.\" -----------------------------------------------------------------
+.SH "DIAGNOSTICS"
+.PP
+Diagnostics issued by the dispatcher are logged in to the specified log file. The following messages are the most common:
+.TP
+\fBOSL_Dispatcher SOAP socket failure: Error 28 fault: SOAP-ENV:Server[no subcode] \(lqAddress already in use\(rq Detail: bind failed in soap_bind()\fR
+The TCP port the dispatcher was trying to use is already being used by another process. Locate the following message in dispatcher log to determine what port it was trying to use:  \(lqAttempting to bind to all address at port \fIXXXX\fR\(rq. Then use a utility such as \fBlsof\fR to identify the process. If there is a port conflict, either (1) shutdown or reconfigure the other process; or (2) configure the dispatcher to use a different TCP port.
+.TP
+\fBError 30 fault: SOAP-ENV:Server[no subcode] \(lqSSL error\(rq Detail: Can't read CA file and directory\fR
+This is usually an indication that the \fIDisp.pem\fR or \fIcacert.pem\fR file is missing.
+.\" -----------------------------------------------------------------
+.SH "SIGNALS"
+.PP
+Sending the dispatcher a SIGHUP will cause it to gracefully shutdown.
+.\" -----------------------------------------------------------------
+.SH "SECURITY CONSIDERATIONS"
+.PP
+Because OS Lockdown must have root level access, it is critical system administrators consider the following:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+\fINetwork Access\fR: Restricting access to the dispatcher's TCP port by using Solaris IP Filter feature is encouraged as well as binding it to a specific interface using the \fB\-A\fR option. The port should only be accessed by a dedicated, known, trusted console\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+\fICryptography\fR: By default, the dispatcher will use the TLSv1 protocol when communicating with the console. If the \(lqSolaris 10 Encryption Kit\(rq is installed, it will atempt to use \fBAES256-SHA\fR otherwise it will try to use \fBAES128-SHA\fR. These include the \fBRSA\fR for key exchange and authentication while the message authentication code (MAC) algorithm will be \fBSHA1\fR. The dispatcher uses the cryptographic libraries provided by the OpenSSL Project so, to help protect against vulnerabilties it is imperative the system administrator routinely update the \fBSUNWopenssl-libraries\fR and \fBSUNWopensslr\fR packages.
+.sp
+Whenever possible, system administrators should download and install the free \(lqSolaris 10 Encryption Kit\(rq in order use a larger, 256 bit key.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+\fIDoS Attacks\fR: Denial-of-Service (DoS) attacks are commonly associated with \(lqoutside\(rq perpetrators. However, an \(lqinsider threat\(rq is a
+real concern when personnel are requesting services from the dispatcher who are not familiar with the system's normal work load. If a system is
+extremely busy during certain hours of the day and an OS Lockdown console operator requests a system snapshot (baseline), it could exhaust a system's
+resources resulting in a DoS. Therefore, it is recommended system administators restrict access to the OS Lockdown console and consider the use of the dispatcher's \fB\-s\fR, \fB\-e\fR, and \fB\-T\fR options.
+.RE
+.\" -----------------------------------------------------------------
+.SH "BUGS"
+.SS "Dispatcher Status"
+The use of the \fBsvcs\fR(1) command to determine if the dispatcher is currently running is unreliable. It is recommended system administrators use the \fBpgrep\fR(1) command instead. For example, execute the following command:
+.sp
+.RS 4
+\fB/usr/bin/pgrep -l OSL_Dispatcher\fR
+.RE
+.\" -----------------------------------------------------------------
+.SH "REPORTING BUGS"
+.PP
+Report bugs to
+\fB<sb_support@forcepoint\&.com>\fR
+.SH "COPYRIGHT"
+.PP
+Copyright \(co 2007\-2016 Forcepoint LLC
+.br
+All rights reserved\&.
+.PP
+.\" -----------------------------------------------------------------
+.SH "SEE ALSO"
+.PP
+\fBgetloadavg\fR(3C), \fBipfilter\fR(5), \fBoslockown\fR(1M), \fBsmf\fR(5), \fBsvcadm\fR(1M), \fBsvcs\fR(1)

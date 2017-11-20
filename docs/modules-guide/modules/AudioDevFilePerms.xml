@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="AudioDevFilePerms" version="5.0">
+ <title xml:id="fileDACs">Secure Audio Devices</title>
+ <para>
+  Restricts access to the audio device (
+  <filename>/dev/audio*</filename> ) files.
+  <indexterm>
+   <primary>/dev</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Files and Directories</primary>
+   <secondary>/dev</secondary>
+  </indexterm>
+ </para>
+ <para>
+  It is recommended to apply this module. The file permissions set by
+  this module are operating system defaults; therefore, it should not
+  impact normal operations.
+ </para>
+ <simplesect xml:id="AudioDevFilePerms-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN002320 - Audio devices must have mode 0660 or less permissive.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN002340 - Audio devices must be owned by root.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN002360 - Audio devices must be group-owned by root, sys, bin, or
+     system.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN002320 - Audio Device Permissions
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN002340 - Audio Device Ownership
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN002360 - Audio Device Group Ownership
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD NISPOM (Feb 2006)</title>
+   <listitem>
+    <para>
+     8.606b1 - Access 2 Requirements
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-3 - Access Enforcement
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

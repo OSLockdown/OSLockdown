@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Apache">
+        <library>DisableWebServer_apache</library>
+        <description>Disables Apache, which is an HTTP server.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/a:apache:http_server"/>
+          <cpe-item name="cpe:/o:centos:centos:4">
+            <services>
+              <service seq="1" name="httpd"/>
+            </services>
+            <packages>
+              <package name="httpd"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:5">
+            <services>
+              <service seq="1" name="httpd"/>
+            </services>
+            <packages>
+              <package name="httpd"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:11">
+            <services>
+              <service seq="1" name="apache2"/>
+            </services>
+            <packages>
+              <package name="apache2"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:11">
+            <services>
+              <service seq="1" name="apache2"/>
+            </services>
+            <packages>
+              <package name="apache2"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:10">
+            <services>
+              <service seq="1" name="httpd"/>
+            </services>
+            <packages>
+              <package name="httpd"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:11">
+            <services>
+              <service seq="1" name="httpd"/>
+            </services>
+            <packages>
+              <package name="httpd"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:12">
+            <services>
+              <service seq="1" name="httpd"/>
+            </services>
+            <packages>
+              <package name="httpd"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4">
+            <services>
+              <service seq="1" name="httpd"/>
+            </services>
+            <packages>
+              <package name="httpd"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5">
+            <services>
+              <service seq="1" name="httpd"/>
+            </services>
+            <packages>
+              <package name="httpd"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:sun:sunos:5.10">
+            <services>
+              <service seq="1" name="svc:/network/http:apache2"/>
+            </services>
+            <packages>
+              <package name="SUNWapchr"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4">
+            <services>
+              <service seq="1" name="httpd"/>
+            </services>
+            <packages>
+              <package name="httpd"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5">
+            <services>
+              <service seq="1" name="httpd"/>
+            </services>
+            <packages>
+              <package name="httpd"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:13">
+            <services>
+              <service seq="1" name="httpd"/>
+            </services>
+            <packages>
+              <package name="httpd"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:10">
+            <services>
+              <service seq="1" name="apache2"/>
+            </services>
+            <packages>
+              <package name="apache2"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:10">
+            <services>
+              <service seq="1" name="apache2"/>
+            </services>
+            <packages>
+              <package name="apache2"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6">
+            <services>
+              <service seq="1" name="httpd"/>
+            </services>
+            <packages>
+              <package name="httpd"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:6">
+            <services>
+              <service seq="1" name="httpd"/>
+            </services>
+            <packages>
+              <package name="httpd"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <services>
+              <service seq="1" name="httpd"/>
+            </services>
+            <packages>
+              <package name="httpd"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Web Related Services</member>
+        </views>
+      </security_module>

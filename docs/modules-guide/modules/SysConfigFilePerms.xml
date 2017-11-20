@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SysConfigFilePerms" version="5.0">
+ <title xml:id="fileDACs">System Configuration File Permissions</title>
+ <para>
+  Controls access to key system configuration files and directories.
+ </para>
+ <para>
+  This Module has been retired, and should be replaced by one or more of
+  the following:
+  <itemizedlist>
+   <listitem><xref xrefstyle="select: title" linkend="AtCronAccessFilePerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="AtDirPerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="BootLoaderConfigFilePerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="FTPConfigFilePerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="GlobalInitializationFilePerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="InetdXinetdConfigFilePerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="KernelDumpDirPerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="LDAPConfigFilePerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="MailAgentAliasesFilePerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="MIBFilePerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="ExportsConfigFilePerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="NisYpConfigPerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="RootConsole"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="SambaConfigFilePerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="SambaPasswordFilePerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="SecurityAccessConfFilePerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="ServicesFilePerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="SkeletonFilePerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="SNMPConfigFilePerms"/>
+   </listitem>
+   <listitem><xref xrefstyle="select: title" linkend="SysLoggingConfigFilePerms"/>
+   </listitem>
+  </itemizedlist>
+ </para>
+ <simplesect xml:id="SysConfigFilePerms-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN000000-LNX00620 - The /etc/securetty file must be group-owned by
+     root, sys, or bin.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN000000-LNX00640 - The /etc/securetty file must be owned by root.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN000000-LNX00660 - The /etc/securetty file must have mode 0600 or
+     less permissive.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN003750 - The xinetd.d directory must have mode 0755 or less
+     permissive.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN003280 - At Utility Accessibility
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN003340 - at.allow and at.deny Permissions
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     LNX00400 - Access File Ownership
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     LNX00420 - Access File Group Ownership
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     LNX00440 - Access File Permissions
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     LNX00620 - /etc/securetty Group Ownership
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     LNX00640 - /etc/securetty Ownership
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     LNX00660 - /etc/securetty Permissions
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     SOL00060 - audit_user Ownership
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     SOL00080 - audit_user Group Ownership
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     SOL00100 - audit_user Permissions
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     SOL00240 - /usr/asset/userlist Ownership
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     SOL00260 - /usr/asset/userlist Permissions
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD NISPOM (Feb 2006)</title>
+   <listitem>
+    <para>
+     8.606b1 - Access 2 Requirements
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-3 - Access Enforcement
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     AU-9 - Protection of Audit Information
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NVD CCE</title>
+   <listitem>
+    <para>
+     CCE-3923-0 - File permissions for /etc/grub.conf should be set
+     correctly.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CCE-4144-2 - The /etc/grub.conf file should be owned by the
+     appropriate user.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CCE-4197-0 - The /etc/grub.conf file should be owned by the
+     appropriate group.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.3 - Configure system security parameters to prevent misuse
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

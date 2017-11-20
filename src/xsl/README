@@ -1,0 +1,44 @@
+The following directories contain XSLs which transform reports to varying formats.
+Each directory represents a specific format such as txt, csv, xhtml, and fo (pdf).
+
+The same report name must exist in each directory. For example, assessment-generic.xsl
+exists in each directory but generates the appropriate output. 
+
+
+DEVELOPING AND TESTING XSLTs:
+=========================================================================================
+During report development, never rely on the command line "xsltproc" utility to give
+accurate results. Instead, use test utility written in groovy to properly test report 
+transformation. 
+
+
+Step 1:
+========
+    To use this, check out the source code tree (<SOURCETREE>) and then establish the
+    following environment variables and alias:
+
+        export GROOVY_HOME=<SOURCETREE>/src/console/thirdparty/groovy/groovy-1.6.3
+        JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64
+        export JAVA_HOME
+        export PATH=$GROOVY_HOME/bin:$PATH
+        alias javaxslt='groovy /data/development/security-blanket/src/console/XsltTransform.groovy $*'
+
+    Of course, set your JAVA_HOME path on your machine however, it needs to be. 
+
+Step 2:
+========
+    Then just transform a report as follows (new report gets dumped to stdout so, redirect it if
+    you want to view it later):
+
+    $ javaxslt <xsl> <raw_xml_report>
+
+
+TESTING PDF REPORT GENERATION
+=========================================================================================
+Generating PDF formatted reports is a two step process. First, transform the report into
+'fo' format and then the Apache FOP libraries are used to create PDF. For testing purposes,
+install the 'fop' package. Then you can do the following:
+
+$ javaxslt <xsl> <raw_xml_report>   >  report.fo
+$ fop -fo report.fo -pdf report.pdf
+   

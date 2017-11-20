@@ -1,0 +1,33 @@
+NOTES::
+
+
+cfgMasterXML.py
+  This python program is designed to either:
+     decompose a single .xml file into a hierarchy of entries, or recompose said 
+     .xml file from said hierarchy.
+     options are :
+         [-x xmlFile ] [ -d xmlDir ] -[s|j]
+         where:
+            -x xmlFile      option name to use as the xmlFile (default is 
+                            security-modules.xml)
+            -d xmlDir       optional name to use as the directory holding 
+                            components of/for xmlFile
+            -s              split xmlFile in to components stored in xmlDir
+            -j              join components in xmlDir to a single xml file in 
+                            xmlFile
+            
+    Note that the tool will *not* overwrite either the default xmlFile name or 
+    default xmlDir name
+    
+
+
+sort_security_modules_by_name.xsl
+    This xslt takes a master modules file (for example, security-modules.xml) 
+    and sorts it so that the module groups are in orders, and the modules 
+    themselves are in order within each group.  The default is to sort by the 
+    actual name of the module, but by tweaking which line is commented out you 
+    can sort by libraryname
+    
+    To execute, type 'xsltproc sort_modules_by_name.xsl XML_FILE_NAME'
+    
+    

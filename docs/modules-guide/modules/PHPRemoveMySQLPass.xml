@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="PHPRemoveMySQLPass" version="5.0">
+ <title xml:id="WebServices">PHP - Remove Stored MySQL Password</title>
+ <para>
+  Removes the default <application>MySQL</application> password stored
+  in the global PHP configuration file. The default PHP configuration
+  has no password set. Configuring PHP with a default database password
+  is not recommended. It is possible for anyone with PHP command access
+  to get the database password from <filename>php.ini</filename> with
+  the
+  <function>get_cfg_var()</function>
+  function.
+  <indexterm>
+   <primary>MySQL</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>PHP</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>SQL</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>password</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>php.ini</primary>
+  </indexterm>
+ </para>
+ <para>
+  If this module breaks your PHP application, then the application
+  should be corrected. You should lock down the source code files and
+  ensure that the
+  <function>mysql_connect()</function>
+  function calls contain the appropriate credentials.
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="1.0*" align="left"/>
+   <colspec colname="c2" colwidth="1.0*"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Configuration Files</entry>
+     <entry>Settings</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="3"><filename>/etc/php.ini</filename></entry>
+     <entry morerows="5"><literallayout class="monospaced">[MySQL]
+mysql.default_password</literallayout></entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+     <entry><filename>/etc/apache2/php.ini</filename>
+      <indexterm>
+       <primary>apache2</primary>
+      </indexterm></entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+     <entry><filename>/etc/php5/apache2/php.ini</filename></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="PHPRemoveMySQLPass-compliancy">
+  <title>Compliancy</title>
+  <para>
+   N/A
+  </para>
+ </simplesect>
+</section>

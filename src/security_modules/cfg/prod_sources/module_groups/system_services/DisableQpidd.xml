@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Qpidd">
+        <library>DisableQpidd</library>
+        <description>  The qpidd service is used to listen for Advanced Message Queing Protocol (AMQP) traffic.  It is recommended that the service be disabled unless required.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6">
+            <services>
+              <service seq="1" name="qpidd"/>
+            </services>
+            <packages>
+              <package name="qpid-cp-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <services>
+              <service seq="1" name="qpidd"/>
+            </services>
+            <packages>
+              <package name="qpid-cp-server"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:6">
+            <services>
+              <service seq="1" name="qpidd"/>
+            </services>
+            <packages>
+              <package name="qpid-cp-server"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

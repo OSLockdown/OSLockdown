@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="NTP_Perms" version="5.0">
+  <title xml:id="fileDACs">NTP Perms</title>
+  <para>
+  Restricts the indicated Network Time Protocol (NTP) setup files to be
+  directly accessible only to specific users/groups with a maximum
+  allowed Discretionary Access Control (DAC) setting.
+  <indexterm><primary>ntp</primary></indexterm>
+ </para>
+  <simplesect xml:id="NTP_Perms-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>
+     GEN000250 - The time synchronization configuration file (such as
+     /etc/ntp.conf) must be owned by root.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN000251 - The time synchronization configuration file (such as
+     /etc/ntp.conf) must be group-owned by root, bin, or sys.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     GEN000252 - The time synchronization configuration file (such as
+     /etc/ntp.conf) must have mode 0640 or less permissive.
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="NTP_Perms-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>List of files/directories<emphasis><para>List of files/directories to process.  May have wild card expansion (using shell globbing rules) available if the module supports it.  If empty, no file checks will be done.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Expand wildcards (shell globbing)?<emphasis><para>Allow for wildcard expansion using shell globbing rules.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Allowed User Names<emphasis><para>List of user names (ignored if empty). If '&lt;SYSTEM;&gt;' is in the list, then the list of all local privileged accounts will be inserted <emphasis>at this position</emphasis>, with duplicate names removed.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Allowed Group Names<emphasis><para>List of group names (ignored if empty). If '&lt;SYSTEM;&gt;' is in the list, then the list of all local privileged group accounts will be inserted <emphasis>at this position</emphasis>, with duplicate names removed.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Maximum allowed permissions<emphasis><para>Maximum permitted Discretionary Access Controls (DACs) in <emphasis>octal</emphasis> format (i.e.,  max perms is 777 or 0777).
+      Note that only the read/write/execute bits are considered.  Note also that if a directory has read permissions for 
+      user/group/other allowed, then execute permissions for user/group/other are <emphasis>also</emphasis> allowed to allow for directory traversal.  No extra permissions are enforced, just allowed.  If empty, no permissions checks will be done.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

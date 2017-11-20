@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="PHPDisableHttpUpload" version="5.0">
+ <title xml:id="WebServices">PHP - Disallow HTTP File Uploads</title>
+ <para>
+  Disallows file uploads to your server via HTTP.
+ </para>
+ <para>
+  If your PHP application provides a feature to upload files, then do
+  <emphasis role="strong">NOT</emphasis> apply this module. If you do
+  not apply this module, examine the <filename>php.ini</filename> to
+  ensure the <parameter class="option">upload_max_filesize</parameter>
+  is set to a reasonable value like the default of 2 MB. Setting this
+  value too high could result in network congestion or worse, filling up
+  your filesystem. A value that is too high could be exploited by an
+  attacker resulting in denial of service.
+  <indexterm>
+   <primary>PHP</primary>
+   <secondary>upload_max_filesize</secondary>
+  </indexterm>
+
+  <indexterm>
+   <primary>php.ini</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>upload_max_filesize</primary>
+  </indexterm>
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="1.0*" align="left"/>
+   <colspec colname="c2" colwidth="1.0*"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Configuration Files</entry>
+     <entry>Settings</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="3"><filename>/etc/php.ini</filename></entry>
+     <entry morerows="5"><literallayout class="monospaced">[PHP]
+file_uploads = Off</literallayout>
+      <indexterm>
+       <primary>PHP</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>file_uploads</primary>
+      </indexterm></entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+     <entry><filename>/etc/apache2/php.ini</filename>
+      <indexterm>
+       <primary>apache2</primary>
+      </indexterm></entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+     <entry><filename>/etc/php5/apache2/php.ini</filename></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="PHPDisableHttpUpload-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     3.16.4.4.1 - Configure PHP Securely
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

@@ -1,0 +1,84 @@
+1.2|Validate Your System Before Making Changes 
+1.3|Configure SSH 
+1.4|Enable System Accounting 
+1.5|SuSEfirewall2 is active 
+1.6|seccheck is active 
+1.7|AppArmor is active 
+2.1|Disable Standard Services 
+2.2|Limit access to trusted networks 
+2.3|Only Enable telnet If Absolutely Necessary 
+2.4|Only Enable FTP If Absolutely Necessary 
+2.5|Only Enable rlogin/rsh/rcp If Absolutely Necessary 
+2.6|Only Enable TFTP Server if Absolutely Necessary 
+2.7|Only Enable IMAP If Absolutely Necessary 
+2.8|Only Enable POP If Absolutely Necessary 
+3.1|Set Daemon umask 
+3.2|Disable xinetd, If Possible 
+3.3|Disable remote SMTP connections 
+3.4|Disable GUI Login If Possible 
+3.5|Disable X Font Server If Possible 
+3.6|Disable Standard Boot Services 
+3.7|Only Enable SMB (Windows File Sharing) and NMB (NetBIOS Message Block) Processes If Absolutely Necessary 
+3.8|Only Enable NFS Server Processes If Absolutely Necessary 
+3.9|Only Enable NFS Client Processes If Absolutely Necessary 
+3.10|Only Enable NIS Client Processes If Absolutely Necessary 
+3.11|Only Enable NIS Server Processes If Absolutely Necessary 
+3.12|Only Enable RPC Portmap Process If Absolutely Necessary 
+3.13|Only Enable ncpfs Script If Absolutely Necessary 
+3.14|Only Enable Web Server Processes If Absolutely Necessary 
+3.15|Only Enable SNMP Processes If Absolutely Necessary 
+3.16|Only Enable DNS Server Process If Absolutely Necessary 
+3.17|Only Enable SQL services If Absolutely Necessary 
+3.18|Only Enable Webmin Processes If Absolutely Necessary 
+3.19|Only Enable Squid Cache Server If Absolutely Necessary 
+4.1|Network Parameter Modifications 
+4.2|Additional Network Parameter Modifications 
+5.1|syslog is active 
+5.2|NTP is active 
+5.3|System log file permissions 
+5.4|Configure remote system logging 
+6.1|Add “nodev” Option To Appropriate Partitions In /etc/fstab 
+6.2|Add “nosuid” and “nodev” Option For Removable Media In /etc/fstab 
+6.3|Disable User-Mounted Removable File Systems 
+6.4|Verify passwd, shadow, and group File Permissions 
+6.5|World-Writable Directories Should Have Their Sticky Bit Set 
+6.6|Find Unauthorized World-Writable Files 
+6.7|Find Unauthorized SUID/SGID System Executables 
+6.8|Find All Unowned Files 
+6.9|Disable USB Devices (AKA Hotplugger) 
+7.1|Remove .rhosts Support In PAM Configuration Files 
+7.2|/etc/ftpusers 
+7.3|Prevent X Server From Listening On Port 6000/tcp 
+7.4|Restrict at/cron To Authorized Users 
+7.5|Restrict Permissions On crontab Files 
+7.6|Configure xinetd Access Control 
+7.7|Restrict Root Logins To System Console 
+7.8|Set LILO/GRUB Password 
+7.9|Require Authentication For Single-User Mode 
+7.10|Restrict NFS Client Requests To Privileged Ports 
+7.11|Only Enable syslog To Accept Messages If Absolutely Necessary 
+8.1|Block System Accounts 
+8.2|Verify That There Are No Accounts With Empty Password Fields 
+8.3|Set Account Expiration and Password Parameters On Active Accounts 
+8.4|Verify No Legacy '+' Entries Exist In passwd, shadow, And group Files 
+8.5|Verify That No UID 0 Accounts Exist Other Than Root 
+8.6|No '.' or Group/World-Writable Directory In Root's $PATH 
+8.7|User Home Directories Should Be Mode 750 or More Restrictive 
+8.8|No User Dot-Files Should Be World-Writable 
+8.9|Remove User .netrc Files 
+8.10|Set Default umask For Users 
+8.11|Disable Core Dumps 
+8.12|Limit Access To The Root Account From su 
+8.13|Reboot 
+9.1|Create Warnings For Network And Physical Access Services 
+9.2|Create Warnings For GUI-Based Logins 
+9.3|Create 'authorized only' Banners For vsftpd, If Applicable 
+10.1|Anti-Virus Products 
+12.1|Create Symlinks For Dangerous Files 
+12.2|Enable TCP SYN Cookie Protection 
+12.3|Additional LILO/GRUB Security 
+12.4|Evaluate Packages Associated With Startup Scripts 
+12.5|Evaluate Every Installed Package 
+12.6|Configure sudo 
+12.7|Additional Kernel Tunings 
+12.8|Remove All Compilers and Assemblers 

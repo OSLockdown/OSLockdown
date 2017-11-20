@@ -1,0 +1,274 @@
+<?xml version="1.0"?>
+<compliancy source="DHS" name="Linux Configuration Guidance" version="2010.8" enabled="True">
+  <title>U.S. Department of Homeland Security (DHS)</title>
+  <style>ModulesPerLineItem</style>
+  <abstract>
+  <para>The United States Department of Homeland Security (DHS) is a Cabinet department of the U.S.
+    federal government with the primary responsibilities of protecting the territory of the U.S.
+    from terrorist attacks and responding to natural disasters.</para>
+  <para>The <emphasis role="italic">Linux Configuration Guidance</emphasis> document is distributed
+    to DHS system administrators to provide them with a clear, concise set of procedures that will
+    define a minimum baseline of security for every system installed. This document is intended for
+    use with systems supporting remote system, enterprise client, and enterprise server
+    environments, as well as with high-security implementations of these environments.</para>
+  </abstract>
+  <line-items>
+    <line-item name="10" description="SELinux (Security Enhanced Linux)">
+      <module libraryName="DisableMcstrans"/>
+      <module libraryName="DisableRestorecond"/>
+      <module libraryName="DisableSETroubleshoot"/>
+    </line-item>
+    <line-item name="11" description="Additional Linux Security Tools"/>
+    <line-item name="3" description="Identification Control"/>
+    <line-item name="3.1" description="Password Settings">
+      <module libraryName="AccountLocks"/>
+      <module libraryName="BlockSystemAccounts"/>
+      <module libraryName="GopherAccount"/>
+      <module libraryName="HaltAccount"/>
+      <module libraryName="PasswordChangeDelay"/>
+      <module libraryName="PasswordMaxDays"/>
+      <module libraryName="PasswordPolicyConsecutive"/>
+      <module libraryName="PasswordPolicyDiffChars"/>
+      <module libraryName="PasswordPolicyMinlen"/>
+      <module libraryName="PasswordWarnAge"/>
+      <module libraryName="RemoveFTPaccount"/>
+      <module libraryName="RemoveGamesAccount"/>
+      <module libraryName="RemoveNewsAccount"/>
+      <module libraryName="SetPassAgingOnAccts"/>
+      <module libraryName="ShutdownAccount"/>
+      <module libraryName="SyncAccount"/>
+    </line-item>
+    <line-item name="4" description="Access Control"/>
+    <line-item name="4.1" description="Login Warning Banner">
+      <module libraryName="CreateLoginBanner"/>
+      <module libraryName="CreateLoginFTPBanner"/>
+    </line-item>
+    <line-item name="4.2" description="GUI Login Warning Banner">
+      <module libraryName="CreatePreLoginGUIBanner"/>
+      <module libraryName="CreatePreSessionGUIBanner"/>
+    </line-item>
+    <line-item name="4.3" description="Restrict Substitute User (su) Access">
+      <module libraryName="LimitAccessFromSu"/>
+    </line-item>
+    <line-item name="4.4" description="Restrict Root Login to the Console">
+      <module libraryName="RootConsole"/>
+    </line-item>
+    <line-item name="4.5" description="Remote Access with Secure Shell (SSH)"/>
+    <line-item name="4.5.1" description="Limit SSH Protocol Use to Version 2">
+      <module libraryName="SshdProtocol"/>
+      <module libraryName="SshParameters"/>
+    </line-item>
+    <line-item name="4.5.2" description="Disable Root Login Via SSH">
+      <module libraryName="SshdDisableRootLogin"/>
+      <module libraryName="SshdPrintLastLog"/>
+      <module libraryName="SshdRestrictCiphers"/>
+      <module libraryName="SshdRestrictHMAC"/>
+      <module libraryName="SshdRestrictUsersGroups"/>
+      <module libraryName="SshRestrictCiphers"/>
+      <module libraryName="SshRestrictHMAC"/>
+    </line-item>
+    <line-item name="4.5.3" description="Display Secure Shell Warning Banner">
+      <module libraryName="SshdEnableBanner"/>
+    </line-item>
+    <line-item name="4.5.4" description="Use Secure Shell RSA Authentication">
+      <module libraryName="SshdDisableGSSAPIAuth"/>
+      <module libraryName="SshdDisableHostbasedAuth"/>
+      <module libraryName="SshdDisableKerberosAuth"/>
+      <module libraryName="SshdDisableRhostsRSAAuth"/>
+      <module libraryName="SshdEnableIgnoreRhosts"/>
+      <module libraryName="SshDisableGSSAPIAuth"/>
+      <module libraryName="SshdSetCompression"/>
+      <module libraryName="SshdStrictModeChecking"/>
+      <module libraryName="SshdUsePrivilegeSeparation"/>
+    </line-item>
+    <line-item name="4.5.5" description="Allow X11 Forwarding under SSH">
+      <module libraryName="SshdEnableX11Forwarding"/>
+    </line-item>
+    <line-item name="4.5.6" description="Force Secure Shell Account Lockout">
+      <module libraryName="SshdMaxAuthTries"/>
+    </line-item>
+    <line-item name="4.5.7" description="Force Secure Shell to ignore rhosts">
+      <module libraryName="SshdDisableRhostsAuth"/>
+    </line-item>
+    <line-item name="4.5.8" description="Disallow Empty Passwords under SSH">
+      <module libraryName="SshdDisableEmptyPasswords"/>
+    </line-item>
+    <line-item name="5" description="Audit Trail">
+      <module libraryName="AuditEnable"/>
+      <module libraryName="AuditLogRotation"/>
+      <module libraryName="AuditRules"/>
+      <module libraryName="AuditRulesSolaris"/>
+      <module libraryName="EnableAdditionalFTPLogging_vsftpd"/>
+      <module libraryName="SyslogAuthpriv"/>
+      <module libraryName="SysLogFilePerms"/>
+    </line-item>
+    <line-item name="5.1" description="User Login Activity Auditing"/>
+    <line-item name="5.2" description="Log Anomalous Network Connections"/>
+    <line-item name="5.3" description="Centralized Audit Logging"/>
+    <line-item name="5.4" description="Log All SSH Failed Login Activity"/>
+    <line-item name="5.5" description="Network Connection Auditing"/>
+    <line-item name="5.5.1" description="Log Successful Network Connections"/>
+    <line-item name="5.5.2" description="Log Unsuccessful Network Connections"/>
+    <line-item name="6" description="Network Security"/>
+    <line-item name="6.1" description="Kernel TCP Stack Tuning">
+      <module libraryName="AcceptRedirects"/>
+      <module libraryName="DisableIpForwardingDirBdcsts"/>
+      <module libraryName="ICMPEchoIgnoreBroadcasts"/>
+      <module libraryName="IPForward"/>
+      <module libraryName="LogMartianPackets"/>
+      <module libraryName="RPFilter"/>
+      <module libraryName="SecureRedirects"/>
+      <module libraryName="SendRedirects"/>
+      <module libraryName="SourceRoute"/>
+      <module libraryName="TCPMaxSynBacklog"/>
+      <module libraryName="TCPSyncookies"/>
+    </line-item>
+    <line-item name="6.10" description="Configuring NETFS"/>
+    <line-item name="6.11" description="Configuring NIS"/>
+    <line-item name="6.11.1" description="Disable NIS When Not Required">
+      <module libraryName="DisableNIS_client"/>
+    </line-item>
+    <line-item name="6.11.2" description="Secure NIS When Required"/>
+    <line-item name="6.12" description="Configuring X Server Listener"/>
+    <line-item name="6.12.1" description="Disable the Listener under X11">
+      <module libraryName="RemoteXClients"/>
+    </line-item>
+    <line-item name="6.12.2" description="Disable the Listener under GNOME"/>
+    <line-item name="6.12.3" description="Prevent the Listener from Starting under X11"/>
+    <line-item name="6.13" description="Disable External Connections to Syslog"/>
+    <line-item name="6.14" description="Disable Internet Protocol Version 6 (IPv6) Networking"/>
+    <line-item name="6.14.1" description="Disable IPv6 at System Boot"/>
+    <line-item name="6.14.2" description="Ensure IPv6 Module Does Not Load">
+      <module libraryName="DisableIPv6KernelModule"/>
+    </line-item>
+    <line-item name="6.14.3" description="Disable IPv6 Functionality at Network Interfaces"/>
+    <line-item name="6.14.4" description="Disable IPv6 IPTABLES Firewall"/>
+    <line-item name="6.15" description="Enabling IPTABLES Host Based Firewall"/>
+    <line-item name="6.2" description="Configuring Stand Alone Services">
+      <module libraryName="DisableApmd"/>
+      <module libraryName="DisableBluetooth"/>
+      <module libraryName="DisableDNS"/>
+      <module libraryName="DisableFTP_gssftp"/>
+      <module libraryName="DisableFTP_vsftpd"/>
+      <module libraryName="DisableGpm"/>
+      <module libraryName="DisableInnd"/>
+      <module libraryName="DisableISDN"/>
+      <module libraryName="DisableKudzu"/>
+      <module libraryName="DisableNetFS"/>
+      <module libraryName="DisableNFS_client"/>
+      <module libraryName="DisableNFS_server"/>
+      <module libraryName="DisableNIS_client"/>
+      <module libraryName="DisableNIS_server"/>
+      <module libraryName="DisablePortmap"/>
+      <module libraryName="DisablePrinter"/>
+      <module libraryName="DisablePrinterConfig"/>
+      <module libraryName="DisableSendmail"/>
+      <module libraryName="DisableSMB"/>
+      <module libraryName="DisableSNMP"/>
+      <module libraryName="DisableSQL_mysql"/>
+      <module libraryName="DisableSQL_postgresql"/>
+      <module libraryName="DisableSquid"/>
+      <module libraryName="DisableTelnet"/>
+      <module libraryName="DisableTFTP"/>
+      <module libraryName="DisableUucp"/>
+      <module libraryName="DisableWebmin"/>
+      <module libraryName="DisableWebServer_apache"/>
+      <module libraryName="DisableWebServer_tux"/>
+    </line-item>
+    <line-item name="6.3" description="Install and Configure XINETD Service Properties if Appropriate"/>
+    <line-item name="6.3.1" description="Restrict Access to Authorized XINETD Services"/>
+    <line-item name="6.4" description="Install and Enable TCP Wrappers If Appropriate"/>
+    <line-item name="6.5" description="Create Host Control Files for SSH and TCP Wrappers (if Installed)"/>
+    <line-item name="6.5.1" description="Create hosts.allow File"/>
+    <line-item name="6.5.2" description="Create hosts.deny File"/>
+    <line-item name="6.6" description="Avoid Using Sendmail"/>
+    <line-item name="6.7" description="Configuring Simple Network Management Protocol (SNMP)"/>
+    <line-item name="6.7.1" description="Deactivate SNMP">
+      <module libraryName="DisableSNMP"/>
+    </line-item>
+    <line-item name="6.7.2" description="Verify SNMP Configuration">
+      <module libraryName="ChangeSNMPStrings"/>
+    </line-item>
+    <line-item name="6.8" description="Configuring Portmap"/>
+    <line-item name="6.9" description="Configuring NFS"/>
+    <line-item name="6.9.1" description="Disable NFS When Not Required">
+      <module libraryName="DisableNFS_server"/>
+    </line-item>
+    <line-item name="6.9.2" description="Restrict NFS to Privileged Ports">
+      <module libraryName="NFSInsecureLocks"/>
+      <module libraryName="NFSSecure"/>
+    </line-item>
+    <line-item name="6.9.3" description="Verify NFS is Configuration is Secure"/>
+    <line-item name="7.0" description="Host Based Security"/>
+    <line-item name="7.1" description="Minimal System Install"/>
+    <line-item name="7.2" description="File System Controls">
+      <module libraryName="FstabNodev"/>
+      <module libraryName="FstabRemovableMedia"/>
+      <module libraryName="NosuidOnUserFilesystems"/>
+    </line-item>
+    <line-item name="7.3" description="Boot Loader Permissions"/>
+    <line-item name="7.4" description="Reset Permissions on grub Boot Loader">
+      <module libraryName="BootLoaderConfigFilePerms"/>
+    </line-item>
+    <line-item name="7.5" description="Reset Permissions on lilo Boot Loader">
+      <module libraryName="BootLoaderConfigFilePerms"/>
+    </line-item>
+    <line-item name="7.6" description="System umask Value"/>
+    <line-item name="7.6.1" description="Set umask for Users">
+      <module libraryName="DefaultUmask"/>
+    </line-item>
+    <line-item name="7.6.2" description="Set umask for Daemons">
+      <module libraryName="DaemonUmask"/>
+    </line-item>
+    <line-item name="7.7" description="Single User Mode Password">
+      <module libraryName="SingleUserMode"/>
+    </line-item>
+    <line-item name="7.8" description="Disable Control-Alt-Del">
+      <module libraryName="CtrlAltDel"/>
+    </line-item>
+    <line-item name="7.9" description="Testing and Vulnerability Assessment"/>
+    <line-item name="8.0" description="Additional Security Best Practices"/>
+    <line-item name="8.1" description="System Hardening"/>
+    <line-item name="8.2" description="Verify File System Permissions">
+      <module libraryName="SecureSetXIDFiles"/>
+    </line-item>
+    <line-item name="8.3" description="Verify Unowned Files Do Not Exist">
+      <module libraryName="SecureUnownedFiles"/>
+    </line-item>
+    <line-item name="8.4" description="Verify World Writable Files Are Limited">
+      <module libraryName="SecureWorldWritableDevices"/>
+      <module libraryName="SecureWorldWritableDirectories"/>
+      <module libraryName="SecureWorldWritableFiles"/>
+    </line-item>
+    <line-item name="8.5" description="Verify SUID/SGID Files Are Appropriate">
+      <module libraryName="SecureSetXIDFiles"/>
+    </line-item>
+    <line-item name="8.6" description="configure Boot Process">
+      <module libraryName="RequireGrubPassword"/>
+    </line-item>
+    <line-item name="8.7" description="Disable PCMCIA and USB">
+      <module libraryName="DisableUSB"/>
+    </line-item>
+    <line-item name="8.8" description="Password Programs"/>
+    <line-item name="8.9" description="Implementing Sendmail Securely"/>
+    <line-item name="8.9.1" description="Ensure Sendmail is Deactivated">
+      <module libraryName="DisableSendmail"/>
+    </line-item>
+    <line-item name="8.9.2" description="Limit Sendmail to Queue Management"/>
+    <line-item name="8.9.3" description="Ensure Sendmail Will Not Serve as a Relay"/>
+    <line-item name="8.9.4" description="Change Sendmail Greeting">
+      <module libraryName="SendmailOpts"/>
+    </line-item>
+    <line-item name="8.9.5" description="Disable expand and verify Commands">
+      <module libraryName="SendmailOpts"/>
+    </line-item>
+    <line-item name="8.9.6" description="Enhance Sendmail Logging">
+      <module libraryName="SendmailOpts"/>
+    </line-item>
+    <line-item name="8.9.7" description="Ignore Bogus SMTP Connections">
+      <module libraryName="SendmailOpts"/>
+    </line-item>
+    <line-item name="8.9.8" description="Restrict Access to Sendmail Queue"/>
+    <line-item name="9" description="Sudo sudoers file"/>
+  </line-items>
+</compliancy>

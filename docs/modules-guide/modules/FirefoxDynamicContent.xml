@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: FirefoxDynamicContent.xml 21753 2013-09-09 14:56:53Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="FirefoxDynamicContent" version="5.0">
+ <title xml:id="DesktopApps">Firefox - Dynamic Content</title>
+ <para>
+  Provide protections against dynamic content such as scripts and native
+  browser objects which can change the content of a browser window
+  without the user's knowledge.
+ </para>
+ <para>
+  This module sets each user’s preference to prevent direct
+  downloading to their desktop. Additionally, it configures the browser
+  to alert the user before running an executable from the
+  <emphasis role="bold">Download Manager</emphasis>. It also configures
+  the browser to scan downloaded items for viruses.
+ </para>
+ <para>
+  JavaScript™ is primarily implemented as part of a web browser to
+  provide enhanced user interfaces and dynamic websites. This module
+  sets each user’s preference to disallow JavaScript from closing
+  browser windows and to prevent JavaScripts from appearing in the
+  browser’s URL history.
+  <indexterm>
+   <primary>Java</primary>
+  </indexterm>
+ </para>
+ <para>
+  The browser is also configured to alert the user if they are visiting
+  a malicious site and to prevent the browser from locally caching the
+  content of SSL (secure) pages to disk.
+  <indexterm>
+   <primary>SSL</primary>
+  </indexterm>
+ </para>
+ <para>
+  The following parameters are set in each user’s
+  <filename>$HOME/.mozilla/firefox/*/prefs.js</filename>:
+<programlisting>user_pref("dom.disable_window_open_feature.status", false);
+user_pref("browser.cache.disk_cache_ssl", false);
+user_pref("browser.download.folderList", 2);
+user_pref("browser.safebrowsing.enabled", true);
+user_pref("browser.safebrowsing.malware.enabled", true);
+user_pref("browser.urlbar.filter.javascript", true);
+user_pref("browser.download.manager.scanWhenDone", true);</programlisting>
+ </para>
+ <simplesect xml:id="FirefoxDynamicContent-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>DISA Mozilla Firefox STIG (v4 R2)</title>
+   <listitem>
+    <para>
+     DTBF180 - Pop-up windows
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.3 - Configure system security parameters to prevent misuse
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

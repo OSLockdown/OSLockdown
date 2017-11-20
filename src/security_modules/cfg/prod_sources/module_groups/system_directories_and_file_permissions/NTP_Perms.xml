@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="99" name="NTP file permissions">
+        <library>NTP_Perms</library>
+        <description>Restrict permissions for NTP configuration files</description>
+        <scan_weight>10</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <configurationOptions>
+          <option name="fileList" type="fileList">
+            <description>List of files/directories</description>
+            <default>/etc/ntp.conf </default>
+          </option>
+          <option name="globNames" type="allowGlobbing">
+           <description>Expand wildcards (shell globbing)?</description>
+           <default>0</default>
+          </option>
+          <option name="allowedUnames" type="userListCanBeEmpty">
+            <description>Allowed User Names</description>
+            <default>root</default>
+          </option>
+          <option name="allowedGnames" type="groupListCanBeEmpty">
+            <description>Allowed Group Names</description>
+            <default>root,bin,sys</default>
+          </option>
+          <option name="dacs" type="fileDACs">
+            <description>Maximum allowed permissions</description>
+            <default>640</default>
+          </option>
+        </configurationOptions>
+        <platforms>
+          <cpe-item name="cpe:/o:centos:centos:4"/>
+          <cpe-item name="cpe:/o:centos:centos:5"/>
+          <cpe-item name="cpe:/o:centos:centos:6"/>
+          <cpe-item name="cpe:/o:novell:opensuse:10"/>
+          <cpe-item name="cpe:/o:novell:opensuse:11"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:10"/>
+          <cpe-item name="cpe:/o:novell:suse_linux:11"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5"/>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6"/>
+          <cpe-item name="cpe:/o:redhat:fedora:10"/>
+          <cpe-item name="cpe:/o:redhat:fedora:11"/>
+          <cpe-item name="cpe:/o:redhat:fedora:12"/>
+          <cpe-item name="cpe:/o:redhat:fedora:13"/>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Directories and File Permissions</member>
+        </views>
+      </security_module>

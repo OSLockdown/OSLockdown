@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="105" name="Configure User Firefox Prefs">
+        <library>FirefoxPrefs</library>
+        <description>This module has been retired. It has been expanded to multiple modules.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/a:mozilla:firefox"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Web Related Services</member>
+        </views>
+      </security_module>

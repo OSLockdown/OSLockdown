@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % CommonEntities SYSTEM "../COMMON_ENTITIES.ent">
+%CommonEntities;
+]>
+<chapter version="5.0" xml:id="system-basics" xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+   xmlns:xlink="http://www.w3.org/1999/xlink">
+   <!--<?xml-stylesheet type="text/css" href="docbook.css"?>-->
+   <title>OS Lockdown Basics</title>
+   <para>This chapter describes basic OS Lockdown functions, such as launching the application, logging in, logging out,
+      and Graphical User Interface (GUI) elements.</para>
+   <note>
+      <itemizedlist>
+         <listitem>
+            <para>The information in this chapter applies to both OS Lockdown editions (Enterprise and Standalone),
+               except where noted.</para>
+         </listitem>
+         <listitem>
+            <para>Some images in this chapter display a product version and revision number (e.g., v5.0.0 r23952). This
+               number might not reflect the most current product version and revision; however, this has no impact on OS
+               Lockdown functionality.</para>
+         </listitem>
+      </itemizedlist>
+   </note>
+   <section xml:id="system-basics-launching-app">
+      <title>Launching the Application and Logging In</title>
+      <procedure xml:id="launch-app">
+         <para>To launch and log into the OS Lockdown application:</para>
+         <indexterm>
+            <primary>Logging In</primary>
+         </indexterm>
+         <indexterm>
+            <primary>OS Lockdown</primary>
+            <secondary>Logging In</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>OS Lockdown</primary>
+            <secondary>Launching</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Password</primary>
+            <secondary>Changing</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Changing</primary>
+            <secondary>Password</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Default Password</primary>
+            <secondary>Changing</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>GUI</primary>
+            <secondary>Logging In</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>OS Lockdown Console</primary>
+            <secondary>Accessing</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Application</primary>
+            <secondary>Launching</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Application</primary>
+            <secondary>Logging In</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Warning Banner</primary>
+            <secondary>Modifying</secondary>
+         </indexterm>
+         <indexterm>
+            <primary>Password</primary>
+            <secondary>Default</secondary>
+         </indexterm>
+         <step>
+            <para>From a computer that has web access, invoke a browser and use the applicable address below to access
+               the system:</para>
+            <para><emphasis role="bold">OS Lockdown Enterprise</emphasis>:
+                  <filename>https://&lt;hostname>:8443/OSLockdown</filename></para>
+            <para><emphasis role="bold">OS Lockdown Standalone</emphasis>:
+                  <filename>https://&lt;localhost>:8443/OSLockdown</filename></para>
+            <note>
+               <para>Refer to <xref linkend="recommended-web-browsers" xrefstyle="select: label quotedtitle"/> for a
+                  list of recommended web browsers.</para>
+            </note>
+            <para>The <emphasis role="bold">OS Lockdown Console</emphasis> displays (<xref linkend="init-console"
+                  xrefstyle="select: label"/>).</para>
+            <figure xml:id="init-console">
+               <title>OS Lockdown Console</title>
+               <mediaobject>
+                  <imageobject>
+                     <imagedata fileref="Figures/init_console.png"/>
+                  </imageobject>
+               </mediaobject>
+            </figure>
+            <note>
+               <para>The <emphasis role="bold">Warning</emphasis> banner can be disabled by removing the
+                     <filename>/usr/share/oslockdown/cfg/ConsoleWarningBanner.txt</filename> file. The banner can be
+                  modified using standard HTML if your organization requires a specific application level login
+                  banner.</para>
+               <para/>
+            </note>
+         </step>
+         <step>
+            <para>Type your <emphasis role="bold">Username</emphasis>. The default <emphasis role="bold"
+                  >Username</emphasis> is &ldquo;admin&rdquo; (no quotes) and is case-sensitive.</para>
+         </step>
+         <step>
+            <para>Type your <emphasis role="bold">Password</emphasis>. The default <emphasis role="bold"
+                  >Password</emphasis> is &ldquo;Admin123&rdquo; (no quotes) and is case-sensitive.</para>
+         </step>
+         <step>
+            <para>Click <emphasis role="bold">Sign in</emphasis>. If logging in for the first time, the <emphasis
+                  role="bold">Change Password</emphasis> page displays (<xref linkend="change-password"
+                  xrefstyle="select: label"/>).</para>
+            <para>It is <emphasis role="italic">strongly</emphasis> recommended to change the default password before
+               continuing.</para>
+            <note>
+               <itemizedlist>
+                  <listitem>
+                     <para>Access the <emphasis role="bold">Change Password</emphasis> page from any page on the GUI by
+                        clicking the <emphasis role="bold">change password</emphasis> button in the upper-right corner.
+                     </para>
+                  </listitem>
+                  <listitem>
+                     <para>Refer to the <emphasis role="bold">Manage Account Preferences</emphasis> page (<xref
+                           linkend="enterprise-manage-account-page" xrefstyle="select: label"/>) to configure the
+                        password policy.</para>
+                  </listitem>
+               </itemizedlist>
+            </note>
+            <figure xml:id="change-password">
+               <title>Change Password Page</title>
+               <mediaobject>
+                  <imageobject>
+                     <imagedata fileref="Figures/change_password_page.png"/>
+                  </imageobject>
+               </mediaobject>
+            </figure>
+         </step>
+         <step>
+            <para>Type the <emphasis role="bold">Current Password</emphasis> (default), the <emphasis role="bold">New
+                  Password</emphasis>, and type the new password again in the <emphasis role="bold">Re-enter New
+                  Password</emphasis> field. The <emphasis role="bold">New Password</emphasis> is case-sensitive, must
+               be at least six characters and contain both a capital letter and a number.</para>
+            <indexterm>
+               <primary>Password</primary>
+               <secondary>Strong</secondary>
+            </indexterm>
+            <indexterm>
+               <primary>Password</primary>
+               <secondary>Characteristics</secondary>
+            </indexterm>
+         </step>
+         <step>
+            <para>Click <emphasis role="bold">Change Password</emphasis>. The <emphasis role="bold">Dashboard</emphasis>
+               displays (<xref linkend="dashboard" xrefstyle="select: label"/>). </para>
+            <para>Continue to <xref linkend="system-basics-interpret-dashboard" xrefstyle="select: label quotedtitle"/>
+               for a description of the Dashboard for each OS Lockdown edition.</para>
+         </step>
+      </procedure>
+   </section>
+   <section xml:id="system-basics-interpret-dashboard">
+      <title>Interpreting the Dashboard</title>
+      <para>The <emphasis role="bold">Dashboard</emphasis> (or <emphasis role="bold">Home</emphasis> page) provides a
+         summary of your system, including user information, recently generated notifications, and the number of clients
+         and groups managed in your enterprise. Refer to the following <emphasis role="bold">Dashboard</emphasis>
+         descriptions according to your OS Lockdown edition (Enterprise or Standalone).<indexterm>
+            <primary>Dashboard</primary>
+            <secondary>Descriptions</secondary>
+         </indexterm></para>
+      <section><?dbfo-need height="2.0in" ?>
+         <title>OS Lockdown Enterprise Edition</title>
+         <para>The OS Lockdown Enterprise <emphasis role="bold">Dashboard</emphasis> (or <emphasis role="bold"
+               >Home</emphasis> page) (<xref linkend="dashboard" xrefstyle="select: label"/>) provides the following key
+            information.</para>
+         <figure xml:id="dashboard">
+            <title>Dashboard (Home Page) - Enterprise Edition</title>
+            <mediaobject>
+               <imageobject>
+                  <imagedata fileref="Figures/dashboard.png"/>
+               </imageobject>
+            </mediaobject>
+         </figure>
+         <section>
+            <title>General Information Section</title>
+            <para>The <emphasis role="bold">General Information</emphasis> section (<xref
+                  linkend="dashboard-general-info-ent" xrefstyle="select: label"/>) provides the following
+               information.</para>
+            <figure xml:id="dashboard-general-info-ent">
+               <title>General Information Section</title>
+               <mediaobject>
+                  <imageobject>
+                     <imagedata fileref="Figures/dashboard_general_info_ent.png"/>
+                  </imageobject>
+               </mediaobject>
+            </figure>
+            <informaltable frame="all">
+               <tgroup cols="2">
+                  <colspec colwidth="0.10*"/>
+                  <colspec align="left" colwidth="0.50*"/>
+                  <thead>
+                     <row>
+                        <entry>Field</entry>
+                        <entry>Description</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row>
+                        <entry><emphasis role="bold">User</emphasis></entry>
+                        <entry>The OS Lockdown user currently logged into the system.</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Console Type</emphasis></entry>
+                        <entry>The OS Lockdown edition.</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Version</emphasis></entry>
+                        <entry>The OS Lockdown version and revision number.</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Last Login</emphasis></entry>
+                        <entry>The date on which the user last logged into the system.</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </section>
+         <section>
+            <title>Enterprise Statistics Section</title>
+            <para>The <emphasis role="bold">Enterprise Statistics</emphasis> section (<xref
+                  linkend="dashboard-stats-ent" xrefstyle="select: label"/>) provides the following information.</para>
+            <figure xml:id="dashboard-stats-ent">
+               <title>Enterprise Statistics Section</title>
+               <mediaobject>
+                  <imageobject>
+                     <imagedata fileref="Figures/dashboard_stats_ent.png"/>
+                  </imageobject>
+               </mediaobject>
+            </figure>
+            <informaltable frame="all">
+               <tgroup cols="2">
+                  <colspec colwidth=".25*"/>
+                  <colspec align="left" colwidth=".50*"/>
+                  <thead>
+                     <row>
+                        <entry>Field</entry>
+                        <entry>Description</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row>
+                        <entry><emphasis role="bold">Total Client Count</emphasis></entry>
+                        <entry>The total number of clients on the OS Lockdown Console.</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Unassociated Groups</emphasis></entry>
+                        <entry>The number of groups that are <emphasis role="italic">not</emphasis> associated with a
+                           security profile. </entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Unassociated Clients</emphasis></entry>
+                        <entry>The number of clients that are <emphasis role="italic">not</emphasis> associated with a
+                           group.</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Clients waiting to be approved</emphasis></entry>
+                        <entry>The number of pending clients waiting to be allowed or denied via the <emphasis
+                              role="bold">Auto-Registration Requests</emphasis> page.</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </section>
+         <section>
+            <title>Most Recent Notifications Section</title>
+            <para>The <emphasis role="bold">Most Recent Notifications</emphasis> section (<xref
+                  linkend="dashboard-most-recent-ent" xrefstyle="select: label"/>) provides the following
+               information.</para>
+            <note>
+               <para>Click on the column headers to sort the data in descending/ascending order, as indicated by the <inlinemediaobject>
+                     <imageobject>
+                        <imagedata fileref="Figures/sort_arrow_down.png"/>
+                     </imageobject>
+                  </inlinemediaobject> and <inlinemediaobject>
+                     <imageobject>
+                        <imagedata fileref="Figures/sort_arrow_up.png"/>
+                     </imageobject>
+                  </inlinemediaobject> icons, respectively.</para>
+            </note>
+            <figure xml:id="dashboard-most-recent-ent">
+               <title>Most Recent Notifications Section</title>
+               <mediaobject>
+                  <imageobject>
+                     <imagedata fileref="Figures/dashboard_most_recent_ent.png"/>
+                  </imageobject>
+               </mediaobject>
+            </figure>
+            <informaltable frame="all">
+               <tgroup cols="2">
+                  <colspec colwidth="0.10*"/>
+                  <colspec align="left" colwidth="0.50*"/>
+                  <thead>
+                     <row>
+                        <entry>Column</entry>
+                        <entry>Description</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row>
+                        <entry><emphasis role="bold">Received</emphasis></entry>
+                        <entry>The date on which the notification was received from the dispatcher.</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Source</emphasis></entry>
+                        <entry>The client on which the action was run.</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Type</emphasis></entry>
+                        <entry>The type of action run on the client (i.e., Quick Scan, Scan, Baseline, Apply,
+                           Undo).</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Results</emphasis></entry>
+                        <entry>The results of the action (e.g., report available, successful).</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Info</emphasis></entry>
+                        <entry>The status of the command/task (e.g., completed).</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </section>
+      </section>
+      <section>
+         <title>OS Lockdown Standalone Edition</title>
+         <para>The OS Lockdown Standalone <emphasis role="bold">Dashboard</emphasis> (or <emphasis role="bold"
+               >Home</emphasis> page) (<xref linkend="dashboard-standalone" xrefstyle="select: label"/>) provides key
+            information as documented in the following sub-sections.</para>
+         <figure xml:id="dashboard-standalone">
+            <title>Dashboard (Home Page) - Standalone Edition</title>
+            <mediaobject>
+               <imageobject>
+                  <imagedata fileref="Figures/dashboard_standalone.png"/>
+               </imageobject>
+            </mediaobject>
+         </figure>
+         <section>
+            <title>Details Section</title>
+            <para>The <emphasis role="bold">Details</emphasis> section (<xref linkend="dashboard-details-standalone"
+                  xrefstyle="select: label"/>) provides the following information when the refresh buttons are
+               clicked.</para>
+            <figure xml:id="dashboard-details-standalone">
+               <title>Details Section</title>
+               <mediaobject>
+                  <imageobject>
+                     <imagedata fileref="Figures/dashboard_details_standalone.png"/>
+                  </imageobject>
+               </mediaobject>
+            </figure>
+            <informaltable frame="all">
+               <tgroup cols="2">
+                  <colspec colwidth="0.20*"/>
+                  <colspec align="left" colwidth="0.50*"/>
+                  <thead>
+                     <row>
+                        <entry>Field</entry>
+                        <entry>Description</entry>
+                     </row>
+                  </thead>
+                  <tbody>
+                     <row>
+                        <entry><emphasis role="bold">Client Version</emphasis></entry>
+                        <entry>The OS Lockdown version and revision number.</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Nodename</emphasis></entry>
+                        <entry>The name of the client.</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Distribution</emphasis></entry>
+                        <entry>The operating system.</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Kernel</emphasis></entry>
+                        <entry>The version of the Linux kernel installed on the client.</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Uptime</emphasis></entry>
+                        <entry>The amount of time the client has been running.</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Architecture</emphasis></entry>
+                        <entry>The architecture (i.e., i386 32-bit or 64-bit).</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Load Average</emphasis></entry>
+                        <entry>Load averages at 1 minute, 5 minutes, and 15 minute intervals.</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Memory</emphasis></entry>
+                        <entry>The memory currently being used and the total memory available.</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Core Hours</emphasis></entry>
+                        <entry>The client’s peak operational hours.</entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Load Threshold</emphasis></entry>
+                        <entry>An approximate measurement of how busy the client is allowed to be before the action
+                           cannot proceed. </entry>
+                     </row>
+                     <row>
+                        <entry><emphasis role="bold">Dispatcher Status</emphasis> / <emphasis role="bold"
+                              >Tasking</emphasis></entry>
+                        <entry>Click <emphasis role="bold">Refresh Dispatcher Status</emphasis> to retrieve the status
+                           of the client (e.g., &ldquo;Idle&rdquo; if the machine is inactive).</entry>
+                     </row>
+                  </tbody>
+               </tgroup>
+            </informaltable>
+         </section>
+      </section>
+   </section>
+   <section xml:id="system-basics-working-with-menu-bar">
+      <title>Working with the Menu Bar</title>
+      <para>The Menu Bar (<xref linkend="menu-bar" xrefstyle="select: label"/>) contains tabs that enable you to access
+         system pages. </para>
+      <indexterm><primary>Menu Bar</primary><secondary>Descriptions</secondary></indexterm>
+      <indexterm><primary>GUI</primary><secondary>Menu Bar</secondary></indexterm>
+      <figure xml:id="menu-bar">
+         <title>Menu Bar</title>
+         <mediaobject>
+            <imageobject>
+               <imagedata fileref="Figures/menu_bar.png"/>
+            </imageobject>
+         </mediaobject>
+      </figure>
+      <para>Depending on your OS Lockdown edition and role, the following options are available on the Menu Bar.</para>
+      <note>
+         <para>Refer to the <emphasis role="bold">Actions Table</emphasis> (<xref linkend="display-action-table"
+               xrefstyle="select: label"/>) to view the actions allowable for each role. </para>
+      </note>
+      <informaltable frame="all">
+         <tgroup cols="2">
+            <colspec align="left" colwidth="0.25*"/>
+            <colspec align="left" colwidth="1.25*"/>
+            <thead>
+               <row>
+                  <entry>Menu Bar Option</entry>
+                  <entry>Description</entry>
+               </row>
+            </thead>
+            <tbody>
+               <row>
+                  <entry>Home</entry>
+                  <entry>Opens the <emphasis role="bold">Dashboard</emphasis> (or <emphasis role="bold">Home</emphasis>
+                     page) applicable to your OS Lockdown edition.</entry>
+               </row>
+               <row>
+                  <entry>Profiles &gt; Security Profiles</entry>
+                  <entry>Opens the <emphasis role="bold">Profiles</emphasis> page (<xref linkend="profile-page"
+                        xrefstyle="select: label"/>). Use this page to add a new security profile, and view, delete, and
+                     manage existing security profiles.</entry>
+               </row>
+               <row>
+                  <entry>Profiles &gt; Baseline Profiles</entry>
+                  <entry>Opens the <emphasis role="bold">Baseline Profile List</emphasis> page (<xref
+                        linkend="baseline-profile-list" xrefstyle="select: label"/>). Use this page to add a new
+                     baseline profile, and view, delete and manage existing baseline profiles.</entry>
+               </row>
+               <row>
+                  <entry>Profiles &gt; Compare Security Profiles</entry>
+                  <entry>Opens the <emphasis role="bold">Compare Profiles</emphasis> page (<xref
+                        linkend="compare-profile-existing" xrefstyle="select: label"/>). Use this page to view existing
+                     and create new Profile Comparison reports. </entry>
+               </row>
+               <row>
+                  <entry>Clients &gt; List Clients</entry>
+                  <entry><para>Opens the <emphasis role="bold">Clients</emphasis> page (<xref linkend="client-page"
+                           xrefstyle="select: label"/>).</para>
+                     <para>In the OS Lockdown Enterprise edition, use this page to delete a client, create Assessment
+                        and Baseline reports, perform actions on a client, and push updates to the client from the OS
+                        Lockdown Console.</para>
+                     <para>Note: Client functionality is <emphasis role="italic">not</emphasis> available on the OS
+                        Lockdown Standalone edition.</para></entry>
+               </row>
+               <row>
+                  <entry>Clients &gt; Auto-Registration Requests</entry>
+                  <entry><para>Opens the <emphasis role="bold">Auto-Registration Requests</emphasis> page. Use this page
+                        to allow or deny client registration requests to the OS Lockdown Console.</para>
+                     <para>Note: Auto-Registration Request functionality is <emphasis role="italic">not</emphasis>
+                        available on the OS Lockdown Standalone edition.</para></entry>
+               </row>
+               <row>
+                  <entry>Groups</entry>
+                  <entry><para>Opens the <emphasis role="bold">Groups</emphasis> page (<xref linkend="groups-page"
+                           xrefstyle="select: label"/>). Use this page to add a new group, manage existing groups, and
+                        push updates to the group from the OS Lockdown Console.</para><para>Note: Group functionality is
+                           <emphasis role="italic">not</emphasis> available on the OS Lockdown Standalone
+                        edition.</para></entry>
+               </row>
+               <row>
+                  <entry>Notifications</entry>
+                  <entry>Opens the <emphasis role="bold">Notifications</emphasis> page (<xref linkend="notifs-page"
+                        xrefstyle="select: label"/>). Use this page to view client and console-generated
+                     notifications.</entry>
+               </row>
+               <row>
+                  <entry>Reports &gt; Assessment</entry>
+                  <entry>Opens the <emphasis role="bold">Assessment Report</emphasis> page (<xref linkend="assess-page"
+                        xrefstyle="select: label"/>). Use this page to view existing Assessment reports.</entry>
+               </row>
+               <row>
+                  <entry>Reports &gt; Compare Assessments</entry>
+                  <entry>Opens the <emphasis role="bold">Compare Assessment Reports</emphasis> page (<xref
+                        linkend="compare-assess-page" xrefstyle="select: label"/>). Use this page to view existing and
+                     create new Assessment Comparison reports.</entry>
+               </row>
+               <row>
+                  <entry>Reports &gt; Baseline</entry>
+                  <entry>Opens the <emphasis role="bold">Baseline Report</emphasis> page (<xref
+                        linkend="baseline-report-page" xrefstyle="select: label"/>). Use this page to view existing
+                     Baseline reports.</entry>
+               </row>
+               <row>
+                  <entry>Reports &gt; Compare Baselines</entry>
+                  <entry>Opens the <emphasis role="bold">Compare Baseline Reports</emphasis> page (<xref
+                        linkend="compare-baseline-reports-page" xrefstyle="select: label"/>). Use this page to view
+                     existing and create new Baseline Comparison reports. </entry>
+               </row>
+               <row>
+                  <entry>Reports &gt; Apply</entry>
+                  <entry>Opens the <emphasis role="bold">Apply Report</emphasis> page (<xref linkend="apply-report-page"
+                        xrefstyle="select: label"/>). Use this page to view existing Apply reports. </entry>
+               </row>
+               <row>
+                  <entry>Reports &gt; Undo</entry>
+                  <entry>Opens the <emphasis role="bold">Undo Report</emphasis> page (<xref linkend="undo-report-page"
+                        xrefstyle="select: label"/>). Use this page to view existing Undo reports. </entry>
+               </row>
+               <row>
+                  <entry>Reports &gt; Group Assessments</entry>
+                  <entry><para>Opens the <emphasis role="bold">Group Assessments</emphasis> page (<xref
+                           linkend="group-assess-page" xrefstyle="select: label"/>). Use this page to view existing and
+                        create Assessment reports based on a group.</para>
+                     <para>Note: Group Assessment functionality is <emphasis role="italic">not</emphasis> available on
+                        the OS Lockdown Standalone edition.</para></entry>
+               </row>
+               <row>
+                  <entry>Reports &gt; Group Assets</entry>
+                  <entry><para>Opens the <emphasis role="bold">Group Assets</emphasis> page (<xref
+                           linkend="group-asset-page" xrefstyle="select: label"/>). Use this page to view existing and
+                        create new Asset reports based on a group.</para>
+                     <para>Note: Group Assets functionality is <emphasis role="italic">not</emphasis> available on the
+                        OS Lockdown Standalone edition.</para></entry>
+               </row>
+               <row>
+                  <entry>Logging &gt; Console Audit Log</entry>
+                  <entry>Opens the <emphasis role="bold">Console Audit Log</emphasis> page (<xref
+                        linkend="audit-log-page" xrefstyle="select: label"/>). Use this page to view actions performed
+                     by a user, such as Scan, Undo, and Apply in a log format.</entry>
+               </row>
+               <row>
+                  <entry>Logging &gt; Client Application Logs</entry>
+                  <entry>Opens the <emphasis role="bold">Client Application Log</emphasis> page (<xref
+                        linkend="sb-log-page" xrefstyle="select: label"/>). Use this page to view actions that are
+                     specific to a client.</entry>
+               </row>
+               <row>
+                  <entry>Scheduler</entry>
+                  <entry><para>Opens the <emphasis role="bold">Scheduler</emphasis> page (<xref linkend="scheduler-page"
+                           xrefstyle="select: label"/>). Use this page to create new, edit, delete, and synchronize
+                        tasks.</para>
+                     <para>Note: Scheduler functionality is <emphasis role="italic">not</emphasis> available on the OS
+                        Lockdown Standalone edition.</para></entry>
+               </row>
+               <row>
+                  <entry>Administration &gt; Manage Users</entry>
+                  <entry>Opens the <emphasis role="bold">Manage Users</emphasis> page (<xref linkend="manage-users-page"
+                        xrefstyle="select: label"/>). Use this page to create and delete user accounts, and to assign
+                     roles to users.</entry>
+               </row>
+               <row>
+                  <entry>Administration &gt; Manage Database</entry>
+                  <entry><para>Opens the <emphasis role="bold">Manage Database</emphasis> page (<xref
+                           linkend="enterprise-mig-page" xrefstyle="select: label"/>). Use this page to import and/or
+                        export custom profiles, clients, groups, and scheduled tasks to and from an XML format.</para>
+                     <para>Note: Manage Database functionality is <emphasis role="italic">not</emphasis> available on
+                        the OS Lockdown Standalone edition.</para></entry>
+               </row>
+               <row>
+                  <entry>Administration &gt; Manage Account Preferences</entry>
+                  <entry>Opens the <emphasis role="bold">Manage Account Preferences</emphasis> page (<xref
+                        linkend="enterprise-manage-account-page" xrefstyle="select: label"/>). Use this page to set
+                     password aging and complexity criteria. </entry>
+               </row>
+               <row>
+                  <entry>Administration &gt; Manage Upstream Notification Preferences</entry>
+                  <entry>Opens the <emphasis role="bold">Upstream Notification Preferences</emphasis> page (<xref
+                        linkend="enterprise-manage-upstreams-notif-prefs-page" xrefstyle="select: label"/>). Use this
+                     page to configure how Upstream Notifications are generated. </entry>
+               </row>
+               <row>
+                  <entry>Help</entry>
+                  <entry>From any page on the GUI, click <emphasis role="bold">Help</emphasis> to open context-sensitive
+                     on line help.</entry>
+               </row>
+               <row>
+                  <entry>Help &gt; General Information</entry>
+                  <entry>Opens the <emphasis role="bold">General Information</emphasis> page. This page contains system
+                     information such as contacts, OS Lockdown documentation, and links to security standards.</entry>
+               </row>
+            </tbody>
+         </tgroup>
+      </informaltable>
+   </section>
+   <section xml:id="system-basics-working-with-status-bar">
+      <title>Working with the Status Bar</title>
+      <para>System messages, warnings, and errors appear as pop-ups and on the Status Bar (<xref linkend="status-bar"
+            xrefstyle="select: label"/>). </para>
+      <indexterm><primary>Status Bar</primary><secondary>Working with</secondary></indexterm>
+      <indexterm><primary>Status Bar</primary><secondary>System Messages</secondary></indexterm>
+      <indexterm><primary>Status Bar</primary><secondary>System Warnings</secondary></indexterm>
+      <indexterm><primary>Status Bar</primary><secondary>System Errors</secondary></indexterm>
+      <indexterm><primary>GUI</primary><secondary>Status Bar</secondary></indexterm>
+      <itemizedlist>
+         <listitem>
+            <para>System messages appear on the Status Bar in green.</para>
+         </listitem>
+         <listitem>
+            <para>System warnings appear on the Status Bar in yellow.</para>
+         </listitem>
+         <listitem>
+            <para>System errors appear on the Status Bar in red.</para>
+         </listitem>
+      </itemizedlist>
+      <figure xml:id="status-bar">
+         <title>Status Bar - Sample System Message and System Error</title>
+         <mediaobject>
+            <imageobject>
+               <imagedata fileref="Figures/status_bar.png"/>
+            </imageobject>
+         </mediaobject>
+      </figure>
+   </section>
+   <section xml:id="system-basics-logging-off">
+      <title>Logging Off</title>
+      <para>To log off the system:</para>
+      <indexterm><primary>Logging Off</primary></indexterm>
+      <indexterm><primary>Application</primary><secondary>Logging Off</secondary></indexterm>
+      <indexterm><primary>GUI</primary><secondary>Logging Off</secondary></indexterm>
+      <para>From any page on the GUI, click <emphasis role="bold">logout</emphasis> in the upper-right corner of the
+         page.</para>
+      <para>You are returned to the <emphasis role="bold">OS Lockdown Console</emphasis> (<xref linkend="init-console"
+            xrefstyle="select: label"/>).</para>
+   </section>
+</chapter>

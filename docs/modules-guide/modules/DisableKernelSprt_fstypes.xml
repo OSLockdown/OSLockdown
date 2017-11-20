@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableKernelSprt_fstypes" version="5.0">
+  <title xml:id="Filesystems">Disable Mounting of Uncommon Filesystem Types</title>
+  <para>
+  Prevents the kernel from loading modules for uncommon file system
+  types. When the kernel does not load the associated module, the system
+  will not support the file system type and will not be able to mount
+  that type.
+ </para>
+  <para>
+  This modules will examine all files in
+  <filename>/etc/modprobe.d</filename> and the
+  <filename>/etc/modprobe.conf</filename> file (if they exist) and look
+  for the line(s) that are specified as arguments. If a line is found
+  that matches the first two whitespace separated fields but not the
+  remainder, then it will be updated to match the provided lines. If no
+  matching line is found, then it will be added to either
+  <filename>/etc/modprobe.d/oslockdown_modprobe_settings</filename> (if
+  <filename>/etc/modprobe.d</filename> is a directory), or to
+  <filename>/etc/modprobe.conf</filename>.
+ </para>
+  <para>
+  This module is not applicable to Oracle Solaris.
+ </para>
+  <indexterm>
+    <primary>/etc/modprobe.conf</primary>
+  </indexterm>
+  <simplesect xml:id="DisableKernelSprt_fstypes-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Required lines to disable Firewire kernel module(s)<emphasis><para>One or more lines that can disable or otherwise alter how kernel modules are loaded/configured/disabled.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="DisableKernelSprt_fstypes-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>2.2.2.5 - Disable Mounting of Uncommon Filesystem Types</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-14089-7 - Support for cramfs filesystems should be enabeld or disabled as appropriate.</para>
+      </listitem>
+      <listitem>
+        <para>CCE-14093-9 - Support for hfsplus filesystems should be enabeld or disabled as appropriate.</para>
+      </listitem>
+      <listitem>
+        <para>CCE-14118-4 - Support for squashfs filesystems should be enabeld or disabled as appropriate.</para>
+      </listitem>
+      <listitem>
+        <para>CCE-14457-6 - Support for freevxfs filesystems should be enabeld or disabled as appropriate.</para>
+      </listitem>
+      <listitem>
+        <para>CCE-14853-6 - Support for jffs2 filesystems should be enabeld or disabled as appropriate.</para>
+      </listitem>
+      <listitem>
+        <para>CCE-14871-8 - Support for udf filesystems should be enabeld or disabled as appropriate.</para>
+      </listitem>
+      <listitem>
+        <para>CCE-15087-0 - Support for hfs filesystems should be enabeld or disabled as appropriate.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

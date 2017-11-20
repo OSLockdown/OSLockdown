@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SshdPrintLastLog" version="5.0">
+  <title xml:id="RemoteAccessServices">SSHD Print Last Log</title>
+  <para>
+  Configures the secure shell daemon to print out information about the
+  users last login.
+ </para>
+  <para>
+  For all operating systems, the
+  <filename>/etc/ssh/sshd_config</filename> file will be examined. If
+  present, the values for the 'PrintLastLog' settings will be examined.
+  If the entry is not 'yes', it will be set to 'yes'. If the setting
+  does not exist, it will be created with the value of 'yes'.
+ </para>
+  <simplesect xml:id="SshdPrintLastLog-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+      <listitem>
+        <para>CC-8 - Controlled Use of Administrative Privileges</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>4.5.2 - Disable Root Login Via SSH</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN000452 - The system must display the date and time of the last successful account login upon login.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000507 - The operating system, upon successful logon, must display to the user the date and time of the last logon or access via ssh.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD NISPOM (Feb 2006)</title>
+      <listitem>
+        <para>8.303a - Unique Identification</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-4387-7 - Root login via SSH should be enabled or disabled as appropriate</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+      <listitem>
+        <para>2.2.3 - Configure system security parameters to prevent misuse</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="RestrictAtCron" version="5.0">
+  <title xml:id="General">Restrict At and Cron</title>
+  <para>
+  Restricts the use of the <filename>at(1)</filename> and
+  <filename>crontab(1)</filename> commands to a list of specified users.
+  <indexterm><primary>crontab</primary></indexterm>
+ </para>
+  <para>
+  Only the root user <emphasis>should</emphasis> use the
+  <filename>at(1)</filename> and <filename>crontab(1)</filename>
+  commands.
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2">
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.8*" align="left"/>
+      <colspec colname="c2" colwidth="1.0*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Settings</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry morerows="2">
+            <simplelist type="horiz" columns="1">
+              <member>Fedora 10, 11, 12, and 13</member>
+              <member>Red Hat Enterprise Linux 4, 5, and 6</member>
+              <member>SUSE 10 and 11</member>
+            </simplelist>
+          </entry>
+          <entry>
+            <filename>/etc/at.deny</filename>
+            <indexterm>
+              <primary>/etc/at.deny</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/at.deny</secondary>
+            </indexterm>
+          </entry>
+          <entry>Remove this file if it exists.</entry>
+        </row>
+        <row>
+          <entry>
+            <filename>/etc/cron.deny</filename>
+            <indexterm>
+              <primary>/etc/cron.deny</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/cron.deny</secondary>
+            </indexterm>
+          </entry>
+          <entry>Remove this file if it exists.</entry>
+        </row>
+        <row>
+          <entry>
+            <filename>/etc/cron.allow</filename>
+            <indexterm>
+              <primary>/etc/cron.allow</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/cron.allow</secondary>
+            </indexterm>
+          </entry>
+          <entry>If it does not exist, create it with just 'root' listed.</entry>
+        </row>
+        <row>
+          <entry morerows="2">Solaris 10</entry>
+          <entry>
+            <filename>/etc/cron.d/at.deny</filename>
+            <indexterm>
+              <primary>/etc/cron.d/at.deny</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/cron.d/at.deny</secondary>
+            </indexterm>
+          </entry>
+          <entry>Remove this file if it exists.</entry>
+        </row>
+        <row>
+          <entry>
+            <filename>/etc/cron.d/cron.deny</filename>
+            <indexterm>
+              <primary>/etc/cron.d/cron.deny</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/cron.d/cron.deny</secondary>
+            </indexterm>
+          </entry>
+          <entry>Remove this file if it exists.</entry>
+        </row>
+        <row>
+          <entry>
+            <filename>/etc/cron.d/cron.allow</filename>
+            <indexterm>
+              <primary>/etc/cron.d/cron.allow</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/cron.d/cron.allow</secondary>
+            </indexterm>
+          </entry>
+          <entry>If it does not exist, create it with just 'root' listed.</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <simplesect xml:id="RestrictAtCron-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN002960 - Access to the cron utility must be controlled using the cron.allow and/or cron.deny file(s).</para>
+      </listitem>
+      <listitem>
+        <para>GEN002980 - The cron.allow file must have mode 0600 or less permissive.</para>
+      </listitem>
+      <listitem>
+        <para>GEN003200 - The cron.deny file must have mode 0600 or less permissive.</para>
+      </listitem>
+      <listitem>
+        <para>GEN003240 - The cron.allow file must be owned by root, bin, or sys.</para>
+      </listitem>
+      <listitem>
+        <para>GEN003250 - The cron.allow file must be group-owned by root, bin, sys, or cron.</para>
+      </listitem>
+      <listitem>
+        <para>GEN003252 - The at.deny file must have mode 0600 or less permissive.</para>
+      </listitem>
+      <listitem>
+        <para>GEN003260 - The cron.deny file must be owned by root, bin, or sys.</para>
+      </listitem>
+      <listitem>
+        <para>GEN003270 - The cron.deny file must be group-owned by root, bin, or sys.</para>
+      </listitem>
+      <listitem>
+        <para>GEN003280 - Access to the "at" utility must be controlled via the at.allow and/or at.deny file(s).</para>
+      </listitem>
+      <listitem>
+        <para>GEN003300 - The at.deny file must not be empty if it exists.</para>
+      </listitem>
+      <listitem>
+        <para>GEN003320 - Default system accounts (with the exception of root) must not be listed in the at.allow file or must be included in the at.deny file if the at.allow file does not exist.</para>
+      </listitem>
+      <listitem>
+        <para>GEN003340 - The at.allow file must have mode 0600 or less permissive.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN002960 - Cron Utility Accessibility</para>
+      </listitem>
+      <listitem>
+        <para>GEN002980 - The cron.allow Permissions</para>
+      </listitem>
+      <listitem>
+        <para>GEN003060 - Default System Accounts and Cron</para>
+      </listitem>
+      <listitem>
+        <para>GEN003200 - cron.deny Permissions</para>
+      </listitem>
+      <listitem>
+        <para>GEN003240 - cron.allow Ownership</para>
+      </listitem>
+      <listitem>
+        <para>GEN003260 - cron.deny Ownership</para>
+      </listitem>
+      <listitem>
+        <para>GEN003300 - The at.deny File</para>
+      </listitem>
+      <listitem>
+        <para>GEN003320 - Default System Accounts and At</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

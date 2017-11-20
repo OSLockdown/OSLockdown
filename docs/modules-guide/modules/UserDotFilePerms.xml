@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="UserDotFilePerms" version="5.0">
+ <title xml:id="Accounts">User Dot File Perms</title>
+ <para>
+  Prevents user dot files from being writable by other users. User dot
+  files are local initialization files located in user’s home
+  directories. They are used by shells and other applications during
+  startup. Typical user dot files include <filename>.bashrc</filename>
+  and <filename>.profile</filename> .
+  <indexterm>
+   <primary>.bashrc</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>.profile</primary>
+  </indexterm>
+ </para>
+ <para>
+  This module will obtain a list of local, non-system user accounts from
+  <filename>/etc/passwd</filename> . Non-system accounts in Linux are
+  those with user identification numbers greater than or equal to 500
+  and in Solaris with an identification number greater than or equal to
+  100. The module then checks each account’s home directory and
+  ensures that <filename>$HOME/.[A-Za-z0-9]*</filename> <emphasis>does
+  not</emphasis> have group or world write permissions.
+  <indexterm>
+   <primary>/etc/passwd</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Files and Directories</primary>
+   <secondary>/etc/passwd</secondary>
+  </indexterm>
+
+  <indexterm>
+   <primary>passwd</primary>
+  </indexterm>
+ </para>
+ <para>
+  It is recommended to apply this module to prevent users from modifying
+  other user initialization files. Not applying this module leaves the
+  system vulnerable to malicious users who could introduce Trojan
+  Horses.
+ </para>
+ <simplesect xml:id="UserDotFilePerms-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN001860 - All local initialization files must be owned by the
+     home directorys user or root.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001870 - Local initialization files must be group-owned by the
+     user's primary group or root.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001880 - All local initialization files must have mode 0740 or
+     less permissive.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN001880 - Local Initialization Files Permissions
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD NISPOM (Feb 2006)</title>
+   <listitem>
+    <para>
+     8.606b1 - Access 2 Requirements
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-3 - Access Enforcement
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     2.3.4.3 - Ensure that User Dot-Files are not World-writable
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.3 - Configure system security parameters to prevent misuse
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

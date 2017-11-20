@@ -1,0 +1,77 @@
+#!/bin/bash
+#
+# Copyright (c) 2009-2014 Forcepoint LLC.
+# This file is released under the GPLv3 license.  
+# See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+# or visit https://www.gnu.org/licenses/gpl.html instead.
+#
+# OSL_Dispatcher    This shell script takes care of starting and stopping
+#              OSL_Dispatcher daemon
+#
+OPTIONS=""
+
+if [ ! -r /lib/svc/share/smf_include.sh ]; then
+    echo "Unable source /lib/svc/share/smf_include.sh"
+    exit 1
+fi
+. /lib/svc/share/smf_include.sh
+
+
+# Source function library.
+
+RETVAL=0
+prog="/sbin/OSL_Dispatcher"
+PID_FILE="/var/run/OSL_Dispatcher.pid"
+
+start() {
+        echo -n "Starting $prog: "	
+        $prog $OPTIONS
+        RETVAL=$?
+        echo
+        return $RETVAL
+}
+
+# Send a SIGTERM first, but delay 10 seconds before sending the SIGKILL to let the program try and clean up nicely
+stop() {
+        echo -n "Shutting down $prog: "
+        if [ ! -f $PID_FILE ]; then
+           printf "\t[FAILED]\n"
+           echo "Can't find PID file: $PID_FILE"
+           return 1
+        fi
+        kill -INT `cat $PID_FILE` 2>/dev/null 
+        printf "\t[OK]\n"
+        RETVAL=$?
+        echo 
+        if [ -f $PID_FILE ]; then
+            rm -f $PID_FILE
+        fi
+        return $RETVAL
+}
+
+# See how we were called.
+case "$1" in
+  start)
+        start
+        if [ $? -ne 0 ]; then
+            exit  $SMF_EXIT_ERR
+        fi
+        ;;
+  stop)
+        stop
+        if [ $? -ne 0 ]; then
+            exit  $SMF_EXIT_ERR
+        fi
+        ;;
+  restart|reload)
+        stop
+        start
+        if [ $? -ne 0 ]; then
+            exit  $SMF_EXIT_ERR
+        fi
+	;;
+  *)
+        echo $"Usage: $0 {start|stop|restart}"
+esac
+
+exit $SMF_EXIT_OK

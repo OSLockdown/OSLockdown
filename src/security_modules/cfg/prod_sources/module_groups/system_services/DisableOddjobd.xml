@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Oddjobd">
+        <library>DisableOddjobd</library>
+        <description>The oddjob daemon provides some additional ability to execute actions via the D-Bus interface, but it is recommended that the service be disabled unless required.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4">
+            <services>
+              <service seq="1" name="oddjobd"/>
+            </services>
+            <packages>
+              <package name="oddjob"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4">
+            <services>
+              <service seq="1" name="oddjobd"/>
+            </services>
+            <packages>
+              <package name="oddjob"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:6">
+            <services>
+              <service seq="1" name="oddjobd"/>
+            </services>
+            <packages>
+              <package name="oddjob"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4">
+            <services>
+              <service seq="1" name="oddjobd"/>
+            </services>
+            <packages>
+              <package name="oddjob"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5">
+            <services>
+              <service seq="1" name="oddjobd"/>
+            </services>
+            <packages>
+              <package name="oddjob"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5">
+            <services>
+              <service seq="1" name="oddjobd"/>
+            </services>
+            <packages>
+              <package name="oddjob"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:6">
+            <services>
+              <service seq="1" name="oddjobd"/>
+            </services>
+            <packages>
+              <package name="oddjob"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5">
+            <services>
+              <service seq="1" name="oddjobd"/>
+            </services>
+            <packages>
+              <package name="oddjob"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <services>
+              <service seq="1" name="oddjobd"/>
+            </services>
+            <packages>
+              <package name="oddjob"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:6">
+            <services>
+              <service seq="1" name="oddjobd"/>
+            </services>
+            <packages>
+              <package name="oddjob"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>System Services</member>
+        </views>
+      </security_module>

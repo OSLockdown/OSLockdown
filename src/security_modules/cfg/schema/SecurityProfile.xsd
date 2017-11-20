@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ************************************************************************ -->
+<!-- Copyright (c) 2007-2014 Forcepoint LLC.                                       -->
+<!-- This file is released under the GPLv3 license.                                -->
+<!-- See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license, -->
+<!-- or visit https://www.gnu.org/licenses/gpl.html instead.                       -->
+<!--                                                                          -->
+<!--   OS Lockdown - Security Profile                                    -->
+<!-- ************************************************************************ -->
+<!-- $Id: SecurityProfile.xsd 23917 2017-03-07 15:44:30Z rsanders $ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation>OS Lockdown - Security Profiles</xs:documentation>
+  </xs:annotation>
+  <xs:element name="profile">
+    <xs:complexType>
+      <xs:sequence>
+
+        <xs:element name="info" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="description" minOccurs="1" maxOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="summary"  type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="verbose"  type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="comments" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="security_module" minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="option" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="name" use="required"/>
+          </xs:complexType>
+        </xs:element>
+
+      </xs:sequence>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="sysProfile" type="xs:boolean" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

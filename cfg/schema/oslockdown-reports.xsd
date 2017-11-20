@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ***************************************************************************** -->
+<!-- Copyright (c) 2007-2014 Forcepoint LLC.                                       -->
+<!-- This file is released under the GPLv3 license.                                -->
+<!-- See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license, -->
+<!-- or visit https://www.gnu.org/licenses/gpl.html instead.                       -->
+<!--                                                                               -->
+<!--   OS Lockdown Reports Schema                                             -->
+<!-- ***************************************************************************** -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation>OS Lockdown Reports Schema</xs:documentation>
+  </xs:annotation>
+  <!-- ************************************************************************ -->
+  <!-- *                              Apply Report                            * -->
+  <!-- ************************************************************************ -->
+  <xs:element name="ApplyReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="report" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="modules" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="module" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType mixed="true">
+                  <xs:sequence>
+                    <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:sequence>
+                      <xs:element ref="views" minOccurs="0" maxOccurs="1"/>
+                      <xs:element ref="compliancy" minOccurs="1" maxOccurs="1"/>
+                      <xs:element ref="details" minOccurs="0" maxOccurs="1"/>
+                    </xs:sequence>
+                  </xs:sequence>
+                  <xs:attribute ref="severity" use="required"/>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                  <xs:attribute name="results" type="xs:string" use="required"/>
+                  <xs:attribute name="severityLevel" type="xs:string" use="required"/>
+                  <xs:attribute name="execTimeMs" type="xs:string" use="optional"/>
+                  <xs:attribute name="fullyCompleted" type="xs:boolean" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="sbVersion" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************************************************ -->
+  <!-- *                         Assessment Report                            * -->
+  <!-- ************************************************************************ -->
+  <xs:element name="AssessmentReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="report" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="modules" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="module" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType mixed="true">
+                  <xs:sequence>
+                    <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:sequence>
+                      <xs:element ref="views" minOccurs="0" maxOccurs="1"/>
+                      <xs:element ref="compliancy" minOccurs="1" maxOccurs="1"/>
+                      <xs:element ref="details" minOccurs="0" maxOccurs="1"/>
+                    </xs:sequence>
+                  </xs:sequence>
+                  <xs:attribute ref="severity" use="required"/>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                  <xs:attribute name="results" type="xs:string" use="required"/>
+                  <xs:attribute name="severityLevel" type="xs:string" use="required"/>
+                  <xs:attribute name="execTimeMs" type="xs:string" use="optional"/>
+                  <xs:attribute name="fullyCompleted" type="xs:boolean" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="sbVersion" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************************************************ -->
+  <!-- *                   Assessment Comparison Report                       * -->
+  <!-- ************************************************************************ -->
+  <xs:element name="AssessmentReportDelta">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="report" minOccurs="2" maxOccurs="2">
+          <xs:complexType>
+            <xs:attribute name="profile" type="xs:string" use="required"/>
+            <xs:attribute name="hostname" type="xs:string" use="required"/>
+            <xs:attribute name="dist" type="xs:string" use="required"/>
+            <xs:attribute name="distVersion" type="xs:string" use="required"/>
+            <xs:attribute name="kernel" type="xs:string" use="required"/>
+            <xs:attribute name="cpuInfo" type="xs:string" use="required"/>
+            <xs:attribute name="arch" type="xs:string" use="required"/>
+            <xs:attribute name="totalMemory" type="xs:string" use="required"/>
+            <xs:attribute name="created" type="xs:string" use="required"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="added" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="module" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType mixed="true">
+                  <xs:sequence>
+                    <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:sequence>
+                      <xs:element ref="views" minOccurs="0" maxOccurs="1"/>
+                      <xs:element ref="compliancy" minOccurs="1" maxOccurs="1"/>
+                    </xs:sequence>
+                  </xs:sequence>
+                  <xs:attribute name="severityLevel" type="xs:integer" use="required"/>
+                  <xs:attribute name="name" use="required"/>
+                  <xs:attribute name="results" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="removed" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="module" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType mixed="true">
+                  <xs:sequence>
+                    <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:sequence>
+                      <xs:element ref="views" minOccurs="0" maxOccurs="1"/>
+                      <xs:element ref="compliancy" minOccurs="1" maxOccurs="1"/>
+                    </xs:sequence>
+                  </xs:sequence>
+                  <xs:attribute name="severityLevel" type="xs:integer" use="required"/>
+                  <xs:attribute name="name" use="required"/>
+                  <xs:attribute name="results" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="changed" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="module" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType mixed="true">
+                  <xs:sequence>
+                    <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:sequence>
+                      <xs:element ref="views" minOccurs="0" maxOccurs="1"/>
+                      <xs:element ref="compliancy" minOccurs="1" maxOccurs="1"/>
+                    </xs:sequence>
+                  </xs:sequence>
+                  <xs:attribute name="severityLevel" type="xs:integer" use="required"/>
+                  <xs:attribute name="name" use="required"/>
+                  <xs:attribute name="resultsA" type="xs:string" use="required"/>
+                  <xs:attribute name="resultsB" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="unchanged" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="module" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType mixed="true">
+                  <xs:sequence>
+                    <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:sequence>
+                      <xs:element ref="views" minOccurs="0" maxOccurs="1"/>
+                      <xs:element ref="compliancy" minOccurs="1" maxOccurs="1"/>
+                    </xs:sequence>
+                  </xs:sequence>
+                  <xs:attribute name="severityLevel" type="xs:integer" use="required"/>
+                  <xs:attribute name="name" use="required"/>
+                  <xs:attribute name="results" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="created" type="xs:string" use="required"/>
+      <xs:attribute name="sbVersion" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************************************************ -->
+  <!-- *                     Group Assessment Report                          * -->
+  <!-- ************************************************************************ -->
+  <xs:element name="GroupAssessmentReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="reports" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="report" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="missing" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="client" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="hostname" type="xs:string" use="required"/>
+                  <xs:attribute name="code" type="xs:string" use="required"/>
+                  <xs:attribute name="reason" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="modules" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="module" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType mixed="true">
+                  <xs:sequence>
+                    <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:sequence>
+                      <xs:element name="views" minOccurs="0" maxOccurs="1">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="view" minOccurs="0" maxOccurs="unbounded"/>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element ref="compliancy" minOccurs="1" maxOccurs="1"/>
+                      <xs:element name="clients" minOccurs="1" maxOccurs="1">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="client" minOccurs="1" maxOccurs="unbounded">
+                              <xs:complexType>
+                                <xs:attribute name="name" type="xs:string" use="required"/>
+                                <xs:attribute name="hostname" type="xs:string" use="required"/>
+                                <xs:attribute name="dist" type="xs:string" use="required"/>
+                                <xs:attribute name="distVersion" type="xs:string" use="required"/>
+                                <xs:attribute name="results" type="xs:string" use="required"/>
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:sequence>
+                  <xs:attribute ref="severity" use="required"/>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                  <xs:attribute name="severityLevel" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="created" type="xs:string" use="required"/>
+      <xs:attribute name="groupName" type="xs:string" use="required"/>
+      <xs:attribute name="sbVersion" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************************************************ -->
+  <!-- *                            Undo Report                               * -->
+  <!-- ************************************************************************ -->
+  <xs:element name="UndoReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="report" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="modules" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="module" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType mixed="true">
+                  <xs:sequence>
+                    <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:sequence>
+                      <xs:element ref="views" minOccurs="0" maxOccurs="1"/>
+                      <xs:element ref="compliancy" minOccurs="1" maxOccurs="1"/>
+                      <xs:element ref="details" minOccurs="0" maxOccurs="1"/>
+                    </xs:sequence>
+                  </xs:sequence>
+                  <xs:attribute ref="severity" use="required"/>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                  <xs:attribute name="results" type="xs:string" use="required"/>
+                  <xs:attribute name="severityLevel" type="xs:string" use="required"/>
+                  <xs:attribute name="execTimeMs" type="xs:string" use="optional"/>
+                  <xs:attribute name="fullyCompleted" type="xs:boolean" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="sbVersion" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************************************************ -->
+  <!-- *                           Baseline Report                            * -->
+  <!-- ************************************************************************ -->
+  <xs:element name="BaselineReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="report" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:attribute name="profile" type="xs:string" use="required"/>
+            <xs:attribute name="hostname" type="xs:string" use="required"/>
+            <xs:attribute name="dist" type="xs:string" use="required"/>
+            <xs:attribute name="distVersion" type="xs:string" use="required"/>
+            <xs:attribute name="kernel" type="xs:string" use="required"/>
+            <xs:attribute name="cpuInfo" type="xs:string" use="required"/>
+            <xs:attribute name="totalMemory" type="xs:string" use="required"/>
+            <xs:attribute name="arch" type="xs:string" use="required"/>
+            <xs:attribute name="created" type="xs:string" use="required"/>
+            <xs:attribute ref="cpe" use="optional"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="sections" minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="section" maxOccurs="unbounded">
+                <xs:complexType mixed="true">
+                  <xs:sequence>
+                    <xs:element name="subSection" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="description" minOccurs="0" maxOccurs="1"/>
+                          <xs:choice minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="packages" maxOccurs="1">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element ref="package" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                                <xs:attribute ref="fingerprint" use="required"/>
+                              </xs:complexType>
+                            </xs:element>
+                            <xs:element name="patches" maxOccurs="1">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="patch" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                                <xs:attribute name="fingerprint" type="xs:string"/>
+                              </xs:complexType>
+                            </xs:element>
+                            <xs:element name="files" maxOccurs="unbounded">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element ref="file" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                                <xs:attribute name="path" type="xs:string" use="required"/>
+                                <xs:attribute ref="fingerprint" use="required"/>
+                              </xs:complexType>
+                            </xs:element>
+                            <xs:element name="content" maxOccurs="1">
+                              <xs:complexType>
+                                <xs:simpleContent>
+                                  <xs:extension base="xs:string">
+                                    <xs:attribute ref="fingerprint" use="required"/>
+                                  </xs:extension>
+                                </xs:simpleContent>
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:choice>
+                        </xs:sequence>
+                        <xs:attribute name="name" type="xs:string" use="required"/>
+                        <xs:attribute name="fullname" type="xs:string" use="optional"/>
+                        <xs:attribute ref="fingerprint" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="sbVersion" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************************************************ -->
+  <!-- *                   Group Asset Report (Inventory)                     * -->
+  <!-- ************************************************************************ -->
+  <xs:element name="AssetReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="description" minOccurs="0" type="xs:string" maxOccurs="1"/>
+        <xs:element name="client" minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="hostAddress" type="xs:string" use="required"/>
+            <xs:attribute name="clientVersion" type="xs:string" use="required"/>
+            <xs:attribute name="distribution" type="xs:string" use="required"/>
+            <xs:attribute name="kernel" type="xs:string" use="required"/>
+            <xs:attribute name="uptime" type="xs:string" use="required"/>
+            <xs:attribute name="architecture" type="xs:string" use="required"/>
+            <xs:attribute name="loadAverage" type="xs:string" use="required"/>
+            <xs:attribute name="memory" type="xs:string" use="required"/>
+            <xs:attribute name="location" type="xs:string" use="required"/>
+            <xs:attribute name="contact" type="xs:string" use="required"/>
+            <xs:attribute name="port" type="xs:integer" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="created" type="xs:string" use="required"/>
+      <xs:attribute name="sbVersion" type="xs:string" use="required"/>
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="profile" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************************************************ -->
+  <!-- *          Generic Object Element for use Baseline Reporting           * -->
+  <!-- *                     (not implemented yet)                            * -->
+  <!-- ************************************************************************ -->
+  <xs:element name="objects">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="object" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="key" type="xs:string" use="required"/>
+            <xs:attribute name="attr1" type="xs:string" use="optional"/>
+            <xs:attribute name="attr2" type="xs:string" use="optional"/>
+            <xs:attribute name="attr3" type="xs:string" use="optional"/>
+            <xs:attribute name="attr4" type="xs:string" use="optional"/>
+            <xs:attribute name="attr5" type="xs:string" use="optional"/>
+            <xs:attribute name="attr6" type="xs:string" use="optional"/>
+            <xs:attribute name="attr7" type="xs:string" use="optional"/>
+            <xs:attribute name="attr8" type="xs:string" use="optional"/>
+            <xs:attribute name="attr9" type="xs:string" use="optional"/>
+            <xs:attribute name="attr10" type="xs:string" use="optional"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="numAttrs" type="xs:integer" use="required"/>
+      <xs:attribute name="attr1" type="xs:string" use="optional"/>
+      <xs:attribute name="attr2" type="xs:string" use="optional"/>
+      <xs:attribute name="attr3" type="xs:string" use="optional"/>
+      <xs:attribute name="attr4" type="xs:string" use="optional"/>
+      <xs:attribute name="attr5" type="xs:string" use="optional"/>
+      <xs:attribute name="attr6" type="xs:string" use="optional"/>
+      <xs:attribute name="attr7" type="xs:string" use="optional"/>
+      <xs:attribute name="attr8" type="xs:string" use="optional"/>
+      <xs:attribute name="attr9" type="xs:string" use="optional"/>
+      <xs:attribute name="attr10" type="xs:string" use="optional"/>
+      <xs:attribute ref="fingerprint" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************************************************ -->
+  <!-- *            Package Object Element for use Baseline Reporting         * -->
+  <!-- ************************************************************************ -->
+  <xs:element name="package">
+    <xs:complexType mixed="true">
+      <xs:attribute name="name" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            Short package name used by the rpm(8) and pkginfo(1M)
+            utilities to unique identify the package.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="release" type="xs:string" use="required"/>
+      <xs:attribute name="version" type="xs:string" use="required"/>
+      <xs:attribute name="install_localtime" type="xs:string" use="optional"/>
+      <xs:attribute name="installtime" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            Epoch time the package was installed on the system. Epoch:
+            large integer representing the number of seconds that has
+            elapsed since midnight on Jan 1, 1970.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="epoch" type="xs:string" use="optional" default="">
+        <xs:annotation>
+          <xs:documentation>
+            This is part of the Linux package versioning scheme:
+            EVR.  Epoch Version Release. This "epoch" has nothing
+            to do with time.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="summary" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************************************************ -->
+  <!-- *            Patch Object Element for use Baseline Reporting           * -->
+  <!-- ************************************************************************ -->
+  <xs:element name="patch">
+    <xs:complexType mixed="true">
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="pkg" type="xs:string" use="required"/>
+      <xs:attribute name="installtime" type="xs:string" use="optional"/>
+      <xs:attribute name="install_localtime" type="xs:string" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************************************************ -->
+  <!-- *            File Object Element for use Baseline Reporting            * -->
+  <!-- ************************************************************************ -->
+  <xs:element name="file">
+    <xs:complexType>
+      <xs:attribute name="path" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation>Full, absolute path of file.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="mode" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            File mode (permissions) represented in a four digit,
+            decimal-based integer (i.e., 0755).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="mtime" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            File modification time as returned by Python os.stat().
+           </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="uid" type="xs:integer" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            User IDentification number (uid) such as those found in /etc/passwd.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="suid" type="xs:boolean" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            Set User IDentification execution bit enabled?  (true|false)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="gid" type="xs:integer" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            Group IDentification number (gid) such as those found in /etc/group.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="sgid" type="xs:boolean" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+          Set Group IDentification execution bit enabled? (true|false)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="xattr" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            Extended file attributes. See lsattr(1) and chattr(1) commands.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="sha1" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            A hexadecimal string SHA1 digest of the file. This
+            serves as the fingerprint. For device files in which
+            the digest can not be computed, this attribute will
+            simply be set to a series of "XXX".
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************************************************ -->
+  <!-- *                      Generic Report Metadata                           -->
+  <!-- ************************************************************************ -->
+  <xs:element name="report">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="description" minOccurs="0" type="xs:string" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="created" type="xs:string" use="required"/>
+      <xs:attribute name="profile" type="xs:string" use="required"/>
+      <xs:attribute name="hostname" type="xs:string" use="required"/>
+      <xs:attribute name="dist" type="xs:string" use="required"/>
+      <xs:attribute name="distVersion" type="xs:string" use="required"/>
+      <xs:attribute name="kernel" type="xs:string" use="required"/>
+      <xs:attribute name="cpuInfo" type="xs:string" use="required"/>
+      <xs:attribute name="arch" type="xs:string" use="required"/>
+      <xs:attribute name="totalMemory" type="xs:string" use="required"/>
+      <xs:attribute name="execTimeMs" type="xs:string" use="optional"/>
+      <xs:attribute ref="cpe" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************************************************ -->
+  <!-- *                    Module Compliancy Information                     * -->
+  <!-- ************************************************************************ -->
+  <xs:element name="compliancy">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="line-item" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="source" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation>Organization which supplied the guideline. 
+                    For example, DISA, SANS, or PCI.</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="name" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation>Name of the guideline. For example, 
+                    UNIX STIG.</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="version" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation>Version or date of the guideline 
+                    (ref name).</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="item" type="xs:string" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************************************************ -->
+  <!-- *                       Module View Information                        * -->
+  <!-- ************************************************************************ -->
+  <xs:element name="views">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="view" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************************************************ -->
+  <!-- *                  Module Details - Module Messages and such           * -->
+  <!-- ************************************************************************ -->
+  <xs:element name="details">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="statusMessage" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="messages" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="message" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************************************************ -->
+  <!-- *                     Module Severity Attribute                        * -->
+  <!-- ************************************************************************ -->
+  <xs:attribute name="severity">
+    <xs:simpleType>
+      <xs:restriction base="xs:NMTOKEN">
+        <xs:enumeration value="High"/>
+        <xs:enumeration value="Medium"/>
+        <xs:enumeration value="Low"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  <!-- ************************************************************************ -->
+  <!-- *                     Generic SHA1 Fingerprint Attribute               * -->
+  <!-- ************************************************************************ -->
+  <xs:attribute name="fingerprint" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>
+        A hexadecimal string SHA1 digest of the contents.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:attribute>
+  <!-- ************************************************************************ -->
+  <!-- *              Common Platform Enumeration (CPE) Attribute             * -->
+  <!-- ************************************************************************ -->
+  <xs:attribute name="cpe">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="(cpe:)*/[aoh]:\S+:\S+:\d+(\.\d+)*"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+</xs:schema>

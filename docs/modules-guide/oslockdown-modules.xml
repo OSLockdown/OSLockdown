@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: oslockdown-modules.xml 24137 2017-11-08 16:47:07Z acochrane $ -->
+<!DOCTYPE book [
+<!ENTITY % CommonEntities SYSTEM "../COMMON_ENTITIES.ent">
+<!ENTITY SB_prodname "OS Lockdown">
+<!ENTITY SB_prodvers "5.0.0">
+<!ENTITY SB_reldate "April, 2017">
+<!ENTITY SB_productdownload "TBD">
+<!ENTITY SB_copyright "2007-2017">
+<!-- See http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references --><!ENTITY ldquo "&#x201C;">
+<!-- Left double quote --><!ENTITY rdquo "&#x201D;">
+<!-- Right double quote --><!ENTITY lsquo "&#x2018;">
+<!-- Left single quote --><!ENTITY rsquo "&#x2019;">
+<!-- Right single quote -->]>
+<book version="5.0" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>&SB_prodname; Modules Guide</title>
+  <subtitle>Version &SB_prodvers;</subtitle>
+  <info>
+    <productname>&SB_prodname; Modules Guide</productname>
+    <productnumber>Version &SB_prodvers;</productnumber>
+  </info>
+  <!-- ************************************************************************ -->
+  <!--                                 Modules                                  -->
+  <!-- ************************************************************************ -->
+  <chapter xml:id="ProfileSpecificAdditions">
+    <title>Profile-Specific Additions</title>
+    <para>These modules do not do any processing on their own, but allow for a profile to specify alterations in how it
+      will be processed by OS Lockdown.</para>
+    <xi:include href="modules/ProfileExcludeDirectoriesAdditions.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ProfileInclusionFSTypesAdditions.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ProfileSGIDWhitelistAdditions.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ProfileSUIDWhitelistAdditions.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <chapter xml:id="Auditing">
+    <title>Auditing and Logging</title>
+    <xi:include href="modules/AuditLogRotation.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/AuditRules.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/AuditRulesSolaris.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ConfigureAuditdConf.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SyslogCronLogging.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/EnableAuditingForAllProcesses.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/EnableAdditionalFTPLogging_vsftpd.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/AuditEnable.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SyslogMaillog.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SyslogAuthpriv.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/EnableSysstat.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="Passwords">
+    <title>Password Policy</title>
+    <xi:include href="modules/PasswordInvalidate.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PasswordReuse.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/LockInactiveAccount.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PasswordMaxDays.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PasswordChangeDelay.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/NoEmptyPasswords.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/NoHashesInPasswdGroup.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/NoPlusPasswdEntries.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PasswordWarnAge.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PasswordPolicyConsecutive.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PasswordPolicyDiffChars.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PasswordPolicyMinlen.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PasswordPolicyLowercase.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PasswordPolicyNumbers.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PasswordPolicySpecial.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PasswordPolicyUppercase.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SetPassAgingOnAccts.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="Accounts">
+    <title>Account and Access Control</title>
+    <xi:include href="modules/PermittedShells.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/BlockSystemAccounts.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DefaultUmask.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisablePAMConsole.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableConsolePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/HomeDirContentPerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/HomeDirOwnGrp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/HomeDirPerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/LimitAccessFromSu.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SetMesgN.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PwGrpCheck.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/LockDuplicateUidZeros.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/MaxLoginsByUser.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/RemoveGamesAccount.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/GopherAccount.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/HaltAccount.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/RemoveNewsAccount.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ShutdownAccount.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SyncAccount.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/RestrictMesgCmd.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/RootConsole.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/RootHomePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/RootPath.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/RootShell.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SingleUserMode.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SyncEtcShells.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/UserDotFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="NetworkConfig">
+    <title>Network Configuration</title>
+    <xi:include href="modules/ArpCleanupInterval.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ArpCleanupInterval_IRE.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/TCPMaxSynBacklog.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/LogMartianPackets.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/AcceptRedirects.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SecureRedirects.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableIpForwardingDirBdcsts.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/IPForward.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableIPv6KernelModule.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableProxyARP.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SendRedirects.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SourceRoute.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableKernelSprt_DCCP.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableKernelSprt_RDS.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableKernelSprt_SCTP.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableKernelSprt_TIPC.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableZeroconfNet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/RPFilter.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/TcpStrongISS.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/TCPSyncookies.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/TcpWrappers.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/IgnoreBogusICMP.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ICMPEchoIgnoreBroadcasts.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/Prohibit_DHCP_Dynamic_Updates.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SetStrictMultihoming.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="NetworkServices">
+    <title>Network Services</title>
+    <!--<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="modules/ConfigureNTP.xml"/>-->
+    <xi:include href="modules/ConfigureNTP.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableDNS.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableDhcpd.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableGated.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableInetd.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableInnd.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableNetAnalysisTools.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableRouted.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableXFS.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="FileSharingServices">
+    <title>File Sharing Services</title>
+    <xi:include href="modules/NFSanon.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableFileShare.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableFspd.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableNFS_client.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableNFS_server.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableNetFS.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableSMB.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableRpc_Ugidd.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/NFSInsecureLocks.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/RemoveSMBguest.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SMB_Conf.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/NFSSecure.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="FileTransferServices">
+    <title>File Transfer Services</title>
+    <xi:include href="modules/CreateFTPUsers.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableFTP_gssftp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableFTP_vsftpd.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableTFTP.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableUucp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/RemoveFTPaccount.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/GssftpUmask.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/TftpSecureMode.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="MailServices">
+    <title>Electronic Mail Services</title>
+    <xi:include href="modules/SendmailOpts.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableMail_cyrus.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableMail_dovecot.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableSendmail.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableSendmailHelp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableSendmailBadVers.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="WebServices">
+    <title>Web Services</title>
+    <xi:include href="modules/DisableWebServer_apache.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableSquid.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableSquidBadVers.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableWebServer_tux.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PHPDisableHttpUpload.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PHPSessMgmt.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PHPRemoteExec.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PHPRemoveMySQLPass.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PHPlogging.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="Database">
+    <title>Database Services</title>
+    <xi:include href="modules/DisableCDEttdbserver.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableSQL_mysql.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableSQL_postgresql.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/MySQLHist.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="DesktopApps">
+    <title>Desktop Applications</title>
+    <xi:include href="modules/FirefoxPrefs.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableFirefox.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableYahooIM.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableGaimClient.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/FirefoxAddons.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/FirefoxDynamicContent.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/FirefoxEncryption.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/FirefoxJava.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/FirefoxJavascript.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/FirefoxNetwork.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/FirefoxPrivacy.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/FirefoxUpdating.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="Printing">
+    <title>Printing Services</title>
+    <xi:include href="modules/DisableCupsPrinterBrowsing.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableHPServices.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisablePrinterConfig.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisablePrinter.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="AuthServices">
+    <title>Authentication Services</title>
+    <xi:include href="modules/ConfigureLDAPConf.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableKerbTGTwarn.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableLdapCacheMgr.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableNIS_client.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableNIS_server.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="HardwareServices">
+    <title>Hardware Services</title>
+    <xi:include href="modules/CheckXdNxSupport.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableAcpid.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableAvahi.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableBluetooth.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableBluetoothInputDevs.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableBluetoothKernelModules.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableCpuThrottling.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableHalDaemon.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableIA32MicrocodeUtility.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableIrda.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableIrqbalance.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableKudzu.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableApmd.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableSMARTD.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableUSB.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="SessionMgmt">
+    <title>User Session Management</title>
+    <xi:include href="modules/AccountLocks.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SetCdeScreenSaver.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/LoginDelay.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SetGnomeSS.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ShellSessionTimeouts.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SetXScreenSaverDefaults.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="RemoteAccessServices">
+    <title>Remote Access Services</title>
+    <xi:include href="modules/ConfigureXinetdLogging.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableFinger.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableGuiLogin.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableISDN.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableSerialLoginPrompt.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableRexec.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableRlogin.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableRsh.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableRhostsSupport.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableTelnet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/RemoveRshAuthFiles.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/RemoteXClients.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshDisableGSSAPIAuth.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshParameters.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshRestrictCiphers.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshRestrictHMAC.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdDisableEmptyPasswords.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdDisableGSSAPIAuth.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdDisableHostbasedAuth.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdDisableKerberosAuth.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdDisableRhostsAuth.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdDisableRhostsRSAAuth.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdDisableRootLogin.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdEnableBanner.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdEnableIgnoreRhosts.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdEnableX11Forwarding.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdLogLevel.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdMaxAuthTries.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdPermitUserEnvironment.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdPrintLastLog.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdProtocol.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdRestrictCiphers.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdRestrictHMAC.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdRestrictUsersGroups.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdSetCompression.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdSetIdleTimeout.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdStrictModeChecking.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SshdUsePrivilegeSeparation.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="SecurityServices">
+    <title>Security Services</title>
+    <xi:include href="modules/DisableGssd.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableRpcKeyserv.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableSmartcard.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="SELinux">
+    <title>Security-Enhanced Linux (SELinux)</title>
+    <para>Security-Enhanced Linux (SELinux) is an enhancement to the standard Linux kernel that provides fine-grained
+      security by employing Mandatory Access Control (MAC) rules. OS Lockdown now supports Red Hat Enterprise Linux 4,
+      5, and 6 enforcing the default <emphasis>Targeted</emphasis> SELinux policy – as well as Fedora 10 and later. </para>
+    <para> The aim of the <emphasis>targeted</emphasis> policy is to provide additional security to some of the more
+      commonly used daemons such as httpd, dhcpd, mailman, named, port map, nscd, ntpd, port map, mysqld, postgres,
+      squid, syslogd, winbind, and ypbind by employing MAC rules. </para>
+    <xi:include href="modules/DisableMcstrans.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableRestorecond.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableSETroubleshoot.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SELinuxIsPropEnabled.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SELinuxFindUnlabeledFiles.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SELinuxMustNotBeDisabled.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="SysServices">
+    <title>System Services</title>
+    <xi:include href="modules/DaemonUmask.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableAutofs.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableBootCaching.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableCDEcalmgr.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableGpm.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableFirstbootSvc.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableInteractiveBoot.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisablePortmap.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisablePrelinking.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableRemoteSyslog.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableAtd.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/RestrictDtspcd.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="SysMgmtServices">
+    <title>System Management Services</title>
+    <xi:include href="modules/DisableAbrtd.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableWebconsole.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableNetconsole.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableNtpdate.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableOddjobd.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableQpidd.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableRdisc.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableRhnsd.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableSNMP.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ChangeSNMPStrings.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableSVM.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableSVMgui.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableWbem.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableWebmin.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/EnableCrond.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/EnableIp6tables.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/EnableIptables.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/EnablePostfix.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/EnsureYumReposUseGPGCheck.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ScreenPackageInstalled.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ***************************************************************************** -->
+  <chapter xml:id="fileDACs">
+    <title>Directory and File Permissions</title>
+    <xi:include href="modules/SecurityAccessConfFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/AtDirPerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/AtCronAccessFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/AuditToolsPerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/BootLoaderConfigFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ConfigureLddPerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ConsultRPMDatabase.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/CorrectUnevenPerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/CrontabDirPerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/CrontabPerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/CrontabScriptPerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/FTPConfigFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/GlobalInitializationFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/HostsFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/InetdXinetdConfigFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/NntpFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/KernelDumpDirPerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/LDAPConfigFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/MailAgentAliasesFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/MIBFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ExportsConfigFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/NisYpConfigPerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/NTP_Perms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/NsswitchConfFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PasswdPerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/PrinterConfigFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ResolvConfFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/RestrictCompilerTools.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/RestrictTracerouteUse.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ManPagePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SNMPConfigFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SambaConfigFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SambaPasswordFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/AudioDevFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SecureSetXIDFiles.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ShellBinPerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SecureUnownedFiles.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SecureWorldWritableDevices.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SecureWorldWritableDirectories.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SecureWorldWritableFiles.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ServicesFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ShadowPerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SkeletonFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SysctlPerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SysCmdFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SysConfigFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SysDevDirPerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SysLibFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SysLogFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SysLoggingConfigFilePerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SysRcScriptPerms.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/VerifySoftwareCryptoCerts.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="Filesystems">
+    <title>File Systems</title>
+    <xi:include href="modules/Bind_VarTmp_To_Tmp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/CheckFS_home.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/CheckFS_tmp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/CheckFS_var.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/CheckFS_varlog.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/CheckFS_varlogaudit.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableGnomeAutomounting.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableKernelSprt_fstypes.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/FstabNodev.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/FstabRemovableMedia.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/NosuidOnUserFilesystems.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/UserMountableMedia.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <chapter xml:id="General">
+    <title>General</title>
+    <xi:include href="modules/CorrectGlobalInitPathVars.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/CorrectRcPathVars.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/CreateLoginBanner.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/CreateLoginFTPBanner.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/CreatePreLoginGUIBanner.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/CreatePreSessionGUIBanner.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableCoreDumps.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/CtrlAltDel.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableKdump.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableRawDevicesDaemon.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableSuidCoreDumps.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableMdmonitor.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableKernelFirewire.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/DisableKernelUSBStorage.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/EnableKernelExecShield.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/EnableStackProtection.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/ExecEtcProfileD.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/GrubBootSingleImage.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/GrubPassword.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/TelnetBanner.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/RequireGrubPassword.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/RestrictAtCron.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="modules/SecureNetrcFiles.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </chapter>
+  <!-- ************************************************************************ -->
+  <!--                    Appendix - Cross Reference                            -->
+  <!-- ************************************************************************ -->
+  <appendix xml:id="app-crossx">
+    <title>Cross Reference to Guidelines</title>
+    <xi:include href="app-crossx-CAG_20_Critical_Security_Controls_2_3.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="app-crossx-CIA_DCID_6_3_May_2000.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="app-crossx-DHS_Linux_Configuration_Guidance_2010_8.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="app-crossx-DISA_Mozilla_Firefox_STIG_4_R2.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="app-crossx-DISA_Red_Hat_5_STIG.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="app-crossx-DISA_Red_Hat_6_STIG.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="app-crossx-DISA_UNIX_STIG_5_R1_30.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="app-crossx-DoD_JAFAN_6_3_Oct_2004.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="app-crossx-DoD_NISPOM_Feb_2006.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="app-crossx-NERC_Cyber_Security_Electronic_Security_Perimeters_CIP_005_3.xml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="app-crossx-NERC_Cyber_Security_Systems_Security_Management_CIP_007_3.xml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="app-crossx-NIST_FISMA_SP_800_53.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="app-crossx-NSA_Guide_to_the_Secure_Configuration_of_RHEL5_Rev_4_2_Aug_2011.xml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="app-crossx-NVD_CCE.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="app-crossx-PCI_DSS_2_0.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </appendix>
+  <!-- ************************************************************************ -->
+  <!--                    Appendix - Module Behavior                            -->
+  <!-- ************************************************************************ -->
+  <appendix xml:id="app-module-behavior">
+    <title>Specific Module Behavior</title>
+    <xi:include href="app-module-behavior-disable-services.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="app-module-behavior-exclusion-list.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </appendix>
+  <!-- ************************************************************************ -->
+  <!--                    Appendix - Password Policy                            -->
+  <!-- ************************************************************************ -->
+  <appendix xml:id="app-passwd-policy">
+    <title>Implementing a Password Policy</title>
+    <xi:include href="app-passwd-policy-aging.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="app-passwd-policy-composition.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="app-passwd-policy-enforcing.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  </appendix>
+  <!-- ************************************************************************ -->
+  <!--                             Bibliography                                 -->
+  <!-- ************************************************************************ -->
+  <!--<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bibliography.xml"/>-->
+  <!-- ************************************************************************ -->
+  <!--                            Index of Terms                                -->
+  <!-- ************************************************************************ -->
+  <!--
+        The modules-index.xml file only contains <indexterm> elements so, we don't
+        want it in the primary table of contents. In order to do this, the following
+        XSL setting is placed in the XSL:
+
+        <xsl:template match="appendix[@role = 'NotInToc']"  mode="toc" />
+
+        Then the 'role' attribute of the appendix element of this file is set to
+        'NotInToc'.
+    -->
+  <!-- <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="modules-index.xml"/> -->
+  <index xml:id="index-of-terms"/>
+</book>

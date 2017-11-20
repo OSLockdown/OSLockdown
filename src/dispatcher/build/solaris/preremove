@@ -1,0 +1,2 @@
+svcadm disable osl-dispatcher
+svccfg delete -f osl-dispatcher

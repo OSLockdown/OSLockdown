@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableSendmailBadVers" version="5.0">
+  <title xml:id="MailServices">Disable Sendmail if Older than 8.13.8</title>
+  <para>
+  Disables the <application>Sendmail</application> service if the
+  currently installed version is not at least 8.13.8. When this module
+  was written, prior versions of <application>Sendmail</application> had
+  many vulnerabilities including WIZ and DECODE problems.
+ </para>
+  <simplesect xml:id="DisableSendmailBadVers-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-13 - Limitation and Control of Network Ports, Protocols, and Services</para>
+      </listitem>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN004600 - The SMTP service must be an up-to-date version.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN004600 - Sendmail Version</para>
+      </listitem>
+      <listitem>
+        <para>GEN004640 - Sendmail DECODE Command</para>
+      </listitem>
+      <listitem>
+        <para>GEN004700 - Sendmail WIZ Command</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

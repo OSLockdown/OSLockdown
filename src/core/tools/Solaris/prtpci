@@ -1,0 +1,244 @@
+#!/usr/bin/perl
+# @(#)prtpci	1.11
+# dan.mick@sun.com
+
+$prog=$0;
+if (index($prog, "/") != -1) {
+	$path=substr($prog, 0, rindex($prog, "/"));
+} else {
+	$path = ".";
+}
+$PCIIDS="$path/pciids";
+
+# $debug=1;
+sub read_files 
+{
+	$FN="$PCIIDS/pci.ids";
+	open(F, $FN) || die("can't open $FN\n");
+
+	$pci_verbose = 0;
+	$class_verbose = 0;
+
+	while (<F>) {
+		(/^#/ || /^\w*$/) && next;
+		chop;
+		if (/^\d/) {
+			($vid, $vname) = split(' ',$_,2);
+			$vid=hex($vid);
+			$pci_verbose &&
+				printf("vendor 0x%x %s\n", $vid, $vname);
+			$ven{$vid} = $vname;
+			next;
+		}
+		if (/^\t\d/) {
+			s/^\t//;
+			($did, $dname) = split(' ',$_,2);
+			$did=hex($did);
+			$pci_verbose &&
+				printf("dev 0x%x,0x%x %s %s\n",
+				$vid, $did, $vname, $dname);
+			$vendev{$vid}{$did} = $dname;
+			next;
+		}
+		if (/^\t\t\d/) {
+			s/^\t\t//;
+			($ssvid, $ssdid, $ssname) = split(' ',$_,3);
+			$ssvid = hex($ssvid);
+			$ssdid = hex($ssdid);
+			$ssname = 
+				sprintf("%s (0x%x,0x%x)", $ssname, $vid, $did);
+			$pci_verbose && 
+				printf("subsystem 0x%x,0x%x, %s\n", 
+				$ssvid, $ssdid, $ssname);
+			$ss{$ssvid}{$ssdid} = $ssname;
+		}
+	}
+	close(F);
+
+	$FN="$PCIIDS/class.ids";
+	open(F, $FN) || die("can't open $FN\n");
+
+	while (<F>) {
+		(/^#/ || /^\w*$/) && next;
+		chop;
+		if (/^C/) {
+			($dummy, $cid, $cname) = split(' ',$_,3);
+			$cid=hex($cid);
+			$class_verbose && 
+				printf("class 0x%x %x\n", $cid, $cname);
+			$class{$cid} = $cname;
+			next;
+		}
+		if (/^\t\d/) {
+			s/^\t//;
+			($scid, $scname) = split(' ',$_,2);
+			$scid=hex($scid);
+			$class_verbose && 
+				printf("subclass 0x%x 0x%x %s %s\n", 
+				$cid, $scid, $cname, $scname);
+			$subclass{$cid}{$scid} = $scname;
+			next;
+		}
+		if (/^\t\t\d/) {
+			s/^\t\t//;
+			($pid, $pname) = split(' ',$_,2);
+			$pid=uc($pid);
+			$class_verbose && 
+				printf("programming byte %x %x %x %s\n", 
+				$cid, $scid, $pid, $pname);
+			$prog{$cid}{$scid}{$pid} = $pname;
+		}
+	}
+	close(F);
+}
+
+&read_files();
+
+if (-t STDIN) {
+	open(PRTCONF, "prtconf -pv |");
+	*FH = *PRTCONF;
+} else {
+	*FH = *STDIN;
+}
+
+$found_pci_leaf_node = 0;
+$found_pci_bus_node = 0;
+
+while (<FH>) {
+
+	# at paragraph break, with a completed accumulated node? 
+	if (/^\s+$/ && $found_pci_leaf_node) {
+		$bus = ($reg[0] >> 16) & 0xFF;
+		$devfn = ($reg[0] >> 8) & 0xFF;
+		$dev = $devfn >> 3;
+		$fn = $devfn & 7;
+		if ($ss_exists) {
+			printf("%d/0x%x/%d %x,%x (%x,%x) rev 0x%x\n", 
+			    $bus, $dev, $fn, $vid, $did, $ssvid, 
+			    $ssid, $revision);
+		} else {
+			printf("%d/0x%x/%d %x,%x %s %s rev 0x%x\n", 
+			    $bus, $dev, $fn, $vid, $did, $revision);
+		}
+		if (defined($slotnames[$bus][$dev])) {
+			printf("slot name: %s, ", $slotnames[$bus][$dev]);
+		}
+		printf("%s %s\n", $ven{$vid}, $vendev{$vid}{$did});
+		$cid = $classcode >> 16;
+		$scid = ($classcode >> 8) & 0xFF;
+		$pid = $classcode & 0xFF;
+		printf("class %x/%x/%x: %s/%s\n", $cid, $scid, $pid,
+		    $class{$cid}, $subclass{$cid}{$scid});
+		if ($debug) {
+			print("assigned-addresses:\n");
+			for ($i = 0; $i <= $#aa; $i+=5) {
+				for ($j = 0; $j < 5; $j++) {
+					printf("0x%x ", $aa[$i+$j]);
+				}
+				printf("\n");
+			}
+			print("reg:\n");
+			for ($i = 0; $i <= $#reg; $i+=5) {
+				for ($j = 0; $j < 5; $j++) {
+					printf("0x%x ", $reg[$i+$j]);
+				}
+				printf("\n");
+			}
+		}
+		for ($i = 0; $i <= $#aa; $i += 5) {
+			
+			$barnum=(($aa[$i] & 0xFF) - 0x10) / 4;
+			$type = (($aa[$i] >> 24) & 0xFF);
+			if ($barnum >= 0 && $barnum <= 5) {
+				print("BAR[$barnum]: ");
+			} elsif ($barnum == 8) {
+				print("ROM: ");
+			} else {
+				printf("legacy reg #%d: ", $i / 5);
+			}
+			# non-relocatable is normal, don't spew it
+			print("relocatable ") if (($type & 0x80) == 0);
+			print("prefetchable ") if ($type & 0x40);
+			print("aliased ") if ($type & 0x20);
+			$iomem = $type & 0x3;
+			print("I/O ") if ($iomem == 1);
+			print("32-bit memory ") if ($iomem == 2);
+			print("64-bit memory ") if ($iomem == 3);
+			if ($aa[i+1] != 0) {
+				printf("0x%x%x ", $aa[$i+1], $aa[$i+2]);
+			} else {
+				printf("0x%x ", $aa[$i+2]);
+			}
+			if ($aa[i+3] != 0) {
+				printf("0x%x%x\n", $aa[$i+3], $aa[$i+4]);
+			} else {
+				printf("0x%x\n", $aa[$i+4]);
+			}
+		}
+
+		# separate records
+		printf("\n");
+			
+		$ss_exists = 0;
+		$found_pci_leaf_node = 0;
+		undef(@aa);
+	} 
+	if (/^\s+$/ && $found_pci_bus_node) {
+		if (defined($slot_names)) {
+			$slotmask = hex(substr($slot_names, 0, index($slot_names, '.')));
+			$slotstr = substr($slot_names, 8);
+			# discard '.'s, reverse each 4 bytes
+			$slotstr =~ s/\.//g;
+			$slotstr =~ s/(..)(..)(..)(..)/chr(hex($4)) . chr(hex($3)) . chr(hex($2)) . chr(hex($1))/ge;
+			@slots = split(/\000/, $slotstr);
+			($bbus, $ebus) = split(/\./, $bus_range);
+			$bbus = hex($bbus);
+			$mask = 1;
+			printf("%s@%s: Bus %x\n", $name, $unit_address, $bbus);
+			for ($dev = 0, $slotindex = 0; $dev < 32; $dev++) {
+				if ($mask & $slotmask) {
+					$slotnames[$bbus][$dev] = $slots[$slotindex];
+					printf("%s is device 0x%x\n", $slots[$slotindex], $dev);
+					$slotindex++;
+				}
+				$mask = $mask << 1;
+			}
+			printf("\n");
+		}
+		undef($slot_names);
+		undef($bus_ranges);
+		$found_pci_bus_node = 0;
+	}
+
+	# not at end of node; accumulate info
+	if (/\sreg:\s+(.*)$/) {
+		@reg = map(hex, split(/\./, $1));
+	} elsif (/\sassigned-addresses:\s+(.*)$/) {
+		@aa = map(hex, split(/\./, $1));
+	} elsif (/\sclass-code:\s+(.*)$/) {
+		$classcode = hex($1);
+		$found_pci_leaf_node = 1;
+	} elsif (/\svendor-id:\s+(.*)$/) {
+		$vid = hex($1);
+	} elsif (/\sdevice-id:\s+(.*)$/) {
+		$did = hex($1);
+	} elsif (/\sname:\s+'(.*)'$/) {
+		$name = $1;
+	} elsif (/\ssubsystem-vendor-id:\s+(.*)$/) {
+		$ssvid = hex($1);
+		$ss_exists = 1;
+	} elsif (/\ssubsystem-id:\s+(.*)$/) {
+		$ssid = hex($1);
+	} elsif (/\srevision-id:\s+(.*)$/) {
+		$revision = hex($1);
+	} elsif (/\sdevice_type:\s+'pci'$/) {
+		$found_pci_bus_node = 1;
+	} elsif (/\sslot-names:\s+(.*)$/) {
+		$slot_names=$1;
+	} elsif (/\sbus-range:\s+(.*)$/) {
+		$bus_range=$1;
+	} elsif (/\sunit-address:\s+(.*)$/) {
+		$unit_address=$1;
+		$unit_address =~ s/'//g;
+	}
+}

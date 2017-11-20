@@ -1,0 +1,1365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<compliancy source="DISA" name="Red Hat 5 STIG" version="V1R17" enabled="True">
+  <title>U.S. DISA Security Technical Implementation Guides</title>
+  <style>ModulesPerLineItem</style>
+  <abstract>
+      The Security Technical Implementation Guides (STIGs) are the configuration standards for
+      U.S. Department of Defense (DoD) Information Assurance (IA) and IA-enabled devices/systems. The
+      guides are maintained and published by the Defense Information Systems Agency’s (DISA) Field
+      Security Office (FSO).
+  </abstract>
+  <line-items>
+    <line-item name="GEN000000-LNX001431" description="The /etc/gshadow file must be owned by root.">
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="GEN000000-LNX001432" description="The /etc/gshadow file must be group-owned by root.">
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="GEN000000-LNX001433" description="The /etc/gshadow file must have mode 0400.">
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="GEN000000-LNX001434" description="The /etc/gshadow file must not have an extended ACL."/>
+    <line-item name="GEN000000-LNX001476" description="The /etc/gshadow file must not contain any group password hashes.">
+      <module libraryName="NoHashesInPasswdGroup"/>
+    </line-item>
+    <line-item name="GEN000000-LNX00320" description="The system must not have special privilege accounts, such as shutdown and halt.">
+      <module libraryName="HaltAccount"/>
+      <module libraryName="ShutdownAccount"/>
+    </line-item>
+    <line-item name="GEN000000-LNX00360" description="The X server must have the correct options enabled."/>
+    <line-item name="GEN000000-LNX00380" description="An X server must have none of the following options enabled: -ac, -core (except for debugging purposes), or -nolock."/>
+    <line-item name="GEN000000-LNX00400" description="The /etc/access.conf file must be owned by root.">
+      <module libraryName="SecurityAccessConfFilePerms"/>
+    </line-item>
+    <line-item name="GEN000000-LNX00420" description="The /etc/access.conf file must have a privileged group owner.">
+      <module libraryName="SecurityAccessConfFilePerms"/>
+    </line-item>
+    <line-item name="GEN000000-LNX00440" description="The /etc/security/access.conf file must have mode 0640 or less permissive.">
+      <module libraryName="SecurityAccessConfFilePerms"/>
+    </line-item>
+    <line-item name="GEN000000-LNX00450" description="The access.conf file must not have an extended ACL."/>
+    <line-item name="GEN000000-LNX00480" description="The /etc/sysctl.conf file must be owned by root.">
+      <module libraryName="SysctlPerms"/>
+    </line-item>
+    <line-item name="GEN000000-LNX00500" description="The /etc/sysctl.conf file must be group-owned by root.">
+      <module libraryName="SysctlPerms"/>
+    </line-item>
+    <line-item name="GEN000000-LNX00520" description="The /etc/sysctl.conf file must have mode 0600 or less permissive.">
+      <module libraryName="SysctlPerms"/>
+    </line-item>
+    <line-item name="GEN000000-LNX00530" description="The /etc/sysctl.conf file must not have an extended ACL."/>
+    <line-item name="GEN000000-LNX00560" description="The Linux NFS Server must not have the insecure file locking option.">
+      <module libraryName="NFSInsecureLocks"/>
+    </line-item>
+    <line-item name="GEN000000-LNX00580" description="The x86 CTRL-ALT-DELETE key sequence must be disabled.">
+      <module libraryName="CtrlAltDel"/>
+    </line-item>
+    <line-item name="GEN000000-LNX00600" description="The Linux PAM system must not grant sole access to admin privileges to the first user who logs into the console.">
+      <module libraryName="DisableConsolePerms"/>
+      <module libraryName="DisablePAMConsole"/>
+    </line-item>
+    <line-item name="GEN000000-LNX00620" description="The /etc/securetty file must be group-owned by root, sys, or bin.">
+      <module libraryName="SysConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN000000-LNX00640" description="The /etc/securetty file must be owned by root.">
+      <module libraryName="SysConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN000000-LNX00660" description="The /etc/securetty file must have mode 0600 or less permissive.">
+      <module libraryName="SysConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN000000-LNX00720" description="Auditing must be enabled at boot by setting a kernel parameter.">
+      <module libraryName="EnableAuditingForAllProcesses"/>
+    </line-item>
+    <line-item name="GEN000000-LNX00800" description="The system must use a Linux Security Module configured to limit the privileges of system services.">
+      <module libraryName="SELinuxIsPropEnabled"/>
+    </line-item>
+    <line-item name="GEN000020" description="The system must require authentication upon booting into single-user and maintenance modes.">
+      <module libraryName="SingleUserMode"/>
+    </line-item>
+    <line-item name="GEN000100" description="The operating system must be a supported release."/>
+    <line-item name="GEN000120" description="System security patches and updates must be installed and up-to-date."/>
+    <line-item name="GEN000140-2" description="A file integrity baseline including cryptographic hashes must be created."/>
+    <line-item name="GEN000140-3" description="A file integrity baseline including cryptographic hashes must be maintained."/>
+    <line-item name="GEN000220" description="A file integrity tool must be used at least weekly to check for unauthorized file changes, particularly the addition of unauthorized system libraries or binaries, or for unauthorized modification to authorized system libraries or binaries."/>
+    <line-item name="GEN000240" description="The system clock must be synchronized to an authoritative DoD time source."/>
+    <line-item name="GEN000241" description="The system clock must be synchronized continuously."/>
+    <line-item name="GEN000242" description="The system must use at least two time sources for clock synchronization."/>
+    <line-item name="GEN000244" description="The system must use time sources local to the enclave."/>
+    <line-item name="GEN000250" description="The time synchronization configuration file (such as /etc/ntp.conf) must be owned by root.">
+      <module libraryName="NTP_Perms"/>
+    </line-item>
+    <line-item name="GEN000251" description="The time synchronization configuration file (such as /etc/ntp.conf) must be group-owned by root, bin, or sys.">
+      <module libraryName="NTP_Perms"/>
+    </line-item>
+    <line-item name="GEN000252" description="The time synchronization configuration file (such as /etc/ntp.conf) must have mode 0640 or less permissive.">
+      <module libraryName="NTP_Perms"/>
+    </line-item>
+    <line-item name="GEN000253" description="The time synchronization configuration file (such as /etc/ntp.conf) must not have an extended ACL."/>
+    <line-item name="GEN000280" description="Direct logins must not be permitted to shared, default, application, or utility accounts."/>
+    <line-item name="GEN000290" description="The system must not have unnecessary accounts."/>
+    <line-item name="GEN000290-1" description="The system must not have the unnecessary &quot;games&quot; account.">
+      <module libraryName="RemoveGamesAccount"/>
+    </line-item>
+    <line-item name="GEN000290-2" description="The system must not have the unnecessary &quot;news&quot; account.">
+      <module libraryName="RemoveNewsAccount"/>
+    </line-item>
+    <line-item name="GEN000290-3" description="The system must not have the unnecessary &quot;gopher&quot; account.">
+      <module libraryName="GopherAccount"/>
+    </line-item>
+    <line-item name="GEN000290-4" description="The system must not have the unnecessary &quot;ftp&quot; account.">
+      <module libraryName="RemoveFTPaccount"/>
+    </line-item>
+    <line-item name="GEN000300" description="All accounts on the system must have unique user or account names.">
+      <module libraryName="PwGrpCheck"/>
+    </line-item>
+    <line-item name="GEN000320" description="All accounts must be assigned unique User Identification Numbers (UIDs).">
+      <module libraryName="PwGrpCheck"/>
+    </line-item>
+    <line-item name="GEN000340" description="UIDs reserved for system accounts must not be assigned to non-system accounts."/>
+    <line-item name="GEN000360" description="GIDs reserved for system accounts must not be assigned to non-system groups."/>
+    <line-item name="GEN000380" description="All GIDs referenced in the /etc/passwd file must be defined in the /etc/group file.">
+      <module libraryName="PwGrpCheck"/>
+    </line-item>
+    <line-item name="GEN000400" description="The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, console login prompts.">
+      <module libraryName="CreateLoginBanner"/>
+      <module libraryName="CreateLoginFTPBanner"/>
+      <module libraryName="CreatePreLoginGUIBanner"/>
+      <module libraryName="CreatePreSessionGUIBanner"/>
+      <module libraryName="SshdEnableBanner"/>
+    </line-item>
+    <line-item name="GEN000402" description="The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts.">
+      <module libraryName="CreateLoginBanner"/>
+      <module libraryName="CreatePreLoginGUIBanner"/>
+    </line-item>
+    <line-item name="GEN000410" description="The FTPS/FTP service on the system must be configured with the Department of Defense (DoD) login banner.">
+      <module libraryName="CreateLoginBanner"/>
+      <module libraryName="CreateLoginFTPBanner"/>
+    </line-item>
+    <line-item name="GEN000440" description="Successful and unsuccessful logins and logouts must be logged."/>
+    <line-item name="GEN000450" description="The system must limit users to 10 simultaneous system logins, or a site-defined number, in accordance with operational requirements.">
+      <module libraryName="MaxLoginsByUser"/>
+    </line-item>
+    <line-item name="GEN000452" description="The system must display the date and time of the last successful account login upon login.">
+      <module libraryName="SshdPrintLastLog"/>
+    </line-item>
+    <line-item name="GEN000460" description="The system must disable accounts after three consecutive unsuccessful login attempts.">
+      <module libraryName="AccountLocks"/>
+    </line-item>
+    <line-item name="GEN000480" description="The delay between login prompts following a failed login attempt must be at least 4 seconds.">
+      <module libraryName="LoginDelay"/>
+    </line-item>
+    <line-item name="GEN000500" description="Graphical desktop environments provided by the system must automatically lock after 15 minutes of inactivity and the system must require users to re-authenticate to unlock the environment.">
+      <module libraryName="SetGnomeSS"/>
+    </line-item>
+    <line-item name="GEN000500-2" description="The graphical desktop environment must set the idle timeout to no more than 15 minutes.">
+      <module libraryName="SetGnomeSS"/>
+    </line-item>
+    <line-item name="GEN000500-3" description="Graphical desktop environments provided by the system must have automatic lock enabled.">
+      <module libraryName="SetGnomeSS"/>
+    </line-item>
+    <line-item name="GEN000510" description="The system must display a publicly-viewable pattern during a graphical desktop environment session lock."/>
+    <line-item name="GEN000520" description="The root user must not own the logon session for an application requiring a continuous display."/>
+    <line-item name="GEN000540" description="Users must not be able to change passwords more than once every 24 hours.">
+      <module libraryName="PasswordChangeDelay"/>
+      <module libraryName="SetPassAgingOnAccts"/>
+    </line-item>
+    <line-item name="GEN000560" description="The system must not have accounts configured with blank or null passwords.">
+      <module libraryName="NoEmptyPasswords"/>
+    </line-item>
+    <line-item name="GEN000580" description="The system must require passwords contain a minimum of 15 characters.">
+      <module libraryName="PasswordPolicyMinlen"/>
+    </line-item>
+    <line-item name="GEN000585" description="The system must enforce compliance of the entire password during authentification."/>
+    <line-item name="GEN000590" description="The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes."/>
+    <line-item name="GEN000595" description="The password hashes stored on the system must have been generated using a FIPS 140-2 approved cryptographic hashing algorithm."/>
+    <line-item name="GEN000600" description="The system must require passwords contain at least one uppercase alphabetic character.">
+      <module libraryName="PasswordPolicyUppercase"/>
+    </line-item>
+    <line-item name="GEN000600-2" description="Global settings defined in system-auth must be applied in the pam.d definition files."/>
+    <line-item name="GEN000610" description="The system must require passwords contain at least one lowercase alphabetic character.">
+      <module libraryName="PasswordPolicyLowercase"/>
+    </line-item>
+    <line-item name="GEN000620" description="The system must require passwords contain at least one numeric character.">
+      <module libraryName="PasswordPolicyNumbers"/>
+    </line-item>
+    <line-item name="GEN000640" description="The system must require passwords contain at least one special character.">
+      <module libraryName="PasswordPolicySpecial"/>
+    </line-item>
+    <line-item name="GEN000680" description="The system must require passwords contain no more than three consecutive repeating characters.">
+      <module libraryName="PasswordPolicyConsecutive"/>
+    </line-item>
+    <line-item name="GEN000700" description="User passwords must be changed at least every 60 days.">
+      <module libraryName="PasswordMaxDays"/>
+      <module libraryName="SetPassAgingOnAccts"/>
+    </line-item>
+    <line-item name="GEN000740" description="All non-interactive/automated processing account passwords must be changed at least once per year or be locked."/>
+    <line-item name="GEN000750" description="The system must require at least eight characters be changed between the old and new passwords during a password change.">
+      <module libraryName="PasswordPolicyDiffChars"/>
+    </line-item>
+    <line-item name="GEN000760" description="Accounts must be locked upon 35 days of inactivity."/>
+    <line-item name="GEN000790" description="The system must prevent the use of dictionary words for passwords."/>
+    <line-item name="GEN000800" description="The system must prohibit the reuse of passwords within five iterations.">
+      <module libraryName="PasswordReuse"/>
+    </line-item>
+    <line-item name="GEN000850" description="The system must restrict the ability to switch to the root user to members of a defined group.">
+      <module libraryName="LimitAccessFromSu"/>
+    </line-item>
+    <line-item name="GEN000880" description="The root account must be the only account having a UID of 0.">
+      <module libraryName="LockDuplicateUidZeros"/>
+    </line-item>
+    <line-item name="GEN000900" description="The root user's home directory must not be the root directory (/).">
+      <module libraryName="RootHomePerms"/>
+    </line-item>
+    <line-item name="GEN000920" description="The root account's home directory (other than /) must have mode 0700.">
+      <module libraryName="RootHomePerms"/>
+    </line-item>
+    <line-item name="GEN000930" description="The root account's home directory must not have an extended ACL."/>
+    <line-item name="GEN000940" description="The root account's executable search path must be the vendor default and must contain only absolute paths.">
+      <module libraryName="RootPath"/>
+    </line-item>
+    <line-item name="GEN000945" description="The root account's library search path must be the system default and must contain only absolute paths."/>
+    <line-item name="GEN000950" description="The root account's list of preloaded libraries must be empty."/>
+    <line-item name="GEN000960" description="The root account must not have world-writable directories in its executable search path.">
+      <module libraryName="RootPath"/>
+    </line-item>
+    <line-item name="GEN000980" description="The system must prevent the root account from directly logging in except from the system console.">
+      <module libraryName="RootConsole"/>
+    </line-item>
+    <line-item name="GEN001000" description="Remote consoles must be disabled or protected from unauthorized access.">
+      <module libraryName="RootConsole"/>
+    </line-item>
+    <line-item name="GEN001020" description="The root account must not be used for direct log in.">
+      <module libraryName="SshdDisableRootLogin"/>
+    </line-item>
+    <line-item name="GEN001060" description="The system must log successful and unsuccessful access to the root account.">
+      <module libraryName="SyslogAuthpriv"/>
+    </line-item>
+    <line-item name="GEN001080" description="The root shell must be located in the / file system.">
+      <module libraryName="RootShell"/>
+    </line-item>
+    <line-item name="GEN001100" description="Root passwords must never be passed over a network in clear text form."/>
+    <line-item name="GEN001120" description="The system must not permit root logins using remote access programs such as ssh.">
+      <module libraryName="SshdDisableRootLogin"/>
+    </line-item>
+    <line-item name="GEN001140" description="System files and directories must not have uneven access permissions.">
+      <module libraryName="CorrectUnevenPerms"/>
+    </line-item>
+    <line-item name="GEN001160" description="All files and directories must have a valid owner.">
+      <module libraryName="SecureUnownedFiles"/>
+    </line-item>
+    <line-item name="GEN001170" description="All files and directories must have a valid group-owner."/>
+    <line-item name="GEN001180" description="All network services daemon files must have mode 0755 or less permissive.">
+      <module libraryName="SysCmdFilePerms"/>
+    </line-item>
+    <line-item name="GEN001190" description="All network services daemon files must not have extended ACLs."/>
+    <line-item name="GEN001200" description="All system command files must have mode 0755 or less permissive.">
+      <module libraryName="SysCmdFilePerms"/>
+    </line-item>
+    <line-item name="GEN001210" description="All system command files must not have extended ACLs."/>
+    <line-item name="GEN001220" description="All system files, programs, and directories must be owned by a system account.">
+      <module libraryName="SysCmdFilePerms"/>
+    </line-item>
+    <line-item name="GEN001240" description="System files, programs, and directories must be group-owned by a system group.">
+      <module libraryName="SysCmdFilePerms"/>
+    </line-item>
+    <line-item name="GEN001260" description="System log files must have mode 0640 or less permissive.">
+      <module libraryName="SysLogFilePerms"/>
+    </line-item>
+    <line-item name="GEN001270" description="System log files must not have extended ACLs, except as needed to support authorized software."/>
+    <line-item name="GEN001280" description="Manual page files must have mode 0644 or less permissive.">
+      <module libraryName="ManPagePerms"/>
+    </line-item>
+    <line-item name="GEN001290" description="All manual page files must not have extended ACLs."/>
+    <line-item name="GEN001300" description="Library files must have mode 0755 or less permissive.">
+      <module libraryName="SysLibFilePerms"/>
+    </line-item>
+    <line-item name="GEN001310" description="All library files must not have extended ACLs."/>
+    <line-item name="GEN001320" description="NIS/NIS+/yp files must be owned by root, sys, or bin.">
+      <module libraryName="NisYpConfigPerms"/>
+    </line-item>
+    <line-item name="GEN001340" description="NIS/NIS+/yp files must be group-owned by root, sys, or bin.">
+      <module libraryName="NisYpConfigPerms"/>
+    </line-item>
+    <line-item name="GEN001360" description="The NIS/NIS+/yp command files must have mode 0755 or less permissive.">
+      <module libraryName="NisYpConfigPerms"/>
+    </line-item>
+    <line-item name="GEN001361" description="NIS/NIS+/yp command files must not have extended ACLs."/>
+    <line-item name="GEN001362" description="The /etc/resolv.conf file must be owned by root.">
+          <module libraryName="ResolvConfFilePerms"/>
+    </line-item>
+    <line-item name="GEN001363" description="The /etc/resolv.conf file must be group-owned by root, bin, or sys.">
+          <module libraryName="ResolvConfFilePerms"/>
+    </line-item>
+    <line-item name="GEN001364" description="The /etc/resolv.conf file must have mode 0644 or less permissive.">
+          <module libraryName="ResolvConfFilePerms"/>
+    </line-item>
+    <line-item name="GEN001365" description="The /etc/resolv.conf file must not have an extended ACL."/>
+    <line-item name="GEN001366" description="The /etc/hosts file must be owned by root.">
+      <module libraryName="HostsFilePerms"/>
+    </line-item>
+    <line-item name="GEN001367" description="The /etc/hosts file must be group-owned by root, bin, or sys.">
+      <module libraryName="HostsFilePerms"/>
+    </line-item>
+    <line-item name="GEN001368" description="The /etc/hosts file must have mode 0644 or less permissive.">
+      <module libraryName="HostsFilePerms"/>
+    </line-item>
+    <line-item name="GEN001369" description="The /etc/hosts file must not have an extended ACL."/>
+    <line-item name="GEN001371" description="The /etc/nsswitch.conf file must be owned by root.">
+          <module libraryName="NsswitchConfFilePerms"/>
+    </line-item>
+    <line-item name="GEN001372" description="The /etc/nsswitch.conf file must be group-owned by root, bin, or sys.">
+          <module libraryName="NsswitchConfFilePerms"/>
+    </line-item>
+    <line-item name="GEN001373" description="The /etc/nsswitch.conf file must have mode 0644 or less permissive.">
+          <module libraryName="NsswitchConfFilePerms"/>
+    </line-item>
+    <line-item name="GEN001374" description="The /etc/nsswitch.conf file must not have an extended ACL."/>
+    <line-item name="GEN001375" description="For systems using DNS resolution, at least two name servers must be configured."/>
+    <line-item name="GEN001378" description="The /etc/passwd file must be owned by root.">
+      <module libraryName="PasswdPerms"/>
+    </line-item>
+    <line-item name="GEN001379" description="The /etc/passwd file must be group-owned by root, bin, or sys.">
+      <module libraryName="PasswdPerms"/>
+    </line-item>
+    <line-item name="GEN001380" description="The /etc/passwd file must have mode 0644 or less permissive.">
+      <module libraryName="PasswdPerms"/>
+    </line-item>
+    <line-item name="GEN001390" description="The /etc/passwd file must not have an extended ACL."/>
+    <line-item name="GEN001391" description="The /etc/group file must be owned by root.">
+      <module libraryName="PasswdPerms"/>
+    </line-item>
+    <line-item name="GEN001392" description="The /etc/group file must be group-owned by root, bin, or sys.">
+      <module libraryName="PasswdPerms"/>
+    </line-item>
+    <line-item name="GEN001393" description="The /etc/group file must have mode 0644 or less permissive.">
+      <module libraryName="PasswdPerms"/>
+    </line-item>
+    <line-item name="GEN001394" description="The /etc/group file must not have an extended ACL."/>
+    <line-item name="GEN001400" description="The /etc/shadow (or equivalent) file must be owned by root.">
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="GEN001410" description="The /etc/shadow file (or equivalent) must be group-owned by root, bin, or sys.">
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="GEN001420" description="The /etc/shadow (or equivalent) file must have mode 0400.">
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="GEN001430" description="The /etc/shadow file must not have an extended ACL."/>
+    <line-item name="GEN001440" description="All interactive users must be assigned a home directory in the /etc/passwd file.">
+      <module libraryName="PwGrpCheck"/>
+    </line-item>
+    <line-item name="GEN001460" description="All interactive user home directories defined in the /etc/passwd file must exist.">
+      <module libraryName="PwGrpCheck"/>
+    </line-item>
+    <line-item name="GEN001470" description="The /etc/passwd file must not contain password hashes.">
+      <module libraryName="NoHashesInPasswdGroup"/>
+    </line-item>
+    <line-item name="GEN001475" description="The /etc/group file must not contain any group password hashes.">
+      <module libraryName="NoHashesInPasswdGroup"/>
+    </line-item>
+    <line-item name="GEN001480" description="All user home directories must have mode 0750 or less permissive.">
+      <module libraryName="HomeDirPerms"/>
+    </line-item>
+    <line-item name="GEN001490" description="User home directories must not have extended ACLs."/>
+    <line-item name="GEN001500" description="All interactive user home directories must be owned by their respective users.">
+      <module libraryName="HomeDirOwnGrp"/>
+    </line-item>
+    <line-item name="GEN001520" description="All interactive user home directories must be group-owned by the home directory owner's primary group.">
+      <module libraryName="HomeDirOwnGrp"/>
+    </line-item>
+    <line-item name="GEN001540" description="All files and directories contained in interactive user home directories must be owned by the home directory's owner.">
+      <module libraryName="HomeDirContentPerms"/>
+    </line-item>
+    <line-item name="GEN001550" description="All files and directories contained in user home directories must be group-owned by a group of which the home directory's owner is a member.">
+      <module libraryName="HomeDirContentPerms"/>
+    </line-item>
+    <line-item name="GEN001560" description="All files and directories contained in user home directories must have mode 0750 or less permissive.">
+      <module libraryName="HomeDirContentPerms"/>
+    </line-item>
+    <line-item name="GEN001570" description="All files and directories contained in user home directories must not have extended ACLs."/>
+    <line-item name="GEN001580" description="All run control scripts must have mode 0755 or less permissive.">
+      <module libraryName="SysRcScriptPerms"/>
+    </line-item>
+    <line-item name="GEN001590" description="All run control scripts must have no extended ACLs."/>
+    <line-item name="GEN001600" description="Run control scripts' executable search paths must contain only absolute paths.">
+      <module libraryName="CorrectRcPathVars"/>
+    </line-item>
+    <line-item name="GEN001605" description="Run control scripts' library search paths must contain only absolute paths."/>
+    <line-item name="GEN001610" description="Run control scripts' lists of preloaded libraries must contain only absolute paths."/>
+    <line-item name="GEN001640" description="Run control scripts must not execute world-writable programs or scripts."/>
+    <line-item name="GEN001660" description="All system start-up files must be owned by root.">
+      <module libraryName="SysRcScriptPerms"/>
+    </line-item>
+    <line-item name="GEN001680" description="All system start-up files must be group-owned by root, sys, bin, other, or system.">
+      <module libraryName="SysRcScriptPerms"/>
+    </line-item>
+    <line-item name="GEN001700" description="System start-up files must only execute programs owned by a privileged UID or an application."/>
+    <line-item name="GEN001720" description="All global initialization files must have mode 0644 or less permissive.">
+      <module libraryName="GlobalInitializationFilePerms"/>
+    </line-item>
+    <line-item name="GEN001730" description="All global initialization files must not have extended ACLs."/>
+    <line-item name="GEN001740" description="All global initialization files must be owned by root.">
+      <module libraryName="GlobalInitializationFilePerms"/>
+    </line-item>
+    <line-item name="GEN001760" description="All global initialization files must be group-owned by root, sys, bin, other, system, or the system default.">
+      <module libraryName="GlobalInitializationFilePerms"/>
+    </line-item>
+    <line-item name="GEN001780" description="Global initialization files must contain the &quot;mesg -n&quot; or &quot;mesg n&quot; commands.">
+      <module libraryName="SetMesgN"/>
+    </line-item>
+    <line-item name="GEN001800" description="All skeleton files (typically those in /etc/skel) must have mode 0644 or less permissive.">
+      <module libraryName="SkeletonFilePerms"/>
+    </line-item>
+    <line-item name="GEN001810" description="Skeleton files must not have extended ACLs."/>
+    <line-item name="GEN001820" description="All skeleton files and directories (typically in /etc/skel) must be owned by root or bin.">
+      <module libraryName="SkeletonFilePerms"/>
+    </line-item>
+    <line-item name="GEN001830" description="All skeleton files (typically in /etc/skel) must be group-owned by root, bin, sys, system, or other.">
+          <module libraryName="SkeletonFilePerms"/>
+    </line-item>
+    <line-item name="GEN001840" description="All global initialization files' executable search paths must contain only absolute paths.">
+      <module libraryName="CorrectGlobalInitPathVars"/>
+    </line-item>
+    <line-item name="GEN001845" description="Global initialization files' library search paths must contain only absolute paths."/>
+    <line-item name="GEN001850" description="Global initialization files' lists of preloaded libraries must contain only absolute paths."/>
+    <line-item name="GEN001860" description="All local initialization files must be owned by the home directorys user or root.">
+      <module libraryName="HomeDirContentPerms"/>
+      <module libraryName="UserDotFilePerms"/>
+    </line-item>
+    <line-item name="GEN001870" description="Local initialization files must be group-owned by the user's primary group or root.">
+      <module libraryName="UserDotFilePerms"/>
+    </line-item>
+    <line-item name="GEN001880" description="All local initialization files must have mode 0740 or less permissive.">
+      <module libraryName="UserDotFilePerms"/>
+    </line-item>
+    <line-item name="GEN001890" description="Local initialization files must not have extended ACLs."/>
+    <line-item name="GEN001900" description="All local initialization files' executable search paths must contain only absolute paths."/>
+    <line-item name="GEN001901" description="Local initialization files' library search paths must contain only absolute paths."/>
+    <line-item name="GEN001902" description="Local initialization files' lists of preloaded libraries must contain only absolute paths."/>
+    <line-item name="GEN001940" description="User start-up files must not execute world-writable programs."/>
+    <line-item name="GEN001980" description="The .rhosts, .shosts, hosts.equiv, shosts.equiv, /etc/passwd, /etc/shadow, and/or /etc/group files must not contain a plus (+) without defining entries for NIS+ netgroups.">
+      <module libraryName="NoPlusPasswdEntries"/>
+    </line-item>
+    <line-item name="GEN002000" description="There must be no .netrc files on the system.">
+      <module libraryName="SecureNetrcFiles"/>
+    </line-item>
+    <line-item name="GEN002020" description="All .rhosts, .shosts, or host.equiv files must only contain trusted host-user pairs."/>
+    <line-item name="GEN002040" description="There must be no .rhosts, .shosts, hosts.equiv, or shosts.equiv files on the system.">
+      <module libraryName="RemoveRshAuthFiles"/>
+    </line-item>
+    <line-item name="GEN002060" description="All .rhosts, .shosts, .netrc, or hosts.equiv files must be accessible by only root or the owner.">
+      <module libraryName="SecureNetrcFiles"/>
+    </line-item>
+    <line-item name="GEN002100" description="The .rhosts file must not be supported in PAM.">
+      <module libraryName="DisableRhostsSupport"/>
+    </line-item>
+    <line-item name="GEN002120" description="The /etc/shells (or equivalent) file must exist.">
+      <module libraryName="PermittedShells"/>
+    </line-item>
+    <line-item name="GEN002140" description="All shells referenced in /etc/passwd must be listed in the /etc/shells file, except any shells specified for the purpose of preventing logins.">
+      <module libraryName="SyncEtcShells"/>
+    </line-item>
+    <line-item name="GEN002200" description="All shell files must be owned by root or bin.">
+      <module libraryName="ShellBinPerms"/>
+    </line-item>
+    <line-item name="GEN002210" description="All shell files must be group-owned by root, bin, sys, or system.">
+      <module libraryName="ShellBinPerms"/>
+    </line-item>
+    <line-item name="GEN002220" description="All shell files must have mode 0755 or less permissive.">
+      <module libraryName="ShellBinPerms"/>
+    </line-item>
+    <line-item name="GEN002230" description="All shell files must not have extended ACLs."/>
+    <line-item name="GEN002260" description="The system must be checked for extraneous device files at least weekly."/>
+    <line-item name="GEN002280" description="Device files and directories must only be writable by users with a system account or as configured by the vendor.">
+      <module libraryName="SecureWorldWritableDevices"/>
+      <module libraryName="SysDevDirPerms"/>
+    </line-item>
+    <line-item name="GEN002300" description="Device files used for backup must only be readable and/or writable by root or the backup user."/>
+    <line-item name="GEN002320" description="Audio devices must have mode 0660 or less permissive.">
+      <module libraryName="AudioDevFilePerms"/>
+    </line-item>
+    <line-item name="GEN002330" description="Audio devices must not have extended ACLs."/>
+    <line-item name="GEN002340" description="Audio devices must be owned by root.">
+      <module libraryName="AudioDevFilePerms"/>
+    </line-item>
+    <line-item name="GEN002360" description="Audio devices must be group-owned by root, sys, bin, or system.">
+      <module libraryName="AudioDevFilePerms"/>
+    </line-item>
+    <line-item name="GEN002380" description="The owner, group-owner, mode, ACL, and location of files with the setuid bit set must be documented using site-defined procedures.">
+      <module libraryName="SecureSetXIDFiles"/>
+    </line-item>
+    <line-item name="GEN002400" description="The system must be checked weekly for unauthorized setuid files as well as unauthorized modification to authorized setuid files.">
+      <module libraryName="SecureSetXIDFiles"/>
+    </line-item>
+    <line-item name="GEN002420" description="Removable media, remote file systems, and any file system not containing approved setuid files must be mounted with the &quot;nosuid&quot; option.">
+      <module libraryName="FstabRemovableMedia"/>
+      <module libraryName="NosuidOnUserFilesystems"/>
+    </line-item>
+    <line-item name="GEN002430" description="Removable media, remote file systems, and any file system not containing approved device files must be mounted with the &quot;nodev&quot; option.">
+      <module libraryName="FstabRemovableMedia"/>
+    </line-item>
+    <line-item name="GEN002440" description="The owner, group-owner, mode, ACL and location of files with the setgid bit set must be documented using site-defined procedures.">
+      <module libraryName="SecureSetXIDFiles"/>
+    </line-item>
+    <line-item name="GEN002460" description="The system must be checked weekly for unauthorized setgid files as well as unauthorized modification to authorized setgid files.">
+      <module libraryName="SecureSetXIDFiles"/>
+    </line-item>
+    <line-item name="GEN002480" description="Public directories must be the only world-writable directories and world-writable files must be located only in public directories.">
+      <module libraryName="SecureWorldWritableDevices"/>
+      <module libraryName="SecureWorldWritableDirectories"/>
+      <module libraryName="SecureWorldWritableFiles"/>
+    </line-item>
+    <line-item name="GEN002500" description="The sticky bit must be set on all public directories.">
+      <module libraryName="SecureWorldWritableDirectories"/>
+    </line-item>
+    <line-item name="GEN002520" description="All public directories must be owned by root or an application account."/>
+    <line-item name="GEN002540" description="All public directories must be group-owned by root, sys, bin, or an application group."/>
+    <line-item name="GEN002560" description="The system and user default umask must be 077.">
+      <module libraryName="DefaultUmask"/>
+    </line-item>
+    <line-item name="GEN002640" description="Default system accounts must be disabled or removed.">
+      <module libraryName="BlockSystemAccounts"/>
+    </line-item>
+    <line-item name="GEN002660" description="Auditing must be implemented.">
+      <module libraryName="AuditEnable"/>
+    </line-item>
+    <line-item name="GEN002680" description="System audit logs must be owned by root.">
+      <module libraryName="SysLogFilePerms"/>
+    </line-item>
+    <line-item name="GEN002690" description="System audit logs must be group-owned by root, bin, sys, or system.">
+      <module libraryName="SysLogFilePerms"/>
+    </line-item>
+    <line-item name="GEN002700" description="System audit logs must have mode 0640 or less permissive.">
+      <module libraryName="SysLogFilePerms"/>
+    </line-item>
+    <line-item name="GEN002710" description="All system audit files must not have extended ACLs."/>
+    <line-item name="GEN002715" description="System audit tool executables must be owned by root.">
+      <module libraryName="AuditToolsPerms"/>
+    </line-item>
+    <line-item name="GEN002716" description="System audit tool executables must be group-owned by root, bin, sys, or system.">
+      <module libraryName="AuditToolsPerms"/>
+    </line-item>
+    <line-item name="GEN002717" description="System audit tool executables must have mode 0750 or less permissive.">
+      <module libraryName="AuditToolsPerms"/>
+    </line-item>
+    <line-item name="GEN002718" description="System audit tool executables must not have extended ACLs."/>
+    <line-item name="GEN002719" description="The audit system must alert the SA in the event of an audit processing failure.">
+      <module libraryName="ConfigureAuditdConf"/>
+    </line-item>
+    <line-item name="GEN002720" description="The audit system must be configured to audit failed attempts to access files and programs.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002720-2" description="The audit system must be configured to audit failed attempts to access files and programs.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002720-3" description="The audit system must be configured to audit failed attempts to access files and programs.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002720-4" description="The audit system must be configured to audit failed attempts to access files and programs.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002720-5" description="The audit system must be configured to audit failed attempts to access files and programs.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002730" description="The audit system must alert the SA when the audit storage volume approaches its capacity.">
+      <module libraryName="ConfigureAuditdConf"/>
+    </line-item>
+    <line-item name="GEN002740" description="The audit system must be configured to audit files and programs deleted by the user.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002740-2" description="The audit system must be configured to audit file deletions.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002750" description="The audit system must be configured to audit account creation.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002751" description="The audit system must be configured to audit account modification.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002752" description="The audit system must be configured to audit account disabling.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002753" description="The audit system must be configured to audit account termination.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002760-10" description="The audit system must be configured to audit all administrative, privileged, and security actions.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002760-2" description="The audit system must be configured to audit all administrative, privileged, and security actions.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002760-3" description="The audit system must be configured to audit all administrative, privileged, and security actions.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002760-4" description="The audit system must be configured to audit all administrative, privileged, and security actions.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002760-5" description="The audit system must be configured to audit all administrative, privileged, and security actions.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002760-6" description="The audit system must be configured to audit all administrative, privileged, and security actions.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002760-7" description="The audit system must be configured to audit all administrative, privileged, and security actions.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002760-8" description="The audit system must be configured to audit all administrative, privileged, and security actions.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002760-9" description="The audit system must be configured to audit all administrative, privileged, and security actions.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002800" description="The audit system must be configured to audit login, logout, and session initiation."/>
+    <line-item name="GEN002820" description="The audit system must be configured to audit all discretionary access control permission modifications.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002820-10" description="The audit system must be configured to audit all discretionary access control permission modifications.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002820-11" description="The audit system must be configured to audit all discretionary access control permission modifications.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002820-12" description="The audit system must be configured to audit all discretionary access control permission modifications.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002820-13" description="The audit system must be configured to audit all discretionary access control permission modifications.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002820-2" description="The audit system must be configured to audit all discretionary access control permission modifications.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002820-3" description="The audit system must be configured to audit all discretionary access control permission modifications.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002820-4" description="The audit system must be configured to audit all discretionary access control permission modifications.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002820-5" description="The audit system must be configured to audit all discretionary access control permission modifications.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002820-6" description="The audit system must be configured to audit all discretionary access control permission modifications.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002820-7" description="The audit system must be configured to audit all discretionary access control permission modifications.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002820-8" description="The audit system must be configured to audit all discretionary access control permission modifications.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002820-9" description="The audit system must be configured to audit all discretionary access control permission modifications.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002825" description="The audit system must be configured to audit the loading and unloading of dynamic kernel modules.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002825-2" description="The audit system must be configured to audit the loading and unloading of dynamic kernel modules - delete_module.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002825-3" description="The audit system must be configured to audit the loading and unloading of dynamic kernel modules - /sbin/insmod.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002825-4" description="The audit system must be configured to audit the loading and unloading of dynamic kernel modules -/sbin/modprobe.">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002825-5" description="The audit system must be configured to audit the loading and unloading of dynamic kernel modules - /sbin/rmmod">
+      <module libraryName="AuditRules"/>
+    </line-item>
+    <line-item name="GEN002860" description="Audit logs must be rotated daily.">
+      <module libraryName="AuditLogRotation"/>
+    </line-item>
+    <line-item name="GEN002870" description="The system must be configured to send audit/system records to a remote audit server."/>
+    <line-item name="GEN002960" description="Access to the cron utility must be controlled using the cron.allow and/or cron.deny file(s).">
+      <module libraryName="RestrictAtCron"/>
+    </line-item>
+    <line-item name="GEN002980" description="The cron.allow file must have mode 0600 or less permissive.">
+      <module libraryName="AtCronAccessFilePerms"/>
+      <module libraryName="RestrictAtCron"/>
+    </line-item>
+    <line-item name="GEN002990" description="The cron.allow file must not have an extended ACL."/>
+    <line-item name="GEN003000" description="Cron must not execute group-writable or world-writable programs."/>
+    <line-item name="GEN003020" description="Cron must not execute programs in, or subordinate to, world-writable directories."/>
+    <line-item name="GEN003040" description="Crontabs must be owned by root or the crontab creator.">
+      <module libraryName="CrontabPerms"/>
+      <module libraryName="CrontabScriptPerms"/>
+    </line-item>
+    <line-item name="GEN003050" description="Crontab files must be group-owned by root, cron, or the crontab creator's primary group.">
+      <module libraryName="CrontabPerms"/>
+      <module libraryName="CrontabScriptPerms"/>
+    </line-item>
+    <line-item name="GEN003060" description="Default system accounts (with the exception of root) must not be listed in the cron.allow file or must be included in the cron.deny file, if cron.allow does not exist."/>
+    <line-item name="GEN003080" description="Crontab files must have mode 0600 or less permissive, and files in cron script directories must have mode 0700 or less permissive.">
+      <module libraryName="CrontabPerms"/>
+    </line-item>
+    <line-item name="GEN003080-2" description="Files in cron script directories must have mode 0700 or less permissive.">
+      <module libraryName="CrontabScriptPerms"/>
+    </line-item>
+    <line-item name="GEN003090" description="Crontab files must not have extended ACLs."/>
+    <line-item name="GEN003100" description="Cron and crontab directories must have mode 0755 or less permissive.">
+      <module libraryName="CrontabDirPerms"/>
+    </line-item>
+    <line-item name="GEN003110" description="Cron and crontab directories must not have extended ACLs."/>
+    <line-item name="GEN003120" description="Cron and crontab directories must be owned by root or bin.">
+      <module libraryName="CrontabDirPerms"/>
+    </line-item>
+    <line-item name="GEN003140" description="Cron and crontab directories must be group-owned by root, sys, bin or cron.">
+      <module libraryName="CrontabDirPerms"/>
+    </line-item>
+    <line-item name="GEN003160" description="Cron logging must be implemented.">
+      <module libraryName="SyslogCronLogging"/>
+    </line-item>
+    <line-item name="GEN003180" description="The cronlog file must have mode 0600 or less permissive.">
+      <module libraryName="SysLogFilePerms"/>
+    </line-item>
+    <line-item name="GEN003190" description="The cron log files must not have extended ACLs."/>
+    <line-item name="GEN003200" description="The cron.deny file must have mode 0600 or less permissive.">
+      <module libraryName="RestrictAtCron"/>
+      <module libraryName="AtCronAccessFilePerms"/>
+    </line-item>
+    <line-item name="GEN003210" description="The cron.deny file must not have an extended ACL."/>
+    <line-item name="GEN003220" description="Cron programs must not set the umask to a value less restrictive than 077."/>
+    <line-item name="GEN003240" description="The cron.allow file must be owned by root, bin, or sys.">
+      <module libraryName="RestrictAtCron"/>
+      <module libraryName="AtCronAccessFilePerms"/>
+    </line-item>
+    <line-item name="GEN003245" description="The at.allow file must not have an extended ACL."/>
+    <line-item name="GEN003250" description="The cron.allow file must be group-owned by root, bin, sys, or cron.">
+      <module libraryName="RestrictAtCron"/>
+      <module libraryName="AtCronAccessFilePerms"/>
+    </line-item>
+    <line-item name="GEN003252" description="The at.deny file must have mode 0600 or less permissive.">
+      <module libraryName="AtCronAccessFilePerms"/>
+      <module libraryName="RestrictAtCron"/>
+    </line-item>
+    <line-item name="GEN003255" description="The at.deny file must not have an extended ACL."/>
+    <line-item name="GEN003260" description="The cron.deny file must be owned by root, bin, or sys.">
+      <module libraryName="AtCronAccessFilePerms"/>
+      <module libraryName="RestrictAtCron"/>
+    </line-item>
+    <line-item name="GEN003270" description="The cron.deny file must be group-owned by root, bin, or sys.">
+      <module libraryName="AtCronAccessFilePerms"/>
+      <module libraryName="RestrictAtCron"/>
+    </line-item>
+    <line-item name="GEN003280" description="Access to the &quot;at&quot; utility must be controlled via the at.allow and/or at.deny file(s).">
+      <module libraryName="RestrictAtCron"/>
+    </line-item>
+    <line-item name="GEN003300" description="The at.deny file must not be empty if it exists.">
+      <module libraryName="RestrictAtCron"/>
+    </line-item>
+    <line-item name="GEN003320" description="Default system accounts (with the exception of root) must not be listed in the at.allow file or must be included in the at.deny file if the at.allow file does not exist.">
+      <module libraryName="RestrictAtCron"/>
+    </line-item>
+    <line-item name="GEN003340" description="The at.allow file must have mode 0600 or less permissive.">
+      <module libraryName="RestrictAtCron"/>
+      <module libraryName="AtCronAccessFilePerms"/>
+    </line-item>
+    <line-item name="GEN003360" description="The &quot;at&quot; daemon must not execute group-writable or world-writable programs."/>
+    <line-item name="GEN003380" description="The &quot;at&quot; daemon must not execute programs in, or subordinate to, world-writable directories."/>
+    <line-item name="GEN003400" description="The &quot;at&quot; directory must have mode 0755 or less permissive.">
+      <module libraryName="AtDirPerms"/>
+    </line-item>
+    <line-item name="GEN003410" description="The &quot;at&quot; directory must not have an extended ACL."/>
+    <line-item name="GEN003420" description="The at directory must be owned by root, bin, sys, daemon, or cron.">
+      <module libraryName="AtDirPerms"/>
+    </line-item>
+    <line-item name="GEN003430" description="The &quot;at&quot; directory must be group-owned by root, bin, sys, or cron.">
+      <module libraryName="AtDirPerms"/>
+    </line-item>
+    <line-item name="GEN003440" description="&quot;At&quot; jobs must not set the umask to a value less restrictive than 077."/>
+    <line-item name="GEN003460" description="The at.allow file must be owned by root, bin, or sys.">
+      <module libraryName="AtCronAccessFilePerms"/>
+    </line-item>
+    <line-item name="GEN003470" description="The at.allow file must be group-owned by root, bin, sys, or cron.">
+      <module libraryName="AtCronAccessFilePerms"/>
+    </line-item>
+    <line-item name="GEN003480" description="The at.deny file must be owned by root, bin, or sys.">
+      <module libraryName="AtCronAccessFilePerms"/>
+    </line-item>
+    <line-item name="GEN003490" description="The at.deny file must be group-owned by root, bin, sys, or cron.">
+      <module libraryName="AtCronAccessFilePerms"/>
+    </line-item>
+    <line-item name="GEN003500" description="Process core dumps must be disabled unless needed.">
+      <module libraryName="DisableCoreDumps"/>
+    </line-item>
+    <line-item name="GEN003510" description="Kernel core dumps must be disabled unless needed.">
+      <module libraryName="DisableKdump"/>
+    </line-item>
+    <line-item name="GEN003520" description="The kernel core dump data directory must be owned by root.">
+      <module libraryName="KernelDumpDirPerms"/>
+    </line-item>
+    <line-item name="GEN003521" description="The kernel core dump data directory must be group-owned by root, bin, sys, or system.">
+      <module libraryName="KernelDumpDirPerms"/>
+    </line-item>
+    <line-item name="GEN003522" description="The kernel core dump data directory must have mode 0700 or less permissive.">
+      <module libraryName="KernelDumpDirPerms"/>
+    </line-item>
+    <line-item name="GEN003523" description="The kernel core dump data directory must not have an extended ACL."/>
+    <line-item name="GEN003540" description="The system must implement non-executable program stacks.">
+      <module libraryName="EnableKernelExecShield"/>
+    </line-item>
+    <line-item name="GEN003581" description="Network interfaces must not be configured to allow user control."/>
+    <line-item name="GEN003600" description="The system must not forward IPv4 source-routed packets.">
+      <module libraryName="SourceRoute"/>
+    </line-item>
+    <line-item name="GEN003601" description="TCP backlog queue sizes must be set appropriately.">
+      <module libraryName="TCPMaxSynBacklog"/>
+    </line-item>
+    <line-item name="GEN003602" description="The system must not process Internet Control Message Protocol (ICMP)  timestamp requests."/>
+    <line-item name="GEN003603" description="The system must not respond to Internet Control Message Protocol v4 (ICMPv4) echoes sent to a broadcast address.">
+      <module libraryName="ICMPEchoIgnoreBroadcasts"/>
+    </line-item>
+    <line-item name="GEN003604" description="The system must not respond to Internet Control Message Protocol (ICMP) timestamp requests sent to a broadcast address.">
+      <module libraryName="ICMPEchoIgnoreBroadcasts"/>
+    </line-item>
+    <line-item name="GEN003607" description="The system must not accept source-routed IPv4 packets.">
+      <module libraryName="SourceRoute"/>
+    </line-item>
+    <line-item name="GEN003608" description="Proxy Address Resolution Protocol (Proxy ARP) must not be enabled on the system.">
+      <module libraryName="DisableProxyARP"/>
+    </line-item>
+    <line-item name="GEN003609" description="The system must ignore IPv4 Internet Control Message Protocol (ICMP) redirect messages.">
+      <module libraryName="AcceptRedirects"/>
+    </line-item>
+    <line-item name="GEN003610" description="The system must not send IPv4 Internet Control Message Protocol (ICMP) redirects.">
+      <module libraryName="SendRedirects"/>
+    </line-item>
+    <line-item name="GEN003611" description="The system must log martian packets.">
+      <module libraryName="LogMartianPackets"/>
+    </line-item>
+    <line-item name="GEN003612" description="The system must be configured to use TCP syncookies when experiencing a TCP SYN flood.">
+      <module libraryName="TCPSyncookies"/>
+    </line-item>
+    <line-item name="GEN003619" description="The system must not be configured for network bridging."/>
+    <line-item name="GEN003620" description="A separate file system must be used for user home directories (such as /home or an equivalent).">
+      <module libraryName="CheckFS_home"/>
+    </line-item>
+    <line-item name="GEN003621" description="The system must use a separate file system for /var.">
+      <module libraryName="CheckFS_var"/>
+    </line-item>
+    <line-item name="GEN003623" description="The system must use a separate file system for the system audit data path.">
+      <module libraryName="CheckFS_varlogaudit"/>
+    </line-item>
+    <line-item name="GEN003624" description="The system must use a separate file system for /tmp (or equivalent).">
+      <module libraryName="CheckFS_tmp"/>
+    </line-item>
+    <line-item name="GEN003640" description="The root file system must employ journaling or another mechanism ensuring file system consistency."/>
+    <line-item name="GEN003650" description="All local file systems must employ journaling or another mechanism ensuring file system consistency."/>
+    <line-item name="GEN003660" description="The system must log informational authentication data.">
+      <module libraryName="SyslogAuthpriv"/>
+    </line-item>
+    <line-item name="GEN003700" description="Inetd and xinetd must be disabled or removed if no network services utilizing them are enabled.">
+      <module libraryName="DisableInetd"/>
+    </line-item>
+    <line-item name="GEN003720" description="The inetd.conf file, xinetd.conf file, and the xinetd.d directory must be owned by root or bin.">
+      <module libraryName="InetdXinetdConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN003730" description="The inetd.conf file, xinetd.conf file, and the xinetd.d directory must be group-owned by root, bin, sys, or system.">
+      <module libraryName="InetdXinetdConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN003740" description="The xinetd configuration files must have mode 0640 or less permissive.">
+      <module libraryName="InetdXinetdConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN003745" description="The inetd.conf and xinetd.conf files must not have extended ACLs."/>
+    <line-item name="GEN003750" description="The xinetd.d directory must have mode 0755 or less permissive.">
+      <module libraryName="SysConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN003755" description="The xinetd.d directory must not have an extended ACL."/>
+    <line-item name="GEN003760" description="The services file must be owned by root or bin.">
+      <module libraryName="ServicesFilePerms"/>
+    </line-item>
+    <line-item name="GEN003770" description="The services file must be group-owned by root, bin, sys, or system.">
+      <module libraryName="ServicesFilePerms"/>
+    </line-item>
+    <line-item name="GEN003780" description="The services file must have mode 0644 or less permissive.">
+      <module libraryName="ServicesFilePerms"/>
+    </line-item>
+    <line-item name="GEN003790" description="The services file must not have an extended ACL."/>
+    <line-item name="GEN003800" description="Inetd or xinetd logging/tracing must be enabled.">
+      <module libraryName="ConfigureXinetdLogging"/>
+    </line-item>
+    <line-item name="GEN003810" description="The portmap or rpcbind service must not be running unless needed.">
+      <module libraryName="DisablePortmap"/>
+    </line-item>
+    <line-item name="GEN003815" description="The portmap or rpcbind service must not be installed unless needed."/>
+    <line-item name="GEN003820" description="The rsh daemon must not be running.">
+      <module libraryName="DisableRsh"/>
+    </line-item>
+    <line-item name="GEN003825" description="The rshd service must not be installed."/>
+    <line-item name="GEN003830" description="The rlogind service must not be running.">
+      <module libraryName="DisableRlogin"/>
+    </line-item>
+    <line-item name="GEN003835" description="The rlogind service must not be installed."/>
+    <line-item name="GEN003840" description="The rexec daemon must not be running.">
+      <module libraryName="DisableRexec"/>
+    </line-item>
+    <line-item name="GEN003845" description="The rexecd service must not be installed."/>
+    <line-item name="GEN003850" description="The telnet daemon must not be running.">
+      <module libraryName="DisableTelnet"/>
+    </line-item>
+    <line-item name="GEN003860" description="The system must not have the finger service active.">
+      <module libraryName="DisableFinger"/>
+    </line-item>
+    <line-item name="GEN003865" description="Network analysis tools must not be installed.">
+      <module libraryName="DisableNetAnalysisTools"/>
+    </line-item>
+    <line-item name="GEN003900" description="The hosts.lpd file (or equivalent) must not contain a + character."/>
+    <line-item name="GEN003920" description="The hosts.lpd (or equivalent) file must be owned by root, bin, sys, or lp.">
+      <module libraryName="PrinterConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN003930" description="The hosts.lpd (or equivalent) file must be group-owned by lp.">
+      <module libraryName="PrinterConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN003940" description="The hosts.lpd (or equivalent) must have mode 0644 or less permissive.">
+      <module libraryName="PrinterConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN003950" description="The hosts.lpd (or equivalent) file must not have an extended ACL."/>
+    <line-item name="GEN003960" description="The traceroute command owner must be root.">
+      <module libraryName="RestrictTracerouteUse"/>
+    </line-item>
+    <line-item name="GEN003980" description="The traceroute command must be group-owned by sys, bin, root, or system.">
+      <module libraryName="RestrictTracerouteUse"/>
+    </line-item>
+    <line-item name="GEN004000" description="The traceroute file must have mode 0700 or less permissive.">
+      <module libraryName="RestrictTracerouteUse"/>
+    </line-item>
+    <line-item name="GEN004010" description="The traceroute file must not have an extended ACL."/>
+    <line-item name="GEN004220" description="Administrative accounts must not run a web browser, except as needed for local service administration."/>
+    <line-item name="GEN004360" description="The alias file must be owned by root.">
+      <module libraryName="MailAgentAliasesFilePerms"/>
+    </line-item>
+    <line-item name="GEN004370" description="The aliases file must be group-owned by root, sys, bin, or system.">
+      <module libraryName="MailAgentAliasesFilePerms"/>
+    </line-item>
+    <line-item name="GEN004380" description="The alias file must have mode 0644 or less permissive.">
+      <module libraryName="MailAgentAliasesFilePerms"/>
+    </line-item>
+    <line-item name="GEN004390" description="The alias file must not have an extended ACL."/>
+    <line-item name="GEN004400" description="Files executed through a mail aliases file must be owned by root and must reside within a directory owned and writable only by root."/>
+    <line-item name="GEN004410" description="Files executed through a mail aliases file must be group-owned by root, bin, sys, or system, and must reside within a directory group-owned by root, bin, sys, or system."/>
+    <line-item name="GEN004420" description="Files executed through a mail aliases file must have mode 0755 or less permissive."/>
+    <line-item name="GEN004430" description="Files executed through a mail aliases file must not have extended ACLs."/>
+    <line-item name="GEN004440" description="Sendmail logging must not be set to less than nine in the sendmail.cf file.">
+      <module libraryName="SendmailOpts"/>
+    </line-item>
+    <line-item name="GEN004460" description="The system syslog service must log informational and more severe SMTP service messages.">
+      <module libraryName="SyslogMaillog"/>
+    </line-item>
+    <line-item name="GEN004480" description="The SMTP service log file must be owned by root.">
+      <module libraryName="SysLogFilePerms"/>
+    </line-item>
+    <line-item name="GEN004500" description="The SMTP service log file must have mode 0644 or less permissive.">
+      <module libraryName="SysLogFilePerms"/>
+    </line-item>
+    <line-item name="GEN004510" description="The SMTP service log file must not have an extended ACL."/>
+    <line-item name="GEN004540" description="The SMTP service HELP command must not be enabled.">
+      <module libraryName="DisableSendmailHelp"/>
+    </line-item>
+    <line-item name="GEN004560" description="The SMTP service's SMTP greeting must not provide version information.">
+      <module libraryName="SendmailOpts"/>
+    </line-item>
+    <line-item name="GEN004580" description="The system must not use .forward files.">
+      <module libraryName="SendmailOpts"/>
+    </line-item>
+    <line-item name="GEN004600" description="The SMTP service must be an up-to-date version.">
+      <module libraryName="DisableSendmailBadVers"/>
+    </line-item>
+    <line-item name="GEN004620" description="The sendmail server must have the debug feature disabled.">
+      <module libraryName="SendmailOpts"/>
+    </line-item>
+    <line-item name="GEN004640" description="The SMTP service must not have a uudecode alias active."/>
+    <line-item name="GEN004660" description="The SMTP service must not have the EXPN feature active.">
+      <module libraryName="SendmailOpts"/>
+    </line-item>
+    <line-item name="GEN004680" description="The SMTP service must not have the Verify (VRFY) feature active.">
+      <module libraryName="SendmailOpts"/>
+    </line-item>
+    <line-item name="GEN004700" description="The sendmail service must not have the wizard backdoor active."/>
+    <line-item name="GEN004710" description="Mail relaying must be restricted."/>
+    <line-item name="GEN004800" description="Unencrypted FTP must not be used on the system.">
+      <module libraryName="DisableFTP_vsftpd"/>
+    </line-item>
+    <line-item name="GEN004820" description="Anonymous FTP must not be active on the system unless authorized.">
+      <module libraryName="RemoveFTPaccount"/>
+    </line-item>
+    <line-item name="GEN004840" description="If the system is an anonymous FTP server, it must be isolated to the DMZ network."/>
+    <line-item name="GEN004880" description="The ftpusers file must exist.">
+      <module libraryName="CreateFTPUsers"/>
+    </line-item>
+    <line-item name="GEN004900" description="The ftpusers file must contain account names not allowed to use FTP.">
+      <module libraryName="CreateFTPUsers"/>
+    </line-item>
+    <line-item name="GEN004920" description="The ftpusers file must be owned by root.">
+      <module libraryName="FTPConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN004930" description="The ftpusers file must be group-owned by root, bin, sys, or system.">
+      <module libraryName="FTPConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN004940" description="The ftpusers file must have mode 0640 or less permissive.">
+      <module libraryName="FTPConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN004950" description="The ftpusers file must not have an extended ACL."/>
+    <line-item name="GEN004980" description="The FTP daemon must be configured for logging or verbose mode.">
+      <module libraryName="EnableAdditionalFTPLogging_vsftpd"/>
+    </line-item>
+    <line-item name="GEN005000" description="Anonymous FTP accounts must not have a functional shell."/>
+    <line-item name="GEN005040" description="All FTP users must have a default umask of 077.">
+      <module libraryName="GssftpUmask"/>
+    </line-item>
+    <line-item name="GEN005080" description="The TFTP daemon must operate in &quot;secure mode&quot; which provides access only to a single directory on the host file system.">
+      <module libraryName="TftpSecureMode"/>
+    </line-item>
+    <line-item name="GEN005100" description="The TFTP daemon must have mode 0755 or less permissive.">
+      <module libraryName="SysCmdFilePerms"/>
+    </line-item>
+    <line-item name="GEN005120" description="The TFTP daemon must be configured to vendor specifications, including a dedicated TFTP user account, a non-login shell such as /bin/false, and a home directory owned by the TFTP user."/>
+    <line-item name="GEN005140" description="Any active TFTP daemon must be authorized and approved in the system accreditation package."/>
+    <line-item name="GEN005160" description="Any X Windows host must write .Xauthority files."/>
+    <line-item name="GEN005180" description="All .Xauthority files must have mode 0600 or less permissive.">
+      <module libraryName="HomeDirContentPerms"/>
+    </line-item>
+    <line-item name="GEN005190" description="The .Xauthority files must not have extended ACLs."/>
+    <line-item name="GEN005200" description="X displays must not be exported to the world."/>
+    <line-item name="GEN005220" description=".Xauthority or X*.hosts (or equivalent) file(s) must be used to restrict access to the X server."/>
+    <line-item name="GEN005240" description="The .Xauthority utility must only permit access to authorized hosts."/>
+    <line-item name="GEN005260" description="X Window System connections not required must be disabled.">
+      <module libraryName="DisableGuiLogin"/>
+    </line-item>
+    <line-item name="GEN005280" description="The system must not have the UUCP service active.">
+      <module libraryName="DisableUucp"/>
+    </line-item>
+    <line-item name="GEN005300" description="SNMP communities, users, and passphrases must be changed from the default.">
+      <module libraryName="ChangeSNMPStrings"/>
+    </line-item>
+    <line-item name="GEN005305" description="The SNMP service must use only SNMPv3 or its successors."/>
+    <line-item name="GEN005306" description="The SNMP service must require the use of a FIPS 140-2 approved cryptographic hash algorithm as part of its authentication and integrity methods."/>
+    <line-item name="GEN005307" description="The SNMP service must require the use of a FIPS 140-2 approved encryption algorithm for protecting the privacy of SNMP messages."/>
+    <line-item name="GEN005320" description="The snmpd.conf file must have mode 0600 or less permissive.">
+      <module libraryName="SNMPConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN005340" description="Management Information Base (MIB) files must have mode 0640 or less permissive.">
+      <module libraryName="MIBFilePerms"/>
+    </line-item>
+    <line-item name="GEN005350" description="Management Information Base (MIB) files must not have extended ACLs."/>
+    <line-item name="GEN005360" description="The snmpd.conf file must be owned by root.">
+      <module libraryName="SNMPConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN005365" description="The snmpd.conf file must be group-owned by root, bin, sys, or system.">
+      <module libraryName="SNMPConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN005375" description="The snmpd.conf file must not have an extended ACL."/>
+    <line-item name="GEN005380" description="If the system is a Network Management System (NMS) server, it must only run the NMS and any software required by the NMS.">
+      <module libraryName="DisableSNMP"/>
+    </line-item>
+    <line-item name="GEN005390" description="The /etc/syslog.conf file must have mode 0640 or less permissive.">
+      <module libraryName="SysLoggingConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN005395" description="The /etc/syslog.conf file must not have an extended ACL."/>
+    <line-item name="GEN005400" description="The /etc/syslog.conf file must be owned by root.">
+      <module libraryName="SysLoggingConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN005420" description="The /etc/syslog.conf file must be group-owned by root, bin, sys, or system.">
+      <module libraryName="SysLoggingConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN005440" description="The system must not be used as a syslog server (loghost) for systems external to the enclave."/>
+    <line-item name="GEN005450" description="The system must use a remote syslog server (loghost)."/>
+    <line-item name="GEN005460" description="The system must only use remote syslog servers (log hosts) that is justified and documented using site-defined procedures."/>
+    <line-item name="GEN005480" description="The syslog daemon must not accept remote messages unless it is a syslog server documented using site-defined procedures.">
+      <module libraryName="DisableRemoteSyslog"/>
+    </line-item>
+    <line-item name="GEN005500" description="The SSH daemon must be configured to only use the SSHv2 protocol.">
+      <module libraryName="SshdProtocol"/>
+    </line-item>
+    <line-item name="GEN005501" description="The SSH client must be configured to only use the SSHv2 protocol.">
+      <module libraryName="SshParameters"/>
+    </line-item>
+    <line-item name="GEN005504" description="The SSH daemon must only listen on management network addresses unless authorized for uses other than management."/>
+    <line-item name="GEN005505" description="The SSH daemon must be configured to only use FIPS 140-2 approved ciphers.">
+      <module libraryName="SshdRestrictCiphers"/>
+    </line-item>
+    <line-item name="GEN005506" description="The SSH daemon must be configured to not use Cipher-Block Chaining (CBC) ciphers.">
+      <module libraryName="SshdRestrictCiphers"/>
+    </line-item>
+    <line-item name="GEN005507" description="The SSH daemon must be configured to only use Message Authentication Codes (MACs) employing FIPS 140-2 approved cryptographic hash algorithms.">
+      <module libraryName="SshdRestrictHMAC"/>
+    </line-item>
+    <line-item name="GEN005510" description="The SSH client must be configured to only use FIPS 140-2 approved ciphers.">
+      <module libraryName="SshRestrictCiphers"/>
+    </line-item>
+    <line-item name="GEN005511" description="The SSH client must be configured to not use Cipher-Block Chaining (CBC)-based ciphers.">
+      <module libraryName="SshRestrictCiphers"/>
+    </line-item>
+    <line-item name="GEN005512" description="The SSH client must be configured to only use Message Authentication Codes (MACs) employing FIPS 140-2 approved cryptographic hash algorithms.">
+      <module libraryName="SshRestrictHMAC"/>
+    </line-item>
+    <line-item name="GEN005521" description="The SSH daemon must restrict login ability to specific users and/or groups.">
+      <module libraryName="SshdRestrictUsersGroups"/>
+    </line-item>
+    <line-item name="GEN005522" description="The SSH public host key files must have mode 0644 or less permissive."/>
+    <line-item name="GEN005523" description="The SSH private host key files must have mode 0600 or less permissive."/>
+    <line-item name="GEN005524" description="The SSH daemon must not permit GSSAPI authentication unless needed.">
+      <module libraryName="SshdDisableGSSAPIAuth"/>
+    </line-item>
+    <line-item name="GEN005525" description="The SSH client must not permit GSSAPI authentication unless needed.">
+      <module libraryName="SshDisableGSSAPIAuth"/>
+    </line-item>
+    <line-item name="GEN005526" description="The SSH daemon must not permit Kerberos authentication unless needed.">
+      <module libraryName="SshdDisableKerberosAuth"/>
+    </line-item>
+    <line-item name="GEN005536" description="The SSH daemon must perform strict mode checking of home directory configuration files.">
+      <module libraryName="SshdStrictModeChecking"/>
+    </line-item>
+    <line-item name="GEN005537" description="The SSH daemon must use privilege separation.">
+      <module libraryName="SshdUsePrivilegeSeparation"/>
+    </line-item>
+    <line-item name="GEN005538" description="The SSH daemon must not allow rhosts RSA authentication.">
+      <module libraryName="SshdDisableRhostsRSAAuth"/>
+    </line-item>
+    <line-item name="GEN005539" description="The SSH daemon must not allow compression or must only allow compression after successful authentication.">
+      <module libraryName="SshdSetCompression"/>
+    </line-item>
+    <line-item name="GEN005540" description="The SSH daemon must be configured for IP filtering.">
+      <module libraryName="TcpWrappers"/>
+    </line-item>
+    <line-item name="GEN005550" description="The SSH daemon must be configured with the Department of Defense (DoD) logon banner.">
+      <module libraryName="CreateLoginBanner"/>
+      <module libraryName="SshdEnableBanner"/>
+    </line-item>
+    <line-item name="GEN005560" description="The system must be configured with a default gateway for IPv4 if the system uses IPv4, unless the system is a router."/>
+    <line-item name="GEN005570" description="The system must be configured with a default gateway for IPv6 if the system uses IPv6, unless the system is a router."/>
+    <line-item name="GEN005580" description="A system used for routing must not run other network services or applications."/>
+    <line-item name="GEN005590" description="The system must not be running any routing protocol daemons, unless the system is a router."/>
+    <line-item name="GEN005600" description="IP forwarding for IPv4 must not be enabled, unless the system is a router.">
+      <module libraryName="IPForward"/>
+    </line-item>
+    <line-item name="GEN005610" description="The system must not have IP forwarding for IPv6 enabled, unless the system is an IPv6 router.">
+      <module libraryName="IPForward"/>
+    </line-item>
+    <line-item name="GEN005740" description="The Network File System (NFS) export configuration file must be owned by root.">
+      <module libraryName="ExportsConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN005750" description="The Network File System (NFS) export configuration file must be group-owned by root, bin, sys, or system.">
+      <module libraryName="ExportsConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN005760" description="The Network File System (NFS) export configuration file must have mode 0644 or less permissive.">
+      <module libraryName="ExportsConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN005770" description="The Network File System (NFS) exports configuration file must not have an extended ACL."/>
+    <line-item name="GEN005800" description="All Network File System (NFS) exported system files and system directories must be owned by root."/>
+    <line-item name="GEN005810" description="All Network File System (NFS) exported system files and system directories must be group-owned by root, bin, sys, or system."/>
+    <line-item name="GEN005820" description="The Network File System (NFS) anonymous UID and GID must be configured to values without permissions.">
+      <module libraryName="NFSanon"/>
+    </line-item>
+    <line-item name="GEN005840" description="The Network File System (NFS) server must be configured to restrict file system access to local hosts."/>
+    <line-item name="GEN005880" description="The Network File System (NFS) server must not allow remote root access."/>
+    <line-item name="GEN005900" description="The &quot;nosuid&quot; option must be enabled on all Network File System (NFS) client mounts.">
+      <module libraryName="NosuidOnUserFilesystems"/>
+    </line-item>
+    <line-item name="GEN006000" description="The system must not have a public Instant Messaging (IM) client installed.">
+      <module libraryName="DisableGaimClient"/>
+      <module libraryName="DisableYahooIM"/>
+    </line-item>
+    <line-item name="GEN006040" description="The system must not have any peer-to-peer file-sharing application installed.">
+      <module libraryName="DisableFileShare"/>
+    </line-item>
+    <line-item name="GEN006060" description="The system must not run Samba unless needed.">
+      <module libraryName="DisableSMB"/>
+    </line-item>
+    <line-item name="GEN006080" description="The Samba Web Administration Tool (SWAT) must be restricted to the local host or require SSL."/>
+    <line-item name="GEN006100" description="The /etc/smb.conf file must be owned by root.">
+      <module libraryName="SambaConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN006120" description="The /etc/smb.conf file must be group-owned by root, bin, sys, or system.">
+      <module libraryName="SambaConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN006140" description="The /etc/smb.conf file must have mode 0644 or less permissive.">
+      <module libraryName="SambaConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN006150" description="The /etc/smb.conf file must not have an extended ACL."/>
+    <line-item name="GEN006160" description="The /etc/smbpasswd file must be owned by root.">
+      <module libraryName="SambaPasswordFilePerms"/>
+    </line-item>
+    <line-item name="GEN006180" description="The smbpasswd file must be group-owned by root.">
+      <module libraryName="SambaPasswordFilePerms"/>
+    </line-item>
+    <line-item name="GEN006200" description="The smbpasswd file must have mode 0600 or less permissive.">
+      <module libraryName="SambaPasswordFilePerms"/>
+    </line-item>
+    <line-item name="GEN006210" description="The /etc/smbpasswd file must not have an extended ACL."/>
+    <line-item name="GEN006220" description="The smb.conf file must use the &quot;hosts&quot; option to restrict access to Samba.">
+      <module libraryName="SMB_Conf"/>
+    </line-item>
+    <line-item name="GEN006225" description="Samba must be configured to use an authentication mechanism other than &quot;share.&quot;">
+      <module libraryName="SMB_Conf"/>
+    </line-item>
+    <line-item name="GEN006230" description="Samba must be configured to use encrypted passwords.">
+      <module libraryName="SMB_Conf"/>
+    </line-item>
+    <line-item name="GEN006235" description="Samba must be configured to not allow guest access to shares.">
+      <module libraryName="RemoveSMBguest"/>
+      <module libraryName="SMB_Conf"/>
+    </line-item>
+    <line-item name="GEN006240" description="The system must not run an Internet Network News (INN) server.">
+      <module libraryName="DisableInnd"/>
+    </line-item>
+    <line-item name="GEN006260" description="The /etc/news/incoming.conf (or equivalent) must have mode 0600 or less permissive.">
+      <module libraryName="NntpFilePerms"/>
+    </line-item>
+    <line-item name="GEN006270" description="The /etc/news/incoming.conf file must not have an extended ACL."/>
+    <line-item name="GEN006280" description="The /etc/news/infeed.conf (or equivalent) must have mode 0600 or less permissive.">
+      <module libraryName="NntpFilePerms"/>
+    </line-item>
+    <line-item name="GEN006290" description="The /etc/news/hosts.nntp.nolimit file must not have an extended ACL."/>
+    <line-item name="GEN006300" description="The /etc/news/readers.conf (or equivalent) must have mode 0600 or less permissive.">
+      <module libraryName="NntpFilePerms"/>
+    </line-item>
+    <line-item name="GEN006310" description="The /etc/news/nnrp.access file must not have an extended ACL."/>
+    <line-item name="GEN006320" description="The /etc/news/passwd.nntp file (or equivalent) must have mode 0600 or less permissive.">
+      <module libraryName="NntpFilePerms"/>
+    </line-item>
+    <line-item name="GEN006330" description="The /etc/news/passwd.nntp file must not have an extended ACL."/>
+    <line-item name="GEN006340" description="Files in /etc/news must be owned by root or news.">
+      <module libraryName="NntpFilePerms"/>
+    </line-item>
+    <line-item name="GEN006360" description="The files in /etc/news must be group-owned by root or news.">
+      <module libraryName="NntpFilePerms"/>
+    </line-item>
+    <line-item name="GEN006380" description="The system must not use UDP for NIS/NIS+."/>
+    <line-item name="GEN006400" description="The Network Information System (NIS) protocol must not be used.">
+      <module libraryName="DisableNIS_client"/>
+      <module libraryName="DisableNIS_server"/>
+    </line-item>
+    <line-item name="GEN006420" description="NIS maps must be protected through hard-to-guess domain names."/>
+    <line-item name="GEN006480" description="The system must have a host-based intrusion detection tool installed."/>
+    <line-item name="GEN006560" description="The system vulnerability assessment tool, host-based intrusion detection tool, and file integrity tool must notify the SA and the IAO of a security breach or a suspected security breach."/>
+    <line-item name="GEN006565" description="The system package management tool must be used to verify system software periodically."/>
+    <line-item name="GEN006570" description="The file integrity tool must be configured to verify ACLs."/>
+    <line-item name="GEN006571" description="The file integrity tool must be configured to verify extended attributes."/>
+    <line-item name="GEN006575" description="The file integrity tool must use FIPS 140-2 approved cryptographic hashes for validating file contents."/>
+    <line-item name="GEN006580" description="The system must use an access control program."/>
+    <line-item name="GEN006600" description="The system's access control program must log each system access attempt.">
+      <module libraryName="SyslogAuthpriv"/>
+      <module libraryName="SyslogMaillog"/>
+    </line-item>
+    <line-item name="GEN006620" description="The system's access control program must be configured to grant or deny system access to specific hosts.">
+      <module libraryName="TcpWrappers"/>
+    </line-item>
+    <line-item name="GEN006640" description="The system must use and update a DoD-approved virus scan program."/>
+    <line-item name="GEN006600" description="Accounts must be locked upon 35 days of inactivity.">
+      <module libraryName="LockInactiveAccount"/>
+      <module libraryName="SetPassAgingOnAccts"/>
+    </line-item>
+    <line-item name="GEN007020" description="The Stream Control Transmission Protocol (SCTP) must be disabled unless required.">
+      <module libraryName="DisableKernelSprt_SCTP"/>
+    </line-item>
+    <line-item name="GEN007080" description="The Datagram Congestion Control Protocol (DCCP) must be disabled unless required.">
+      <module libraryName="DisableKernelSprt_DCCP"/>
+    </line-item>
+    <line-item name="GEN007260" description="The AppleTalk protocol must be disabled or not installed."/>
+    <line-item name="GEN007480" description="The Reliable Datagram Sockets (RDS) protocol must be disabled or not installed unless required.">
+      <module libraryName="DisableKernelSprt_RDS"/>
+    </line-item>
+    <line-item name="GEN007540" description="The Transparent Inter-Process Communication (TIPC) protocol must be disabled or uninstalled.">
+      <module libraryName="DisableKernelSprt_TIPC"/>
+    </line-item>
+    <line-item name="GEN007660" description="The Bluetooth protocol handler must be disabled or not installed.">
+      <module libraryName="DisableBluetoothKernelModules"/>
+    </line-item>
+    <line-item name="GEN007700" description="The IPv6 protocol handler must not be bound to the network stack unless needed.">
+      <module libraryName="DisableIPv6KernelModule"/>
+    </line-item>
+    <line-item name="GEN007720" description="The IPv6 protocol handler must be prevented from dynamic loading unless needed."/>
+    <line-item name="GEN007780" description="The system must not have 6to4 enabled."/>
+    <line-item name="GEN007800" description="The system must not have Teredo enabled."/>
+    <line-item name="GEN007820" description="The system must not have IP tunnels configured."/>
+    <line-item name="GEN007840" description="The DHCP client must be disabled if not needed."/>
+    <line-item name="GEN007850" description="The DHCP client must not send dynamic DNS updates.">
+      <module libraryName="Prohibit_DHCP_Dynamic_Updates"/>
+    </line-item>
+    <line-item name="GEN007860" description="The system must ignore IPv6 ICMP redirect messages.">
+      <module libraryName="AcceptRedirects"/>
+    </line-item>
+    <line-item name="GEN007920" description="The system must not forward IPv6 source-routed packets.">
+      <module libraryName="IPForward"/>
+    </line-item>
+    <line-item name="GEN007950" description="The system must not respond to ICMPv6 echo requests sent to a broadcast address."/>
+    <line-item name="GEN007960" description="The 'ldd' command must be disabled unless it protects against the execution of untrusted files.">
+      <module libraryName="ConfigureLddPerms"/>
+    </line-item>
+    <line-item name="GEN007980" description="If the system is using LDAP for authentication or account information, the system must use a TLS connection using FIPS 140-2 approved cryptographic algorithms."/>
+    <line-item name="GEN008000" description="If the system is using LDAP for authentication or account information, certificates used to authenticate to the LDAP server must be provided from DoD PKI or a DoD-approved external PKI."/>
+    <line-item name="GEN008020" description="If the system is using LDAP for authentication or account information, the LDAP TLS connection must require the server provide a certificate with a valid trust path to a trusted CA.">
+      <module libraryName="ConfigureLDAPConf"/>
+    </line-item>
+    <line-item name="GEN008040" description="If the system is using LDAP for authentication or account information, the system must verify the LDAP server's certificate has not been revoked.">
+      <module libraryName="ConfigureLDAPConf"/>
+    </line-item>
+    <line-item name="GEN008050" description="If the system is using LDAP for authentication or account information, the /etc/ldap.conf file (or equivalent) must not contain passwords."/>
+    <line-item name="GEN008060" description="If the system is using LDAP for authentication or account information the /etc/ldap.conf (or equivalent) file must have mode 0644 or less permissive.">
+      <module libraryName="LDAPConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN008080" description="If the system is using LDAP for authentication or account information, the /etc/ldap.conf (or equivalent) file must be owned by root.">
+      <module libraryName="LDAPConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN008100" description="If the system is using LDAP for authentication or account information, the /etc/ldap.conf (or equivalent) file must be group-owned by root, bin, sys, or system.">
+      <module libraryName="LDAPConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN008120" description="If the system is using LDAP for authentication or account information, the /etc/ldap.conf (or equivalent) file must not have an extended ACL."/>
+    <line-item name="GEN008140" description="If the system is using LDAP for authentication or account information, the TLS certificate authority file and/or directory (as appropriate) must be owned by root."/>
+    <line-item name="GEN008160" description="If the system is using LDAP for authentication or account information, the TLS certificate authority file and/or directory (as appropriate) must be group-owned by root, bin, sys, or system."/>
+    <line-item name="GEN008180" description="If the system is using LDAP for authentication or account information, the TLS certificate authority file and/or directory (as appropriate) must have mode 0644 (0755 for directories) or less permissive."/>
+    <line-item name="GEN008200" description="If the system is using LDAP for authentication or account information, the LDAP TLS certificate authority file and/or directory (as appropriate) must not have an extended ACL."/>
+    <line-item name="GEN008220" description="For systems using NSS LDAP, the TLS certificate file must be owned by root."/>
+    <line-item name="GEN008240" description="If the system is using LDAP for authentication or account information, the LDAP TLS certificate file must be group-owned by root, bin, sys, or system."/>
+    <line-item name="GEN008260" description="If the system is using LDAP for authentication or account information, the LDAP TLS certificate file must have mode 0644 or less permissive."/>
+    <line-item name="GEN008280" description="If the system is using LDAP for authentication or account information, the LDAP TLS certificate file must not have an extended ACL."/>
+    <line-item name="GEN008300" description="If the system is using LDAP for authentication or account information, the LDAP TLS key file must be owned by root."/>
+    <line-item name="GEN008320" description="If the system is using LDAP for authentication or account information, the LDAP TLS key file must be group-owned by root, bin, or sys."/>
+    <line-item name="GEN008340" description="If the system is using LDAP for authentication or account information, the LDAP TLS key file must have mode 0600 or less permissive."/>
+    <line-item name="GEN008360" description="If the system is using LDAP for authentication or account information, the LDAP TLS key file must not have an extended ACL."/>
+    <line-item name="GEN008380" description="A root kit check tool must be run on the system at least weekly."/>
+    <line-item name="GEN008420" description="The system must use available memory address randomization techniques.">
+      <module libraryName="EnableKernelExecShield"/>
+    </line-item>
+    <line-item name="GEN008440" description="Automated file system mounting tools must not be enabled unless needed.">
+      <module libraryName="DisableAutofs"/>
+    </line-item>
+    <line-item name="GEN008460" description="The system must have USB disabled unless needed.">
+      <module libraryName="DisableUSB"/>
+    </line-item>
+    <line-item name="GEN008480" description="The system must have USB Mass Storage disabled unless needed.">
+      <module libraryName="DisableKernelUSBStorage"/>
+    </line-item>
+    <line-item name="GEN008500" description="The system must have IEEE 1394 (Firewire) disabled unless needed.">
+      <module libraryName="DisableKernelFirewire"/>
+    </line-item>
+    <line-item name="GEN008520" description="The system must employ a local firewall.">
+      <module libraryName="EnableIptables"/>
+    </line-item>
+    <line-item name="GEN008540" description="The system's local firewall must implement a deny-all, allow-by-exception policy."/>
+    <line-item name="GEN008600" description="The system must be configured to only boot from the system boot device."/>
+    <line-item name="GEN008620" description="System BIOS or system controllers supporting password protection must have administrator accounts/passwords configured, and no others."/>
+    <line-item name="GEN008640" description="The system must not use removable media as the boot loader."/>
+    <line-item name="GEN008660" description="For systems capable of using GRUB, the system must be configured with GRUB as the default boot loader unless another boot loader has been authorized, justified, and documented using site-defined procedures."/>
+    <line-item name="GEN008680" description="If the system boots from removable media, it must be stored in a safe or similarly secured container."/>
+    <line-item name="GEN008700" description="The system boot loader must require authentication.">
+      <module libraryName="RequireGrubPassword"/>
+    </line-item>
+    <line-item name="GEN008710" description="The system boot loader must protect passwords using an MD5 or stronger cryptographic hash.">
+      <module libraryName="RequireGrubPassword"/>
+    </line-item>
+    <line-item name="GEN008720" description="The system's boot loader configuration file(s) must have mode 0600 or less permissive.">
+      <module libraryName="BootLoaderConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN008740" description="The system's boot loader configuration file(s) must not have extended ACLs."/>
+    <line-item name="GEN008760" description="The system's boot loader configuration files must be owned by root.">
+      <module libraryName="BootLoaderConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN008780" description="The system's boot loader configuration file(s) must be group-owned by root, bin, sys, or system.">
+      <module libraryName="BootLoaderConfigFilePerms"/>
+    </line-item>
+    <line-item name="GEN008800" description="The system package management tool must cryptographically verify the authenticity of software packages during installation."/>
+    <line-item name="GEN008820" description="The system package management tool must not automatically obtain updates."/>
+    <line-item name="GEN009120" description="The system, if capable, must be configured to require the use of a CAC, PIV compliant hardware token, or Alternate Logon Token (ALT) for authentication."/>
+  <line-item name="GEN006660" description="Accounts must be locked upon 35 days of inactivity."/>
+  <line-item name="GEN005527" description="The SSH daemon must not allow host-based authentication."/>
+  <line-item name="GEN001025" description="The sudo command must require authentication."/></line-items>
+</compliancy>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SendmailOpts" version="5.0">
+  <title xml:id="MailServices">Configure Sendmail Options</title>
+  <para>
+  Sets various <application>Sendmail</application> options to mask its
+  version, enforces privacy (
+  <parameter class="option">noexpn</parameter> and
+  <parameter class="option">novrfy</parameter> ), disables interactive
+  help, ensures log level is at least nine, and prevents sendmail from
+  finding and using <filename>$HOME/.forward</filename> files.
+  <indexterm><primary>.forward</primary></indexterm>
+
+  <indexterm><primary>sendmail</primary></indexterm>
+ </para>
+  <para>
+  This module sets the privacy options and the log level to the
+  defaults.
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2">
+    <tgroup cols="2">
+      <colspec colname="c1" colwidth="1.0*" align="left"/>
+      <colspec colname="c2" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="4">
+            <filename>/etc/mail/sendmail.cf</filename>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+          <entry>
+            <filename>/etc/sendmail.cf</filename>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <para>
+  The following options will be set in the respective configuration
+  file:
+ </para>
+  <programlisting>O PrivacyOptions=authwarnings,novrfy,noexpn,restrictqrun
+O LogLevel=9
+O ForwardPath=/dev/null
+O AllowBogusHELO=False
+O SmtpGreetingMessage=Mail Server Ready ; $b</programlisting>
+  <para><emphasis role="strong">NOTE:</emphasis> The DISA UNIX STIG
+  (GEN004580) requests the removal of each user’s
+  <filename>.forward</filename> file. However, this module sets the
+  <parameter class="option">ForwardPath</parameter> option to
+  <filename>/dev/null</filename> to prevent
+  <application>Sendmail</application> from finding them. Individual
+  <filename>.forward</filename> files should be manually removed to
+  satisfy auditors.
+  <indexterm><primary>/dev</primary></indexterm><indexterm><primary>Files and Directories</primary><secondary>/dev</secondary></indexterm><indexterm><primary>/dev/null</primary></indexterm><indexterm><primary>Files and Directories</primary><secondary>/dev/null</secondary></indexterm></para>
+  <simplesect xml:id="SendmailOpts-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>8.9.4 - Change Sendmail Greeting</para>
+      </listitem>
+      <listitem>
+        <para>8.9.5 - Disable expand and verify Commands</para>
+      </listitem>
+      <listitem>
+        <para>8.9.6 - Enhance Sendmail Logging</para>
+      </listitem>
+      <listitem>
+        <para>8.9.7 - Ignore Bogus SMTP Connections</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN004440 - Sendmail logging must not be set to less than nine in the sendmail.cf file.</para>
+      </listitem>
+      <listitem>
+        <para>GEN004560 - The SMTP service's SMTP greeting must not provide version information.</para>
+      </listitem>
+      <listitem>
+        <para>GEN004580 - The system must not use .forward files.</para>
+      </listitem>
+      <listitem>
+        <para>GEN004620 - The sendmail server must have the debug feature disabled.</para>
+      </listitem>
+      <listitem>
+        <para>GEN004660 - The SMTP service must not have the EXPN feature active.</para>
+      </listitem>
+      <listitem>
+        <para>GEN004680 - The SMTP service must not have the Verify (VRFY) feature active.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN004440 - Sendmail Logging</para>
+      </listitem>
+      <listitem>
+        <para>GEN004560 - Sendmail Greeting to Mask Version</para>
+      </listitem>
+      <listitem>
+        <para>GEN004580 - .forward Files</para>
+      </listitem>
+      <listitem>
+        <para>GEN004620 - Sendmail DEBUG Command</para>
+      </listitem>
+      <listitem>
+        <para>GEN004660 - Sendmail EXPN Command</para>
+      </listitem>
+      <listitem>
+        <para>GEN004680 - Sendmail VRFY Command</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>3.11.3.2 - Configure SMTP Greeting Banner</para>
+      </listitem>
+      <listitem>
+        <para>3.11.5.2 - Configure SMTP Greeting Banner</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+      <listitem>
+        <para>2.2.3 - Configure system security parameters to prevent misuse</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

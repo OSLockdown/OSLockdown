@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="CreateFTPUsers" version="5.0">
+  <title xml:id="FileTransferServices">Create ftpusers File</title>
+  <para>
+  If the FTP software package is installed, this module will create
+  <filename>ftpusers</filename> access control file if it does not
+  exist. It then adds the root user and all the system users to this
+  file. The file contains the usernames of users who are
+  <emphasis role="strong">NOT</emphasis> allowed to use FTP on the
+  system. If the file already exists, this module will leave existing
+  entries but add missing system accounts.
+  <indexterm><primary>FTP</primary></indexterm>
+
+  <indexterm><primary>ftpusers</primary></indexterm>
+ </para>
+  <para>
+  For Linux systems, this module will add all user accounts with a UID
+  less than 100; for Solaris systems, all accounts with a UID less than
+  500. Additionally, the 'nfsnobody', 'nobody', 'nobody4', and
+  'noaccess' accounts will be added.
+  <indexterm><primary>nfsnobody</primary></indexterm>
+
+  <indexterm><primary>nobody</primary></indexterm>
+
+  <indexterm><primary>nobody4</primary></indexterm>
+ </para>
+  <para>
+  If FTP is not used, it is recommended that the associated software
+  package be removed. However, SUSE system administrators must not
+  remove the 'netcfg' package; instead remove the 'vsftpd' package.
+  <indexterm><primary>netcfg</primary></indexterm>
+
+  <indexterm><primary>vsftpd</primary></indexterm>
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2">
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.8*" align="left"/>
+      <colspec colname="c2" colwidth="0.8*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Packages</entry>
+          <entry>Configuration File</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="3">vsftpd</entry>
+          <entry morerows="3">
+            <filename>/etc/ftpusers</filename>
+            <indexterm>
+              <primary>/etc/ftpusers</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/ftpusers</secondary>
+            </indexterm>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+          <entry>netcfg</entry>
+          <entry>
+            <filename>/etc/vsftpd.ftpusers</filename>
+          </entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+          <entry>SUNWftpr
+      <indexterm><primary>SUNWftpr</primary></indexterm>
+
+      <indexterm><primary>Solaris packages</primary><secondary>SUNWftpr</secondary></indexterm></entry>
+          <entry>
+            <filename>/etc/ftpd/ftpusers</filename>
+            <indexterm>
+              <primary>/etc/ftpd/ftpusers</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/ftpd/ftpusers</secondary>
+            </indexterm>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <simplesect xml:id="CreateFTPUsers-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN004880 - The ftpusers file must exist.</para>
+      </listitem>
+      <listitem>
+        <para>GEN004900 - The ftpusers file must contain account names not allowed to use FTP.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN004780 - FTP or Telnet Userids and Passwords</para>
+      </listitem>
+      <listitem>
+        <para>GEN004880 - The ftpusers File</para>
+      </listitem>
+      <listitem>
+        <para>GEN004900 - The ftpusers File Contents</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>AC-3 - Access Enforcement</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+      <listitem>
+        <para>2.2.3 - Configure system security parameters to prevent misuse</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

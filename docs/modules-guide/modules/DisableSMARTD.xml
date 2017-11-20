@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: DisableSMARTD.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableSMARTD" version="5.0">
+ <title xml:id="HardwareServices">Disable SMART Disk Monitoring Support</title>
+ <para>
+  Disable SMART disk monitoring support (smartd). SMART
+  (Self-Monitoring, Analysis, and Reporting Technology) is a feature of
+  hard drives that allows them to detect symptoms of disk failure and
+  relay an appropriate warning. Leave this service running if the
+  system’s hard drives are SMART-capable. Otherwise, disable it.
+  <indexterm>
+   <primary>smartd</primary>
+  </indexterm>
+ </para>
+ <simplesect xml:id="DisableSMARTD-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-13 - Limitation and Control of Network Ports, Protocols, and
+     Services
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+   <listitem>
+    <para>
+     CIP-005-3-R2.2 - Enable only ports and services needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+   <listitem>
+    <para>
+     CIP-007-3-R2.2 - Disable ports and services not needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     3.3.11 - SMART Disk Monitoring Support (smartd)
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NVD CCE</title>
+   <listitem>
+    <para>
+     CCE-3455-3 - The smartd service should be enabled or disabled as
+     appropriate.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CPE-Map sbVersion="4.0.3">
+   <!-- 
+        **********************************************************************
+                              openSUSE and SUSE Linux
+   -->
+    <operating-system cpe="o:/novell:opensuse"/>
+        <software package="apache2" cpe="/a:apache:http_server" service="apache2"/>
+        <software package="apache2-mod_perl" cpe="/a:apache:mod_perl"/>
+        <software package="apache2-mod_python" cpe="/a:apache:mod_python"/>
+        <software package="apache2-prefork" cpe="/a:apache:http_server"/>
+        <software package="apache2-worker" cpe="/a:apache:http_server"/>
+        <software package="sendmail" cpe="/a:sendmail:sendmail" service="sendmail"/>
+        <software package="tomcat6" cpe="/a:apache:tomcat"/>
+    </operating-system>
+    <operating-system cpe="/o:novell:suse_linux" ref="/o:novell:opensuse"/>
+   <!-- 
+        **********************************************************************
+                                   Fedora 
+   -->
+    <operating-system cpe="/o:redhat:fedora">
+        <software package="httpd" cpe="/a:apache:http_server" service="httpd"/>
+        <software package="mod_perl" cpe="/a:apache:mod_perl"/>
+        <software package="mod_python" cpe="/a:apache:mod_python"/>
+        <software package="sendmail" cpe="/a:sendmail:sendmail" service="sendmail"/>
+        <software package="tomcat5" cpe="/a:apache:tomcat" />
+        <software package="tomcat6" cpe="/a:apache:tomcat"/>
+    </operating-system>
+   <!-- 
+        **********************************************************************
+                   Red Hat, CentOS, and Oracle Ent. Linux
+   -->
+    <operating-system cpe="/o:redhat:redhat">
+        <software package="httpd" cpe="/a:apache:http_server" service="httpd"/>
+        <software package="mod_perl" cpe="/a:apache:mod_perl"/>
+        <software package="mod_python" cpe="/a:apache:mod_python"/>
+        <software package="sendmail" cpe="/a:sendmail:sendmail" service="sendmail"/>
+        <software package="tomcat5" cpe="/a:apache:tomcat" />
+        <software package="tomcat6" cpe="/a:apache:tomcat"/>
+    </operating-system>
+    <operating-system cpe="/o:centos:centos" ref="/o:redhat:redhat"/>
+   <!-- 
+        **********************************************************************
+                                   Solaris 
+   -->
+    <operating-system cpe="/o:sun:sunos:5.10">
+        <software package="SUNWapchr" cpe="/a:apache:http_server" service="svc:/network/http:apache2"/>
+        <software package="SUNWsendu" cpe="/a:sendmail:sendmail" service="svc:/network/smtp:sendmail"/>
+        <software package="SUNWsendr" cpe="/a:sendmail:sendmail"/>
+    </operating-system>
+</CPE-Map>
+

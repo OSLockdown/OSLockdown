@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ***************************************************************************   -->
+<!-- Copyright (c) 2007-2014 Forcepoint LLC.                                       -->
+<!-- This file is released under the GPLv3 license.                                -->
+<!-- See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license, -->
+<!-- or visit https://www.gnu.org/licenses/gpl.html instead.                       -->
+<!-- ***************************************************************************   -->
+<BaselineConfiguration sbVersion="4.0.3">
+<!--
+    |  Auditing and Logging Modules
+    +-->
+      <section name="Auditing and Logging" pyModulePath="Auditing">
+        <module name="Kernel Auditing Rules"  pyModulePath="Auditing.auditrules">
+            <info>
+                <description>Kernel Auditing rules taken from the audit.rules or audit_control.</description>
+                <reportSubtitle>Kernel Auditing Rules</reportSubtitle>
+                <storageSpecs sizeCategory='Small' avgKbPerReport='2'/>
+                <systemLoadImpact value='Low'/>
+                <forensicsImportance value='Low'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+        <module name="Kernel Auditing Configuration"  pyModulePath="Auditing.auditconfig">
+            <info>
+                <description>Kernel Auditing configuration to include directory, format, and storage space management.</description>
+                <reportSubtitle>Kernel Auditing Configuration</reportSubtitle>
+                <storageSpecs sizeCategory='Small' avgKbPerReport='2'/>
+                <systemLoadImpact value='Low'/>
+                <forensicsImportance value='Low'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+        <module name="System Logging Configuration"  pyModulePath="Auditing.syslog">
+            <info>
+                <description>System Logging configuration as defined in syslog.conf, rsyslog.conf, or syslog-ng.conf.</description>
+                <reportSubtitle>System Logging Configuration</reportSubtitle>
+                <storageSpecs sizeCategory='Small' avgKbPerReport='2'/>
+                <systemLoadImpact value='Low'/>
+                <forensicsImportance value='Low'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+    </section>
+<!--
+    |  Network Modules
+    +-->
+    <section name="Network" pyModulePath="Network">
+        <module name="Routing"  pyModulePath="Network.Routing">
+            <info>
+                <description>Provide a description of the module like netstat -rn</description>
+                <reportSubtitle>Output of netstat</reportSubtitle>
+                <storageSpecs sizeCategory='Small' avgKbPerReport='2'/>
+                <systemLoadImpact value='Low'/>
+                <forensicsImportance value='High'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+        <module name="Firewall"  pyModulePath="Network.Firewall">
+            <info>
+                <description>Host-based Firewall rules such as iptables and ipfchains</description>
+                <reportSubtitle>iptables and ipf rules</reportSubtitle>
+                <storageSpecs sizeCategory='Small' avgKbPerReport='5'/>
+                <systemLoadImpact value='Low'/>
+                <forensicsImportance value='High'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkFirewall.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+      </section>
+<!--
+    |  Software Modules
+    +-->
+      <section name="Software" pyModulePath="Software">
+        <module name="Software"  pyModulePath="Software.Inventory">
+            <info>
+                <description>Installed Software</description>
+                <reportSubtitle>Installed Software</reportSubtitle>
+                <storageSpecs sizeCategory='Large' avgKbPerReport='500'/>
+                <systemLoadImpact value='Low'/>
+                <forensicsImportance value='High'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+      </section>
+<!--
+    |  Hardware Modules
+    +-->
+      <section name="Hardware" pyModulePath="Hardware">
+        <module name="USB Buses and Devices"  pyModulePath="Hardware.usb">
+            <info>
+                <description>USB Buses and Devices</description>
+                <reportSubtitle>USB buses and connected devices. See lsusb(8) and cfgadm(1M).</reportSubtitle>
+                <storageSpecs sizeCategory='Small' avgKbPerReport='25'/>
+                <systemLoadImpact value='Low'/>
+                <forensicsImportance value='Low'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+        <module name="DMI/SMBIOS Table"  pyModulePath="Hardware.dmidecode">
+            <info>
+                <description>DMI/SMBIOS Table</description>
+                <reportSubtitle>System Management BIOS and Desktop Management Interface Table Contents. See dmidecode(8).</reportSubtitle>
+                <storageSpecs sizeCategory='Small' avgKbPerReport='25'/>
+                <systemLoadImpact value='Low'/>
+                <forensicsImportance value='Low'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+        <module name="BIOS Memory and Known Entry Points"  pyModulePath="Hardware.biosdecode">
+            <info>
+                <description>BIOS Memory and Known Entry Points</description>
+                <reportSubtitle>BIOS Memory, Structure, and entry points to include: SMBIOS (System Management BIOS), DMI (Desktop Management Interface, SYSID, PNP (Plug and Play), ACPI (Advanced Configuration and Power Interface), BIOS32 (BIOS32 Service Directory), PIR (PCI IRQ Routing), BIOS32 Extension (Compaq-specific), VPD (Vital Product Data, IBM-specific). See biosdecode(8).</reportSubtitle>
+                <storageSpecs sizeCategory='Small' avgKbPerReport='2'/>
+                <systemLoadImpact value='Low'/>
+                <forensicsImportance value='Low'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+        <module name="PCI Devices"  pyModulePath="Hardware.pci">
+            <info>
+                <description>PCI Devices</description>
+                <reportSubtitle>PCI buses and all connected devices. See lspci(8).</reportSubtitle>
+                <storageSpecs sizeCategory='Small' avgKbPerReport='3'/>
+                <systemLoadImpact value='Low'/>
+                <forensicsImportance value='Low'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+      </section>
+<!--
+    |  Hardware Modules
+    +-->
+      <section name="Files" pyModulePath="Files">
+        <module name="Device Files"  pyModulePath="Files.devFiles">
+            <info>
+                <description>Device files (/dev or /devices)</description>
+                <reportSubtitle>File permissions and cryptographic checksums.</reportSubtitle>
+                <storageSpecs sizeCategory='Small' avgKbPerReport='100'/>
+                <systemLoadImpact value='Low'/>
+                <forensicsImportance value='High'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+        <module name="User Commands"  pyModulePath="Files.binFiles">
+            <info>
+                <description>Primary executable commands on the system.</description>
+                <reportSubtitle>File permissions and cryptographic checksums.</reportSubtitle>
+                <storageSpecs sizeCategory='Small' avgKbPerReport='400'/>
+                <systemLoadImpact value='Medium'/>
+                <forensicsImportance value='High'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+        <module name="System Binaries"  pyModulePath="Files.sbinFiles">
+            <info>
+                <description>Essential binaries for booting, restoring, recovering, and/or repairing the system in addition to the binaries in /bin.</description>
+                <reportSubtitle>System Binaries (/sbin)</reportSubtitle>
+                <storageSpecs sizeCategory='Small' avgKbPerReport='40'/>
+                <systemLoadImpact value='Low'/>
+                <forensicsImportance value='High'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+        <module name="Standard System Binaries (non-essential)"  pyModulePath="Files.usr_sbinFiles">
+            <info>
+                <description>Binaries used exclusively by the system administrator.</description>
+                <reportSubtitle>Standard System Binaries (non-essential) (/usr/sbin)</reportSubtitle>
+                <storageSpecs sizeCategory='Small' avgKbPerReport='60'/>
+                <systemLoadImpact value='Low'/>
+                <forensicsImportance value='High'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+        <module name="Locally-installed Standard System Binaries (non-essential)"  pyModulePath="Files.usr_local_sbinFiles">
+            <info>
+                <description>Binaries used exclusively by the system administrator.</description>
+                <reportSubtitle>Locally-installed system administration programs. (/usr/local/sbin)</reportSubtitle>
+                <storageSpecs sizeCategory='Small' avgKbPerReport='1'/>
+                <systemLoadImpact value='Low'/>
+                <forensicsImportance value='High'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+        <module name="Essential shared libraries and kernel modules"  pyModulePath="Files.libFiles">
+            <info>
+                <description>Essential shared libraries and kernel modules - /lib</description>
+                <reportSubtitle>Essential shared libraries and kernel modules (/lib)</reportSubtitle>
+                <storageSpecs sizeCategory='Small' avgKbPerReport='500'/>
+                <systemLoadImpact value='Low'/>
+                <forensicsImportance value='High'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+        <module name="Libraries for programming and packages"  pyModulePath="Files.usr_libFiles">
+            <info>
+                <description>Libraries for programming and packages</description>
+                <reportSubtitle>Libraries for programming and packages (/usr/lib)</reportSubtitle>
+                <storageSpecs sizeCategory='Large' avgKbPerReport='3000'/>
+                <systemLoadImpact value='Medium'/>
+                <forensicsImportance value='High'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+        <module name="Host-specific System Configuration"  pyModulePath="Files.etcFiles">
+            <info>
+                <description>Host-specific System Configuration</description>
+                <reportSubtitle>Host-specific System Configuration (/etc)</reportSubtitle>
+                <storageSpecs sizeCategory='Medium' avgKbPerReport='750'/>
+                <systemLoadImpact value='Low'/>
+                <forensicsImportance value='High'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+        <module name="Boot Loader Files"  pyModulePath="Files.bootFiles">
+            <info>
+                <description>Boot Loader Files</description>
+                <reportSubtitle>Boot Loader Files (/boot)</reportSubtitle>
+                <storageSpecs sizeCategory='Small' avgKbPerReport='6'/>
+                <systemLoadImpact value='Low'/>
+                <forensicsImportance value='Low'/>
+                <help uri="/OSLockdown/sbhelp/admin/NetworkRouting.html"/>
+            </info>
+            <parameter optionType="None"/>
+        </module>
+      </section>
+</BaselineConfiguration>

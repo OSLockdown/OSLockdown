@@ -1,0 +1,14 @@
+DTBF003|Installed version of Firefox unsupported
+DTBF010|Disable SSLv2 
+DTBF030|Enable TLS v1.0
+DTBF050|Verification
+DTBF105|Shell Protocol
+DTBF130|Switching from secure to insecure
+DTBF140|Autofill forms
+DTBF160|Password Store
+DTBF170|Cookies
+DTBF180|Pop-up windows
+DTBF181|Javascript move or resize windows
+DTBF182|Javascript raise or lower windows
+DTBF183|Javascript Context Menus
+DTBF184|Javascript hiding or changing status bar

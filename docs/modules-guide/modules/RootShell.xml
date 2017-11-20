@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="RootShell" version="5.0">
+ <title xml:id="Accounts">Root Shell must be on / filesystem</title>
+ <para>
+  Changes the root account’s shell to the default
+  <filename>/bin/bash</filename> if the current shell does not reside on
+  the <filename>/</filename> filesystem. On Solaris systems, this module
+  will set the shell to <filename>/sbin/sh</filename> if the module
+  fails.
+  <indexterm>
+   <primary>/bin/bash</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Files and Directories</primary>
+   <secondary>/bin/bash</secondary>
+  </indexterm>
+
+  <indexterm>
+   <primary>/sbin/sh</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Files and Directories</primary>
+   <secondary>/sbin/sh</secondary>
+  </indexterm>
+ </para>
+ <para>
+  It is recommended that you apply this module. This module ensures that
+  root has a shell which resides on the <filename>/</filename>
+  filesystem. It is important for root to have a shell if it has
+  problems mounting other filesystems.
+ </para>
+ <simplesect xml:id="RootShell-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN001080 - The root shell must be located in the / file system.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN001080 - Root Shell
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

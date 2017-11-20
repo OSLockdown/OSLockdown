@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<compliancy source="SANS" name="Top-20 Security Risks" version="2.16 Annual Update" enabled="False">
+  <line-items>
+    <line-item name="C1.4">
+      <module libraryName="SMB_Conf"/>
+    </line-item>
+  </line-items>
+</compliancy>

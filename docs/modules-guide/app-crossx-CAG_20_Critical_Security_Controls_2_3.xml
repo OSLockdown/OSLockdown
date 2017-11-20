@@ -1,0 +1,3348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="app-crossx-CAG_20_Critical_Security_Controls_2_3">
+  <title>CAG 20 Critical Security Controls v2.3</title>
+  <subtitle>Twenty Critical Controls for Effective Cyber Defense: Consensus Audit
+  Guidelines (CAG)</subtitle>
+  <para>
+    <abstract>
+   <quote>This consensus document of 20 crucial controls is designed to begin
+   the process of establishing that prioritized baseline of information
+   security measures and controls. The consensus effort that has
+   produced this document has identified 20 specific technical security
+   controls that are viewed as effective in blocking currently known
+   high-priority attacks, as well as those attack types expected in the
+   near future. Fifteen of these controls can be monitored, at least in
+   part, automatically and continuously. The consensus effort has also
+   identified a second set of five controls that are essential but that
+   do not appear to be able to be monitored continuously or
+   automatically with current technology and practices. Each of the 20
+   control areas includes multiple individual subcontrols, each
+   specifying actions an organization can take to help improve its
+   defenses.</quote>
+
+  </abstract>
+  </para>
+  <para>
+    <literallayout>   20   Total number of line items in guideline
+    5   Items at least partially addressed by OS Lockdown
+   15   Items not addressed by OS Lockdown</literallayout>
+  </para>
+  <table xml:id="app-crossx-CAG_20_Critical_Security_Controls_2_3-description" frame="all" tocentry="1" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>Guideline name/description for CAG 20 Critical Security Controls v2.3</title>
+    <tgroup cols="2">
+      <colspec colname="c1" colwidth="0.2*" align="center"/>
+      <colspec colname="c2" colwidth="0.5*" align="left"/>
+      <thead>
+        <row>
+          <entry>Line Item</entry>
+          <entry>Description Item</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row xml:id="CC-3-desc">
+          <entry>CC-3</entry>
+          <entry>Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</entry>
+        </row>
+        <row xml:id="CC-6-desc">
+          <entry>CC-6</entry>
+          <entry>Maintenance, Monitoring, and Analysis of Audit Logs</entry>
+        </row>
+        <row xml:id="CC-8-desc">
+          <entry>CC-8</entry>
+          <entry>Controlled Use of Administrative Privileges</entry>
+        </row>
+        <row xml:id="CC-11-desc">
+          <entry>CC-11</entry>
+          <entry>Account Monitoring and Control</entry>
+        </row>
+        <row xml:id="CC-13-desc">
+          <entry>CC-13</entry>
+          <entry>Limitation and Control of Network Ports, Protocols, and Services</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+  <table xml:id="app-crossx-CAG_20_Critical_Security_Controls_2_3-items" frame="all" tocentry="1" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>Module to line item breakdown for CAG 20 Critical Security Controls v2.3</title>
+    <tgroup cols="6">
+      <colspec colname="c1" colwidth="1.0*" align="right"/>
+      <colspec colname="c-CC-3" colwidth="0.2*" align="center"/>
+      <colspec colname="c-CC-6" colwidth="0.2*" align="center"/>
+      <colspec colname="c-CC-8" colwidth="0.2*" align="center"/>
+      <colspec colname="c-CC-11" colwidth="0.2*" align="center"/>
+      <colspec colname="c-CC-13" colwidth="0.2*" align="center"/>
+      <thead valign="middle">
+        <row>
+          <entry>OS Lockdown Module</entry>
+          <entry align="center"><?dbfo orientation="90" ?><?dbfo rotated-width="0.5in" ?>CC-3</entry>
+          <entry align="center"><?dbfo orientation="90" ?><?dbfo rotated-width="0.5in" ?>CC-6</entry>
+          <entry align="center"><?dbfo orientation="90" ?><?dbfo rotated-width="0.5in" ?>CC-8</entry>
+          <entry align="center"><?dbfo orientation="90" ?><?dbfo rotated-width="0.5in" ?>CC-11</entry>
+          <entry align="center"><?dbfo orientation="90" ?><?dbfo rotated-width="0.5in" ?>CC-13</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>
+            <xref linkend="ArpCleanupInterval" xrefstyle="select: title page">ARP Cleanup Interval</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="ArpCleanupInterval_IRE" xrefstyle="select: title page">ARP IRE_CACHE Cleanup Interval</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="TCPMaxSynBacklog" xrefstyle="select: title page">Adjust Maximum Pending Connections</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="AtDirPerms" xrefstyle="select: title page">At Directory Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="AtCronAccessFilePerms" xrefstyle="select: title page">At/Cron Access File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-6-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-11-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="AuditRulesSolaris" xrefstyle="select: title page">Audit Rules (Solaris)</xref>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-6-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-11-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="BlockSystemAccounts" xrefstyle="select: title page">Block System Accounts</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-11-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="BootLoaderConfigFilePerms" xrefstyle="select: title page">Boot Loader Configuration File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="ConfigureLddPerms" xrefstyle="select: title page">Configure Permissions on /usr/bin/ldd</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SendmailOpts" xrefstyle="select: title page">Configure Sendmail Options</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="ConfigureXinetdLogging" xrefstyle="select: title page">Configure Xinetd Logging</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="CorrectGlobalInitPathVars" xrefstyle="select: title page">Correct Global Init Script PATH Variables</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="CorrectRcPathVars" xrefstyle="select: title page">Correct System RC Script PATH Variables</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="CorrectUnevenPerms" xrefstyle="select: title page">Correct Uneven File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="CreateLoginBanner" xrefstyle="select: title page">Create Login Banner</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="CreateLoginFTPBanner" xrefstyle="select: title page">Create Login FTP Banner</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="CreatePreLoginGUIBanner" xrefstyle="select: title page">Create Pre-Login GUI Banner</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="CreatePreSessionGUIBanner" xrefstyle="select: title page">Create Pre-Session GUI Banner</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="CreateFTPUsers" xrefstyle="select: title page">Create ftpusers File</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SyslogCronLogging" xrefstyle="select: title page">Cron Logging</xref>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-6-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="CrontabDirPerms" xrefstyle="select: title page">Crontab Dir Perms</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="CrontabPerms" xrefstyle="select: title page">Crontab Perms</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="CrontabScriptPerms" xrefstyle="select: title page">Crontab Script Perms</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DaemonUmask" xrefstyle="select: title page">Daemon Umask</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DefaultUmask" xrefstyle="select: title page">Default umask</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="NFSanon" xrefstyle="select: title page">Deny NFS Client Access Without UID or GID</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableAcpid" xrefstyle="select: title page">Disable ACPI Daemon</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="AcceptRedirects" xrefstyle="select: title page">Disable Accepting ICMP Redirects</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SecureRedirects" xrefstyle="select: title page">Disable Accepting Secure Redirects</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableWebServer_apache" xrefstyle="select: title page">Disable Apache</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableAvahi" xrefstyle="select: title page">Disable Avahi Daemon</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableBluetooth" xrefstyle="select: title page">Disable Bluetooth</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableBluetoothKernelModules" xrefstyle="select: title page">Disable Bluetooth Kernel Modules</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableBootCaching" xrefstyle="select: title page">Disable Boot Caching</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableCDEcalmgr" xrefstyle="select: title page">Disable CDE Calendar Manager Server</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableCDEttdbserver" xrefstyle="select: title page">Disable CDE ToolTalk Database Server</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableCpuThrottling" xrefstyle="select: title page">Disable CPU Throttling</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableCupsPrinterBrowsing" xrefstyle="select: title page">Disable CUPS Printer Browsing</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableGpm" xrefstyle="select: title page">Disable Console Mouse Support</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableCoreDumps" xrefstyle="select: title page">Disable Core Dumps</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="CtrlAltDel" xrefstyle="select: title page">Disable Ctrl-Alt-Del</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableDNS" xrefstyle="select: title page">Disable DNS</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableDhcpd" xrefstyle="select: title page">Disable Dhcpd</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableFTP_gssftp" xrefstyle="select: title page">Disable FTP (gssftp)</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableFTP_vsftpd" xrefstyle="select: title page">Disable FTP (vsftpd)</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableFileShare" xrefstyle="select: title page">Disable File Sharing Networks</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableFinger" xrefstyle="select: title page">Disable Finger</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableFirefox" xrefstyle="select: title page">Disable Firefox if older than 3.0</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableFirstbootSvc" xrefstyle="select: title page">Disable Firstboot Service</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableFspd" xrefstyle="select: title page">Disable Fspd</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableGnomeAutomounting" xrefstyle="select: title page">Disable GNOME Automounting</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableGssd" xrefstyle="select: title page">Disable GSS Daemon</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableGated" xrefstyle="select: title page">Disable Gated</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableGuiLogin" xrefstyle="select: title page">Disable Graphical Login</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableHalDaemon" xrefstyle="select: title page">Disable HAL Daemon</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableHPServices" xrefstyle="select: title page">Disable HP Printing and Imaging</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableIA32MicrocodeUtility" xrefstyle="select: title page">Disable IA32 Microcode Utility</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="IPForward" xrefstyle="select: title page">Disable IP Forwarding</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableIrda" xrefstyle="select: title page">Disable IRDA Service</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableIrqbalance" xrefstyle="select: title page">Disable IRQ Balance Service</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableISDN" xrefstyle="select: title page">Disable ISDN</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableInetd" xrefstyle="select: title page">Disable Inetd</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableInnd" xrefstyle="select: title page">Disable Innd</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableYahooIM" xrefstyle="select: title page">Disable Instant Messenger Client (Yahoo!)</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableGaimClient" xrefstyle="select: title page">Disable Instant Messenger Client (gaim)</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableWebconsole" xrefstyle="select: title page">Disable Java Web Console</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableKerbTGTwarn" xrefstyle="select: title page">Disable Kerberos TGT Expiration Warning</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableKdump" xrefstyle="select: title page">Disable Kernel Crash Analyzer</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableKudzu" xrefstyle="select: title page">Disable Kudzu</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableLdapCacheMgr" xrefstyle="select: title page">Disable LDAP Client Cache Manager</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSerialLoginPrompt" xrefstyle="select: title page">Disable Login Prompts on Serial Ports</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableMail_cyrus" xrefstyle="select: title page">Disable Mail (Cyrus mail server)</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableMail_dovecot" xrefstyle="select: title page">Disable Mail (Dovecot mail server)</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSQL_mysql" xrefstyle="select: title page">Disable MySQL</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableNFS_client" xrefstyle="select: title page">Disable NFS Client</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableNFS_server" xrefstyle="select: title page">Disable NFS Server</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableNIS_client" xrefstyle="select: title page">Disable NIS Client</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableNIS_server" xrefstyle="select: title page">Disable NIS Server</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableNetFS" xrefstyle="select: title page">Disable NetFS</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableNetAnalysisTools" xrefstyle="select: title page">Disable Network Analysis Tools</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisablePAMConsole" xrefstyle="select: title page">Disable PAM Console Library</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisablePortmap" xrefstyle="select: title page">Disable Portmap Daemon</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSQL_postgresql" xrefstyle="select: title page">Disable Postgresql</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableApmd" xrefstyle="select: title page">Disable Power Management</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisablePrinterConfig" xrefstyle="select: title page">Disable Printer Configuration Daemon</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisablePrinter" xrefstyle="select: title page">Disable Printer Daemon</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRpcKeyserv" xrefstyle="select: title page">Disable RPC Keyserv</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRawDevicesDaemon" xrefstyle="select: title page">Disable Raw Devices Service</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRexec" xrefstyle="select: title page">Disable Remote Exec (rexec)</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRlogin" xrefstyle="select: title page">Disable Remote Login (rlogin)</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRsh" xrefstyle="select: title page">Disable Remote Shell (rsh)</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRemoteSyslog" xrefstyle="select: title page">Disable Remote Syslog</xref>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-6-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRhnsd" xrefstyle="select: title page">Disable Rhnsd</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRhostsSupport" xrefstyle="select: title page">Disable Rhosts Support</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRouted" xrefstyle="select: title page">Disable Routed</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSMARTD" xrefstyle="select: title page">Disable SMART Disk Monitoring Support</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSMB" xrefstyle="select: title page">Disable SMB</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSNMP" xrefstyle="select: title page">Disable SNMP</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="ChangeSNMPStrings" xrefstyle="select: title page">Disable SNMP if default public string exists</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SendRedirects" xrefstyle="select: title page">Disable Sending ICMP Redirects</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSendmail" xrefstyle="select: title page">Disable Sendmail</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSendmailHelp" xrefstyle="select: title page">Disable Sendmail Help</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSendmailBadVers" xrefstyle="select: title page">Disable Sendmail if older than 8.13.8</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableMdmonitor" xrefstyle="select: title page">Disable Software RAID Monitor</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSVM" xrefstyle="select: title page">Disable Solaris Volume Manager</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSVMgui" xrefstyle="select: title page">Disable Solaris Volume Manager GUI</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SourceRoute" xrefstyle="select: title page">Disable Source Routing</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSquid" xrefstyle="select: title page">Disable Squid</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableSquidBadVers" xrefstyle="select: title page">Disable Squid if older than 2.4STABLE6</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableKernelSprt_DCCP" xrefstyle="select: title page">Disable Support for DCCP</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableKernelFirewire" xrefstyle="select: title page">Disable Support for Firewire</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableKernelSprt_RDS" xrefstyle="select: title page">Disable Support for RDS</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableKernelSprt_SCTP" xrefstyle="select: title page">Disable Support for SCTP</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableKernelSprt_TIPC" xrefstyle="select: title page">Disable Support for TIPC</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableKernelUSBStorage" xrefstyle="select: title page">Disable Support for USB Storage devices</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableTFTP" xrefstyle="select: title page">Disable TFTP</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableTelnet" xrefstyle="select: title page">Disable Telnet</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableWebServer_tux" xrefstyle="select: title page">Disable Tux</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableUSB" xrefstyle="select: title page">Disable USB and PCMCIA Devices</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableUucp" xrefstyle="select: title page">Disable UUCP</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableWbem" xrefstyle="select: title page">Disable WBEM</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableWebmin" xrefstyle="select: title page">Disable Webmin</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableXFS" xrefstyle="select: title page">Disable XFS</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableAtd" xrefstyle="select: title page">Disable atd Service</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="DisableRpc_Ugidd" xrefstyle="select: title page">Disable rpc.ugidd</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="RPFilter" xrefstyle="select: title page">Enable Reverse Path Source Validation</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="EnableStackProtection" xrefstyle="select: title page">Enable Stack Protection</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="TcpStrongISS" xrefstyle="select: title page">Enable Strong TCP Sequence Number Generation</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="TCPSyncookies" xrefstyle="select: title page">Enable TCP Syncookies</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="AuditEnable" xrefstyle="select: title page">Enable the Audit Subsystem</xref>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-6-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-11-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="EnableAdditionalFTPLogging_vsftpd" xrefstyle="select: title page">Enable vsftpd Additional Logging</xref>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-6-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PasswordInvalidate" xrefstyle="select: title page">Expired Password Invalidation</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-11-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="FTPConfigFilePerms" xrefstyle="select: title page">FTP Configuration File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="GlobalInitializationFilePerms" xrefstyle="select: title page">Global Initialization File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="HomeDirContentPerms" xrefstyle="select: title page">Home Directory Contents</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="HomeDirOwnGrp" xrefstyle="select: title page">Home Directory Ownership</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="HomeDirPerms" xrefstyle="select: title page">Home Directory Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="HostsFilePerms" xrefstyle="select: title page">Hosts File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="ICMPEchoIgnoreBroadcasts" xrefstyle="select: title page">Ignore ICMP ECHO and TIMESTAMP Requests</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="InetdXinetdConfigFilePerms" xrefstyle="select: title page">Inetd/Xinetd Configuration File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="NntpFilePerms" xrefstyle="select: title page">InterNetNews Config File Perms</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="KernelDumpDirPerms" xrefstyle="select: title page">Kernel Core Dump Directory Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="LDAPConfigFilePerms" xrefstyle="select: title page">LDAP Configuration File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="LimitAccessFromSu" xrefstyle="select: title page">Limit Access To Root From Su</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PasswordReuse" xrefstyle="select: title page">Limit Password Reuse</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SetMesgN" xrefstyle="select: title page">Limit Term Write-access to Owner</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PwGrpCheck" xrefstyle="select: title page">Lock Invalid Accounts</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="LockDuplicateUidZeros" xrefstyle="select: title page">Lock Non-Root Accounts with UID 0</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-11-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="AccountLocks" xrefstyle="select: title page">Lock account after three failed login attempts</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-11-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SyslogMaillog" xrefstyle="select: title page">Log Critical Sendmail Messages</xref>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-6-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="LogMartianPackets" xrefstyle="select: title page">Log Martian Packets</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-13-desc" role="bold">X</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="MailAgentAliasesFilePerms" xrefstyle="select: title page">Mail Agent Aliases Files Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="MIBFilePerms" xrefstyle="select: title page">Management Information Base (MIB) File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PasswordMaxDays" xrefstyle="select: title page">Maximum Time Between Password Changes</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PasswordChangeDelay" xrefstyle="select: title page">Minimum Delay Between Password Changes</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="MySQLHist" xrefstyle="select: title page">MySQL - Disable command history</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="ExportsConfigFilePerms" xrefstyle="select: title page">NFS Export Configuration File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="NisYpConfigPerms" xrefstyle="select: title page">NIS/NIS+/YP Configuration File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="NsswitchConfFilePerms" xrefstyle="select: title page">Name Service Switch Configuration File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="NoEmptyPasswords" xrefstyle="select: title page">No Empty Passwords</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="NoPlusPasswdEntries" xrefstyle="select: title page">No Plus Entries in Password Files</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PHPDisableHttpUpload" xrefstyle="select: title page">PHP - Disallow HTTP File Uploads</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PHPSessMgmt" xrefstyle="select: title page">PHP - Enhance Session Management</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-11-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PHPlogging" xrefstyle="select: title page">PHP - Set Error Logging</xref>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-6-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PasswordWarnAge" xrefstyle="select: title page">Password Expiration Warning</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PasswordPolicyConsecutive" xrefstyle="select: title page">Password Policy Consecutive Characters</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PasswordPolicyDiffChars" xrefstyle="select: title page">Password Policy Different Characters</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PasswordPolicyMinlen" xrefstyle="select: title page">Password Policy Length Minimum</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PasswordPolicyLowercase" xrefstyle="select: title page">Password Policy Lowercase Minimum</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PasswordPolicyNumbers" xrefstyle="select: title page">Password Policy Numeric Minimum</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PasswordPolicySpecial" xrefstyle="select: title page">Password Policy Special Characters</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PasswordPolicyUppercase" xrefstyle="select: title page">Password Policy Uppercase Minimum</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="GrubPassword" xrefstyle="select: title page">Password Protect GRUB</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="PrinterConfigFilePerms" xrefstyle="select: title page">Printer Configuration File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="RemoveGamesAccount" xrefstyle="select: title page">Remove Games User Account</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="GopherAccount" xrefstyle="select: title page">Remove Gopher User Account</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="HaltAccount" xrefstyle="select: title page">Remove Halt User Account</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="NFSInsecureLocks" xrefstyle="select: title page">Remove Insecure_Locks option for NFS Server</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="RemoveNewsAccount" xrefstyle="select: title page">Remove News User Account</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="RemoveSMBguest" xrefstyle="select: title page">Remove SMB Guest Authentication</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="ShutdownAccount" xrefstyle="select: title page">Remove Shutdown User Account</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SyncAccount" xrefstyle="select: title page">Remove Sync User Account</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="TelnetBanner" xrefstyle="select: title page">Remove Telnet Service Banner</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="RemoveFTPaccount" xrefstyle="select: title page">Remove ftp Account</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="RequireGrubPassword" xrefstyle="select: title page">Require GRUB Password</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="ResolvConfFilePerms" xrefstyle="select: title page">Resolver Configuration File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="RestrictAtCron" xrefstyle="select: title page">Restrict At and Cron</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="RemoteXClients" xrefstyle="select: title page">Restrict Remote X Clients</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="RestrictCompilerTools" xrefstyle="select: title page">Restrict Use of Compiler Tools</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="RestrictTracerouteUse" xrefstyle="select: title page">Restrict Use of Traceroute and Ping</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="ManPagePerms" xrefstyle="select: title page">Restrict Write-Access on Man Pages</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="RestrictDtspcd" xrefstyle="select: title page">Restrict the CDE Subprocess Control Service</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="RestrictMesgCmd" xrefstyle="select: title page">Restrict use of Mesg command</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="RootConsole" xrefstyle="select: title page">Root Console Only Logins</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="RootHomePerms" xrefstyle="select: title page">Root Home Directory Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="RootPath" xrefstyle="select: title page">Root Path</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="RootShell" xrefstyle="select: title page">Root shell must be on / filesystem</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SMB_Conf" xrefstyle="select: title page">SMB Configuration</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SNMPConfigFilePerms" xrefstyle="select: title page">SNMP Configuration File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshParameters" xrefstyle="select: title page">SSH Parameters</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshRestrictCiphers" xrefstyle="select: title page">SSH Restrict Ciphers</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshRestrictHMAC" xrefstyle="select: title page">SSH Restrict HMAC</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshdDisableEmptyPasswords" xrefstyle="select: title page">SSHD Disable Empty Passwords</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshdDisableHostbasedAuth" xrefstyle="select: title page">SSHD Disable Host-based Authentication</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshdDisableRhostsAuth" xrefstyle="select: title page">SSHD Disable Rhosts Authentication</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshdDisableRootLogin" xrefstyle="select: title page">SSHD Disable Root Login</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshdEnableBanner" xrefstyle="select: title page">SSHD Enable Banner</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshdEnableIgnoreRhosts" xrefstyle="select: title page">SSHD Enable Ignore Rhosts</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshdEnableX11Forwarding" xrefstyle="select: title page">SSHD Enable X11 Forwarding</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshdLogLevel" xrefstyle="select: title page">SSHD Logging Level</xref>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-6-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshdPrintLastLog" xrefstyle="select: title page">SSHD Print Last Login by User</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshdProtocol" xrefstyle="select: title page">SSHD Protocol</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshdRestrictCiphers" xrefstyle="select: title page">SSHD Restrict Ciphers</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshdRestrictHMAC" xrefstyle="select: title page">SSHD Restrict HMAC</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshdRestrictUsersGroups" xrefstyle="select: title page">SSHD Restrict Users and Groups</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SshdSetIdleTimeout" xrefstyle="select: title page">SSHD Set Idle Timeout Interval for User Logins</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-11-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="AudioDevFilePerms" xrefstyle="select: title page">Secure Audio Devices</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SyslogAuthpriv" xrefstyle="select: title page">Secure Authpriv Logging</xref>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-6-desc" role="bold">X</emphasis>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-11-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SecureNetrcFiles" xrefstyle="select: title page">Secure Netrc Files</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="NFSSecure" xrefstyle="select: title page">Secure Option for NFS Server</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SecureSetXIDFiles" xrefstyle="select: title page">Secure SUID/SGID Executables</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="ShellBinPerms" xrefstyle="select: title page">Secure Shell Binaries</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SecureUnownedFiles" xrefstyle="select: title page">Secure Unowned Files</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SecureWorldWritableDevices" xrefstyle="select: title page">Secure World Writable Devices</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SecureWorldWritableDirectories" xrefstyle="select: title page">Secure World Writable Directories</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SecureWorldWritableFiles" xrefstyle="select: title page">Secure World Writable Files</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="ServicesFilePerms" xrefstyle="select: title page">Services File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SetCdeScreenSaver" xrefstyle="select: title page">Set CDE Screen Saver</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-11-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="GssftpUmask" xrefstyle="select: title page">Set FTP Umask (gssftp)</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SetGnomeSS" xrefstyle="select: title page">Set Mandatory Screen Saver</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-11-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SetPassAgingOnAccts" xrefstyle="select: title page">Set Password Aging on Active Accounts</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-11-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="TftpSecureMode" xrefstyle="select: title page">Set TFTP Startup Directory</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SetXScreenSaverDefaults" xrefstyle="select: title page">Set X Screen Saver Application Defaults</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-11-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="LoginDelay" xrefstyle="select: title page">Set delay after failed login</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="ShellSessionTimeouts" xrefstyle="select: title page">Set shell timeout period</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-11-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SingleUserMode" xrefstyle="select: title page">Single User Mode Password</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-8-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SkeletonFilePerms" xrefstyle="select: title page">Skeleton File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SyncEtcShells" xrefstyle="select: title page">Sync Shells File</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SysctlPerms" xrefstyle="select: title page">Sysctl.conf Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="EnableSysstat" xrefstyle="select: title page">System Accounting</xref>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry>
+            <emphasis xml:id="CC-11-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SysCmdFilePerms" xrefstyle="select: title page">System Command File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SysConfigFilePerms" xrefstyle="select: title page">System Configuration File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SysDevDirPerms" xrefstyle="select: title page">System Device Directory Ownership</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SysLibFilePerms" xrefstyle="select: title page">System Library File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-6-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SysLoggingConfigFilePerms" xrefstyle="select: title page">System Logging Configuration File Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="SysRcScriptPerms" xrefstyle="select: title page">System Run Control Script Permissions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="FstabNodev" xrefstyle="select: title page">Use NODEV Option for Non-root Partitions</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="FstabRemovableMedia" xrefstyle="select: title page">Use NOSUID and NODEV for Removable Media</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="NosuidOnUserFilesystems" xrefstyle="select: title page">Use NOSUID on User Filesystems</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="UserDotFilePerms" xrefstyle="select: title page">User Dot File Perms</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+        <row>
+          <entry>
+            <xref linkend="UserMountableMedia" xrefstyle="select: title page">User Mountable Media</xref>
+          </entry>
+          <entry>
+            <emphasis xml:id="CC-3-desc" role="bold">X</emphasis>
+          </entry>
+          <entry/>
+          <entry/>
+          <entry/>
+          <entry/>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+</section>

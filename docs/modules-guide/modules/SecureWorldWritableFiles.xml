@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SecureWorldWritableFiles" version="5.0">
+ <title xml:id="fileDACs">Secure World Writable Files</title>
+ <para>
+  Removes world writable permission on files. Normally, any user on the
+  system can alter data in world writable files. If the file is a
+  program, world writable permission could lead to a larger compromise
+  of the system’s integrity.
+  <indexterm>
+   <primary>world-writable</primary>
+  </indexterm>
+ </para>
+ <para>
+  Removing world writable permission on files is recommended. If this
+  breaks a third-party application, you can undo the operation. However,
+  the third-party application vendor should be encouraged to provide a
+  better solution.
+ </para>
+ <simplesect xml:id="SecureWorldWritableFiles-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DHS Linux Configuration Guidance (2010.8)</title>
+   <listitem>
+    <para>
+     8.4 - Verify World Writable Files Are Limited
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN002480 - Public directories must be the only world-writable
+     directories and world-writable files must be located only in public
+     directories.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 6 STIG (V1R14)</title>
+   <listitem>
+    <para>
+     RHEL-06-000282 - There must be no world-writable files on the
+     system.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN001640 - Run Control Scripts World Writable Programs or Scripts
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN001940 - Local Initialization Files World Writable Programs or
+     Scripts
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN002480 - World Writable Files and Directories
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN003000 - Cron Executes World Writable Programs
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN003020 - Cron Executes Programs in World Writable Directories
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN003360 - At Executes World Writable Programs
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN003380 - At Executes Programs in World Writable Directories
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DoD NISPOM (Feb 2006)</title>
+   <listitem>
+    <para>
+     8.606b1 - Access 2 Requirements
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-3 - Access Enforcement
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     AU-9 - Protection of Audit Information
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     2.2.3.3 - Find Unauthorized World-Writable Files
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NVD CCE</title>
+   <listitem>
+    <para>
+     CCE-14794-2 - All world-writable directories should be owned by an
+     appropriate user.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

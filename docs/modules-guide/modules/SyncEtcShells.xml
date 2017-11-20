@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SyncEtcShells" version="5.0">
+ <title xml:id="Accounts">Sync Shells File</title>
+ <para>
+  Configures <filename>/etc/shells</filename> to contain shells assigned
+  to users in <filename>/etc/passwd</filename> . The
+  <filename>shells(5)</filename> file is consulted by
+  <command>chsh(1)</command> and is available to be queried by other
+  programs. There are programs that consult this file to find out if a
+  user is a normal user. For example, FTP daemons traditionally disallow
+  access to users with shells not included in
+  <filename>/etc/shells</filename>.
+ </para>
+ <para>
+  This module compares the shell for each account in
+  <filename>/etc/passwd</filename> (including system accounts) against
+  both the explicit list of approved shells in
+  <filename>/etc/shells</filename>, and if not found, then it also
+  compares it against a list of implicitly acceptable shells that
+  traditionally indicate that the account is one where logins are
+  allowed. This list consists of:
+  <simplelist>
+   <member>/bin/sync</member>
+   <member>/dev/null</member>
+   <member>/sbin/nologin</member>
+   <member>/usr/bin/false</member>
+   <member>/bin/false</member>
+   <member>/sbin/halt</member>
+  </simplelist>
+ </para>
+ <para>
+  Any account that has an unacceptable shell will be locked. It is up to
+  the Administrator to assign a correct login shell for these offending
+  users.
+  <indexterm>
+   <primary>/etc/passwd</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Files and Directories</primary>
+   <secondary>/etc/passwd</secondary>
+  </indexterm>
+
+  <indexterm>
+   <primary>/etc/shells</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Files and Directories</primary>
+   <secondary>/etc/shells</secondary>
+  </indexterm>
+
+  <indexterm>
+   <primary>FTP</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>passwd</primary>
+  </indexterm>
+ </para>
+ <indexterm>
+  <primary>Files and Directories</primary>
+
+  <secondary>/sbin/nologin</secondary>
+ </indexterm>
+ <simplesect xml:id="SyncEtcShells-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN002140 - All shells referenced in /etc/passwd must be listed in
+     the /etc/shells file, except any shells specified for the purpose
+     of preventing logins.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN002120 - The /etc/shells File Does Not Exist
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN002140 - The /etc/shells Contents
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     AC-3 - Access Enforcement
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2.3 - Configure system security parameters to prevent misuse
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

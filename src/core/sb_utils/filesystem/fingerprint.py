@@ -1,0 +1,202 @@
+##############################################################################
+#
+# Copyright (c) 2007-2014 Forcepoint LLC.
+# This file is released under the GPLv3 license.  
+# See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+# or visit https://www.gnu.org/licenses/gpl.html instead.
+#
+##############################################################################
+
+#
+# Fingerprnt filesystem
+#
+
+import sys
+import os
+import stat
+import errno
+import sha
+import libxml2
+import datetime
+import platform
+
+
+sys.path.append('/usr/share/oslockdown')
+try:
+    import TCSLogger
+    import sb_utils.file.exclusion
+except ImportError, merr:
+    print "Unable to load modules: %s" % merr
+    sys.exit(1)
+
+MODULE_NAME = "FingerprintFS"
+MODULE_REV = "$Rev: 23917 $".strip('$').strip()
+
+
+##############################################################################
+def perform(start_dirs=None, xmlnode=None):
+    """Inventory files"""
+
+    try:
+        logger = TCSLogger.TCSLogger.getInstance(6) 
+    except TCSLogger.SingletonException:
+        logger = TCSLogger.TCSLogger.getInstance() 
+
+    if start_dirs == None or xmlnode == None or type(start_dirs).__name__ != 'list':
+        msg = "Error: Starting directory or xmlnode pointer are invalid."
+        logger.log_err(MODULE_NAME, msg)
+        return False, ''
+
+    master_fingerprint = sha.new()
+
+    msg = "Starting directory point: %s" % str(start_dirs)
+    logger.log_info(MODULE_NAME, msg)
+
+    ############ Walk the directories ##########
+
+    # Before getting started, let's check / to make sure 
+    # everything is cool at the top level
+
+    # Now start traversing all starting points
+    try:
+        for subdir in start_dirs:
+            if not os.path.isdir(subdir):
+                msg = "%s does not exist - skipping" % subdir
+                logger.log_info(MODULE_NAME, msg)
+                continue
+
+            msg = "Entering directory %s..." % subdir
+            logger.log_notice(MODULE_NAME, msg)
+    
+            for root, dirs, files in os.walk(subdir):
+    
+                # Before stat'ing file, make sure its path isn't in the 
+                # excluded path list
+                is_excluded, why_excluded = sb_utils.file.exclusion.file_is_excluded(root)
+                if is_excluded == True:
+                    msg = "Excluding directory %s : %s" % (root, why_excluded)
+                    logger.log_debug(MODULE_NAME, msg)
+                    continue
+    
+                list_of_files = []
+                list_of_files.append(root)
+                list_of_files.extend(files)
+
+                for infile in list_of_files:
+                    if infile != root:
+                        testfile = os.path.join(root, infile)
+                    else:
+                        testfile = root
+
+                    try:
+                        statinfo = os.lstat(testfile)
+                    except OSError, err:
+                        msg = "Unable to stat %s: %s" % (testfile, err)
+                        logger.log_err(MODULE_NAME, msg)
+                        if os.path.islink(testfile) and err.errno == errno.ENOENT:
+                            msg  = "%s appears to be a broken link; restore the "\
+                                   "target file or remove the link" % (testfile)
+                            logger.log_warn(MODULE_NAME, msg)
+                        continue
+
+                    skiphash = False
+                    if stat.S_ISREG(statinfo.st_mode) == False:
+                        if stat.S_ISBLK(statinfo.st_mode) == True or \
+                           stat.S_ISCHR(statinfo.st_mode) == True or \
+                           stat.S_ISSOCK(statinfo.st_mode) == True or \
+                           stat.S_ISFIFO(statinfo.st_mode) == True:
+                            skiphash = True
+                        else:
+                            continue
+
+                    if skiphash == True:
+                        fingerprint = ""
+                    else:
+                        # Now, compute the SHA1 digest
+                        digest_key = sha.new()
+                        try:
+                            fdes = open(testfile, 'rb')
+                        except (OSError, IOError), err:
+                            msg = "Unable to read %s: %s" % (testfile, err)
+                            logger.log_err(MODULE_NAME, msg)
+                            continue
+                
+                        try:
+                            while True:
+                                block = fdes.read(1048576)
+                                if not block:
+                                    break
+                                digest_key.update(block)
+                        finally:
+                            fdes.close()
+            
+                        fingerprint = digest_key.hexdigest()
+
+
+                    filenode = xmlnode.newChild(None, "file", None)
+                    filenode.setProp("path", testfile)
+                    filenode.setProp("mode", "%04d" % int(oct(stat.S_IMODE(statinfo.st_mode))) )
+
+                    if statinfo.st_mode & stat.S_ISUID:
+                        filenode.setProp("suid", "true")
+                    else:
+                        filenode.setProp("suid", "false")
+                        
+                    if statinfo.st_mode & stat.S_ISGID:
+                        filenode.setProp("sgid", "true")
+                    else:
+                        filenode.setProp("sgid", "false")
+
+                    filenode.setProp("uid", str(statinfo.st_uid))
+                    filenode.setProp("gid", str(statinfo.st_gid))
+                    filenode.setProp("mtime", str(int(statinfo.st_mtime)))
+                    filenode.setProp("sha1", fingerprint)
+
+                    bigstring = "%s%04d%s%s%s%s" % (testfile, 
+                               int(oct(stat.S_IMODE(statinfo.st_mode))), 
+                               str(statinfo.st_uid), str(statinfo.st_gid), 
+                               str(int(statinfo.st_mtime)), fingerprint)
+
+                    master_fingerprint.update(bigstring)
+
+    except KeyboardInterrupt:
+        msg = "Aborting: caught keyboard interrupt -- fingerprinting NOT completed" 
+        logger.log_crit(MODULE_NAME, msg)
+        return False, ''
+
+    except IOError, err:
+        if err.errno == errno.EPIPE:
+            msg = "Ignoring: %s" % err
+            logger.log_err(MODULE_NAME, msg)
+        else: 
+            raise
+
+    return True, master_fingerprint.hexdigest()
+
+##############################################################################
+if __name__ == '__main__':
+    today = datetime.datetime.now()
+    doc = libxml2.newDoc("1.0")
+    rootMain = doc.newChild(None,  "BaselineReport", None)
+    rootMain.setProp("created",    today.strftime("%Y-%m-%d %T %Z"))
+    rootMain.setProp("generator",  "OS Lockdown")
+    rootMain.setProp("hostname",   platform.node())
+    rootMain.setProp("kernel",     platform.release() )
+    rootMain.setProp("distro",     sb_utils.os.info.getDistroName() )
+    rootMain.setProp("distro_ver", sb_utils.os.info.getDistroVersion() )
+    rootMain.setProp("mach",       platform.machine() )
+
+    files_report = root.newChild(None, "report", None)
+    files_report.setProp("name", "Files")
+
+    file_group = files_report.newChild(None, "file_group", None)
+    file_group.setProp("name", "System Binaries")
+
+    print perform(start_dirs=['/dev' ], xmlnode=file_group)
+
+
+    # Dump XML Document to file
+    out_obj = open('test.xml', 'w')
+    doc.saveTo(out_obj, 'UTF-8', 1)
+    out_obj.close()
+    doc.freeDoc()

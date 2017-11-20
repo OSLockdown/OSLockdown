@@ -1,0 +1,20 @@
+CC-1|Inventory of Authorized and Unauthorized Devices
+CC-2|Inventory of Authorized and Unauthorized Software
+CC-3|Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers
+CC-4|Secure Configurations for Network Devices such as Firewalls, Routers, and Switches
+CC-5|Boundary Defense
+CC-6|Maintenance, Monitoring, and Analysis of Audit Logs
+CC-7|Application Software Security
+CC-8|Controlled Use of Administrative Privileges
+CC-9|Controlled Access Based on Need to Know
+CC-10|Continuous Vulnerability Assessment and Remediation
+CC-11|Account Monitoring and Control
+CC-12|Malware Defenses
+CC-13|Limitation and Control of Network Ports, Protocols, and Services
+CC-14|Wireless Device Control
+CC-15|Data Loss Prevention
+CC-16|Secure Network Engineering
+CC-17|Penetration Tests and Red Team Exercises
+CC-18|Incident Response Capability
+CC-19|Data Recovery Capability
+CC-20|Security Skills Assessment and Appropriate Training to Fill Gaps

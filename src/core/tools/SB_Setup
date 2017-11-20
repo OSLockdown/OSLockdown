@@ -1,0 +1,1206 @@
+#!/bin/sh
+# Copyright (c) 2007-2014 Forcepoint LLC.
+# This file is released under the GPLv3 license.  
+# See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+# or visit https://www.gnu.org/licenses/gpl.html instead.
+#
+# OS Lockdown Setup Script
+#
+
+. /usr/share/oslockdown/tools/shell_utils
+#. /usr/share/oslockdown/tools/determine_javahome
+
+PATH=/bin:/usr/bin:/usr/sbin:/sbin:/usr/local/bin
+export PATH
+
+sbLine="**************************************************************************"
+export sbLine
+
+profile="/usr/share/oslockdown/console/.profile"
+# Commands
+if [ `uname -s` = "SunOS" ] ; then
+     if [ -x /usr/bin/python2.4 ] ; then
+         PYTHON=/usr/bin/python2.4; export PYTHON
+     else
+         echo "Unable to locate /usr/bin/python2.4, which is required"
+         echo "for OS Lockdown to work with Solaris 10."
+         exit 1
+     fi
+else
+    PYTHON=/usr/bin/python; export PYTHON
+fi
+GETOPT=/usr/bin/getopt; export GETOPT
+
+# Determine Operating System
+if [ "`uname -s`" = "SunOS" ]; then
+    SOLARIS="yes"
+else
+    SOLARIS=
+fi
+
+
+##
+# General exit routine - try and change back to original directory (if required)
+# and exit with the indicated value
+
+scriptExit()
+{
+  exit $1
+}
+
+##############################################################################
+# Function - update sbwebapp .profile with JAVA_HOME and LD_LIBRARY_PATH
+update_sbwebapp_profile()
+{
+    if [ ! -z "${JavaHome}" ]; then
+        echo "# .profile : Updated by SB_Setup on `date`" > ${profile}
+        echo " " >> ${profile}
+        echo "umask 027" >> ${profile}
+        echo "JAVA_HOME=$JavaHome" >> ${profile}
+        echo "export JAVA_HOME" >> ${profile}
+        echo " " >> ${profile}
+        echo "LD_LIBRARY_PATH=/usr/share/oslockdown/lib" >> ${profile}
+        echo "export LD_LIBRARY_PATH" >> ${profile}
+        echo " " >> ${profile}
+        echo 'if [ ! -z "${JRE_HOME}" ] ; then ' >> ${profile}
+        echo "  unset JRE_HOME" >> ${profile}
+        echo "fi" >> ${profile}
+        echo "         - Updated ${profile}"
+        echo "         - JAVA_HOME=$JavaHome"
+        echo 'PATH="${JAVA_HOME}/bin:${PATH}"' >> ${profile}
+        echo "export PATH" >> ${profile}
+        echo
+        chown sbwebapp ${profile}
+        chmod 700 ${profile}
+        # force SELinux context if able
+        restore_context  ${profile}
+    fi
+}
+
+
+##############################################################################
+# Configure ports for SELinux use
+#
+# arg 1 = policy name to use - oslockdown 
+# arg 2 = port type (oslockdown_{console,console_mgt,dispatcher}_port_t
+# arg 2 = port number to use
+#
+# First verify SELinux is up and the semodule/semanage commands are available
+# Verify that SELinux is *NOT* disabled.  Older versions of RH have problems if we try to manage ports while 
+#    SELinix is disabled.
+# Then verify the policy is in place
+# Then see if a port is already configured for this type - if so and the port is the same
+#    then done
+# Otherwise remove that configuration
+# Check to see if the port is *still* configured by someone.  If so we need to use '-m' 
+#  instead of '-a' below
+# Add the new configuration using '-a' or '-m'
+#
+# Any problems, dump a single line and return
+
+selinux_configure_port() 
+{
+  SEMANAGE="/usr/sbin/semanage"
+  SEMODULE="/usr/sbin/semodule"
+  sePolicy="${1}"
+  sePortType="${2}"
+  newPortNum="${3}"
+  reruncmd="${4}"
+
+  echo ""
+  # Are our required executables present -first check for Solaris where we know they aren't
+  if [ "${SOLARIS}" = "yes" ]; then
+    echo "SELinux is not supported under Solaris"
+    return
+  fi
+  
+  # Are the Policy files loaded?
+
+  pkg="oslockdown-selinux"
+  isPkgInstalled $pkg
+  if [ $? -eq 0 ]; then
+      echo "   : $pkg package was not installed"
+      echo "   : Will not attempt to modify $sePortType port assignments"
+      return
+  fi
+  
+  if [ ! -x ${SEMANAGE} -o ! -x ${SEMODULE} ] ; then
+    echo "Unable to execute both ${SEMANAGE} and ${SEMODULE}"
+    return
+  fi
+
+  if [ -x /usr/sbin/selinuxenabled ]; then
+      /usr/sbin/selinuxenabled >/dev/null 2>&1
+      if [ $? -eq 1 ]; then
+          echo ""
+          echo "SELinux is disabled, unable to alter SELinux port assignments"
+          echo "Please rerun ${reruncmd} after "
+          echo "enabling SELinux (either permissive or enforcing)"
+          echo ""
+          return
+      fi
+  fi
+
+  # Is our policy loaded?
+  ${SEMODULE} -l | egrep "^${sePolicy}\W" 1>/dev/null 2>&1
+  if [ $? -ne 0 ] ; then
+    echo "Policy ${sePolicy} is not loaded."
+    return
+  fi
+  
+  # Is there something already configured for this type?  
+  oldPortNum=`${SEMANAGE} port -l | egrep "^${sePortType}\W" | awk '{print $3}'`
+  if [ ! -z "${oldPortNum}" ] ; then
+  
+    # If we're the same then say so and return
+    if [ "${oldPortNum}" == "${newPortNum}" ] ; then
+      echo "${newPortNum} already configured to be of type ${sePortType}"
+      return
+    fi
+    
+    # otherwise delete it
+    echo "Removing ${oldPortNum} as the port for type ${sePortType}..."
+    ${SEMANAGE} port -d -t ${sePortType} -p tcp ${oldPortNum}
+  fi
+  
+  # default is to add
+  seFlag="-a"
+  
+  # is the newport in use as another type?
+  ${SEMANAGE} port -l | grep ${newPortNum} 1>/dev/null 2>&1
+  if [ $? -eq 0 ] ; then
+    seFlag="-m"
+  fi
+  
+  echo "Adding port ${newPortNum} as type ${sePortType}..."
+  ${SEMANAGE} port ${seFlag} -t ${sePortType} -p tcp ${newPortNum}
+
+  echo "Finished SELinux port configuration."  
+}
+
+
+##############################################################################
+# Restore default SELinux security context if SELinux enabled
+# note - not recursive - assumes a single file
+restore_context()
+{
+  [ -x /usr/sbin/selinuxenabled -a -x /sbin/restorecon ] && /usr/sbin/selinuxenabled || return
+  echo "Setting SELinux context(s) for ${1}..."
+  /sbin/restorecon -F ${1}
+}
+
+
+##############################################################################
+# Service Management for Linux
+start_service_linux() 
+{
+  service_name="$1"
+  svcStat=1
+  if [ ${NOCERTS} -eq 1 -a ${NEEDCERTS} = 'yes' ] ; then
+    echo "        SSL Certificate directory does not exist."
+    echo "        Unable to have ${1} start without SSL Certificates"
+    echo "        Please re-run SB_Setup after Certificates have been generated/installed."
+  else
+    if [ "${osDist}" = "SuSE" -o "${osDist}" = "SUSE" -o "${osDist}" = "openSUSE" ]; then
+        procStat="`/sbin/chkconfig ${service_name} 2>/dev/null |awk '{print $2}'`"
+        if [ "${procStat}" = "on" ]; then  # SUSE specific - assume off unless we see 'on'
+           svcStat=0
+        fi
+    else
+        /sbin/chkconfig ${service_name} 
+        svcStat=$?
+    fi
+    #echo "svcStat is ${svcStat}"
+    if [ $svcStat -eq 1 ] ; then
+      echo ""
+      echo "        Service ${service_name} is not configured to start at boot time."
+      if [ "${INTERACTIVE}" = "false" ] ; then
+        yes_or_no="YES"
+      else
+        ask_yes_or_no "        Should ${service_name} start at boot? "  yes_or_no
+      fi
+      if [ "${yes_or_no}" = "YES" ] ; then
+        /sbin/chkconfig ${service_name} on
+      fi
+    fi 
+
+    if [ "${INTERACTIVE}" = "false" ]; then
+        yes_or_no="YES"
+    else
+        ask_yes_or_no "        Start the '${service_name}' service now? "  yes_or_no
+    fi
+    echo " "
+    if [ "${yes_or_no}" = "YES" ] ; then
+      /sbin/service ${service_name} start
+    fi
+    echo " "
+    echo "        You can manage this service yourself with:"
+    echo "         # /sbin/service ${service_name} stop"
+    echo "         # /sbin/service ${service_name} start"
+    echo "         # /sbin/service ${service_name} status"
+    if [ $service_name = "osl-console" ]; then
+        echo " "
+        echo "         Console logs are in /var/lib/oslockdown/logs"
+    fi
+    if [ $service_name = "osl-dispatcher" ]; then
+        echo " "
+        echo "         Dispatcher log is /var/log/oslockdown-dispatcher.log"
+    fi
+  fi
+}
+
+stop_service_linux() 
+{
+   service_name="$1"
+   /sbin/service ${service_name} status 1>/dev/null 2>&1
+   if [ $? -eq 0 ]; then
+       echo "Shutting down ${service_name}..."
+       /sbin/service ${service_name} stop 1>/dev/null 2>&1
+       if [ $? -ne 0 ]; then
+           if [ -x /etc/init.d/${service_name} ] ; then
+             /etc/init.d/${service_name} stop 1>/dev/null 2>&1
+           fi
+       fi
+   fi
+}
+
+###############################################################################
+# Service Management for Solaris
+start_service_solaris()
+{
+  service_name="$1"
+  echo ""
+  if [ "${INTERACTIVE}" = "false" ]; then
+      yes_or_no="YES"
+  else
+      ask_yes_or_no "Should service ${service_name} be started now? " yes_or_no
+  fi
+  if [ "${yes_or_no}" = "YES" ] ; then
+    /usr/sbin/svcadm -v enable svc:/site/${service_name}:default
+    #/usr/bin/svcs -x ${service_name}
+  fi
+}
+
+stop_service_solaris()
+{
+  service_name="$1"
+  echo "Shutting down ${service_name}..."
+  /usr/sbin/svcadm -v disable svc:/site/${service_name}:default 
+}
+
+###############################################################################
+# look for the value of a particular property within a file, where each line 
+# is a single entity looking like <tag>=<value>
+# If not found, return an empty string, so there is no difference between a 
+# tag not in a file and the tag having no value
+#
+get_property_from_file()
+{
+  PROPERTY="$1"
+  PROP_FILE="$2"
+  PROP_VAR="$3"
+  #eval "${3}=\"\""
+  retstr=`grep  "^${PROPERTY}=" ${PROP_FILE}` 
+  if [ ! -z "${retstr}" ] ; then
+    valstr=`echo ${retstr} | awk -F'=' '{print $2}'` 
+    eval "${PROP_VAR}=\"$valstr\""
+  fi
+}
+
+##############################################################################
+# Check Linux Operating System Environment
+# Return 0=Okay or 1=Not okay
+check_linux_env() 
+{
+   pythonCmd="${PYTHON}"
+   pythonPkg="python"
+   minSpaceKB="500000"
+   minPythonVersion=""
+
+   echo "CHECKING YOUR LINUX ENVIRONMENT"
+
+   osDist=""
+   osVersion=""
+
+   for i in SuSE centos oracle fedora redhat ; do
+     if [ -e /etc/${i}-release ] ; then
+       if [ "${i}" = "redhat" ] ; then
+         osDist='Red Hat'    # since RedHat has a space in the name 
+       else
+         osDist=`cat /etc/${i}-release | head -1 | cut -d ' ' -f 1`
+       fi
+       break
+     fi
+   done
+   osVersion="`python -c 'import platform ; print platform.dist()[1]'`" 
+
+   if [ -z "$osDist" -o -z "$osVersion" ]; then
+      echo " - ERROR: Unable to determine operating system version"
+      return 1
+   fi
+   case "$osDist" in
+    "Fedora")
+          if [ $osVersion -lt 10 -o $osVersion -gt 13 ]; then
+              echo " - ERROR: Fedora $osVersion is not supported."
+              return 1 
+          elif [ $osVersion -eq 10 ]; then
+              minPythonVersion="2.5"
+          else
+              minPythonVersion="2.6"
+          fi
+          ;;
+
+   "Oracle" | "CentOS" | "Red Hat")
+          majVersion="`echo ${osVersion} |cut -f1 -d.`"
+          minorVersion="`echo ${osVersion} |cut -f2 -d.`"
+          if [ ! -z "$majVersion" -a ! -z "$minorVersion" ]; then
+               if [ $majVersion -eq 4 ]; then 
+                  minPythonVersion="2.3"
+               elif [ $majVersion -eq 5 ]; then 
+                  minPythonVersion="2.4"
+               elif [ $majVersion -eq 6 ]; then 
+                  minPythonVersion="2.6"
+               fi
+          fi
+         ;; 
+
+   "SUSE" | "SuSE"  )
+          majVersion="`echo ${osVersion} |cut -f1 -d.`"
+          minorVersion="`echo ${osVersion} |cut -f2 -d.`"
+           if [ $majVersion -lt 10 ]; then
+              echo " - ERROR: SUSE $osVersion is not supported."
+              return 1
+           fi
+           if [ $majVersion -eq 10 ]; then
+               minPythonVersion="2.4" 
+           fi
+           if [ $majVersion -eq 11 ]; then
+               minPythonVersion="2.6" 
+           fi
+         ;; 
+
+   "openSUSE" )
+          majVersion="`echo ${osVersion} |cut -f1 -d.`"
+          minorVersion="`echo ${osVersion} |cut -f2 -d.`"
+           if [ $majVersion -lt 10 ]; then
+              echo " - ERROR: openSUSE $osVersion is not supported."
+              return 1
+           fi
+           if [ $majVersion -eq 10 ]; then
+               minPythonVersion="2.5" 
+           fi
+           if [ $majVersion -eq 11 -a $minorVersion -lt 4 ]; then
+               minPythonVersion="2.6" 
+           fi
+           if [ $majVersion -eq 11 -a $minorVersion -ge 4 ]; then
+               minPythonVersion="2.7" 
+           fi
+         ;; 
+
+   *) 
+           echo " - ERROR: '${osDist}' is an unsupported Linux distribution."
+           return 1
+         ;;
+   esac
+   echo " - Running on ${osDist} ${osVersion} (`uname -m`)"
+   if [ -z "`/usr/bin/locale -a |/bin/grep en_US.utf8`" ]; then
+       echo " - ERROR: en_US.utf8 language support NOT available!"
+   else
+       echo " - en_US.utf8 language support available."
+   fi
+
+   if [ -x /usr/sbin/selinuxenabled ]; then
+       /usr/sbin/selinuxenabled >/dev/null 2>&1
+       if [ $? -eq 0 ]; then
+           echo " - Security-Enhanced Linux (SELinux)"
+           /usr/sbin/sestatus | egrep "mode:|status:" |/bin/awk '{printf "   : %s\n", $0}'
+           echo " "
+       else
+           echo " - SELinux is disabled"
+       fi
+   fi
+   if [ -x /usr/sbin/aa-status ]; then
+       /usr/sbin/aa-status --enabled >/dev/null 2>&1
+       if [ $? -eq 0 ]; then
+           echo " - AppArmor is ENABLED (run /usr/sbin/aa-status for more information)"
+       else
+           echo " - AppArmor is disabled"
+       fi
+   fi
+
+   if [ -z "$minPythonVersion" ]; then
+      echo " - ERROR: Could not determine minimum Python version required for this OS"
+      return 1
+   fi
+
+   isPkgInstalled $pythonPkg
+   if [ $? -eq 0 ]; then
+       echo " - ERROR: ${pythonPkg} is NOT installed"
+       return 1
+   fi
+   echo " - '${pythonPkg}' package (RPM) is installed"
+
+   if [ ! -f "${pythonCmd}" ]; then
+       echo " - ERROR: Missing ${pythonCmd}"
+       return 1
+   fi
+   if [ ! -x "${pythonCmd}" ]; then
+       echo " - ERROR: ${pythonCmd} is not executable"
+       return 1
+   fi
+
+   pythonVersion="`${pythonCmd} -V 2>&1 |awk '/^Python / {printf "%s", $2}'`"
+   echo " - Python version ${pythonVersion} found"
+   pythonTestVersion="`echo $pythonVersion |cut -f1-2 -d.`"
+   if [ "$pythonTestVersion" != "$minPythonVersion" ]; then
+       echo " - ERROR: Python '${pythonTestVersion}' is not '${minPythonVersion}'"
+       return 1
+   fi
+
+   # Check OS Lockdown packages
+   tcsPackages="oslockdown oslockdown-modules oslockdown-dispatcher oslockdown-console oslockdown-console-ibmjava oslockdown-selinux"
+   echo " - OS Lockkdown packages:"
+   for pkg in $tcsPackages
+   do
+       isPkgInstalled $pkg
+       if [ $? -eq 0 ]; then
+           echo "   : $pkg is NOT installed"
+       else
+           echo "   : $pkg is installed"
+       fi
+   done
+
+   echo " "
+   echo "  NOTE: If you are troubleshooting this installation, consider "
+   echo "        using OS Lockdown's built-in diagnostics module "
+   echo "        for a detailed analysis of this environment."
+   echo " "
+   echo "         # /usr/sbin/oslockdown -D"
+   echo " "
+return 0
+}
+##############################################################################
+# Check Solaris Operating System Environment
+# Return 0=Okay or 1=Not okay
+check_solaris_env() 
+{
+   pythonCmd="${PYTHON}"   
+   pythonPkg="SUNWPython"
+   minSpaceKB="500000"
+   echo "CHECKING YOUR SOLARIS ENVIRONMENT"
+   osVersion="`uname -r |cut -f2 -d.`"
+   if [ "${osVersion}" != "10" ]; then
+       echo " - ERROR: Solaris ${osVersion} is NOT supported."
+   fi
+   echo " - Running Solaris 10 (`uname -p`)"
+   if [ -z "`/usr/bin/locale -a |/bin/grep en_US.UTF-8`" ]; then
+       echo " - ERROR: en_US.UTF-8 language support NOT available!!!!"
+       echo "          You must install the SUNWeu8os package."
+   else
+       echo " - en_US.UTF-8 language support available."
+   fi
+
+
+   isPkgInstalled $pythonPkg
+   if [ $? -eq 0 ]; then
+       echo " - ERROR: SUNWPython is NOT installed"
+       return 1
+   fi
+   echo " - SUNWPython is installed"
+
+   patchCheck="`/usr/sbin/patchadd -p |egrep '^Patch: 12160[6-7]-' |awk '{printf \"%s\", $2}'`"   
+   if [ -z "$patchCheck" ]; then
+      if [ "`uname -m`" = "i86pc" ]; then
+       echo " - ERROR: Patch 121607-04 or later is not installed."
+       return 1
+      else
+       echo " - ERROR: Patch 121606-04 or later is not installed."
+       return 1
+      fi
+   fi
+   echo " - Patch ${patchCheck} has been applied."
+   
+   if [ ! -f "${pythonCmd}" ]; then
+       echo " - ERROR: Missing ${pythonCmd}"
+       return 1
+   fi
+   if [ ! -x "${pythonCmd}" ]; then
+       echo " - ERROR: ${pythonCmd} is not executable"
+       return 1
+   fi
+   
+   echo " - Found ${pythonCmd}"
+   partOfPkg="`/usr/sbin/pkgchk -l -p ${pythonCmd} |grep SUNWPython`"
+   if [ -z "${partOfPkg}" ]; then
+       echo " - ERROR: ${pythonCmd} is NOT part of the SUNWPython package"
+   fi
+   echo " - ${pythonCmd} is part of the SUNWPython package"
+
+   /usr/sbin/pkgchk -q -p ${pythonCmd} 1>/dev/null 2>&1
+   if [ $? -ne 0 ]; then
+       echo " - ERROR: ${pythonCmd} file of SUNWPython is not valid"
+       /usr/sbin/pkgchk -p ${pythonCmd} 
+       return 1
+   fi
+   echo " - ${pythonCmd} of SUNWPython package is valid."
+
+   pythonVersion="`${pythonCmd} -V 2>&1 |awk '/^Python / {printf "%s", $2}'`"
+   echo " - Python version ${pythonVersion} found"
+   pythonVersionOk="`${pythonCmd} -V 2>&1 |awk '/^Python 2.[0-9].[0-9]/ {\
+           split($2,arry,\".\");  \
+           if ( arry[2] >= 4 ) print \"true\"; \
+             else \
+           print \"false\"}'`"
+   if [ "$pythonVersionOk" != "true" ]; then
+       echo " - ERROR: Python version must be 2.4+"
+       return 1
+   fi
+   spaceFree="`df -k /var/lib/oslockdown/reports/ |egrep '^/' |awk '{printf \"%s\", $4}'`"
+   if [ ! -z "$spaceFree" ]; then
+       if [ $spaceFree -lt $minSpaceKB ]; then
+          echo 
+          echo " - WARNING: Only ${spaceFree} KB available for storing reports"
+          echo "            on /var/lib/oslockdown/reports. You should "
+          echo "            consider adding more space."
+       else
+          echo " - ${spaceFree} KB disk space available for reports (/var/lib/oslockdown/reports)" 
+       fi
+   fi
+   tcsPackages="TCSoslockdown-console TCSoslockdown-dispatcher TCSoslockdown-modules TCSoslockdown"
+   echo " - OS Lockdown packages:"
+   for pkg in $tcsPackages
+   do
+       isPkgInstalled $pkg
+       if [ $? -eq 0 ]; then
+           echo "   : $pkg is NOT installed"
+       else 
+           echo "   : $pkg is installed"
+       fi
+   done
+
+   echo " "
+   echo "  NOTE: If you are troubleshooting this installation, consider "
+   echo "        using OS Lockdown's built-in diagnostics module "
+   echo "        for a detailed analysis of this environment."
+   echo " "
+   echo "         # /usr/sbin/oslockdown -D"
+   echo " "
+
+return 0
+}
+
+
+
+cmd_usage() {
+   echo 
+   echo "$0 usage: "
+   echo "    -c    Configure Console only"
+   echo "    -d    Configure Dispatcher only"
+   echo "    -e    Check environment only"
+   echo "    -h    Usage message"
+   echo "    -l    Configure License only"
+   echo "    -n    Non-interactive mode, where possible."
+   echo " "
+   scriptExit 2
+}
+
+
+##############################################################################
+#####                   MAIN INSTALLATION STARTS HERE                     #### 
+##############################################################################
+OLDDIR=$PWD
+EXEC_DIR=`dirname $0`
+NOCERTS=0
+NEEDCERTS='no'
+NEEDLICENSE='no'
+ENVONLY="false"
+INTERACTIVE="true"
+CONFIG_DISPATCHER="true"
+CONFIG_CONSOLE="true"
+CONFIG_LICENSE="true"
+
+# We Must be root to run this script
+if [ "${SOLARIS}" = "yes" ]; then
+    if [ -z `/usr/xpg4/bin/id -u` -ne 0 ]; then
+        echo "ERROR: you must run this script as the 'root' user."
+        scriptExit 1
+    fi
+    TR=/usr/xpg4/bin/tr
+else
+    if [ `id -u` -ne 0 ]; then
+        echo "ERROR: you must run this script as the 'root' user."
+        scriptExit 1
+    fi
+    TR=tr
+fi
+
+# Process Command Line arguments (note behavior difference for getopt)
+
+case `uname -s` in
+  "SunOS" )  args=`${GETOPT} cdeln $*` ;;
+  "Linux" )  args=`${GETOPT} -q cdeln $*` ;;
+esac
+
+
+if [ $? -ne 0 ]; then
+    cmd_usage
+else
+   set -- $args
+fi
+while :
+do
+   case "$1"
+   in
+       -c)  CONFIG_DISPATCHER="false"; export CONFIG_DISPATCHER;
+            CONFIG_LICENSE="false"; export CONFIG_LICENSE;;
+
+       -d)  CONFIG_CONSOLE="false"; export CONFIG_CONSOLE;
+            CONFIG_LICENSE="false"; export CONFIG_LICENSE;;
+
+       -e)  ENVONLY="true"; export ENVONLY;;
+
+       -h)  cmd_usage;;
+
+       -l)  CONFIG_CONSOLE="false"; export CONFIG_CONSOLE;
+            CONFIG_DISPATCHER="false"; export CONFIG_DISPATCHER;;
+
+       -n)  INTERACTIVE="false"; export INTERACTIVE;;
+
+       --)  break;;
+   esac
+   shift
+done
+
+if [ "${CONFIG_CONSOLE}" = "true" -a "${CONFIG_DISPATCHER}" = "true" ]; then
+    show_banner
+fi
+
+if [ "${INTERACTIVE}" = "false" ]; then
+    echo " "
+    echo "Running in non-interactive mode."
+    echo " "
+fi
+
+
+
+##############################################################################
+# System Environment Checks
+# Test Generic OS configuration
+if [ "$SOLARIS" = "yes" ]; then
+    check_solaris_env    
+    if [ $? -eq 1 ]; then
+       echo
+       echo "WARNING: There were OS configuration issues found."
+    fi
+    echo
+else
+    check_linux_env
+    if [ $? -eq 1 ]; then
+       echo
+       echo "WARNING: There were OS configuration issues found."
+    fi
+    echo
+fi
+
+if [ "$ENVONLY" = "true" ]; then
+   echo "Environment only check complete."
+   scriptExit 0
+fi
+
+###############################################################################
+# Check for security credentials and setup variables
+# Does the Certificates directory exist?
+if [ ! -d /var/lib/oslockdown/files/certs ] ; then
+  NOCERTS=1
+fi
+NEEDCERTS='yes'
+NEEDLICENSE='yes'
+
+SB_REGISTER=${EXEC_DIR}/sb-register
+SB_REGISTER_TEST=${EXEC_DIR}/register_test
+CONSOLE_TYPE_FILE=/var/lib/oslockdown/files/ConsoleType.txt
+
+# Legacy license type files....
+SB_ENTERPRISE_LICENSE_KEY=/var/lib/oslockdown/files/.sb_enterprise.dat
+SB_STANDALONE_LICENSE_KEY=/var/lib/oslockdown/files/.sb_standalone.dat
+
+CATALINA_STARTUP=/usr/share/oslockdown/console/bin/catalina.sh
+CATALINA_PROPERTIES=/usr/share/oslockdown/console/conf/catalina.properties
+CATALINA_PROPERTIES_GOLD=/usr/share/oslockdown/console/conf/catalina.properties_gold
+console_port=8443
+console_mgmt_port=8444
+console_ip=""
+console_keystore=/var/lib/oslockdown/files/certs/GUI_keystore
+console_keypass="`/usr/share/oslockdown/tools/sb-keylocker -q -d -t tomcat_keystore`"
+console_truststore=/var/lib/oslockdown/files/certs/GUI_truststore
+console_trustpass="`/usr/share/oslockdown/tools/sb-keylocker -q -d -t tomcat_truststore`"
+
+DISPATCHER_EXEC=/sbin/OSL_Dispatcher
+DISPATCHER_PROPERTIES=/usr/share/oslockdown/cfg/osl-dispatcher.properties
+#dispatcher_address=`hostname`
+dispatcher_port=6443
+dispatcher_recv_timeout=2
+dispatcher_send_timeout=2
+dispatcher_accept_timeout=1
+#fill in remaining values...
+
+###############################################################################
+# See what installation type we have by looking for the legacy license key
+# files.  The contents do not matter for the opensource version.  
+# If you find both, prefer the Enterprise version over the Standalone version.
+# This file is used by the Console during runtime to dictate the changes between
+# the Enterprise and Standalone behavior.
+
+LICENSE="NO LICENSE"
+if [ -f ${CONSOLE_TYPE_FILE} ] ; then
+  LICENSE=`cat ${CONSOLE_TYPE_FILE}`
+elif [ -f ${SB_ENTERPRISE_LICENSE_KEY} ] ; then
+  echo "Detected legacy Enteprise license file - will configure as an Enterprise Console"
+  LICENSE="Enterprise"
+  echo "Enterprise" > ${CONSOLE_TYPE_FILE}
+elif [ -f ${SB_STANDALONE_LICENSE_KEY} ] ; then
+  echo "Detected legacy Standalone license file - will configure as a Standalone Console"
+  LICENSE="Standalone"
+  echo "Standalone" > ${CONSOLE_TYPE_FILE}
+fi
+
+if [ "${CONFIG_CONSOLE}" = "true" -a "${LICENSE}" = "NO LICENSE" -a "$INTERACTIVE" = "false" ]; then
+    echo "Unable to determine license type.  Please run the"
+    echo "'/usr/share/oslockdown/tools/SB_Setup' without"
+    echo "the '-n' option to choose a installation type"
+    exit 1
+fi
+if [ "$CONFIG_LICENSE" != "false" ]; then
+    if [ "${NEEDLICENSE}" = 'no' -a "$CONFIG_CONSOLE" != "true" ]; then
+        echo "Skipping Enterprise/Standalone selections... "
+    else
+      echo " "
+      echo "                     .:: INSTALLATION CONFIGURATION ::."
+      echo "${sbLine}"
+      if [ ! -z "${LICENSE}" ] ; then 
+        if [ "${INTERACTIVE}" = "false" ]; then
+            echo "This installation appears to be for the ${LICENSE} version."
+            NEEDLICENSE="NO"
+        else
+            if [ "${LICENSE}" = "NO LICENSE" ] ; then
+              ask_yes_or_no "Select an installation version? "  yes_or_no
+              if [ "${yes_or_no}" = "YES" ] ; then
+                NEEDLICENSE="yes"
+              else
+                NEEDLICENSE="NO"
+              fi
+            else
+              ask_yes_or_no "Current installation appears to be the ${LICENSE} version, change version? "  yes_or_no
+              if [ "${yes_or_no}" = "YES" ] ; then
+                NEEDLICENSE="yes"
+              else
+                NEEDLICENSE="NO"
+              fi
+            fi
+        fi
+      else
+        echo "You need to select between an Enterprise or Standalone version."
+        echo " "
+        echo 
+        ask_yes_or_no "    Select installation version now? " yes_or_no
+        if [ "${yes_or_no}" = "YES" ] ; then
+          LICENSE=""
+        else
+          LICENSE="NO_LICENSE"
+        fi
+      fi
+    
+      if [ -z "${LICENSE}" -o "${NEEDLICENSE}" = "yes" ]; then
+        echo ""
+        ENTER_LICENSE="true"
+        
+        while [ "$ENTER_LICENSE" = "true" ];  do
+            echo " "
+            echo "    Please select between an Enterprise or Standalone"
+            echo "    configuration for the Console.  You can change"
+            echo "    the installation type later to move from Standalone"
+            echo "    to Enterprise by these commands as root:"
+            echo "     # /usr/share/oslockdown/tools/SB_Setup -l "
+            echo "     # service osl-console restart"
+            echo "    It is not recommended to move from Enterprise to "
+            echo "    Standalone without competely deleting the database"
+            echo "    first."
+            echo " "
+
+            ask_yes_or_no "    Select an Enterprise installation?" yes_or_no
+            if [ "${yes_or_no}" = "YES" ] ; then
+              echo " "
+              echo "   Configuring for an Enterprise Console"
+              LICENSE="Enterprise"
+              touch ${CONSOLE_TYPE_FILE}
+              echo "Enterprise" > ${CONSOLE_TYPE_FILE}
+              restore_context ${CONSOLE_TYPE_FILE}
+              ENTER_LICENSE="false"
+            else 
+              echo " "
+              echo "   Configuring for a Standalone Console"
+              LICENSE="Standalone"
+              # force SELinux context if able
+              touch  ${CONSOLE_TYPE_FILE}
+              echo "Standalone" > ${CONSOLE_TYPE_FILE}
+              restore_context  ${CONSOLE_TYPE_FILE}
+              ENTER_LICENSE="false"
+            fi
+        done
+      fi
+    fi
+fi
+
+###############################################################################
+if [ "$NEEDLICENSE" = "yes" -a "$CONFIG_CONSOLE" != "false" -a "${LICENSE}" = "NO LICENSE" ] ; then
+  echo "The Console needs to be selected as either an Enterprise or Standalone Console."
+  echo "Please rerun the SB_Setup (or SB_Setup -l) command to select either an" 
+  echo "Enterprise or Standalone installation."
+  echo ""
+  echo "Console configuration step skipped."
+elif [ "$CONFIG_CONSOLE" != "false" ]; then
+    # If the console is installed, confirm the startup values, using 
+    # existing values if found.
+    echo " "
+    echo " "
+    echo "                     .:: CONSOLE CONFIGURATION ::. "
+    echo "${sbLine}"
+    if [ -x ${CATALINA_STARTUP} -a -f ${CATALINA_PROPERTIES_GOLD}  ] ; then
+      yes_or_no="YES"
+      if [ "${INTERACTIVE}" = "true" ]; then
+          ask_yes_or_no "Configure a Console on this system? " yes_or_no
+      fi
+
+      if [ "${yes_or_no}" = "YES" ] ; then
+        case `uname -s` in
+          "SunOS" )  stop_service_solaris osl-console ;;
+          "Linux" )  stop_service_linux osl-console ;;
+        esac
+
+        serverFile=/usr/share/oslockdown/console/conf/server.xml
+        if [ "${INTERACTIVE}" = "true" -a -f ${serverFile} ] ; then
+          echo "Detected an existing server.xml file.  If you are upgrading from a previous"
+          echo "version, please say 'yes' to the following question.  There are some"
+          echo "changes to our Tomcat configurations that need to be applied."
+          
+          echo "If you are not upgrading, then the choice of reconfiguring for different "
+          echo "cipher strengths is dependent on your site requirements."
+          echo " "
+          echo "Note that if you select to reconfigure, then the existing server.xml"
+          echo "file is completely overwritten, and any custom changes will be lost."
+          echo " "
+          ask_yes_or_no "Reconfigure cipher options?"  yes_or_no
+          if [ "${yes_or_no}" = "YES" ] ; then
+            rm -f ${serverFile}
+          fi
+        else
+          yes_or_no="YES"
+        fi
+        if [ "${yes_or_no}" = "YES" -o ! -f ${serverFile} ] ; then
+          if [ "${INTERACTIVE}" = "true" ] ; then
+            ask_yes_or_no "Should the Tomcat-based Console be restricted to use 'high-strength' ciphers? " yes_or_no
+          else
+            yes_or_no="NO"
+          fi 
+
+          if [ "${yes_or_no}" = "YES" ] ; then
+            fileToUse=/usr/share/oslockdown/console/conf/server.xml_restrict_ciphers
+            cp -p ${fileToUse} ${serverFile}
+            echo " "
+            echo "You can edit '/usr/share/oslockdown/console/conf/server.xml' to change"
+            echo "the list of acceptable ciphers.  Note that the connector is using the JSSE "
+            echo "configuration, so you must use cipher names compatible with Java.  NOT those"
+            echo "compatible with the OpenSSL implementation (APR connector)."  
+            echo " "
+            sleep 10
+          else
+            fileToUse=/usr/share/oslockdown/console/conf/server.xml_all_ciphers
+            cp -p ${fileToUse} ${serverFile}
+          fi
+        fi
+        if [ -f ${CATALINA_PROPERTIES} ] ; then
+          get_property_from_file "tcs.sb.console.port"	 ${CATALINA_PROPERTIES} console_port
+          get_property_from_file "tcs.sb.console.mgmt.port" ${CATALINA_PROPERTIES} console_mgmt_port
+          get_property_from_file "tcs.sb.console.ip"	 ${CATALINA_PROPERTIES} console_ip	 
+        fi
+
+        if [ "${LICENSE}" = "Enterprise" ] ; then
+          echo " "
+          echo "By what network name do the Clients know the Console?"
+          echo " "
+          if [ -z "${console_ip}" ] ; then
+            console_ip=`hostname`
+          fi
+          echo "        When communicating with Clients, the Console expects them to"
+          echo "        respond to \"${console_ip}\"."
+          echo " "
+          if [ "${INTERACTIVE}" = "false" ]; then
+            echo "        Defaulting to '${console_ip}'"
+          else
+            echo "        If Clients are unable to reach this address, specify a different "
+            echo "        one. Otherwise, press [ENTER] to accept this as the default."
+            echo " "
+            ask_for_string "        Use this address" console_ip "${console_ip}"
+          fi
+        else
+          echo "        Configuring Console for standalone installation."
+          console_ip="localhost"
+        fi
+    
+        #
+        # Get TCP port used by the console to handle web browser connections
+        # 
+        echo " "
+        echo " "
+        echo "How will web browsers connect to this Console?"
+        echo " "
+        echo "        By default, the Console will listen on port \"${console_port}\"."
+        echo " "
+        if [ "${INTERACTIVE}" = "false" ]; then
+            echo "        Defaulting to '${console_port}'"
+        else
+            ask_for_number "        Console port"  "${console_port}" console_port
+        fi
+        isAbleToConnect "${console_ip}" ${console_port}  results 
+    
+        while [ $results = "True" ]; do
+            echo "*******************************************************************"
+            echo "WARNING: TCP port ${console_port} is already in use by another "
+            echo "         process. Either shutdown the other process or choose "
+            echo "         a different port."
+            echo "*******************************************************************"
+            if [ "${INTERACTIVE}" = "false" ]; then
+                echo " "
+                echo "Aborting non-interactive mode."
+                echo " "
+                scriptExit 1
+            fi
+            ask_for_number "        Console https port"  "${console_port}" console_port
+            isAbleToConnect "${console_ip}" ${console_port}  results 
+        done
+        echo " "
+    
+        #
+        # Get TCP port used by the Tomcat Management Console  
+        # 
+        echo "What TCP port do you want to use for Tomcat Management?"
+        echo " "
+        echo "        By default, the Tomcat Server listens on TCP port ${console_mgmt_port} for "
+        echo "        shutdown and management commands. This port MUST be different than any "
+        echo "        other Tomcat servers that may be running on this system."
+        echo " " 
+        if [ "${INTERACTIVE}" = "false" ]; then
+            echo "        Defaulting to '${console_mgmt_port}'"
+        else
+            ask_for_number "        Tomcat Server's Management port"  "${console_mgmt_port}" console_mgmt_port
+        fi
+        isAbleToConnect "127.0.0.1" ${console_mgmt_port}  results 
+    
+        while [ $results = "True" ]; do
+            echo "*******************************************************************"
+            echo "WARNING: TCP port ${console_mgmt_port} is already in use by another "
+            echo "         process. Either shutdown the other process or choose "
+            echo "         a different port."
+            echo "*******************************************************************"
+            if [ "${INTERACTIVE}" = "false" ]; then
+                echo " "
+                echo "Aborting non-interactive mode."
+                echo " "
+                scriptExit 1
+            fi
+            ask_for_number "        Tomcat Server's Management port"  "${console_mgmt_port}" console_mgmt_port
+            isAbleToConnect "127.0.0.1" ${console_mgmt_port}  results 
+        done
+    
+#        selinux_configure_port "oslockdown" "oslockdown_console_port_t" ${console_port} "'$0 -c'"
+#        selinux_configure_port "oslockdown" "oslockdown_console_mgt_port_t" ${console_mgmt_port} "'$0 -c'"
+        
+        #
+        # Now, configure the tomcat files
+        #
+        rm -f ${CATALINA_PROPERTIES} 
+        cp -f ${CATALINA_PROPERTIES_GOLD} ${CATALINA_PROPERTIES}
+        chown sbwebapp ${CATALINA_PROPERTIES}
+        chmod 0400 ${CATALINA_PROPERTIES} 
+        cat << END_OF_CATALINA_PROPERTIES_EXTRA >> ${CATALINA_PROPERTIES}  
+
+#
+# Extras for SB_CONSOLE parameters
+tcs.sb.console.port=${console_port}
+tcs.sb.console.mgmt.port=${console_mgmt_port}
+tcs.sb.console.ip=${console_ip}
+tcs.sb.console.keystore=${console_keystore}
+tcs.sb.console.keypass=${console_keypass}
+tcs.sb.console.truststore=${console_truststore}
+tcs.sb.console.trustpass=${console_trustpass}
+END_OF_CATALINA_PROPERTIES_EXTRA
+
+        # Try and set SELinux context if appropriate
+        restore_context ${CATALINA_PROPERTIES}
+
+        # if no JAVA_HOME - must call
+        # if JAVA_HOME - ask if 
+        # if not ok or call meu
+
+        if [ "${INTERACTIVE}" = "false" ]; then
+            # take best shot....
+           /usr/share/oslockdown/tools/JavaHomeUtils.py -n -u sbwebapp
+           JavaHome=`/usr/share/oslockdown/tools/JavaHomeUtils.py -u sbwebapp`
+        else
+           JavaHome=`/usr/share/oslockdown/tools/JavaHomeUtils.py -u sbwebapp`
+           
+           # if a problem or no JAVA_HOME set, then we must call
+           if [ $? -ne 0 -o -z "${JavaHome}" ]; then
+              keepJava="NO"
+           else
+             ask_yes_or_no "    Use ${JavaHome} as JAVA_HOME" keepJava
+           fi
+  
+           if [ "${keepJava}" = "NO" ] ; then   
+             /usr/share/oslockdown/tools/JavaHomeUtils.py -i -u sbwebapp
+             JavaHome=`/usr/share/oslockdown/tools/JavaHomeUtils.py -u sbwebapp`
+           fi
+        fi
+        
+#        set_java_home
+
+        if [ ! -z "${JavaHome}" ] ; then
+          PATH="${JavaHome}/bin:${PATH}"
+          export PATH
+        else
+          echo "Unable to locate acceptable JAVA_HOME, exiting"
+          scriptExit 1
+        fi
+
+            
+        update_sbwebapp_profile
+        
+        if [ -d /usr/share/oslockdown/console/webapps/OSLockdown ]; then
+            rm -rf /usr/share/oslockdown/console/webapps/OSLockdown
+        fi
+    
+        #
+        #
+        # Start the console
+        # 
+        echo " "
+        echo " "
+        echo "Start the OS Lockdown Console now?"
+        echo " "
+        case `uname -s` in
+          "SunOS" )  start_service_solaris osl-console ;;
+          "Linux" )  start_service_linux osl-console ;;
+        esac
+      fi
+    fi
+fi
+
+##################################################################################
+# Look for the Dispatcher binary.  For now, only ask for the port.  
+# Eventually we'll ask for time-of-day limits, loading, etc
+if [ -x ${DISPATCHER_EXEC} -a "${CONFIG_DISPATCHER}" != "false" ] ; then
+  echo " "
+  echo " "
+  echo "                   .:: DISPATCHER CONFIGURATION ::."
+  echo "${sbLine}"
+  if [ "${INTERACTIVE}" = "false" ]; then
+      yes_or_no="YES"
+  else
+      ask_yes_or_no "Configure the Dispatcher on this machine? " yes_or_no
+  fi
+  if [ "${yes_or_no}" = "YES" ] ; then
+    if [ -x /etc/init.d/osl-dispatcher ] ; then
+      stop_service_linux osl-dispatcher
+    else
+      if [ "$SOLARIS" != "yes" ]; then
+          if [ -f /usr/share/oslockdown/init.osl-dispatcher ]; then
+             cp /usr/share/oslockdown/init.osl-dispatcher /etc/init.d/osl-dispatcher
+             chown root:root  /etc/init.d/osl-dispatcher
+             chmod 750 /etc/init.d/osl-dispatcher
+             /etc/init.d/osl-dispatcher stop 2>/dev/null
+          fi
+      else
+          stop_service_solaris osl-dispatcher
+      fi
+    fi
+    if [ -f ${DISPATCHER_PROPERTIES} ] ; then
+#      get_property_from_file "address"	${DISPATCHER_PROPERTIES} dispatcher_address
+      get_property_from_file "port"	${DISPATCHER_PROPERTIES} dispatcher_port
+      get_property_from_file "send_timeout"	${DISPATCHER_PROPERTIES} dispatcher_send_timeout
+      get_property_from_file "recv_timeout"	${DISPATCHER_PROPERTIES} dispatcher_recv_timeout
+      get_property_from_file "accept_timeout"	${DISPATCHER_PROPERTIES} dispatcher_accept_timeout
+    fi
+    
+    echo " "
+    echo "How will the Console connect to this dispatcher?"
+    echo " "
+    echo "        The Dispatcher normally listens on port 6443 for "
+    echo "        connections from the Console."
+    echo " "
+    if [ "${INTERACTIVE}" = "false" ]; then
+#        echo "     Dispatcher address       :   defaulting to '${dispatcher_address}'"
+        echo "     Dispatcher port          :   defaulting to '${dispatcher_port}'"
+        echo "     Dispatcher accept_timeout:   defaulting to '${dispatcher_accept_timeout}'"
+        echo "     Dispatcher recv_timeout  :   defaulting to '${dispatcher_recv_timeout}'"
+        echo "     Dispatcher send_timeout  :   defaulting to '${dispatcher_send_timeout}'"
+    else
+#        ask_for_string "        Dispatcher address " dispatcher_address "${dispatcher_address}"
+        ask_for_number "        Dispatcher port " "${dispatcher_port}" dispatcher_port
+        ask_for_number "        Dispatcher accept_timeout" "${dispatcher_accept_timeout}" dispatcher_accept_timeout
+        ask_for_number "        Dispatcher recv_timeout" "${dispatcher_recv_timeout}" dispatcher_recv_timeout
+        ask_for_number "        Dispatcher send_timeout" "${dispatcher_send_timeout}" dispatcher_send_timeout
+    fi
+#    isAbleToConnect "${dispatcher_address}" ${dispatcher_port}  results 
+    isAbleToConnect "127.0.0.1" ${dispatcher_port}  results 
+
+    while [ $results = "True" ]; do
+        echo "*******************************************************************"
+        echo "WARNING: TCP port ${dispatcher_port} is already in use by another "
+        echo "         process. Either shutdown the other process or choose "
+        echo "*******************************************************************"
+        if [ "${INTERACTIVE}" = "false" ]; then
+            echo " "
+            echo "Aborting non-interactive mode."
+            echo " "
+            scriptExit 1
+        fi
+#        ask_for_string "        Dispatcher address " dispatcher_address "${dispatcher_address}"
+        ask_for_number "        Dispatcher port" "${dispatcher_port}" dispatcher_port
+        isAbleToConnect "${dispatcher_address}" ${dispatcher_port}  results 
+    done
+
+#    selinux_configure_port "oslockdown" "oslockdown_dispatcher_port_t" ${dispatcher_port} "'$0 -d'"
+    # If they didn't choose the default port, display a friendly reminder
+    if [ "${dispatcher_port}" != "6443" ]; then
+        echo ""
+        echo "        NOTE: Remember to use port ${dispatcher_port} for this Client "
+        echo "              when referencing it in your Enterprise Console."
+    fi
+    echo " "
+
+    rm -f ${DISPATCHER_PROPERTIES}
+    touch ${DISPATCHER_PROPERTIES}
+    chmod 0400 ${DISPATCHER_PROPERTIES}
+    cat << END_OF_DISPATCHER_PROPERTIES >> ${DISPATCHER_PROPERTIES}
+port=${dispatcher_port}
+accept_timeout=${dispatcher_accept_timeout}
+recv_timeout=${dispatcher_recv_timeout}
+send_timeout=${dispatcher_send_timeout}
+END_OF_DISPATCHER_PROPERTIES
+    
+    restore_context  ${DISPATCHER_PROPERTIES}
+
+    echo "Start the OS Lockdown Dispatcher now?"
+    echo " "
+    case `uname -s` in
+        "SunOS" )  start_service_solaris osl-dispatcher ;;
+        "Linux" )  start_service_linux osl-dispatcher ;;
+    esac
+  fi
+fi
+
+
+##############################################################################
+echo " "
+
+scriptExit 0

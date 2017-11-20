@@ -1,0 +1,15 @@
+/var/lib/oslockdown/logs/oslockdown.log {
+    rotate 5
+    size 10M
+    notifempty
+    missingok
+    create 0640 root root
+}
+
+/var/log/oslockdown-dispatcher.log {
+    rotate 5
+    size 10M
+    notifempty
+    missingok
+    create 0640 root root
+}

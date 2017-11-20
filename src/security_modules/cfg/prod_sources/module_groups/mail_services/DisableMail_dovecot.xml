@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Mail (Dovecot mail server)">
+        <library>DisableMail_dovecot</library>
+        <description>Disables Dovecot, which is a mail server written primarily with security in mind. It provides IMAP and POP3 support. The IMAPS and POP3S support (IMAP and POP3 encrypted using SSL) can be used for security.</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>1</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/a:dovecot:dovecot"/>
+          <cpe-item name="cpe:/o:centos:centos:4">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:5">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:11.3">
+            <services>
+              <service seq="1" name="dovecot12" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot12"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:11:sp3">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot12"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:11">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot11"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:11">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot11"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:4">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:5">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:10">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:11">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:12">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:4">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:5">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:fedora:13">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:opensuse:10">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot11"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:novell:suse_linux:10">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot11"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:redhat:enterprise_linux:6">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:centos:centos:6">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot"/>
+            </packages>
+          </cpe-item>
+          <cpe-item name="cpe:/o:oracle:enterprise_linux:6">
+            <services>
+              <service seq="1" name="dovecot" stop-now="false"/>
+            </services>
+            <packages>
+              <package name="dovecot"/>
+            </packages>
+          </cpe-item>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Mail Services</member>
+        </views>
+      </security_module>

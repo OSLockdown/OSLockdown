@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: app-passwd-policy-composition.xml 23964 2017-03-21 21:04:23Z acochrane $ -->
+<section version="5.0" xml:id="app-passwd-policy-composition" xmlns="http://docbook.org/ns/docbook">
+ <title>Password Length and Composition</title>
+ <para> Establishing a <emphasis>password length and composition</emphasis> policy involves setting system parameters to
+  require users to have a minimum password length as well as the combination of characters required. Longer and more
+  complex passwords provide better protection against brute-force attacks. </para>
+ <table cellpadding="2" cellspacing="2" frame="all" xml:id="table-passwd-policy-settings-length">
+  <title>Password Length - Configuration</title>
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="1.0*"/>
+   <colspec colname="c2" colwidth="1.0*"/>
+   <colspec colname="c3" colwidth="1.2*"/>
+   <thead>
+    <row>
+     <entry>Linux</entry>
+     <entry>Solaris</entry>
+     <entry>OS Lockdown Module</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry><envar>PASS_MIN_LENGTH</envar></entry>
+     <entry><envar>PASSLENGTH</envar></entry>
+     <entry><link linkend="PasswordPolicyMinlen">Password Policy Length Minimum</link></entry>
+    </row>
+    <row>
+     <entry nameend="c2" namest="c1">Password field in <filename>/etc/shadow</filename> is not empty</entry>
+     <entry><link linkend="NoEmptyPasswords">No Empty Passwords</link></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </table>
+ <para> Linux configurations are made in <filename>/etc/login.defs</filename> and Solaris in
+   <filename>/etc/default/passwd</filename> . </para>
+ <table cellpadding="2" cellspacing="2" frame="all" xml:id="table-passwd-policy-settings-composition">
+  <title>Password Composition - Configuration</title>
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="1.0*"/>
+   <colspec colname="c2" colwidth="1.0*"/>
+   <colspec colname="c3" colwidth="1.2*"/>
+   <thead>
+    <row>
+     <entry>Linux</entry>
+     <entry>Solaris</entry>
+     <entry>OS Lockdown Module</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry><parameter>lcredit=-1</parameter></entry>
+     <entry><envar>MINLOWER</envar></entry>
+     <entry><link linkend="PasswordPolicyLowercase">Password Policy Lowercase Minimum</link></entry>
+    </row>
+    <row>
+     <entry><parameter>dcredit=-2</parameter></entry>
+     <entry><envar>MINDIGIT</envar></entry>
+     <entry><link linkend="PasswordPolicyNumbers">Password Policy Numeric Minimum</link></entry>
+    </row>
+    <row>
+     <entry><parameter>ocredit=-2</parameter></entry>
+     <entry><envar>MINSPECIAL</envar></entry>
+     <entry><link linkend="PasswordPolicySpecial">Password Policy Special Characters</link></entry>
+    </row>
+    <row>
+     <entry><parameter>ucredit=-1</parameter></entry>
+     <entry><envar>MINUPPER</envar></entry>
+     <entry><link linkend="PasswordPolicyUppercase">Password Policy Uppercase Minimum</link></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </table>
+</section>

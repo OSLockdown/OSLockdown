@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="NosuidOnUserFilesystems" version="5.0">
+  <title xml:id="Filesystems">Use NOSUID on User Filesystems</title>
+  <para>
+  Places the <parameter class="option">nosuid</parameter> option on user
+  filesystems, which prevents users from bringing set-UID programs into
+  the system.
+ </para>
+  <para>
+  On Linux systems, this module modifies the
+  <filename>/etc/fstab</filename> file. However, the modified entries in
+  the file are managed entries which are rewritten at system boot time
+  (see the <command>fstab-sync(8)</command> manual page). As a result,
+  this module will report a failure after each reboot.
+ </para>
+  <indexterm>
+    <primary>/etc/fstab</primary>
+  </indexterm>
+  <indexterm>
+    <primary>Files and Directories</primary>
+    <secondary>/etc/fstab</secondary>
+  </indexterm>
+  <indexterm>
+    <primary>ext2</primary>
+  </indexterm>
+  <indexterm>
+    <primary>ext3</primary>
+  </indexterm>
+  <informaltable frame="all" cellspacing="2" cellpadding="2">
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="1.0*" align="left"/>
+      <colspec colname="c2" colwidth="1.0*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Filesystem Entries</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="4">
+            <filename>/etc/fstab</filename>
+          </entry>
+          <entry morerows="4">
+            <simplelist type="horiz" columns="1">
+              <member>
+                <filename>/boot</filename>
+              </member>
+              <member>
+                <filename>/home</filename>
+              </member>
+              <member>
+                <filename>/usr/home</filename>
+              </member>
+            </simplelist>
+            <indexterm>
+              <primary>/boot</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/boot</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>/home</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/home</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>/usr/home</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/usr/home</secondary>
+            </indexterm>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+          <entry>
+            <filename>/etc/vfstab</filename>
+            <indexterm>
+              <primary>/etc/vfstab</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/vfstab</secondary>
+            </indexterm>
+          </entry>
+          <entry>
+            <filename>/export/home</filename>
+            <indexterm>
+              <primary>/export/home</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/export/home</secondary>
+            </indexterm>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <simplesect xml:id="NosuidOnUserFilesystems-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>7.2 - File System Controls</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN002420 - Removable media, remote file systems, and any file system not containing approved setuid files must be mounted with the "nosuid" option.</para>
+      </listitem>
+      <listitem>
+        <para>GEN005900 - The "nosuid" option must be enabled on all Network File System (NFS) client mounts.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN002420 - File Systems Mounted With nosuid</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-4042-8 - The nosuid option should be enabled or disabled as appropriate for all removable media.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

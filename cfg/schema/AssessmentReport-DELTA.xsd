@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ***************************************************************************** -->
+<!-- Copyright (c) 2007-2014 Forcepoint LLC.                                       -->
+<!-- This file is released under the GPLv3 license.                                -->
+<!-- See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license, -->
+<!-- or visit https://www.gnu.org/licenses/gpl.html instead.                       -->
+<!--                                                                          	   -->
+<!--   OS Lockdown - Assessment Comparison Report                        	   -->
+<!-- ***************************************************************************** -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="AssessmentReportDelta">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="report" minOccurs="2" maxOccurs="2">
+          <xs:complexType>
+            <xs:attribute name="profile" type="xs:string" use="required"/>
+            <xs:attribute name="hostname" type="xs:string" use="required"/>
+            <xs:attribute name="dist" type="xs:string" use="required"/>
+            <xs:attribute name="distVersion" type="xs:string" use="required"/>
+            <xs:attribute name="kernel" type="xs:string" use="required"/>
+            <xs:attribute name="cpuInfo" type="xs:string" use="required"/>
+            <xs:attribute name="arch" type="xs:string" use="required"/>
+            <xs:attribute name="totalMemory" type="xs:string" use="required"/>
+            <xs:attribute name="created" type="xs:string" use="required"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="added" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="module" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="removed" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="module" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="changed" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="module" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType mixed="true">
+                  <xs:sequence>
+                    <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:sequence>
+                      <xs:element name="views" minOccurs="0" maxOccurs="1">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="view" minOccurs="0" maxOccurs="unbounded"/>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="compliancy" minOccurs="1" maxOccurs="1">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="line-item" minOccurs="0" maxOccurs="unbounded">
+                              <xs:complexType>
+                                <xs:attribute name="source" type="xs:string" use="required"/>
+                                <xs:attribute name="name" type="xs:string" use="required"/>
+                                <xs:attribute name="version" type="xs:string" use="required"/>
+                                <xs:attribute name="item" type="xs:string" use="required"/>
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:sequence>
+                  <xs:attribute name="severityLevel" type="xs:integer" use="required"/>
+                  <xs:attribute name="severity" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:enumeration value="Low"/>
+                        <xs:enumeration value="Medium"/>
+                        <xs:enumeration value="High"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="name" use="required"/>
+                  <xs:attribute name="resultsA" type="xs:string" use="required"/>
+                  <xs:attribute name="resultsB" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="unchanged" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="module" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="upstreamSummary" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:attribute name="newFailures" type="xs:integer" use="optional"/>
+            <xs:attribute name="errors" type="xs:integer" use="optional"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="created" type="xs:string" use="required"/>
+      <xs:attribute name="sbVersion" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+ <!-- Generic Module element -->
+  <xs:element name="module">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence>
+          <xs:element name="views" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="view" minOccurs="0" maxOccurs="unbounded"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="compliancy" minOccurs="1" maxOccurs="1">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="line-item" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                    <xs:attribute name="source" type="xs:string" use="required"/>
+                    <xs:attribute name="name" type="xs:string" use="required"/>
+                    <xs:attribute name="version" type="xs:string" use="required"/>
+                    <xs:attribute name="item" type="xs:string" use="required"/>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:sequence>
+      <xs:attribute name="severity" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Low"/>
+            <xs:enumeration value="Medium"/>
+            <xs:enumeration value="High"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="severityLevel" type="xs:integer" use="required"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="results" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

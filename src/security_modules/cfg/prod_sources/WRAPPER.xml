@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oslockdown version="5.0.0">
+<!-- ******************************************************************************** -->
+<!-- * Copyright (c) 2007-2014 Forcepoint LLC.                                      * -->
+<!-- * This file is released under the GPLv3 license.                               * -->
+<!-- * See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,* -->
+<!-- * or visit https://www.gnu.org/licenses/gpl.html instead.      * -->
+<!-- *                                                                    	    * --> 
+<!-- * WARNING: Do not wrap module 'description' elements. Newlines are   	    * --> 
+<!-- *          are displayed in the console when building profiles.      	    * --> 
+<!-- *                                                                    	    * --> 
+<!-- *          Modifications to 'platforms' can have a huge impact on    	    * --> 
+<!-- *          module behavior on platforms. Do not edit unless you      	    * --> 
+<!-- *          exactly what you are doing.                               	    * --> 
+<!-- *                                                                    	    * --> 
+<!-- ******************************************************************************** -->
+<!-- $Id: security-modules.xml 20752 2013-01-24 16:36:36Z rsanders $ -->
+  <security_modules/>
+</oslockdown>

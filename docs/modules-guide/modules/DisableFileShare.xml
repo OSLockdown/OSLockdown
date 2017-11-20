@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableFileShare" version="5.0">
+  <title xml:id="FileSharingServices">Disable File Sharing Networks</title>
+  <para>
+  Peer-to-peer transfer services allow for the anonymous transfer of
+  files. If not configured correctly, your system files may become
+  writable. This module will disable the executables and connection
+  daemons for most of the file sharing networks available to Linux.
+ </para>
+  <para>
+  This module searches for the following executables in most standard
+  directories: <filename>apollon, bittorrent, bittorrent-console,
+  bittorrent-curses, giftd, gift-gnutella, gift-setup, gtk-gnutella,
+  LimeWire.jar, mlbt, mldc, mldonkey, mlgnut, mlslsk, nap,
+  napping,</filename> and <filename>qtella</filename>. If found, the
+  permissions will be set to zeros.
+  <indexterm><primary>bittorrent</primary></indexterm>
+
+  <indexterm><primary>console</primary></indexterm>
+ </para>
+  <para>
+  Some of the clients for file sharing networks that run on Windows®
+  will also work on Linux if launched using Wine. It is suggested that
+  unless Wine is necessary for your environment, it should be disabled.
+ </para>
+  <simplesect xml:id="DisableFileShare-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-13 - Limitation and Control of Network Ports, Protocols, and Services</para>
+      </listitem>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN006040 - The system must not have any peer-to-peer file-sharing application installed.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN006040 - Peer-to-Peer Application Authorization with DAA</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+      <listitem>
+        <para>CIP-005-3-R2.2 - Enable only ports and services needed for operations</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+      <listitem>
+        <para>CIP-007-3-R2.2 - Disable ports and services not needed for operations</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2.2 - Disable all unnecessary and insecure services</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

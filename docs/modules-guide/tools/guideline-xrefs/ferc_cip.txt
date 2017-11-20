@@ -1,0 +1,9 @@
+CIP-005-3-R2.2|Enable only ports and services needed for operations
+CIP-005-3-R2.6|Appropriate Use Banner
+CIP-005-3-R4.4|Review of controls for default accounts, passwords, and network management community strings
+CIP-007-3-R2.2|Disable ports and services not needed for operations
+CIP-007-3-R5.1.2|Generate logs of sufficient detail to create historical audit trails of individual user account access
+CIP-007-3-R5.2.1|Remove, disable, or rename factory default accounts
+CIP-007-3-R5.3.1|Passwords shall be a minimum of six characters
+CIP-007-3-R5.3.2|Passwords shall consist of a combination of alpha, numeric, and special characters
+CIP-007-3-R5.3.3|Passwords shall be changed at least annually

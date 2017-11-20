@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: SshdMaxAuthTries.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SshdMaxAuthTries" version="5.0">
+  <title xml:id="RemoteAccessServices">SSHD Maximum Authentication Attempts</title>
+  <para>
+  Set Secure Shell Server’s maximum authentication attempts permitted
+  per connection.
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2">
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="1.0*" align="left"/>
+      <colspec colname="c2" colwidth="1.0*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Setting</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="5">
+            <filename>/etc/ssh/sshd_config</filename>
+            <indexterm>
+              <primary>/etc/ssh/sshd_config</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/ssh/sshd_config</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>ssh</primary>
+            </indexterm>
+            <indexterm>
+              <primary>sshd</primary>
+            </indexterm>
+            <indexterm>
+              <primary>sshd_config</primary>
+            </indexterm>
+          </entry>
+          <entry morerows="5">
+            <parameter>MaxAuthTries</parameter>
+            <replaceable>number</replaceable>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <simplesect xml:id="SshdMaxAuthTries-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Maximum number of authentication attempts permitted per connection.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="SshdMaxAuthTries-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>4.5.6 - Force Secure Shell Account Lockout</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: bibliography.xml 13898 2011-03-04 21:21:42Z acochrane $ -->
+<bibliography xml:id="bibliography" xmlns="http://docbook.org/ns/docbook" 
+xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+ <title>Bibliography</title>
+ <bibliodiv>
+  <title>Books</title>
+  
+  <biblioentry xml:id="benv2006">
+   <abbrev>benv2006</abbrev>
+   <authorgroup>
+    <author>
+     <personname>
+      <firstname>Christian</firstname>
+      <surname>Benvenuti</surname>
+     </personname>
+    </author>
+   </authorgroup>
+   <copyright>
+    <year>2006</year>
+    <holder>O'Reilly Media, Inc.</holder>
+   </copyright>
+   <editor>
+    <personname>
+     <firstname>Andy</firstname>
+     <surname>Oram</surname>
+    </personname>
+   </editor>
+   <publisher>
+    <publishername>O'Reilly Media, Inc.</publishername>
+   </publisher>
+   <title>Understanding Linux Network Internals</title>
+  </biblioentry>
+ </bibliodiv>
+ 
+</bibliography>

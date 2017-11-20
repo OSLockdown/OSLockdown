@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="GssftpUmask" version="5.0">
+  <title xml:id="FileTransferServices">Set FTP Umask (gssftp)</title>
+  <para>
+  Sets the default umask on the GSS FTP Server. This umask setting is
+  077 and it affects files uploaded by users. This is to prevent other
+  users from reading or writing to other user files.
+  <indexterm><primary>FTP</primary></indexterm>
+
+  <indexterm><primary>umask</primary></indexterm>
+ </para>
+  <para>
+  If an FTP server is not needed, it is recommended to disable this
+  service.
+ </para>
+  <simplesect xml:id="GssftpUmask-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN005040 - All FTP users must have a default umask of 077.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN005040 - FTP User's umask</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>AC-3 - Access Enforcement</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2.3 - Configure system security parameters to prevent misuse</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

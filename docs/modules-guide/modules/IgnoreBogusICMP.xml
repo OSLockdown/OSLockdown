@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="IgnoreBogusICMP" version="5.0">
+  <title xml:id="NetworkConfig">Ignore Bogus ICMP4 Error Responses</title>
+  <para>
+  Configures the system to ignore bogus ICMP4 error responses.
+  <indexterm><primary>ICMP</primary></indexterm>
+ </para>
+  <para>
+  Misconfigured/noncompliant routers can generate bogus ICMP4 error
+  responses. Configuring your system to ignore these error messages can
+  help reduce the amount of data that is logged.
+ </para>
+  <table xml:id="table-ignorebogusicmp" frame="all" tocentry="0" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>IP Settings to Ignore Bogus ICMP4 Error Responses</title>
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.5*" align="left"/>
+      <colspec colname="c2" colwidth="0.5*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Setting</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+          <entry>
+            <filename>/etc/sysctl.conf</filename>
+            <indexterm>
+              <primary>/etc/sysctl.conf</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/sysctl.conf</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>sysctl.conf</primary>
+            </indexterm>
+          </entry>
+          <entry>
+            <literallayout class="monospaced">net.ipv4.icmp_ignore_bogus_error_responses=1</literallayout>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+  <simplesect xml:id="IgnoreBogusICMP-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000093 - The system must ignore ICMPv4 bogus error responses.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

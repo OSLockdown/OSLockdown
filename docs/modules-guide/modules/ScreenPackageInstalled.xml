@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: DisableRhnsd.xml 21205 2013-03-28 20:12:03Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="ScreenPackageInstalled" version="5.0">
+ <title xml:id="SysMgmtServices">Screen Package Installed</title>
+ <para>
+  The <filename>screen</filename> package provides a 'screen lock'
+  capability to any tty device, analogous to a graphical screen lock.
+  Please refer to the <filename>screen</filename> man page for more
+  information on usage and configuration.
+ </para>
+ <note>
+  <para>
+   This module is a scan-only module, and will only check to see if the
+   <filename>screen</filename> package is installed.
+  </para>
+ </note>
+ <simplesect xml:id="ScreenPackageInstalled-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>DISA Red Hat 6 STIG (V1R14)</title>
+   <listitem>
+    <para>
+     RHEL-06-000071 - The system must allow locking of the console
+     screen in text mode.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

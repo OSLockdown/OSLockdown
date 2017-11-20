@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_module sortKey="100" name="Disable Broadcast Packet Forwarding">
+        <library>DisableIpForwardingDirBdcsts</library>
+        <description>Disable Broadcast Packet Forwarding</description>
+        <scan_weight>1</scan_weight>
+        <action_weight>1</action_weight>
+        <severity_level>5</severity_level>
+        <platforms>
+          <cpe-item name="cpe:/o:sun:sunos:5.10"/>
+        </platforms>
+        <compliancy/>
+        <views>
+          <member>Network</member>
+        </views>
+      </security_module>

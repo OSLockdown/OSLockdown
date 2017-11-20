@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: DisableRestorecond.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableRestorecond" version="5.0">
+ <title xml:id="SELinux">Disable Restorecon</title>
+ <para>
+  Disables the SELinux Restorecon daemon. This daemon monitors a list of
+  files which are frequently created or modified on running systems, and
+  whose SELinux contexts are not set correctly. The restorecond program
+  is fairly simple, so it brings low risk, but, in its default
+  configuration, does not add much value to a system. An automated
+  program such as restorecond may be used to monitor problematic files
+  for context problems, or system administrators may be trained to check
+  file contexts of newly-created files.
+  <indexterm>
+   <primary>SELinux</primary>
+  </indexterm>
+ </para>
+ <para>
+  The restorecond daemon looks for creation events related to files
+  listed in <filename>/etc/selinux/restorecond.conf</filename>, and sets
+  the contexts of those files when they are discovered. However, system
+  administrators can check file contexts of newly-created files using
+  the <emphasis role="bold">ls -lZ</emphasis> command, and to repair
+  contexts manually using the
+  <emphasis role="bold">restorecon</emphasis> command.
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2" pgwide="0">
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="1.0*" align="left"/>
+   <colspec colname="c2" colwidth="1.0*"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Package</entry>
+     <entry>Service Names</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry>policycoreutils</entry>
+     <entry>restorecond</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+     <entry namest="c2" nameend="c3"><emphasis>Operating System Not Applicable</emphasis></entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+     <entry morerows="1">policycoreutils</entry>
+     <entry morerows="1">restorecond</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+     <entry morerows="1" namest="c2" nameend="c3"><emphasis>Operating System Not Applicable</emphasis></entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="DisableRestorecond-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>DHS Linux Configuration Guidance (2010.8)</title>
+   <listitem>
+    <para>
+     10 - SELinux (Security Enhanced Linux)
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     2.4.3.3 - Disable Restorecon Service
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NVD CCE</title>
+   <listitem>
+    <para>
+     CCE-4129-3 - The restorecond service should be enabled or disabled
+     as appropriate.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

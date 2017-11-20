@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: FirefoxAddons.xml 21641 2013-08-12 18:32:52Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="FirefoxAddons" version="5.0">
+ <title xml:id="DesktopApps">Firefox - Addons</title>
+ <para>
+  Disable the automatic updating of Mozilla Firefox extensions (Addons).
+  <indexterm>
+   <primary>Firefox</primary>
+  </indexterm>
+ </para>
+ <para>
+  These extensions add new functionality or change the browser’s
+  appearance. Since the extensions run in a user’s session, they are
+  allowed to manipulate data and the way the browser interacts with
+  other application and user commands. If malicious extensions are
+  installed automatically, a user’s security could be compromised.
+  This module does not prevent users from installing or updating
+  extensions — it just forces users to review the source of the
+  extension beforehand.
+ </para>
+ <para>
+  This module sets the following parameters in each user’s
+  <filename>$HOME/.mozilla/firefox/*/prefs.js</filename>:
+<programlisting>user_pref("xpinstall.whitelist.add", ""):
+user_pref("xpinstall.whitelist.add.103", "");
+user_pref("xpinstall.whitelist.required, true);</programlisting>
+ </para>
+ <simplesect xml:id="FirefoxAddons-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

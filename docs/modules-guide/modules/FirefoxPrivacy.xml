@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: FirefoxPrivacy.xml 21641 2013-08-12 18:32:52Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="FirefoxPrivacy" version="5.0">
+ <title xml:id="DesktopApps">Firefox - Privacy</title>
+ <para>
+  Sets each user’s Mozilla Firefox browser preferences to not store
+  previously entered form data, credentials, warn them when submitting
+  clear text form data, alert them when switching from secure to
+  insecure websites, and to only accept first party cookies.
+  <indexterm>
+   <primary>Firefox</primary>
+  </indexterm>
+ </para>
+ <para>
+  The following parameters are set in each user’s
+  <filename>$HOME/.mozilla/firefox/*/prefs.js</filename>:
+  <indexterm>
+   <primary>Shutdown</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>password</primary>
+  </indexterm>
+<programlisting>user_pref("network.cookie.cookieBehavior", 1);
+user_pref("signon.rememberSignons, false);
+user_pref("privacy.sanitize.sanitizeOnShutdown", true);
+user_pref("security.ask_for_password, 0);
+user_pref("browser.formfill.enable", false);
+user_pref("browser.sessionstore.privacy_level", 1)
+user_pref("browser.history_expire_days", 0);
+user_pref("browser.history_expire_days.mirror", 0);
+user_pref("browser.download.manager.retention", 0);
+user_pref("security.warn_leaving_secure", true);
+user_pref("security.warn_entering_secure", true);
+user_pref("security.warn_submit_insecure", true);</programlisting>
+ </para>
+ <simplesect xml:id="FirefoxPrivacy-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>DISA Mozilla Firefox STIG (v4 R2)</title>
+   <listitem>
+    <para>
+     DTBF130 - Switching from secure to insecure
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     DTBF140 - Autofill forms
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     DTBF160 - Password Store
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     DTBF170 - Cookies
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN004280 - Browser Form Data Warning
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN004300 - Browser Secure and Non-secure Content Warning
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     GEN004320 - Browser Leaving Encrypted Site Warning
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.3 - Configure system security parameters to prevent misuse
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

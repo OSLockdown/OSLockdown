@@ -1,0 +1,9 @@
+Package: oslockdown-modules
+Version: 4 
+Section: utils
+Priority: optional
+Architecture: all
+Depends: python (>= 2.6.5), oslockdown (>= 6.0.0)
+Maintainer: OSLockdown
+Homepage:  https://www.github.com/OSLockdown/OSLockdown
+Description: OS Lockdown Modules

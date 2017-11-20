@@ -1,0 +1,31 @@
+svccfg -v import /var/svc/manifest/site/ndd-config.xml
+id sbwebapp 1>/dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "'sbwebapp' account is missing"
+    exit 1
+fi
+
+chown -R sbwebapp:sbwebapp /var/lib/oslockdown/profiles 
+chown -R sbwebapp:sbwebapp /var/lib/oslockdown/baseline-profiles
+chmod 1770 /var/lib/oslockdown/profiles /var/lib/oslockdown/baseline-profiles
+chmod g+s /var/lib/oslockdown/profiles /var/lib/oslockdown/baseline-profiles
+
+chown -R root:sbwebapp /var/lib/oslockdown/logs
+
+chown -R root:sbwebapp /var/lib/oslockdown/reports
+
+chmod -R 1750 /var/lib/oslockdown/logs /var/lib/oslockdown/reports /var/lib/oslockdown/reports/standalone
+chmod g+s /var/lib/oslockdown/logs /var/lib/oslockdown/reports /var/lib/oslockdown/reports/standalone
+
+
+chown root:sbwebapp /var/lib/oslockdown/files /var/lib/oslockdown/files/*
+chmod 750 /var/lib/oslockdown/files /var/lib/oslockdown/files/*
+
+chown root:sbwebapp /usr/share/oslockdown/cfg /usr/share/oslockdown/cfg/*
+chmod 750 /usr/share/oslockdown/cfg /usr/share/oslockdown/cfg/*
+
+if [ -d /var/lib/oslockdown/certs ] ; then
+  chown root:sbwebapp /var/lib/oslockdown/certs /var/lib/oslockdown/certs/*
+  chmod 3750 /var/lib/oslockdown/files/certs /var/lib/oslockdown/certs/*
+fi 
+exit 0

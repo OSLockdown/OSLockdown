@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableProxyARP" version="5.0">
+  <title xml:id="NetworkConfig">Disable Proxy Address Resolution Protocol (Proxy ARP)</title>
+  <para>
+  Disables the system from using the Proxy Address Resolution Protocol
+  (Proxy ARP). If this protocol is enabled, then ARP requests from one
+  interface can “leak” over onto other interfaces, potentially
+  revealing information on network configuration.
+ </para>
+  <table xml:id="table-disable-proxy-arp-settings" frame="all" tocentry="0" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>IP Settings to Enable Reverse Path Source Validation</title>
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.5*" align="left"/>
+      <colspec colname="c2" colwidth="0.5*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Setting</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="4">
+            <filename>/etc/sysctl.conf</filename>
+            <indexterm>
+              <primary>/etc/sysctl.conf</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/sysctl.conf</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>sysctl.conf</primary>
+            </indexterm>
+          </entry>
+          <entry morerows="4">
+            <literallayout class="monospaced">
+net.ipv4.conf.all.proxy_arp = 0
+net.ipv4.conf.default.proxy_arp = 0</literallayout>
+            <indexterm>
+              <primary>proxy_arp</primary>
+            </indexterm>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+          <entry namest="c2" nameend="c3">
+            <emphasis>Operating System Not Applicable</emphasis>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+  <simplesect xml:id="DisableProxyARP-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN003608 - Proxy Address Resolution Protocol (Proxy ARP) must not be enabled on the system.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN003608 - Proxy ARP must not be enabled on the system.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

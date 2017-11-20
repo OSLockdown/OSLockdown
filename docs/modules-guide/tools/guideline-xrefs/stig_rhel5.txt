@@ -1,0 +1,569 @@
+GEN000000-LNX001431|The /etc/gshadow file must be owned by root.
+GEN000000-LNX001432|The /etc/gshadow file must be group-owned by root.
+GEN000000-LNX001433|The /etc/gshadow file must have mode 0400.
+GEN000000-LNX001434|The /etc/gshadow file must not have an extended ACL.
+GEN000000-LNX001476|The /etc/gshadow file must not contain any group password hashes.
+GEN000000-LNX00320|The system must not have special privilege accounts, such as shutdown and halt.
+GEN000000-LNX00360|The X server must have the correct options enabled.
+GEN000000-LNX00380|An X server must have none of the following options enabled: -ac, -core (except for debugging purposes), or -nolock.
+GEN000000-LNX00400|The /etc/access.conf file must be owned by root.
+GEN000000-LNX00420|The /etc/access.conf file must have a privileged group owner.
+GEN000000-LNX00440|The /etc/access.conf file must have mode 0640 or less permissive.
+GEN000000-LNX00450|The access.conf file must not have an extended ACL.
+GEN000000-LNX00480|The /etc/sysctl.conf file must be owned by root.
+GEN000000-LNX00500|The /etc/sysctl.conf file must be group-owned by root.
+GEN000000-LNX00520|The /etc/sysctl.conf file must have mode 0600 or less permissive.
+GEN000000-LNX00530|The /etc/sysctl.conf file must not have an extended ACL.
+GEN000000-LNX00560|The Linux NFS Server must not have the insecure file locking option.
+GEN000000-LNX00580|The x86 CTRL-ALT-DELETE key sequence must be disabled.
+GEN000000-LNX00600|The Linux PAM system must not grant sole access to admin privileges to the first user who logs into the console.
+GEN000000-LNX00620|The /etc/securetty file must be group-owned by root, sys, or bin.
+GEN000000-LNX00640|The /etc/securetty file must be owned by root.
+GEN000000-LNX00660|The /etc/securetty file must have mode 0640 or less permissive.
+GEN000000-LNX00720|Auditing must be enabled at boot by setting a kernel parameter.
+GEN000000-LNX00800|The system must use a Linux Security Module configured to limit the privileges of system services.
+GEN000020|The system must require authentication upon booting into single-user and maintenance modes.
+GEN000100|The operating system must be a supported release.
+GEN000120|Vendor-recommended software patches and updates, and system security patches and updates, must be installed and up-to-date.
+GEN000140-2|A file integrity baseline including cryptographic hashes must be created.
+GEN000140-3|A file integrity baseline including cryptographic hashes must be maintained.
+GEN000220|A file integrity tool must be used at least weekly to check for unauthorized file changes, particularly the addition of unauthorized system libraries or binaries, or for unauthorized modification to authorized system libraries or binaries.
+GEN000240|The system clock must be synchronized to an authoritative DoD time source.
+GEN000241|The system clock must be synchronized continuously, or at least daily.
+GEN000242|The system must use at least two time sources for clock synchronization.
+GEN000244|The system must use local time sources to the enclave.
+GEN000250|The time synchronization configuration file (such as /etc/ntp.conf) must be owned by root.
+GEN000251|The time synchronization configuration file (such as /etc/ntp.conf) must be group-owned by root, bin, or sys.
+GEN000252|The time synchronization configuration file (such as /etc/ntp.conf) must have mode 0640 or less permissive.
+GEN000253|The time synchronization configuration file (such as /etc/ntp.conf) must not have an extended ACL.
+GEN000280|Direct logins must not be permitted to shared, default, application, or utility accounts.
+GEN000290|The system must not have unnecessary accounts.
+GEN000290-1|The system must not have the unnecessary "games" account.
+GEN000290-2|The system must not have the unnecessary "news" account.
+GEN000290-3|The system must not have the unnecessary "gopher" account.
+GEN000290-4|The system must not have the unnecessary "ftp" account.
+GEN000300|All accounts on the system must have unique user or account names.
+GEN000320|All accounts must be assigned unique User Identification Numbers (UIDs).
+GEN000340|UIDs reserved for system accounts must not be assigned to non-system accounts.
+GEN000360|GIDs reserved for system accounts must not be assigned to non-system groups.
+GEN000380|All GIDs referenced in the /etc/passwd file must be defined in the /etc/group file.
+GEN000400|The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, console login prompts.
+GEN000402|The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts.
+GEN000410|The FTPS/FTP service on the system must be configured with the Department of Defense (DoD) login banner.
+GEN000440|Successful and unsuccessful logins and logouts must be logged.
+GEN000450|The system must limit users to 10 simultaneous system logins, or a site-defined number, in accordance with operational requirements.
+GEN000452|The system must display the date and time of the last successful account login upon login.
+GEN000460|The system must disable accounts after three consecutive unsuccessful login attempts.
+GEN000480|The delay between login prompts following a failed login attempt must be at least 4 seconds.
+GEN000500|Graphical desktop environments provided by the system must automatically lock after 15 minutes of inactivity and the system must require users to re-authenticate to unlock the environment.
+GEN000500-2|The graphical desktop environment must set the idle timeout to no more than 15 minutes.
+GEN000500-3|Graphical desktop environments provided by the system must have automatic lock enabled.
+GEN000510|The system must display a publicly-viewable pattern during a graphical desktop environment session lock.
+GEN000520|The root user must not own the logon session for an application requiring a continuous display.
+GEN000540|Users must not be able to change passwords more than once every 24 hours.
+GEN000560|The system must not have accounts configured with blank or null passwords.
+GEN000580|The system must require passwords contain a minimum of 14 characters.
+GEN000585|The system must enforce compliance of the entire password during authentification.
+GEN000590|The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes.
+GEN000595|The password hashes stored on the system must have been generated using a FIPS 140-2 approved cryptographic hashing algorithm.
+GEN000600|The system must require passwords contain at least one uppercase alphabetic character.
+GEN000600-2|Global settings defined in system-auth must be applied in the pam.d definition files.
+GEN000610|The system must require passwords contain at least one lowercase alphabetic character.
+GEN000620|The system must require passwords contain at least one numeric character.
+GEN000640|The system must require passwords contain at least one special character.
+GEN000680|The system must require passwords contain no more than three consecutive repeating characters.
+GEN000700|User passwords must be changed at least every 60 days.
+GEN000740|All non-interactive/automated processing account passwords must be changed at least once per year or be locked.
+GEN000750|The system must require at least four characters be changed between the old and new passwords during a password change.
+GEN000760|Accounts must be locked upon 35 days of inactivity.
+GEN000790|The system must prevent the use of dictionary words for passwords.
+GEN000800|The system must prohibit the reuse of passwords within five iterations.
+GEN000850|The system must restrict the ability to switch to the root user to members of a defined group.
+GEN000880|The root account must be the only account having a UID of 0.
+GEN000900|The root user's home directory must not be the root directory (/).
+GEN000920|The root account's home directory (other than /) must have mode 0700.
+GEN000930|The root account's home directory must not have an extended ACL.
+GEN000940|The root account's executable search path must be the vendor default and must contain only absolute paths.
+GEN000945|The root account's library search path must be the system default and must contain only absolute paths.
+GEN000950|The root account's list of preloaded libraries must be empty.
+GEN000960|The root account must not have world-writable directories in its executable search path.
+GEN000980|The system must prevent the root account from directly logging in except from the system console.
+GEN001000|Remote consoles must be disabled or protected from unauthorized access.
+GEN001020|The root account must not be used for direct log in.
+GEN001060|The system must log successful and unsuccessful access to the root account.
+GEN001080|The root shell must be located in the / file system.
+GEN001100|Root passwords must never be passed over a network in clear text form.
+GEN001120|The system must not permit root logins using remote access programs such as ssh.
+GEN001140|System files and directories must not have uneven access permissions.
+GEN001160|All files and directories must have a valid owner.
+GEN001170|All files and directories must have a valid group-owner.
+GEN001180|All network services daemon files must have mode 0755 or less permissive.
+GEN001190|All network services daemon files must not have extended ACLs.
+GEN001200|All system command files must have mode 0755 or less permissive.
+GEN001210|All system command files must not have extended ACLs.
+GEN001220|All system files, programs, and directories must be owned by a system account.
+GEN001240|System files, programs, and directories must be group-owned by a system group.
+GEN001260|System log files must have mode 0640 or less permissive.
+GEN001270|System log files must not have extended ACLs, except as needed to support authorized software.
+GEN001280|Manual page files must have mode 0644 or less permissive.
+GEN001290|All manual page files must not have extended ACLs.
+GEN001300|Library files must have mode 0755 or less permissive.
+GEN001310|All library files must not have extended ACLs.
+GEN001320|NIS/NIS+/yp files must be owned by root, sys, or bin.
+GEN001340|NIS/NIS+/yp files must be group-owned by root, sys, or bin.
+GEN001360|The NIS/NIS+/yp command files must have mode 0755 or less permissive.
+GEN001361|NIS/NIS+/yp command files must not have extended ACLs.
+GEN001362|The /etc/resolv.conf file must be owned by root.
+GEN001363|The /etc/resolv.conf file must be group-owned by root, bin, or sys.
+GEN001364|The /etc/resolv.conf file must have mode 0644 or less permissive.
+GEN001365|The /etc/resolv.conf file must not have an extended ACL.
+GEN001366|The /etc/hosts file must be owned by root.
+GEN001367|The /etc/hosts file must be group-owned by root, bin, or sys.
+GEN001368|The /etc/hosts file must have mode 0644 or less permissive.
+GEN001369|The /etc/hosts file must not have an extended ACL.
+GEN001371|The /etc/nsswitch.conf file must be owned by root.
+GEN001372|The /etc/nsswitch.conf file must be group-owned by root, bin, or sys.
+GEN001373|The /etc/nsswitch.conf file must have mode 0644 or less permissive.
+GEN001374|The /etc/nsswitch.conf file must not have an extended ACL.
+GEN001378|The /etc/passwd file must be owned by root.
+GEN001379|The /etc/passwd file must be group-owned by root, bin, or sys.
+GEN001380|The /etc/passwd file must have mode 0644 or less permissive.
+GEN001390|The /etc/passwd file must not have an extended ACL.
+GEN001391|The /etc/group file must be owned by root.
+GEN001392|The /etc/group file must be group-owned by root, bin, or sys.
+GEN001393|The /etc/group file must have mode 0644 or less permissive.
+GEN001394|The /etc/group file must not have an extended ACL.
+GEN001400|The /etc/shadow (or equivalent) file must be owned by root.
+GEN001410|The /etc/shadow file (or equivalent) must be group-owned by root, bin, or sys.
+GEN001420|The /etc/shadow (or equivalent) file must have mode 0400.
+GEN001430|The /etc/shadow file must not have an extended ACL.
+GEN001440|All interactive users must be assigned a home directory in the /etc/passwd file.
+GEN001460|All interactive user home directories defined in the /etc/passwd file must exist.
+GEN001470|The /etc/passwd file must not contain password hashes.
+GEN001475|The /etc/group file must not contain any group password hashes.
+GEN001480|All user home directories must have mode 0750 or less permissive.
+GEN001490|User home directories must not have extended ACLs.
+GEN001500|All interactive user home directories must be owned by their respective users.
+GEN001520|All interactive user home directories must be group-owned by the home directory owner's primary group.
+GEN001540|All files and directories contained in interactive user home directories must be owned by the home directory's owner.
+GEN001550|All files and directories contained in user home directories must be group-owned by a group of which the home directory's owner is a member.
+GEN001560|All files and directories contained in user home directories must have mode 0750 or less permissive.
+GEN001570|All files and directories contained in user home directories must not have extended ACLs.
+GEN001580|All run control scripts must have mode 0755 or less permissive.
+GEN001590|All run control scripts must have no extended ACLs.
+GEN001600|Run control scripts' executable search paths must contain only absolute paths.
+GEN001605|Run control scripts' library search paths must contain only absolute paths.
+GEN001610|Run control scripts' lists of preloaded libraries must contain only absolute paths.
+GEN001640|Run control scripts must not execute world-writable programs or scripts.
+GEN001660|All system start-up files must be owned by root.
+GEN001680|All system start-up files must be group-owned by root, sys, bin, other, or system.
+GEN001700|System start-up files must only execute programs owned by a privileged UID or an application.
+GEN001720|All global initialization files must have mode 0644 or less permissive.
+GEN001730|All global initialization files must not have extended ACLs.
+GEN001740|All global initialization files must be owned by root.
+GEN001760|All global initialization files must be group-owned by root, sys, bin, other, system, or the system default.
+GEN001780|Global initialization files must contain the "mesg -n" or "mesg n" commands.
+GEN001800|All skeleton files (typically those in /etc/skel) must have mode 0644 or less permissive.
+GEN001810|Skeleton files must not have extended ACLs.
+GEN001820|All skeleton files and directories (typically in /etc/skel) must be owned by root or bin.
+GEN001830|All skeleton files (typically in /etc/skel) must be group-owned by root, bin, sys, system, or other.
+GEN001840|All global initialization files' executable search paths must contain only absolute paths.
+GEN001845|Global initialization files' library search paths must contain only absolute paths.
+GEN001850|Global initialization files' lists of preloaded libraries must contain only absolute paths.
+GEN001860|All local initialization files must be owned by the home directory's user or root.
+GEN001870|Local initialization files must be group-owned by the user's primary group or root.
+GEN001880|All local initialization files must have mode 0740 or less permissive.
+GEN001890|Local initialization files must not have extended ACLs.
+GEN001900|All local initialization files' executable search paths must contain only absolute paths.
+GEN001901|Local initialization files' library search paths must contain only absolute paths.
+GEN001902|Local initialization files' lists of preloaded libraries must contain only absolute paths.
+GEN001940|User start-up files must not execute world-writable programs.
+GEN001980|The .rhosts, .shosts, hosts.equiv, shosts.equiv, /etc/passwd, /etc/shadow, and/or /etc/group files must not contain a plus (+) without defining entries for NIS+ netgroups.
+GEN002000|There must be no .netrc files on the system.
+GEN002020|All .rhosts, .shosts, or host.equiv files must only contain trusted host-user pairs.
+GEN002040|There must be no .rhosts, .shosts, hosts.equiv, or shosts.equiv files on the system.
+GEN002060|All .rhosts, .shosts, .netrc, or hosts.equiv files must be accessible by only root or the owner.
+GEN002100|The .rhosts file must not be supported in PAM.
+GEN002120|The /etc/shells (or equivalent) file must exist.
+GEN002140|All shells referenced in /etc/passwd must be listed in the /etc/shells file, except any shells specified for the purpose of preventing logins.
+GEN002200|All shell files must be owned by root or bin.
+GEN002210|All shell files must be group-owned by root, bin, sys, or system.
+GEN002220|All shell files must have mode 0755 or less permissive.
+GEN002230|All shell files must not have extended ACLs.
+GEN002260|The system must be checked for extraneous device files at least weekly.
+GEN002280|Device files and directories must only be writable by users with a system account or as configured by the vendor.
+GEN002300|Device files used for backup must only be readable and/or writable by root or the backup user.
+GEN002320|Audio devices must have mode 0660 or less permissive.
+GEN002330|Audio devices must not have extended ACLs.
+GEN002340|Audio devices must be owned by root.
+GEN002360|Audio devices must be group-owned by root, sys, bin, or system.
+GEN002380|The owner, group-owner, mode, ACL, and location of files with the setuid bit set must be documented using site-defined procedures.
+GEN002400|The system must be checked weekly for unauthorized setuid files as well as unauthorized modification to authorized setuid files.
+GEN002420|Removable media, remote file systems, and any file system not containing approved setuid files must be mounted with the "nosuid" option.
+GEN002430|Removable media, remote file systems, and any file system not containing approved device files must be mounted with the "nodev" option.
+GEN002440|The owner, group-owner, mode, ACL and location of files with the setgid bit set must be documented using site-defined procedures.
+GEN002460|The system must be checked weekly for unauthorized setgid files as well as unauthorized modification to authorized setgid files.
+GEN002480|Public directories must be the only world-writable directories and world-writable files must be located only in public directories.
+GEN002500|The sticky bit must be set on all public directories.
+GEN002520|All public directories must be owned by root or an application account.
+GEN002540|All public directories must be group-owned by root, sys, bin, or an application group.
+GEN002560|The system and user default umask must be 077.
+GEN002640|Default system accounts must be disabled or removed.
+GEN002660|Auditing must be implemented.
+GEN002680|System audit logs must be owned by root.
+GEN002690|System audit logs must be group-owned by root, bin, sys, or system.
+GEN002700|System audit logs must have mode 0640 or less permissive.
+GEN002710|All system audit files must not have extended ACLs.
+GEN002715|System audit tool executables must be owned by root.
+GEN002716|System audit tool executables must be group-owned by root, bin, sys, or system.
+GEN002717|System audit tool executables must have mode 0750 or less permissive.
+GEN002718|System audit tool executables must not have extended ACLs.
+GEN002719|The audit system must alert the SA in the event of an audit processing failure.
+GEN002720|The audit system must be configured to audit failed attempts to access files and programs.
+GEN002720-2|The audit system must be configured to audit failed attempts to access files and programs.
+GEN002720-3|The audit system must be configured to audit failed attempts to access files and programs.
+GEN002720-4|The audit system must be configured to audit failed attempts to access files and programs.
+GEN002720-5|The audit system must be configured to audit failed attempts to access files and programs.
+GEN002730|The audit system must alert the SA when the audit storage volume approaches its capacity.
+GEN002740|The audit system must be configured to audit files and programs deleted by the user.
+GEN002740-2|The audit system must be configured to audit file deletions.
+GEN002750|The audit system must be configured to audit account creation.
+GEN002751|The audit system must be configured to audit account modification.
+GEN002752|The audit system must be configured to audit account disabling.
+GEN002753|The audit system must be configured to audit account termination.
+GEN002760-10|The audit system must be configured to audit all administrative, privileged, and security actions.
+GEN002760-2|The audit system must be configured to audit all administrative, privileged, and security actions.
+GEN002760-3|The audit system must be configured to audit all administrative, privileged, and security actions.
+GEN002760-4|The audit system must be configured to audit all administrative, privileged, and security actions.
+GEN002760-5|The audit system must be configured to audit all administrative, privileged, and security actions.
+GEN002760-6|The audit system must be configured to audit all administrative, privileged, and security actions.
+GEN002760-7|The audit system must be configured to audit all administrative, privileged, and security actions.
+GEN002760-8|The audit system must be configured to audit all administrative, privileged, and security actions.
+GEN002760-9|The audit system must be configured to audit all administrative, privileged, and security actions.
+GEN002800|The audit system must be configured to audit login, logout, and session initiation.
+GEN002820|The audit system must be configured to audit all discretionary access control permission modifications.
+GEN002820-10|The audit system must be configured to audit all discretionary access control permission modifications.
+GEN002820-11|The audit system must be configured to audit all discretionary access control permission modifications.
+GEN002820-12|The audit system must be configured to audit all discretionary access control permission modifications.
+GEN002820-13|The audit system must be configured to audit all discretionary access control permission modifications.
+GEN002820-2|The audit system must be configured to audit all discretionary access control permission modifications.
+GEN002820-3|The audit system must be configured to audit all discretionary access control permission modifications.
+GEN002820-4|The audit system must be configured to audit all discretionary access control permission modifications.
+GEN002820-5|The audit system must be configured to audit all discretionary access control permission modifications.
+GEN002820-6|The audit system must be configured to audit all discretionary access control permission modifications.
+GEN002820-7|The audit system must be configured to audit all discretionary access control permission modifications.
+GEN002820-8|The audit system must be configured to audit all discretionary access control permission modifications.
+GEN002820-9|The audit system must be configured to audit all discretionary access control permission modifications.
+GEN002825|The audit system must be configured to audit the loading and unloading of dynamic kernel modules.
+GEN002825-2|The audit system must be configured to audit the loading and unloading of dynamic kernel modules - delete_module.
+GEN002825-3|The audit system must be configured to audit the loading and unloading of dynamic kernel modules - /sbin/insmod.
+GEN002825-4|The audit system must be configured to audit the loading and unloading of dynamic kernel modules -/sbin/modprobe.
+GEN002825-5|The audit system must be configured to audit the loading and unloading of dynamic kernel modules - /sbin/rmmod
+GEN002860|Audit logs must be rotated daily.
+GEN002870|The system must be configured to send audit records to a remote audit server.
+GEN002960|Access to the cron utility must be controlled using the cron.allow and/or cron.deny file(s).
+GEN002980|The cron.allow file must have mode 0600 or less permissive.
+GEN002990|The cron.allow file must not have an extended ACL.
+GEN003000|Cron must not execute group-writable or world-writable programs.
+GEN003020|Cron must not execute programs in, or subordinate to, world-writable directories.
+GEN003040|Crontabs must be owned by root or the crontab creator.
+GEN003050|Crontab files must be group-owned by root, cron, or the crontab creator's primary group.
+GEN003060|Default system accounts (with the exception of root) must not be listed in the cron.allow file or must be included in the cron.deny file, if cron.allow does not exist.
+GEN003080|Crontab files must have mode 0600 or less permissive, and files in cron script directories must have mode 0700 or less permissive.
+GEN003080-2|Files in cron script directories must have mode 0700 or less permissive.
+GEN003090|Crontab files must not have extended ACLs.
+GEN003100|Cron and crontab directories must have mode 0755 or less permissive.
+GEN003110|Cron and crontab directories must not have extended ACLs.
+GEN003120|Cron and crontab directories must be owned by root or bin.
+GEN003140|Cron and crontab directories must be group-owned by root, sys, bin or cron.
+GEN003160|Cron logging must be implemented.
+GEN003180|The cronlog file must have mode 0600 or less permissive.
+GEN003190|The cron log files must not have extended ACLs.
+GEN003200|The cron.deny file must have mode 0600 or less permissive.
+GEN003210|The cron.deny file must not have an extended ACL.
+GEN003220|Cron programs must not set the umask to a value less restrictive than 077.
+GEN003240|The cron.allow file must be owned by root, bin, or sys.
+GEN003245|The at.allow file must not have an extended ACL.
+GEN003250|The cron.allow file must be group-owned by root, bin, sys, or cron.
+GEN003252|The at.deny file must have mode 0600 or less permissive.
+GEN003255|The at.deny file must not have an extended ACL.
+GEN003260|The cron.deny file must be owned by root, bin, or sys.
+GEN003270|The cron.deny file must be group-owned by root, bin, sys, or cron.
+GEN003280|Access to the "at" utility must be controlled via the at.allow and/or at.deny file(s).
+GEN003300|The at.deny file must not be empty if it exists.
+GEN003320|Default system accounts (with the exception of root) must not be listed in the at.allow file or must be included in the at.deny file if the at.allow file does not exist.
+GEN003340|The at.allow file must have mode 0600 or less permissive.
+GEN003360|The "at" daemon must not execute group-writable or world-writable programs.
+GEN003380|The "at" daemon must not execute programs in, or subordinate to, world-writable directories.
+GEN003400|The "at" directory must have mode 0755 or less permissive.
+GEN003410|The "at" directory must not have an extended ACL.
+GEN003420|The at directory must be owned by root, bin, sys, daemon, or cron.
+GEN003430|The "at" directory must be group-owned by root, bin, sys, or cron.
+GEN003440|"At" jobs must not set the umask to a value less restrictive than 077.
+GEN003460|The at.allow file must be owned by root, bin, or sys.
+GEN003470|The at.allow file must be group-owned by root, bin, sys, or cron.
+GEN003480|The at.deny file must be owned by root, bin, or sys.
+GEN003490|The at.deny file must be group-owned by root, bin, sys, or cron.
+GEN003500|Process core dumps must be disabled unless needed.
+GEN003510|Kernel core dumps must be disabled unless needed.
+GEN003520|The kernel core dump data directory must be owned by root.
+GEN003521|The kernel core dump data directory must be group-owned by root, bin, sys, or system.
+GEN003522|The kernel core dump data directory must have mode 0700 or less permissive.
+GEN003523|The kernel core dump data directory must not have an extended ACL.
+GEN003540|The system must implement non-executable program stacks.
+GEN003581|Network interfaces must not be configured to allow user control.
+GEN003600|The system must not forward IPv4 source-routed packets.
+GEN003601|TCP backlog queue sizes must be set appropriately.
+GEN003602|The system must not process Internet Control Message Protocol (ICMP)  timestamp requests.
+GEN003603|The system must not respond to Internet Control Message Protocol v4 (ICMPv4) echoes sent to a broadcast address.
+GEN003604|The system must not respond to Internet Control Message Protocol (ICMP) timestamp requests sent to a broadcast address.
+GEN003607|The system must not accept source-routed IPv4 packets.
+GEN003608|Proxy Address Resolution Protocol (Proxy ARP) must not be enabled on the system.
+GEN003609|The system must ignore IPv4 Internet Control Message Protocol (ICMP) redirect messages.
+GEN003610|The system must not send IPv4 Internet Control Message Protocol (ICMP) redirects.
+GEN003611|The system must log martian packets.
+GEN003612|The system must be configured to use TCP syncookies when experiencing a TCP SYN flood.
+GEN003619|The system must not be configured for network bridging.
+GEN003620|A separate file system must be used for user home directories (such as /home or an equivalent).
+GEN003621|The system must use a separate file system for /var.
+GEN003623|The system must use a separate file system for the system audit data path.
+GEN003624|The system must use a separate file system for /tmp (or equivalent).
+GEN003640|The root file system must employ journaling or another mechanism ensuring file system consistency.
+GEN003650|All local file systems must employ journaling or another mechanism ensuring file system consistency.
+GEN003660|The system must log informational authentication data.
+GEN003700|Inetd and xinetd must be disabled or removed if no network services utilizing them are enabled.
+GEN003720|The inetd.conf file, xinetd.conf file, and the xinetd.d directory must be owned by root or bin.
+GEN003730|The inetd.conf file, xinetd.conf file, and the xinetd.d directory must be group-owned by root, bin, sys, or system.
+GEN003740|The inetd.conf and xinetd.conf files must have mode 0440 or less permissive.
+GEN003745|The inetd.conf and xinetd.conf files must not have extended ACLs.
+GEN003750|The xinetd.d directory must have mode 0755 or less permissive.
+GEN003755|The xinetd.d directory must not have an extended ACL.
+GEN003760|The services file must be owned by root or bin.
+GEN003770|The services file must be group-owned by root, bin, sys, or system.
+GEN003780|The services file must have mode 0644 or less permissive.
+GEN003790|The services file must not have an extended ACL.
+GEN003800|Inetd or xinetd logging/tracing must be enabled.
+GEN003810|The portmap or rpcbind service must not be running unless needed.
+GEN003815|The portmap or rpcbind service must not be installed unless needed.
+GEN003820|The rsh daemon must not be running.
+GEN003825|The rshd service must not be installed.
+GEN003830|The rlogind service must not be running.
+GEN003835|The rlogind service must not be installed.
+GEN003840|The rexec daemon must not be running.
+GEN003845|The rexecd service must not be installed.
+GEN003850|The telnet daemon must not be running.
+GEN003860|The system must not have the finger service active.
+GEN003865|Network analysis tools must not be installed.
+GEN003900|The hosts.lpd file (or equivalent) must not contain a ‘+’ character.
+GEN003920|The hosts.lpd (or equivalent) file must be owned by root, bin, sys, or lp.
+GEN003930|The hosts.lpd (or equivalent) file must be group-owned by root, bin, sys, or system.
+GEN003940|The hosts.lpd (or equivalent) must have mode 0644 or less permissive.
+GEN003950|The hosts.lpd (or equivalent) file must not have an extended ACL.
+GEN003960|The traceroute command owner must be root.
+GEN003980|The traceroute command must be group-owned by sys, bin, root, or system.
+GEN004000|The traceroute file must have mode 0700 or less permissive.
+GEN004010|The traceroute file must not have an extended ACL.
+GEN004220|Administrative accounts must not run a web browser, except as needed for local service administration.
+GEN004360|The alias file must be owned by root.
+GEN004370|The aliases file must be group-owned by root, sys, bin, or system.
+GEN004380|The alias file must have mode 0644 or less permissive.
+GEN004390|The alias file must not have an extended ACL.
+GEN004400|Files executed through a mail aliases file must be owned by root and must reside within a directory owned and writable only by root.
+GEN004410|Files executed through a mail aliases file must be group-owned by root, bin, sys, or system, and must reside within a directory group-owned by root, bin, sys, or system.
+GEN004420|Files executed through a mail aliases file must have mode 0755 or less permissive.
+GEN004430|Files executed through a mail aliases file must not have extended ACLs.
+GEN004440|Sendmail logging must not be set to less than nine in the sendmail.cf file.
+GEN004460|The system syslog service must log informational and more severe SMTP service messages.
+GEN004480|The SMTP service log file must be owned by root.
+GEN004500|The SMTP service log file must have mode 0644 or less permissive.
+GEN004510|The SMTP service log file must not have an extended ACL.
+GEN004540|The SMTP service HELP command must not be enabled.
+GEN004560|The SMTP service's SMTP greeting must not provide version information.
+GEN004580|The system must not use .forward files.
+GEN004600|The SMTP service must be an up-to-date version.
+GEN004620|The sendmail server must have the debug feature disabled.
+GEN004640|The SMTP service must not have a uudecode alias active.
+GEN004660|The SMTP service must not have the EXPN feature active.
+GEN004680|The SMTP service must not have the Verify (VRFY) feature active.
+GEN004700|The sendmail service must not have the wizard backdoor active.
+GEN004710|Mail relaying must be restricted.
+GEN004800|Unencrypted FTP must not be used on the system.
+GEN004820|Anonymous FTP must not be active on the system unless authorized.
+GEN004840|If the system is an anonymous FTP server, it must be isolated to the DMZ network.
+GEN004880|The ftpusers file must exist.
+GEN004900|The ftpusers file must contain account names not allowed to use FTP.
+GEN004920|The ftpusers file must be owned by root.
+GEN004930|The ftpusers file must be group-owned by root, bin, sys, or system.
+GEN004940|The ftpusers file must have mode 0640 or less permissive.
+GEN004950|The ftpusers file must not have an extended ACL.
+GEN004980|The FTP daemon must be configured for logging or verbose mode.
+GEN005000|Anonymous FTP accounts must not have a functional shell.
+GEN005040|All FTP users must have a default umask of 077.
+GEN005080|The TFTP daemon must operate in "secure mode" which provides access only to a single directory on the host file system.
+GEN005100|The TFTP daemon must have mode 0755 or less permissive.
+GEN005120|The TFTP daemon must be configured to vendor specifications, including a dedicated TFTP user account, a non-login shell such as /bin/false, and a home directory owned by the TFTP user.
+GEN005140|Any active TFTP daemon must be authorized and approved in the system accreditation package.
+GEN005160|Any X Windows host must write .Xauthority files.
+GEN005180|All .Xauthority files must have mode 0600 or less permissive.
+GEN005190|The .Xauthority files must not have extended ACLs.
+GEN005200|X displays must not be exported to the world.
+GEN005220|.Xauthority or X*.hosts (or equivalent) file(s) must be used to restrict access to the X server.
+GEN005240|The .Xauthority utility must only permit access to authorized hosts.
+GEN005260|X Window System connections not required must be disabled.
+GEN005280|The system must not have the UUCP service active.
+GEN005300|SNMP communities, users, and passphrases must be changed from the default.
+GEN005305|The SNMP service must use only SNMPv3 or its successors.
+GEN005306|The SNMP service must require the use of a FIPS 140-2 approved cryptographic hash algorithm as part of its authentication and integrity methods.
+GEN005307|The SNMP service must require the use of a FIPS 140-2 approved encryption algorithm for protecting the privacy of SNMP messages.
+GEN005320|The snmpd.conf file must have mode 0600 or less permissive.
+GEN005340|Management Information Base (MIB) files must have mode 0640 or less permissive.
+GEN005350|Management Information Base (MIB) files must not have extended ACLs.
+GEN005360|The snmpd.conf file must be owned by root.
+GEN005365|The snmpd.conf file must be group-owned by root, bin, sys, or system.
+GEN005375|The snmpd.conf file must not have an extended ACL.
+GEN005380|If the system is a Network Management System (NMS) server, it must only run the NMS and any software required by the NMS.
+GEN005390|The /etc/syslog.conf file must have mode 0640 or less permissive.
+GEN005395|The /etc/syslog.conf file must not have an extended ACL.
+GEN005400|The /etc/syslog.conf file must be owned by root.
+GEN005420|The /etc/syslog.conf file must be group-owned by root, bin, sys, or system.
+GEN005440|The system must not be used as a syslog server (loghost) for systems external to the enclave.
+GEN005450|The system must use a remote syslog server (loghost).
+GEN005460|The system must only use remote syslog servers (log hosts) that is justified and documented using site-defined procedures.
+GEN005480|The syslog daemon must not accept remote messages unless it is a syslog server documented using site-defined procedures.
+GEN005500|The SSH daemon must be configured to only use the SSHv2 protocol.
+GEN005501|The SSH client must be configured to only use the SSHv2 protocol.
+GEN005504|The SSH daemon must only listen on management network addresses unless authorized for uses other than management.
+GEN005505|The SSH daemon must be configured to only use FIPS 140-2 approved ciphers.
+GEN005506|The SSH daemon must be configured to not use Cipher-Block Chaining (CBC) ciphers.
+GEN005507|The SSH daemon must be configured to only use Message Authentication Codes (MACs) employing FIPS 140-2 approved cryptographic hash algorithms.
+GEN005510|The SSH client must be configured to only use FIPS 140-2 approved ciphers.
+GEN005511|The SSH client must be configured to not use Cipher-Block Chaining (CBC)-based ciphers.
+GEN005512|The SSH client must be configured to only use Message Authentication Codes (MACs) employing FIPS 140-2 approved cryptographic hash algorithms.
+GEN005521|The SSH daemon must restrict login ability to specific users and/or groups.
+GEN005522|The SSH public host key files must have mode 0644 or less permissive.
+GEN005523|The SSH private host key files must have mode 0600 or less permissive.
+GEN005524|The SSH daemon must not permit GSSAPI authentication unless needed.
+GEN005525|The SSH client must not permit GSSAPI authentication unless needed.
+GEN005526|The SSH daemon must not permit Kerberos authentication unless needed.
+GEN005536|The SSH daemon must perform strict mode checking of home directory configuration files.
+GEN005537|The SSH daemon must use privilege separation.
+GEN005538|The SSH daemon must not allow rhosts RSA authentication.
+GEN005539|The SSH daemon must not allow compression or must only allow compression after successful authentication.
+GEN005540|The SSH daemon must be configured for IP filtering.
+GEN005550|The SSH daemon must be configured with the Department of Defense (DoD) logon banner.
+GEN005560|The system must be configured with a default gateway for IPv4 if the system uses IPv4, unless the system is a router.
+GEN005570|The system must be configured with a default gateway for IPv6 if the system uses IPv6, unless the system is a router.
+GEN005580|A system used for routing must not run other network services or applications.
+GEN005590|The system must not be running any routing protocol daemons, unless the system is a router.
+GEN005600|IP forwarding for IPv4 must not be enabled, unless the system is a router.
+GEN005610|The system must not have IP forwarding for IPv6 enabled, unless the system is an IPv6 router.
+GEN005740|The Network File System (NFS) export configuration file must be owned by root.
+GEN005750|The Network File System (NFS) export configuration file must be group-owned by root, bin, sys, or system.
+GEN005760|The Network File System (NFS) export configuration file must have mode 0644 or less permissive.
+GEN005770|The Network File System (NFS) exports configuration file must not have an extended ACL.
+GEN005800|All Network File System (NFS) exported system files and system directories must be owned by root.
+GEN005810|All Network File System (NFS) exported system files and system directories must be group-owned by root, bin, sys, or system.
+GEN005820|The Network File System (NFS) anonymous UID and GID must be configured to values without permissions.
+GEN005840|The Network File System (NFS) server must be configured to restrict file system access to local hosts.
+GEN005880|The Network File System (NFS) server must not allow remote root access.
+GEN005900|The "nosuid" option must be enabled on all Network File System (NFS) client mounts.
+GEN006000|The system must not have a public Instant Messaging (IM) client installed.
+GEN006040|The system must not have any peer-to-peer file-sharing application installed.
+GEN006060|The system must not run Samba unless needed.
+GEN006080|The Samba Web Administration Tool (SWAT) must be restricted to the local host or require SSL.
+GEN006100|The /etc/smb.conf file must be owned by root.
+GEN006120|The /etc/smb.conf file must be group-owned by root, bin, sys, or system.
+GEN006140|The /etc/smb.conf file must have mode 0644 or less permissive.
+GEN006150|The /etc/smb.conf file must not have an extended ACL.
+GEN006160|The /etc/smbpasswd file must be owned by root.
+GEN006180|The smbpasswd file must be group-owned by root.
+GEN006200|The smbpasswd file must have mode 0600 or less permissive.
+GEN006210|The /etc/smbpasswd file must not have an extended ACL.
+GEN006220|The smb.conf file must use the "hosts" option to restrict access to Samba.
+GEN006225|Samba must be configured to use an authentication mechanism other than "share."
+GEN006230|Samba must be configured to use encrypted passwords.
+GEN006235|Samba must be configured to not allow guest access to shares.
+GEN006240|The system must not run an Internet Network News (INN) server.
+GEN006260|The /etc/news/incoming.conf (or equivalent) must have mode 0600 or less permissive.
+GEN006270|The /etc/news/hosts.nntp file must not have an extended ACL.
+GEN006280|The /etc/news/infeed.conf (or equivalent) must have mode 0600 or less permissive.
+GEN006290|The /etc/news/hosts.nntp.nolimit file must not have an extended ACL.
+GEN006300|The /etc/news/readers.conf (or equivalent) must have mode 0600 or less permissive.
+GEN006310|The /etc/news/nnrp.access file must not have an extended ACL.
+GEN006320|The /etc/news/passwd.nntp file (or equivalent) must have mode 0600 or less permissive.
+GEN006330|The /etc/news/passwd.nntp file must not have an extended ACL.
+GEN006340|Files in /etc/news must be owned by root or news.
+GEN006360|The files in /etc/news must be group-owned by root or news.
+GEN006380|The system must not use UDP for NIS/NIS+.
+GEN006400|The Network Information System (NIS) protocol must not be used.
+GEN006420|NIS maps must be protected through hard-to-guess domain names.
+GEN006480|The system must have a host-based intrusion detection tool installed.
+GEN006560|The system vulnerability assessment tool, host-based intrusion detection tool, and file integrity tool must notify the SA and the IAO of a security breach or a suspected security breach.
+GEN006565|The system package management tool must be used to verify system software periodically.
+GEN006570|The file integrity tool must be configured to verify ACLs.
+GEN006571|The file integrity tool must be configured to verify extended attributes.
+GEN006575|The file integrity tool must use FIPS 140-2 approved cryptographic hashes for validating file contents.
+GEN006580|The system must use an access control program.
+GEN006600|The system's access control program must log each system access attempt.
+GEN006620|The system's access control program must be configured to grant or deny system access to specific hosts.
+GEN006640|The system must use and update a DoD-approved virus scan program.
+GEN007020|The Stream Control Transmission Protocol (SCTP) must be disabled unless required.
+GEN007080|The Datagram Congestion Control Protocol (DCCP) must be disabled unless required.
+GEN007260|The AppleTalk protocol must be disabled or not installed.
+GEN007480|The Reliable Datagram Sockets (RDS) protocol must be disabled or not installed unless required.
+GEN007540|The Transparent Inter-Process Communication (TIPC) protocol must be disabled or uninstalled.
+GEN007660|The Bluetooth protocol handler must be disabled or not installed.
+GEN007700|The IPv6 protocol handler must not be bound to the network stack unless needed.
+GEN007720|The IPv6 protocol handler must be prevented from dynamic loading unless needed.
+GEN007780|The system must not have 6to4 enabled.
+GEN007800|The system must not have Teredo enabled.
+GEN007820|The system must not have IP tunnels configured.
+GEN007840|The DHCP client must be disabled if not needed.
+GEN007850|The DHCP client must not send dynamic DNS updates.
+GEN007860|The system must ignore IPv6 ICMP redirect messages.
+GEN007920|The system must not forward IPv6 source-routed packets.
+GEN007950|The system must not respond to ICMPv6 echo requests sent to a broadcast address.
+GEN007960|The 'ldd' command must be disabled unless it protects against the execution of untrusted files.
+GEN007980|If the system is using LDAP for authentication or account information, the system must use a TLS connection using FIPS 140-2 approved cryptographic algorithms.
+GEN008000|If the system is using LDAP for authentication or account information, certificates used to authenticate to the LDAP server must be provided from DoD PKI or a DoD-approved external PKI.
+GEN008020|If the system is using LDAP for authentication or account information, the LDAP TLS connection must require the server provide a certificate with a valid trust path to a trusted CA.
+GEN008040|If the system is using LDAP for authentication or account information, the system must verify the LDAP server's certificate has not been revoked.
+GEN008050|If the system is using LDAP for authentication or account information, the /etc/ldap.conf file (or equivalent) must not contain passwords.
+GEN008060|If the system is using LDAP for authentication or account information the /etc/ldap.conf (or equivalent) file must have mode 0644 or less permissive.
+GEN008080|If the system is using LDAP for authentication or account information, the /etc/ldap.conf (or equivalent) file must be owned by root.
+GEN008100|If the system is using LDAP for authentication or account information, the /etc/ldap.conf (or equivalent) file must be group-owned by root, bin, sys, or system.
+GEN008120|If the system is using LDAP for authentication or account information, the /etc/ldap.conf (or equivalent) file must not have an extended ACL.
+GEN008140|If the system is using LDAP for authentication or account information, the TLS certificate authority file and/or directory (as appropriate) must be owned by root.
+GEN008160|If the system is using LDAP for authentication or account information, the TLS certificate authority file and/or directory (as appropriate) must be group-owned by root, bin, sys, or system.
+GEN008180|If the system is using LDAP for authentication or account information, the TLS certificate authority file and/or directory (as appropriate) must have mode 0644 (0755 for directories) or less permissive.
+GEN008200|If the system is using LDAP for authentication or account information, the LDAP TLS certificate authority file and/or directory (as appropriate) must not have an extended ACL.
+GEN008220|For systems using NSS LDAP, the TLS certificate file must be owned by root.
+GEN008240|If the system is using LDAP for authentication or account information, the LDAP TLS certificate file must be group-owned by root, bin, sys, or system.
+GEN008260|If the system is using LDAP for authentication or account information, the LDAP TLS certificate file must have mode 0644 or less permissive.
+GEN008280|If the system is using LDAP for authentication or account information, the LDAP TLS certificate file must not have an extended ACL.
+GEN008300|If the system is using LDAP for authentication or account information, the LDAP TLS key file must be owned by root.
+GEN008320|If the system is using LDAP for authentication or account information, the LDAP TLS key file must be group-owned by root, bin, or sys.
+GEN008340|If the system is using LDAP for authentication or account information, the LDAP TLS key file must have mode 0600 or less permissive.
+GEN008360|If the system is using LDAP for authentication or account information, the LDAP TLS key file must not have an extended ACL.
+GEN008380|A root kit check tool must be run on the system at least weekly.
+GEN008420|The system must use available memory address randomization techniques.
+GEN008440|Automated file system mounting tools must not be enabled unless needed.
+GEN008460|The system must have USB disabled unless needed.
+GEN008480|The system must have USB Mass Storage disabled unless needed.
+GEN008500|The system must have IEEE 1394 (Firewire) disabled unless needed.
+GEN008520|The system must employ a local firewall.
+GEN008540|The system's local firewall must implement a deny-all, allow-by-exception policy.
+GEN008600|The system must be configured to only boot from the system boot device.
+GEN008620|System BIOS or system controllers supporting password protection must have administrator accounts/passwords configured, and no others.
+GEN008640|The system must not use removable media as the boot loader.
+GEN008660|For systems capable of using GRUB, the system must be configured with GRUB as the default boot loader unless another boot loader has been authorized, justified, and documented using site-defined procedures.
+GEN008680|If the system boots from removable media, it must be stored in a safe or similarly secured container.
+GEN008700|The system boot loader must require authentication.
+GEN008710|The system boot loader must protect passwords using an MD5 or stronger cryptographic hash.
+GEN008720|The system's boot loader configuration file(s) must have mode 0600 or less permissive.
+GEN008740|The system's boot loader configuration file(s) must not have extended ACLs.
+GEN008760|The system's boot loader configuration files must be owned by root.
+GEN008780|The system's boot loader configuration file(s) must be group-owned by root, bin, sys, or system.
+GEN008800|The system package management tool must cryptographically verify the authenticity of software packages during installation.
+GEN008820|The system package management tool must not automatically obtain updates.
+GEN009120|The system, if capable, must be configured to require the use of a CAC, PIV compliant hardware token, or Alternate Logon Token (ALT) for authentication.

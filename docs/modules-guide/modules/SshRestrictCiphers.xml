@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SshRestrictCiphers" version="5.0">
+  <title xml:id="RemoteAccessServices">SSH Restrict Ciphers</title>
+  <para>
+  Configures the secure shell client to use only FIPS 140-2 ciphers.
+  These include ciphers that start with '3des' or 'aes', and are not
+  Cipher-Block Chaining (CBC) based ciphers.
+ </para>
+  <para>
+  For all operating systems, the
+  <filename>/etc/ssh/ssh_config</filename> file will be examined. If
+  present, the values for the 'Ciphers' settings will be examined. If
+  the setting does not exist, it will be created with the default values
+  as found in Linux and Solaris 'ssh_config' pages.
+ </para>
+  <para>
+  Each cipher name will be compared to the restrictions in the options.
+  It will be retained <emphasis role="italic">only</emphasis> if it
+  passes all of the restrictions. An empty restriction will be ignored.
+ </para>
+  <para>
+  As an example, suppose the only acceptable ciphers are those that
+  start with '3des', 'aes', and do not end with 'cbc'. This example is
+  taken from the RHEL5 STIG line items GEN005510 (start with '3des' or
+  'aes') and GEN005511 (not ending with 'cbc'). The options would be as
+  follows:
+  <itemizedlist><listitem><para>
+     Cipher must (not) start with: <emphasis role="bold">3des
+     aes</emphasis>
+    </para></listitem><listitem><para>
+     Cipher must (not) contain: <emphasis role="bold"/>
+    </para></listitem><listitem><para>
+     Cipher must (not) end with: <emphasis role="bold">cbc</emphasis>
+    </para></listitem></itemizedlist>
+ </para>
+  <para>
+  For Linux - the default allowed ciphers will be 'aes128-ctr'.
+ </para>
+  <simplesect xml:id="SshRestrictCiphers-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Cipher must (not) start with<emphasis><para>Acceptable ciphers must start with one of the following entries.  A leading '!' indicates that the cipher must not start with that text.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Cipher must (not) contain<emphasis><para>Acceptable ciphers must contain one of the following entries.  A leading '!' indicates that the cipher must not contain that text.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Cipher must (not) end with<emphasis><para>Acceptable ciphers must end with one of the following entries.  A leading '!' indicates that the cipher must not end with that text.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="SshRestrictCiphers-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+      <listitem>
+        <para>CC-8 - Controlled Use of Administrative Privileges</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>4.5.2 - Disable Root Login Via SSH</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN005510 - The SSH client must be configured to only use FIPS 140-2 approved ciphers.</para>
+      </listitem>
+      <listitem>
+        <para>GEN005511 - The SSH client must be configured to not use Cipher-Block Chaining (CBC)-based ciphers.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD NISPOM (Feb 2006)</title>
+      <listitem>
+        <para>8.303a - Unique Identification</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-4387-7 - Root login via SSH should be enabled or disabled as appropriate</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+      <listitem>
+        <para>2.2.3 - Configure system security parameters to prevent misuse</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

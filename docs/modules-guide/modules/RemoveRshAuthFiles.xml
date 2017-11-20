@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="RemoveRshAuthFiles" version="5.0">
+ <title xml:id="RemoteAccessServices">Remove rsh Authorization Files</title>
+ <para>
+  The <filename>/etc/hosts.equiv</filename> files and the
+  <filename>.rhosts</filename> file in each user's home account can
+  bypass the system authorization mechanism allowing a user to login
+  from a "trusted" machine without a password. This module deletes those
+  files.
+ </para>
+ <indexterm>
+  <primary>.rhosts</primary>
+ </indexterm>
+ <indexterm>
+  <primary>/etc/host.equiv</primary>
+ </indexterm>
+ <para>
+  The entire <filename>rsh/rlogin/rexec</filename> set of services
+  should not be used, and many guidelines recommend removing these
+  packages if at all possible. This module can reduce the risk of these
+  services if they must be used at all.
+ </para>
+ <simplesect xml:id="RemoveRshAuthFiles-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN002040 - There must be no .rhosts, .shosts, hosts.equiv, or
+     shosts.equiv files on the system.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 6 STIG (V1R14)</title>
+   <listitem>
+    <para>
+     RHEL-06-000019 - There must be no .rhosts or hosts.equiv files on
+     the system.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

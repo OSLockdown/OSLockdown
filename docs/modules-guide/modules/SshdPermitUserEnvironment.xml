@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="SshdPermitUserEnvironment" version="5.0">
+  <title xml:id="RemoteAccessServices">SSHD Permit User Environment</title>
+  <para>
+  Configures the secure shell (SSH) daemon to prevent the user from
+  altering the default environment settings.
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2">
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="1.0*" align="left"/>
+      <colspec colname="c2" colwidth="1.0*"/>
+      <colspec colname="c3" colwidth="1.0*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Configuration Files</entry>
+          <entry>Setting</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="5">
+            <filename>/etc/ssh/sshd_config</filename>
+            <indexterm>
+              <primary>/etc/ssh/sshd_config</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/ssh/sshd_config</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>ssh</primary>
+            </indexterm>
+            <indexterm>
+              <primary>sshd</primary>
+            </indexterm>
+            <indexterm>
+              <primary>sshd_config</primary>
+            </indexterm>
+          </entry>
+          <entry morerows="5">
+            <parameter>PermitRootLogin no</parameter>
+            <indexterm>
+              <primary>PermitRootLogin</primary>
+            </indexterm>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>Solaris 10</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <simplesect xml:id="SshdPermitUserEnvironment-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000241 - The SSH daemon must not permit user environment settings.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

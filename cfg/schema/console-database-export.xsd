@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ************************************************************************ -->
+<!-- Copyright (c) 2007-2014 Forcepoint LLC.                                       -->
+<!-- This file is released under the GPLv3 license.                                -->
+<!-- See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license, -->
+<!-- or visit https://www.gnu.org/licenses/gpl.html instead.                       -->
+<!-- ************************************************************************ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+  <xs:include schemaLocation="BaselineProfile.xsd">
+     <xs:annotation>
+        <xs:documentation>
+          Include the Baseline Profile schema because the console database
+          export will include custom baseline profiles. 
+        </xs:documentation>
+     </xs:annotation>
+  </xs:include>
+
+  <xs:include schemaLocation="SecurityProfile.xsd">
+     <xs:annotation>
+        <xs:documentation>
+          Include the Security Profile schema because the console database
+          export will include custom security profiles. 
+        </xs:documentation>
+     </xs:annotation>
+  </xs:include>
+
+  <xs:element name="sbDB">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="users" minOccurs="1" maxOccurs="1" />
+        <xs:element ref="profiles" minOccurs="1" maxOccurs="1" />
+        <xs:element ref="baselineProfiles" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="clients" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="groups" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="tasks" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="exported" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+<!-- Console Users -->
+  <xs:element name="users">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="user" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="user">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="password" use="required"/>
+      <xs:attribute name="role" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+
+<!-- Baseline Profiles -->
+  <xs:element name="baselineProfiles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="BaselineProfile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+<!-- 
+     Groups - This data is only present in Enterprise and 
+              Lock and Release Editions 
+ -->
+  <xs:element name="groups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="group" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="group">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="description" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="profile" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="baselineProfile" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="clientList" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:integer" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="baselineProfile" type="xs:string" />
+  <xs:element name="clientList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="client" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+<!-- 
+     Scheduled Actions - This data will only be present in the
+                         OS Lockdown Enterprise Edition
+ -->
+  <xs:element name="tasks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="task" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="task">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="group" minOccurs="1" maxOccurs="1">
+           <xs:complexType>
+            <xs:attribute name="id" use="required" type="xs:integer"/>
+           </xs:complexType>
+        </xs:element>
+        <xs:element ref="actions" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element ref="loggingLevel" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="period" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="time" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="actions">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="[sbau]+"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="loggingLevel" type="xs:integer"/>
+  <xs:element name="period">
+    <xs:complexType>
+      <xs:attribute name="increment" use="required" type="xs:integer"/>
+      <xs:attribute name="type" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="time">
+    <xs:complexType>
+      <xs:attribute name="hour" use="required" type="xs:integer"/>
+      <xs:attribute name="minute" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+
+<!-- Security Profiles -->
+  <xs:element name="profiles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="profile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+<!-- Client configurations -->
+  <xs:element name="clients">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="client" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="client">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="name" minOccurs="1" maxOccurs="1"/>
+          <xs:element ref="description" minOccurs="1" maxOccurs="1"/>
+          <xs:element ref="hostAddress" minOccurs="1" maxOccurs="1"/>
+          <xs:element ref="location" minOccurs="1" maxOccurs="1"/>
+          <xs:element ref="contact" minOccurs="1" maxOccurs="1"/>
+          <xs:element ref="port" minOccurs="1" maxOccurs="1"/>
+          <xs:element ref="dateCreated" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="dateDetached" />
+          <xs:element ref="detachDataMap" minOccurs="0" maxOccurs="1"/>
+          <xs:element ref="clientInfo" />
+        </xs:sequence>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:integer" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="hostAddress" type="xs:NCName" />
+  <xs:element name="location" type="xs:string" />
+  <xs:element name="contact" type="xs:string" />
+  <xs:element name="port" type="xs:integer" />
+  <xs:element name="dateCreated" type="xs:string" />
+
+  <!-- Client -  Specific to the Lock and Release Edition -->
+  <xs:element name="dateDetached" type="xs:string" />
+  <xs:element name="detachDataMap">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="grID" />
+        <xs:element ref="spNm" />
+        <xs:element ref="grNm" />
+        <xs:element ref="bpNm" />
+        <xs:element ref="spID" />
+        <xs:element ref="bpID" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="grID" type="xs:integer" />
+  <xs:element name="spNm" type="xs:string" />
+  <xs:element name="grNm" type="xs:string" />
+  <xs:element name="bpNm" type="xs:string" />
+  <xs:element name="spID" type="xs:integer" />
+  <xs:element name="bpID" type="xs:integer" />
+  <xs:element name="clientInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="clientVersion" />
+        <xs:element ref="nodeName" />
+        <xs:element ref="distribution" />
+        <xs:element ref="kernel" />
+        <xs:element ref="uptime" />
+        <xs:element ref="architecture" />
+        <xs:element ref="loadAverage" />
+        <xs:element ref="memory" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="clientVersion" type="xs:string" />
+  <xs:element name="nodeName" type="xs:NCName" />
+  <xs:element name="distribution" type="xs:string" />
+  <xs:element name="kernel" type="xs:NCName" />
+  <xs:element name="uptime" type="xs:string" />
+  <xs:element name="architecture" type="xs:NCName" />
+  <xs:element name="loadAverage" type="xs:string" />
+  <xs:element name="memory" type="xs:string" />
+  <xs:element name="name" type="xs:string" />
+  <xs:element name="description">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="comments" />
+        <xs:element ref="summary" />
+        <xs:element ref="verbose" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="comments" type="xs:string" />
+  <xs:element name="summary" type="xs:string" />
+  <xs:element name="verbose" type="xs:string" />
+</xs:schema>

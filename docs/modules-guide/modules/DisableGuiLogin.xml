@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="DisableGuiLogin">
+ <title xml:id="RemoteAccessServices">Disable Graphical Login</title>
+ <para>
+  Disables the graphical login manager by changing the system’s
+  default run-level from 5 to 3 in <filename>/etc/inittab</filename> .
+  When the machine is rebooted, a text login will be provided instead of
+  a graphical login.
+  <indexterm>
+   <primary>/etc/inittab</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Files and Directories</primary>
+   <secondary>/etc/inittab</secondary>
+  </indexterm>
+
+  <indexterm>
+   <primary>inittab</primary>
+  </indexterm>
+ </para>
+ <para>
+  On Linux systems, this module replaces the
+  <parameter>id:5:initdefault:</parameter> line with
+  <parameter>id:3:initdefault:</parameter> in the
+  <filename>/etc/inittab</filename> file.
+ </para>
+ <para>
+  On Solaris systems, this module disables the
+  <filename>svc:/application/graphical-login/cde-login:default</filename>
+  service.
+  <indexterm>
+   <primary>svc:/application/graphical-login/cde-login:default</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Solaris services</primary>
+   <secondary>svc:/application/graphical-login/cde-login:default</secondary>
+  </indexterm>
+ </para>
+ <para>
+  If you plan on using the OS Lockdown graphical interface, you can
+  still start the graphical login session with <command>startx</command>
+  command.
+ </para>
+ <simplesect xml:id="DisableGuiLogin-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 5 STIG (V1R17)</title>
+   <listitem>
+    <para>
+     GEN005260 - X Window System connections not required must be
+     disabled.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA Red Hat 6 STIG (V1R14)</title>
+   <listitem>
+    <para>
+     RHEL-06-000290 - X Windows must not be enabled unless required.
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>DISA UNIX STIG (v5 R1.30)</title>
+   <listitem>
+    <para>
+     GEN005260 - X Window System Not Required and Not Disabled
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+   <listitem>
+    <para>
+     CIP-005-3-R2.2 - Enable only ports and services needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+   <listitem>
+    <para>
+     CIP-007-3-R2.2 - Disable ports and services not needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     3.6.1.1 - Disable X Windows at System Boot
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NVD CCE</title>
+   <listitem>
+    <para>
+     CCE-4462-8 - X Windows should be enabled or disabled at system boot
+     as appropriate
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.2 - Disable all unnecessary and insecure services
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

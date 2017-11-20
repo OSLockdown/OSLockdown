@@ -1,0 +1,4227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="app-crossx-DISA_Red_Hat_5_STIG">
+  <title>DISA Red Hat 5 STIG V1R17</title>
+  <para>
+    <abstract>
+      The Security Technical Implementation Guides (STIGs) are the configuration standards for
+      U.S. Department of Defense (DoD) Information Assurance (IA) and IA-enabled devices/systems. The
+      guides are maintained and published by the Defense Information Systems Agency’s (DISA) Field
+      Security Office (FSO).
+  </abstract>
+  </para>
+  <para>
+    <literallayout>  573   Total number of line items in guideline
+  373   Items at least partially addressed by OS Lockdown
+  200   Items not addressed by OS Lockdown</literallayout>
+  </para>
+  <table xml:id="app-crossx-DISA_Red_Hat_5_STIG-GEN000000_LNX00320-GEN008780" frame="all" tocentry="1" cellspacing="2" cellpadding="2" pgwide="1">
+    <title>DISA Red Hat 5 STIG V1R17</title>
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.2*" align="center"/>
+      <colspec colname="c2" colwidth="0.5*" align="left"/>
+      <colspec colname="c3" colwidth="0.5*" align="left"/>
+      <thead>
+        <row>
+          <entry>Item</entry>
+          <entry>Title</entry>
+          <entry>OS Lockdown Modules</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>GEN000000-LNX00320</entry>
+          <entry>The system must not have special privilege accounts, such as shutdown and halt.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="HaltAccount" xrefstyle="select: title page">Remove Halt User Account</xref>
+              </member>
+              <member>
+                <xref linkend="ShutdownAccount" xrefstyle="select: title page">Remove Shutdown User Account</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX00400</entry>
+          <entry>The /etc/access.conf file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecurityAccessConfFilePerms" xrefstyle="select: title page">Access.conf File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX00420</entry>
+          <entry>The /etc/access.conf file must have a privileged group owner.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecurityAccessConfFilePerms" xrefstyle="select: title page">Access.conf File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX00440</entry>
+          <entry>The /etc/security/access.conf file must have mode 0640 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecurityAccessConfFilePerms" xrefstyle="select: title page">Access.conf File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX00480</entry>
+          <entry>The /etc/sysctl.conf file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysctlPerms" xrefstyle="select: title page">Sysctl.conf Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX00500</entry>
+          <entry>The /etc/sysctl.conf file must be group-owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysctlPerms" xrefstyle="select: title page">Sysctl.conf Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX00520</entry>
+          <entry>The /etc/sysctl.conf file must have mode 0600 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysctlPerms" xrefstyle="select: title page">Sysctl.conf Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX00560</entry>
+          <entry>The Linux NFS Server must not have the insecure file locking option.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NFSInsecureLocks" xrefstyle="select: title page">Remove Insecure_Locks option for NFS Server</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX00580</entry>
+          <entry>The x86 CTRL-ALT-DELETE key sequence must be disabled.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CtrlAltDel" xrefstyle="select: title page">Disable Ctrl-Alt-Del</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX00600</entry>
+          <entry>The Linux PAM system must not grant sole access to admin privileges to the first user who logs into the console.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableConsolePerms" xrefstyle="select: title page">Disable Console.perms</xref>
+              </member>
+              <member>
+                <xref linkend="DisablePAMConsole" xrefstyle="select: title page">Disable PAM Console Library</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX00620</entry>
+          <entry>The /etc/securetty file must be group-owned by root, sys, or bin.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysConfigFilePerms" xrefstyle="select: title page">System Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX00640</entry>
+          <entry>The /etc/securetty file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysConfigFilePerms" xrefstyle="select: title page">System Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX00660</entry>
+          <entry>The /etc/securetty file must have mode 0600 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysConfigFilePerms" xrefstyle="select: title page">System Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX00720</entry>
+          <entry>Auditing must be enabled at boot by setting a kernel parameter.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="EnableAuditingForAllProcesses" xrefstyle="select: title page">Enable Auditing For All Processes</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX00800</entry>
+          <entry>The system must use a Linux Security Module configured to limit the privileges of system services.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SELinuxIsPropEnabled" xrefstyle="select: title page">Ensure SELinux is Properly Enabled</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX001431</entry>
+          <entry>The /etc/gshadow file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX001432</entry>
+          <entry>The /etc/gshadow file must be group-owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX001433</entry>
+          <entry>The /etc/gshadow file must have mode 0400.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000000-LNX001476</entry>
+          <entry>The /etc/gshadow file must not contain any group password hashes.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NoHashesInPasswdGroup" xrefstyle="select: title page">No Hashes Allowed in Passwd/Group Files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000020</entry>
+          <entry>The system must require authentication upon booting into single-user and maintenance modes.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SingleUserMode" xrefstyle="select: title page">Single User Mode Password</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000250</entry>
+          <entry>The time synchronization configuration file (such as /etc/ntp.conf) must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NTP_Perms" xrefstyle="select: title page">NTP file permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000251</entry>
+          <entry>The time synchronization configuration file (such as /etc/ntp.conf) must be group-owned by root, bin, or sys.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NTP_Perms" xrefstyle="select: title page">NTP file permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000252</entry>
+          <entry>The time synchronization configuration file (such as /etc/ntp.conf) must have mode 0640 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NTP_Perms" xrefstyle="select: title page">NTP file permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000290-1</entry>
+          <entry>The system must not have the unnecessary "games" account.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RemoveGamesAccount" xrefstyle="select: title page">Remove Games User Account</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000290-2</entry>
+          <entry>The system must not have the unnecessary "news" account.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RemoveNewsAccount" xrefstyle="select: title page">Remove News User Account</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000290-3</entry>
+          <entry>The system must not have the unnecessary "gopher" account.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="GopherAccount" xrefstyle="select: title page">Remove Gopher User Account</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000290-4</entry>
+          <entry>The system must not have the unnecessary "ftp" account.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RemoveFTPaccount" xrefstyle="select: title page">Remove ftp Account</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000300</entry>
+          <entry>All accounts on the system must have unique user or account names.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PwGrpCheck" xrefstyle="select: title page">Lock Invalid Accounts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000320</entry>
+          <entry>All accounts must be assigned unique User Identification Numbers (UIDs).</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PwGrpCheck" xrefstyle="select: title page">Lock Invalid Accounts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000380</entry>
+          <entry>All GIDs referenced in the /etc/passwd file must be defined in the /etc/group file.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PwGrpCheck" xrefstyle="select: title page">Lock Invalid Accounts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000400</entry>
+          <entry>The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, console login prompts.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CreateLoginBanner" xrefstyle="select: title page">Create Login Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreateLoginFTPBanner" xrefstyle="select: title page">Create Login FTP Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreatePreLoginGUIBanner" xrefstyle="select: title page">Create Pre-Login GUI Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreatePreSessionGUIBanner" xrefstyle="select: title page">Create Pre-Session GUI Banner</xref>
+              </member>
+              <member>
+                <xref linkend="SshdEnableBanner" xrefstyle="select: title page">SSHD Enable Banner</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000402</entry>
+          <entry>The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CreateLoginBanner" xrefstyle="select: title page">Create Login Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreatePreLoginGUIBanner" xrefstyle="select: title page">Create Pre-Login GUI Banner</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000410</entry>
+          <entry>The FTPS/FTP service on the system must be configured with the Department of Defense (DoD) login banner.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CreateLoginBanner" xrefstyle="select: title page">Create Login Banner</xref>
+              </member>
+              <member>
+                <xref linkend="CreateLoginFTPBanner" xrefstyle="select: title page">Create Login FTP Banner</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000450</entry>
+          <entry>The system must limit users to 10 simultaneous system logins, or a site-defined number, in accordance with operational requirements.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="MaxLoginsByUser" xrefstyle="select: title page">Maximum Number of Logins per User</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000452</entry>
+          <entry>The system must display the date and time of the last successful account login upon login.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdPrintLastLog" xrefstyle="select: title page">SSHD Print Last Login by User</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000460</entry>
+          <entry>The system must disable accounts after three consecutive unsuccessful login attempts.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AccountLocks" xrefstyle="select: title page">Lock account after three failed login attempts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000480</entry>
+          <entry>The delay between login prompts following a failed login attempt must be at least 4 seconds.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="LoginDelay" xrefstyle="select: title page">Set delay after failed login</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000500</entry>
+          <entry>Graphical desktop environments provided by the system must automatically lock after 15 minutes of inactivity and the system must require users to re-authenticate to unlock the environment.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SetGnomeSS" xrefstyle="select: title page">Set Mandatory Screen Saver</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000500-2</entry>
+          <entry>The graphical desktop environment must set the idle timeout to no more than 15 minutes.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SetGnomeSS" xrefstyle="select: title page">Set Mandatory Screen Saver</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000500-3</entry>
+          <entry>Graphical desktop environments provided by the system must have automatic lock enabled.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SetGnomeSS" xrefstyle="select: title page">Set Mandatory Screen Saver</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000540</entry>
+          <entry>Users must not be able to change passwords more than once every 24 hours.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordChangeDelay" xrefstyle="select: title page">Minimum Delay Between Password Changes</xref>
+              </member>
+              <member>
+                <xref linkend="SetPassAgingOnAccts" xrefstyle="select: title page">Set Password Aging on Active Accounts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000560</entry>
+          <entry>The system must not have accounts configured with blank or null passwords.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NoEmptyPasswords" xrefstyle="select: title page">No Empty Passwords</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000580</entry>
+          <entry>The system must require passwords contain a minimum of 15 characters.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordPolicyMinlen" xrefstyle="select: title page">Password Policy Length Minimum</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000600</entry>
+          <entry>The system must require passwords contain at least one uppercase alphabetic character.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordPolicyUppercase" xrefstyle="select: title page">Password Policy Uppercase Minimum</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000610</entry>
+          <entry>The system must require passwords contain at least one lowercase alphabetic character.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordPolicyLowercase" xrefstyle="select: title page">Password Policy Lowercase Minimum</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000620</entry>
+          <entry>The system must require passwords contain at least one numeric character.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordPolicyNumbers" xrefstyle="select: title page">Password Policy Numeric Minimum</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000640</entry>
+          <entry>The system must require passwords contain at least one special character.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordPolicySpecial" xrefstyle="select: title page">Password Policy Special Characters</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000680</entry>
+          <entry>The system must require passwords contain no more than three consecutive repeating characters.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordPolicyConsecutive" xrefstyle="select: title page">Password Policy Consecutive Characters</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000700</entry>
+          <entry>User passwords must be changed at least every 60 days.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordMaxDays" xrefstyle="select: title page">Maximum Time Between Password Changes</xref>
+              </member>
+              <member>
+                <xref linkend="SetPassAgingOnAccts" xrefstyle="select: title page">Set Password Aging on Active Accounts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000750</entry>
+          <entry>The system must require at least eight characters be changed between the old and new passwords during a password change.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordPolicyDiffChars" xrefstyle="select: title page">Password Policy Different Characters</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000800</entry>
+          <entry>The system must prohibit the reuse of passwords within five iterations.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswordReuse" xrefstyle="select: title page">Limit Password Reuse</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000850</entry>
+          <entry>The system must restrict the ability to switch to the root user to members of a defined group.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="LimitAccessFromSu" xrefstyle="select: title page">Limit Access To Root From Su</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000880</entry>
+          <entry>The root account must be the only account having a UID of 0.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="LockDuplicateUidZeros" xrefstyle="select: title page">Lock Non-Root Accounts with UID 0</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000900</entry>
+          <entry>The root user's home directory must not be the root directory (/).</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RootHomePerms" xrefstyle="select: title page">Root Home Directory Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000920</entry>
+          <entry>The root account's home directory (other than /) must have mode 0700.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RootHomePerms" xrefstyle="select: title page">Root Home Directory Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000940</entry>
+          <entry>The root account's executable search path must be the vendor default and must contain only absolute paths.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RootPath" xrefstyle="select: title page">Root Path</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000960</entry>
+          <entry>The root account must not have world-writable directories in its executable search path.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RootPath" xrefstyle="select: title page">Root Path</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN000980</entry>
+          <entry>The system must prevent the root account from directly logging in except from the system console.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RootConsole" xrefstyle="select: title page">Root Console Only Logins</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001000</entry>
+          <entry>Remote consoles must be disabled or protected from unauthorized access.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RootConsole" xrefstyle="select: title page">Root Console Only Logins</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001020</entry>
+          <entry>The root account must not be used for direct log in.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdDisableRootLogin" xrefstyle="select: title page">SSHD Disable Root Login</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001060</entry>
+          <entry>The system must log successful and unsuccessful access to the root account.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SyslogAuthpriv" xrefstyle="select: title page">Secure Authpriv Logging</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001080</entry>
+          <entry>The root shell must be located in the / file system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RootShell" xrefstyle="select: title page">Root shell must be on / filesystem</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001120</entry>
+          <entry>The system must not permit root logins using remote access programs such as ssh.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdDisableRootLogin" xrefstyle="select: title page">SSHD Disable Root Login</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001140</entry>
+          <entry>System files and directories must not have uneven access permissions.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CorrectUnevenPerms" xrefstyle="select: title page">Correct Uneven File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001160</entry>
+          <entry>All files and directories must have a valid owner.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureUnownedFiles" xrefstyle="select: title page">Secure Unowned Files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001180</entry>
+          <entry>All network services daemon files must have mode 0755 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysCmdFilePerms" xrefstyle="select: title page">System Command File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001200</entry>
+          <entry>All system command files must have mode 0755 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysCmdFilePerms" xrefstyle="select: title page">System Command File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001220</entry>
+          <entry>All system files, programs, and directories must be owned by a system account.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysCmdFilePerms" xrefstyle="select: title page">System Command File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001240</entry>
+          <entry>System files, programs, and directories must be group-owned by a system group.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysCmdFilePerms" xrefstyle="select: title page">System Command File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001260</entry>
+          <entry>System log files must have mode 0640 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001280</entry>
+          <entry>Manual page files must have mode 0644 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ManPagePerms" xrefstyle="select: title page">Restrict Write-Access on Man Pages</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001300</entry>
+          <entry>Library files must have mode 0755 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLibFilePerms" xrefstyle="select: title page">System Library File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001320</entry>
+          <entry>NIS/NIS+/yp files must be owned by root, sys, or bin.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NisYpConfigPerms" xrefstyle="select: title page">NIS/NIS+/YP Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001340</entry>
+          <entry>NIS/NIS+/yp files must be group-owned by root, sys, or bin.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NisYpConfigPerms" xrefstyle="select: title page">NIS/NIS+/YP Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001360</entry>
+          <entry>The NIS/NIS+/yp command files must have mode 0755 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NisYpConfigPerms" xrefstyle="select: title page">NIS/NIS+/YP Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001362</entry>
+          <entry>The /etc/resolv.conf file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ResolvConfFilePerms" xrefstyle="select: title page">Resolver Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001363</entry>
+          <entry>The /etc/resolv.conf file must be group-owned by root, bin, or sys.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ResolvConfFilePerms" xrefstyle="select: title page">Resolver Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001364</entry>
+          <entry>The /etc/resolv.conf file must have mode 0644 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ResolvConfFilePerms" xrefstyle="select: title page">Resolver Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001366</entry>
+          <entry>The /etc/hosts file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="HostsFilePerms" xrefstyle="select: title page">Hosts File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001367</entry>
+          <entry>The /etc/hosts file must be group-owned by root, bin, or sys.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="HostsFilePerms" xrefstyle="select: title page">Hosts File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001368</entry>
+          <entry>The /etc/hosts file must have mode 0644 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="HostsFilePerms" xrefstyle="select: title page">Hosts File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001371</entry>
+          <entry>The /etc/nsswitch.conf file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NsswitchConfFilePerms" xrefstyle="select: title page">Name Service Switch Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001372</entry>
+          <entry>The /etc/nsswitch.conf file must be group-owned by root, bin, or sys.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NsswitchConfFilePerms" xrefstyle="select: title page">Name Service Switch Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001373</entry>
+          <entry>The /etc/nsswitch.conf file must have mode 0644 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NsswitchConfFilePerms" xrefstyle="select: title page">Name Service Switch Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001378</entry>
+          <entry>The /etc/passwd file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001379</entry>
+          <entry>The /etc/passwd file must be group-owned by root, bin, or sys.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001380</entry>
+          <entry>The /etc/passwd file must have mode 0644 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001391</entry>
+          <entry>The /etc/group file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001392</entry>
+          <entry>The /etc/group file must be group-owned by root, bin, or sys.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001393</entry>
+          <entry>The /etc/group file must have mode 0644 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PasswdPerms" xrefstyle="select: title page">Password Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001400</entry>
+          <entry>The /etc/shadow (or equivalent) file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001410</entry>
+          <entry>The /etc/shadow file (or equivalent) must be group-owned by root, bin, or sys.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001420</entry>
+          <entry>The /etc/shadow (or equivalent) file must have mode 0400.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ShadowPerms" xrefstyle="select: title page">Shadow Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001440</entry>
+          <entry>All interactive users must be assigned a home directory in the /etc/passwd file.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PwGrpCheck" xrefstyle="select: title page">Lock Invalid Accounts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001460</entry>
+          <entry>All interactive user home directories defined in the /etc/passwd file must exist.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PwGrpCheck" xrefstyle="select: title page">Lock Invalid Accounts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001470</entry>
+          <entry>The /etc/passwd file must not contain password hashes.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NoHashesInPasswdGroup" xrefstyle="select: title page">No Hashes Allowed in Passwd/Group Files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001475</entry>
+          <entry>The /etc/group file must not contain any group password hashes.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NoHashesInPasswdGroup" xrefstyle="select: title page">No Hashes Allowed in Passwd/Group Files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001480</entry>
+          <entry>All user home directories must have mode 0750 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="HomeDirPerms" xrefstyle="select: title page">Home Directory Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001500</entry>
+          <entry>All interactive user home directories must be owned by their respective users.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="HomeDirOwnGrp" xrefstyle="select: title page">Home Directory Ownership</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001520</entry>
+          <entry>All interactive user home directories must be group-owned by the home directory owner's primary group.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="HomeDirOwnGrp" xrefstyle="select: title page">Home Directory Ownership</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001540</entry>
+          <entry>All files and directories contained in interactive user home directories must be owned by the home directory's owner.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="HomeDirContentPerms" xrefstyle="select: title page">Home Directory Contents</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001550</entry>
+          <entry>All files and directories contained in user home directories must be group-owned by a group of which the home directory's owner is a member.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="HomeDirContentPerms" xrefstyle="select: title page">Home Directory Contents</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001560</entry>
+          <entry>All files and directories contained in user home directories must have mode 0750 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="HomeDirContentPerms" xrefstyle="select: title page">Home Directory Contents</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001580</entry>
+          <entry>All run control scripts must have mode 0755 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysRcScriptPerms" xrefstyle="select: title page">System Run Control Script Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001600</entry>
+          <entry>Run control scripts' executable search paths must contain only absolute paths.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CorrectRcPathVars" xrefstyle="select: title page">Correct System RC Script PATH Variables</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001660</entry>
+          <entry>All system start-up files must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysRcScriptPerms" xrefstyle="select: title page">System Run Control Script Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001680</entry>
+          <entry>All system start-up files must be group-owned by root, sys, bin, other, or system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysRcScriptPerms" xrefstyle="select: title page">System Run Control Script Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001720</entry>
+          <entry>All global initialization files must have mode 0644 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="GlobalInitializationFilePerms" xrefstyle="select: title page">Global Initialization File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001740</entry>
+          <entry>All global initialization files must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="GlobalInitializationFilePerms" xrefstyle="select: title page">Global Initialization File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001760</entry>
+          <entry>All global initialization files must be group-owned by root, sys, bin, other, system, or the system default.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="GlobalInitializationFilePerms" xrefstyle="select: title page">Global Initialization File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001780</entry>
+          <entry>Global initialization files must contain the "mesg -n" or "mesg n" commands.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SetMesgN" xrefstyle="select: title page">Limit Term Write-access to Owner</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001800</entry>
+          <entry>All skeleton files (typically those in /etc/skel) must have mode 0644 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SkeletonFilePerms" xrefstyle="select: title page">Skeleton File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001820</entry>
+          <entry>All skeleton files and directories (typically in /etc/skel) must be owned by root or bin.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SkeletonFilePerms" xrefstyle="select: title page">Skeleton File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001830</entry>
+          <entry>All skeleton files (typically in /etc/skel) must be group-owned by root, bin, sys, system, or other.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SkeletonFilePerms" xrefstyle="select: title page">Skeleton File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001840</entry>
+          <entry>All global initialization files' executable search paths must contain only absolute paths.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CorrectGlobalInitPathVars" xrefstyle="select: title page">Correct Global Init Script PATH Variables</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001860</entry>
+          <entry>All local initialization files must be owned by the home directorys user or root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="HomeDirContentPerms" xrefstyle="select: title page">Home Directory Contents</xref>
+              </member>
+              <member>
+                <xref linkend="UserDotFilePerms" xrefstyle="select: title page">User Dot File Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001870</entry>
+          <entry>Local initialization files must be group-owned by the user's primary group or root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="UserDotFilePerms" xrefstyle="select: title page">User Dot File Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001880</entry>
+          <entry>All local initialization files must have mode 0740 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="UserDotFilePerms" xrefstyle="select: title page">User Dot File Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN001980</entry>
+          <entry>The .rhosts, .shosts, hosts.equiv, shosts.equiv, /etc/passwd, /etc/shadow, and/or /etc/group files must not contain a plus (+) without defining entries for NIS+ netgroups.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NoPlusPasswdEntries" xrefstyle="select: title page">No Plus Entries in Password Files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002000</entry>
+          <entry>There must be no .netrc files on the system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureNetrcFiles" xrefstyle="select: title page">Secure Netrc Files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002040</entry>
+          <entry>There must be no .rhosts, .shosts, hosts.equiv, or shosts.equiv files on the system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RemoveRshAuthFiles" xrefstyle="select: title page">Remove rsh authorization files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002060</entry>
+          <entry>All .rhosts, .shosts, .netrc, or hosts.equiv files must be accessible by only root or the owner.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureNetrcFiles" xrefstyle="select: title page">Secure Netrc Files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002100</entry>
+          <entry>The .rhosts file must not be supported in PAM.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableRhostsSupport" xrefstyle="select: title page">Disable Rhosts Support</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002120</entry>
+          <entry>The /etc/shells (or equivalent) file must exist.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PermittedShells" xrefstyle="select: title page">Allowed shells in /etc/shells</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002140</entry>
+          <entry>All shells referenced in /etc/passwd must be listed in the /etc/shells file, except any shells specified for the purpose of preventing logins.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SyncEtcShells" xrefstyle="select: title page">Sync Shells File</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002200</entry>
+          <entry>All shell files must be owned by root or bin.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ShellBinPerms" xrefstyle="select: title page">Secure Shell Binaries</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002210</entry>
+          <entry>All shell files must be group-owned by root, bin, sys, or system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ShellBinPerms" xrefstyle="select: title page">Secure Shell Binaries</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002220</entry>
+          <entry>All shell files must have mode 0755 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ShellBinPerms" xrefstyle="select: title page">Secure Shell Binaries</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002280</entry>
+          <entry>Device files and directories must only be writable by users with a system account or as configured by the vendor.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureWorldWritableDevices" xrefstyle="select: title page">Secure World Writable Devices</xref>
+              </member>
+              <member>
+                <xref linkend="SysDevDirPerms" xrefstyle="select: title page">System Device Directory Ownership</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002320</entry>
+          <entry>Audio devices must have mode 0660 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AudioDevFilePerms" xrefstyle="select: title page">Secure Audio Devices</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002340</entry>
+          <entry>Audio devices must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AudioDevFilePerms" xrefstyle="select: title page">Secure Audio Devices</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002360</entry>
+          <entry>Audio devices must be group-owned by root, sys, bin, or system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AudioDevFilePerms" xrefstyle="select: title page">Secure Audio Devices</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002380</entry>
+          <entry>The owner, group-owner, mode, ACL, and location of files with the setuid bit set must be documented using site-defined procedures.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureSetXIDFiles" xrefstyle="select: title page">Secure SUID/SGID Executables</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002400</entry>
+          <entry>The system must be checked weekly for unauthorized setuid files as well as unauthorized modification to authorized setuid files.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureSetXIDFiles" xrefstyle="select: title page">Secure SUID/SGID Executables</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002420</entry>
+          <entry>Removable media, remote file systems, and any file system not containing approved setuid files must be mounted with the "nosuid" option.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FstabRemovableMedia" xrefstyle="select: title page">Use NOSUID and NODEV for Removable Media</xref>
+              </member>
+              <member>
+                <xref linkend="NosuidOnUserFilesystems" xrefstyle="select: title page">Use NOSUID on User Filesystems</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002430</entry>
+          <entry>Removable media, remote file systems, and any file system not containing approved device files must be mounted with the "nodev" option.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FstabRemovableMedia" xrefstyle="select: title page">Use NOSUID and NODEV for Removable Media</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002440</entry>
+          <entry>The owner, group-owner, mode, ACL and location of files with the setgid bit set must be documented using site-defined procedures.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureSetXIDFiles" xrefstyle="select: title page">Secure SUID/SGID Executables</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002460</entry>
+          <entry>The system must be checked weekly for unauthorized setgid files as well as unauthorized modification to authorized setgid files.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureSetXIDFiles" xrefstyle="select: title page">Secure SUID/SGID Executables</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002480</entry>
+          <entry>Public directories must be the only world-writable directories and world-writable files must be located only in public directories.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureWorldWritableDevices" xrefstyle="select: title page">Secure World Writable Devices</xref>
+              </member>
+              <member>
+                <xref linkend="SecureWorldWritableDirectories" xrefstyle="select: title page">Secure World Writable Directories</xref>
+              </member>
+              <member>
+                <xref linkend="SecureWorldWritableFiles" xrefstyle="select: title page">Secure World Writable Files</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002500</entry>
+          <entry>The sticky bit must be set on all public directories.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SecureWorldWritableDirectories" xrefstyle="select: title page">Secure World Writable Directories</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002560</entry>
+          <entry>The system and user default umask must be 077.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DefaultUmask" xrefstyle="select: title page">Default umask</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002640</entry>
+          <entry>Default system accounts must be disabled or removed.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="BlockSystemAccounts" xrefstyle="select: title page">Block System Accounts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002660</entry>
+          <entry>Auditing must be implemented.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditEnable" xrefstyle="select: title page">Enable the Audit Subsystem</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002680</entry>
+          <entry>System audit logs must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002690</entry>
+          <entry>System audit logs must be group-owned by root, bin, sys, or system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002700</entry>
+          <entry>System audit logs must have mode 0640 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002715</entry>
+          <entry>System audit tool executables must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditToolsPerms" xrefstyle="select: title page">Audit tool permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002716</entry>
+          <entry>System audit tool executables must be group-owned by root, bin, sys, or system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditToolsPerms" xrefstyle="select: title page">Audit tool permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002717</entry>
+          <entry>System audit tool executables must have mode 0750 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditToolsPerms" xrefstyle="select: title page">Audit tool permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002719</entry>
+          <entry>The audit system must alert the SA in the event of an audit processing failure.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ConfigureAuditdConf" xrefstyle="select: title page">Configure /etc/audit/auditd.conf Settings</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002720</entry>
+          <entry>The audit system must be configured to audit failed attempts to access files and programs.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002720-2</entry>
+          <entry>The audit system must be configured to audit failed attempts to access files and programs.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002720-3</entry>
+          <entry>The audit system must be configured to audit failed attempts to access files and programs.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002720-4</entry>
+          <entry>The audit system must be configured to audit failed attempts to access files and programs.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002720-5</entry>
+          <entry>The audit system must be configured to audit failed attempts to access files and programs.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002730</entry>
+          <entry>The audit system must alert the SA when the audit storage volume approaches its capacity.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ConfigureAuditdConf" xrefstyle="select: title page">Configure /etc/audit/auditd.conf Settings</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002740</entry>
+          <entry>The audit system must be configured to audit files and programs deleted by the user.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002740-2</entry>
+          <entry>The audit system must be configured to audit file deletions.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002750</entry>
+          <entry>The audit system must be configured to audit account creation.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002751</entry>
+          <entry>The audit system must be configured to audit account modification.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002752</entry>
+          <entry>The audit system must be configured to audit account disabling.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002753</entry>
+          <entry>The audit system must be configured to audit account termination.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002760-2</entry>
+          <entry>The audit system must be configured to audit all administrative, privileged, and security actions.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002760-3</entry>
+          <entry>The audit system must be configured to audit all administrative, privileged, and security actions.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002760-4</entry>
+          <entry>The audit system must be configured to audit all administrative, privileged, and security actions.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002760-5</entry>
+          <entry>The audit system must be configured to audit all administrative, privileged, and security actions.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002760-6</entry>
+          <entry>The audit system must be configured to audit all administrative, privileged, and security actions.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002760-7</entry>
+          <entry>The audit system must be configured to audit all administrative, privileged, and security actions.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002760-8</entry>
+          <entry>The audit system must be configured to audit all administrative, privileged, and security actions.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002760-9</entry>
+          <entry>The audit system must be configured to audit all administrative, privileged, and security actions.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002760-10</entry>
+          <entry>The audit system must be configured to audit all administrative, privileged, and security actions.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002820</entry>
+          <entry>The audit system must be configured to audit all discretionary access control permission modifications.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002820-2</entry>
+          <entry>The audit system must be configured to audit all discretionary access control permission modifications.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002820-3</entry>
+          <entry>The audit system must be configured to audit all discretionary access control permission modifications.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002820-4</entry>
+          <entry>The audit system must be configured to audit all discretionary access control permission modifications.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002820-5</entry>
+          <entry>The audit system must be configured to audit all discretionary access control permission modifications.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002820-6</entry>
+          <entry>The audit system must be configured to audit all discretionary access control permission modifications.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002820-7</entry>
+          <entry>The audit system must be configured to audit all discretionary access control permission modifications.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002820-8</entry>
+          <entry>The audit system must be configured to audit all discretionary access control permission modifications.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002820-9</entry>
+          <entry>The audit system must be configured to audit all discretionary access control permission modifications.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002820-10</entry>
+          <entry>The audit system must be configured to audit all discretionary access control permission modifications.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002820-11</entry>
+          <entry>The audit system must be configured to audit all discretionary access control permission modifications.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002820-12</entry>
+          <entry>The audit system must be configured to audit all discretionary access control permission modifications.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002820-13</entry>
+          <entry>The audit system must be configured to audit all discretionary access control permission modifications.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002825</entry>
+          <entry>The audit system must be configured to audit the loading and unloading of dynamic kernel modules.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002825-2</entry>
+          <entry>The audit system must be configured to audit the loading and unloading of dynamic kernel modules - delete_module.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002825-3</entry>
+          <entry>The audit system must be configured to audit the loading and unloading of dynamic kernel modules - /sbin/insmod.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002825-4</entry>
+          <entry>The audit system must be configured to audit the loading and unloading of dynamic kernel modules -/sbin/modprobe.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002825-5</entry>
+          <entry>The audit system must be configured to audit the loading and unloading of dynamic kernel modules - /sbin/rmmod</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditRules" xrefstyle="select: title page">Audit Rules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002860</entry>
+          <entry>Audit logs must be rotated daily.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AuditLogRotation" xrefstyle="select: title page">Audit Log Rotation</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002960</entry>
+          <entry>Access to the cron utility must be controlled using the cron.allow and/or cron.deny file(s).</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RestrictAtCron" xrefstyle="select: title page">Restrict At and Cron</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN002980</entry>
+          <entry>The cron.allow file must have mode 0600 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtCronAccessFilePerms" xrefstyle="select: title page">At/Cron Access File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="RestrictAtCron" xrefstyle="select: title page">Restrict At and Cron</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003040</entry>
+          <entry>Crontabs must be owned by root or the crontab creator.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CrontabPerms" xrefstyle="select: title page">Crontab Perms</xref>
+              </member>
+              <member>
+                <xref linkend="CrontabScriptPerms" xrefstyle="select: title page">Crontab Script Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003050</entry>
+          <entry>Crontab files must be group-owned by root, cron, or the crontab creator's primary group.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CrontabPerms" xrefstyle="select: title page">Crontab Perms</xref>
+              </member>
+              <member>
+                <xref linkend="CrontabScriptPerms" xrefstyle="select: title page">Crontab Script Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003080</entry>
+          <entry>Crontab files must have mode 0600 or less permissive, and files in cron script directories must have mode 0700 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CrontabPerms" xrefstyle="select: title page">Crontab Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003080-2</entry>
+          <entry>Files in cron script directories must have mode 0700 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CrontabScriptPerms" xrefstyle="select: title page">Crontab Script Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003100</entry>
+          <entry>Cron and crontab directories must have mode 0755 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CrontabDirPerms" xrefstyle="select: title page">Crontab Dir Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003120</entry>
+          <entry>Cron and crontab directories must be owned by root or bin.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CrontabDirPerms" xrefstyle="select: title page">Crontab Dir Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003140</entry>
+          <entry>Cron and crontab directories must be group-owned by root, sys, bin or cron.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CrontabDirPerms" xrefstyle="select: title page">Crontab Dir Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003160</entry>
+          <entry>Cron logging must be implemented.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SyslogCronLogging" xrefstyle="select: title page">Cron Logging</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003180</entry>
+          <entry>The cronlog file must have mode 0600 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003200</entry>
+          <entry>The cron.deny file must have mode 0600 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtCronAccessFilePerms" xrefstyle="select: title page">At/Cron Access File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="RestrictAtCron" xrefstyle="select: title page">Restrict At and Cron</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003240</entry>
+          <entry>The cron.allow file must be owned by root, bin, or sys.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtCronAccessFilePerms" xrefstyle="select: title page">At/Cron Access File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="RestrictAtCron" xrefstyle="select: title page">Restrict At and Cron</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003250</entry>
+          <entry>The cron.allow file must be group-owned by root, bin, sys, or cron.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtCronAccessFilePerms" xrefstyle="select: title page">At/Cron Access File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="RestrictAtCron" xrefstyle="select: title page">Restrict At and Cron</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003252</entry>
+          <entry>The at.deny file must have mode 0600 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtCronAccessFilePerms" xrefstyle="select: title page">At/Cron Access File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="RestrictAtCron" xrefstyle="select: title page">Restrict At and Cron</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003260</entry>
+          <entry>The cron.deny file must be owned by root, bin, or sys.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtCronAccessFilePerms" xrefstyle="select: title page">At/Cron Access File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="RestrictAtCron" xrefstyle="select: title page">Restrict At and Cron</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003270</entry>
+          <entry>The cron.deny file must be group-owned by root, bin, or sys.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtCronAccessFilePerms" xrefstyle="select: title page">At/Cron Access File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="RestrictAtCron" xrefstyle="select: title page">Restrict At and Cron</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003280</entry>
+          <entry>Access to the "at" utility must be controlled via the at.allow and/or at.deny file(s).</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RestrictAtCron" xrefstyle="select: title page">Restrict At and Cron</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003300</entry>
+          <entry>The at.deny file must not be empty if it exists.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RestrictAtCron" xrefstyle="select: title page">Restrict At and Cron</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003320</entry>
+          <entry>Default system accounts (with the exception of root) must not be listed in the at.allow file or must be included in the at.deny file if the at.allow file does not exist.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RestrictAtCron" xrefstyle="select: title page">Restrict At and Cron</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003340</entry>
+          <entry>The at.allow file must have mode 0600 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtCronAccessFilePerms" xrefstyle="select: title page">At/Cron Access File Permissions</xref>
+              </member>
+              <member>
+                <xref linkend="RestrictAtCron" xrefstyle="select: title page">Restrict At and Cron</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003400</entry>
+          <entry>The "at" directory must have mode 0755 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtDirPerms" xrefstyle="select: title page">At Directory Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003420</entry>
+          <entry>The at directory must be owned by root, bin, sys, daemon, or cron.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtDirPerms" xrefstyle="select: title page">At Directory Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003430</entry>
+          <entry>The "at" directory must be group-owned by root, bin, sys, or cron.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtDirPerms" xrefstyle="select: title page">At Directory Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003460</entry>
+          <entry>The at.allow file must be owned by root, bin, or sys.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtCronAccessFilePerms" xrefstyle="select: title page">At/Cron Access File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003470</entry>
+          <entry>The at.allow file must be group-owned by root, bin, sys, or cron.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtCronAccessFilePerms" xrefstyle="select: title page">At/Cron Access File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003480</entry>
+          <entry>The at.deny file must be owned by root, bin, or sys.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtCronAccessFilePerms" xrefstyle="select: title page">At/Cron Access File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003490</entry>
+          <entry>The at.deny file must be group-owned by root, bin, sys, or cron.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AtCronAccessFilePerms" xrefstyle="select: title page">At/Cron Access File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003500</entry>
+          <entry>Process core dumps must be disabled unless needed.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableCoreDumps" xrefstyle="select: title page">Disable Core Dumps</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003510</entry>
+          <entry>Kernel core dumps must be disabled unless needed.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKdump" xrefstyle="select: title page">Disable Kernel Crash Analyzer</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003520</entry>
+          <entry>The kernel core dump data directory must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="KernelDumpDirPerms" xrefstyle="select: title page">Kernel Core Dump Directory Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003521</entry>
+          <entry>The kernel core dump data directory must be group-owned by root, bin, sys, or system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="KernelDumpDirPerms" xrefstyle="select: title page">Kernel Core Dump Directory Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003522</entry>
+          <entry>The kernel core dump data directory must have mode 0700 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="KernelDumpDirPerms" xrefstyle="select: title page">Kernel Core Dump Directory Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003540</entry>
+          <entry>The system must implement non-executable program stacks.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="EnableKernelExecShield" xrefstyle="select: title page">Enable ExecShield Kernel Module</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003600</entry>
+          <entry>The system must not forward IPv4 source-routed packets.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SourceRoute" xrefstyle="select: title page">Disable Source Routing</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003601</entry>
+          <entry>TCP backlog queue sizes must be set appropriately.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="TCPMaxSynBacklog" xrefstyle="select: title page">Adjust Maximum Pending Connections</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003603</entry>
+          <entry>The system must not respond to Internet Control Message Protocol v4 (ICMPv4) echoes sent to a broadcast address.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ICMPEchoIgnoreBroadcasts" xrefstyle="select: title page">Ignore ICMP ECHO and TIMESTAMP Requests</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003604</entry>
+          <entry>The system must not respond to Internet Control Message Protocol (ICMP) timestamp requests sent to a broadcast address.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ICMPEchoIgnoreBroadcasts" xrefstyle="select: title page">Ignore ICMP ECHO and TIMESTAMP Requests</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003607</entry>
+          <entry>The system must not accept source-routed IPv4 packets.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SourceRoute" xrefstyle="select: title page">Disable Source Routing</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003608</entry>
+          <entry>Proxy Address Resolution Protocol (Proxy ARP) must not be enabled on the system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableProxyARP" xrefstyle="select: title page">Disable Proxy Address Resolution Protocol (Proxy ARP)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003609</entry>
+          <entry>The system must ignore IPv4 Internet Control Message Protocol (ICMP) redirect messages.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AcceptRedirects" xrefstyle="select: title page">Disable Accepting ICMP Redirects</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003610</entry>
+          <entry>The system must not send IPv4 Internet Control Message Protocol (ICMP) redirects.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SendRedirects" xrefstyle="select: title page">Disable Sending ICMP Redirects</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003611</entry>
+          <entry>The system must log martian packets.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="LogMartianPackets" xrefstyle="select: title page">Log Martian Packets</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003612</entry>
+          <entry>The system must be configured to use TCP syncookies when experiencing a TCP SYN flood.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="TCPSyncookies" xrefstyle="select: title page">Enable TCP Syncookies</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003620</entry>
+          <entry>A separate file system must be used for user home directories (such as /home or an equivalent).</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CheckFS_home" xrefstyle="select: title page">Check for separate /home file system</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003621</entry>
+          <entry>The system must use a separate file system for /var.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CheckFS_var" xrefstyle="select: title page">Check for separate /var file system</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003623</entry>
+          <entry>The system must use a separate file system for the system audit data path.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CheckFS_varlogaudit" xrefstyle="select: title page">Check for separate /var/log/audit file system</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003624</entry>
+          <entry>The system must use a separate file system for /tmp (or equivalent).</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CheckFS_tmp" xrefstyle="select: title page">Check for separate /tmp file system</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003660</entry>
+          <entry>The system must log informational authentication data.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SyslogAuthpriv" xrefstyle="select: title page">Secure Authpriv Logging</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003700</entry>
+          <entry>Inetd and xinetd must be disabled or removed if no network services utilizing them are enabled.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableInetd" xrefstyle="select: title page">Disable Inetd</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003720</entry>
+          <entry>The inetd.conf file, xinetd.conf file, and the xinetd.d directory must be owned by root or bin.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="InetdXinetdConfigFilePerms" xrefstyle="select: title page">Inetd/Xinetd Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003730</entry>
+          <entry>The inetd.conf file, xinetd.conf file, and the xinetd.d directory must be group-owned by root, bin, sys, or system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="InetdXinetdConfigFilePerms" xrefstyle="select: title page">Inetd/Xinetd Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003740</entry>
+          <entry>The xinetd configuration files must have mode 0640 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="InetdXinetdConfigFilePerms" xrefstyle="select: title page">Inetd/Xinetd Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003750</entry>
+          <entry>The xinetd.d directory must have mode 0755 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysConfigFilePerms" xrefstyle="select: title page">System Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003760</entry>
+          <entry>The services file must be owned by root or bin.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ServicesFilePerms" xrefstyle="select: title page">Services File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003770</entry>
+          <entry>The services file must be group-owned by root, bin, sys, or system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ServicesFilePerms" xrefstyle="select: title page">Services File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003780</entry>
+          <entry>The services file must have mode 0644 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ServicesFilePerms" xrefstyle="select: title page">Services File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003800</entry>
+          <entry>Inetd or xinetd logging/tracing must be enabled.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ConfigureXinetdLogging" xrefstyle="select: title page">Configure Xinetd Logging</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003810</entry>
+          <entry>The portmap or rpcbind service must not be running unless needed.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisablePortmap" xrefstyle="select: title page">Disable Portmap Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003820</entry>
+          <entry>The rsh daemon must not be running.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableRsh" xrefstyle="select: title page">Disable Remote Shell (rsh)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003830</entry>
+          <entry>The rlogind service must not be running.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableRlogin" xrefstyle="select: title page">Disable Remote Login (rlogin)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003840</entry>
+          <entry>The rexec daemon must not be running.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableRexec" xrefstyle="select: title page">Disable Remote Exec (rexec)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003850</entry>
+          <entry>The telnet daemon must not be running.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableTelnet" xrefstyle="select: title page">Disable Telnet</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003860</entry>
+          <entry>The system must not have the finger service active.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableFinger" xrefstyle="select: title page">Disable Finger</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003865</entry>
+          <entry>Network analysis tools must not be installed.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNetAnalysisTools" xrefstyle="select: title page">Disable Network Analysis Tools</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003920</entry>
+          <entry>The hosts.lpd (or equivalent) file must be owned by root, bin, sys, or lp.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PrinterConfigFilePerms" xrefstyle="select: title page">Printer Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003930</entry>
+          <entry>The hosts.lpd (or equivalent) file must be group-owned by lp.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PrinterConfigFilePerms" xrefstyle="select: title page">Printer Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003940</entry>
+          <entry>The hosts.lpd (or equivalent) must have mode 0644 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="PrinterConfigFilePerms" xrefstyle="select: title page">Printer Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003960</entry>
+          <entry>The traceroute command owner must be root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RestrictTracerouteUse" xrefstyle="select: title page">Restrict Use of Traceroute and Ping</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN003980</entry>
+          <entry>The traceroute command must be group-owned by sys, bin, root, or system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RestrictTracerouteUse" xrefstyle="select: title page">Restrict Use of Traceroute and Ping</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004000</entry>
+          <entry>The traceroute file must have mode 0700 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RestrictTracerouteUse" xrefstyle="select: title page">Restrict Use of Traceroute and Ping</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004360</entry>
+          <entry>The alias file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="MailAgentAliasesFilePerms" xrefstyle="select: title page">Mail Agent Aliases Files Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004370</entry>
+          <entry>The aliases file must be group-owned by root, sys, bin, or system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="MailAgentAliasesFilePerms" xrefstyle="select: title page">Mail Agent Aliases Files Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004380</entry>
+          <entry>The alias file must have mode 0644 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="MailAgentAliasesFilePerms" xrefstyle="select: title page">Mail Agent Aliases Files Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004440</entry>
+          <entry>Sendmail logging must not be set to less than nine in the sendmail.cf file.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SendmailOpts" xrefstyle="select: title page">Configure Sendmail Options</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004460</entry>
+          <entry>The system syslog service must log informational and more severe SMTP service messages.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SyslogMaillog" xrefstyle="select: title page">Log Critical Sendmail Messages</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004480</entry>
+          <entry>The SMTP service log file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004500</entry>
+          <entry>The SMTP service log file must have mode 0644 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLogFilePerms" xrefstyle="select: title page">System Log File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004540</entry>
+          <entry>The SMTP service HELP command must not be enabled.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSendmailHelp" xrefstyle="select: title page">Disable Sendmail Help</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004560</entry>
+          <entry>The SMTP service's SMTP greeting must not provide version information.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SendmailOpts" xrefstyle="select: title page">Configure Sendmail Options</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004580</entry>
+          <entry>The system must not use .forward files.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SendmailOpts" xrefstyle="select: title page">Configure Sendmail Options</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004600</entry>
+          <entry>The SMTP service must be an up-to-date version.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSendmailBadVers" xrefstyle="select: title page">Disable Sendmail if older than 8.13.8</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004620</entry>
+          <entry>The sendmail server must have the debug feature disabled.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SendmailOpts" xrefstyle="select: title page">Configure Sendmail Options</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004660</entry>
+          <entry>The SMTP service must not have the EXPN feature active.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SendmailOpts" xrefstyle="select: title page">Configure Sendmail Options</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004680</entry>
+          <entry>The SMTP service must not have the Verify (VRFY) feature active.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SendmailOpts" xrefstyle="select: title page">Configure Sendmail Options</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004800</entry>
+          <entry>Unencrypted FTP must not be used on the system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableFTP_vsftpd" xrefstyle="select: title page">Disable FTP (vsftpd)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004820</entry>
+          <entry>Anonymous FTP must not be active on the system unless authorized.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RemoveFTPaccount" xrefstyle="select: title page">Remove ftp Account</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004880</entry>
+          <entry>The ftpusers file must exist.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CreateFTPUsers" xrefstyle="select: title page">Create ftpusers File</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004900</entry>
+          <entry>The ftpusers file must contain account names not allowed to use FTP.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CreateFTPUsers" xrefstyle="select: title page">Create ftpusers File</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004920</entry>
+          <entry>The ftpusers file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FTPConfigFilePerms" xrefstyle="select: title page">FTP Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004930</entry>
+          <entry>The ftpusers file must be group-owned by root, bin, sys, or system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FTPConfigFilePerms" xrefstyle="select: title page">FTP Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004940</entry>
+          <entry>The ftpusers file must have mode 0640 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="FTPConfigFilePerms" xrefstyle="select: title page">FTP Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN004980</entry>
+          <entry>The FTP daemon must be configured for logging or verbose mode.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="EnableAdditionalFTPLogging_vsftpd" xrefstyle="select: title page">Enable vsftpd Additional Logging</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005040</entry>
+          <entry>All FTP users must have a default umask of 077.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="GssftpUmask" xrefstyle="select: title page">Set FTP Umask (gssftp)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005080</entry>
+          <entry>The TFTP daemon must operate in "secure mode" which provides access only to a single directory on the host file system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="TftpSecureMode" xrefstyle="select: title page">Set TFTP Startup Directory</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005100</entry>
+          <entry>The TFTP daemon must have mode 0755 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysCmdFilePerms" xrefstyle="select: title page">System Command File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005180</entry>
+          <entry>All .Xauthority files must have mode 0600 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="HomeDirContentPerms" xrefstyle="select: title page">Home Directory Contents</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005260</entry>
+          <entry>X Window System connections not required must be disabled.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableGuiLogin" xrefstyle="select: title page">Disable Graphical Login</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005280</entry>
+          <entry>The system must not have the UUCP service active.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableUucp" xrefstyle="select: title page">Disable UUCP</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005300</entry>
+          <entry>SNMP communities, users, and passphrases must be changed from the default.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ChangeSNMPStrings" xrefstyle="select: title page">Disable SNMP if default public string exists</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005320</entry>
+          <entry>The snmpd.conf file must have mode 0600 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SNMPConfigFilePerms" xrefstyle="select: title page">SNMP Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005340</entry>
+          <entry>Management Information Base (MIB) files must have mode 0640 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="MIBFilePerms" xrefstyle="select: title page">Management Information Base (MIB) File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005360</entry>
+          <entry>The snmpd.conf file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SNMPConfigFilePerms" xrefstyle="select: title page">SNMP Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005365</entry>
+          <entry>The snmpd.conf file must be group-owned by root, bin, sys, or system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SNMPConfigFilePerms" xrefstyle="select: title page">SNMP Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005380</entry>
+          <entry>If the system is a Network Management System (NMS) server, it must only run the NMS and any software required by the NMS.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSNMP" xrefstyle="select: title page">Disable SNMP</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005390</entry>
+          <entry>The /etc/syslog.conf file must have mode 0640 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLoggingConfigFilePerms" xrefstyle="select: title page">System Logging Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005400</entry>
+          <entry>The /etc/syslog.conf file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLoggingConfigFilePerms" xrefstyle="select: title page">System Logging Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005420</entry>
+          <entry>The /etc/syslog.conf file must be group-owned by root, bin, sys, or system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SysLoggingConfigFilePerms" xrefstyle="select: title page">System Logging Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005480</entry>
+          <entry>The syslog daemon must not accept remote messages unless it is a syslog server documented using site-defined procedures.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableRemoteSyslog" xrefstyle="select: title page">Disable Remote Syslog</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005500</entry>
+          <entry>The SSH daemon must be configured to only use the SSHv2 protocol.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdProtocol" xrefstyle="select: title page">SSHD Protocol</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005501</entry>
+          <entry>The SSH client must be configured to only use the SSHv2 protocol.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshParameters" xrefstyle="select: title page">SSH Parameters</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005505</entry>
+          <entry>The SSH daemon must be configured to only use FIPS 140-2 approved ciphers.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdRestrictCiphers" xrefstyle="select: title page">SSHD Restrict Ciphers</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005506</entry>
+          <entry>The SSH daemon must be configured to not use Cipher-Block Chaining (CBC) ciphers.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdRestrictCiphers" xrefstyle="select: title page">SSHD Restrict Ciphers</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005507</entry>
+          <entry>The SSH daemon must be configured to only use Message Authentication Codes (MACs) employing FIPS 140-2 approved cryptographic hash algorithms.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdRestrictHMAC" xrefstyle="select: title page">SSHD Restrict HMAC</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005510</entry>
+          <entry>The SSH client must be configured to only use FIPS 140-2 approved ciphers.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshRestrictCiphers" xrefstyle="select: title page">SSH Restrict Ciphers</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005511</entry>
+          <entry>The SSH client must be configured to not use Cipher-Block Chaining (CBC)-based ciphers.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshRestrictCiphers" xrefstyle="select: title page">SSH Restrict Ciphers</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005512</entry>
+          <entry>The SSH client must be configured to only use Message Authentication Codes (MACs) employing FIPS 140-2 approved cryptographic hash algorithms.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshRestrictHMAC" xrefstyle="select: title page">SSH Restrict HMAC</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005521</entry>
+          <entry>The SSH daemon must restrict login ability to specific users and/or groups.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdRestrictUsersGroups" xrefstyle="select: title page">SSHD Restrict Users and Groups</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005524</entry>
+          <entry>The SSH daemon must not permit GSSAPI authentication unless needed.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdDisableGSSAPIAuth" xrefstyle="select: title page">SSHD Disable GSSAPI Authentication</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005525</entry>
+          <entry>The SSH client must not permit GSSAPI authentication unless needed.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshDisableGSSAPIAuth" xrefstyle="select: title page">SSH Disable GSSAPI Authentication</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005526</entry>
+          <entry>The SSH daemon must not permit Kerberos authentication unless needed.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdDisableKerberosAuth" xrefstyle="select: title page">SSHD Disable Kerberos Authentication</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005536</entry>
+          <entry>The SSH daemon must perform strict mode checking of home directory configuration files.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdStrictModeChecking" xrefstyle="select: title page">SSHD Strict Mode Checking</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005537</entry>
+          <entry>The SSH daemon must use privilege separation.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdUsePrivilegeSeparation" xrefstyle="select: title page">SSHD Use Privilege Separation</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005538</entry>
+          <entry>The SSH daemon must not allow rhosts RSA authentication.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdDisableRhostsRSAAuth" xrefstyle="select: title page">SSHD Disable Rhosts RSA Authentication</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005539</entry>
+          <entry>The SSH daemon must not allow compression or must only allow compression after successful authentication.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SshdSetCompression" xrefstyle="select: title page">SSHD Set Compression</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005540</entry>
+          <entry>The SSH daemon must be configured for IP filtering.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="TcpWrappers" xrefstyle="select: title page">Enable TCP Wrappers</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005550</entry>
+          <entry>The SSH daemon must be configured with the Department of Defense (DoD) logon banner.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="CreateLoginBanner" xrefstyle="select: title page">Create Login Banner</xref>
+              </member>
+              <member>
+                <xref linkend="SshdEnableBanner" xrefstyle="select: title page">SSHD Enable Banner</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005600</entry>
+          <entry>IP forwarding for IPv4 must not be enabled, unless the system is a router.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="IPForward" xrefstyle="select: title page">Disable IP Forwarding</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005610</entry>
+          <entry>The system must not have IP forwarding for IPv6 enabled, unless the system is an IPv6 router.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="IPForward" xrefstyle="select: title page">Disable IP Forwarding</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005740</entry>
+          <entry>The Network File System (NFS) export configuration file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ExportsConfigFilePerms" xrefstyle="select: title page">NFS Export Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005750</entry>
+          <entry>The Network File System (NFS) export configuration file must be group-owned by root, bin, sys, or system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ExportsConfigFilePerms" xrefstyle="select: title page">NFS Export Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005760</entry>
+          <entry>The Network File System (NFS) export configuration file must have mode 0644 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ExportsConfigFilePerms" xrefstyle="select: title page">NFS Export Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005820</entry>
+          <entry>The Network File System (NFS) anonymous UID and GID must be configured to values without permissions.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NFSanon" xrefstyle="select: title page">Deny NFS Client Access Without UID or GID</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN005900</entry>
+          <entry>The "nosuid" option must be enabled on all Network File System (NFS) client mounts.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NosuidOnUserFilesystems" xrefstyle="select: title page">Use NOSUID on User Filesystems</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006000</entry>
+          <entry>The system must not have a public Instant Messaging (IM) client installed.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableYahooIM" xrefstyle="select: title page">Disable Instant Messenger Client (Yahoo!)</xref>
+              </member>
+              <member>
+                <xref linkend="DisableGaimClient" xrefstyle="select: title page">Disable Instant Messenger Client (gaim)</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006040</entry>
+          <entry>The system must not have any peer-to-peer file-sharing application installed.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableFileShare" xrefstyle="select: title page">Disable File Sharing Networks</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006060</entry>
+          <entry>The system must not run Samba unless needed.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableSMB" xrefstyle="select: title page">Disable SMB</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006100</entry>
+          <entry>The /etc/smb.conf file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SambaConfigFilePerms" xrefstyle="select: title page">Samba Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006120</entry>
+          <entry>The /etc/smb.conf file must be group-owned by root, bin, sys, or system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SambaConfigFilePerms" xrefstyle="select: title page">Samba Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006140</entry>
+          <entry>The /etc/smb.conf file must have mode 0644 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SambaConfigFilePerms" xrefstyle="select: title page">Samba Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006160</entry>
+          <entry>The /etc/smbpasswd file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SambaPasswordFilePerms" xrefstyle="select: title page">Samba Password File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006180</entry>
+          <entry>The smbpasswd file must be group-owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SambaPasswordFilePerms" xrefstyle="select: title page">Samba Password File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006200</entry>
+          <entry>The smbpasswd file must have mode 0600 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SambaPasswordFilePerms" xrefstyle="select: title page">Samba Password File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006220</entry>
+          <entry>The smb.conf file must use the "hosts" option to restrict access to Samba.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SMB_Conf" xrefstyle="select: title page">SMB Configuration</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006225</entry>
+          <entry>Samba must be configured to use an authentication mechanism other than "share."</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SMB_Conf" xrefstyle="select: title page">SMB Configuration</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006230</entry>
+          <entry>Samba must be configured to use encrypted passwords.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="SMB_Conf" xrefstyle="select: title page">SMB Configuration</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006235</entry>
+          <entry>Samba must be configured to not allow guest access to shares.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RemoveSMBguest" xrefstyle="select: title page">Remove SMB Guest Authentication</xref>
+              </member>
+              <member>
+                <xref linkend="SMB_Conf" xrefstyle="select: title page">SMB Configuration</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006240</entry>
+          <entry>The system must not run an Internet Network News (INN) server.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableInnd" xrefstyle="select: title page">Disable Innd</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006260</entry>
+          <entry>The /etc/news/incoming.conf (or equivalent) must have mode 0600 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NntpFilePerms" xrefstyle="select: title page">InterNetNews Config File Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006280</entry>
+          <entry>The /etc/news/infeed.conf (or equivalent) must have mode 0600 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NntpFilePerms" xrefstyle="select: title page">InterNetNews Config File Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006300</entry>
+          <entry>The /etc/news/readers.conf (or equivalent) must have mode 0600 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NntpFilePerms" xrefstyle="select: title page">InterNetNews Config File Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006320</entry>
+          <entry>The /etc/news/passwd.nntp file (or equivalent) must have mode 0600 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NntpFilePerms" xrefstyle="select: title page">InterNetNews Config File Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006340</entry>
+          <entry>Files in /etc/news must be owned by root or news.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NntpFilePerms" xrefstyle="select: title page">InterNetNews Config File Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006360</entry>
+          <entry>The files in /etc/news must be group-owned by root or news.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="NntpFilePerms" xrefstyle="select: title page">InterNetNews Config File Perms</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006400</entry>
+          <entry>The Network Information System (NIS) protocol must not be used.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableNIS_client" xrefstyle="select: title page">Disable NIS Client</xref>
+              </member>
+              <member>
+                <xref linkend="DisableNIS_server" xrefstyle="select: title page">Disable NIS Server</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006600</entry>
+          <entry>Accounts must be locked upon 35 days of inactivity.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="LockInactiveAccount" xrefstyle="select: title page">Lock expired account after inactivity</xref>
+              </member>
+              <member>
+                <xref linkend="SetPassAgingOnAccts" xrefstyle="select: title page">Set Password Aging on Active Accounts</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN006620</entry>
+          <entry>The system's access control program must be configured to grant or deny system access to specific hosts.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="TcpWrappers" xrefstyle="select: title page">Enable TCP Wrappers</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN007020</entry>
+          <entry>The Stream Control Transmission Protocol (SCTP) must be disabled unless required.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_SCTP" xrefstyle="select: title page">Disable Support for SCTP</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN007080</entry>
+          <entry>The Datagram Congestion Control Protocol (DCCP) must be disabled unless required.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_DCCP" xrefstyle="select: title page">Disable Support for DCCP</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN007480</entry>
+          <entry>The Reliable Datagram Sockets (RDS) protocol must be disabled or not installed unless required.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_RDS" xrefstyle="select: title page">Disable Support for RDS</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN007540</entry>
+          <entry>The Transparent Inter-Process Communication (TIPC) protocol must be disabled or uninstalled.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelSprt_TIPC" xrefstyle="select: title page">Disable Support for TIPC</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN007660</entry>
+          <entry>The Bluetooth protocol handler must be disabled or not installed.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableBluetoothKernelModules" xrefstyle="select: title page">Disable Bluetooth Kernel Modules</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN007700</entry>
+          <entry>The IPv6 protocol handler must not be bound to the network stack unless needed.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableIPv6KernelModule" xrefstyle="select: title page">Disable IPv6 Kernel Module</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN007850</entry>
+          <entry>The DHCP client must not send dynamic DNS updates.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="Prohibit_DHCP_Dynamic_Updates" xrefstyle="select: title page">Prohibit DHCP client dynamic DNS updates</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN007860</entry>
+          <entry>The system must ignore IPv6 ICMP redirect messages.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="AcceptRedirects" xrefstyle="select: title page">Disable Accepting ICMP Redirects</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN007920</entry>
+          <entry>The system must not forward IPv6 source-routed packets.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="IPForward" xrefstyle="select: title page">Disable IP Forwarding</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN007960</entry>
+          <entry>The 'ldd' command must be disabled unless it protects against the execution of untrusted files.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ConfigureLddPerms" xrefstyle="select: title page">Configure Permissions on /usr/bin/ldd</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN008020</entry>
+          <entry>If the system is using LDAP for authentication or account information, the LDAP TLS connection must require the server provide a certificate with a valid trust path to a trusted CA.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ConfigureLDAPConf" xrefstyle="select: title page">Configure /etc/ldap.conf Settings</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN008040</entry>
+          <entry>If the system is using LDAP for authentication or account information, the system must verify the LDAP server's certificate has not been revoked.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="ConfigureLDAPConf" xrefstyle="select: title page">Configure /etc/ldap.conf Settings</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN008060</entry>
+          <entry>If the system is using LDAP for authentication or account information the /etc/ldap.conf (or equivalent) file must have mode 0644 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="LDAPConfigFilePerms" xrefstyle="select: title page">LDAP Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN008080</entry>
+          <entry>If the system is using LDAP for authentication or account information, the /etc/ldap.conf (or equivalent) file must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="LDAPConfigFilePerms" xrefstyle="select: title page">LDAP Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN008100</entry>
+          <entry>If the system is using LDAP for authentication or account information, the /etc/ldap.conf (or equivalent) file must be group-owned by root, bin, sys, or system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="LDAPConfigFilePerms" xrefstyle="select: title page">LDAP Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN008420</entry>
+          <entry>The system must use available memory address randomization techniques.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="EnableKernelExecShield" xrefstyle="select: title page">Enable ExecShield Kernel Module</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN008440</entry>
+          <entry>Automated file system mounting tools must not be enabled unless needed.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableAutofs" xrefstyle="select: title page">Disable Autofs Daemon</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN008460</entry>
+          <entry>The system must have USB disabled unless needed.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableUSB" xrefstyle="select: title page">Disable USB and PCMCIA Devices</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN008480</entry>
+          <entry>The system must have USB Mass Storage disabled unless needed.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelUSBStorage" xrefstyle="select: title page">Disable Support for USB Storage devices</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN008500</entry>
+          <entry>The system must have IEEE 1394 (Firewire) disabled unless needed.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="DisableKernelFirewire" xrefstyle="select: title page">Disable Support for Firewire</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN008520</entry>
+          <entry>The system must employ a local firewall.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="EnableIptables" xrefstyle="select: title page">Enable Iptables</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN008700</entry>
+          <entry>The system boot loader must require authentication.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RequireGrubPassword" xrefstyle="select: title page">Require GRUB Password</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN008710</entry>
+          <entry>The system boot loader must protect passwords using an MD5 or stronger cryptographic hash.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="RequireGrubPassword" xrefstyle="select: title page">Require GRUB Password</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN008720</entry>
+          <entry>The system's boot loader configuration file(s) must have mode 0600 or less permissive.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="BootLoaderConfigFilePerms" xrefstyle="select: title page">Boot Loader Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN008760</entry>
+          <entry>The system's boot loader configuration files must be owned by root.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="BootLoaderConfigFilePerms" xrefstyle="select: title page">Boot Loader Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+        <row>
+          <entry>GEN008780</entry>
+          <entry>The system's boot loader configuration file(s) must be group-owned by root, bin, sys, or system.</entry>
+          <entry>
+            <simplelist type="horiz" columns="1">
+              <member>
+                <xref linkend="BootLoaderConfigFilePerms" xrefstyle="select: title page">Boot Loader Configuration File Permissions</xref>
+              </member>
+            </simplelist>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+</section>

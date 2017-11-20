@@ -1,0 +1,98 @@
+1|Patches, Packages and Initial Lockdown 
+1.1|Apply Latest OS Patches 
+1.2|Validate Your System Before Making Changes 
+1.3|Configure SSH 
+1.4|Enable System Accounting 
+1.5|Install and Run Bastille 
+2|Minimize xinetd network services 
+2.1|Disable Standard Services 
+2.2|Configure TCP Wrappers and Firewall to Limit Access 
+2.3|Only Enable telnet If Absolutely Necessary 
+2.4|Only Enable FTP If Absolutely Necessary 
+2.5|Only Enable rlogin/rsh/rcp If Absolutely Necessary 
+2.6|Only Enable TFTP Server if Absolutely Necessary 
+2.7|Only Enable IMAP If Absolutely Necessary 
+2.8|Only Enable POP If Absolutely Necessary 
+3|Minimize boot services 
+3.1|Set Daemon umask 
+3.2|Disable xinetd, If Possible 
+3.3|Disable sendmail Server, If Possible 
+3.4|Disable GUI Login If Possible 
+3.5|Disable X Font Server If Possible 
+3.6|Disable Standard Boot Services 
+3.7|Only Enable SMB (Windows File Sharing) Processes If Absolutely Necessary
+3.8|Only Enable NFS Server Processes If Absolutely Necessary 
+3.9|Only Enable NFS Client Processes If Absolutely Necessary 
+3.10|Only Enable NIS Client Processes If Absolutely Necessary 
+3.11|Only Enable NIS Server Processes If Absolutely Necessary 
+3.12|Only Enable RPC Portmap Process If Absolutely Necessary 
+3.13|Only Enable netfs Script If Absolutely Necessary 
+3.14|Only Enable Printer Daemon Processes If Absolutely Necessary 
+3.15|Only Enable Web Server Processes If Absolutely Necessary 
+3.16|Only Enable SNMP Processes If Absolutely Necessary 
+3.17|Only Enable DNS Server Process If Absolutely Necessary 
+3.18|Only Enable SQL Server Processes If Absolutely Necessary 
+3.19|Only Enable Webmin Processes If Absolutely Necessary 
+3.20|Only Enable Squid Cache Server If Absolutely Necessary 
+3.21|Only Enable Kudzu Hardware Detection If Absolutely Necessary 
+4|Kernel Tuning 
+4.1|Network Parameter Modifications 
+4.2|Additional Network Parameter Modifications 
+5|Logging 
+5.1|Capture Messages Sent To Syslog AUTHPRIV Facility 
+5.2|Turn On Additional Logging For FTP Daemon 
+5.3|Confirm Permissions On System Log Files 
+5.4|Configure syslogd to Send Logs to a Remote LogHost 
+6|File/Directory Permissions/Access 
+6.1|Add “nodev” Option To Appropriate Partitions In /etc/fstab 
+6.2|Add “nosuid” and “nodev” Option For Removable Media In /etc/fstab 
+6.3|Disable User-Mounted Removable File Systems 
+6.4|Verify passwd, shadow, and group File Permissions 
+6.5|World-Writable Directories Should Have Their Sticky Bit Set 
+6.6|Find Unauthorized World-Writable Files 
+6.7|Find Unauthorized SUID/SGID System Executables 
+6.8|Find All Unowned Files 
+6.9|Disable USB Devices (AKA Hotplugger) 
+7|System Access, Authentication, and Authorization 
+7.1|Remove .rhosts Support In PAM Configuration Files 
+7.2|Create ftpusers Files 
+7.3|Prevent X Server From Listening On Port 6000/tcp 
+7.4|Restrict at/cron To Authorized Users 
+7.5|Restrict Permissions On crontab Files 
+7.6|Configure xinetd Access Control 
+7.7|Restrict Root Logins To System Console 
+7.8|Set LILO/GRUB Password 
+7.9|Require Authentication For Single-User Mode 
+7.10|Restrict NFS Client Requests To Privileged Ports 
+7.11|Only Enable syslog To Accept Messages If Absolutely Necessary 
+8|User Accounts and Environment 
+8.1|Block System Accounts 
+8.2|Verify That There Are No Accounts With Empty Password Fields 
+8.3|Set Account Expiration Parameters On Active Accounts 
+8.4|Verify No Legacy '+' Entries Exist In passwd, shadow, And group Files 
+8.5|No '.' or Group/World-Writable Directory In Root's $PATH 
+8.6|User Home Directories Should Be Mode 750 or More Restrictive 
+8.7|No User Dot-Files Should Be World-Writable 
+8.8|Remove User .netrc Files 
+8.9|Set Default umask For Users 
+8.10|Disable Core Dumps 
+8.11|Limit Access To The Root Account From su 
+9|Warning Banners 
+9.1|Create Warnings For Network And Physical Access Services 
+9.2|Create Warnings For GUI-Based Logins 
+9.3|Create 
+9.4|Reboot 
+10|Anti-Virus Consideration 
+11|Remove Backup Files 
+Appendix|A Additional Security Notes 
+SN.1|Create Symlinks For Dangerous Files 
+SN.2|Change Default Greeting String For sendmail 
+SN.3|Enable TCP SYN Cookie Protection 
+SN.4|Additional LILO/GRUB Security 
+SN.5|Evaluate Packages Associated With Startup Scripts 
+SN.6|Evaluate Every Installed Package 
+SN.7|Install and Configure sudo 
+SN.8|Lockout Accounts After 3 Failures 
+SN.9|Additional Kernel Tunings 
+SN.10|Remove All Compilers and Assemblers 
+SN.11|Verify That No UID 0 Accounts Exist Other Than Root 

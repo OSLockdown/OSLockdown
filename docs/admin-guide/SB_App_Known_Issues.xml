@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % CommonEntities SYSTEM "../COMMON_ENTITIES.ent">
+%CommonEntities;
+]>
+<appendix version="5.0" xml:id="app-known-issues" xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!--<?xml-stylesheet type="text/css" href="docbook.css"?>-->
+  <title>Known Issues and Workarounds</title>
+  <section xml:id="rel-issues-ssl">
+    <title>Potential Issue with Red Hat Enterprise Linux 6 and openSSL</title>
+    <para>There is a known issue that can occur if your OS Lockdown Console is using Java 1.7 and certain versions of
+      the openssl 1.0.1e libraries. See <link xlink:href="https://bugzilla.redhat.com/show_bug.cgi?id=1022017"
+        >https://bugzilla.redhat.com/show_bug.cgi?id=1022017</link> for additional details. The issue occurs when a
+      client machine attempts to contact the OS Lockdown Console (for example, registering a client or trying to send a
+      notification to the OS Lockdown Console) with an error similar to the following: </para>
+    <para>
+      <literallayout>SSL routines:SSL23_GET_SERVER_HELLO:tlsv1 alert internal error</literallayout>
+    </para>
+    <para>Three possible solutions are as follows: </para>
+    <itemizedlist>
+      <listitem>
+        <para>Reconfigure the OS Lockdown Console to use 'high-strength' ciphers with:</para>
+        <screen>/usr/share/oslockdown/tools/SB_Setup -c</screen>
+      </listitem>
+      <listitem>
+        <para>Install the Java 1.6 runtime and reconfigure the OS Lockdown Console to use it with:</para>
+        <screen>/usr/share/oslockdown/tools/SB_Setup -c</screen>
+      </listitem>
+      <listitem>
+        <para>Upgrade the version of openssl being used on the OS Lockdown Console machine</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+  <section xml:id="rel-issues-modules">
+    <title>OS Lockdown Modules</title>
+    <section xml:id="rel_issues-grub">
+      <title>Require GRUB Password</title>
+      <para>The &ldquo;Require GRUB Password&rdquo; module is currently explicitly looking for a line in the
+          <filename>grub.conf</filename> file that starts with <filename>password --md5 HASH</filename>, where
+          <filename>HASH</filename> is the MD5 hash of the actual grub passphrase. If a guideline is looking for a
+        different hashing requirement, for example the Red Hat Enterprise Linux 6 DISA STIG (line item RHEL-06-000068)
+        which requires <filename>password --encrypted "$6$HASH"</filename>, this module can indicate a problem even
+        though the <filename>grub.conf</filename> file is correctly configured. </para>
+    </section>
+    <section xml:id="rel-issues-lockacct">
+      <title>Account Locks and Mandatory Screen Saver</title>
+      <para>A problem has been identified with the &ldquo;Lock Account after Three Failed Login Attempts&rdquo; module
+        on some Linux platforms. The changes implemented by this module do not correctly lock accounts after the failure
+        count has been exceeded. </para>
+      <para>DISA has been contacted (TMS Action Request CSD-AR001850790) to request clarification on how to fix this
+        module to pass the GEN000460 requirement. While this module does not perform correctly, it does not cause
+        additional harmful effects, except when combined with the &ldquo;Set Mandatory Screen Saver&rdquo; module. When
+        both modules are active, regular users are unable to authenticate to any screen saver preventing the screen
+        saver to unlock. </para>
+      <para>A potential workaround is available for users who are required to implement both modules. This workaround
+        has not yet been approved by DISA, and exempts the screensaver from the &ldquo;Lock Account after Three Failed
+        Login Attempts&rdquo; module. This exemption must be explained to your accreditor. Refer to <xref
+          linkend="unlocking-the-screensaver" xrefstyle="select: label quotedtitle"/> for the workaround. </para>
+    </section>
+    <!-- ********************************************************************** -->
+    <section xml:id="rel-issues-password-policy-modules">
+      <title>Password Policy Modules</title>
+      <para>Some password policy related modules may not properly reverse or undo their settings after an apply has been
+        performed due to module ordering. Most users resolve this issue by performing a second undo action. </para>
+    </section>
+    <!-- ********************************************************************** -->
+    <section xml:id="rel-issues-novell-suse10-sp-utility">
+      <title>Modules Require a Special Utility in Novell SUSE 10 SP3</title>
+      <para>In <trademark class="registered">Novell</trademark>
+        <trademark class="registered">SUSE</trademark> 10 SP3, the following OS Lockdown modules require the use of a
+        special utility (the utility is not present in Novell SUSE 10 SP3, but it is present in its counterpart,
+        openSUSE 10.3): </para>
+      <itemizedlist>
+        <listitem>
+          <para> Password Policy Length Minimum </para>
+        </listitem>
+        <listitem>
+          <para> Password Policy Numeric Minimum </para>
+        </listitem>
+        <listitem>
+          <para> Password Policy Special Characters </para>
+        </listitem>
+        <listitem>
+          <para> Password Policy Uppercase Minimum </para>
+        </listitem>
+      </itemizedlist>
+      <para>If operational processes permit, the openSUSE <filename>pam-config</filename> package can be installed in
+        the Novell SUSE 10 SP3 environment. </para>
+    </section>
+  </section>
+  <!-- ******************************************************************** -->
+  <section xml:id="rel-issues-console">
+    <title>OS Lockdown Console</title>
+    <section xml:id="rel-issues-jre">
+      <title>Java Runtime Environment Version</title>
+      <para>Note that the OS Lockdown Console requires a <trademark>Java</trademark> 1.6 or Java 1.7 JRE. Some
+        distributions may not provide a Java 1.6 or 1.7 JRE on the installation media. Examples of this are certain
+        Novell SUSE 10, openSUSE 10 and Red Hat Enterprise Linux 4 distributions. For these platforms, it is recommended
+        to download and use Oracle’s official Java 1.6 or Java 1.7 JRE when installing the OS Lockdown Console. If
+        deploying the OS Lockdown Console on Linux instances running on the IBM System z mainframe, use the IBM-provided
+        Java 1.6 or 1.7 packages. </para>
+      <para>If Java from the Oracle website has been installed on Novell SUSE or openSUSE distributions, warning
+        messages may appear when the OS Lockdown Console starts. Depending on your version of SUSE/openSUSE and Oracle
+        Java packages, you may see a message similar to the following when the <filename>chkconfig</filename> command is
+        run: </para>
+      <para>
+        <literallayout>
+            <filename>insserv: Script jexec is broken: incomplete LSB comment. insserv: missing
+              `Required-Stop:' entry: please add even if empty.</filename>
+          </literallayout>
+      </para>
+      <para>The cause seems to be a file installed by the Oracle Java packages. This message can be safely ignored. For
+        more information, refer to <link xlink:href="https://bugzilla.novell.com/show_bug.cgi?id=504596"
+          >https://bugzilla.novell.com/show_bug.cgi?id=504596</link>. </para>
+    </section>
+    <section xml:id="rel-issues-error-display">
+      <title>Intermittent Error Display Issue</title>
+      <para> When the OS Lockdown Console is talking to the client on a different subnet, the red Status Bar does not
+        display, only the pop-up message displays. The error can be viewed in the
+          <filename>/var/lib/oslockdown/logs/osl-console.log</filename> log file. </para>
+    </section>
+    <section xml:id="rel-issues-zseries-firefox">
+      <title>Console Connection Issues with Firefox and IBM System z</title>
+      <para> Issues exist using <trademark class="registered">Firefox</trademark> to connect to the OS Lockdown Console
+        running on the zSeries. It appears to be due to the supported cipher suites available with the Java packages
+        installed. <trademark class="registered">Internet Explorer</trademark> does not appear to have this issue.
+      </para>
+    </section>
+    <section>
+      <title>zSeries Java Issues</title>
+      <para> Two issues were identified with some IBM-supplied Java 1.6 JRE environments. At this point it is not known
+        if they apply to the IBM-supplied Java 1.7 JRE environments as well. Refer to <xref
+          linkend="zseries-extended-high-cpu" xrefstyle="select: label quotedtitle"/> and <xref
+          linkend="zseries-java-traceback" xrefstyle="select: label quotedtitle"/> for details.</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <xref linkend="zseries-extended-high-cpu" xrefstyle="select: label quotedtitle"/> addresses a case where the
+            Java process can cause high CPU utilization for an extended length of time. An IBM support article is
+            provided for additional information, as well as a workaround for the OS Lockdown Console. </para>
+        </listitem>
+        <listitem>
+          <para>
+            <xref linkend="zseries-java-traceback" xrefstyle="select: label quotedtitle"/> addresses an issue that can
+            cause the OS Lockdown Console to display a “JVMVRFY012 stack shape inconsistent” error. IBM has identified a
+            problem with the 1.6 JRE in SR10 and earlier that should be fixed in the SR11 release (scheduled for summer
+            2012). IBM has developed an iFix for this specific issue. Contact your IBM vendor and request information on
+            PMR 66499,001,866. </para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+</appendix>

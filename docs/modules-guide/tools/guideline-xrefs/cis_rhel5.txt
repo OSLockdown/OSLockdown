@@ -1,0 +1,102 @@
+2|PATCHES, PACKAGES AND INITIAL LOCKDOWN 
+2.1|Apply Latest OS Patches 
+2.2|Validate The System Before Making Changes 
+2.3|Configure SSH 
+2.4|Enable System Accounting 
+3|MINIMIZE XINETD NETWORK SERVICES 
+3.1|Disable Standard Services 
+3.2|Configure TCP Wrappers and Firewall to Limit Access 
+3.3|Only Enable telnet, If Absolutely Necessary 
+3.4|Only Enable FTP, If Absolutely Necessary 
+3.5|Only Enable rlogin/rsh/rcp, If Absolutely Necessary 
+3.6|Only Enable TFTP Server, If Absolutely Necessary 
+3.7|Only Enable cyrus-imapd, If Absolutely Necessary 
+3.8|Only Enable dovcot, If Absolutely Necessary 
+4|MINIMIZE BOOT SERVICES 
+4.1|Set Daemon umask 
+4.2|Disable xinetd, If Possible 
+4.3|Ensure sendmail is only listening to the localhost, If Possible 
+4.4|Disable GUI Login, If Possible 
+4.5|Disable X Font Server, If Possible 
+4.6|Disable Standard Boot Services 
+4.7|Only Enable SMB (Windows File Sharing) Processes, If Absolutely Necessary 
+4.8|Only Enable NFS Server Processes, If Absolutely Necessary 
+4.9|Only Enable NFS Client Processes, If Absolutely Necessary 
+4.10|Only Enable NIS Client Processes, If Absolutely Necessary 
+4.11|Only Enable NIS Server Processes, If Absolutely Necessary 
+4.12|Only Enable RPC Portmap Process, If Absolutely Necessary 
+4.13|Only Enable netfs Script, If Absolutely Necessary 
+4.14|Only Enable Printer Daemon Processes, If Absolutely Necessary 
+4.15|Only Enable Web Server Processes, If Absolutely Necessary 
+4.16|Only Enable SNMP Processes, If Absolutely Necessary 
+4.17|Only Enable DNS Server Process, If Absolutely Necessary 
+4.18|Only Enable SQL Server Processes, If Absolutely Necessary 
+4.19|Only Enable Squid Cache Server, If Absolutely Necessary 
+4.20|Only Enable Kudzu Hardware Detection, If Absolutely Necessary 
+5|SYSTEM NETWORK PARAMETER TUNING 
+5.1|Network Parameter Modifications 
+5.2|Additional Network Parameter Modifications 
+6|LOGGING 
+6.1|Capture Messages Sent To syslog AUTHPRIV Facility 
+6.2|Turn On Additional Logging For FTP Daemon 
+6.3|Confirm Permissions On System Log Files 
+6.4|Configure syslogd to Send Logs to a Remote LogHost 
+7|FILE AND DIRECTORY PERMISSIONS/ACCESS 
+7.1|Add “nodev” Option To Appropriate Partitions In /etc/fstab 
+7.2|Add “nosuid” and “nodev” Option For Removable Media In /etc/fstab 
+7.3|Disable User-Mounted Removable File Systems 
+7.4|Verify passwd, shadow, and group File Permissions 
+7.5|Ensure World-Writable Directories Have Their Sticky Bit Set 
+7.6|Find Unauthorized World-Writable Files 
+7.7|Find Unauthorized SUID/SGID System Executables 
+7.8|Find All Unowned Directories and Files 
+7.9|Disable USB Devices 
+8|SYSTEM ACCESS, AUTHENTICATION, AND AUTHORIZATION 
+8.1|Remove .rhosts Support In PAM Configuration Files 
+8.2|Create ftpusers Files 
+8.3|Prevent X Server From Listening On Port 6000/tcp 
+8.4|Restrict at/cron To Authorized Users 
+8.5|Restrict Permissions On crontab Files 
+8.6|Restrict Root Logins To System Console 
+8.7|Set GRUB Password 
+8.8|Require Authentication For Single-User Mode 
+8.9|Restrict NFS Client Requests To Privileged Ports 
+8.10|Only Enable syslog To Accept Messages, If Absolutely Necessary 
+9|USER ACCOUNTS AND ENVIRONMENT 
+9.1|Block Login of System Accounts 
+9.2|Verify That There Are No Accounts With Empty Password Fields 
+9.3|Set Account Expiration Parameters On Active Accounts 
+9.4|Verify No Legacy '+' Entries Exist In passwd, shadow, And group Files 
+9.5|No '.' or Group/World-Writable Directory In Root's $PATH 
+9.6|User Home Directories Should Be Mode 0750 or More Restrictive 
+9.7|No User Dot-Files Should Be World-Writable 
+9.8|Remove User .netrc Files 
+9.9|Set Default umask For Users 
+9.10|Disable Core Dumps 
+9.11|Limit Access To The Root Account From su 
+10|WARNING BANNERS 
+10.1|Create Warnings For Network And Physical Access Services 
+10.2|Create Warnings For GUI-Based Logins 
+10.3|Create “authorized only” Banners For vsftpd, proftpd, If Applicable 
+11|MISC ODDS AND ENDS 
+11.1|Configure and enable the auditd and sysstat services, if possible 
+11.2|Verify no duplicate userIDs exist 
+11.3|Force permissions on root's home directory to be 0700 
+11.4|Utilize PAM to Enforce UserID password complexity 
+11.5|Restrict permissions to 0644 on /usr/share/man and /usr/share/doc content 
+11.6|Set permissions on cron scripts known to be executed by cron to be 0600 
+11.7|Reboot 
+12|ANTI-VIRUS CONSIDERATION 
+13|REMOVE CIS BENCHMARK HARDENING BACKUP FILES 
+APPENDIX A|ADDITIONAL SECURITY NOTES 
+SN.1|Create Symlinks For Dangerous Files 
+SN.2|Change Default Greeting String For sendmail 
+SN.3|Enable TCP SYN Cookie Protection 
+SN.4|Additional GRUB Security 
+SN.5|Evaluate Packages Associated With Startup Scripts 
+SN.6|Evaluate Every Installed Package 
+SN.7|Install and Configure sudo 
+SN.8|Lockout Accounts After 3 Failures 
+SN.9|Additional Network Parameter Tunings 
+SN.10|Remove All Compilers and Assemblers 
+SN.11|Verify That No Unauthorized/Duplicate UID 0 Accounts Exists 

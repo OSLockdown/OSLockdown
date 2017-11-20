@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DefaultUmask" version="5.0">
+  <title xml:id="Accounts">Default umask</title>
+  <para>
+  Sets the default
+  <function>umask</function>
+  so that newly created files or directories are only accessible by the
+  user who created them.
+  <indexterm><primary>umask</primary></indexterm>
+ </para>
+  <para>
+  If other users require access to files or directories, the permissions
+  can be manually changed. If this creates problems for applications
+  that must share files, then modify the application account’s
+  personal shell resource files to a less restrictive
+  <function>umask</function>
+  . It is recommended that this only be done on a case-by-case basis and
+  that all changes are well documented.
+ </para>
+  <informaltable frame="all" cellspacing="2" cellpadding="2">
+    <tgroup cols="3">
+      <colspec colname="c1" colwidth="0.8*" align="left"/>
+      <colspec colname="c2" colwidth="1.0*"/>
+      <colspec colname="c3" colwidth="0.5*"/>
+      <thead>
+        <row>
+          <entry>Operating Systems</entry>
+          <entry>Shell Resource Script</entry>
+          <entry>Settings</entry>
+        </row>
+      </thead>
+      <tbody valign="middle">
+        <row>
+          <entry>Fedora 10, 11, 12, and 13</entry>
+          <entry morerows="4">
+            <literallayout class="monospaced">/etc/profile
+/etc/.login
+/etc/bashrc
+/etc/csh.login</literallayout>
+          </entry>
+          <entry morerows="5">
+            <parameter>umask 077</parameter>
+            <indexterm>
+              <primary>.bashrc</primary>
+            </indexterm>
+            <indexterm>
+              <primary>.profile</primary>
+            </indexterm>
+            <indexterm>
+              <primary>/etc/.login</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/.login</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>/etc/csh.login</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/csh.login</secondary>
+            </indexterm>
+            <indexterm>
+              <primary>/etc/profile</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/profile</secondary>
+            </indexterm>
+          </entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 4</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 5</entry>
+        </row>
+        <row>
+          <entry>Red Hat Enterprise Linux 6</entry>
+        </row>
+        <row>
+          <entry>SUSE 10 and 11</entry>
+        </row>
+        <row>
+          <entry morerows="1">Solaris 10</entry>
+          <entry>
+            <literallayout class="monospaced">/etc/profile
+/etc/.login</literallayout>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <filename>/etc/default/login</filename>
+            <indexterm>
+              <primary>/etc/default/login</primary>
+            </indexterm>
+            <indexterm>
+              <primary>Files and Directories</primary>
+              <secondary>/etc/default/login</secondary>
+            </indexterm>
+          </entry>
+          <entry>
+            <envar>UMASK=077</envar>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+  <simplesect xml:id="DefaultUmask-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>
+     7.6.1 - Set umask for Users
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>
+     GEN002560 - The system and user default umask must be 077.
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>
+     RHEL-06-000342 - The system default umask for the bash shell must
+     be 077.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000343 - The system default umask for the csh shell must be
+     077.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000344 - The system default umask in /etc/profile must be
+     077.
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     RHEL-06-000345 - The system default umask in /etc/login.defs must
+     be 077.
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>
+     GEN002560 - Default umask
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>
+     AC-3 - Access Enforcement
+    </para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+      </listitem>
+      <listitem>
+        <para>
+     2.2.3 - Configure system security parameters to prevent misuse
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="DefaultUmask-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Default umask<emphasis><para>Maximum permitted Discretionary Access Controls (DACs) in <emphasis>octal</emphasis> format (i.e.,  max perms is 777 or 0777).
+      Note that only the read/write/execute bits are considered.  Note also that if a directory has read permissions for 
+      user/group/other allowed, then execute permissions for user/group/other are <emphasis>also</emphasis> allowed to allow for directory traversal.  No extra permissions are enforced, just allowed.  If empty, no permissions checks will be done.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

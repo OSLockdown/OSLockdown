@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+<compliancy source="DoD" name="NISPOM" version="Feb 2006" enabled="True">
+  <title>U.S. NISPOM (February 2006)</title>
+  <style>ModulesPerLineItem</style>
+  <abstract> <para> The U.S. <emphasis role="italic">National Industrial Security Program Operating
+   Manual</emphasis> (NISPOM) provides baseline standards for the protection of classified
+  information released or disclosed to industry in connection with classified contracts under the
+  NISP. The operating manual is provided under the authority of DoD Directive 5220.22, &quot;National
+  Industrial Security Program (NISP)&quot;, September 27, 2004. </para>
+ <para>
+  The manual consists of eleven primary chapters, however additional
+  information on the current interpretation of NISPOM requirements can
+  be found in Industrial Security Letters issued by the Defense Security
+  Service (DSS). The following chapters comprise the manual:
+ </para>
+ <itemizedlist>
+  <listitem>
+   <para>
+    CHAPTER 1 - General Provisions And Requirements
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 2 - Security Clearances
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 3 - Security Training and Briefings
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 4 - Classification and Marking
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 5 - Safeguarding Classified Information
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 6 - Visits and Meetings
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 7 - Subcontracting
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 8 - Information System Security
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 9 - Special Requirements
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 10 - International Security Requirements
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    CHAPTER 11 - Miscellaneous Information
+   </para>
+  </listitem>
+ </itemizedlist>
+ <para> The majority of the NISPOM is policy and procedure oriented; however, OS Lockdown can
+  assist with satisfying some of the requirements in &quot;Chapter 8 - Information System Security&quot;. </para>
+</abstract>
+  <line-items>
+    <line-item name="8.303a" description="Unique Identification">
+      <module libraryName="AuditEnable"/>
+      <module libraryName="AuditRules"/>
+      <module libraryName="AuditRulesSolaris"/>
+      <module libraryName="LockDuplicateUidZeros"/>
+      <module libraryName="PwGrpCheck"/>
+      <module libraryName="SshdDisableRootLogin"/>
+      <module libraryName="SshdPrintLastLog"/>
+      <module libraryName="SshdRestrictCiphers"/>
+      <module libraryName="SshdRestrictHMAC"/>
+      <module libraryName="SshdRestrictUsersGroups"/>
+      <module libraryName="SshRestrictCiphers"/>
+      <module libraryName="SshRestrictHMAC"/>
+      <module libraryName="SyslogAuthpriv"/>
+    </line-item>
+    <line-item name="8.303b" description="Authentication at Login">
+      <module libraryName="NoEmptyPasswords"/>
+      <module libraryName="SshdDisableEmptyPasswords"/>
+    </line-item>
+    <line-item name="8.303c" description="Applicability of Logon Authentication"/>
+    <line-item name="8.303d" description="Access to Authentication Data">
+      <module libraryName="PasswdPerms"/>
+      <module libraryName="ShadowPerms"/>
+    </line-item>
+    <line-item name="8.303i" description="Protection of Individual Passwords">
+      <module libraryName="NoEmptyPasswords"/>
+      <module libraryName="PasswordInvalidate"/>
+      <module libraryName="PasswordMaxDays"/>
+      <module libraryName="PasswordPolicyConsecutive"/>
+      <module libraryName="PasswordPolicyDiffChars"/>
+      <module libraryName="PasswordPolicyLowercase"/>
+      <module libraryName="PasswordPolicyMinlen"/>
+      <module libraryName="PasswordPolicyNumbers"/>
+      <module libraryName="PasswordPolicySpecial"/>
+      <module libraryName="PasswordPolicyUppercase"/>
+    </line-item>
+    <line-item name="8.602a1" description="Automated Audit Trail Creation">
+      <module libraryName="AuditEnable"/>
+      <module libraryName="AuditRules"/>
+      <module libraryName="AuditRulesSolaris"/>
+      <module libraryName="EnableAdditionalFTPLogging_vsftpd"/>
+      <module libraryName="SyslogAuthpriv"/>
+      <module libraryName="SyslogCronLogging"/>
+      <module libraryName="SyslogMaillog"/>
+    </line-item>
+    <line-item name="8.602a2" description="Audit Trail Protection">
+      <module libraryName="SysLogFilePerms"/>
+    </line-item>
+    <line-item name="8.602d1" description="Audit 4 Requirements">
+      <module libraryName="AuditRules"/>
+      <module libraryName="AuditRulesSolaris"/>
+    </line-item>
+    <line-item name="8.606b1" description="Access 2 Requirements">
+      <module libraryName="AudioDevFilePerms"/>
+      <module libraryName="BootLoaderConfigFilePerms"/>
+      <module libraryName="ConfigureLddPerms"/>
+      <module libraryName="CorrectUnevenPerms"/>
+      <module libraryName="AtCronAccessFilePerms"/>
+      <module libraryName="CrontabDirPerms"/>
+      <module libraryName="CrontabPerms"/>
+      <module libraryName="CrontabScriptPerms"/>
+      <module libraryName="GlobalInitializationFilePerms"/>
+      <module libraryName="HomeDirContentPerms"/>
+      <module libraryName="HomeDirPerms"/>
+      <module libraryName="ManPagePerms"/>
+      <module libraryName="NntpFilePerms"/>
+      <module libraryName="PasswdPerms"/>
+      <module libraryName="RestrictCompilerTools"/>
+      <module libraryName="RootHomePerms"/>
+      <module libraryName="SecureSetXIDFiles"/>
+      <module libraryName="SecureUnownedFiles"/>
+      <module libraryName="SecureWorldWritableDevices"/>
+      <module libraryName="SecureWorldWritableDirectories"/>
+      <module libraryName="SecureWorldWritableFiles"/>
+      <module libraryName="ShadowPerms"/>
+      <module libraryName="ShellBinPerms"/>
+      <module libraryName="SkeletonFilePerms"/>
+      <module libraryName="SysCmdFilePerms"/>
+      <module libraryName="SNMPConfigFilePerms"/>
+      <module libraryName="KernelDumpDirPerms"/>
+      <module libraryName="AtDirPerms"/>
+      <module libraryName="NisYpConfigPerms"/>
+      <module libraryName="ExportsConfigFilePerms"/>
+      <module libraryName="MailAgentAliasesFilePerms"/>
+      <module libraryName="ServicesFilePerms"/>
+      <module libraryName="FTPConfigFilePerms"/>
+      <module libraryName="PrinterConfigFilePerms"/>
+      <module libraryName="LDAPConfigFilePerms"/>
+      <module libraryName="MIBFilePerms"/>
+      <module libraryName="HostsFilePerms"/>
+      <module libraryName="NsswitchConfFilePerms"/>
+      <module libraryName="ResolvConfFilePerms"/>
+      <module libraryName="SysConfigFilePerms"/>
+      <module libraryName="SysctlPerms"/>
+      <module libraryName="SysDevDirPerms"/>
+      <module libraryName="SysLibFilePerms"/>
+      <module libraryName="SysLogFilePerms"/>
+      <module libraryName="SysLoggingConfigFilePerms"/>
+      <module libraryName="SysRcScriptPerms"/>
+      <module libraryName="UserDotFilePerms"/>
+    </line-item>
+    <line-item name="8.607e" description="Identification and Authentication 5 Requirements">
+      <module libraryName="NoEmptyPasswords"/>
+      <module libraryName="SshdDisableEmptyPasswords"/>
+    </line-item>
+    <line-item name="8.609a1" description="User Notification">
+      <module libraryName="CreateLoginBanner"/>
+      <module libraryName="CreateLoginFTPBanner"/>
+      <module libraryName="CreatePreLoginGUIBanner"/>
+      <module libraryName="CreatePreSessionGUIBanner"/>
+      <module libraryName="SshdEnableBanner"/>
+    </line-item>
+    <line-item name="8.609a2" description="Successive Logon Attempts">
+      <module libraryName="AccountLocks"/>
+      <module libraryName="LoginDelay"/>
+    </line-item>
+    <line-item name="8.609b2" description="User Inactivity">
+      <module libraryName="SetCdeScreenSaver"/>
+      <module libraryName="SetGnomeSS"/>
+      <module libraryName="SetXScreenSaverDefaults"/>
+      <module libraryName="ShellSessionTimeouts"/>
+      <module libraryName="SshdSetIdleTimeout"/>
+    </line-item>
+    <line-item name="8.613a1" description="Access to Protection Functions">
+      <module libraryName="DisablePAMConsole"/>
+      <module libraryName="RequireGrubPassword"/>
+      <module libraryName="SingleUserMode"/>
+    </line-item>
+  </line-items>
+</compliancy>

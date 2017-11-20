@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="FstabNodev" version="5.0">
+  <title xml:id="Filesystems">Use NODEV Option for Non-Root Partitions</title>
+  <para>
+  Places the <parameter class="option">nodev</parameter> option on
+  non-root partitions, which prevents users from mounting unauthorized
+  devices on partitions that should not contain devices. There should be
+  no need to mount devices on any partition other than
+  <filename>/dev</filename>.
+  <indexterm><primary>/dev</primary></indexterm>
+
+  <indexterm><primary>Files and Directories</primary><secondary>/dev</secondary></indexterm>
+ </para>
+  <important>
+    <para>
+   If you are using programs that run in <filename>chroot
+   jails</filename>, this module may break the application because
+   <filename>jails</filename> sometimes requires devices to be created
+   under the <filename>chroot</filename> directory.
+  </para>
+  </important>
+  <simplesect xml:id="FstabNodev-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>7.2 - File System Controls</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>2.2.1.1 - Add nodev Option to Non-Root Local Partitions</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-4249-9 - The nodev option should be enabled or disabled as appropriate for all non-root partitions.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

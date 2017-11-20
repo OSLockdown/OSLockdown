@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="SELinuxIsPropEnabled" version="5.0">
+  <title xml:id="SELinux">Ensure SELinux is Properly Enabled</title>
+  <para>
+  This scan-only module ensures that Security-Enhanced Linux (SELinux)
+  is enabled and enforcing an acceptable policy (e.g., targeted, strict,
+  or mls).
+  <indexterm><primary>SELinux</primary></indexterm>
+ </para>
+  <para>
+  This module first ensures the system is SELinux capable. If it is, but
+  is not enabled, this module will report a failure. If it is enabled,
+  <filename>/etc/selinux/config</filename> must contain
+  <envar>SELINUX=enforcing</envar>, and <envar>SELINUXTYPE</envar> must
+  be set to <emphasis>targeted</emphasis>, <emphasis>strict</emphasis>,
+  or <emphasis>mls</emphasis>. If <envar>SELINUX</envar> or
+  <envar>SELINUXTYPE</envar> are not set correctly, the module will
+  report a failure.
+ </para>
+  <para>
+  In addition to the configuration file, the system must currently be
+  enforcing the appropriate policy (see <command>sestatus(8)</command>
+  for more information). If it is not, this module will report a
+  failure.
+ </para>
+  <note>
+    <para>
+   This is a scan-only module which means if it reports a failure, the
+   system administrator must manually configure SELinux properly.
+  </para>
+  </note>
+  <simplesect xml:id="SELinuxIsPropEnabled-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Required SELinux mode<emphasis><para>Specify what mode SELinux should execute in after the next reboot.</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Required SELinux Policy<emphasis><para>Specify the policy SELinux should be in after the next reboot.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="SELinuxIsPropEnabled-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN000000-LNX00800 - The system must use a Linux Security Module configured to limit the privileges of system services.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000020 - The system must use a Linux Security Module configured to enforce limits on system services.</para>
+      </listitem>
+      <listitem>
+        <para>RHEL-06-000023 - The system must use a Linux Security Module configured to limit the privileges of system services.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>2.4.2 - Enable SELinux</para>
+      </listitem>
+      <listitem>
+        <para>2.4.2.1 - Ensure SELinux is Properly Enabled</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NVD CCE</title>
+      <listitem>
+        <para>CCE-3624-4 - The SELinux policy should be set appropriately.</para>
+      </listitem>
+      <listitem>
+        <para>CCE-3977-6 - SELinux should be enabled or disabled as appropriate</para>
+      </listitem>
+      <listitem>
+        <para>CCE-3999-0 - The SELinux state should be set appropriately.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

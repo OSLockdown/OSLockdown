@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  OS Lockdown Admin Guide - Index
+  DO NOT EDIT - Automatically Generated
+  $Id: admin-guide-index.xml 24014 2017-03-28 13:16:27Z rsanders $
+-->
+<simplesect xml:id="admin-index">
+ <para></para>
+ <indexterm zone="compare-profiles managing-clients">
+  <primary>Uptime</primary>
+ </indexterm>
+ <indexterm zone="intro-sb-editions">
+  <primary>Role-Based Access Control</primary>
+ </indexterm>
+ <indexterm zone="system-basics-launching-app system-basics-logging-off intro-architecture intro-groups intro-security-features sb-setup-diags sb-deploy-steps compare-profiles creating-new-client performing-actions-on-client auto-reg-requests performing-actions-on-group deleting-notifs viewing-assess-compare-report baselines viewing-baseline-report compare-baselines viewing-group-asset-report client-app-logs scheduling">
+  <primary>Baseline</primary>
+ </indexterm>
+ <indexterm zone="intro-reports-logs intro-security-features intro-network-connectivity troubleshoot-osl-console diag-dump ent-console-install">
+  <primary>Service</primary>
+ </indexterm>
+ <indexterm zone="intro-sb-editions client-install">
+  <primary>Access Control</primary>
+ </indexterm>
+ <indexterm zone="intro-network-connectivity troubleshoot-start-stop diag-dump ent-console-install client-install preface-relatedpubs">
+  <primary>Support</primary>
+ </indexterm>
+ <indexterm zone="sb-setup-diags client-install sb-deploy-steps compare-profiles managing-clients deleting-notifs viewing-assess-compare-report baselines viewing-baseline-report compare-baselines viewing-group-assess-report group-asset">
+  <primary>Memory</primary>
+ </indexterm>
+ <indexterm zone="quick-ref creating-new-profile">
+  <primary>CPE</primary>
+ </indexterm>
+ <indexterm zone="diag-dump client-install">
+  <primary>Tomcat</primary>
+ </indexterm>
+ <indexterm zone="intro-sb-editions">
+  <primary>RBAC</primary>
+ </indexterm>
+ <indexterm zone="intro-architecture intro-to-sys-elements intro-groups">
+  <primary>DISA</primary>
+ </indexterm>
+ <indexterm zone="intro-sb-editions delete-task administration">
+  <primary>Role</primary>
+ </indexterm>
+ <indexterm zone="client-install">
+  <primary>UTF-8</primary>
+ </indexterm>
+ <indexterm zone="preface-relatedpubs">
+  <primary>Maintenance</primary>
+ </indexterm>
+ <indexterm zone="intro-security-features">
+  <primary>SB_Install</primary>
+ </indexterm>
+ <indexterm zone="intro-reports-logs intro-network-connectivity sb-setup-diags diag-dump">
+  <primary>Certificates</primary>
+ </indexterm>
+ <indexterm zone="system-basics-launching-app diag-dump quick-ref searching-for-modules delete-task manage-users">
+  <primary>Import</primary>
+ </indexterm>
+ <indexterm zone="preface-audience">
+  <primary>CD-ROM</primary>
+ </indexterm>
+ <indexterm zone="system-basics-launching-app intro-architecture intro-groups sb-deploy-steps compare-profiles creating-new-client performing-actions-on-client auto-reg-requests performing-actions-on-group deleting-notifs managing-reports assessments viewing-assess-report compare-assessments viewing-baseline-compare-report group-assessments">
+  <primary>Assessment</primary>
+ </indexterm>
+ <indexterm zone="compare-profiles managing-clients">
+  <primary>Load Average</primary>
+ </indexterm>
+ <indexterm zone="intro-network-connectivity troubleshoot-start-stop">
+  <primary>SB_Setup</primary>
+ </indexterm>
+ <indexterm zone="client-install">
+  <primary>eth0</primary>
+ </indexterm>
+ <indexterm zone="intro-network-connectivity console-hardware">
+  <primary>Firefox</primary>
+ </indexterm>
+ <indexterm zone="troubleshoot-start-stop sb-setup-diags diag-dump ent-console-install client-install">
+  <primary>SELinux</primary>
+ </indexterm>
+ <indexterm zone="intro-architecture intro-profiles sb-setup-diags compare-profiles managing-clients deleting-notifs managing-reports assessments viewing-assess-report compare-assessments viewing-assess-compare-report baselines viewing-baseline-report compare-baselines viewing-group-assess-report group-asset">
+  <primary>Kernel</primary>
+ </indexterm>
+ <indexterm zone="intro-architecture intro-to-sys-elements">
+  <primary>DCID</primary>
+ </indexterm>
+ <indexterm zone="compare-profiles creating-new-client auto-reg-requests creating-new-group deleting-notifs viewing-baseline-compare-report console-audit-log client-app-logs scheduling">
+  <primary>Logging Level</primary>
+ </indexterm>
+ <indexterm zone="intro-security-features troubleshoot-start-stop diag-dump ent-console-install">
+  <primary>TCP</primary>
+ </indexterm>
+ <indexterm zone="troubleshoot-start-stop sb-setup-diags">
+  <primary>Diagnostic</primary>
+ </indexterm>
+ <indexterm zone="intro-network-connectivity sb-setup-diags diag-dump client-install">
+  <primary>Java</primary>
+ </indexterm>
+ <indexterm zone=" quick-ref creating-new-profile removing-module-from-profile deleting-notifs managing-reports assessments viewing-assess-report compare-assessments viewing-assess-compare-report viewing-baseline-report viewing-baseline-compare-report group-assessments viewing-group-assess-report">
+  <primary>HTML</primary>
+ </indexterm>
+ <indexterm zone="intro-architecture intro-to-sys-elements">
+  <primary>PCI DSS</primary>
+ </indexterm>
+ <indexterm zone="intro-architecture intro-to-sys-elements">
+  <primary>FERC CIP</primary>
+ </indexterm>
+ <indexterm zone=" system-basics-logging-off intro-architecture intro-to-sys-elements intro-profiles quick-ref managing-profiles creating-new-profile delete-task administration preface-docoverview">
+  <primary>Password</primary>
+ </indexterm>
+ <indexterm zone="system-basics-launching-app compare-profiles delete-client">
+  <primary>Auto-Registration</primary>
+ </indexterm>
+ <indexterm zone="system-basics-logging-off intro-reports-logs intro-security-features troubleshoot-osl-console troubleshoot-start-stop sb-setup-diags diag-dump ent-console-install compare-profiles managing-clients deleting-notifs viewing-baseline-compare-report">
+  <primary>Dispatcher</primary>
+ </indexterm>
+ <indexterm zone="intro-sb-editions intro-reports-logs console-hardware">
+  <primary>TLS</primary>
+ </indexterm>
+ <indexterm zone="system-basics-launching-app quick-ref removing-module-from-profile deleting-notifs viewing-assess-report compare-assessments viewing-baseline-report compare-baselines">
+  <primary>Comparison</primary>
+ </indexterm>
+ <indexterm zone="quick-ref creating-new-profile">
+  <primary>HTTP</primary>
+ </indexterm>
+ <indexterm zone="system-basics-logging-off troubleshoot-start-stop sb-setup-diags diag-dump ent-console-install client-install">
+  <primary>License</primary>
+ </indexterm>
+ <indexterm zone=" system-basics-launching-app system-basics-logging-off sb-setup-diags diag-dump ent-console-install client-install quick-ref searching-for-modules">
+  <primary>Standalone</primary>
+ </indexterm>
+ <indexterm zone="intro-sb-editions">
+  <primary>Grails</primary>
+ </indexterm>
+ <indexterm zone="system-basics-logging-off intro-architecture intro-to-sys-elements intro-profiles troubleshoot-start-stop sb-setup-diags diag-dump ent-console-install recommended-web-browsers quick-ref managing-profiles creating-new-profile deleting-a-profile adding-module-to-profile removing-module-from-profile compare-profiles creating-new-client deleting-notifs managing-reports assessments viewing-assess-report compare-assessments preface-conventions">
+  <primary>Modules</primary>
+ </indexterm>
+ <indexterm zone="system-basics-launching-app system-basics-logging-off intro-architecture intro-to-sys-elements intro-profiles sb-setup-diags diag-dump ent-console-install sb-deploy-steps quick-ref managing-profiles creating-new-profile searching-for-modules importing-a-profile editing-a-profile copying-a-profile deleting-a-profile adding-module-to-profile removing-module-from-profile delete-task manage-users">
+  <primary>Profiles</primary>
+ </indexterm>
+ <indexterm zone="sb-setup-diags client-install">
+  <primary>hostid</primary>
+ </indexterm>
+ <indexterm zone="intro-architecture intro-to-sys-elements">
+  <primary>NISPOM</primary>
+ </indexterm>
+ <indexterm zone=" system-basics-launching-app compare-profiles delete-client">
+  <primary>Dashboard</primary>
+ </indexterm>
+ <indexterm zone=" system-basics-logging-off intro-sb-editions intro-reports-logs intro-security-features diag-dump ent-console-install">
+  <primary>HTTPS</primary>
+ </indexterm>
+ <indexterm zone="intro-security-features quick-ref removing-module-from-profile deleting-notifs managing-reports viewing-assess-report viewing-assess-compare-report viewing-baseline-report viewing-baseline-compare-report viewing-group-assess-report">
+  <primary>PDF</primary>
+ </indexterm>
+ <indexterm zone="compare-profiles managing-clients">
+  <primary>Distribution</primary>
+ </indexterm>
+ <indexterm zone="intro-security-features quick-ref removing-module-from-profile deleting-notifs managing-reports viewing-assess-report viewing-assess-compare-report viewing-baseline-report viewing-baseline-compare-report viewing-group-assess-report">
+  <primary>CSV</primary>
+ </indexterm>
+ <indexterm zone="intro-architecture intro-to-sys-elements">
+  <primary>CIS</primary>
+ </indexterm>
+ <indexterm zone=" intro-security-features diag-dump quick-ref removing-module-from-profile deleting-notifs managing-reports viewing-assess-report viewing-assess-compare-report viewing-baseline-report viewing-baseline-compare-report viewing-group-assess-report">
+  <primary>TXT</primary>
+ </indexterm>
+ <indexterm zone="intro-network-connectivity troubleshoot-osl-console client-install compare-profiles preface-audience">
+  <primary>Solaris</primary>
+ </indexterm>
+ <indexterm zone="system-basics-launching-app intro-architecture intro-groups intro-network-connectivity sb-setup-diags diag-dump ent-console-install compare-profiles creating-new-client deleting-notifs console-audit-log">
+  <primary>Logs</primary>
+ </indexterm>
+ <indexterm zone="sb-setup-diags diag-dump ent-console-install">
+  <primary>PEM</primary>
+ </indexterm>
+ <indexterm zone="diag-dump ent-console-install">
+  <primary>NTP</primary>
+ </indexterm>
+ <indexterm zone="diag-dump client-install">
+  <primary>JDK</primary>
+ </indexterm>
+ <indexterm zone="intro-sb-editions">
+  <primary>SOAP</primary>
+ </indexterm>
+ <indexterm zone="intro-reports-logs intro-security-features intro-network-connectivity diag-dump ent-console-install">
+  <primary>SSL</primary>
+ </indexterm>
+ <indexterm zone="client-install">
+  <primary>MAC</primary>
+ </indexterm>
+ <indexterm zone="system-basics-launching-app client-install deleting-notifs viewing-baseline-report delete-task manage-users">
+  <primary>Export</primary>
+ </indexterm>
+ <indexterm zone="intro-reports-logs intro-security-features">
+  <primary>IPv4</primary>
+ </indexterm>
+ <indexterm zone="intro-reports-logs">
+  <primary>Certificate Authority</primary>
+ </indexterm>
+ <indexterm zone="client-app-logs scheduling">
+  <primary>Scheduling</primary>
+ </indexterm>
+ <indexterm zone="compare-profiles creating-new-client delete-task manage-users">
+  <primary>Snapshot</primary>
+ </indexterm>
+ <indexterm zone="intro-architecture intro-to-sys-elements">
+  <primary>JAFAN</primary>
+ </indexterm>
+ <indexterm zone="system-basics-launching-app compare-profiles performing-actions-on-client auto-reg-requests performing-actions-on-group deleting-notifs managing-reports assessments viewing-assess-report viewing-baseline-compare-report group-assessments">
+  <primary>Assessment Report</primary>
+ </indexterm>
+ <indexterm zone="intro-sb-editions sb-setup-diags compare-profiles managing-clients deleting-notifs managing-reports assessments viewing-assess-report compare-assessments viewing-assess-compare-report baselines viewing-baseline-report compare-baselines viewing-group-assess-report group-asset preface-audience">
+  <primary>Architecture</primary>
+ </indexterm>
+</simplesect>

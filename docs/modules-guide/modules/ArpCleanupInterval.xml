@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: ArpCleanupInterval.xml 24006 2017-03-27 18:13:48Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="ArpCleanupInterval">
+ <title xml:id="NetworkConfig">ARP Cleanup Interval</title>
+ <para>
+  Set the length of time, in milliseconds, that unsolicited Address
+  Resolution Protocol (ARP) requests remain in the ARP cache. If
+  unsolicited ARP requests are allowed to remain in the ARP cache for
+  long periods, an attacker could fill up the ARP cache with bogus
+  entries.
+  <indexterm>
+   <primary>ARP</primary>
+  </indexterm>
+ </para>
+ <para>
+  This module is used to manage unsolicited ARP entries, not solicited
+  entries which are managed with OS Lockdown's
+  “<xref linkend="ArpCleanupInterval_IRE" xrefstyle="select: title page"/>”
+  module.
+ </para>
+ <table cellpadding="2" cellspacing="2" frame="all" xml:id="table-arp-cleanup-interval">
+  <title>Setting the ARP Cleanup Interval</title>
+  <tgroup cols="3">
+   <colspec align="left" colname="c1" colwidth="0.5*"/>
+   <colspec colname="c2" colwidth="0.5*"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Configuration Files</entry>
+     <entry>Setting</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="4" nameend="c3" namest="c2"><emphasis>Operating System Not Applicable</emphasis></entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+    </row>
+    <row>
+     <entry>Solaris 10</entry>
+     <entry><filename>/etc/default/ndd</filename>
+      <indexterm>
+       <primary>/etc/default/ndd</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Files and Directories</primary>
+
+       <secondary>/etc/default/ndd</secondary>
+      </indexterm>
+
+      <indexterm>
+       <primary>ndd</primary>
+      </indexterm></entry>
+     <entry><filename>arp_cleanup_interval</filename> =
+      <replaceable>value</replaceable>
+      <indexterm>
+       <primary>arp_cleanup_interval</primary>
+      </indexterm></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </table>
+ <simplesect xml:id="ArpCleanupInterval-options">
+  <title>Module Options</title>
+  <itemizedlist>
+   <listitem>
+    <para>
+     The length of time that unsolicited Address Resolution Protocol
+     (ARP) requests remain in the ARP cache.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+ <simplesect xml:id="ArpCleanupInterval-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NIST FISMA (SP 800-53)</title>
+   <listitem>
+    <para>
+     SC-5 - Denial of Service Protection
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

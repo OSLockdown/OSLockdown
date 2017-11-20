@@ -1,0 +1,12 @@
+Package: oslockdown
+Version: 4 
+Section: utils
+Priority: optional
+Architecture: all
+Depends: python (>= 2.6.5)
+Recommends: oslockdown-modules (>= 5.0.0)
+Enhances: oslockdown-dispatcher (>= 5.0.0)
+Suggests: oslockdown-console (>= 5.0.0)
+Maintainer: OSLockdown
+Homepage:  https://www.github.com/OSLockdown/OSLockdown
+Description: OS Lockdown Core

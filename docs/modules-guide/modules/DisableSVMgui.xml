@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableSVMgui" version="5.0">
+ <title xml:id="SysMgmtServices">Disable Solaris Volume Manager GUI</title>
+ <para>
+  Disables the Solaris Volume Manager (SVM) graphical user interface
+  (GUI). Specifically, this module disables SVM multi-node
+  communications (mdcomm), remote metaset (meta), remote mediator
+  (metmed), and remote multihost disk (metamh) services.
+  <indexterm>
+   <primary>SVM</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Solaris Volume Manager</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>mdcomm</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>metamh</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>metmed</primary>
+  </indexterm>
+ </para>
+ <para>
+  These services are not required to use filesystems residing on
+  metadevices. Most tasks can be completed by using the command line
+  utilities; therefore, it is recommended that you apply this module.
+ </para>
+ <informaltable frame="all" cellspacing="2" cellpadding="2">
+  <tgroup cols="2">
+   <colspec colname="c1" colwidth="1.0*" align="left"/>
+   <colspec colname="c2" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Operating Systems</entry>
+     <entry>Service Names</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry>Fedora 10, 11, 12, and 13</entry>
+     <entry morerows="4"><emphasis>Operating System Not Applicable</emphasis></entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 4</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 5</entry>
+    </row>
+    <row>
+     <entry>Red Hat Enterprise Linux 6</entry>
+    </row>
+    <row>
+     <entry>SUSE 10 and 11</entry>
+    </row>
+    <row>
+     <entry>Solaris 10 (Global zone only)
+      <indexterm>
+       <primary>svc:/network/rpc/mdcomm:default</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Solaris services</primary>
+       <secondary>svc:/network/rpc/mdcomm:default</secondary>
+      </indexterm>
+
+      <indexterm>
+       <primary>svc:/network/rpc/meta:default</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Solaris services</primary>
+       <secondary>svc:/network/rpc/meta:default</secondary>
+      </indexterm>
+
+      <indexterm>
+       <primary>svc:/network/rpc/metamed:default</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Solaris services</primary>
+       <secondary>svc:/network/rpc/metamed:default</secondary>
+      </indexterm>
+
+      <indexterm>
+       <primary>svc:/network/rpc/metamh:default</primary>
+      </indexterm>
+
+      <indexterm>
+       <primary>Solaris services</primary>
+       <secondary>svc:/network/rpc/metamh:default</secondary>
+      </indexterm></entry>
+     <entry><simplelist type="horiz" columns="1">
+       <member>svc:/network/rpc/mdcomm:default</member>
+       <member>svc:/network/rpc/meta:default</member>
+       <member>svc:/network/rpc/metamed:default</member>
+       <member>svc:/network/rpc/metamh:default</member>
+      </simplelist></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </informaltable>
+ <simplesect xml:id="DisableSVMgui-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-13 - Limitation and Control of Network Ports, Protocols, and
+     Services
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CC-3 - Secure Configurations for Hardware and Software on Laptops,
+     Workstations, and Servers
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+   <listitem>
+    <para>
+     CIP-005-3-R2.2 - Enable only ports and services needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+   <listitem>
+    <para>
+     CIP-007-3-R2.2 - Disable ports and services not needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NVD CCE</title>
+   <listitem>
+    <para>
+     CCE-3650-9 - The metaed service should be enabled or disabled as
+     appropriate
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CCE-4305-9 - The volume manager GUI mdcomm service should be
+     enabled or disabled as appropriate
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CCE-4477-6 - The meta service should be enabled or disabled as
+     appropriate
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     CCE-4571-6 - The metamh service should be enabled or disabled as
+     appropriate
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>PCI DSS (v2.0)</title>
+   <listitem>
+    <para>
+     2.2 - Configuration standards for system components consistent with
+     industry-accepted system hardening standards
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     2.2.2 - Disable all unnecessary and insecure services
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

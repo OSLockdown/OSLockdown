@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="CreatePreLoginGUIBanner">
+  <title xml:id="General">Create Pre-Login GUI Banner</title>
+  <para>
+  Displays a short text message prior to a user logging on. This banner
+  may be used to show a short system announcement, or to inform the user
+  that a “Consent to Monitor” agreement must be agreed to before
+  allowing a login to complete.
+  <indexterm><primary>CDE</primary></indexterm>
+
+  <indexterm><primary>banner</primary></indexterm>
+  <note><para>
+    This module does not address CDE under Solaris; however, it does
+    support the GDM.
+   </para></note>
+ </para>
+  <para>
+  It is recommended to customize the warning banner to meet
+  site-specific needs.
+ </para>
+  <simplesect xml:id="CreatePreLoginGUIBanner-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Explicit text for pre login message.<emphasis><para>Desired text for the prelogin banner.  This message should be short, no more than a sentence or two.  Anything longer should be in either the 'Create Login GUI Banner' or 'Create Pre-Sessions GUI Banner' module.</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="CreatePreLoginGUIBanner-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>CIA DCID 6/3 (May 2000)</title>
+      <listitem>
+        <para>4.B.1.a(6)(a) - Session Control - Login Warning Banners</para>
+      </listitem>
+      <listitem>
+        <para>4.B.1.a(6)(b) - Session Control - Login Warning Banners - Consent</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>4.2 - GUI Login Warning Banner</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN000400 - The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, console login prompts.</para>
+      </listitem>
+      <listitem>
+        <para>GEN000402 - The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN000400 - Logon Warning Banner Display</para>
+      </listitem>
+      <listitem>
+        <para>GEN000420 - Logon Warning Banner Content</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD JAFAN 6/3 (Oct 2004)</title>
+      <listitem>
+        <para>4.B.1.a(6)(a) - Session Control - Login Warning Banners</para>
+      </listitem>
+      <listitem>
+        <para>4.B.1.a(6)(b) - Session Control - Login Warning Banners - Consent</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DoD NISPOM (Feb 2006)</title>
+      <listitem>
+        <para>8.609a1 - User Notification</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+      <listitem>
+        <para>CIP-005-3-R2.6 - Appropriate Use Banner</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>AC-8 - System Use Notification</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+      <listitem>
+        <para>2.3.7.1 - Modify the System Login Banner</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

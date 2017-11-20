@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: DisableIA32MicrocodeUtility.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableIA32MicrocodeUtility" version="5.0">
+ <title xml:id="HardwareServices">Disable IA32 Microcode Utility</title>
+ <para>
+  Disables the IA32 Microcode utility. This module will prevent the
+  utility from running during system startup. The utility is for use
+  with Intel IA32 processors (Pentium™ Pro, PII, Celeron™, PIII,
+  Xeon™, Pentium 4, etc.).
+  <indexterm>
+   <primary>IA32</primary>
+  </indexterm>
+
+  <indexterm>
+   <primary>Pentium</primary>
+  </indexterm>
+ </para>
+ <para>
+  Upon invocation, this module will examine
+  <filename>/proc/cpuinfo</filename> to determine what types of
+  processors (CPUs) are present. The module looks for the following
+  lines and if the 'cpu family' is less than 6, the module will not
+  disable the IA32 microcode utility.
+ </para>
+<programlisting>vendor_id	: GenuineIntel
+cpu family	: 6</programlisting>
+ <simplesect xml:id="DisableIA32MicrocodeUtility-compliancy">
+  <title>Compliancy</title>
+  <itemizedlist>
+   <title>CAG 20 Critical Security Controls (v2.3)</title>
+   <listitem>
+    <para>
+     CC-13 - Limitation and Control of Network Ports, Protocols, and
+     Services
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Electronic Security Perimeters (CIP-005-3)</title>
+   <listitem>
+    <para>
+     CIP-005-3-R2.2 - Enable only ports and services needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NERC Cyber Security - Systems Security Management (CIP-007-3)</title>
+   <listitem>
+    <para>
+     CIP-007-3-R2.2 - Disable ports and services not needed for
+     operations
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NSA Guide to the Secure Configuration of RHEL5 (Rev. 4.2 / Aug 2011)</title>
+   <listitem>
+    <para>
+     3.3.8 - IA32 Microcode Utility (microcode ctl)
+    </para>
+   </listitem>
+  </itemizedlist>
+  <itemizedlist>
+   <title>NVD CCE</title>
+   <listitem>
+    <para>
+     CCE-4356-2 - The microcode_ctl service should be enabled or
+     disabled as appropriate.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </simplesect>
+</section>

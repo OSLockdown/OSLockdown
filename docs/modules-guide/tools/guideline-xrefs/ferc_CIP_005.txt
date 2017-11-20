@@ -1,0 +1,3 @@
+CIP-005-3-R2.2|Enable only ports and services needed for operations
+CIP-005-3-R2.6|Appropriate Use Banner
+CIP-005-3-R4.4|Review of controls for default accounts, passwords, and network management community strings

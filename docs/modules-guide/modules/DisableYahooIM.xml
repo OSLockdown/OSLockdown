@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="DisableYahooIM" version="5.0">
+  <title xml:id="DesktopApps">Disable Instant Messenger Client (Yahoo!)</title>
+  <para>
+  Disables the Yahoo!® instant messenger client. If the
+  “ymessenger” package is installed, this module will remove all
+  permissions from <filename>/usr/bin/ymessenger</filename> so it cannot
+  be used.
+ </para>
+  <para>
+  If an instant messenger is needed, configure your network to restrict
+  with whom end-users can communicate. If this client is not needed,
+  remove the package.
+ </para>
+  <simplesect xml:id="DisableYahooIM-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN006000 - The system must not have a public Instant Messaging (IM) client installed.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN006000 - Public Instant Messaging Client is Installed</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2.2 - Disable all unnecessary and insecure services</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

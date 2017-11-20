@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: app-passwd-policy-aging.xml 23964 2017-03-21 21:04:23Z acochrane $ -->
+<section version="5.0" xml:id="app-passwd-policy-aging" xmlns="http://docbook.org/ns/docbook">
+ <title>Password Aging</title>
+ <para> Establishing a <emphasis>password aging</emphasis> policy involves setting system parameters to automatically
+  lock an account if the user has not changed a password within a specified period. It also involves warning the user
+  and giving them the opportunity to change the password before it does expire. Finally, it includes establishing the
+  number of times a password can be reused and the minimum amount of time before a password can be changed again. </para>
+ <table cellpadding="2" cellspacing="2" frame="all" xml:id="table-passwd-policy-settings-aging">
+  <title>Password Aging - Configuration</title>
+  <tgroup cols="3">
+   <colspec colname="c1" colwidth="1.0*"/>
+   <colspec colname="c2" colwidth="0.5*"/>
+   <colspec colname="c3" colwidth="1.0*"/>
+   <thead>
+    <row>
+     <entry>Linux</entry>
+     <entry>Solaris</entry>
+     <entry>OS Lockdown Module</entry>
+    </row>
+   </thead>
+   <tbody valign="middle">
+    <row>
+     <entry><envar>PASS_MAX_DAYS</envar></entry>
+     <entry><envar>MAXWEEKS</envar></entry>
+     <entry><link linkend="PasswordMaxDays">Maximum Time Between Password Changes</link></entry>
+    </row>
+    <row>
+     <entry><command>/usr/bin/chage -I <replaceable>x useraccount</replaceable></command></entry>
+     <entry><emphasis>automatic</emphasis></entry>
+     <entry><link linkend="PasswordInvalidate">Expired Password Invalidation</link></entry>
+    </row>
+    <row>
+     <entry><envar>PASS_MIN_DAYS</envar></entry>
+     <entry><envar>MINWEEKS</envar></entry>
+     <entry><link linkend="PasswordChangeDelay">Minimum Delay Between Password Changes</link></entry>
+    </row>
+    <row>
+     <entry><envar>PASS_WARN_AGE</envar></entry>
+     <entry><envar>WARNWEEKS</envar></entry>
+     <entry><link linkend="PasswordWarnAge">Password Expiration Warning</link></entry>
+    </row>
+    <row>
+     <entry><parameter>^password .* pam_unix.so remember=X</parameter></entry>
+     <entry><envar>HISTORY</envar></entry>
+     <entry><link linkend="PasswordReuse">Limit Password Reuse</link></entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </table>
+ <para> Solaris configurations are made in the <filename>/etc/default/passwd</filename> file. Linux configurations are
+  made in <filename>/etc/default/login.defs</filename> except for the <emphasis>Limit Password Reuse</emphasis> module;
+  which makes its change in <filename>/etc/pam.d/system-auth</filename> . </para>
+</section>

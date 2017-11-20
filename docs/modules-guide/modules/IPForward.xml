@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="IPForward" version="5.0">
+  <title xml:id="NetworkConfig">Disable IP Forwarding</title>
+  <para>
+  Disables IP forwarding. By default, your system is configured to
+  forward IP packets for IPv4 network traffic. If your system is not
+  being used as a router or gateway for other machines, then apply this
+  module to your profile to disable IP forwarding. The setting will be
+  changed from 1 to 0. In the event that your system is serving as a
+  router or gateway, do not apply this configuration change.
+ </para>
+  <para>
+  This module will alter the <parameter>net.ipv4.ip_forward</parameter>
+  kernel parameter stored in the <filename>sysctl.conf(5)</filename>
+  file. On Solaris systems, the <command>routeadm(1M)</command> command
+  is used to modify the <parameter>ipv4_forwarding</parameter> and
+  <parameter>ipv6_forwarding</parameter> parameters.
+  <indexterm><primary>ip_forward</primary></indexterm>
+
+  <indexterm><primary>ipv4_forwarding</primary></indexterm>
+
+  <indexterm><primary>sysctl.conf</primary></indexterm>
+ </para>
+  <para>
+  Unless your system is routing network traffic for other machines on
+  your network, it is safe to disable IP forwarding. This will have no
+  impact on system operation.
+  <indexterm><primary>.forward</primary></indexterm>
+ </para>
+  <simplesect xml:id="IPForward-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>CAG 20 Critical Security Controls (v2.3)</title>
+      <listitem>
+        <para>CC-13 - Limitation and Control of Network Ports, Protocols, and Services</para>
+      </listitem>
+      <listitem>
+        <para>CC-3 - Secure Configurations for Hardware and Software on Laptops, Workstations, and Servers</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DHS Linux Configuration Guidance (2010.8)</title>
+      <listitem>
+        <para>6.1 - Kernel TCP Stack Tuning</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 5 STIG (V1R17)</title>
+      <listitem>
+        <para>GEN005600 - IP forwarding for IPv4 must not be enabled, unless the system is a router.</para>
+      </listitem>
+      <listitem>
+        <para>GEN005610 - The system must not have IP forwarding for IPv6 enabled, unless the system is an IPv6 router.</para>
+      </listitem>
+      <listitem>
+        <para>GEN007920 - The system must not forward IPv6 source-routed packets.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>RHEL-06-000082 - IP forwarding for IPv4 must not be enabled, unless the system is a router.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>DISA UNIX STIG (v5 R1.30)</title>
+      <listitem>
+        <para>GEN003600 - Network Security Settings</para>
+      </listitem>
+      <listitem>
+        <para>GEN005600 - Disable IP Forwarding</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>NIST FISMA (SP 800-53)</title>
+      <listitem>
+        <para>SC-5 - Denial of Service Protection</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <title>PCI DSS (v2.0)</title>
+      <listitem>
+        <para>2.2 - Configuration standards for system components consistent with industry-accepted system hardening standards</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

@@ -1,0 +1,67 @@
+#!/sbin/sh
+#
+# Copyright (c) 2007-2014 Forcepoint LLC.
+# This file is released under the GPLv3 license.  
+# See 'GPLv3_LICENSE.txt' at the root of the source tree for the full license,
+# or visit https://www.gnu.org/licenses/gpl.html instead.
+#
+# Solaris 10 Network Configuration File
+#
+# Be careful what you add or remove in this file
+# because it is maintained by OS Lockdown 
+# modules. You may lose your settings
+#
+
+. /lib/svc/share/smf_include.sh
+
+problem_flag=0
+
+ZNAME="`/usr/bin/zonename`"
+
+if [ "$ZNAME" != "global" ]; then
+    echo "This service not applicable to non-global zones."
+    echo "Because you can not write to /dev/ip or /dev/tcp"
+    exit $SMF_EXIT_OK
+fi
+
+if [ -f "/etc/default/ndd" ]; then
+    echo ":: Reading /etc/default/ndd"
+    for param in `/usr/bin/egrep -v '^$|#' /etc/default/ndd`; 
+    do
+        param=`/usr/bin/echo $param |/usr/bin/sed 's/=/ /'`
+        param=`/usr/bin/echo $param |/usr/bin/sed 's/^ //g'`
+
+        netdrv=`/usr/bin/echo $param | /usr/bin/awk \
+                '{ if ( $0 ~ /^(ip|i[cg]mp_accept|mld|igmp|pim|ipmp)/) print "ip";
+                   if ( $0 ~ /^tcp/) print "tcp";
+                   if ( $0 ~ /^udp/) print "udp";
+                   if ( $0 ~ /^arp/) print "arp";
+                   if ( $0 ~ /^icmp/ && $0 !~ /^icmp_accept/ ) print "icmp";
+                 }'`
+
+        if [ -z "${netdrv}" ]; then
+            echo ":: Unable to determine network driver from line:"
+            echo ":: ${param}"
+            problem_flag=1
+        else
+            echo "Executing: ndd -set /dev/${netdrv} ${param}"
+            /usr/sbin/ndd -set /dev/${netdrv} $param
+            if [ $? -ne 0 ]; then
+               problem_flag=1
+            fi
+        fi
+    done
+else
+    echo ":: Unable to find /etc/default/ndd"
+    problem_flag=0
+fi 
+
+
+# If any of the ndd commands had problems, exit with error config 
+if [ $problem_flag -ne 0 ]; then
+    exit $SMF_EXIT_ERR_CONFIG
+fi
+
+
+# Clear exit status.
+exit $SMF_EXIT_OK

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook" xml:id="VerifySoftwareCryptoCerts" version="5.0">
+  <title xml:id="fileDACs">Verify Required Software Cryptographic Certs are Installed</title>
+  <para>
+  Verify that all required software cryptographic signatures are present
+  on the system. These signatures are used to verify that only packages
+  from reputable sources are installed on the system.
+ </para>
+  <para>
+  The list of installed certificates is determined by the using the
+  <filename>rpm -qa --queryformat="%{SUMMARY}\n" gpg-pubkey*</filename>
+  command. Note that if extra certificates are found, this is not an
+  immediate indication of a problem. However, the system administrator
+  should verify that the additional certificates are from trusted sites.
+ </para>
+  <simplesect xml:id="VerifySoftwareCryptoCerts-compliancy">
+    <title>Compliancy</title>
+    <itemizedlist>
+      <title>DISA Red Hat 6 STIG (V1R14)</title>
+      <listitem>
+        <para>
+     RHEL-06-000008 - Vendor-provided cryptographic certificates must be
+     installed to verify the integrity of system software.
+    </para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect xml:id="VerifySoftwareCryptoCerts-options">
+    <title>Module Options</title>
+    <itemizedlist>
+      <listitem>
+        <para>Required certificate lines<emphasis><para>A line of required certificate values (one per line)</para></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>Should any certificates found other than the above be shown?<emphasis><para>Display any additional certificates found on the system that aren't in the required list.
+            May help detect if a person is attempting to install malicious software...</para></emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>

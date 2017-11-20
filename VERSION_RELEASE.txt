@@ -1,0 +1,2 @@
+SB_VERSION=5.0.0
+SB_RELEASE=opensource

@@ -244,6 +244,11 @@ BUILDING OS LOCKDOWN
   this (Solaris - use 'gmake' instead): 
     make build
     
+  Note that you may see errors while building the Console complaining about a
+  missing /var/lib/oslockdown/logs directory or log files in that directory.
+  This error can be ignored, and can be a known problem when Grails is building
+  a war file.
+  
   When the build is done you should have multiple files in the build/dist 
   directory.  These should be the Linux RPMs or Solaris PKGs, and several log 
   files from the build.  Depending on the distribution  4 or 5 final PKG or

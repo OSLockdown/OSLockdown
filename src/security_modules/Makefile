@@ -44,7 +44,7 @@ build:   TEST_PREREQUISITES masterList
 	#$(ANT) -Dsvn.revision=${SB_RELEASE} -Dsb.version=${SB_VERSION}-${SB_RELEASE} dist 
 	$(ANT) dist 
 	
-	-mkdir ${DISTRO}
+	-mkdir -p ${DISTRO}
 	-mv dist/*.pkg ${DISTRO}/
 	-mv dist/*.log ${DISTRO}/
 	-mv dist/*.rpm ${DISTRO}/

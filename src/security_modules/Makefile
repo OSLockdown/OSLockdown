@@ -43,6 +43,8 @@ build:   TEST_PREREQUISITES masterList
 	# Until we can get the svnant tasks working, we must pass the version property to ant
 	#$(ANT) -Dsvn.revision=${SB_RELEASE} -Dsb.version=${SB_VERSION}-${SB_RELEASE} dist 
 	$(ANT) dist 
+	
+	-mkdir ${DISTRO}
 	-mv dist/*.pkg ${DISTRO}/
 	-mv dist/*.log ${DISTRO}/
 	-mv dist/*.rpm ${DISTRO}/

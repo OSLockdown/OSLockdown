@@ -472,6 +472,7 @@ build-linux: FORCE
 	@echo
 
 	# Copy Packages into distro folder
+        -mkdir -p ${DISTRO}/
 	-mv ${BUILD_BASE}/RPMS/noarch/oslockdown*.rpm ${DISTRO}/
 
 
@@ -505,12 +506,13 @@ build-solaris: FORCE clean all install
 	echo "i preremove" >> build/solaris/Prototype
 	
 	test ! -d build/solaris/package || rm -rf build/solaris/package
-	mkdir -p build/solaris/package
+	-mkdir -p build/solaris/package
 	(cd build/solaris/root/; pkgproto . >> ../Prototype )
 	(cd build/solaris/; pkgmk -o -r root -d package -f Prototype)
 	(cd build/solaris/; pkginfo -l -d package TCSoslockdown)
 	(cd build/solaris/; pkgtrans -s package oslockdown-${SB_VERSION}-${SB_RELEASE}.sol10.${PKGARCH}.pkg TCSoslockdown)
-	mv build/solaris/package/oslockdown-${SB_VERSION}-${SB_RELEASE}.sol10.${PKGARCH}.pkg build/dist
+	mkdir -p ${DISTRO}
+	mv build/solaris/package/oslockdown-${SB_VERSION}-${SB_RELEASE}.sol10.${PKGARCH}.pkg ${DISTRO}/
 	cat /dev/null > build/solaris/preinstall
 
 

@@ -40,7 +40,7 @@
     </target>
 
     <target name="clean-grails-lib-dir" description="Clean Grails library">
-        <delete>
+        <delete failonerror="false">
             <fileset dir="${grails.lib.dir}" includes="*.jar" />
         </delete>
     </target>

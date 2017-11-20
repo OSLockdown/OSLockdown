@@ -478,6 +478,7 @@ build-linux:
 	@echo
 
 	# Copy Packages into distro folder
+	-mkdir -p ${DISTRO}
 	-mv ${BUILD_BASE}/RPMS/$(ARCH)/oslockdown-dispatcher*.rpm ${DISTRO}/
 	-mv ${BUILD_BASE}/BUILD/oslockdown/src/dispatcher/swig_dir/AutoupdateComms.pyo ${DISTRO}/
 	-mv ${BUILD_BASE}/BUILD/oslockdown/src/dispatcher/swig_dir/_AutoupdateComms.so ${DISTRO}/
@@ -516,10 +517,13 @@ build-solaris: all install
 	(cd build/solaris/; pkgmk -o -r root -d package -f Prototype)
 	(cd build/solaris/; pkginfo -l -d package TCSoslockdown-dispatcher)
 	(cd build/solaris/; pkgtrans -s package oslockdown-dispatcher-${SB_VERSION}-${SB_RELEASE}.sol10.${PKGARCH}.pkg TCSoslockdown-dispatcher)
-	mv build/solaris/package/oslockdown-dispatcher-${SB_VERSION}-${SB_RELEASE}.sol10.${PKGARCH}.pkg build/dist
-	mv swig_dir/AutoupdateComms.pyo build/dist
-	mv swig_dir/_AutoupdateComms.so build/dist
-	cat /dev/null > build/solaris/preinstall
+	
+	-mkdir -p ${DISTRO}
+	mv build/solaris/package/oslockdown-dispatcher-${SB_VERSION}-${SB_RELEASE}.sol10.${PKGARCH}.pkg ${DISTRO}/
+	mv swig_dir/AutoupdateComms.pyo ${DISTRO}/
+	mv swig_dir/_AutoupdateComms.so ${DISTRO}/
+	
+	cat /sodev/null > build/solaris/preinstall
 
 
 

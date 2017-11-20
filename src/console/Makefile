@@ -521,6 +521,7 @@ build-linux:
 	$(TAR) -C ../../.. ${EXCLUDE_SRC_DIRS} ${COMMON_EXCLUDES} -czf ${BUILD_BASE}/SOURCES/oslockdown.tar.gz oslockdown ;
 
 	# Build Packages
+	-mkdir -p ${DISTRO}
 	$(RPMBUILD) --define "_topdir ${BUILD_BASE}" -bb ${SPECFILE} 2>&1 |$(TEE) ${DISTRO}/build-console_${JAVAFLAVOR}_${JAVAVERSION}.log
 	@echo
         	
@@ -559,12 +560,13 @@ build-solaris: FORCE install
 	echo "i preremove" >> build/solaris/Prototype
 
 	test ! -d build/solaris/package || rm -rf build/solaris/package
-	mkdir -p build/solaris/package
+	-mkdir -p build/solaris/package
 	(cd build/solaris/root/; pkgproto . >> ../Prototype )
 	(cd build/solaris/; pkgmk -o -r root -d package -f Prototype)
 	(cd build/solaris/; pkginfo -l -d package TCSoslockdown-console)
 	(cd build/solaris/; pkgtrans -s package oslockdown-console-${SB_VERSION}-${SB_RELEASE}.sol10.noarch.pkg TCSoslockdown-console)
 
+	mkdir -p ${DISTRO}
 	mv build/solaris/package/oslockdown-console-${SB_VERSION}-${SB_RELEASE}.sol10.noarch.pkg build/dist
 
 account:

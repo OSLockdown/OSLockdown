@@ -229,10 +229,10 @@ BUILDING OS LOCKDOWN
   To build OS Lockdown first ensure that you are in the top level of the
   OS Lockdown tarball.
   
-  *****  IMPORTANT
-      You will need to be root in order to build the packages.
-      The top level directory of the OS Lockdown tree should be called 'oslockdown'.
-  *****  IMPORTANT
+  **_IMPORTANT_**
+      * You will need to be root in order to build the packages.
+      * The top level directory of the OS Lockdown tree must be called 'oslockdown'.
+  
       
   This is not the recommended method to build packages and should be fixed.  
   You must have the above prerequisites installed. For both Linux and Solaris 

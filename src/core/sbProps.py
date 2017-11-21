@@ -13,7 +13,6 @@
 #          Recursively search every Python file in the <root>/src 
 #          structure first!!
 #
-# $Id: sbProps.py 23917 2017-03-07 15:44:30Z rsanders $
 ##############################################################################
 # Setting this flag enables certain messages to stdout and logging
 # Set to FALSE before production release

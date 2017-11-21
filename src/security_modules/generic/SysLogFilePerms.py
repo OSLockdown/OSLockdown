@@ -26,7 +26,6 @@
 # of log files, it ensures each file is owned by a system 
 # user (Solaris UID < 100 and Linux UID < 500)
 #
-# $Id: SysLogFilePerms.py 23917 2017-03-07 15:44:30Z rsanders $
 #
 
 

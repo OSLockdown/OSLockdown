@@ -17,7 +17,6 @@
 # the 'nosuid' option specified.
 #
 #
-# $Id: FstabRemovableMedia.py 23917 2017-03-07 15:44:30Z rsanders $ 
 #
 #
 

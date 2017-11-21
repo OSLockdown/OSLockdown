@@ -14,6 +14,5 @@
 <!-- *          exactly what you are doing.                               	    * --> 
 <!-- *                                                                    	    * --> 
 <!-- ******************************************************************************** -->
-<!-- $Id: security-modules.xml 20752 2013-01-24 16:36:36Z rsanders $ -->
   <security_modules/>
 </oslockdown>

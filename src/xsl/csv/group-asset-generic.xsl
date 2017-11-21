@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: group-asset-generic.xsl 23917 2017-03-07 15:44:30Z rsanders $ -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <!-- =========================================================================
       Copyright (c) 2007-2014 Forcepoint LLC.

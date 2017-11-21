@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <!-- Copyright(c) 2007-2017 Forcepoint LLC -->
 <!-- See http://docbook.sourceforge.net/release/xsl/current/doc/html/ -->
-<!-- $Id: tcs-javahelp.xsl 23875 2017-01-24 19:48:53Z acochrane $ -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns:fo="http://www.w3.org/1999/XSL/Format" 
                 xmlns:saxon="http://icl.com/saxon" 

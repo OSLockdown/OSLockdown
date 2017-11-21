@@ -7,7 +7,6 @@
 <!--                                                                          -->
 <!--   OS Lockdown Console                                               -->
 <!-- ************************************************************************ -->
-<!-- $Id: build.xml 23917 2017-03-07 15:44:30Z rsanders $ -->
 
 <project name="OS Lockdown Console" default="console" basedir=".">
     <description>OS Lockdown Console</description>

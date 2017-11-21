@@ -6,7 +6,6 @@
 <!-- **********************************************************  -->
 
 <!-- See http://docbook.sourceforge.net/release/xsl/current/doc/html/ -->
-<!-- $Id: tcs-pdf-admin-guide.xsl 23875 2017-01-24 19:48:53Z acochrane $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"

@@ -6,7 +6,6 @@
 #
 # Security-Enhanced Linux (SELinux) Functions
 #
-# $Id: __init__.py 23917 2017-03-07 15:44:30Z rsanders $
 #
 #
 

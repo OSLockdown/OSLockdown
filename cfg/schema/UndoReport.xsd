@@ -7,7 +7,6 @@
 <!--                                                                          	   -->
 <!--   OS Lockdown - Security Undo Report                                	   -->
 <!-- ***************************************************************************** -->
-<!-- $Id: UndoReport.xsd 23919 2017-03-07 19:44:51Z rsanders $ -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>OS Lockdown - Security Undo Report Schema</xs:documentation>

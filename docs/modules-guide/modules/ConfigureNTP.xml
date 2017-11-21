@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: ConfigureNTP.xml 21205 2013-03-28 20:12:03Z rsanders $ -->
 <section xmlns="http://docbook.org/ns/docbook" xml:id="ConfigureNTP" version="5.0">
  <title xml:id="NetworkServices">Configure Time Synchronization</title>
  <para>

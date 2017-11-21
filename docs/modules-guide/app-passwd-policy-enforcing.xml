@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: app-passwd-policy-enforcing.xml 23964 2017-03-21 21:04:23Z acochrane $ -->
 <section version="5.0" xml:id="app-passwd-policy-enforcing" xmlns="http://docbook.org/ns/docbook">
  <title>Enforcing the Policy</title>
  <para> Implementing a <link linkend="app-passwd-policy-aging">password aging</link> and <link

@@ -7,7 +7,6 @@
 <!--                                                                          -->
 <!--   OS Lockdown - Security Profile                                    -->
 <!-- ************************************************************************ -->
-<!-- $Id: SecurityProfile.xsd 23917 2017-03-07 15:44:30Z rsanders $ -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>OS Lockdown - Security Profiles</xs:documentation>

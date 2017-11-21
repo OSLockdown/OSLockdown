@@ -7,7 +7,6 @@
 <!--                                                                          -->
 <!--   Security Blanket Documentation - Build Java Help Files                 -->
 <!-- ************************************************************************ -->
-<!-- $Id: build.xml 24005 2017-03-27 17:38:08Z rsanders $ -->
 
 <project name="Security Blanket Documentation" default="docs" basedir=".">
     <description>Security Blanket Documentation</description>

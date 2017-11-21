@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: ChangeSNMPStrings.xml 24061 2017-04-04 14:59:36Z rsanders $ -->
 <section xmlns="http://docbook.org/ns/docbook" xml:id="ChangeSNMPStrings" version="5.0">
  <title xml:id="SysMgmtServices">Disable SNMP if Default Public String Exists</title>
  <para>

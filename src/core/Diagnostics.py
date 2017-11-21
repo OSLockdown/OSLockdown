@@ -8,7 +8,6 @@
 # This module contains various functions to test the operating
 # environment required by the core engine of OS Lockdown.
 #
-# $Id: Diagnostics.py 23937 2017-03-10 15:01:16Z rsanders $
 #
 global SELinuxEnabled
 global MLSenabled

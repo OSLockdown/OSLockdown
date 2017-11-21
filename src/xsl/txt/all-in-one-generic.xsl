@@ -10,7 +10,6 @@
    Purpose: Any Report XML to TEXT
             Intended to be used with command line only.
 
-  $Id$
  =========================================================================
    Parameters:
      show.module.details - Show module descriptions and 

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: DisableIpForwardingDirBdcsts.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
 <section xmlns="http://docbook.org/ns/docbook" xml:id="DisableIpForwardingDirBdcsts" version="5.0">
   <title xml:id="NetworkConfig">Disable Broadcast Packet Forwarding</title>
   <para>

@@ -17,7 +17,7 @@ DOC = """<?xml version="1.0" encoding="UTF-8"?>
 indexdoc = libxml2.parseDoc(DOC)
 rootelem = indexdoc.getRootElement()
 
-msg = "\n  OS Lockdown Modules Guide - Index\n  DO NOT EDIT - Automatically Generated\n  $Id: build-index.py 24004 2017-03-27 17:14:28Z rsanders $\n"
+msg = "\n  OS Lockdown Modules Guide - Index\n  DO NOT EDIT - Automatically Generated\n"
 xml_comment = indexdoc.newDocComment(msg)
 rootelem.addPrevSibling(xml_comment)
 

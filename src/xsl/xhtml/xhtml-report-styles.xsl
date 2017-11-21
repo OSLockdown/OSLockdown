@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: xhtml-report-styles.xsl 23917 2017-03-07 15:44:30Z rsanders $ -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"  
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"  
                 xmlns:exslt="http://exslt.org/common" version="1.0">

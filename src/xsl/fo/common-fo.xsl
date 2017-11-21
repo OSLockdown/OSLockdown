@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: common-fo.xsl 23917 2017-03-07 15:44:30Z rsanders $ -->
 <!-- 
      *************************************************************************
         Copyright (c) 2007-2014 Forcepoint LLC.

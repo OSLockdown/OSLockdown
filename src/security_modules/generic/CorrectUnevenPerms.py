@@ -23,7 +23,6 @@
 # 6 - World writeable
 # 7 - Group writeable
 #
-# $Id: CorrectUnevenPerms.py 23917 2017-03-07 15:44:30Z rsanders $
 #
 
 import os

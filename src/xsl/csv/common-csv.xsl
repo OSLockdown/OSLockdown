@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: common-csv.xsl 24130 2017-11-02 20:50:37Z rsanders $ -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exslt="http://exslt.org/common" version="1.0">
     <!-- *************************************************************************
      Copyright (c) 2007-2014 Forcepoint LLC.

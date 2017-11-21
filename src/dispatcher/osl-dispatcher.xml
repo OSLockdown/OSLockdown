@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-<!-- $Id: osl-dispatcher.xml 23982 2017-03-22 20:41:03Z rsanders $ -->
 <!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
 <service_bundle type='manifest' name='TCS:osl-dispatcher'>
     <service name='site/osl-dispatcher' type='service' version='1'>

@@ -27,7 +27,6 @@
 #    product delivery! This will be delivered as the default
 #    baseline profile for installations.
 #
-# $Id: test-baseline.sh 23917 2017-03-07 15:44:30Z rsanders $
 #
 ##############################################################################
 PYTHONPATH=`pwd`:`pwd`/Baseline

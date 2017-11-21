@@ -7,7 +7,6 @@
 <!-- 									   	   --> 
 <!-- OS Lockdown Modules						   	   --> 
 <!-- ***************************************************************************** -->
-<!-- $Id: build.xml 24130 2017-11-02 20:50:37Z rsanders $ -->
 <project name="OS Lockdown Modules" default="dist" basedir=".">
     <description>
         OS Lockdown Modules:

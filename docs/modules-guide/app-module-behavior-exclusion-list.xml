@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: app-module-behavior-exclusion-list.xml 23964 2017-03-21 21:04:23Z acochrane $ -->
 <section version="5.0" xml:id="app-module-behavior-exclusion-list" xmlns="http://docbook.org/ns/docbook">
  <title>Excluding Directories from Scans</title>
  <para> Starting in v3.0.3, OS Lockdown provides the ability to exclude directories to prevent OS Lockdown from scanning

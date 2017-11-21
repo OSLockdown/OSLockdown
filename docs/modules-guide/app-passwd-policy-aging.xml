@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: app-passwd-policy-aging.xml 23964 2017-03-21 21:04:23Z acochrane $ -->
 <section version="5.0" xml:id="app-passwd-policy-aging" xmlns="http://docbook.org/ns/docbook">
  <title>Password Aging</title>
  <para> Establishing a <emphasis>password aging</emphasis> policy involves setting system parameters to automatically

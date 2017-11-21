@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: ArpCleanupInterval_IRE.xml 24006 2017-03-27 18:13:48Z rsanders $ -->
 <section xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="ArpCleanupInterval_IRE">
  <title xml:id="NetworkConfig">ARP IRE_CACHE Cleanup Interval</title>
  <para>

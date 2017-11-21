@@ -1,5 +1,4 @@
 ﻿<?xml version='1.0'?>
-<!-- $Id: tcs-pdf-custom-title.xsl 24137 2017-11-08 16:47:07Z acochrane $ -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 version="1.0">

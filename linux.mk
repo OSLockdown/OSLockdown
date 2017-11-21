@@ -5,11 +5,7 @@
 # or visit https://www.gnu.org/licenses/gpl.html instead.
 #
 # OS Lockdown - Master Linux Makefile
-# $LastChangedDate: 2017-11-14 14:06:36 -0500 (Tue, 14 Nov 2017) $
-# $LastChangedRevision: 24144 $
-# $LastChangedBy: rsanders $
 # 
-# $Id: linux.mk 24144 2017-11-14 19:06:36Z rsanders $
 #
 #=========================================================================
 

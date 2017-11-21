@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: baseline-software-only.xsl 23917 2017-03-07 15:44:30Z rsanders $ -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns:xs="http://www.w3.org/2001/XMLSchema" 
                 xmlns:java="http://xml.apache.org/xslt/java" exclude-result-prefixes="java"  

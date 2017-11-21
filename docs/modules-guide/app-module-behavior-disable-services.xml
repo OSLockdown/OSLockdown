@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: app-module-behavior-disable-services.xml 23964 2017-03-21 21:04:23Z acochrane $ -->
 <section version="5.0" xml:id="app-module-behavior-disable-services" xmlns="http://docbook.org/ns/docbook">
  <title>Disabling Services</title>
  <para> Several modules included with OS Lockdown simply disable a service in order to reduce the system’s attack

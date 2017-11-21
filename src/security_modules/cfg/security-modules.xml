@@ -14,7 +14,6 @@
 <!-- *          exactly what you are doing.                               	    * -->
 <!-- *                                                                    	    * -->
 <!-- ******************************************************************************** -->
-<!-- $Id: security-modules.xml 24061 2017-04-04 14:59:36Z rsanders $ -->
   <security_modules>
     <module_group name="Audit">
       <security_module sortKey="500" name="Enable the Audit Subsystem">

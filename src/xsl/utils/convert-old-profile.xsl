@@ -10,7 +10,6 @@
          Purpose: Convert old profiles (with module_group) to v4.0.3+
      =========================================================================
     -->
- <!-- $Id: convert-old-profile.xsl 23802 2017-01-09 22:08:40Z rsanders $ -->
  <xsl:output method="xml" encoding="UTF-8" indent="no" />
  <xsl:template match="/">
   <xsl:comment> Profile converted from 3.x to 4.x structure </xsl:comment>

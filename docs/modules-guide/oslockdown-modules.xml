@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: oslockdown-modules.xml 24137 2017-11-08 16:47:07Z acochrane $ -->
 <!DOCTYPE book [
 <!ENTITY % CommonEntities SYSTEM "../COMMON_ENTITIES.ent">
 <!ENTITY SB_prodname "OS Lockdown">

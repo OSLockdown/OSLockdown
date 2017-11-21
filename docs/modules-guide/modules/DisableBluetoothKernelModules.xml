@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: DisableBluetoothKernelModules.xml 24135 2017-11-07 16:13:34Z rsanders $ -->
 <section xmlns="http://docbook.org/ns/docbook" xml:id="DisableBluetoothKernelModules" version="5.0">
   <title xml:id="HardwareServices">Disable Bluetooth Kernel Modules</title>
   <para>
